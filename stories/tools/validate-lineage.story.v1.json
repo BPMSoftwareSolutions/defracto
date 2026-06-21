@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.tools.validate-lineage.story.v1",
+  "derivedFrom": {
+    "sourceKey": "defracto.origin.conversation_fractal.v1",
+    "sourcePath": "examples/founding-conversation/source/conversation-fractal.md",
+    "sourceHash": "sha256:seed-manual"
+  },
+  "actor": {
+    "role": "Defracto maintainer",
+    "goal": "preserve lineage truth before any executable validator exists"
+  },
+  "story": {
+    "asA": "Defracto maintainer",
+    "iWant": "a contract for lineage validation that is fully described before execution",
+    "soThat": "no validator body can become a hidden source of truth"
+  },
+  "acceptanceCriteria": [
+    {
+      "criteriaKey": "contract_before_body",
+      "statement": "The lineage validator behavior is fully described before any executable script exists."
+    },
+    {
+      "criteriaKey": "finding_types_bound",
+      "statement": "Pass, missing path, broken source trace, and false narrative findings are named and bounded."
+    }
+  ],
+  "status": "authorized"
+}

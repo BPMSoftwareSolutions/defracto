@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.sej-validation-contract.schema.v1",
+  "title": "Generalized SEJ Validation Contract Expansion",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "contractKey",
+    "contractKind",
+    "contractStatus",
+    "bootstrapValidationPosture",
+    "generalizedValidationPosture",
+    "allowedPrimitiveFamilies",
+    "deferredPrimitiveFamilies",
+    "requiredResolverHandshakes",
+    "requiredProjectionManifests",
+    "requiredEvidenceReceipts",
+    "forbiddenHostCodeBehaviors"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string" },
+    "contractKey": { "type": "string" },
+    "contractKind": { "type": "string", "const": "sej-validation-contract-expansion" },
+    "contractStatus": {
+      "type": "string",
+      "enum": ["draft", "accepted", "blocked", "ready-for-resolver"]
+    },
+    "bootstrapValidationPosture": { "type": "string" },
+    "generalizedValidationPosture": { "type": "string" },
+    "allowedPrimitiveFamilies": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "deferredPrimitiveFamilies": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "requiredResolverHandshakes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "requiredProjectionManifests": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "requiredEvidenceReceipts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "forbiddenHostCodeBehaviors": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

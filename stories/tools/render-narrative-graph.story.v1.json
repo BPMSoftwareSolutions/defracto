@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.tools.render-narrative-graph.story.v1",
+  "derivedFrom": {
+    "sourceKey": "defracto.origin.conversation_fractal.v1",
+    "sourcePath": "examples/founding-conversation/source/conversation-fractal.md",
+    "sourceHash": "sha256:seed-manual"
+  },
+  "actor": {
+    "role": "Defracto maintainer",
+    "goal": "preserve narrative graph reporting lineage before any executable graph reporter exists"
+  },
+  "story": {
+    "asA": "Defracto maintainer",
+    "iWant": "a contract for rendering narrative graphs that is fully described before execution",
+    "soThat": "no graph reporter body can become a hidden source of truth"
+  },
+  "acceptanceCriteria": [
+    {
+      "criteriaKey": "graph_report_bounded",
+      "statement": "The narrative graph rendering behavior is fully described before any executable script exists."
+    },
+    {
+      "criteriaKey": "lineage_graph_bounded",
+      "statement": "Source narrative, story packet, canonical spec, projection manifest, lineage receipt, and report expectations are named and bounded."
+    }
+  ],
+  "status": "authorized"
+}

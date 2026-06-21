@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.lineage-receipt.v1",
+  "title": "Lineage Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "lineageReceiptKey",
+    "status",
+    "checkedAt",
+    "mode",
+    "source",
+    "story",
+    "canonicalSpec",
+    "projection",
+    "checks",
+    "findings"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "lineageReceiptKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "checkedAt": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": ["sourceKey", "sourceHash"],
+      "properties": {
+        "sourceKey": {
+          "type": "string"
+        },
+        "sourceHash": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "story": {
+      "type": "object",
+      "required": ["storyKey"],
+      "properties": {
+        "storyKey": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "canonicalSpec": {
+      "type": "object",
+      "required": ["canonicalSpecKey"],
+      "properties": {
+        "canonicalSpecKey": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "projection": {
+      "type": "object",
+      "required": ["projectionManifestKey", "projectionType", "outputPath"],
+      "properties": {
+        "projectionManifestKey": {
+          "type": "string"
+        },
+        "projectionType": {
+          "type": "string"
+        },
+        "outputPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": false
+}

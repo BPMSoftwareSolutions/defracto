@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.narrative-source.v1",
+  "title": "Narrative Source",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "sourceKey",
+    "sourceType",
+    "path",
+    "sourceHash",
+    "summary",
+    "status"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "sourceKey": {
+      "type": "string"
+    },
+    "sourceType": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "sourceHash": {
+      "type": "string"
+    },
+    "capturedAt": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

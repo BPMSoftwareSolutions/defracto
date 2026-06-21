@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.canonical-spec.v1",
+  "title": "Canonical Spec",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "canonicalSpecKey",
+    "derivedFromStory",
+    "purpose",
+    "canonicalNodes",
+    "rules",
+    "status"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "canonicalSpecKey": {
+      "type": "string"
+    },
+    "derivedFromStory": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "canonicalNodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "canonicalPath",
+          "storyPath",
+          "statement",
+          "nodeType"
+        ],
+        "properties": {
+          "canonicalPath": {
+            "type": "string"
+          },
+          "storyPath": {
+            "type": "string"
+          },
+          "statement": {
+            "type": "string"
+          },
+          "nodeType": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["ruleKey", "statement"],
+        "properties": {
+          "ruleKey": {
+            "type": "string"
+          },
+          "statement": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

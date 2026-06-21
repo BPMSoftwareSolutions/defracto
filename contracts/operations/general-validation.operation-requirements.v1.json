@@ -1,0 +1,45 @@
+{
+  "operationRequirementVersion": "defracto.general-validation.operation-requirements.v1",
+  "packetKey": "defracto.general-validation.operation-requirements",
+  "contractKey": "contracts/schemas/sej-validation-contract.schema.v1.json",
+  "bootstrapValidationPosture": "already-loaded-json",
+  "generalizedValidationPosture": "bounded-contract-driven",
+  "allowedPrimitiveFamilies": [
+    "resolve.reference.v1",
+    "resolve.value.v1",
+    "evaluate.predicate.v1",
+    "project.value.v1"
+  ],
+  "deferredPrimitiveFamilies": [
+    "json.read_file.v1",
+    "json.parse.v1",
+    "directory.traverse.v1",
+    "graph.traverse.v1",
+    "report.write.v1",
+    "finding.invent.v1"
+  ],
+  "requiredResolverHandshakes": [
+    "contracts/sej/validate-story-packet.sej.v1.json",
+    "contracts/sej/render-narrative-graph.sej.v1.json",
+    "reports/slice-004e-story-graph-resolver-capability-handshake.latest.md",
+    "reports/slice-004k-story-graph-bootstrap-invocation-evidence.latest.md"
+  ],
+  "requiredProjectionManifests": [
+    "contracts/projections/validate-story-packet.facade-manifest.v1.json",
+    "contracts/projections/render-narrative-graph.facade-manifest.v1.json"
+  ],
+  "requiredEvidenceReceipts": [
+    "evidence/facades/validate-story-packet.facade-materialization.receipt.v1.json",
+    "evidence/facades/render-narrative-graph.facade-materialization.receipt.v1.json",
+    "evidence/invocations/validate-story-packet.bootstrap-invocation.receipt.v1.json",
+    "evidence/invocations/render-narrative-graph.bootstrap-invocation.receipt.v1.json"
+  ],
+  "forbiddenHostCodeBehaviors": [
+    "hand-authoring executable behavior",
+    "introducing file loading in host code",
+    "introducing generalized traversal in host code",
+    "writing reports from host code without declared evidence",
+    "mutating generated doorways",
+    "claiming resolver authority without handshake"
+  ]
+}

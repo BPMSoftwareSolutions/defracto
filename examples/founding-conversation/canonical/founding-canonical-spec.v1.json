@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.founding.canonical_spec.v1",
+  "derivedFromStory": "defracto.founding.story.v1",
+  "purpose": "Authorize the founding truth-lineage chain.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.doctrine.truthAboveCode",
+      "storyPath": "$.story.soThat",
+      "statement": "Truth sits above implementation; code is projection.",
+      "nodeType": "doctrine"
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "no_competing_narratives",
+      "statement": "No artifact may claim behavior or meaning not traceable to authorized story truth."
+    }
+  ],
+  "status": "authorized"
+}

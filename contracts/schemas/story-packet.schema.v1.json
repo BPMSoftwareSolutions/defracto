@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.story-packet.v1",
+  "title": "Story Packet",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "storyKey",
+    "derivedFrom",
+    "actor",
+    "story",
+    "acceptanceCriteria",
+    "status"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "storyKey": {
+      "type": "string"
+    },
+    "derivedFrom": {
+      "type": "object",
+      "required": ["sourceKey", "sourcePath", "sourceHash"],
+      "properties": {
+        "sourceKey": {
+          "type": "string"
+        },
+        "sourcePath": {
+          "type": "string"
+        },
+        "sourceHash": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "actor": {
+      "type": "object",
+      "required": ["role", "goal"],
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "goal": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "story": {
+      "type": "object",
+      "required": ["asA", "iWant", "soThat"],
+      "properties": {
+        "asA": {
+          "type": "string"
+        },
+        "iWant": {
+          "type": "string"
+        },
+        "soThat": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

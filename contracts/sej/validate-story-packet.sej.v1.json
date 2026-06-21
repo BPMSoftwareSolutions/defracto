@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.validate-story-packet.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "draft",
+  "toolKey": "defracto.tools.validate_story_packet",
+  "sourceLineage": {
+    "storyKey": "stories/tools/validate-story-packet.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/tools/validate-story-packet.canonical-spec.v1.json",
+    "executableProjectionContractKey": "tools/validate-story-packet.contract.md",
+    "bodyDispositionKey": "contracts/taxonomies/body-disposition.taxonomy.v1.json"
+  },
+  "findingTaxonomyKey": "contracts/taxonomies/finding-taxonomy.v1.json",
+  "operationRequirementsKey": "contracts/operations/validate-story-packet.operation-requirements.v1.json",
+  "boundedInputs": [
+    "sourceNarrative",
+    "storyPacket"
+  ],
+  "boundedOutputs": [
+    "validationResult"
+  ],
+  "allowedFindingKeys": [
+    "pass",
+    "missing_source",
+    "story_mismatch",
+    "source_trace_break"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.reference.v1",
+      "purpose": "Resolve already-loaded source and story references from the invocation payload.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "purpose": "Resolve bounded values from declared references without inventing new meaning.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "purpose": "Evaluate bounded predicates over the already-loaded source narrative and story packet.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "purpose": "Project the bounded validation result from explicit predicate outcomes.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "bootstrapValidation": {
+    "mode": "already-loaded-json",
+    "checkMode": "explicit-bounded-predicates",
+    "checks": [
+      {
+        "leftRef": "storyPacket.derivedFrom.sourceKey",
+        "operator": "equals",
+        "rightRef": "sourceNarrative.sourceKey",
+        "findingKeyOnMismatch": "missing_source"
+      }
+    ]
+  },
+  "projectionResponsibilities": [
+    "finding.emit",
+    "result.build"
+  ],
+  "forbiddenResolverOperations": [
+    "story.compare_keys",
+    "json.read_file.v1",
+    "json.parse.v1",
+    "directory.traverse.v1"
+  ],
+  "failurePosture": "Missing capability blocks execution and keeps the contract in declarative review until a resolver handshake is later authorized."
+}

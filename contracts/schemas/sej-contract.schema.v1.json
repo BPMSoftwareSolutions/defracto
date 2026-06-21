@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.sej-contract.v1",
+  "title": "Semantic Executable JSON Contract",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "contractKey",
+    "contractKind",
+    "contractStatus",
+    "toolKey",
+    "sourceLineage",
+    "findingTaxonomyKey",
+    "operationRequirementsKey",
+    "boundedInputs",
+    "boundedOutputs",
+    "allowedFindingKeys",
+    "requiredOperations",
+    "failurePosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "contractKey": {
+      "type": "string"
+    },
+    "contractKind": {
+      "type": "string",
+      "const": "semantic-executable-json"
+    },
+    "contractStatus": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "accepted",
+        "blocked",
+        "ready-for-resolver"
+      ]
+    },
+    "toolKey": {
+      "type": "string"
+    },
+    "sourceLineage": {
+      "type": "object",
+      "required": [
+        "storyKey",
+        "canonicalSpecKey",
+        "executableProjectionContractKey",
+        "bodyDispositionKey"
+      ],
+      "properties": {
+        "storyKey": {
+          "type": "string"
+        },
+        "canonicalSpecKey": {
+          "type": "string"
+        },
+        "executableProjectionContractKey": {
+          "type": "string"
+        },
+        "bodyDispositionKey": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "findingTaxonomyKey": {
+      "type": "string"
+    },
+    "operationRequirementsKey": {
+      "type": "string"
+    },
+    "boundedInputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "boundedOutputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowedFindingKeys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredOperations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "operationKey",
+          "purpose",
+          "requirementState",
+          "missingCapabilityBehavior"
+        ],
+        "properties": {
+          "operationKey": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "requirementState": {
+            "type": "string",
+            "enum": [
+              "required",
+              "optional"
+            ]
+          },
+          "missingCapabilityBehavior": {
+            "type": "string",
+            "enum": [
+              "blocked",
+              "defer",
+              "mark-missing"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "failurePosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

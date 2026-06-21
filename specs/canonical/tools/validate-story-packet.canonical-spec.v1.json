@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.tools.validate-story-packet.canonical_spec.v1",
+  "derivedFromStory": "defracto.tools.validate-story-packet.story.v1",
+  "purpose": "Authorize the story packet validator contract before executable implementation exists.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.validator.inputs.required",
+      "storyPath": "$.acceptanceCriteria[0].statement",
+      "statement": "The validator requires source narrative and story packet inputs.",
+      "nodeType": "contract"
+    },
+    {
+      "canonicalPath": "$.validator.findings.pass",
+      "storyPath": "$.acceptanceCriteria[0].statement",
+      "statement": "The validator can report pass findings when the story packet is authorized and traceable.",
+      "nodeType": "finding"
+    },
+    {
+      "canonicalPath": "$.validator.findings.storyMismatch",
+      "storyPath": "$.acceptanceCriteria[1].statement",
+      "statement": "The validator can report story mismatch findings when the story packet drifts from source narrative.",
+      "nodeType": "finding"
+    },
+    {
+      "canonicalPath": "$.validator.findings.sourceTraceBreak",
+      "storyPath": "$.acceptanceCriteria[1].statement",
+      "statement": "The validator can report source trace break findings when source narrative linkage is missing.",
+      "nodeType": "finding"
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "no_hidden_story_validator_truth",
+      "statement": "No executable story validator body may introduce behavior not named in story, canonical spec, schemas, and evidence expectations."
+    }
+  ],
+  "status": "authorized"
+}

@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.narrative-graph-render-result.v1",
+  "title": "Narrative Graph Render Result",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "resultKey",
+    "status",
+    "checkedAt",
+    "mode",
+    "source",
+    "storyPacket",
+    "canonicalSpec",
+    "projectionManifest",
+    "lineageReceipt",
+    "graph",
+    "findings"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "resultKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "deferred"
+      ]
+    },
+    "checkedAt": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "manual-seed",
+        "contract-review",
+        "executable-run"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "sourceKey",
+        "sourceHash",
+        "sourcePath"
+      ],
+      "properties": {
+        "sourceKey": {
+          "type": "string"
+        },
+        "sourceHash": {
+          "type": "string"
+        },
+        "sourcePath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "storyPacket": {
+      "type": "object",
+      "required": [
+        "storyKey",
+        "storyPath"
+      ],
+      "properties": {
+        "storyKey": {
+          "type": "string"
+        },
+        "storyPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "canonicalSpec": {
+      "type": "object",
+      "required": [
+        "canonicalSpecKey",
+        "canonicalSpecPath"
+      ],
+      "properties": {
+        "canonicalSpecKey": {
+          "type": "string"
+        },
+        "canonicalSpecPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "projectionManifest": {
+      "type": "object",
+      "required": [
+        "projectionManifestKey",
+        "projectionType",
+        "projectionManifestPath"
+      ],
+      "properties": {
+        "projectionManifestKey": {
+          "type": "string"
+        },
+        "projectionType": {
+          "type": "string"
+        },
+        "projectionManifestPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "lineageReceipt": {
+      "type": "object",
+      "required": [
+        "lineageReceiptKey",
+        "lineageReceiptPath"
+      ],
+      "properties": {
+        "lineageReceiptKey": {
+          "type": "string"
+        },
+        "lineageReceiptPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "graph": {
+      "type": "object",
+      "required": [
+        "summary",
+        "nodes",
+        "edges"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "nodeType",
+              "nodeKey",
+              "nodePath",
+              "status"
+            ],
+            "properties": {
+              "nodeType": {
+                "type": "string"
+              },
+              "nodeKey": {
+                "type": "string"
+              },
+              "nodePath": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "from",
+              "relationship",
+              "to"
+            ],
+            "properties": {
+              "from": {
+                "type": "string"
+              },
+              "relationship": {
+                "type": "string"
+              },
+              "to": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "findingKey",
+          "message"
+        ],
+        "properties": {
+          "findingKey": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

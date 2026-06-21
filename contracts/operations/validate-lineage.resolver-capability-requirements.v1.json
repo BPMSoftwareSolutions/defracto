@@ -1,0 +1,50 @@
+{
+  "requirementPacketVersion": "defracto.validate-lineage.resolver-capability-requirements.v1",
+  "packetKey": "defracto.validate-lineage.resolver-capability-requirements",
+  "toolKey": "defracto.tools.validate_lineage",
+  "sourceSejContractKey": "contracts/sej/validate-lineage.sej.v1.json",
+  "resolverHandshakeKey": "reports/slice-003d-resolver-capability-handshake.latest.md",
+  "sejRewriteRecommended": false,
+  "classifications": [
+    {
+      "primitiveKey": "resolve.reference.v1",
+      "classification": "expressible_with_existing_primitives",
+      "rationale": "Already-loaded input references are supported by the current resolver surface."
+    },
+    {
+      "primitiveKey": "resolve.value.v1",
+      "classification": "expressible_with_existing_primitives",
+      "rationale": "Bounded value resolution is already supported by the current resolver surface."
+    },
+    {
+      "primitiveKey": "evaluate.predicate.v1",
+      "classification": "expressible_with_existing_primitives",
+      "rationale": "Predicate evaluation is already supported and can carry the bootstrap equality checks."
+    },
+    {
+      "primitiveKey": "project.value.v1",
+      "classification": "expressible_with_existing_primitives",
+      "rationale": "Projection mechanics are already supported by the current resolver surface."
+    },
+    {
+      "primitiveKey": "evidence.emit.v1",
+      "classification": "expressible_with_existing_primitives",
+      "rationale": "Evidence emission is already a generic resolver capability and can cover the declared output/evidence boundary."
+    },
+    {
+      "primitiveKey": "lineage.compare_keys.v1",
+      "classification": "forbidden_product_specific_resolver_logic",
+      "rationale": "Lineage comparison is Defracto-specific meaning and belongs in the SEJ projection or contract layer, not in the resolver primitive catalog."
+    },
+    {
+      "primitiveKey": "finding.emit.v1",
+      "classification": "defracto_sej_projection_responsibility",
+      "rationale": "Finding semantics belong to Defracto contract/projection material, while the resolver should only project declared result data."
+    },
+    {
+      "primitiveKey": "result.build.v1",
+      "classification": "defracto_sej_projection_responsibility",
+      "rationale": "Result shape should be authored by the SEJ contract and projected by the resolver, not invented as resolver-specific business meaning."
+    }
+  ]
+}

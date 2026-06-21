@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.narrative-graph-render-input.v1",
+  "title": "Narrative Graph Render Input",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "source",
+    "storyPacket",
+    "canonicalSpec",
+    "projectionManifest",
+    "lineageReceipt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "sourceKey",
+        "sourceHash",
+        "sourcePath"
+      ],
+      "properties": {
+        "sourceKey": {
+          "type": "string"
+        },
+        "sourceHash": {
+          "type": "string"
+        },
+        "sourcePath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "storyPacket": {
+      "type": "object",
+      "required": [
+        "storyKey",
+        "storyPath"
+      ],
+      "properties": {
+        "storyKey": {
+          "type": "string"
+        },
+        "storyPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "canonicalSpec": {
+      "type": "object",
+      "required": [
+        "canonicalSpecKey",
+        "canonicalSpecPath"
+      ],
+      "properties": {
+        "canonicalSpecKey": {
+          "type": "string"
+        },
+        "canonicalSpecPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "projectionManifest": {
+      "type": "object",
+      "required": [
+        "projectionManifestKey",
+        "projectionType",
+        "projectionManifestPath"
+      ],
+      "properties": {
+        "projectionManifestKey": {
+          "type": "string"
+        },
+        "projectionType": {
+          "type": "string"
+        },
+        "projectionManifestPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "lineageReceipt": {
+      "type": "object",
+      "required": [
+        "lineageReceiptKey",
+        "lineageReceiptPath"
+      ],
+      "properties": {
+        "lineageReceiptKey": {
+          "type": "string"
+        },
+        "lineageReceiptPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

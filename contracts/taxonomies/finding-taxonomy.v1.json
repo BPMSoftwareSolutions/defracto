@@ -1,0 +1,21 @@
+{
+  "taxonomyVersion": "defracto.finding-taxonomy.v1",
+  "findingKeys": [
+    "pass",
+    "missing_projection_section",
+    "missing_canonical_path",
+    "unresolved_canonical_path",
+    "missing_story_path",
+    "unresolved_story_path",
+    "missing_source_trace",
+    "lineage_receipt_mismatch",
+    "unexpected_projection_claim",
+    "false_narrative_candidate"
+  ],
+  "findingClasses": [
+    "pass",
+    "missing-path",
+    "broken-source-trace",
+    "false-narrative"
+  ]
+}

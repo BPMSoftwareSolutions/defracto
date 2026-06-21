@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.tools.validate-story-packet.story.v1",
+  "derivedFrom": {
+    "sourceKey": "defracto.origin.conversation_fractal.v1",
+    "sourcePath": "examples/founding-conversation/source/conversation-fractal.md",
+    "sourceHash": "sha256:seed-manual"
+  },
+  "actor": {
+    "role": "Defracto maintainer",
+    "goal": "preserve story packet lineage before any executable story validator exists"
+  },
+  "story": {
+    "asA": "Defracto maintainer",
+    "iWant": "a contract for validating story packets that is fully described before execution",
+    "soThat": "no story validator body can become a hidden source of truth"
+  },
+  "acceptanceCriteria": [
+    {
+      "criteriaKey": "story_packet_bounded",
+      "statement": "The story packet validation behavior is fully described before any executable script exists."
+    },
+    {
+      "criteriaKey": "source_trace_bounded",
+      "statement": "Source narrative, story packet, and report expectations are named and bounded."
+    }
+  ],
+  "status": "authorized"
+}

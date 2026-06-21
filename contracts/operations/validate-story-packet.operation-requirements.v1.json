@@ -1,0 +1,49 @@
+{
+  "operationRequirementVersion": "defracto.validate-story-packet.operation-requirements.v1",
+  "toolKey": "defracto.tools.validate_story_packet",
+  "contractKey": "defracto.sej.validate-story-packet.v1",
+  "resolverHandshakeStatus": "pending",
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.reference.v1",
+      "status": "required",
+      "purpose": "Resolve already-loaded source and story references from the invocation payload.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "status": "required",
+      "purpose": "Resolve bounded values from declared references without inventing new meaning.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "status": "required",
+      "purpose": "Evaluate bounded predicates over the already-loaded source narrative and story packet.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "status": "required",
+      "purpose": "Project the bounded validation result from explicit predicate outcomes.",
+      "ifMissing": "blocked"
+    }
+  ],
+  "projectionResponsibilities": [
+    "finding.emit",
+    "result.build"
+  ],
+  "forbiddenResolverOperations": [
+    "story.compare_keys",
+    "json.read_file.v1",
+    "json.parse.v1",
+    "directory.traverse.v1"
+  ],
+  "blockedCapabilities": [
+    "inventing finding keys",
+    "inventing validation rules",
+    "mutating source truth",
+    "claiming SEJ runtime authority without a handshake",
+    "claiming resolver capability that has not been confirmed"
+  ]
+}

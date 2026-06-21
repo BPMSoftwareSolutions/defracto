@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.validate-lineage.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "accepted",
+  "toolKey": "defracto.tools.validate_lineage",
+  "sourceLineage": {
+    "storyKey": "stories/tools/validate-lineage.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/tools/validate-lineage.canonical-spec.v1.json",
+    "executableProjectionContractKey": "tools/validate-lineage.executable-projection.contract.md",
+    "bodyDispositionKey": "contracts/taxonomies/body-disposition.taxonomy.v1.json"
+  },
+  "findingTaxonomyKey": "contracts/taxonomies/finding-taxonomy.v1.json",
+  "operationRequirementsKey": "contracts/operations/validate-lineage.operation-requirements.v1.json",
+  "boundedInputs": [
+    "sourceNarrative",
+    "storyPacket",
+    "canonicalSpec",
+    "projectionManifest",
+    "lineageReceipt"
+  ],
+  "boundedOutputs": [
+    "validationResult",
+    "lineageReportSupport"
+  ],
+  "allowedFindingKeys": [
+    "pass",
+    "missing_projection_section",
+    "missing_canonical_path",
+    "unresolved_canonical_path",
+    "missing_story_path",
+    "unresolved_story_path",
+    "missing_source_trace",
+    "lineage_receipt_mismatch",
+    "unexpected_projection_claim",
+    "false_narrative_candidate"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.reference",
+      "purpose": "Resolve bounded references within already-loaded invocation inputs.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value",
+      "purpose": "Resolve bounded values from declared references without inventing new meaning.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate",
+      "purpose": "Evaluate equality predicates against the bounded founding-chain values.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "project.value",
+      "purpose": "Project the bounded validation result from explicit predicate outcomes.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "bootstrapValidation": {
+    "mode": "already-loaded-json",
+    "checkMode": "explicit-bounded-predicates",
+    "checks": [
+      {
+        "leftRef": "projectionManifest.sections.0.canonicalPath",
+        "operator": "equals",
+        "rightRef": "canonicalSpec.canonicalNodes.0.canonicalPath",
+        "findingKeyOnMismatch": "missing_canonical_path"
+      },
+      {
+        "leftRef": "projectionManifest.sections.0.storyPath",
+        "operator": "equals",
+        "rightRef": "canonicalSpec.canonicalNodes.0.storyPath",
+        "findingKeyOnMismatch": "missing_story_path"
+      },
+      {
+        "leftRef": "canonicalSpec.derivedFromStory",
+        "operator": "equals",
+        "rightRef": "storyPacket.storyKey",
+        "findingKeyOnMismatch": "unexpected_projection_claim"
+      },
+      {
+        "leftRef": "storyPacket.derivedFrom.sourceKey",
+        "operator": "equals",
+        "rightRef": "sourceNarrative.sourceKey",
+        "findingKeyOnMismatch": "missing_source_trace"
+      },
+      {
+        "leftRef": "lineageReceipt.source.sourceKey",
+        "operator": "equals",
+        "rightRef": "sourceNarrative.sourceKey",
+        "findingKeyOnMismatch": "lineage_receipt_mismatch"
+      },
+      {
+        "leftRef": "lineageReceipt.story.storyKey",
+        "operator": "equals",
+        "rightRef": "storyPacket.storyKey",
+        "findingKeyOnMismatch": "lineage_receipt_mismatch"
+      },
+      {
+        "leftRef": "lineageReceipt.canonicalSpec.canonicalSpecKey",
+        "operator": "equals",
+        "rightRef": "canonicalSpec.canonicalSpecKey",
+        "findingKeyOnMismatch": "lineage_receipt_mismatch"
+      },
+      {
+        "leftRef": "lineageReceipt.projection.projectionManifestKey",
+        "operator": "equals",
+        "rightRef": "projectionManifest.projectionManifestKey",
+        "findingKeyOnMismatch": "lineage_receipt_mismatch"
+      }
+    ]
+  },
+  "projectionResponsibilities": [
+    "finding.emit",
+    "result.build"
+  ],
+  "forbiddenResolverOperations": [
+    "lineage.compare_keys"
+  ],
+  "failurePosture": "Missing capability blocks execution and sends the contract back to the resolver handshake rather than allowing host-code invention."
+}

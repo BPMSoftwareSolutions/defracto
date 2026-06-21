@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.projection-manifest.v1",
+  "title": "Projection Manifest",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "projectionManifestKey",
+    "projectionType",
+    "derivedFromCanonicalSpec",
+    "outputPath",
+    "sections",
+    "status"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "projectionManifestKey": {
+      "type": "string"
+    },
+    "projectionType": {
+      "type": "string"
+    },
+    "derivedFromCanonicalSpec": {
+      "type": "string"
+    },
+    "outputPath": {
+      "type": "string"
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "sectionKey",
+          "heading",
+          "canonicalPath",
+          "storyPath",
+          "required"
+        ],
+        "properties": {
+          "sectionKey": {
+            "type": "string"
+          },
+          "heading": {
+            "type": "string"
+          },
+          "canonicalPath": {
+            "type": "string"
+          },
+          "storyPath": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

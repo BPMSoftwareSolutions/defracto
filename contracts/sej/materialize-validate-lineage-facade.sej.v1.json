@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.materialize-validate-lineage-facade.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "accepted",
+  "toolKey": "defracto.tools.validate_lineage",
+  "sourceLineage": {
+    "facadeManifestKey": "contracts/projections/validate-lineage.facade-manifest.v1.json",
+    "sejContractKey": "contracts/sej/validate-lineage.sej.v1.json",
+    "materializationReviewKey": "reports/slice-003f-facade-materialization-sej-review.latest.md"
+  },
+  "targetArtifact": {
+    "artifactKey": "tools/validate-lineage.js",
+    "artifactPath": "tools/validate-lineage.js",
+    "artifactKind": "generated_executable_doorway",
+    "artifactStatus": "future"
+  },
+  "generatedFileAnchors": [
+    {
+      "anchorKey": "generatedFacadeTarget",
+      "filePath": "tools/validate-lineage.js",
+      "anchorRole": "generated facade target",
+      "anchorState": "future"
+    },
+    {
+      "anchorKey": "generatedReceiptTarget",
+      "filePath": "evidence/facades/validate-lineage.facade-materialization.receipt.v1.json",
+      "anchorRole": "projection receipt target",
+      "anchorState": "future"
+    }
+  ],
+  "materializationPrimitives": [
+    "resolve.contract",
+    "resolve.reference",
+    "resolve.value",
+    "project.value",
+    "artifact.materialize",
+    "hash.compute",
+    "evidence.emit"
+  ],
+  "materializationSteps": [
+    "resolve the accepted facade manifest",
+    "resolve the accepted validate-lineage SEJ contract",
+    "project the target artifact path for tools/validate-lineage.js",
+    "materialize the generated doorway artifact",
+    "compute the declared artifact hash",
+    "emit the declared projection receipt"
+  ],
+  "receiptEmission": {
+    "receiptKey": "defracto.validate-lineage.facade-materialization-receipt.v1",
+    "receiptPath": "evidence/facades/validate-lineage.facade-materialization.receipt.v1.json",
+    "receiptKind": "projection-receipt",
+    "required": true
+  },
+  "allowedResponsibilities": [
+    "materialize a generated doorway from accepted semantic truth",
+    "emit evidence for the generated artifact",
+    "keep the generated doorway subordinate to the accepted SEJ contract"
+  ],
+  "forbiddenResponsibilities": [
+    "hand-authored executable code",
+    "direct lineage validation in JS",
+    "file loading in the facade",
+    "JSON parsing in the facade",
+    "array traversal in the facade",
+    "finding-key invention",
+    "resolver modification",
+    "source mutation",
+    "projection mutation",
+    "validation logic in the facade"
+  ],
+  "steps": [
+    {
+      "id": "materializeFacade",
+      "type": "primitive",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "facade.materialization"
+        },
+        "artifact": {
+          "path": "tools/validate-lineage.js",
+          "format": "text",
+          "anchor": {
+            "enabled": true,
+            "sourceSej": "contracts/sej/materialize-validate-lineage-facade.sej.v1.json",
+            "contractKey": "defracto.sej.materialize-validate-lineage-facade.v1",
+            "commentPrefix": "//"
+          },
+          "content": [
+            "// Generated doorway for defracto.tools.validate_lineage.",
+            "// This file is resolver-materialized and owns no lineage truth.",
+            "",
+            "'use strict';",
+            "",
+            "if (require.main === module) {",
+            "  process.exit(0);",
+            "}",
+            "",
+            "module.exports = {};"
+          ],
+          "joinWith": "\n"
+        }
+      }
+    },
+    {
+      "id": "emitReceipt",
+      "type": "primitive",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "facade.evidence"
+        },
+        "receipt": {
+          "path": "evidence/facades/validate-lineage.facade-materialization.receipt.v1.json",
+          "content": {
+            "receiptKey": "defracto.validate-lineage.facade-materialization-receipt.v1",
+            "status": "passed",
+            "checkedAt": "2026-06-21T00:00:00-04:00",
+            "sourceSej": "contracts/sej/materialize-validate-lineage-facade.sej.v1.json",
+            "facadeManifest": "contracts/projections/validate-lineage.facade-manifest.v1.json",
+            "targetPath": "tools/validate-lineage.js",
+            "artifactHash": {
+              "ref": "$steps.materializeFacade.contentHash"
+            },
+            "generatedFileAnchors": [
+              {
+                "anchorKey": "generatedFacadeTarget",
+                "filePath": "tools/validate-lineage.js",
+                "anchorRole": "generated facade target",
+                "anchorState": "materialized"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitReceipt"
+  },
+  "completionPosture": "This SEJ authorizes only resolver-mediated facade materialization and receipt emission; the executable doorway remains absent until a later invocation slice."
+}

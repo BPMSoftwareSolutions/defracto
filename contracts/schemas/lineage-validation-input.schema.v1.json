@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.lineage-validation-input.v1",
+  "title": "Lineage Validation Input",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "source",
+    "story",
+    "canonicalSpec",
+    "projectionManifest",
+    "projectionOutput",
+    "lineageReceipt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "sourceKey",
+        "sourceHash",
+        "sourcePath"
+      ],
+      "properties": {
+        "sourceKey": {
+          "type": "string"
+        },
+        "sourceHash": {
+          "type": "string"
+        },
+        "sourcePath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "story": {
+      "type": "object",
+      "required": [
+        "storyKey",
+        "storyPath",
+        "sourceKey"
+      ],
+      "properties": {
+        "storyKey": {
+          "type": "string"
+        },
+        "storyPath": {
+          "type": "string"
+        },
+        "sourceKey": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "canonicalSpec": {
+      "type": "object",
+      "required": [
+        "canonicalSpecKey",
+        "canonicalSpecPath",
+        "storyKey"
+      ],
+      "properties": {
+        "canonicalSpecKey": {
+          "type": "string"
+        },
+        "canonicalSpecPath": {
+          "type": "string"
+        },
+        "storyKey": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "projectionManifest": {
+      "type": "object",
+      "required": [
+        "projectionManifestKey",
+        "projectionType",
+        "projectionManifestPath",
+        "canonicalSpecKey"
+      ],
+      "properties": {
+        "projectionManifestKey": {
+          "type": "string"
+        },
+        "projectionType": {
+          "type": "string"
+        },
+        "projectionManifestPath": {
+          "type": "string"
+        },
+        "canonicalSpecKey": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "projectionOutput": {
+      "type": "object",
+      "required": [
+        "outputPath",
+        "outputType"
+      ],
+      "properties": {
+        "outputPath": {
+          "type": "string"
+        },
+        "outputType": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "lineageReceipt": {
+      "type": "object",
+      "required": [
+        "lineageReceiptKey",
+        "lineageReceiptPath",
+        "sourceKey",
+        "storyKey",
+        "canonicalSpecKey",
+        "projectionManifestKey"
+      ],
+      "properties": {
+        "lineageReceiptKey": {
+          "type": "string"
+        },
+        "lineageReceiptPath": {
+          "type": "string"
+        },
+        "sourceKey": {
+          "type": "string"
+        },
+        "storyKey": {
+          "type": "string"
+        },
+        "canonicalSpecKey": {
+          "type": "string"
+        },
+        "projectionManifestKey": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

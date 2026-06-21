@@ -1,0 +1,15 @@
+{
+  "taxonomyVersion": "defracto.body-disposition.v1",
+  "dispositions": [
+    "projected_executable_boundary",
+    "authorized_dto_shape",
+    "canonical_spec_body",
+    "projection_body",
+    "adapter_boundary",
+    "evidence_body",
+    "report_projection",
+    "legacy_fossil",
+    "false_narrative_candidate",
+    "unknown_intent"
+  ]
+}

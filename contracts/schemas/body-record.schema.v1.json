@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.body-record.v1",
+  "title": "Body Record",
+  "type": "object",
+  "required": [
+    "bodyKey",
+    "bodyKind",
+    "bodyLocation",
+    "bodyBoundary",
+    "ownedMeaning",
+    "lineage",
+    "disposition",
+    "allowedNextState",
+    "blockedReasons",
+    "evidenceRequired"
+  ],
+  "properties": {
+    "bodyKey": {
+      "type": "string"
+    },
+    "bodyKind": {
+      "type": "string"
+    },
+    "bodyLocation": {
+      "type": "string"
+    },
+    "bodyBoundary": {
+      "type": "string"
+    },
+    "ownedMeaning": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "required": [
+        "storyKey",
+        "canonicalSpecKey"
+      ],
+      "properties": {
+        "storyKey": {
+          "type": "string"
+        },
+        "canonicalSpecKey": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "disposition": {
+      "type": "string"
+    },
+    "allowedNextState": {
+      "type": "string"
+    },
+    "blockedReasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidenceRequired": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

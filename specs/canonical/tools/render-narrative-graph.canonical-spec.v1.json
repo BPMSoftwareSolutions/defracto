@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.tools.render-narrative-graph.canonical_spec.v1",
+  "canonicalSpecKey": "defracto.tools.render-narrative-graph.canonical_spec.v1",
+  "derivedFromStory": "defracto.tools.render-narrative-graph.story.v1",
+  "purpose": "Authorize the narrative graph reporter contract before executable implementation exists.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.report.inputs.required",
+      "storyPath": "$.acceptanceCriteria[0].statement",
+      "statement": "The reporter requires source narrative, story packet, canonical spec, projection manifest, and lineage receipt inputs.",
+      "nodeType": "contract"
+    },
+    {
+      "canonicalPath": "$.report.sections.nodes",
+      "storyPath": "$.acceptanceCriteria[1].statement",
+      "statement": "The reporter can render nodes that show the bounded lineage chain.",
+      "nodeType": "projection"
+    },
+    {
+      "canonicalPath": "$.report.sections.edges",
+      "storyPath": "$.acceptanceCriteria[1].statement",
+      "statement": "The reporter can render edges that show the bounded lineage chain.",
+      "nodeType": "projection"
+    },
+    {
+      "canonicalPath": "$.report.findings.no_runtime_claim",
+      "storyPath": "$.acceptanceCriteria[0].statement",
+      "statement": "The reporter can state that no runtime validation was run when operating in review mode.",
+      "nodeType": "finding"
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "no_hidden_graph_reporter_truth",
+      "statement": "No executable narrative graph reporter body may introduce behavior not named in story, canonical spec, schemas, and evidence expectations."
+    }
+  ],
+  "status": "authorized"
+}

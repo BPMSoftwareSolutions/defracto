@@ -1,0 +1,17 @@
+{
+  "taxonomyVersion": "defracto.body-kind.v1",
+  "bodyKinds": [
+    "authorized_source_truth",
+    "canonical_spec_body",
+    "semantic_execution_candidate",
+    "projection_body",
+    "facade_doorway",
+    "adapter_boundary",
+    "dto_shape",
+    "evidence_body",
+    "report_projection",
+    "legacy_fossil",
+    "false_narrative_candidate",
+    "unknown_intent"
+  ]
+}

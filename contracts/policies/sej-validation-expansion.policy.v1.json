@@ -1,0 +1,43 @@
+{
+  "policyVersion": "defracto.sej-validation-expansion.policy.v1",
+  "policyKey": "defracto.sej-validation-expansion",
+  "scope": "generalized-sej-validation",
+  "bootstrapValidationPosture": "bootstrap validation is bounded to already-loaded JSON and existing generated doorways",
+  "generalizedValidationPosture": "generalized validation remains contract-driven and cannot exceed declared SEJ, resolver, projection, and evidence boundaries",
+  "allowedPrimitiveFamilies": [
+    "resolve.reference.v1",
+    "resolve.value.v1",
+    "evaluate.predicate.v1",
+    "project.value.v1"
+  ],
+  "deferredPrimitiveFamilies": [
+    "json.read_file.v1",
+    "json.parse.v1",
+    "directory.traverse.v1",
+    "graph.traverse.v1",
+    "report.write.v1"
+  ],
+  "requiredResolverHandshakes": [
+    "validate-story-packet",
+    "render-narrative-graph"
+  ],
+  "requiredProjectionManifests": [
+    "contracts/projections/validate-story-packet.facade-manifest.v1.json",
+    "contracts/projections/render-narrative-graph.facade-manifest.v1.json"
+  ],
+  "requiredEvidenceReceipts": [
+    "evidence/facades/validate-story-packet.facade-materialization.receipt.v1.json",
+    "evidence/facades/render-narrative-graph.facade-materialization.receipt.v1.json",
+    "evidence/invocations/validate-story-packet.bootstrap-invocation.receipt.v1.json",
+    "evidence/invocations/render-narrative-graph.bootstrap-invocation.receipt.v1.json"
+  ],
+  "forbiddenHostCodeBehaviors": [
+    "hand-authored executable behavior",
+    "file loading in host code",
+    "generalized traversal in host code",
+    "report writing without evidence",
+    "resolver code changes",
+    "generated doorway edits"
+  ],
+  "completionPosture": "Slice 005 is complete only when generalized validation expansion is bounded before implementation and no executable behavior is added."
+}

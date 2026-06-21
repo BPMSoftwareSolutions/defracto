@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.lineage-finding.v1",
+  "title": "Lineage Finding",
+  "type": "object",
+  "required": [
+    "findingKey",
+    "findingType",
+    "status",
+    "details"
+  ],
+  "properties": {
+    "findingKey": {
+      "type": "string"
+    },
+    "findingType": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "missing-path",
+        "broken-source-trace",
+        "false-narrative"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "warning"
+      ]
+    },
+    "subjectKey": {
+      "type": "string"
+    },
+    "subjectPath": {
+      "type": "string"
+    },
+    "details": {
+      "type": "string"
+    },
+    "expected": {
+      "type": "string"
+    },
+    "observed": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

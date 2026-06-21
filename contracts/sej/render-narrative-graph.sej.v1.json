@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.render-narrative-graph.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "draft",
+  "toolKey": "defracto.tools.render_narrative_graph",
+  "sourceLineage": {
+    "storyKey": "stories/tools/render-narrative-graph.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/tools/render-narrative-graph.canonical-spec.v1.json",
+    "executableProjectionContractKey": "tools/render-narrative-graph.contract.md",
+    "bodyDispositionKey": "contracts/taxonomies/body-disposition.taxonomy.v1.json"
+  },
+  "findingTaxonomyKey": "contracts/taxonomies/finding-taxonomy.v1.json",
+  "operationRequirementsKey": "contracts/operations/render-narrative-graph.operation-requirements.v1.json",
+  "boundedInputs": [
+    "sourceNarrative",
+    "storyPacket",
+    "canonicalSpec",
+    "projectionManifest",
+    "lineageReceipt"
+  ],
+  "boundedOutputs": [
+    "graphRender"
+  ],
+  "allowedFindingKeys": [
+    "pass",
+    "missing_node",
+    "broken_edge",
+    "stale_report"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.reference.v1",
+      "purpose": "Resolve already-loaded lineage references from the invocation payload.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "purpose": "Resolve bounded values from declared references without inventing new meaning.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "purpose": "Evaluate bounded predicates over the already-loaded lineage chain.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "purpose": "Project the bounded narrative graph from explicit predicate outcomes.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "bootstrapValidation": {
+    "mode": "already-loaded-json",
+    "checkMode": "explicit-bounded-predicates",
+    "checks": [
+      {
+        "leftRef": "projectionManifest.sections.0.canonicalPath",
+        "operator": "equals",
+        "rightRef": "canonicalSpec.canonicalNodes.0.canonicalPath",
+        "findingKeyOnMismatch": "missing_node"
+      },
+      {
+        "leftRef": "projectionManifest.sections.0.storyPath",
+        "operator": "equals",
+        "rightRef": "canonicalSpec.canonicalNodes.0.storyPath",
+        "findingKeyOnMismatch": "broken_edge"
+      },
+      {
+        "leftRef": "lineageReceipt.projection.projectionManifestKey",
+        "operator": "equals",
+        "rightRef": "projectionManifest.projectionManifestKey",
+        "findingKeyOnMismatch": "stale_report"
+      }
+    ]
+  },
+  "projectionResponsibilities": [
+    "finding.emit",
+    "result.build"
+  ],
+  "forbiddenResolverOperations": [
+    "graph.traverse",
+    "json.read_file.v1",
+    "json.parse.v1",
+    "directory.traverse.v1"
+  ],
+  "failurePosture": "Missing capability blocks execution and keeps the contract in declarative review until a resolver handshake is later authorized."
+}

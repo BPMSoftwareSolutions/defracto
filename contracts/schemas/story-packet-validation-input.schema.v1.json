@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.story-packet-validation-input.v1",
+  "title": "Story Packet Validation Input",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "source",
+    "storyPacket"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "sourceKey",
+        "sourceHash",
+        "sourcePath"
+      ],
+      "properties": {
+        "sourceKey": {
+          "type": "string"
+        },
+        "sourceHash": {
+          "type": "string"
+        },
+        "sourcePath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "storyPacket": {
+      "type": "object",
+      "required": [
+        "storyKey",
+        "storyPath",
+        "derivedFrom"
+      ],
+      "properties": {
+        "storyKey": {
+          "type": "string"
+        },
+        "storyPath": {
+          "type": "string"
+        },
+        "derivedFrom": {
+          "type": "object",
+          "required": [
+            "sourceKey",
+            "sourcePath"
+          ],
+          "properties": {
+            "sourceKey": {
+              "type": "string"
+            },
+            "sourcePath": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

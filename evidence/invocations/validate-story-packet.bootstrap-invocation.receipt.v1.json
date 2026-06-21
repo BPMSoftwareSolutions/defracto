@@ -1,0 +1,26 @@
+{
+  "receiptKey": "defracto.validate-story-packet.bootstrap-invocation-receipt.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "invocationKind": "bootstrap-invocation",
+  "toolPath": "tools/validate-story-packet.js",
+  "sourceSej": "contracts/sej/validate-story-packet.sej.v1.json",
+  "facadeManifest": "contracts/projections/validate-story-packet.facade-manifest.v1.json",
+  "boundedInputs": [
+    "sourceNarrative",
+    "storyPacket"
+  ],
+  "invocationShape": "already-loaded-json",
+  "invocationArguments": "{\"sourceNarrative\":{\"sourceKey\":\"examples/founding/conversation-fractal.md\"},\"storyPacket\":{\"derivedFrom\":{\"sourceKey\":\"examples/founding/conversation-fractal.md\"}}}",
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": "",
+  "generatedFileAnchors": [
+    {
+      "anchorKey": "generatedFacadeTarget",
+      "filePath": "tools/validate-story-packet.js",
+      "anchorRole": "generated operational doorway target",
+      "anchorState": "present"
+    }
+  ]
+}

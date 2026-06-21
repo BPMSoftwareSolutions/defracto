@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "defracto.projection-manifest.v1",
+  "projectionManifestKey": "defracto.founding.markdown_manifest.v1",
+  "projectionType": "markdown",
+  "derivedFromCanonicalSpec": "defracto.founding.canonical_spec.v1",
+  "outputPath": "examples/founding-conversation/projections/markdown/founding-story.md",
+  "sections": [
+    {
+      "sectionKey": "founding_thesis",
+      "heading": "Founding Thesis",
+      "canonicalPath": "$.doctrine.truthAboveCode",
+      "storyPath": "$.story.soThat",
+      "required": true
+    }
+  ],
+  "status": "projected"
+}

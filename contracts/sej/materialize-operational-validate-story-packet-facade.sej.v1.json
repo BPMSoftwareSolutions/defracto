@@ -1,0 +1,147 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.materialize-operational-validate-story-packet-facade.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "accepted",
+  "toolKey": "defracto.tools.validate_story_packet",
+  "sourceLineage": {
+    "facadeManifestKey": "contracts/projections/validate-story-packet.facade-manifest.v1.json",
+    "sejContractKey": "contracts/sej/validate-story-packet.sej.v1.json",
+    "materializationReviewKey": "reports/slice-004i-story-graph-doorway-operationalization-contract-review.latest.md"
+  },
+  "targetArtifact": {
+    "artifactKey": "tools/validate-story-packet.js",
+    "artifactPath": "tools/validate-story-packet.js",
+    "artifactKind": "generated_operational_doorway",
+    "artifactStatus": "future"
+  },
+  "generatedFileAnchors": [
+    {
+      "anchorKey": "generatedFacadeTarget",
+      "filePath": "tools/validate-story-packet.js",
+      "anchorRole": "generated operational doorway target",
+      "anchorState": "future"
+    },
+    {
+      "anchorKey": "generatedReceiptTarget",
+      "filePath": "evidence/facades/validate-story-packet.facade-materialization.receipt.v1.json",
+      "anchorRole": "projection receipt target",
+      "anchorState": "future"
+    }
+  ],
+  "materializationPrimitives": [
+    "resolve.contract",
+    "resolve.reference",
+    "resolve.value",
+    "project.value",
+    "artifact.materialize",
+    "hash.compute",
+    "evidence.emit"
+  ],
+  "materializationSteps": [
+    "resolve the accepted facade manifest",
+    "resolve the accepted validate-story-packet SEJ contract",
+    "project the target artifact path for tools/validate-story-packet.js",
+    "materialize the operational doorway artifact shape",
+    "compute the declared artifact hash",
+    "emit the declared projection receipt"
+  ],
+  "receiptEmission": {
+    "receiptKey": "defracto.validate-story-packet.facade-materialization-receipt.v1",
+    "receiptPath": "evidence/facades/validate-story-packet.facade-materialization.receipt.v1.json",
+    "receiptKind": "projection-receipt",
+    "required": true
+  },
+  "allowedResponsibilities": [
+    "accept already-loaded invocation JSON through a declared boundary",
+    "load the accepted SEJ contract as declared",
+    "call the resolver package",
+    "print resolver output",
+    "exit nonzero on blocked or failed execution"
+  ],
+  "forbiddenResponsibilities": [
+    "hand-authored executable code",
+    "direct lineage validation in JS",
+    "file loading in the facade",
+    "JSON parsing in the facade",
+    "directory traversal in the facade",
+    "finding-key invention",
+    "resolver modification",
+    "source mutation",
+    "projection mutation",
+    "validation logic in the facade",
+    "story packet validation in the facade"
+  ],
+  "steps": [
+    {
+      "id": "materializeFacade",
+      "type": "primitive",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "facade.materialization"
+        },
+        "artifact": {
+          "path": "tools/validate-story-packet.js",
+          "format": "text",
+          "anchor": {
+            "enabled": true,
+            "sourceSej": "contracts/sej/materialize-operational-validate-story-packet-facade.sej.v1.json",
+            "contractKey": "defracto.sej.materialize-operational-validate-story-packet-facade.v1",
+            "commentPrefix": "//"
+          },
+          "content": [
+            "// Generated doorway for defracto.tools.validate_story_packet.",
+            "// This file is resolver-materialized and owns no validation truth.",
+            "",
+            "'use strict';",
+            "",
+            "if (require.main === module) {",
+            "  process.exit(0);",
+            "}",
+            "",
+            "module.exports = {};"
+          ],
+          "joinWith": "\n"
+        }
+      }
+    },
+    {
+      "id": "emitReceipt",
+      "type": "primitive",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "facade.evidence"
+        },
+        "receipt": {
+          "path": "evidence/facades/validate-story-packet.facade-materialization.receipt.v1.json",
+          "content": {
+            "receiptKey": "defracto.validate-story-packet.facade-materialization-receipt.v1",
+            "status": "passed",
+            "checkedAt": "2026-06-21T00:00:00-04:00",
+            "sourceSej": "contracts/sej/materialize-operational-validate-story-packet-facade.sej.v1.json",
+            "facadeManifest": "contracts/projections/validate-story-packet.facade-manifest.v1.json",
+            "targetPath": "tools/validate-story-packet.js",
+            "artifactHash": {
+              "ref": "$steps.materializeFacade.contentHash"
+            },
+            "generatedFileAnchors": [
+              {
+                "anchorKey": "generatedFacadeTarget",
+                "filePath": "tools/validate-story-packet.js",
+                "anchorRole": "generated operational doorway target",
+                "anchorState": "future"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitReceipt"
+  },
+  "completionPosture": "This SEJ authorizes only the next operational doorway materialization shape; the operationalized doorway remains deferred to Slice 004J."
+}

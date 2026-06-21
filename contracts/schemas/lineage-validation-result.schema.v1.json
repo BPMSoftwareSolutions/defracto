@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.lineage-validation-result.v1",
+  "title": "Lineage Validation Result",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "resultKey",
+    "status",
+    "checkedAt",
+    "mode",
+    "source",
+    "story",
+    "canonicalSpec",
+    "projectionManifest",
+    "projectionOutput",
+    "lineageReceipt",
+    "findings"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "resultKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "deferred"
+      ]
+    },
+    "checkedAt": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "manual-seed",
+        "contract-review",
+        "executable-run"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "sourceKey",
+        "sourceHash",
+        "sourcePath"
+      ],
+      "properties": {
+        "sourceKey": {
+          "type": "string"
+        },
+        "sourceHash": {
+          "type": "string"
+        },
+        "sourcePath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "story": {
+      "type": "object",
+      "required": [
+        "storyKey",
+        "storyPath"
+      ],
+      "properties": {
+        "storyKey": {
+          "type": "string"
+        },
+        "storyPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "canonicalSpec": {
+      "type": "object",
+      "required": [
+        "canonicalSpecKey",
+        "canonicalSpecPath"
+      ],
+      "properties": {
+        "canonicalSpecKey": {
+          "type": "string"
+        },
+        "canonicalSpecPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "projectionManifest": {
+      "type": "object",
+      "required": [
+        "projectionManifestKey",
+        "projectionType",
+        "projectionManifestPath"
+      ],
+      "properties": {
+        "projectionManifestKey": {
+          "type": "string"
+        },
+        "projectionType": {
+          "type": "string"
+        },
+        "projectionManifestPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "projectionOutput": {
+      "type": "object",
+      "required": [
+        "outputPath",
+        "outputType"
+      ],
+      "properties": {
+        "outputPath": {
+          "type": "string"
+        },
+        "outputType": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "lineageReceipt": {
+      "type": "object",
+      "required": [
+        "lineageReceiptKey",
+        "lineageReceiptPath"
+      ],
+      "properties": {
+        "lineageReceiptKey": {
+          "type": "string"
+        },
+        "lineageReceiptPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "lineage-finding.schema.v1.json"
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,46 @@
+{
+  "operationRequirementVersion": "defracto.validate-lineage.operation-requirements.v1",
+  "toolKey": "defracto.tools.validate_lineage",
+  "contractKey": "defracto.sej.validate-lineage.v1",
+  "resolverHandshakeStatus": "pending",
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.reference",
+      "status": "required",
+      "purpose": "Resolve bounded references within already-loaded invocation inputs.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "resolve.value",
+      "status": "required",
+      "purpose": "Resolve bounded values from declared references without inventing new meaning.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate",
+      "status": "required",
+      "purpose": "Evaluate equality predicates against the bounded founding-chain values.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "project.value",
+      "status": "required",
+      "purpose": "Project the bounded validation result from explicit predicate outcomes.",
+      "ifMissing": "blocked"
+    }
+  ],
+  "projectionResponsibilities": [
+    "finding.emit",
+    "result.build"
+  ],
+  "forbiddenResolverOperations": [
+    "lineage.compare_keys"
+  ],
+  "blockedCapabilities": [
+    "inventing finding keys",
+    "inventing validation rules",
+    "mutating source truth",
+    "claiming SEJ runtime authority without a handshake",
+    "claiming resolver capability that has not been confirmed"
+  ]
+}
