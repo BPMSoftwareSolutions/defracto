@@ -56,5 +56,14 @@ Hard-coded ASCII in a SEJ is static materialization only; it is not the product 
 The `visualProjectionModel` is the product center for future renderers, and future ASCII, SVG, HTML/CSS, DOCX, PDF, PPTX, Google Docs, Google Slides, and video outputs must derive from it.
 The conveyor does not hide agent work behind a generic architecture label; CLI orchestrates, Gemini Flash performs bounded lane work, receipts prove the lane, and the conveyor advances only on receipts.
 The trust fabric adds a surface signature requirement so every meaningful lane artifact can be traced to an attested Gemini Flash worker rather than a hand-stitched platform or human edit.
+The canonical Gemini Flash API key environment variable for this conveyor is `LOC_GEMINI_API_KEY`.
+
+Live CLI entrypoint:
+
+```text
+npx ndd handoff run --text "Describe the conveyor as a clean ASCII sketch."
+```
+
+The CLI fails closed if Gemini Flash is unavailable, the key is missing, or the response does not carry a live trust signature.
 
 

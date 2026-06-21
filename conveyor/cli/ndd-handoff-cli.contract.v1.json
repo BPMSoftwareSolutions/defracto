@@ -6,6 +6,13 @@
   "status": "visible_orchestration_route",
   "purpose": "Declare the CLI entrypoint that orchestrates handoff packages without doing lane work itself.",
   "orchestrationRule": "CLI orchestrates. Gemini Flash performs bounded lane work. Receipts decide whether the conveyor advances.",
+  "executionPolicy": "live_only_fail_closed",
+  "noFakeModes": [
+    "dry-run",
+    "mock",
+    "offline-sim",
+    "stubbed worker output"
+  ],
   "blockedBehaviors": [
     "execute lane work invisibly",
     "skip dispatch packets",

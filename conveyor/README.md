@@ -29,3 +29,4 @@ Operating rule:
 - One lane owns one dispatch packet, one response packet, one receipt, and one ledger entry.
 - The conveyor advances only on receipts.
 - Every meaningful lane surface must carry or reference a trust signature before release can advance.
+- The CLI fails closed if Gemini Flash is unavailable or if the live trust signature is missing.
