@@ -1,5 +1,54 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/shipper/ship-receipt.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.ship-receipt.v1",
+  "title": "Ship Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptKey",
+    "status",
+    "checkedAt",
+    "releasePacketPath",
+    "commitMessagePath",
+    "shippedArtifacts"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.ship-receipt.v1"
+    },
+    "receiptKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "shipped",
+        "blocked",
+        "failed"
+      ]
+    },
+    "checkedAt": {
+      "type": "string"
+    },
+    "releasePacketPath": {
+      "type": "string"
+    },
+    "commitMessagePath": {
+      "type": "string"
+    },
+    "shippedArtifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": false
 }

@@ -1,5 +1,79 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/handoff/handoff-lane.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.handoff-lane.v1",
+  "title": "Handoff Lane",
+  "type": "object",
+  "required": [
+    "laneKey",
+    "laneIndex",
+    "workerKey",
+    "dispatchPath",
+    "responsePath",
+    "receiptPath",
+    "ledgerEntryPath",
+    "nextLaneKey",
+    "requiredInputs",
+    "expectedOutputs",
+    "forbiddenResponsibilities"
+  ],
+  "properties": {
+    "laneKey": {
+      "type": "string"
+    },
+    "laneIndex": {
+      "type": "integer"
+    },
+    "workerKey": {
+      "type": "string"
+    },
+    "dispatchPath": {
+      "type": "string"
+    },
+    "responsePath": {
+      "type": "string"
+    },
+    "receiptPath": {
+      "type": "string"
+    },
+    "ledgerEntryPath": {
+      "type": "string"
+    },
+    "nextLaneKey": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "requiredInputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expectedOutputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowedResponsibilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenResponsibilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockedConditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
 }

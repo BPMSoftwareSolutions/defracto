@@ -1,5 +1,61 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/handoff/handoff-chain.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.handoff-chain.v1",
+  "title": "Handoff Chain",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "chainKey",
+    "runKey",
+    "pipelineKey",
+    "laneOrder",
+    "lanes",
+    "failClosed",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.handoff-chain.v1"
+    },
+    "chainKey": {
+      "type": "string"
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "pipelineKey": {
+      "type": "string"
+    },
+    "laneOrder": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lanes": {
+      "type": "array",
+      "items": {
+        "$ref": "handoff-lane.schema.v1.json"
+      }
+    },
+    "failClosed": {
+      "type": "boolean",
+      "const": true
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "running",
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
 }

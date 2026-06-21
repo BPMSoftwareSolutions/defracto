@@ -1,5 +1,31 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/telemetry/telemetry-observer.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.telemetry-observer.contract.v1",
+  "contractKey": "defracto.conveyor.telemetry_observer.v1",
+  "contractTitle": "Telemetry Observer",
+  "contractStatus": "accepted",
+  "sourceTruth": "declared_json_contract",
+  "role": "Capture post-ship observations and promote meaningful signals back into source narrative candidates.",
+  "allowedResponsibilities": [
+    "runtime observation capture",
+    "feedback summarization",
+    "source promotion candidate creation"
+  ],
+  "forbiddenResponsibilities": [
+    "canonical promotion without review",
+    "release authority",
+    "silent product mutation"
+  ],
+  "inputContracts": [
+    "ship receipt",
+    "runtime observation",
+    "operator feedback"
+  ],
+  "outputContracts": [
+    "telemetry capture",
+    "source promotion candidate",
+    "telemetry receipt"
+  ],
+  "evidenceRequired": true,
+  "failClosed": true,
+  "completionPosture": "Telemetry Observer is accepted only when it performs its declared role, emits required evidence, and refuses forbidden responsibilities."
 }

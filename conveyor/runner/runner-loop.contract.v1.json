@@ -1,5 +1,28 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/runner/runner-loop.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.runner-loop.contract.v1",
+  "loopKey": "defracto.runner.loop.v1",
+  "loopStatus": "accepted",
+  "steps": [
+    "load run manifest",
+    "load runner ledger",
+    "find next pending lane",
+    "verify prior lane receipt",
+    "create lane dispatch packet",
+    "invoke configured worker",
+    "validate worker response contract",
+    "materialize lane outputs",
+    "emit lane receipt",
+    "update status ledger",
+    "repeat until complete or blocked"
+  ],
+  "failClosedOn": [
+    "missing run manifest",
+    "missing lane contract",
+    "missing prior receipt",
+    "worker unavailable",
+    "invalid worker response",
+    "receipt write failure",
+    "ledger write failure"
+  ],
+  "completionPosture": "The runner loop is accepted only as movement logic; it does not own lane meaning or evidence judgment."
 }

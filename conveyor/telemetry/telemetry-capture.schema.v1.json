@@ -1,5 +1,52 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/telemetry/telemetry-capture.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.telemetry-capture.v1",
+  "title": "Telemetry Capture",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "captureKey",
+    "sourceKind",
+    "observedAt",
+    "summary",
+    "promotionStatus"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.telemetry-capture.v1"
+    },
+    "captureKey": {
+      "type": "string"
+    },
+    "sourceKind": {
+      "type": "string",
+      "enum": [
+        "runtime",
+        "operator_feedback",
+        "error",
+        "usage",
+        "release_observation"
+      ]
+    },
+    "observedAt": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "rawObservationPath": {
+      "type": "string"
+    },
+    "promotionStatus": {
+      "type": "string",
+      "enum": [
+        "not_promoted",
+        "candidate",
+        "promoted_to_source",
+        "blocked"
+      ]
+    }
+  },
+  "additionalProperties": false
 }

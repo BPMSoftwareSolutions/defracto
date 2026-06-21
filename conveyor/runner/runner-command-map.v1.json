@@ -1,5 +1,32 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/runner/runner-command-map.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.runner-command-map.v1",
+  "runnerKey": "defracto.conveyor.runner.v1",
+  "commands": [
+    {
+      "commandKey": "runner.start",
+      "description": "Create or open a run envelope and start the first lane."
+    },
+    {
+      "commandKey": "runner.advance",
+      "description": "Advance to the next lane when prior receipt passes."
+    },
+    {
+      "commandKey": "runner.status",
+      "description": "Project current run status from the status ledger."
+    },
+    {
+      "commandKey": "runner.block",
+      "description": "Mark run blocked with explicit blocker records."
+    },
+    {
+      "commandKey": "runner.complete",
+      "description": "Mark runner phase complete when all lane receipts pass."
+    }
+  ],
+  "forbiddenCommands": [
+    "advance without prior receipt",
+    "skip lane response validation",
+    "mark release passed",
+    "repair worker output"
+  ]
 }

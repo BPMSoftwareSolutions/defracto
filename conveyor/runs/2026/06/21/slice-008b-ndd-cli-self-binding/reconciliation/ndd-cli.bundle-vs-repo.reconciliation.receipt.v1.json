@@ -1,5 +1,30 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/reconciliation/ndd-cli.bundle-vs-repo.reconciliation.receipt.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.truth-reconciliation-receipt.v1",
+  "receiptKey": "defracto.slice-008b.ndd-cli.bundle-vs-repo.reconciliation.receipt.v1",
+  "status": "blocked",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "reviewedArtifacts": [
+    "source/cli/ndd-cli.source-narrative.md",
+    "stories/cli/ndd-cli.story.v1.json",
+    "specs/canonical/cli/ndd-cli.canonical-spec.v1.json",
+    "contracts/sej/ndd-cli.execute.sej.v1.json",
+    "contracts/projections/ndd-cli.node-projection-manifest.v1.json"
+  ],
+  "reviewedReceipts": [
+    "evidence/cli/ndd-cli.node-projection.receipt.v1.json",
+    "evidence/cli/ndd-cli.self-sketch.receipt.v1.json"
+  ],
+  "contentDispositionLedger": "conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/reconciliation/ndd-cli.bundle-vs-repo.content-disposition-ledger.v1.json",
+  "releaseGateReview": "conveyor/inspector/release-gate-review.schema.v1.json",
+  "decision": "blocked",
+  "blockers": [
+    {
+      "code": "content_mismatch_disposition_required",
+      "message": "Story/spec/projection manifest mismatches require reconciliation before truth parity can pass."
+    },
+    {
+      "code": "node_projection_receipt_pending",
+      "message": "Node projection receipt must be materialized before CLI doorway release can pass."
+    }
+  ]
 }

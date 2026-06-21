@@ -1,5 +1,62 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/inspector/release-gate-review.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.release-gate-review.v1",
+  "title": "Release Gate Review",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "reviewKey",
+    "status",
+    "checkedAt",
+    "requiredReceipts",
+    "requiredGates",
+    "findings",
+    "decision"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.release-gate-review.v1"
+    },
+    "reviewKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "checkedAt": {
+      "type": "string"
+    },
+    "requiredReceipts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredGates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "release_allowed",
+        "release_blocked"
+      ]
+    }
+  },
+  "additionalProperties": false
 }

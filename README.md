@@ -1,32 +1,8 @@
-# Conveyor Lane Contracts
-
-This bundle replaces placeholder lane contracts with runnable lane authority.
-
-Each lane declares:
-
-- inputs
-- outputs
-- worker runtime
-- handoff behavior
-- evidence requirements
-- blocked conditions
-- allowed responsibilities
-- forbidden responsibilities
-- next lane
-
-These contracts are designed for the Defracto / NDD handoff conveyor:
-
-```text
-00 capture source
--> 01 extract story
--> 02 author canonical spec
--> 03 author semantic contract
--> 04 project runtime surface
--> 05 materialize artifacts
--> 06 run conformance
--> 07 render visual evidence
--> 08 review evidence
--> 09 prepare release
--> 10 ship
--> 11 observe telemetry
-```
+{
+  "schemaVersion": "defracto.download-readme.v1",
+  "title": "Conveyor Placeholder Replacements",
+  "summary": "JSON replacements for placeholders found in conveyor.scan.txt.",
+  "usage": "Drop these files into the repo preserving relative paths.",
+  "sourceScan": "conveyor.scan.txt",
+  "placeholderCount": 29
+}

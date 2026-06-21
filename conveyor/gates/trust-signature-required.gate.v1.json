@@ -1,5 +1,38 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/gates/trust-signature-required.gate.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.trust_signature_required.v1",
+  "gateTitle": "Trust Signature Required",
+  "gateStatus": "accepted",
+  "purpose": "Block promotion when required conveyor surfaces lack a worker attestation or runner-verified signature.",
+  "appliesTo": [
+    "lane responses",
+    "lane receipts",
+    "run ledgers",
+    "visual proof surfaces",
+    "release packets",
+    "ship receipts"
+  ],
+  "requiredEvidence": [
+    "surfaceSignature object",
+    "signature coverage path",
+    "source artifact paths",
+    "source artifact hashes when materialized",
+    "signature status",
+    "blocked reason when signature is missing"
+  ],
+  "passConditions": [
+    "trustFabricStatus is live or locally_verified for required surfaces",
+    "covered artifact path matches the promoted artifact",
+    "source artifact hashes match runner-computed hashes",
+    "signature receipt is present when external verification is required"
+  ],
+  "blockConditions": [
+    "signature missing",
+    "signature covers a different artifact",
+    "source hash mismatch",
+    "model-produced attestation treated as external trust verification",
+    "release requested before required trust signatures exist"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "The gate passes only when every required promoted surface has explicit trust-signature evidence or a recorded blocked reason."
 }

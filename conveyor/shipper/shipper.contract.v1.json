@@ -1,5 +1,33 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/shipper/shipper.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.shipper.contract.v1",
+  "contractKey": "defracto.conveyor.shipper.v1",
+  "contractTitle": "Conveyor Shipper",
+  "contractStatus": "accepted",
+  "sourceTruth": "declared_json_contract",
+  "role": "Prepare and perform evidence-authorized release only after inspector approval.",
+  "allowedResponsibilities": [
+    "release packet assembly",
+    "commit message generation",
+    "ship receipt emission",
+    "ship mode enforcement"
+  ],
+  "forbiddenResponsibilities": [
+    "truth creation",
+    "receipt invention",
+    "evidence override",
+    "ship blocked releases"
+  ],
+  "inputContracts": [
+    "truth reconciliation receipt",
+    "release gate review",
+    "approved final artifacts"
+  ],
+  "outputContracts": [
+    "release packet",
+    "commit message",
+    "ship receipt"
+  ],
+  "evidenceRequired": true,
+  "failClosed": true,
+  "completionPosture": "Conveyor Shipper is accepted only when it performs its declared role, emits required evidence, and refuses forbidden responsibilities."
 }

@@ -1,5 +1,52 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/reconciliation/ndd-cli.bundle-vs-repo.content-disposition-ledger.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.content-disposition-ledger.v1",
+  "ledgerKey": "defracto.slice-008b.ndd-cli.bundle-vs-repo.content-disposition-ledger.v1",
+  "status": "blocked",
+  "items": [
+    {
+      "artifactPath": "source/cli/ndd-cli.source-narrative.md",
+      "contentStatus": "match",
+      "disposition": "exact_match",
+      "decision": "accept",
+      "reason": "Source narrative is exact content match and remains the anchor.",
+      "requiredAction": "none",
+      "releaseImpact": "none"
+    },
+    {
+      "artifactPath": "stories/cli/ndd-cli.story.v1.json",
+      "contentStatus": "different",
+      "disposition": "unresolved_conflict",
+      "decision": "reconcile",
+      "reason": "Bundle story has stronger acceptance posture and forbidden claims; repo story is lighter.",
+      "requiredAction": "Merge acceptance posture without losing operational references.",
+      "releaseImpact": "blocks truth-parity claim"
+    },
+    {
+      "artifactPath": "specs/canonical/cli/ndd-cli.canonical-spec.v1.json",
+      "contentStatus": "different",
+      "disposition": "unresolved_conflict",
+      "decision": "reconcile",
+      "reason": "Bundle spec is more explicit about canonical nodes, rules, and command identity.",
+      "requiredAction": "Promote explicit canonical nodes/rules into repo spec.",
+      "releaseImpact": "blocks truth-parity claim"
+    },
+    {
+      "artifactPath": "contracts/sej/ndd-cli.execute.sej.v1.json",
+      "contentStatus": "different",
+      "disposition": "operational_extension",
+      "decision": "accept",
+      "reason": "Repo SEJ is richer in lineage and stage detail while preserving doorway doctrine.",
+      "requiredAction": "Ensure added stages are traceable to canonical spec.",
+      "releaseImpact": "requires inspection receipt"
+    },
+    {
+      "artifactPath": "contracts/projections/ndd-cli.node-projection-manifest.v1.json",
+      "contentStatus": "different",
+      "disposition": "unresolved_conflict",
+      "decision": "reconcile",
+      "reason": "Bundle emphasizes future projection authority and runtime bindings; repo is more implementation-forward.",
+      "requiredAction": "Preserve projected-doorway authority and classify current state honestly.",
+      "releaseImpact": "blocks full release until Node projection receipt passes"
+    }
+  ]
 }

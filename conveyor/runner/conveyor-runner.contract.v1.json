@@ -1,5 +1,38 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/runner/conveyor-runner.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.conveyor-runner.contract.v1",
+  "contractKey": "defracto.conveyor.runner.v1",
+  "contractTitle": "Conveyor Runner",
+  "contractStatus": "accepted",
+  "sourceTruth": "declared_json_contract",
+  "role": "Advance run envelopes lane by lane, update status, enforce handoff receipts, and block on missing proof.",
+  "allowedResponsibilities": [
+    "load run manifests",
+    "find next pending lane",
+    "create lane dispatch packets",
+    "invoke configured worker runtime",
+    "validate lane responses",
+    "write status ledger entries",
+    "block on missing receipts"
+  ],
+  "forbiddenResponsibilities": [
+    "author lane content",
+    "repair worker outputs",
+    "override inspector judgment",
+    "ship releases",
+    "invent truth"
+  ],
+  "inputContracts": [
+    "run manifest",
+    "pipeline manifest",
+    "lane contracts",
+    "prior lane receipts"
+  ],
+  "outputContracts": [
+    "dispatch packets",
+    "runner status ledger",
+    "runner receipts"
+  ],
+  "evidenceRequired": true,
+  "failClosed": true,
+  "completionPosture": "Conveyor Runner is accepted only when it performs its declared role, emits required evidence, and refuses forbidden responsibilities."
 }

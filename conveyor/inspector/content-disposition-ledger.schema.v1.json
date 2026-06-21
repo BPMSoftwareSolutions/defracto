@@ -1,5 +1,79 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/inspector/content-disposition-ledger.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.content-disposition-ledger.v1",
+  "title": "Content Disposition Ledger",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "ledgerKey",
+    "status",
+    "items"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.content-disposition-ledger.v1"
+    },
+    "ledgerKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "draft"
+      ]
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifactPath",
+          "contentStatus",
+          "disposition",
+          "decision",
+          "reason"
+        ],
+        "properties": {
+          "artifactPath": {
+            "type": "string"
+          },
+          "contentStatus": {
+            "type": "string"
+          },
+          "disposition": {
+            "type": "string",
+            "enum": [
+              "exact_match",
+              "accepted_evolution",
+              "operational_extension",
+              "unauthorized_drift",
+              "unresolved_conflict"
+            ]
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "accept",
+              "reconcile",
+              "block"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "requiredAction": {
+            "type": "string"
+          },
+          "releaseImpact": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
 }

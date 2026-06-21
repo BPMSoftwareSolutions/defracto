@@ -1,5 +1,32 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/workers/lane-worker.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.lane-worker.contract.v1",
+  "contractKey": "defracto.conveyor.lane_worker.v1",
+  "contractTitle": "Lane Worker",
+  "contractStatus": "accepted",
+  "sourceTruth": "declared_json_contract",
+  "role": "Perform exactly one bounded lane transformation and return a response packet plus receipt evidence.",
+  "allowedResponsibilities": [
+    "consume lane dispatch",
+    "produce lane-scoped response",
+    "emit lane output",
+    "refuse forbidden responsibilities"
+  ],
+  "forbiddenResponsibilities": [
+    "whole-pipeline authorship",
+    "previous lane repair",
+    "release approval",
+    "hidden execution"
+  ],
+  "inputContracts": [
+    "lane dispatch",
+    "input artifacts"
+  ],
+  "outputContracts": [
+    "lane response",
+    "lane receipt",
+    "declared outputs"
+  ],
+  "evidenceRequired": true,
+  "failClosed": true,
+  "completionPosture": "Lane Worker is accepted only when it performs its declared role, emits required evidence, and refuses forbidden responsibilities."
 }

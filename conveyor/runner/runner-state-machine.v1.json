@@ -1,5 +1,51 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/runner/runner-state-machine.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.runner-state-machine.v1",
+  "stateMachineKey": "defracto.runner.state_machine.v1",
+  "states": [
+    "pending",
+    "running",
+    "waiting_for_worker",
+    "validating_response",
+    "blocked",
+    "passed",
+    "failed"
+  ],
+  "transitions": [
+    {
+      "from": "pending",
+      "to": "running",
+      "when": "run manifest accepted"
+    },
+    {
+      "from": "running",
+      "to": "waiting_for_worker",
+      "when": "lane dispatch emitted"
+    },
+    {
+      "from": "waiting_for_worker",
+      "to": "validating_response",
+      "when": "worker response received"
+    },
+    {
+      "from": "validating_response",
+      "to": "running",
+      "when": "lane receipt passed and next lane exists"
+    },
+    {
+      "from": "validating_response",
+      "to": "passed",
+      "when": "final lane receipt passed"
+    },
+    {
+      "from": "*",
+      "to": "blocked",
+      "when": "required evidence missing"
+    },
+    {
+      "from": "*",
+      "to": "failed",
+      "when": "unexpected runtime failure"
+    }
+  ],
+  "failClosed": true
 }

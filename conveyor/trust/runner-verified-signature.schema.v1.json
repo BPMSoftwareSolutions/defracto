@@ -1,5 +1,75 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/trust/runner-verified-signature.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.runner-verified-signature.v1",
+  "title": "Runner Verified Signature",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "signatureKey",
+    "attestationMode",
+    "verificationStatus",
+    "runnerKey",
+    "signedAt",
+    "surfaceArtifactPath",
+    "surfaceArtifactHash",
+    "sourceArtifactPaths",
+    "sourceArtifactHashes"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.runner-verified-signature.v1"
+    },
+    "signatureKey": {
+      "type": "string"
+    },
+    "attestationMode": {
+      "type": "string",
+      "const": "cli_runner_verified_materialization"
+    },
+    "verificationStatus": {
+      "type": "string",
+      "enum": [
+        "locally_verified",
+        "blocked",
+        "failed"
+      ]
+    },
+    "externalTrustServiceStatus": {
+      "type": "string",
+      "enum": [
+        "not_integrated",
+        "verified",
+        "blocked"
+      ]
+    },
+    "runnerKey": {
+      "type": "string"
+    },
+    "signedAt": {
+      "type": "string"
+    },
+    "surfaceArtifactPath": {
+      "type": "string"
+    },
+    "surfaceArtifactHash": {
+      "type": "string"
+    },
+    "sourceArtifactPaths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sourceArtifactHashes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "signatureHash": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
 }

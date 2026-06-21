@@ -1,5 +1,37 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/inspector/evidence-inspector.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.evidence-inspector.contract.v1",
+  "contractKey": "defracto.conveyor.inspector.evidence_inspector.v1",
+  "contractTitle": "Evidence Inspector",
+  "contractStatus": "accepted",
+  "sourceTruth": "declared_json_contract",
+  "role": "Reconcile artifacts, receipts, hashes, signatures, content disposition, and release authority.",
+  "allowedResponsibilities": [
+    "validate required receipts",
+    "compare source and generated artifact hashes",
+    "classify content mismatches",
+    "verify forbidden claims are absent",
+    "emit truth reconciliation receipt",
+    "block release when evidence is incomplete"
+  ],
+  "forbiddenResponsibilities": [
+    "repair artifacts silently",
+    "invent receipts",
+    "ship code",
+    "mutate source truth",
+    "accept path parity as truth parity"
+  ],
+  "inputContracts": [
+    "lane receipts",
+    "materialized artifacts",
+    "content disposition ledgers",
+    "trust signatures"
+  ],
+  "outputContracts": [
+    "truth reconciliation receipt",
+    "release gate review",
+    "content disposition ledger"
+  ],
+  "evidenceRequired": true,
+  "failClosed": true,
+  "completionPosture": "Evidence Inspector is accepted only when it performs its declared role, emits required evidence, and refuses forbidden responsibilities."
 }

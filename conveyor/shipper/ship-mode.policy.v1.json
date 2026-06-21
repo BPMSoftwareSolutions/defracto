@@ -1,5 +1,20 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/shipper/ship-mode.policy.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.ship-mode.policy.v1",
+  "policyKey": "defracto.shipper.ship_mode.v1",
+  "policyStatus": "accepted",
+  "allowedModes": [
+    "prepare_only",
+    "commit_only",
+    "commit_and_push"
+  ],
+  "defaultMode": "prepare_only",
+  "requiresExplicitShipAuthority": true,
+  "requiresCleanEvidenceReview": true,
+  "forbiddenModes": [
+    "silent_commit",
+    "commit_without_receipts",
+    "push_without_release_packet",
+    "ship_with_blocked_release"
+  ],
+  "completionPosture": "Shipping is allowed only after release packet approval and evidence inspector pass."
 }

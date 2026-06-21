@@ -1,5 +1,69 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/inspector/truth-reconciliation-receipt.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.truth-reconciliation-receipt.v1",
+  "title": "Truth Reconciliation Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptKey",
+    "status",
+    "checkedAt",
+    "reviewedArtifacts",
+    "reviewedReceipts",
+    "contentDispositionLedger",
+    "releaseGateReview",
+    "decision"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.truth-reconciliation-receipt.v1"
+    },
+    "receiptKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "checkedAt": {
+      "type": "string"
+    },
+    "reviewedArtifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reviewedReceipts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "contentDispositionLedger": {
+      "type": "string"
+    },
+    "releaseGateReview": {
+      "type": "string"
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked"
+      ]
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": false
 }

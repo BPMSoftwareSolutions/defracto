@@ -1,5 +1,40 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/telemetry/telemetry-status-projection.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.telemetry-status-projection.v1",
+  "title": "Telemetry Status Projection",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "projectionKey",
+    "status",
+    "captures",
+    "summary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.telemetry-status-projection.v1"
+    },
+    "projectionKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "current",
+        "stale",
+        "blocked"
+      ]
+    },
+    "captures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "summary": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
 }

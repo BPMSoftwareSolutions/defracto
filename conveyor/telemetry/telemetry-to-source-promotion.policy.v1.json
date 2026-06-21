@@ -1,5 +1,18 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/telemetry/telemetry-to-source-promotion.policy.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.telemetry-to-source-promotion.policy.v1",
+  "policyKey": "defracto.telemetry.to_source_promotion.v1",
+  "policyStatus": "accepted",
+  "purpose": "Govern when telemetry observations may become source narrative candidates.",
+  "requires": [
+    "telemetry capture receipt",
+    "human or operator review posture",
+    "source role declaration",
+    "no automatic canonicalization"
+  ],
+  "forbids": [
+    "turning telemetry directly into canonical truth",
+    "silent product mutation from telemetry",
+    "promotion without source capture receipt"
+  ],
+  "completionPosture": "Telemetry may become source candidate only through explicit promotion evidence."
 }

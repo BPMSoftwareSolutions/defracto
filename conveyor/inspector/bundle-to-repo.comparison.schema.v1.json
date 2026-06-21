@@ -1,5 +1,89 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/inspector/bundle-to-repo.comparison.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.bundle-to-repo.comparison.v1",
+  "title": "Bundle To Repo Comparison",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "comparisonKey",
+    "status",
+    "bundleRoot",
+    "repoRoot",
+    "items",
+    "summary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.bundle-to-repo.comparison.v1"
+    },
+    "comparisonKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "warning",
+        "draft"
+      ]
+    },
+    "bundleRoot": {
+      "type": "string"
+    },
+    "repoRoot": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifactPath",
+          "bundleStatus",
+          "repoStatus",
+          "contentStatus",
+          "structuralNarrativeStatus"
+        ],
+        "properties": {
+          "artifactPath": {
+            "type": "string"
+          },
+          "bundleStatus": {
+            "type": "string"
+          },
+          "repoStatus": {
+            "type": "string"
+          },
+          "contentStatus": {
+            "type": "string",
+            "enum": [
+              "match",
+              "different",
+              "missing_in_repo",
+              "missing_in_bundle"
+            ]
+          },
+          "structuralNarrativeStatus": {
+            "type": "string",
+            "enum": [
+              "aligned",
+              "partially_aligned",
+              "drifted",
+              "unresolved"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "summary": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
 }

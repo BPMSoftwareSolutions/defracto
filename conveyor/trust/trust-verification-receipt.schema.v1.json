@@ -1,5 +1,56 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/trust/trust-verification-receipt.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.trust-verification-receipt.v1",
+  "title": "Trust Verification Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptKey",
+    "status",
+    "checkedAt",
+    "signaturePath",
+    "verifiedArtifactPath",
+    "verificationMode",
+    "findings"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.trust-verification-receipt.v1"
+    },
+    "receiptKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "checkedAt": {
+      "type": "string"
+    },
+    "signaturePath": {
+      "type": "string"
+    },
+    "verifiedArtifactPath": {
+      "type": "string"
+    },
+    "verificationMode": {
+      "type": "string",
+      "enum": [
+        "local_runner",
+        "external_trust_service"
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": false
 }

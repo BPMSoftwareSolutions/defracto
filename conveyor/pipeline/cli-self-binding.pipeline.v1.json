@@ -1,5 +1,32 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/pipeline/cli-self-binding.pipeline.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.conveyor-pipeline.v1",
+  "pipelineKey": "defracto.pipeline.cli-self-binding.v1",
+  "pipelineTitle": "CLI Self-Binding Conveyor",
+  "pipelineStatus": "accepted",
+  "purpose": "Put the ndd CLI itself through the same story/spec/SEJ/projection/evidence chain that it orchestrates.",
+  "laneOrder": [
+    "00-capture-source",
+    "01-extract-story",
+    "02-author-canonical-spec",
+    "03-author-semantic-contract",
+    "04-project-runtime-surface",
+    "05-materialize-artifacts",
+    "06-run-conformance",
+    "07-render-visual-evidence",
+    "08-review-evidence",
+    "09-prepare-release"
+  ],
+  "requiredGates": [
+    "no-competing-narratives",
+    "lineage-required",
+    "generated-surface-only",
+    "receipt-required",
+    "conformance-required",
+    "visual-evidence-required",
+    "trust-signature-required"
+  ],
+  "failClosed": true,
+  "syncMode": "supported",
+  "asyncMode": "supported",
+  "completionPosture": "The CLI self-binding pipeline passes only when the CLI doorway is projected from declared authority and its receipts are reconciled."
 }

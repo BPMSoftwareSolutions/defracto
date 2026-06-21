@@ -1,5 +1,55 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/runner/runner-status.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.runner-status.v1",
+  "title": "Runner Status",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "runKey",
+    "status",
+    "currentLane",
+    "completedLanes",
+    "blockedReasons"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.runner-status.v1"
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "running",
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "currentLane": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "completedLanes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockedReasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "statusProjectionPath": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
 }

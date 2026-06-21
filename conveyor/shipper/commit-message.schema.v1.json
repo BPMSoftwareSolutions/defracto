@@ -1,5 +1,38 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/shipper/commit-message.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.commit-message.v1",
+  "title": "Commit Message",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "subject",
+    "body",
+    "evidenceSummary",
+    "runKey"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.commit-message.v1"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string"
+    },
+    "evidenceSummary": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "releasePacketPath": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
 }
