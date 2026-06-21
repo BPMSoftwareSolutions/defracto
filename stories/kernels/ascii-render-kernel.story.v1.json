@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.kernels.ascii-render-kernel.story.v1",
+  "derivedFrom": {
+    "sourceKey": "defracto.origin.ascii_render_kernel_conveyor.v1",
+    "sourcePath": "reports/slice-007h-deterministic-ascii-render-kernel-contract.latest.md",
+    "sourceHash": "sha256:seed-manual"
+  },
+  "actor": {
+    "role": "Defracto maintainer",
+    "goal": "project the ASCII render kernel through semantic authority before any hand-authored executable body exists"
+  },
+  "story": {
+    "asA": "Defracto maintainer",
+    "iWant": "a bounded conveyor that turns a visualProjectionModel into a resolver-projected ASCII render kernel, generated conformance tests, and a visual proof surface",
+    "soThat": "the kernel, its tests, and its proof never become hidden sources of truth"
+  },
+  "acceptanceCriteria": [
+    {
+      "criteriaKey": "semantic_kernel_projected",
+      "statement": "The ASCII render kernel is projected from semantic authority through a node projection manifest and resolver-backed materialization."
+    },
+    {
+      "criteriaKey": "generated_tests_conform",
+      "statement": "The generated conformance tests prove the kernel is deterministic, fail closed, and does not invent layout meaning."
+    },
+    {
+      "criteriaKey": "visual_proof_rendered",
+      "statement": "The projected kernel renders a minimal visualProjectionModel fixture into a governed ASCII proof surface with receipt evidence."
+    }
+  ],
+  "status": "authorized"
+}

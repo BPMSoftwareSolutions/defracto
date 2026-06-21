@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.ascii-render-kernel.semantic-kernel.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "accepted",
+  "toolKey": "defracto.kernels.ascii_render_kernel",
+  "sourceLineage": {
+    "storyKey": "stories/kernels/ascii-render-kernel.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/kernels/ascii-render-kernel.canonical-spec.v1.json",
+    "projectionManifestKey": "contracts/projections/ascii-render-kernel.node-projection-manifest.v1.json",
+    "materializationReviewKey": "reports/slice-007h-deterministic-ascii-render-kernel-contract.latest.md"
+  },
+  "inputModelKey": "visualProjectionModel",
+  "outputResultKey": "asciiRenderResult",
+  "boundedInputs": [
+    "visualProjectionModel"
+  ],
+  "boundedOutputs": [
+    "asciiRenderResult"
+  ],
+  "allowedFindingKeys": [
+    "pass",
+    "missing_model",
+    "missing_layout",
+    "missing_node",
+    "unsupported_connector",
+    "overlap_detected",
+    "wrapping_forbidden",
+    "invented_layout_meaning"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.reference.v1",
+      "purpose": "Resolve the accepted kernel projection manifest and visualProjectionModel fixture through already-loaded JSON.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "purpose": "Resolve bounded model fields without inventing layout meaning.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "purpose": "Evaluate bounded predicates for node order, layout authority, and connector rules.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "purpose": "Project the bounded asciiRenderResult from explicit predicate outcomes.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "bootstrapValidation": {
+    "mode": "already-loaded-json",
+    "checkMode": "explicit-bounded-predicates",
+    "checks": [
+      {
+        "leftRef": "visualProjectionModel.modelKind",
+        "operator": "equals",
+        "rightValue": "visual-projection-model",
+        "findingKeyOnMismatch": "missing_model"
+      },
+      {
+        "leftRef": "visualProjectionModel.layoutRules.0.canvas.lineWrapping",
+        "operator": "equals",
+        "rightValue": "forbidden",
+        "findingKeyOnMismatch": "missing_layout"
+      },
+      {
+        "leftRef": "visualProjectionModel.layoutRules.0.nodeOrder.0",
+        "operator": "exists",
+        "rightValue": true,
+        "findingKeyOnMismatch": "missing_layout"
+      },
+      {
+        "leftRef": "visualProjectionModel.edges.0.connector",
+        "operator": "equals",
+        "rightValue": "vertical-arrow",
+        "findingKeyOnMismatch": "unsupported_connector"
+      }
+    ]
+  },
+  "projectionResponsibilities": [
+    "validate the visualProjectionModel shape",
+    "sort nodes into deterministic render order",
+    "allocate a fixed canvas from the layout contract",
+    "place boxes, labels, and connectors deterministically",
+    "return renderedLines and renderedText",
+    "return diagnostics only when blocked"
+  ],
+  "forbiddenResolverOperations": [
+    "json.read_file.v1",
+    "json.parse.v1",
+    "directory.traverse.v1",
+    "render.ui",
+    "html.generate",
+    "react.render",
+    "css.emit",
+    "svg.emit",
+    "manual_layout_invention"
+  ],
+  "failurePosture": "Missing capability or invalid model blocks execution and keeps the kernel in declarative review until the projection manifest and generated module exist."
+}

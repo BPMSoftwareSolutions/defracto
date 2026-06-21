@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.kernels.ascii-render-kernel.canonical_spec.v1",
+  "derivedFromStory": "defracto.kernels.ascii-render-kernel.story.v1",
+  "purpose": "Authorize the SEJ-projected ASCII render kernel conveyor before any executable body is hand-authored.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.kernel.inputs.visualProjectionModel",
+      "storyPath": "$.acceptanceCriteria[0].statement",
+      "statement": "The kernel accepts a governed visualProjectionModel and fails closed on missing or malformed geometry.",
+      "nodeType": "contract"
+    },
+    {
+      "canonicalPath": "$.kernel.output.asciiRenderResult",
+      "storyPath": "$.acceptanceCriteria[0].statement",
+      "statement": "The kernel emits a deterministic asciiRenderResult with rendered lines, line count, content hash, and completion posture.",
+      "nodeType": "projection"
+    },
+    {
+      "canonicalPath": "$.kernel.generated.kernelSource",
+      "storyPath": "$.acceptanceCriteria[0].statement",
+      "statement": "The generated Node.js kernel source is resolver-materialized from the semantic kernel contract and projection manifest.",
+      "nodeType": "projection"
+    },
+    {
+      "canonicalPath": "$.kernel.generated.conformanceTests",
+      "storyPath": "$.acceptanceCriteria[1].statement",
+      "statement": "The generated tests prove deterministic rendering, fail-closed behavior, and bounded connector rules.",
+      "nodeType": "evidence"
+    },
+    {
+      "canonicalPath": "$.kernel.visualProof.surface",
+      "storyPath": "$.acceptanceCriteria[2].statement",
+      "statement": "The projected kernel renders a minimal visual proof surface from a visualProjectionModel fixture and leaves a receipt.",
+      "nodeType": "evidence"
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "no_hidden_kernel_truth",
+      "statement": "No executable kernel body may introduce behavior not named in story, canonical spec, schemas, projection manifest, generated tests, and evidence receipts."
+    },
+    {
+      "ruleKey": "no_freehand_visual_truth",
+      "statement": "No hand-authored ASCII proof may be treated as governed evidence once resolver-backed generation exists."
+    }
+  ],
+  "status": "authorized"
+}

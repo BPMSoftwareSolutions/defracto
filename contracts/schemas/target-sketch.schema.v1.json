@@ -36,6 +36,25 @@
     "visualIntent": {
       "type": "string"
     },
+    "canvas": {
+      "type": "object",
+      "required": ["widthColumns", "heightLines", "fontFamily", "lineWrapping"],
+      "properties": {
+        "widthColumns": {
+          "type": "integer"
+        },
+        "heightLines": {
+          "type": "integer"
+        },
+        "fontFamily": {
+          "type": "string"
+        },
+        "lineWrapping": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
     "layout": {
       "$ref": "./visual-layout.schema.v1.json"
     },
@@ -110,6 +129,18 @@
     },
     "equivalence": {
       "$ref": "./sketch-equivalence.schema.v1.json"
+    },
+    "expectedRenderedLineContent": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "equivalenceRules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "forbiddenClaims": {
       "type": "array",
