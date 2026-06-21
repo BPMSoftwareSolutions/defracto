@@ -1,0 +1,5 @@
+{
+  "status": "placeholder",
+  "target": "contracts/gates/generated-surface-only.gate.v1.json",
+  "note": "Materialized to satisfy the declared filesystem shape."
+}

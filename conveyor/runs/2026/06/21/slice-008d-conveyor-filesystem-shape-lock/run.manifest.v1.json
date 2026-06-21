@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-008d-conveyor-filesystem-shape-lock.v1",
+  "runKind": "filesystem-shape-lock",
+  "sliceKey": "slice-008d-conveyor-filesystem-shape-lock",
+  "objective": "Reshape the repository tree so the conveyor roles are first-class and the visual projection model lives under projections/visual-models.",
+  "requiredOutputs": [
+    "conveyor/runs/2026/06/21/slice-008d-conveyor-filesystem-shape-lock/reconciliation/filesystem-shape-move-ledger.v1.json",
+    "conveyor/runs/2026/06/21/slice-008d-conveyor-filesystem-shape-lock/final/run-summary.md",
+    "conveyor/runs/2026/06/21/slice-008d-conveyor-filesystem-shape-lock/final/commit-message.txt"
+  ],
+  "shapeRoots": {
+    "source": [
+      "source/cli"
+    ],
+    "stories": [
+      "stories/cli",
+      "stories/runner",
+      "stories/workers",
+      "stories/inspector",
+      "stories/shipper",
+      "stories/telemetry"
+    ],
+    "specs": [
+      "specs/canonical/cli",
+      "specs/canonical/runner",
+      "specs/canonical/workers",
+      "specs/canonical/inspector",
+      "specs/canonical/shipper",
+      "specs/canonical/telemetry"
+    ],
+    "conveyor": [
+      "conveyor/cli",
+      "conveyor/runner",
+      "conveyor/workers",
+      "conveyor/inspector",
+      "conveyor/shipper",
+      "conveyor/telemetry",
+      "conveyor/handoff",
+      "conveyor/trust",
+      "conveyor/runs"
+    ],
+    "generated": [
+      "generated/cli/node",
+      "generated/cli/python",
+      "generated/cli/csharp",
+      "generated/docs",
+      "generated/visual",
+      "generated/tools"
+    ],
+    "projections": [
+      "projections/visual-models",
+      "projections/target-sketches",
+      "projections/ascii",
+      "projections/markdown",
+      "projections/docs",
+      "projections/slides"
+    ],
+    "evidence": [
+      "evidence/cli",
+      "evidence/runner",
+      "evidence/workers",
+      "evidence/inspector",
+      "evidence/shipper",
+      "evidence/visual",
+      "evidence/releases"
+    ],
+    "tests": [
+      "tests/conformance",
+      "tests/fixtures",
+      "tests/generated"
+    ]
+  },
+  "blockedIfMissing": [
+    "conveyor/runner",
+    "conveyor/inspector",
+    "conveyor/shipper",
+    "conveyor/telemetry",
+    "projections/visual-models",
+    "evidence/runner",
+    "evidence/inspector",
+    "evidence/shipper",
+    "evidence/releases",
+    "tests/conformance",
+    "tests/fixtures",
+    "tests/generated"
+  ],
+  "notes": [
+    "The visual projection model was rehomed from examples/visual-projection-models to projections/visual-models.",
+    "Content updates were made to path references so the repository narrative matches the new filesystem shape.",
+    "The move ledger distinguishes same-content moves from content_changed_with_reason entries."
+  ]
+}

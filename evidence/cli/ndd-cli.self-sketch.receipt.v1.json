@@ -2,7 +2,7 @@
   "schemaVersion": "defracto.ndd-cli-self-sketch.receipt.v1",
   "receiptKey": "defracto.ndd-cli-self-sketch.receipt.v1",
   "status": "passed",
-  "visualProjectionModelPath": "examples/visual-projection-models/ndd-cli-self.visual-model.v1.json",
+  "visualProjectionModelPath": "projections/visual-models/ndd-cli-self.visual-model.v1.json",
   "sketchPath": "conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/sketches/ndd-cli-self.ascii",
   "sketchHash": "sha256:8cd7cca1e113533f2c34e8f8c53fad60b97e678dad4b4d1cea7fa56941f48016",
   "receiptHash": "sha256:7f568a8c9b0d6d47d7f62101fc1f6e1365bbeee465949d2e096c60b06caed1df",

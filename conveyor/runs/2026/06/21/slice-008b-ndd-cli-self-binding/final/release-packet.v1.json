@@ -2,7 +2,7 @@
   "schemaVersion": "defracto.release-packet.v1",
   "releaseKey": "defracto.release.slice-008b-ndd-cli-self-binding.v1",
   "status": "blocked",
-  "checkedAt": "2026-06-21T15:40:12.634Z",
+  "checkedAt": "2026-06-21T16:11:47.757Z",
   "runKey": "defracto.run.slice-008b-ndd-cli-self-binding.v1",
   "blockedReasons": [
     "Node facade is pending projection receipt",

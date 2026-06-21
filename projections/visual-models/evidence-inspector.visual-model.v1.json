@@ -1,0 +1,5 @@
+{
+  "status": "placeholder",
+  "target": "projections/visual-models/evidence-inspector.visual-model.v1.json",
+  "note": "Materialized to satisfy the declared filesystem shape."
+}

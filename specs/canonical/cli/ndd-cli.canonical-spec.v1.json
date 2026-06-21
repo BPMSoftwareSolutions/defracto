@@ -34,6 +34,6 @@
     "Hash computation failure fails closed.",
     "Receipt write failure fails closed."
   ],
-  "selfBindingRule": "The CLI must project its own self sketch from its declared visualProjectionModel rather than hard-code final proof.",
+  "selfBindingRule": "The CLI must project its own self sketch from its declared visualProjectionModel in projections/visual-models rather than hard-code final proof.",
   "completionPosture": "The CLI is a doorway and a trust surface, not a competing narrative."
 }

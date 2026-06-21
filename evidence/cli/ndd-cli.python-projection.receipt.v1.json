@@ -1,0 +1,5 @@
+{
+  "status": "placeholder",
+  "target": "evidence/cli/ndd-cli.python-projection.receipt.v1.json",
+  "note": "Materialized to satisfy the declared filesystem shape."
+}

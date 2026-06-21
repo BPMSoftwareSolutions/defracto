@@ -9,7 +9,7 @@ const API_URL_BASE = "https://generativelanguage.googleapis.com/v1beta";
 const WORKER_KEY = "defracto.workers.gemini_flash.v1";
 const LIVE_RUN_DIR = path.join(process.cwd(), "conveyor", "runs", "2026", "06", "21", "slice-008-handoff-conveyor-cli-proof", "live");
 const SELF_BINDING_RUN_DIR = path.join(process.cwd(), "conveyor", "runs", "2026", "06", "21", "slice-008b-ndd-cli-self-binding");
-const SELF_VISUAL_MODEL_PATH = path.join(process.cwd(), "examples", "visual-projection-models", "ndd-cli-self.visual-model.v1.json");
+const SELF_VISUAL_MODEL_PATH = path.join(process.cwd(), "projections", "visual-models", "ndd-cli-self.visual-model.v1.json");
 const SELF_SKETCH_PATH = path.join(SELF_BINDING_RUN_DIR, "sketches", "ndd-cli-self.ascii");
 
 function fail(message, code = 1) {
@@ -629,7 +629,7 @@ function writeSelfSketchEnvelope({ sketch, model, sketchHash, receiptHash, envel
     objective: "Bind the NDD CLI to the same conveyor it orchestrates.",
     laneOrder: ["self-sketch"],
     inputs: [
-      "examples/visual-projection-models/ndd-cli-self.visual-model.v1.json",
+      "projections/visual-models/ndd-cli-self.visual-model.v1.json",
       "stories/cli/ndd-cli.story.v1.json",
       "specs/canonical/cli/ndd-cli.canonical-spec.v1.json",
       "contracts/sej/ndd-cli.self-sketch.sej.v1.json",
@@ -656,7 +656,7 @@ function writeSelfSketchEnvelope({ sketch, model, sketchHash, receiptHash, envel
     schemaVersion: "defracto.ndd-cli-self-sketch.receipt.v1",
     receiptKey: "defracto.ndd-cli-self-sketch.receipt.v1",
     status: "passed",
-    visualProjectionModelPath: "examples/visual-projection-models/ndd-cli-self.visual-model.v1.json",
+    visualProjectionModelPath: "projections/visual-models/ndd-cli-self.visual-model.v1.json",
     sketchPath: "conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/sketches/ndd-cli-self.ascii",
     sketchHash,
     receiptHash,
@@ -735,7 +735,7 @@ function runSelfSketch(argv) {
   const output = {
     schemaVersion: "defracto.ndd-cli-self-sketch-result.v1",
     status: "passed",
-    visualProjectionModelPath: "examples/visual-projection-models/ndd-cli-self.visual-model.v1.json",
+    visualProjectionModelPath: "projections/visual-models/ndd-cli-self.visual-model.v1.json",
     sketchPath: written.sketchPath,
     sketchHash,
     receiptPath: written.receiptPath,

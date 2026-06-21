@@ -27,6 +27,7 @@ Evidence is memory.
 - `source/` holds intake surfaces and preserved narrative entry points.
 - `source/cli/` holds the source narrative for the NDD CLI doorway.
 - `conveyor/` defines the lanes, gates, pipelines, and run envelopes.
+- `conveyor/runner/`, `conveyor/inspector/`, `conveyor/shipper/`, and `conveyor/telemetry/` now exist as first-class role roots.
 - `conveyor/workers/` declares the bounded Gemini Flash worker profiles and response contracts.
 - `conveyor/handoff/` declares the handoff package, dispatch, and response schemas.
 - `conveyor/cli/` declares the CLI orchestration contract and command map.
@@ -37,6 +38,7 @@ Evidence is memory.
 - `specs/` preserves canonical specs for source, tool, and projection authority.
 - `contracts/` declares the minimum schema, policy, operation, and SEJ shapes.
 - `projections/` will hold published surfaces promoted from the conveyor.
+- `projections/visual-models/` now holds the declared visual projection models.
 - `generated/` will hold machine-authored working outputs and derived artifacts.
 - `tests/` holds conformance checks and executable evidence.
 - `evidence/` stores receipts and validation outputs.
@@ -53,6 +55,8 @@ The existing lineage and visual-proof slices remain valid, but the next structur
 
 The CLI is now part of the doctrine, not a hidden bootstrap afterthought. Slice 008B binds the `ndd` doorway back to its story, canonical spec, SEJ, projection manifest, self visual-projection model, and receipt-backed self-sketch.
 The CLI lineage now also starts in `source/cli/ndd-cli.source-narrative.md`, so the doorway is traceable from source narrative through story and projection.
+
+Slice 008D advances the physical tree shape: the visual model was rehomed from `examples/visual-projection-models/` to `projections/visual-models/`, and the conveyor role roots are now visible in the filesystem.
 
 `generated/tools/validate-lineage.js`, `generated/tools/validate-story-packet.js`, and `generated/tools/render-narrative-graph.js` exist only as resolver-materialized generated doorways.
 No hand-authored executable validator body, SEJ runtime, resolver execution code, UI projection, or automation script exists yet.

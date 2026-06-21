@@ -1,0 +1,5 @@
+{
+  "status": "placeholder",
+  "target": "conveyor/lanes/01-extract-story/lane.contract.v1.json",
+  "note": "Materialized to satisfy the declared filesystem shape."
+}

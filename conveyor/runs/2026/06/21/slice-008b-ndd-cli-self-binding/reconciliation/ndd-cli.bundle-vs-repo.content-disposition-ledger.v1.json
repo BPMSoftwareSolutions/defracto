@@ -1,0 +1,5 @@
+{
+  "status": "placeholder",
+  "target": "conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/reconciliation/ndd-cli.bundle-vs-repo.content-disposition-ledger.v1.json",
+  "note": "Materialized to satisfy the declared filesystem shape."
+}

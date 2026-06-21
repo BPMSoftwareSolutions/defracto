@@ -1,0 +1,5 @@
+{
+  "status": "placeholder",
+  "target": "conveyor/inspector/content-disposition-ledger.schema.v1.json",
+  "note": "Materialized to satisfy the declared filesystem shape."
+}

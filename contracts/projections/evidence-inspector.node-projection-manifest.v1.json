@@ -1,0 +1,5 @@
+{
+  "status": "placeholder",
+  "target": "contracts/projections/evidence-inspector.node-projection-manifest.v1.json",
+  "note": "Materialized to satisfy the declared filesystem shape."
+}

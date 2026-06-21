@@ -221,7 +221,7 @@ contracts/projections/ndd-cli.node-projection-manifest.v1.json
 contracts/projections/ndd-cli.python-projection-manifest.v1.json
 contracts/projections/ndd-cli.csharp-projection-manifest.v1.json
 
-examples/visual-projection-models/ndd-cli-self.visual-model.v1.json
+projections/visual-models/ndd-cli-self.visual-model.v1.json
 
 generated/cli/node/ndd.cjs
 generated/cli/python/ndd.py
@@ -477,7 +477,7 @@ mock mode
 The CLI must carry a visual projection model of itself.
 
 ```text
-examples/visual-projection-models/ndd-cli-self.visual-model.v1.json
+projections/visual-models/ndd-cli-self.visual-model.v1.json
 ```
 
 The visual model must declare:

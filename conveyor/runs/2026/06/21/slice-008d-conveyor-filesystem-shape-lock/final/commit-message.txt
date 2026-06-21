@@ -1,0 +1,3 @@
+Slice 008D: reshape the repo filesystem around the conveyor roles
+
+Rehome the CLI visual projection model under projections/visual-models, add first-class runner/inspector/shipper/telemetry roots, and record the move reconciliation in a ledger.

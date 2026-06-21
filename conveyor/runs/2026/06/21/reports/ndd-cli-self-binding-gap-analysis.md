@@ -31,7 +31,7 @@ Repo surface also includes additional Slice 008B material not present in the bun
 - `contracts/sej/materialize-ndd-cli-node.sej.v1.json`
 - `contracts/projections/ndd-cli.python-projection-manifest.v1.json`
 - `contracts/projections/ndd-cli.csharp-projection-manifest.v1.json`
-- `examples/visual-projection-models/ndd-cli-self.visual-model.v1.json`
+- `projections/visual-models/ndd-cli-self.visual-model.v1.json`
 - `generated/cli/node/ndd.cjs`
 - `generated/cli/python/ndd.py`
 - `generated/cli/csharp/NddCli.cs`

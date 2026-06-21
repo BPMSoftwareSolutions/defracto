@@ -1,0 +1,5 @@
+{
+  "status": "placeholder",
+  "target": "specs/canonical/inspector/evidence-inspector.canonical-spec.v1.json",
+  "note": "Materialized to satisfy the declared filesystem shape."
+}

@@ -1,0 +1,5 @@
+{
+  "status": "placeholder",
+  "target": "specs/canonical/telemetry/telemetry-observer.canonical-spec.v1.json",
+  "note": "Materialized to satisfy the declared filesystem shape."
+}

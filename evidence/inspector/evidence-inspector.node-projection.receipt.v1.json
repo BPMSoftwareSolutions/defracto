@@ -1,0 +1,5 @@
+{
+  "status": "placeholder",
+  "target": "evidence/inspector/evidence-inspector.node-projection.receipt.v1.json",
+  "note": "Materialized to satisfy the declared filesystem shape."
+}

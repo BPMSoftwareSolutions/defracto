@@ -1,3 +1,3 @@
-# Target Sketch Projections
+# Target Sketches
 
-This folder holds projected visual artifacts for target-sketch validation.
+This folder holds target sketches and reference render outputs.

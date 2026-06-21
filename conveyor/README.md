@@ -17,6 +17,7 @@ Structure:
 - `lanes/` defines reusable lane contracts.
 - `gates/` defines blocking conditions.
 - `workers/` defines the bounded Gemini Flash worker profile, dispatch, and response contracts.
+- `runner/`, `inspector/`, `shipper/`, and `telemetry/` are first-class role roots.
 - `handoff/` defines the handoff package and packet schemas used by the CLI.
 - `cli/` defines the CLI orchestration contract and command map.
 - `trust/` defines the surface-signature language used to prove provenance through the trust fabric.
@@ -28,8 +29,10 @@ Slice 008B makes the doorway explicit:
 - `specs/canonical/cli/ndd-cli.canonical-spec.v1.json` declares the CLI behavior authority.
 - `contracts/sej/ndd-cli.execute.sej.v1.json` and `contracts/sej/ndd-cli.self-sketch.sej.v1.json` define executable command truth.
 - `contracts/projections/ndd-cli.*-projection-manifest.v1.json` classify the generated doorway surfaces.
-- `examples/visual-projection-models/ndd-cli-self.visual-model.v1.json` drives the self-sketch.
+- `projections/visual-models/ndd-cli-self.visual-model.v1.json` drives the self-sketch.
 - `conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/` holds the ledgered self-binding run envelope.
+
+Slice 008D moves the visual projection model into `projections/visual-models/` and makes the role roots visible in the filesystem.
 
 Operating rule:
 

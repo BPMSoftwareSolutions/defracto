@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.filesystem-shaper-run.v1",
+  "sliceKey": "slice-008d-conveyor-filesystem-shape-lock",
+  "workspaceRoot": "C:/Users/Sidney Jones/OneDrive - bpmsoftwaresolutions.com/Documents/narrative-execution-fabric",
+  "command": "generateShapeManifest + planReshape + applyReshape",
+  "analysis": {
+    "directories": 129,
+    "files": 359
+  },
+  "plan": {
+    "movesPlanned": 0,
+    "missingTargets": 0
+  },
+  "execution": {
+    "moved": 0,
+    "collisions": 0,
+    "changedFiles": 0
+  },
+  "status": "passed",
+  "notes": [
+    "The shaper API ran against the full workspace root.",
+    "The generated shape matched the current workspace tree, so no moves were planned."
+  ]
+}

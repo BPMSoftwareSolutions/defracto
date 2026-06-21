@@ -22,6 +22,10 @@ defracto/
 |   |-- lanes/
 |   |-- gates/
 |   |-- workers/
+|   |-- runner/
+|   |-- inspector/
+|   |-- shipper/
+|   |-- telemetry/
 |   |-- handoff/
 |   |-- cli/
 |   |-- trust/
@@ -50,12 +54,27 @@ defracto/
 |-- specs/
 |-- contracts/
 |-- projections/
+|   |-- visual-models/
+|   |-- target-sketches/
+|   |-- ascii/
+|   |-- markdown/
+|   |-- docs/
+|   `-- slides/
 |-- generated/
 |   |-- README.md
+|   |-- docs/
+|   |-- visual/
 |   `-- tools/
 |-- tests/
+|   |-- conformance/
+|   |-- fixtures/
+|   `-- generated/
 |-- evidence/
 |   |-- README.md
+|   |-- runner/
+|   |-- inspector/
+|   |-- shipper/
+|   |-- releases/
 |   |-- founding-conversation/
 |   `-- target-sketches/
 |-- releases/
@@ -69,6 +88,8 @@ defracto/
 The active repository shape is now conveyor-first.
 
 Source enters through `source/`, transformation logic lives in `conveyor/`, and published or derived surfaces leave through `projections/`, `generated/`, `evidence/`, `conveyor/runs/2026/06/21/reports/`, and `releases/`.
+
+The new first-class role roots give the filesystem a clearer cast: `runner/`, `inspector/`, `shipper/`, and `telemetry/` now sit beside `workers/`, `cli/`, `handoff/`, and `trust/`.
 
 The CLI source narrative now lives under `source/cli/` so the doorway has an explicit narrative origin before it becomes story, spec, SEJ, and projection.
 

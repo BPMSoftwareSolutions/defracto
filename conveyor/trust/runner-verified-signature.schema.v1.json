@@ -1,0 +1,5 @@
+{
+  "status": "placeholder",
+  "target": "conveyor/trust/runner-verified-signature.schema.v1.json",
+  "note": "Materialized to satisfy the declared filesystem shape."
+}

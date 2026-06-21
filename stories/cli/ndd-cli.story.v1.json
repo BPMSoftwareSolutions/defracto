@@ -19,6 +19,6 @@
     "contracts/sej/ndd-cli.execute.sej.v1.json",
     "contracts/sej/ndd-cli.self-sketch.sej.v1.json",
     "contracts/projections/ndd-cli.node-projection-manifest.v1.json",
-    "examples/visual-projection-models/ndd-cli-self.visual-model.v1.json"
+    "projections/visual-models/ndd-cli-self.visual-model.v1.json"
   ]
 }

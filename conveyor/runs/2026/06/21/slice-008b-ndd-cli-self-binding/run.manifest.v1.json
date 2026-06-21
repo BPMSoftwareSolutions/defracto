@@ -9,7 +9,7 @@
     "self-sketch"
   ],
   "inputs": [
-    "examples/visual-projection-models/ndd-cli-self.visual-model.v1.json",
+    "projections/visual-models/ndd-cli-self.visual-model.v1.json",
     "stories/cli/ndd-cli.story.v1.json",
     "specs/canonical/cli/ndd-cli.canonical-spec.v1.json",
     "contracts/sej/ndd-cli.self-sketch.sej.v1.json",

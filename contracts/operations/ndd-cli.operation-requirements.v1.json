@@ -1,0 +1,5 @@
+{
+  "status": "placeholder",
+  "target": "contracts/operations/ndd-cli.operation-requirements.v1.json",
+  "note": "Materialized to satisfy the declared filesystem shape."
+}

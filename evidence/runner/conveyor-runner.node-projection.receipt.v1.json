@@ -1,0 +1,5 @@
+{
+  "status": "placeholder",
+  "target": "evidence/runner/conveyor-runner.node-projection.receipt.v1.json",
+  "note": "Materialized to satisfy the declared filesystem shape."
+}

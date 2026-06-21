@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "defracto.filesystem-shape-move-ledger.v1",
+  "sliceKey": "slice-008d-conveyor-filesystem-shape-lock",
+  "movePolicy": "do_not_silently_rewrite_content",
+  "entries": [
+    {
+      "moveKind": "projection_surface_rehome",
+      "sourcePath": "examples/visual-projection-models/ndd-cli-self.visual-model.v1.json",
+      "targetPath": "projections/visual-models/ndd-cli-self.visual-model.v1.json",
+      "disposition": "same_content_hash",
+      "contentHash": "sha256:e103db118b1bd8e99fc6a6c99955c3390b61ae3e8e97a6af2fb4620d9ee2cd5e",
+      "reason": "The visual projection model belongs with projection surfaces, not under examples."
+    },
+    {
+      "moveKind": "archive_retirement",
+      "sourcePath": "examples/visual-projection-models",
+      "disposition": "retired_empty_root",
+      "reason": "The legacy examples visual-projection-models bucket was emptied by the rehome and removed from the filesystem."
+    },
+    {
+      "moveKind": "content_changed_with_reason",
+      "path": "bin/ndd.cjs",
+      "reason": "Updated self-sketch path references so the CLI resolves the rehomed visual model under projections/visual-models."
+    },
+    {
+      "moveKind": "content_changed_with_reason",
+      "path": "stories/cli/ndd-cli.story.v1.json",
+      "reason": "Aligned the story packet to the rehomed visual model path."
+    },
+    {
+      "moveKind": "content_changed_with_reason",
+      "path": "specs/canonical/cli/ndd-cli.canonical-spec.v1.json",
+      "reason": "Clarified self-binding authority against the new projections/visual-models location."
+    },
+    {
+      "moveKind": "content_changed_with_reason",
+      "path": "conveyor/README.md",
+      "reason": "Updated the conveyor narrative to point at the new projection root."
+    },
+    {
+      "moveKind": "content_changed_with_reason",
+      "path": "projections/founding-conversation/cli/self-binding-conveyor.md",
+      "reason": "Reconciled the design packet to the new visual projection model location."
+    },
+    {
+      "moveKind": "content_changed_with_reason",
+      "path": "evidence/cli/ndd-cli.self-sketch.receipt.v1.json",
+      "reason": "Updated the receipt to point at the rehomed visual projection model."
+    },
+    {
+      "moveKind": "content_changed_with_reason",
+      "path": "conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/run.manifest.v1.json",
+      "reason": "Refreshed the 008B run manifest after the visual model move."
+    },
+    {
+      "moveKind": "content_changed_with_reason",
+      "path": "conveyor/runs/2026/06/21/reports/ndd-cli-self-binding-gap-analysis.md",
+      "reason": "Updated the gap analysis to use the new projection root."
+    },
+    {
+      "moveKind": "content_changed_with_reason",
+      "path": "README.md",
+      "reason": "Updated root repository guidance to mention the new shape and the CLI source lineage."
+    },
+    {
+      "moveKind": "content_changed_with_reason",
+      "path": "docs/architecture/working-tree-shape.md",
+      "reason": "Expanded the tree shape to show the first-class conveyor role folders and the CLI source origin."
+    }
+  ]
+}
