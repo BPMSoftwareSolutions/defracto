@@ -1,5 +1,44 @@
 {
-  "status": "placeholder",
-  "target": "contracts/schemas/telemetry-observation.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.telemetry-observation.v1",
+  "title": "Telemetry Observation",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "observationKey",
+    "observedAt",
+    "source",
+    "summary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.telemetry-observation.v1"
+    },
+    "observationKey": {
+      "type": "string"
+    },
+    "observedAt": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "error",
+        "critical"
+      ]
+    },
+    "relatedRunKey": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
 }

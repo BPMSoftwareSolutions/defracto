@@ -1,5 +1,58 @@
 {
-  "status": "placeholder",
-  "target": "contracts/schemas/worker-response.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.worker-response.v1",
+  "title": "Worker Response",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "responseKey",
+    "runKey",
+    "laneKey",
+    "workerKey",
+    "status",
+    "summary",
+    "artifacts"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.worker-response.v1"
+    },
+    "responseKey": {
+      "type": "string"
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "laneKey": {
+      "type": "string"
+    },
+    "workerKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "artifacts": {
+      "type": "object"
+    },
+    "surfaceSignature": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
 }

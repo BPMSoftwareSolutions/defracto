@@ -1,5 +1,76 @@
 {
-  "status": "placeholder",
-  "target": "contracts/sej/telemetry-observer.capture.sej.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.telemetry-observer.capture.v1",
+  "contractTitle": "Telemetry Observer Capture SEJ",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "accepted",
+  "commandKey": "telemetry.capture",
+  "sourceTruth": "declared_json_contract",
+  "boundedInputs": [
+    "defracto.telemetry-observation.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.telemetry-capture.v1"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "execute.stage.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "stages": [
+    {
+      "stageKey": "telemetry-observer.capture.resolve-inputs",
+      "operation": "resolve.value.v1"
+    },
+    {
+      "stageKey": "telemetry-observer.capture.validate-preconditions",
+      "operation": "evaluate.predicate.v1"
+    },
+    {
+      "stageKey": "telemetry-observer.capture.execute-declared-work",
+      "operation": "execute.stage.v1"
+    },
+    {
+      "stageKey": "telemetry-observer.capture.emit-evidence",
+      "operation": "evidence.emit.v1"
+    }
+  ],
+  "blockedConditions": [
+    "observation source ambiguous",
+    "capture cannot be persisted"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Telemetry Observer Capture SEJ is executable only through the resolver and may not be replaced by hand-authored host behavior."
 }

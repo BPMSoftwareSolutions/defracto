@@ -1,5 +1,47 @@
 {
-  "status": "placeholder",
-  "target": "contracts/schemas/telemetry-source-promotion.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.telemetry-source-promotion.v1",
+  "title": "Telemetry Source Promotion",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "promotionKey",
+    "telemetryCapturePath",
+    "status",
+    "requiredReview"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.telemetry-source-promotion.v1"
+    },
+    "promotionKey": {
+      "type": "string"
+    },
+    "telemetryCapturePath": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "candidate",
+        "promoted",
+        "blocked"
+      ]
+    },
+    "requiredReview": {
+      "type": "boolean",
+      "const": true
+    },
+    "sourceNarrativeTargetPath": {
+      "type": "string"
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": false
 }

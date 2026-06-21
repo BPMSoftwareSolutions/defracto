@@ -1,5 +1,40 @@
 {
-  "status": "placeholder",
-  "target": "contracts/schemas/runner-command-input.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.runner-command-input.v1",
+  "title": "Runner Command Input",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "commandKey",
+    "runKey",
+    "failClosed"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.runner-command-input.v1"
+    },
+    "commandKey": {
+      "type": "string",
+      "enum": [
+        "runner.start",
+        "runner.advance",
+        "runner.status",
+        "runner.block",
+        "runner.complete"
+      ]
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "runPath": {
+      "type": "string"
+    },
+    "payload": {},
+    "failClosed": {
+      "type": "boolean",
+      "const": true
+    }
+  },
+  "additionalProperties": false
 }

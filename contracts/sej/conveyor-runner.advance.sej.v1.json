@@ -1,5 +1,79 @@
 {
-  "status": "placeholder",
-  "target": "contracts/sej/conveyor-runner.advance.sej.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.conveyor-runner.advance.v1",
+  "contractTitle": "Conveyor Runner Advance SEJ",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "accepted",
+  "commandKey": "runner.advance",
+  "sourceTruth": "declared_json_contract",
+  "boundedInputs": [
+    "defracto.runner-command-input.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.runner-command-result.v1"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "execute.stage.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "stages": [
+    {
+      "stageKey": "conveyor-runner.advance.resolve-inputs",
+      "operation": "resolve.value.v1"
+    },
+    {
+      "stageKey": "conveyor-runner.advance.validate-preconditions",
+      "operation": "evaluate.predicate.v1"
+    },
+    {
+      "stageKey": "conveyor-runner.advance.execute-declared-work",
+      "operation": "execute.stage.v1"
+    },
+    {
+      "stageKey": "conveyor-runner.advance.emit-evidence",
+      "operation": "evidence.emit.v1"
+    }
+  ],
+  "blockedConditions": [
+    "missing run manifest",
+    "prior receipt missing",
+    "lane contract missing",
+    "worker unavailable",
+    "ledger write failure"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Conveyor Runner Advance SEJ is executable only through the resolver and may not be replaced by hand-authored host behavior."
 }

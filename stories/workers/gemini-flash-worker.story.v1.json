@@ -1,5 +1,22 @@
 {
-  "status": "placeholder",
-  "target": "stories/workers/gemini-flash-worker.story.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.workers.gemini_flash.story.v1",
+  "storyTitle": "Gemini Flash Worker",
+  "story": {
+    "asA": "bounded lane worker",
+    "iWant": "to receive explicit dispatch packets and return structured lane responses",
+    "soThat": "model work remains visible, lane-scoped, and receipt-backed"
+  },
+  "acceptanceCriteria": [
+    "must receive dispatch contract",
+    "must return response contract",
+    "must not own whole pipeline",
+    "must emit/findings in bounded shape"
+  ],
+  "forbiddenClaims": [
+    "release authority",
+    "silent artifact repair",
+    "whole-pipeline authorship"
+  ],
+  "status": "accepted"
 }

@@ -1,5 +1,19 @@
 {
-  "status": "placeholder",
-  "target": "contracts/policies/no-competing-narratives.policy.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.policy.v1",
+  "policyKey": "defracto.policies.no_competing_narratives.v1",
+  "policyTitle": "No Competing Narratives Policy",
+  "policyStatus": "accepted",
+  "purpose": "Require every artifact claim to trace to authorized source/canonical truth.",
+  "requires": [
+    "lineage fields",
+    "forbidden claim checks",
+    "content disposition for mismatches"
+  ],
+  "forbids": [
+    "untraceable behavior",
+    "silent DTO shaping",
+    "path parity treated as truth parity"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "No Competing Narratives Policy is enforced by gates, receipts, and evidence review."
 }

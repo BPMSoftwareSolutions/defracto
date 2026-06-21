@@ -1,5 +1,20 @@
 {
-  "status": "placeholder",
-  "target": "contracts/gates/receipt-required.gate.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.receipt_required.v1",
+  "gateTitle": "Receipt Required",
+  "gateStatus": "accepted",
+  "purpose": "Each lane and materialized artifact must leave a receipt before downstream movement.",
+  "passConditions": [
+    "required receipt exists",
+    "receipt status passed",
+    "receipt references materialized artifact"
+  ],
+  "blockConditions": [
+    "missing receipt",
+    "blocked receipt",
+    "receipt does not cover promoted artifact"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Receipt Required passes only when required evidence is present and no block condition is active."
 }

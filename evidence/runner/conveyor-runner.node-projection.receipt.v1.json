@@ -1,5 +1,16 @@
 {
-  "status": "placeholder",
-  "target": "evidence/runner/conveyor-runner.node-projection.receipt.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.evidence-receipt.v1",
+  "receiptKey": "defracto.receipt.runner.node_projection.v1",
+  "receiptTitle": "runner node projection",
+  "status": "blocked",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "verificationStatus": "not_executed",
+  "artifactHashes": [],
+  "blockers": [
+    {
+      "code": "not_executed",
+      "message": "Runner projection has not been materialized."
+    }
+  ],
+  "completionPosture": "This receipt is an honest blocked/not-executed evidence surface, not proof of execution."
 }

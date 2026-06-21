@@ -1,5 +1,49 @@
 {
-  "status": "placeholder",
-  "target": "contracts/schemas/runner-lane-state.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.runner-lane-state.v1",
+  "title": "Runner Lane State",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "laneKey",
+    "status",
+    "dispatchPath",
+    "responsePath",
+    "receiptPath"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.runner-lane-state.v1"
+    },
+    "laneKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "running",
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "dispatchPath": {
+      "type": "string"
+    },
+    "responsePath": {
+      "type": "string"
+    },
+    "receiptPath": {
+      "type": "string"
+    },
+    "blockedReasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
 }

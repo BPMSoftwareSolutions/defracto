@@ -1,5 +1,30 @@
 {
-  "status": "placeholder",
-  "target": "specs/canonical/workers/lane-worker.canonical-spec.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.workers.lane_worker.canonical_spec.v1",
+  "derivedFromStory": "defracto.workers.lane_worker.story.v1",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.laneWorker.identity",
+      "statement": "A lane worker owns exactly one lane transformation."
+    },
+    {
+      "canonicalPath": "$.laneWorker.inputs",
+      "statement": "Inputs must be declared by lane contract."
+    },
+    {
+      "canonicalPath": "$.laneWorker.outputs",
+      "statement": "Outputs must match lane contract."
+    },
+    {
+      "canonicalPath": "$.laneWorker.receipt",
+      "statement": "Each lane worker must leave a receipt."
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "lane-worker.one-lane-only",
+      "statement": "No lane worker may claim whole-pipeline authorship."
+    }
+  ],
+  "status": "accepted"
 }

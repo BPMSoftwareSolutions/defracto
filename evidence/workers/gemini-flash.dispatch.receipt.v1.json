@@ -1,5 +1,16 @@
 {
-  "status": "placeholder",
-  "target": "evidence/workers/gemini-flash.dispatch.receipt.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.evidence-receipt.v1",
+  "receiptKey": "defracto.receipt.workers.gemini_flash.dispatch.v1",
+  "receiptTitle": "Gemini Flash dispatch",
+  "status": "blocked",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "verificationStatus": "not_executed",
+  "artifactHashes": [],
+  "blockers": [
+    {
+      "code": "not_executed",
+      "message": "Dispatch proof has not been executed."
+    }
+  ],
+  "completionPosture": "This receipt is an honest blocked/not-executed evidence surface, not proof of execution."
 }

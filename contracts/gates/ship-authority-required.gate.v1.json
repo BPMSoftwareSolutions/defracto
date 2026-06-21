@@ -1,5 +1,20 @@
 {
-  "status": "placeholder",
-  "target": "contracts/gates/ship-authority-required.gate.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.ship_authority_required.v1",
+  "gateTitle": "Ship Authority Required",
+  "gateStatus": "accepted",
+  "purpose": "Release requires explicit evidence review and ship authority.",
+  "passConditions": [
+    "release packet approved",
+    "truth reconciliation receipt passed",
+    "shipper contract present"
+  ],
+  "blockConditions": [
+    "release packet blocked",
+    "ship requested without inspector pass",
+    "dirty/unreviewed state"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Ship Authority Required passes only when required evidence is present and no block condition is active."
 }

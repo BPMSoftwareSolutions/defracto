@@ -1,5 +1,22 @@
 {
-  "status": "placeholder",
-  "target": "stories/workers/lane-worker.story.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.workers.lane_worker.story.v1",
+  "storyTitle": "Lane Worker",
+  "story": {
+    "asA": "lane worker",
+    "iWant": "to perform one bounded transformation",
+    "soThat": "the conveyor can advance with clear responsibility and receipts"
+  },
+  "acceptanceCriteria": [
+    "owns one lane only",
+    "requires input artifacts",
+    "emits declared output artifacts",
+    "emits lane receipt"
+  ],
+  "forbiddenClaims": [
+    "previous lane repair",
+    "downstream release",
+    "hidden execution"
+  ],
+  "status": "accepted"
 }

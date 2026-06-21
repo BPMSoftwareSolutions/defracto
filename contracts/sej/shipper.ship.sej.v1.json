@@ -1,5 +1,78 @@
 {
-  "status": "placeholder",
-  "target": "contracts/sej/shipper.ship.sej.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.shipper.ship.v1",
+  "contractTitle": "Shipper Ship SEJ",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "accepted",
+  "commandKey": "shipper.ship",
+  "sourceTruth": "declared_json_contract",
+  "boundedInputs": [
+    "defracto.release-packet.v1",
+    "defracto.commit-message.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.ship-receipt.v1"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "execute.stage.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "stages": [
+    {
+      "stageKey": "shipper.ship.resolve-inputs",
+      "operation": "resolve.value.v1"
+    },
+    {
+      "stageKey": "shipper.ship.validate-preconditions",
+      "operation": "evaluate.predicate.v1"
+    },
+    {
+      "stageKey": "shipper.ship.execute-declared-work",
+      "operation": "execute.stage.v1"
+    },
+    {
+      "stageKey": "shipper.ship.emit-evidence",
+      "operation": "evidence.emit.v1"
+    }
+  ],
+  "blockedConditions": [
+    "release packet blocked",
+    "ship authority missing",
+    "ship receipt cannot be emitted"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Shipper Ship SEJ is executable only through the resolver and may not be replaced by hand-authored host behavior."
 }

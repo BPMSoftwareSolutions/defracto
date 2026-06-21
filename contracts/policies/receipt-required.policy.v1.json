@@ -1,5 +1,19 @@
 {
-  "status": "placeholder",
-  "target": "contracts/policies/receipt-required.policy.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.policy.v1",
+  "policyKey": "defracto.policies.receipt_required.v1",
+  "policyTitle": "Receipt Required Policy",
+  "policyStatus": "accepted",
+  "purpose": "Require receipts for lane movement, materialization, conformance, visual proof, inspection, and shipping.",
+  "requires": [
+    "receipt per lane",
+    "artifact hashes",
+    "pass/block status"
+  ],
+  "forbids": [
+    "advance without receipt",
+    "release without receipt",
+    "receipt-free generated surface"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Receipt Required Policy is enforced by gates, receipts, and evidence review."
 }

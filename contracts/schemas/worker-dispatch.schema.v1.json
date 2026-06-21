@@ -1,5 +1,52 @@
 {
-  "status": "placeholder",
-  "target": "contracts/schemas/worker-dispatch.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.worker-dispatch.v1",
+  "title": "Worker Dispatch",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "dispatchKey",
+    "runKey",
+    "laneKey",
+    "workerKey",
+    "inputArtifacts",
+    "expectedOutputs"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.worker-dispatch.v1"
+    },
+    "dispatchKey": {
+      "type": "string"
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "laneKey": {
+      "type": "string"
+    },
+    "workerKey": {
+      "type": "string"
+    },
+    "inputArtifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expectedOutputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenResponsibilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
 }

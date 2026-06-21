@@ -1,5 +1,61 @@
 {
-  "status": "placeholder",
-  "target": "contracts/schemas/release-packet.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.release-packet.v1",
+  "title": "Release Packet",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "releaseKey",
+    "status",
+    "runKey",
+    "requiredReceipts",
+    "finalArtifacts",
+    "blockedReasons"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.release-packet.v1"
+    },
+    "releaseKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "blocked",
+        "shipped"
+      ]
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "requiredReceipts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "finalArtifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockedReasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "commitMessagePath": {
+      "type": "string"
+    },
+    "shipReceiptPath": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
 }

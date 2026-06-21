@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "defracto.download-readme.v1",
+  "title": "NDD Placeholder JSON Replacements",
+  "summary": "Replacement JSON files generated from placeholder targets found in ndd.txt.",
+  "usage": "Unzip at the repository root, preserving relative paths.",
+  "sourceScan": "ndd.txt",
+  "placeholderTargetsFound": 59,
+  "jsonReplacementsProvided": 59
+}

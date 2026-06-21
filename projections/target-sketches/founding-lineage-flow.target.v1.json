@@ -1,5 +1,19 @@
 {
-  "status": "placeholder",
-  "target": "projections/target-sketches/founding-lineage-flow.target.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.target-sketch.v1",
+  "targetStatus": "accepted",
+  "surfaceKind": "ascii",
+  "authority": "visualProjectionModel",
+  "layoutMode": "deterministic",
+  "forbiddenClaims": [
+    "freehand proof",
+    "renderer-owned product truth",
+    "unreceipted visual evidence"
+  ],
+  "completionPosture": "Target sketch is authority for future visual equivalence; it is not itself execution proof.",
+  "targetKey": "defracto.target.founding_lineage_flow_target.v1",
+  "targetTitle": "Founding Lineage Flow Target",
+  "nodes": [],
+  "edges": [],
+  "semanticBindings": [],
+  "equivalenceRules": []
 }

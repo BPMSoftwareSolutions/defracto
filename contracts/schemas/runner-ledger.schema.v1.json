@@ -1,5 +1,52 @@
 {
-  "status": "placeholder",
-  "target": "contracts/schemas/runner-ledger.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.runner-ledger.v1",
+  "title": "Runner Ledger",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "ledgerKey",
+    "runKey",
+    "status",
+    "laneEntries",
+    "blockedReasons"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.runner-ledger.v1"
+    },
+    "ledgerKey": {
+      "type": "string"
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "running",
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "laneEntries": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "blockedReasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "updatedAt": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
 }

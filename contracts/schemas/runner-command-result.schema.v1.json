@@ -1,5 +1,47 @@
 {
-  "status": "placeholder",
-  "target": "contracts/schemas/runner-command-result.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.runner-command-result.v1",
+  "title": "Runner Command Result",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "runKey",
+    "status",
+    "ledgerPath"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.runner-command-result.v1"
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "running",
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "ledgerPath": {
+      "type": "string"
+    },
+    "currentLane": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": false
 }

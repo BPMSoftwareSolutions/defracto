@@ -1,5 +1,20 @@
 {
-  "status": "placeholder",
-  "target": "contracts/gates/generated-surface-only.gate.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.generated_surface_only.v1",
+  "gateTitle": "Generated Surface Only",
+  "gateStatus": "accepted",
+  "purpose": "Prevent projected runtime/doc/visual surfaces from being treated as source truth unless generated through declared authority.",
+  "passConditions": [
+    "projection manifest exists",
+    "materialization receipt exists",
+    "artifact path matches manifest"
+  ],
+  "blockConditions": [
+    "hand-authored generated surface",
+    "missing projection manifest",
+    "generated artifact claims canonical truth"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Generated Surface Only passes only when required evidence is present and no block condition is active."
 }

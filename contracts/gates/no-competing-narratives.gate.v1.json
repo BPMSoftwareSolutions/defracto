@@ -1,5 +1,19 @@
 {
-  "status": "placeholder",
-  "target": "contracts/gates/no-competing-narratives.gate.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.no_competing_narratives.v1",
+  "gateTitle": "No Competing Narratives",
+  "gateStatus": "accepted",
+  "purpose": "Block any artifact that claims behavior, truth, layout, release, evidence, or source authority without declared lineage.",
+  "passConditions": [
+    "artifact claims trace to source/canonical authority",
+    "forbidden claims absent"
+  ],
+  "blockConditions": [
+    "untraceable behavior claim",
+    "DTO shaping hidden in CLI/code",
+    "manual visual proof claimed as governed"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "No Competing Narratives passes only when required evidence is present and no block condition is active."
 }

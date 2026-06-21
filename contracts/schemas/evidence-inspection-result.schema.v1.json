@@ -1,5 +1,47 @@
 {
-  "status": "placeholder",
-  "target": "contracts/schemas/evidence-inspection-result.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.evidence-inspection-result.v1",
+  "title": "Evidence Inspection Result",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "runKey",
+    "status",
+    "findings",
+    "decision"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.evidence-inspection-result.v1"
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "release_allowed",
+        "release_blocked"
+      ]
+    },
+    "truthReconciliationReceiptPath": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
 }

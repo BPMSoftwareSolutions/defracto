@@ -1,5 +1,78 @@
 {
-  "status": "placeholder",
-  "target": "contracts/sej/evidence-inspector.inspect.sej.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.evidence-inspector.inspect.v1",
+  "contractTitle": "Evidence Inspector Inspect SEJ",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "accepted",
+  "commandKey": "inspector.inspect",
+  "sourceTruth": "declared_json_contract",
+  "boundedInputs": [
+    "defracto.evidence-inspection-input.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.evidence-inspection-result.v1"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "execute.stage.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "stages": [
+    {
+      "stageKey": "evidence-inspector.inspect.resolve-inputs",
+      "operation": "resolve.value.v1"
+    },
+    {
+      "stageKey": "evidence-inspector.inspect.validate-preconditions",
+      "operation": "evaluate.predicate.v1"
+    },
+    {
+      "stageKey": "evidence-inspector.inspect.execute-declared-work",
+      "operation": "execute.stage.v1"
+    },
+    {
+      "stageKey": "evidence-inspector.inspect.emit-evidence",
+      "operation": "evidence.emit.v1"
+    }
+  ],
+  "blockedConditions": [
+    "missing artifact",
+    "missing receipt",
+    "hash mismatch",
+    "forbidden claim"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Evidence Inspector Inspect SEJ is executable only through the resolver and may not be replaced by hand-authored host behavior."
 }

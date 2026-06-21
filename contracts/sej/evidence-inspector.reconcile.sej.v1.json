@@ -1,5 +1,77 @@
 {
-  "status": "placeholder",
-  "target": "contracts/sej/evidence-inspector.reconcile.sej.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.evidence-inspector.reconcile.v1",
+  "contractTitle": "Evidence Inspector Reconcile SEJ",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "accepted",
+  "commandKey": "inspector.reconcile",
+  "sourceTruth": "declared_json_contract",
+  "boundedInputs": [
+    "defracto.evidence-inspection-input.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.truth-reconciliation-receipt.v1"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "execute.stage.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "stages": [
+    {
+      "stageKey": "evidence-inspector.reconcile.resolve-inputs",
+      "operation": "resolve.value.v1"
+    },
+    {
+      "stageKey": "evidence-inspector.reconcile.validate-preconditions",
+      "operation": "evaluate.predicate.v1"
+    },
+    {
+      "stageKey": "evidence-inspector.reconcile.execute-declared-work",
+      "operation": "execute.stage.v1"
+    },
+    {
+      "stageKey": "evidence-inspector.reconcile.emit-evidence",
+      "operation": "evidence.emit.v1"
+    }
+  ],
+  "blockedConditions": [
+    "unresolved content mismatch",
+    "unauthorized drift",
+    "release gate blocked"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Evidence Inspector Reconcile SEJ is executable only through the resolver and may not be replaced by hand-authored host behavior."
 }

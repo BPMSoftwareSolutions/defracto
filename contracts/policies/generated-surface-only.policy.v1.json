@@ -1,5 +1,18 @@
 {
-  "status": "placeholder",
-  "target": "contracts/policies/generated-surface-only.policy.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.policy.v1",
+  "policyKey": "defracto.policies.generated_surface_only.v1",
+  "policyTitle": "Generated Surface Only Policy",
+  "policyStatus": "accepted",
+  "purpose": "Classify generated surfaces as projections, never source truth.",
+  "requires": [
+    "projection manifest",
+    "materialization receipt",
+    "body disposition"
+  ],
+  "forbids": [
+    "manual edits to generated output",
+    "generated file becoming product brain"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Generated Surface Only Policy is enforced by gates, receipts, and evidence review."
 }

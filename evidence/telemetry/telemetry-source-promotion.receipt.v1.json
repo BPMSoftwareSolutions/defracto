@@ -1,5 +1,16 @@
 {
-  "status": "placeholder",
-  "target": "evidence/telemetry/telemetry-source-promotion.receipt.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.evidence-receipt.v1",
+  "receiptKey": "defracto.receipt.telemetry.source_promotion.v1",
+  "receiptTitle": "telemetry source promotion",
+  "status": "blocked",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "verificationStatus": "not_executed",
+  "artifactHashes": [],
+  "blockers": [
+    {
+      "code": "not_executed",
+      "message": "Telemetry source promotion has not been reviewed."
+    }
+  ],
+  "completionPosture": "This receipt is an honest blocked/not-executed evidence surface, not proof of execution."
 }

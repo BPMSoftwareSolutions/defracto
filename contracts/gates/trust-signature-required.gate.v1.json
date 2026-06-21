@@ -1,5 +1,20 @@
 {
-  "status": "placeholder",
-  "target": "contracts/gates/trust-signature-required.gate.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.trust_signature_required.v1",
+  "gateTitle": "Trust Signature Required",
+  "gateStatus": "accepted",
+  "purpose": "Promoted surfaces requiring trust must carry worker attestation and/or runner-verified signature evidence.",
+  "passConditions": [
+    "surface signature present",
+    "signature covers artifact path",
+    "runner-computed hashes match"
+  ],
+  "blockConditions": [
+    "missing signature",
+    "model attestation treated as external verification",
+    "hash mismatch"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Trust Signature Required passes only when required evidence is present and no block condition is active."
 }

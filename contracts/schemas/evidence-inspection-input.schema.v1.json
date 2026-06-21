@@ -1,5 +1,44 @@
 {
-  "status": "placeholder",
-  "target": "contracts/schemas/evidence-inspection-input.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.evidence-inspection-input.v1",
+  "title": "Evidence Inspection Input",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "runKey",
+    "artifacts",
+    "receipts",
+    "gates"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.evidence-inspection-input.v1"
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "receipts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "contentDispositionLedgerPath": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
 }

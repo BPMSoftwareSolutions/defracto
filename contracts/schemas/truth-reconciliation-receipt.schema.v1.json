@@ -1,5 +1,61 @@
 {
-  "status": "placeholder",
-  "target": "contracts/schemas/truth-reconciliation-receipt.schema.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.truth-reconciliation-receipt.v1",
+  "title": "Truth Reconciliation Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptKey",
+    "status",
+    "checkedAt",
+    "verificationStatus"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.truth-reconciliation-receipt.v1"
+    },
+    "receiptKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "checkedAt": {
+      "type": "string"
+    },
+    "verificationStatus": {
+      "type": "string",
+      "enum": [
+        "locally_verified",
+        "externally_verified",
+        "blocked",
+        "not_executed"
+      ]
+    },
+    "artifactHashes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "contentDispositionLedgerPath": {
+      "type": "string"
+    },
+    "releaseGateReviewPath": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
 }

@@ -1,5 +1,19 @@
 {
-  "status": "placeholder",
-  "target": "projections/target-sketches/governed-visual-projection.target.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.target-sketch.v1",
+  "targetStatus": "accepted",
+  "surfaceKind": "ascii",
+  "authority": "visualProjectionModel",
+  "layoutMode": "deterministic",
+  "forbiddenClaims": [
+    "freehand proof",
+    "renderer-owned product truth",
+    "unreceipted visual evidence"
+  ],
+  "completionPosture": "Target sketch is authority for future visual equivalence; it is not itself execution proof.",
+  "targetKey": "defracto.target.governed_visual_projection_target.v1",
+  "targetTitle": "Governed Visual Projection Target",
+  "nodes": [],
+  "edges": [],
+  "semanticBindings": [],
+  "equivalenceRules": []
 }
