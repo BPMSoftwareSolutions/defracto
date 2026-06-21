@@ -18,12 +18,14 @@ Seed schema families:
 - `visualProjectionModel`
 - `visualSurface`
 - `visualRegion`
+- `visualContainer`
 - `visualRenderAdapter`
 - `asciiRenderKernel`
 - `asciiRenderResult`
 - `visualNarrativeSource`
 - `sourceRoleChangeReceipt`
 - `runVisualEvidence`
+- `runSketchMaterializationReceipt`
 - `sketchEquivalence`
 - `resolverInvocationReceipt`
 - `resolverEquivalenceReport`
@@ -34,5 +36,7 @@ Slice 007H exists as `reports/slice-007h-deterministic-ascii-render-kernel-contr
 Slice 007L exists as `reports/slice-007l-visual-narrative-source-contract-review.latest.md` and introduces the governed visual narrative source contract only.
 Slice 007M exists as `reports/slice-007m-visual-source-role-change-receipt-contract.latest.md` and introduces the visual source role-change receipt contract only.
 Slice 007M.1 exists as `reports/slice-007m1-run-visual-evidence-standard.latest.md` and introduces the run visual evidence standard only.
+Slice 007M.3 exists as `reports/slice-007m3-run-sketch-materialization-sej-contract.latest.md` and introduces the run sketch materialization SEJ contract only.
+Slice 007M.3A exists as `reports/slice-007m3a-static-ascii-materialization-posture-correction.latest.md` and corrects the posture of the run sketch materialization bridge.
 
 Later slices may add more schemas, but they must not invent fields outside the approved decision and story/spec chain.

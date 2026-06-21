@@ -58,7 +58,9 @@ Slice 000.1 and Slice 000.2 are required before Slice 001 can be accepted as com
 49. Slice 007M: Visual Source Role-Change Receipt Contract.
 50. Slice 007M.1: Run Visual Evidence Standard.
 51. Slice 007M.2: Run Sketch Authoring Violation Disposition.
-52. Slice 008: Narrative Coverage Prototype.
+52. Slice 007M.3: Run Sketch Materialization SEJ Contract.
+53. Slice 007M.3A: Static ASCII Materialization Posture Correction.
+54. Slice 008: Narrative Coverage Prototype.
 
 ## Near-Term Deliverables
 
@@ -66,12 +68,14 @@ Slice 000.1 and Slice 000.2 are required before Slice 001 can be accepted as com
 - Render the founding conversation into story, canonical spec, projection manifest, markdown projection, lineage receipt, and reports.
 - Keep runtime execution deferred until lineage and report structure are proven.
 - Treat Slice 007G as report-first posture alignment: the visualProjectionModel is the product center, but deterministic visual projection is still not implemented.
-- Slice 007G.2 now introduces the visual projection model schema and policy artifacts after navigation alignment.
+- Slice 007G.2 now introduces the visual projection model schema and policy artifacts after navigation alignment; hard-coded ASCII is only a static materialization bridge.
 - Slice 007H now introduces the deterministic ASCII render kernel contract as a governed mechanism only.
 - Slice 007L now introduces the visual narrative source contract for sketches, whiteboards, diagrams, and similar authored visual surfaces.
 - Slice 007M now introduces the source role-change receipt contract for projection-output-to-source-intent transitions.
 - Slice 007M.1 now makes visual evidence a required proof surface for meaningful slices, starting as ASCII.
 - Slice 007M.2 now records that the current 007M.1 sketch is manual visual seed / ungoverned draft until a pipeline receipt exists.
+- Slice 007M.3 now declares the run-sketch materialization path and receipt boundary as a static ASCII bridge; the sketch remains ungoverned until resolver-backed materialization occurs.
+- Slice 007M.3A now corrects the posture so the bridge is explicitly not mistaken for deterministic visual projection.
 
 ## Long-Term Direction
 

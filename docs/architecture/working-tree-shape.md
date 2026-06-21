@@ -36,16 +36,19 @@ defracto/
 |   |   |-- visual-projection-model.schema.v1.json
 |   |   |-- visual-surface.schema.v1.json
 |   |   |-- visual-region.schema.v1.json
+|   |   |-- visual-container.schema.v1.json
 |   |   |-- visual-render-adapter.schema.v1.json
 |   |   |-- ascii-render-kernel.schema.v1.json
 |   |   |-- ascii-render-result.schema.v1.json
 |   |   |-- visual-narrative-source.schema.v1.json
 |   |   |-- source-role-change-receipt.schema.v1.json
 |   |   |-- run-visual-evidence.schema.v1.json
+|   |   |-- run-sketch-materialization-receipt.schema.v1.json
 |   |   `-- sketch-equivalence.schema.v1.json
 |   |   `-- sej-contract.schema.v1.json
 |   `-- policies/
 |       |-- visual-projection-determinism.policy.v1.json
+|       |-- no-manual-run-sketch-authoring.policy.v1.json
 |       `-- ascii-render-kernel-boundary.policy.v1.json
 |   |-- operations/
 |   |   |-- render-narrative-graph.operation-requirements.v1.json
@@ -65,6 +68,7 @@ defracto/
 |       |-- validate-story-packet.sej.v1.json
 |       `-- materialize-validate-lineage-facade.sej.v1.json
 |       |-- validate-lineage.sej.v1.json
+|       |-- materialize-run-sketch-007m1.sej.v1.json
 |       `-- validate-founding-ui-sketch-equivalence.sej.v1.json
 |   `-- taxonomies/
 |       |-- body-kind.taxonomy.v1.json
@@ -195,6 +199,8 @@ defracto/
 |-- slice-007m-visual-source-role-change-receipt-contract.latest.md
 |-- slice-007m1-run-visual-evidence-standard.latest.md
 |-- slice-007m2-run-sketch-authoring-violation-disposition.latest.md
+|-- slice-007m3-run-sketch-materialization-sej-contract.latest.md
+|-- slice-007m3a-static-ascii-materialization-posture-correction.latest.md
 `-- semantic-coherence-review.latest.md
 ```
 
@@ -232,7 +238,10 @@ Current generated-doorway posture:
 - `examples/target-sketches/evidence/founding-lineage-flow.render.receipt.v1.json` records the canonical-path render receipt.
 - `evidence/invocations/founding-ui-sketch.equivalence-invocation.receipt.v1.json` records the passed equivalence invocation evidence, including target and rendered hashes.
 - The current system proves deterministic writing, not yet deterministic visual projection.
-- Slice 007H defines the deterministic ASCII render kernel contract, Slice 007L defines the visual narrative source contract, and Slice 007M defines the visual source role-change receipt contract.
+- Hard-coded ASCII materialization is only a static bridge; the `visualProjectionModel` is the governed foundation for future renderers.
+- Slice 007H defines the deterministic ASCII render kernel contract, Slice 007L defines the visual narrative source contract, Slice 007M defines the visual source role-change receipt contract, Slice 007M.3 defines the run-sketch materialization SEJ contract, and Slice 007M.3A corrects its static ASCII posture.
+- `reports/slice-007m3-run-sketch-materialization-sej-contract.latest.md` declares the run-sketch materialization path without invoking the resolver.
+- `reports/slice-007m3a-static-ascii-materialization-posture-correction.latest.md` corrects the posture so the bridge is not mistaken for deterministic visual projection.
 
 Operational doorway shape under contract review:
 

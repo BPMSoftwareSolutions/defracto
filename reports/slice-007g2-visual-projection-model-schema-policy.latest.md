@@ -2,13 +2,13 @@
 
 ## Status
 
-proposed
+passed
 
 ## Purpose
 
 Slice 007G.2 promotes the visual projection model from report-first posture into governed schema and policy artifacts.
 
-The current repo proves deterministic writing, not deterministic visual projection.
+Hard-coded ASCII in a SEJ is only static materialization, not the product foundation.
 
 The `visualProjectionModel` is now the governed product center for future renderers.
 
@@ -16,7 +16,7 @@ Target sketches remain visual intent fixtures.
 
 Render adapters must consume the `visualProjectionModel`.
 
-Future outputs such as ASCII, SVG, HTML/CSS, DOCX, PDF, PPTX, Google Docs, Google Slides, and video must pass through this model.
+Future outputs such as ASCII, SVG, HTML/CSS, DOCX, PDF, PPTX, Google Docs, Google Slides, and video must derive from this model.
 
 No renderer exists yet.
 
@@ -44,6 +44,7 @@ This slice only defines the model and policy boundary that future renderers must
 contracts/schemas/visual-projection-model.schema.v1.json
 contracts/schemas/visual-surface.schema.v1.json
 contracts/schemas/visual-region.schema.v1.json
+contracts/schemas/visual-container.schema.v1.json
 contracts/schemas/visual-render-adapter.schema.v1.json
 contracts/policies/visual-projection-determinism.policy.v1.json
 ```
@@ -61,6 +62,8 @@ The model does not authorize a renderer to invent layout meaning, labels, edges,
 The determinism policy requires stable ordering, stable layout rules, stable connector routing, stable label handling, stable overflow behavior, stable failure behavior, and stable receipt shape.
 
 It forbids random placement, implicit layout inference, unrecorded fallback behavior, and any claim that visual projection already exists in implementation.
+
+The model is the foundation; hard-coded ASCII is only a transitional static materialization bridge and not a replacement for model-driven rendering.
 
 ## Relationship To Target Sketches
 

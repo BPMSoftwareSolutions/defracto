@@ -1,0 +1,34 @@
+{
+  "policyVersion": "defracto.no-manual-run-sketch-authoring.policy.v1",
+  "policyKey": "defracto.no-manual-run-sketch-authoring",
+  "scope": "run-sketch-materialization",
+  "whatThePolicyRequires": [
+    "run sketches must be generated through declared visual authority and materialization",
+    "manual edits must not be treated as governed evidence",
+    "the artifact hash must match the materialized file contents",
+    "the materialization receipt must exist before the sketch is claimed as governed evidence"
+  ],
+  "whatThePolicyForbids": [
+    "hand-authoring a governed run sketch and calling it proof",
+    "repairing the sketch by hand after the fact",
+    "claiming governed visual evidence without a receipt",
+    "claiming the sketch is pipeline-generated before materialization occurs",
+    "claiming deterministic visual rendering exists without a renderer"
+  ],
+  "deferredCapabilities": [
+    "visual renderer implementation",
+    "equivalence validation for run sketches"
+  ],
+  "requiredNextStates": [
+    "materialization contract accepted",
+    "resolver-backed materialization pending",
+    "receipt-backed governed visual evidence pending"
+  ],
+  "forbiddenClaims": [
+    "the current hand-authored sketch is governed evidence",
+    "the current hand-authored sketch is pipeline materialized",
+    "the current hand-authored sketch proves deterministic rendering",
+    "the current hand-authored sketch satisfies the run visual evidence standard"
+  ],
+  "completionPosture": "Slice 007M.3 is complete when the pipeline path to run sketch materialization is declared and manual authoring is explicitly forbidden."
+}

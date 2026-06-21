@@ -1850,9 +1850,11 @@ Goal:
 
 Promote the visual projection model from report-only posture into governed schema and policy artifacts, without introducing a renderer or any materialized visual output.
 
+Hard-coded ASCII in a SEJ remains a static materialization bridge only; it is not the product foundation.
+
 Changes:
 
-- Create the visual projection model schema and supporting surface/region/render-adapter schemas.
+- Create the visual projection model schema and supporting surface/region/container/render-adapter schemas.
 - Create the visual projection determinism policy.
 - Keep target sketches as visual intent fixtures.
 - Keep future adapters subordinate to the governed `visualProjectionModel`.
@@ -1863,6 +1865,7 @@ Artifacts:
 contracts/schemas/visual-projection-model.schema.v1.json
 contracts/schemas/visual-surface.schema.v1.json
 contracts/schemas/visual-region.schema.v1.json
+contracts/schemas/visual-container.schema.v1.json
 contracts/schemas/visual-render-adapter.schema.v1.json
 contracts/policies/visual-projection-determinism.policy.v1.json
 reports/slice-007g2-visual-projection-model-schema-policy.latest.md
@@ -2066,6 +2069,79 @@ Blocks:
 - No sketch is repaired by hand.
 
 Ships next:
+
+Slice 007M.3: Run Sketch Materialization SEJ Contract.
+
+## Slice 007M.3: Run Sketch Materialization SEJ Contract
+
+Goal:
+
+Declare the governed pipeline path for the run sketch without materializing it yet.
+
+Changes:
+
+- Add a semantic executable JSON contract that targets the run sketch artifact path.
+- Add a receipt schema for run-sketch materialization evidence.
+- Add a policy that forbids manual authoring or hand repair from counting as governed proof.
+- Keep resolver invocation, sketch materialization, and receipt emission out of scope for this slice.
+
+Artifacts:
+
+```text
+contracts/sej/materialize-run-sketch-007m1.sej.v1.json
+contracts/schemas/run-sketch-materialization-receipt.schema.v1.json
+contracts/policies/no-manual-run-sketch-authoring.policy.v1.json
+reports/slice-007m3-run-sketch-materialization-sej-contract.latest.md
+```
+
+Completion rule:
+
+```text
+The run sketch materialization path is declared, but no governed visual evidence exists until resolver-backed materialization emits the receipt.
+```
+
+Blocks:
+
+- Slice 007M.2 run sketch authoring violation disposition must remain complete.
+- The existing sketch must not be repaired by hand.
+- No governed visual evidence may be claimed yet.
+
+Ships next:
+
+Slice 007M.3A: Static ASCII Materialization Posture Correction.
+
+## Slice 007M.3A: Static ASCII Materialization Posture Correction
+
+Goal:
+
+Clarify that the current SEJ is a static ASCII materialization bridge and not a deterministic visual renderer.
+
+Changes:
+
+- Add receipt fields that distinguish static ASCII materialization from deterministic visual projection.
+- Record that the ASCII content is declared directly in the SEJ.
+- Record that the renderer remains unimplemented and the `visualProjectionModel` path remains deferred.
+
+Artifacts:
+
+```text
+reports/slice-007m3a-static-ascii-materialization-posture-correction.latest.md
+```
+
+Completion rule:
+
+```text
+The bridge may remain as a transitional proof surface, but it must not be confused with renderer-backed visual projection.
+```
+
+Blocks:
+
+- Slice 007M.3 materialization contract must remain complete.
+- No claim may be made that deterministic visual projection exists yet.
+
+Ships next:
+
+Slice 007M.4: Run Sketch Materialization Invocation.
 
 ## Slice 008: Narrative Coverage Prototype
 

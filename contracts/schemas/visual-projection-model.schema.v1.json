@@ -134,26 +134,7 @@
     "containers": {
       "type": "array",
       "items": {
-        "type": "object",
-        "required": ["containerKey", "containerKind", "containerRole"],
-        "properties": {
-          "containerKey": {
-            "type": "string"
-          },
-          "containerKind": {
-            "type": "string"
-          },
-          "containerRole": {
-            "type": "string"
-          },
-          "regionKeys": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
-        "additionalProperties": false
+        "$ref": "./visual-container.schema.v1.json"
       }
     },
     "lanes": {

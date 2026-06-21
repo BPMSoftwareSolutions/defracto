@@ -1,0 +1,217 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.materialize-run-sketch-007m1.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "draft",
+  "toolKey": "defracto.projections.run_visual_evidence",
+  "sourceLineage": {
+    "visualEvidencePolicyPath": "contracts/policies/run-visual-evidence-required.policy.v1.json",
+    "visualEvidenceSchemaPath": "contracts/schemas/run-visual-evidence.schema.v1.json",
+    "runEvidenceStandardReportKey": "reports/slice-007m1-run-visual-evidence-standard.latest.md",
+    "violationDispositionReportKey": "reports/slice-007m2-run-sketch-authoring-violation-disposition.latest.md"
+  },
+  "materializationMode": "static_ascii_materialization",
+  "targetArtifact": {
+    "artifactKey": "reports/sketches/slice-007m1-run-visual-evidence-standard.ascii",
+    "artifactPath": "reports/sketches/slice-007m1-run-visual-evidence-standard.ascii",
+    "artifactKind": "static_ascii_materialization",
+    "artifactStatus": "future"
+  },
+  "generatedFileAnchors": [
+    {
+      "anchorKey": "generatedSketchTarget",
+      "filePath": "reports/sketches/slice-007m1-run-visual-evidence-standard.ascii",
+      "anchorRole": "generated run sketch target",
+      "anchorState": "future"
+    },
+    {
+      "anchorKey": "generatedReceiptTarget",
+      "filePath": "evidence/visual/run-sketches/slice-007m1-run-visual-evidence-standard.materialization.receipt.v1.json",
+      "anchorRole": "run sketch materialization receipt target",
+      "anchorState": "future"
+    }
+  ],
+  "materializationPrimitives": [
+    "resolve.contract",
+    "resolve.reference",
+    "resolve.value",
+    "project.value",
+    "artifact.materialize",
+    "hash.compute",
+    "evidence.emit"
+  ],
+  "materializationSteps": [
+    "resolve the accepted run visual evidence authority",
+    "resolve the run sketch target path",
+    "resolve the materialization receipt target path",
+    "project the declared static ASCII content",
+    "materialize the resolver-backed static ASCII artifact",
+    "compute the declared artifact hash",
+    "emit the declared materialization receipt"
+  ],
+  "receiptEmission": {
+    "receiptKey": "defracto.run-sketch.materialization-receipt.v1",
+    "receiptPath": "evidence/visual/run-sketches/slice-007m1-run-visual-evidence-standard.materialization.receipt.v1.json",
+    "receiptKind": "visual-materialization-receipt",
+    "required": true
+  },
+  "allowedResponsibilities": [
+    "materialize the declared static ASCII sketch from declared visual authority",
+    "emit evidence for the resolver-backed static ASCII artifact",
+    "keep the static ASCII artifact subordinate to the run visual evidence standard"
+  ],
+  "forbiddenResponsibilities": [
+    "hand-authored run sketch content",
+    "manual edit repair of the sketch",
+    "claiming the current sketch is governed evidence before receipt existence",
+    "claiming deterministic visual projection from this bridge",
+    "direct rendering behavior",
+    "HTML generation",
+    "React generation",
+    "CSS generation",
+    "SVG generation",
+    "runtime projection",
+    "file loading in the facade",
+    "JSON parsing in the facade",
+    "array traversal in the facade",
+    "resolver modification",
+    "source mutation",
+    "projection mutation"
+  ],
+  "steps": [
+    {
+      "id": "materializeRunSketch",
+      "type": "primitive",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "run-sketch.materialization"
+        },
+        "artifact": {
+          "path": "reports/sketches/slice-007m1-run-visual-evidence-standard.ascii",
+          "format": "text",
+          "anchor": {
+            "enabled": true,
+            "sourceSej": "contracts/sej/materialize-run-sketch-007m1.sej.v1.json",
+            "contractKey": "defracto.sej.materialize-run-sketch-007m1.v1",
+            "commentPrefix": "#"
+          },
+          "content": [
+            "# Generated run sketch for Slice 007M.1.",
+            "# sourceAuthority: contracts/policies/run-visual-evidence-required.policy.v1.json",
+            "# sourceSchema: contracts/schemas/run-visual-evidence.schema.v1.json",
+            "# This file is resolver-materialized and owns no product truth.",
+            "",
+            "+----------------------------------------------------------+",
+            "| SLICE 007M.1: RUN VISUAL EVIDENCE STANDARD              |",
+            "+----------------------------------------------------------+",
+            "",
+            "  textual evidence",
+            "  +-------------------------------------------------------+",
+            "  | report: reports/slice-007m1-run-visual-evidence-      |",
+            "  |         standard.latest.md                            |",
+            "  | receipts: deferred until future slice                 |",
+            "  | changed files: README, ROADMAP, Plan, tree, README... |",
+            "  +-------------------------------------------------------+",
+            "",
+            "  visual authority",
+            "  +-------------------------------------------------------+",
+            "  | policy: contracts/policies/run-visual-evidence-      |",
+            "  |         required.policy.v1.json                       |",
+            "  | schema: contracts/schemas/run-visual-evidence.schema |",
+            "  |         .v1.json                                      |",
+            "  | rule: future slices need visual evidence or defer     |",
+            "  +-------------------------------------------------------+",
+            "",
+            "  visual evidence",
+            "  +-------------------------------------------------------+",
+            "  | sketch: reports/sketches/slice-007m1-run-visual-     |",
+            "  |         evidence-standard.ascii                       |",
+            "  | mode: ascii-declared                                  |",
+            "  | status: generated                                     |",
+            "  +-------------------------------------------------------+",
+            "",
+            "  artifact states",
+            "  +-----------------------+-------------------------------+",
+            "  | passed                | policy + schema + sketch     |",
+            "  |                       | folder                       |",
+            "  +-----------------------+-------------------------------+",
+            "  | deferred              | future renderer/model        |",
+            "  +-----------------------+-------------------------------+",
+            "  | blocked               | none                         |",
+            "  +-----------------------+-------------------------------+",
+            "  | stale                 | none                         |",
+            "  +-----------------------+-------------------------------+",
+            "",
+            "  future run rule",
+            "  +-------------------------------------------------------+",
+            "  | every meaningful slice                                |",
+            "  |   -> produces visual evidence                         |",
+            "  |   OR records visual evidence as deferred with reason  |",
+            "  +-------------------------------------------------------+",
+            "",
+            "Status:",
+            "  contract only",
+            "  no renderer",
+            "  no product truth",
+            "  no canonicalization"
+          ],
+          "joinWith": "\n"
+        }
+      }
+    },
+    {
+      "id": "emitReceipt",
+      "type": "primitive",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "run-sketch.evidence"
+        },
+        "receipt": {
+          "path": "evidence/visual/run-sketches/slice-007m1-run-visual-evidence-standard.materialization.receipt.v1.json",
+          "content": {
+            "receiptKey": "defracto.run-sketch.materialization-receipt.v1",
+            "receiptStatus": "passed",
+            "checkedAt": "2026-06-21T00:00:00-04:00",
+            "sourceSej": "contracts/sej/materialize-run-sketch-007m1.sej.v1.json",
+            "sourceVisualAuthority": [
+              "contracts/policies/run-visual-evidence-required.policy.v1.json",
+              "contracts/schemas/run-visual-evidence.schema.v1.json"
+            ],
+            "generationMode": "static_ascii_materialization",
+            "rendererStatus": "not_implemented",
+            "visualProjectionModelStatus": "deferred",
+            "deterministicVisualProjectionStatus": "not_proven",
+            "targetPath": "reports/sketches/slice-007m1-run-visual-evidence-standard.ascii",
+            "receiptPath": "evidence/visual/run-sketches/slice-007m1-run-visual-evidence-standard.materialization.receipt.v1.json",
+            "artifactHash": {
+              "ref": "$steps.materializeRunSketch.contentHash"
+            },
+            "generatedFileAnchors": [
+              {
+                "anchorKey": "generatedSketchTarget",
+                "filePath": "reports/sketches/slice-007m1-run-visual-evidence-standard.ascii",
+                "anchorRole": "generated run sketch target",
+                "anchorState": "materialized"
+              }
+            ],
+            "manualEditPolicy": "no-manual-run-sketch-authoring",
+            "status": "passed",
+            "forbiddenClaims": [
+              "the current sketch is governed evidence before receipt existence",
+              "the current sketch is pipeline generated before resolver invocation",
+              "the current sketch proves deterministic visual projection without a visualProjectionModel-driven renderer"
+            ],
+            "completionPosture": "The run sketch is governed only after resolver-backed static ASCII materialization and receipt emission."
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitReceipt"
+  },
+  "completionPosture": "This SEJ authorizes only resolver-mediated static ASCII materialization and receipt emission; deterministic visual projection remains deferred until a visualProjectionModel-driven renderer exists."
+}

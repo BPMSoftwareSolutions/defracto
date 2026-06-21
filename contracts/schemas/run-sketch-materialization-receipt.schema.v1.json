@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.run-sketch-materialization-receipt.v1",
+  "title": "Run Sketch Materialization Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptKey",
+    "receiptStatus",
+    "checkedAt",
+    "sourceSej",
+    "sourceVisualAuthority",
+    "generationMode",
+    "rendererStatus",
+    "visualProjectionModelStatus",
+    "deterministicVisualProjectionStatus",
+    "targetPath",
+    "receiptPath",
+    "artifactHash",
+    "generatedFileAnchors",
+    "status",
+    "forbiddenClaims",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "receiptKey": {
+      "type": "string"
+    },
+    "receiptStatus": {
+      "type": "string",
+      "enum": ["passed", "blocked", "failed"]
+    },
+    "checkedAt": {
+      "type": "string"
+    },
+    "sourceSej": {
+      "type": "string"
+    },
+    "sourceVisualAuthority": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "generationMode": {
+      "type": "string",
+      "enum": ["static_ascii_materialization"]
+    },
+    "rendererStatus": {
+      "type": "string",
+      "enum": ["not_implemented"]
+    },
+    "visualProjectionModelStatus": {
+      "type": "string",
+      "enum": ["deferred"]
+    },
+    "deterministicVisualProjectionStatus": {
+      "type": "string",
+      "enum": ["not_proven"]
+    },
+    "targetPath": {
+      "type": "string"
+    },
+    "receiptPath": {
+      "type": "string"
+    },
+    "artifactHash": {
+      "type": "string"
+    },
+    "generatedFileAnchors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["anchorKey", "filePath", "anchorRole", "anchorState"],
+        "properties": {
+          "anchorKey": {
+            "type": "string"
+          },
+          "filePath": {
+            "type": "string"
+          },
+          "anchorRole": {
+            "type": "string"
+          },
+          "anchorState": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "manualEditPolicy": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

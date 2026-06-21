@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.visual-container.v1",
+  "title": "Visual Container",
+  "type": "object",
+  "required": [
+    "containerKey",
+    "containerKind",
+    "containerStatus",
+    "containerRole",
+    "surfaceKey",
+    "nodeKeys",
+    "forbiddenClaims",
+    "completionPosture"
+  ],
+  "properties": {
+    "containerKey": {
+      "type": "string"
+    },
+    "containerKind": {
+      "type": "string",
+      "const": "visual-container"
+    },
+    "containerStatus": {
+      "type": "string",
+      "enum": ["draft", "accepted", "blocked", "ready-for-materialization"]
+    },
+    "containerRole": {
+      "type": "string"
+    },
+    "surfaceKey": {
+      "type": "string"
+    },
+    "regionKeys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "nodeKeys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "edgeKeys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
