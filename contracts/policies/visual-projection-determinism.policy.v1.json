@@ -1,0 +1,53 @@
+{
+  "policyVersion": "defracto.visual-projection-determinism.policy.v1",
+  "policyKey": "defracto.visual-projection-determinism",
+  "scope": "visual-projection-model-and-render-adapters",
+  "governedProductCenter": "visualProjectionModel",
+  "whatTheModelOwns": [
+    "what visual concepts exist",
+    "where visual concepts are allowed to appear",
+    "how visual concepts relate",
+    "what semantic meaning each visual element carries",
+    "what render surfaces are allowed",
+    "what equivalence rules must pass"
+  ],
+  "whatRenderAdaptersMustDo": [
+    "consume the visualProjectionModel",
+    "apply deterministic layout rules",
+    "emit a declared artifact format",
+    "fail closed on missing geometry",
+    "fail closed on missing semantic bindings",
+    "fail closed on overlap if overlap is forbidden",
+    "fail closed on wrapping if wrapping is forbidden",
+    "emit evidence"
+  ],
+  "whatRenderAdaptersMustNotDo": [
+    "invent nodes",
+    "invent labels",
+    "invent edges",
+    "invent visual hierarchy",
+    "invent layout meaning",
+    "repair missing semantics silently",
+    "change the target sketch",
+    "change the canonical visual model",
+    "claim design authority"
+  ],
+  "stableRequirements": [
+    "stable ordering",
+    "stable layout rules",
+    "stable connector routing",
+    "stable label handling",
+    "stable overflow behavior",
+    "stable failure behavior",
+    "stable receipt shape"
+  ],
+  "forbiddenClaimsWithoutRenderer": [
+    "deterministic visual projection is implemented",
+    "ASCII rendering is implemented",
+    "SVG rendering is implemented",
+    "HTML/CSS rendering is implemented",
+    "document rendering is implemented",
+    "video rendering is implemented"
+  ],
+  "completionPosture": "Slice 007G.2 is complete when the governing visual projection schemas and policy artifacts exist and no renderer has been introduced."
+}

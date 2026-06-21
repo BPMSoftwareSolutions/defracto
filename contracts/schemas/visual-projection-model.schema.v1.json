@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.visual-projection-model.v1",
+  "title": "Visual Projection Model",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "modelKey",
+    "modelKind",
+    "modelStatus",
+    "sourceNarrative",
+    "sourceStory",
+    "canonicalSpec",
+    "targetSketches",
+    "surfaces",
+    "regions",
+    "nodes",
+    "edges",
+    "containers",
+    "lanes",
+    "layoutRules",
+    "semanticBindings",
+    "renderAdapters",
+    "equivalenceRules",
+    "forbiddenClaims",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "modelKey": {
+      "type": "string"
+    },
+    "modelKind": {
+      "type": "string",
+      "const": "visual-projection-model"
+    },
+    "modelStatus": {
+      "type": "string",
+      "enum": ["draft", "accepted", "blocked", "ready-for-materialization"]
+    },
+    "sourceNarrative": {
+      "type": "object",
+      "required": ["narrativeKey", "narrativePath"],
+      "properties": {
+        "narrativeKey": {
+          "type": "string"
+        },
+        "narrativePath": {
+          "type": "string"
+        },
+        "narrativeTruth": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sourceStory": {
+      "type": "object",
+      "required": ["storyKey", "storyPath"],
+      "properties": {
+        "storyKey": {
+          "type": "string"
+        },
+        "storyPath": {
+          "type": "string"
+        },
+        "storyTruth": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "canonicalSpec": {
+      "type": "object",
+      "required": ["specKey", "specPath"],
+      "properties": {
+        "specKey": {
+          "type": "string"
+        },
+        "specPath": {
+          "type": "string"
+        },
+        "specTruth": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "targetSketches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["targetSketchKey", "targetSketchPath"],
+        "properties": {
+          "targetSketchKey": {
+            "type": "string"
+          },
+          "targetSketchPath": {
+            "type": "string"
+          },
+          "targetSketchTruth": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "surfaces": {
+      "type": "array",
+      "items": {
+        "$ref": "./visual-surface.schema.v1.json"
+      }
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "$ref": "./visual-region.schema.v1.json"
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "./visual-node.schema.v1.json"
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "$ref": "./visual-edge.schema.v1.json"
+      }
+    },
+    "containers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["containerKey", "containerKind", "containerRole"],
+        "properties": {
+          "containerKey": {
+            "type": "string"
+          },
+          "containerKind": {
+            "type": "string"
+          },
+          "containerRole": {
+            "type": "string"
+          },
+          "regionKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "lanes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["laneKey", "laneKind", "laneRole"],
+        "properties": {
+          "laneKey": {
+            "type": "string"
+          },
+          "laneKind": {
+            "type": "string"
+          },
+          "laneRole": {
+            "type": "string"
+          },
+          "nodeKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "layoutRules": {
+      "type": "array",
+      "items": {
+        "$ref": "./visual-layout.schema.v1.json"
+      }
+    },
+    "semanticBindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["bindingKey", "bindingRole", "targetNodeKey"],
+        "properties": {
+          "bindingKey": {
+            "type": "string"
+          },
+          "bindingRole": {
+            "type": "string"
+          },
+          "sourceArtifactPath": {
+            "type": "string"
+          },
+          "targetNodeKey": {
+            "type": "string"
+          },
+          "bindingTruth": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "renderAdapters": {
+      "type": "array",
+      "items": {
+        "$ref": "./visual-render-adapter.schema.v1.json"
+      }
+    },
+    "equivalenceRules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

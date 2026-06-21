@@ -47,15 +47,24 @@ Slice 000.1 and Slice 000.2 are required before Slice 001 can be accepted as com
 38. Slice 007D.1: UI Sketch Deterministic Layout Contract.
 39. Slice 007D.2: Visual Target Sketch Definition Contract.
 40. Slice 007E: Resolver-Backed UI Sketch Materialization.
-41. Slice 007F: Target Sketch Equivalence Invocation Evidence.
-42. Slice 007: UI Projection Expansion.
-43. Slice 008: Narrative Coverage Prototype.
+41. Slice 007E.1: Re-materialize Target Sketch To Canonical Path.
+42. Slice 007F: Target Sketch Equivalence Invocation Evidence.
+43. Slice 007F.1: Target Sketch Projection Path Reconciliation.
+44. Slice 007F.2: Target Sketch Equivalence Validation.
+45. Slice 007G.1: Visual Projection Model Navigation Alignment.
+46. Slice 007G.2: Visual Projection Model Schema and Policy Artifacts.
+47. Slice 007H: Deterministic ASCII Render Kernel Contract.
+48. Slice 008: Narrative Coverage Prototype.
 
 ## Near-Term Deliverables
 
 - Lock the minimum schema shapes for seed artifacts.
 - Render the founding conversation into story, canonical spec, projection manifest, markdown projection, lineage receipt, and reports.
 - Keep runtime execution deferred until lineage and report structure are proven.
+- Treat Slice 007G as report-first posture alignment: the visualProjectionModel is the product center, but deterministic visual projection is still not implemented.
+- Slice 007G.2 now introduces the visual projection model schema and policy artifacts after navigation alignment.
+- Slice 007H now introduces the deterministic ASCII render kernel contract as a governed mechanism only.
+- Future Slice 007I may implement or bind the approved ASCII render kernel.
 
 ## Long-Term Direction
 

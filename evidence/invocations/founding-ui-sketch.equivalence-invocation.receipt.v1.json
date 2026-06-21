@@ -1,12 +1,14 @@
 {
   "receiptKey": "defracto.founding-ui-sketch.equivalence-invocation.receipt.v1",
-  "status": "blocked",
-  "checkedAt": "2026-06-21T08:11:28.3620345-04:00",
+  "status": "passed",
+  "checkedAt": "2026-06-21T08:26:50.5516719-04:00",
   "invocationKind": "target-sketch-equivalence-invocation",
   "toolPath": "contracts/sej/validate-founding-ui-sketch-equivalence.sej.v1.json",
   "sourceSej": "contracts/sej/validate-founding-ui-sketch-equivalence.sej.v1.json",
+  "facadeManifest": "contracts/projections/founding-ui-sketch.projection-manifest.v1.json",
+  "materializationReceipt": "examples/target-sketches/evidence/founding-lineage-flow.render.receipt.v1.json",
   "targetSketchFixturePath": "examples/target-sketches/founding-lineage-flow.target.v1.json",
-  "renderedSketchPath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+  "renderedSketchPath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
   "equivalenceRuleSet": [
     "The rendered artifact must preserve the declared node order.",
     "The rendered artifact must preserve the declared edge sequence.",
@@ -73,21 +75,13 @@
   "targetSketchHash": "be784d53dbf7af232aebc2f343a20bf76352e7bb8ca97594a0f92d7c4acf63a5",
   "renderedSketchHash": "ce5845f9e567e44ccd2e6691fbe1c2777dbd747602841d309ec0da5330abfa2d",
   "invocationShape": "already-loaded-json",
-  "exitCode": 1,
-  "stdout": "{\"status\":\"blocked\",\"result\":null,\"evidence\":{\"failClosed\":true,\"code\":\"missing_reference\",\"details\":{\"stepId\":\"equivalenceGate\"}},\"findings\":[{\"severity\":\"blocker\",\"code\":\"missing_reference\",\"message\":\"Reference could not be resolved.\",\"details\":{\"stepId\":\"equivalenceGate\"}}],\"blocker\":\"missing_reference\",\"error\":\"Reference could not be resolved.\"}",
+  "invocationArguments": "{\"targetSketchFixturePath\":\"examples/target-sketches/founding-lineage-flow.target.v1.json\",\"renderedSketchPath\":\"examples/target-sketches/projections/founding-lineage-flow.ascii\",\"expectedFutureArtifactPath\":\"examples/target-sketches/projections/founding-lineage-flow.ascii\"}",
+  "exitCode": 0,
+  "stdout": "",
   "stderr": "",
-  "blocker": "missing_reference",
-  "error": "Reference could not be resolved.",
-  "findings": [
-    {
-      "severity": "blocker",
-      "code": "missing_reference",
-      "message": "Reference could not be resolved.",
-      "details": {
-        "stepId": "equivalenceGate"
-      }
-    }
-  ],
+  "blocker": null,
+  "error": null,
+  "findings": [],
   "generatedFileAnchors": [
     {
       "anchorKey": "targetSketchFixtureChecked",
@@ -97,7 +91,7 @@
     },
     {
       "anchorKey": "renderedSketchChecked",
-      "filePath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+      "filePath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
       "anchorRole": "rendered doorway under equivalence check",
       "anchorState": "checked"
     }

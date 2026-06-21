@@ -4,12 +4,12 @@
   "manifestKind": "projected-doorway",
   "manifestStatus": "accepted",
   "toolKey": "defracto.projections.ui_sketch_projection",
-  "projectedPath": "projections/ui/founding-ui-sketch.latest.txt",
-  "projectionTarget": "contracts/sej/materialize-founding-ui-sketch.projection.sej.v1.json",
+  "projectedPath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
+  "projectionTarget": "contracts/sej/materialize-founding-ui-sketch.sej.v1.json",
   "sourceLineage": {
     "storyKey": "stories/projections/ui-sketch-projection.story.v1.json",
     "canonicalSpecKey": "specs/canonical/projections/ui-sketch-projection.canonical-spec.v1.json",
-    "sejContractKey": "contracts/sej/materialize-founding-ui-sketch.projection.sej.v1.json"
+    "sejContractKey": "contracts/sej/materialize-founding-ui-sketch.sej.v1.json"
   },
   "generatedDoorway": {
     "status": "future",

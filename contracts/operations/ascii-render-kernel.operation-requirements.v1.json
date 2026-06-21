@@ -1,0 +1,69 @@
+{
+  "operationRequirementVersion": "defracto.ascii-render-kernel.operation-requirements.v1",
+  "kernelKey": "defracto.kernels.ascii_render",
+  "contractKey": "defracto.ascii-render-kernel.v1",
+  "resolverHandshakeStatus": "pending",
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.reference.v1",
+      "status": "required",
+      "purpose": "Resolve already-bound visual projection references from the invocation payload without inventing layout meaning.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "status": "required",
+      "purpose": "Resolve governed values from the visualProjectionModel without mutating source truth.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "status": "required",
+      "purpose": "Evaluate deterministic kernel predicates and fail closed when the model is incomplete or inconsistent.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "status": "required",
+      "purpose": "Project the bounded ASCII render result from the governed visualProjectionModel.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "execute.stage.v1",
+      "status": "required",
+      "purpose": "Sequence the bounded render stages deterministically.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "resolve.contract.v1",
+      "status": "required",
+      "purpose": "Resolve the accepted render contract before projection begins.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "status": "required",
+      "purpose": "Compute a stable content hash for the ASCII render result.",
+      "ifMissing": "blocked"
+    }
+  ],
+  "projectionResponsibilities": [
+    "asciiRenderResult"
+  ],
+  "deferredCapabilities": [
+    "artifact.materialize.v1",
+    "evidence.emit.v1"
+  ],
+  "forbiddenResolverOperations": [
+    "json.read_file.v1",
+    "json.parse.v1",
+    "json.write_file.v1",
+    "directory.traverse.v1"
+  ],
+  "blockedCapabilities": [
+    "writing artifacts directly",
+    "emitting receipts directly",
+    "claiming product meaning",
+    "claiming renderer-owned truth"
+  ]
+}

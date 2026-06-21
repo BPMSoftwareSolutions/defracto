@@ -44,7 +44,14 @@ Seed reports:
 - `slice-007d1-ui-sketch-deterministic-layout-review.latest.md`
 - `slice-007e-resolver-backed-ui-sketch-materialization.latest.md`
 - `slice-007d2-visual-target-sketch-definition-review.latest.md`
+- `slice-007e1-rematerialize-target-sketch-canonical-path.latest.md`
 - `slice-007f-target-sketch-equivalence-invocation-evidence.latest.md`
+- `slice-007f1-target-sketch-projection-path-reconciliation.latest.md`
+- `slice-007f2-target-sketch-equivalence-validation.latest.md`
+- `slice-007g-visual-projection-model-contract.latest.md`
+- `slice-007g2-visual-projection-model-schema-policy.latest.md`
+- `slice-007h-deterministic-ascii-render-kernel-contract.latest.md`
 - `body-disposition.seed.md`
 
 Report bodies may be manually generated in Slice 001, but their section structure must remain aligned with the approved minimum shape.
+Slice 007G.1 is report-only posture alignment, Slice 007G.2 is the visual projection model schema and policy slice, and Slice 007H is the deterministic ASCII render kernel contract slice.

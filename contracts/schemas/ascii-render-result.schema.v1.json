@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.ascii-render-result.v1",
+  "title": "ASCII Render Result",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "resultKey",
+    "resultKind",
+    "resultStatus",
+    "visualProjectionModelKey",
+    "visualProjectionModelPath",
+    "targetArtifactPath",
+    "renderedText",
+    "renderedLines",
+    "lineCount",
+    "contentHash",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "resultKey": {
+      "type": "string"
+    },
+    "resultKind": {
+      "type": "string",
+      "const": "ascii-render-result"
+    },
+    "resultStatus": {
+      "type": "string",
+      "enum": ["draft", "accepted", "blocked", "ready-for-materialization"]
+    },
+    "visualProjectionModelKey": {
+      "type": "string"
+    },
+    "visualProjectionModelPath": {
+      "type": "string"
+    },
+    "targetArtifactPath": {
+      "type": "string"
+    },
+    "renderedText": {
+      "type": "string"
+    },
+    "renderedLines": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lineCount": {
+      "type": "integer"
+    },
+    "characterCount": {
+      "type": "integer"
+    },
+    "contentHash": {
+      "type": "string"
+    },
+    "blockingReasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

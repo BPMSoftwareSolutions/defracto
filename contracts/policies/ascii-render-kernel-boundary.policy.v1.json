@@ -1,0 +1,59 @@
+{
+  "policyVersion": "defracto.ascii-render-kernel-boundary.policy.v1",
+  "policyKey": "defracto.ascii-render-kernel-boundary",
+  "scope": "visual-projection-model-to-ascii-render-result",
+  "governedProductCenter": "visualProjectionModel",
+  "kernelConsumes": [
+    "visualProjectionModel"
+  ],
+  "kernelEmits": [
+    "asciiRenderResult"
+  ],
+  "whatTheKernelOwns": [
+    "deterministic ASCII line construction",
+    "stable ordering of governed visual concepts",
+    "stable whitespace and line-break behavior",
+    "stable connector routing",
+    "stable label handling",
+    "stable fail-closed diagnostics"
+  ],
+  "whatTheKernelMustDo": [
+    "consume the visualProjectionModel",
+    "apply deterministic rules only",
+    "emit an asciiRenderResult",
+    "fail closed on missing model fields",
+    "fail closed on missing semantic anchors",
+    "fail closed on missing or ambiguous layout authority",
+    "remain generic and domain-neutral"
+  ],
+  "whatTheKernelMustNotDo": [
+    "write artifacts directly",
+    "emit receipts directly",
+    "invent layout meaning",
+    "invent labels",
+    "invent edges",
+    "invent line ordering",
+    "invent product truth",
+    "mutate the source model",
+    "claim design authority"
+  ],
+  "stableRequirements": [
+    "stable ordering",
+    "stable whitespace",
+    "stable line breaks",
+    "stable connector routing",
+    "stable label handling",
+    "stable overflow behavior",
+    "stable failure behavior",
+    "stable result shape"
+  ],
+  "artifactWritingResponsibility": "SEJ materialization",
+  "evidenceResponsibility": "receipt generation",
+  "forbiddenClaimsWithoutKernel": [
+    "deterministic ASCII rendering is implemented",
+    "artifact writing belongs to the kernel",
+    "receipt emission belongs to the kernel",
+    "renderer-owned product truth exists"
+  ],
+  "completionPosture": "Slice 007H is complete when the ASCII render kernel contract exists, the kernel consumes visualProjectionModel, emits asciiRenderResult, and remains subordinate to SEJ materialization and evidence receipts."
+}

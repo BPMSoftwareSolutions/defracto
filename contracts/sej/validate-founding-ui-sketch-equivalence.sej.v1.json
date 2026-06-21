@@ -6,7 +6,7 @@
   "toolKey": "defracto.tools.validate_founding_ui_sketch_equivalence",
   "sourceLineage": {
     "targetSketchFixtureKey": "examples/target-sketches/founding-lineage-flow.target.v1.json",
-    "renderedSketchKey": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+    "renderedSketchKey": "examples/target-sketches/projections/founding-lineage-flow.ascii",
     "projectionManifestKey": "contracts/projections/founding-ui-sketch.projection-manifest.v1.json",
     "layoutContractKey": "contracts/projections/founding-ui-sketch.layout.v1.json"
   },
@@ -39,7 +39,7 @@
   ],
   "input": {
     "targetSketchFixturePath": "examples/target-sketches/founding-lineage-flow.target.v1.json",
-    "renderedSketchPath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+    "renderedSketchPath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
     "expectedFutureArtifactPath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
     "equivalenceRuleSet": [
       "The rendered artifact must preserve the declared node order.",

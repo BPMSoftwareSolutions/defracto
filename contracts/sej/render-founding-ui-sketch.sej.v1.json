@@ -57,7 +57,7 @@
       {
         "leftRef": "projectionManifest.projectedPath",
         "operator": "equals",
-        "rightValue": "projections/ui/founding-ui-sketch.latest.txt",
+        "rightValue": "examples/target-sketches/projections/founding-lineage-flow.ascii",
         "findingKeyOnMismatch": "missing_section"
       },
       {

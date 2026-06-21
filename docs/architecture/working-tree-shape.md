@@ -33,13 +33,23 @@ defracto/
 |   |   |-- visual-node.schema.v1.json
 |   |   |-- visual-edge.schema.v1.json
 |   |   |-- visual-layout.schema.v1.json
+|   |   |-- visual-projection-model.schema.v1.json
+|   |   |-- visual-surface.schema.v1.json
+|   |   |-- visual-region.schema.v1.json
+|   |   |-- visual-render-adapter.schema.v1.json
+|   |   |-- ascii-render-kernel.schema.v1.json
+|   |   |-- ascii-render-result.schema.v1.json
 |   |   `-- sketch-equivalence.schema.v1.json
 |   |   `-- sej-contract.schema.v1.json
+|   `-- policies/
+|       |-- visual-projection-determinism.policy.v1.json
+|       `-- ascii-render-kernel-boundary.policy.v1.json
 |   |-- operations/
 |   |   |-- render-narrative-graph.operation-requirements.v1.json
 |   |   |-- validate-story-packet.operation-requirements.v1.json
 |   |   |-- validate-lineage.operation-requirements.v1.json
 |   |   |-- validate-lineage.resolver-capability-requirements.v1.json
+|   |   |-- ascii-render-kernel.operation-requirements.v1.json
 |   |   `-- sketch-equivalence.operation-requirements.v1.json
 |   |-- projections/
 |   |   |-- render-narrative-graph.facade-manifest.v1.json
@@ -100,7 +110,11 @@ defracto/
 |   |-- target-sketches/
 |       |-- founding-lineage-flow.target.v1.json
 |       |-- semantic-execution-conveyor.target.v1.json
-|       `-- governed-visual-projection.target.v1.json
+|       |-- governed-visual-projection.target.v1.json
+|       |-- projections/
+|       |   `-- founding-lineage-flow.ascii
+|       `-- evidence/
+|           `-- founding-lineage-flow.render.receipt.v1.json
 |-- evidence/
 |   |-- facades/
 |   |   |-- render-narrative-graph.facade-materialization.receipt.v1.json
@@ -160,7 +174,13 @@ defracto/
 |-- slice-007d1-ui-sketch-deterministic-layout-review.latest.md
 |-- slice-007e-resolver-backed-ui-sketch-materialization.latest.md
 |-- slice-007d2-visual-target-sketch-definition-review.latest.md
+|-- slice-007e1-rematerialize-target-sketch-canonical-path.latest.md
 |-- slice-007f-target-sketch-equivalence-invocation-evidence.latest.md
+|-- slice-007f1-target-sketch-projection-path-reconciliation.latest.md
+|-- slice-007f2-target-sketch-equivalence-validation.latest.md
+|-- slice-007g-visual-projection-model-contract.latest.md
+|-- slice-007g2-visual-projection-model-schema-policy.latest.md
+|-- slice-007h-deterministic-ascii-render-kernel-contract.latest.md
 `-- semantic-coherence-review.latest.md
 ```
 
@@ -189,8 +209,16 @@ Current generated-doorway posture:
 - `reports/slice-007d1-ui-sketch-deterministic-layout-review.latest.md` locks the ASCII sketch layout authority without rendering behavior.
 - `reports/slice-007e-resolver-backed-ui-sketch-materialization.latest.md` records resolver-backed ASCII sketch materialization only, using deterministic layout authority.
 - `reports/slice-007d2-visual-target-sketch-definition-review.latest.md` defines target sketch fixtures for future governed visual projections without rendering behavior.
+- `reports/slice-007e1-rematerialize-target-sketch-canonical-path.latest.md` records canonical-path rematerialization without re-running equivalence.
 - `reports/slice-007f-target-sketch-equivalence-invocation-evidence.latest.md` records target-sketch equivalence invocation evidence for the materialized doorway.
-- `evidence/invocations/founding-ui-sketch.equivalence-invocation.receipt.v1.json` records the blocked equivalence invocation evidence, including target and rendered hashes.
+- `reports/slice-007f1-target-sketch-projection-path-reconciliation.latest.md` reconciles the projection authority chain without re-rendering.
+- `reports/slice-007f2-target-sketch-equivalence-validation.latest.md` records the passed equivalence judgment for the canonical-path sketch.
+- `reports/slice-007g-visual-projection-model-contract.latest.md` establishes the report-only visualProjectionModel posture.
+- `reports/slice-007g2-visual-projection-model-schema-policy.latest.md` establishes the governed visualProjectionModel schema and policy artifacts.
+- `examples/target-sketches/evidence/founding-lineage-flow.render.receipt.v1.json` records the canonical-path render receipt.
+- `evidence/invocations/founding-ui-sketch.equivalence-invocation.receipt.v1.json` records the passed equivalence invocation evidence, including target and rendered hashes.
+- The current system proves deterministic writing, not yet deterministic visual projection.
+- Slice 007H defines the deterministic ASCII render kernel contract; future Slice 007I may implement or bind it.
 
 Operational doorway shape under contract review:
 

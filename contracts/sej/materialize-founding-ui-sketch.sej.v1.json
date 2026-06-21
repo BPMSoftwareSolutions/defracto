@@ -11,21 +11,21 @@
     "materializationReviewKey": "reports/slice-007c-ui-sketch-resolver-capability-handshake.latest.md"
   },
   "targetArtifact": {
-    "artifactKey": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
-    "artifactPath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+    "artifactKey": "examples/target-sketches/projections/founding-lineage-flow.ascii",
+    "artifactPath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
     "artifactKind": "generated_ascii_sketch_doorway",
     "artifactStatus": "future"
   },
   "generatedFileAnchors": [
     {
       "anchorKey": "generatedFacadeTarget",
-      "filePath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+      "filePath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
       "anchorRole": "generated ascii sketch target",
       "anchorState": "future"
     },
     {
       "anchorKey": "generatedReceiptTarget",
-      "filePath": "examples/founding-conversation/evidence/founding-ui-sketch.render.receipt.v1.json",
+      "filePath": "examples/target-sketches/evidence/founding-lineage-flow.render.receipt.v1.json",
       "anchorRole": "render receipt target",
       "anchorState": "future"
     }
@@ -86,7 +86,7 @@
           "scope": "sketch.materialization"
         },
         "artifact": {
-          "path": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+          "path": "examples/target-sketches/projections/founding-lineage-flow.ascii",
           "format": "text",
           "anchor": {
             "enabled": true,
@@ -111,7 +111,7 @@
           "scope": "sketch.evidence"
         },
         "receipt": {
-          "path": "examples/founding-conversation/evidence/founding-ui-sketch.render.receipt.v1.json",
+          "path": "examples/target-sketches/evidence/founding-lineage-flow.render.receipt.v1.json",
           "content": {
             "receiptKey": "defracto.founding-ui-sketch.render-receipt.v1",
             "status": "passed",
@@ -119,14 +119,14 @@
             "sourceSej": "contracts/sej/materialize-founding-ui-sketch.sej.v1.json",
             "facadeManifest": "contracts/projections/founding-ui-sketch.projection-manifest.v1.json",
             "layoutContract": "contracts/projections/founding-ui-sketch.layout.v1.json",
-            "targetPath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+            "targetPath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
             "artifactHash": {
               "ref": "$steps.materializeSketch.contentHash"
             },
             "generatedFileAnchors": [
               {
                 "anchorKey": "generatedFacadeTarget",
-                "filePath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+                "filePath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
                 "anchorRole": "generated ascii sketch target",
                 "anchorState": "materialized"
               }
@@ -140,5 +140,5 @@
     "type": "step",
     "ref": "$steps.emitReceipt"
   },
-  "completionPosture": "This SEJ authorizes only resolver-mediated ASCII sketch materialization and receipt emission; the sketch artifact remains absent until a later invocation slice."
+  "completionPosture": "This SEJ authorizes only resolver-mediated ASCII sketch materialization and receipt emission at the canonical target path; the generated doorway remains subordinate to semantic truth."
 }

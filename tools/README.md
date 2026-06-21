@@ -148,4 +148,12 @@ Slice 006 resolver path consolidation and evidence model:
 - `contracts/policies/resolver-execution-evidence.policy.v1.json`
 - `reports/slice-006-resolver-path-consolidation.latest.md`
 
+Related Slice 007H deterministic ASCII render kernel contract:
+
+- `contracts/schemas/ascii-render-kernel.schema.v1.json`
+- `contracts/schemas/ascii-render-result.schema.v1.json`
+- `contracts/operations/ascii-render-kernel.operation-requirements.v1.json`
+- `contracts/policies/ascii-render-kernel-boundary.policy.v1.json`
+- `reports/slice-007h-deterministic-ascii-render-kernel-contract.latest.md`
+
 Future hand-authored tools must be introduced only after their story, canonical spec, schemas, and evidence expectations are approved.

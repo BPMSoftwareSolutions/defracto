@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.ascii-render-kernel.v1",
+  "title": "ASCII Render Kernel",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "kernelKey",
+    "kernelKind",
+    "kernelStatus",
+    "inputModelKind",
+    "outputResultKind",
+    "deterministicRules",
+    "forbiddenClaims",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "kernelKey": {
+      "type": "string"
+    },
+    "kernelKind": {
+      "type": "string",
+      "const": "ascii-render-kernel"
+    },
+    "kernelStatus": {
+      "type": "string",
+      "enum": ["draft", "accepted", "blocked", "ready-for-materialization"]
+    },
+    "inputModelKind": {
+      "type": "string",
+      "const": "visual-projection-model"
+    },
+    "outputResultKind": {
+      "type": "string",
+      "const": "ascii-render-result"
+    },
+    "deterministicRules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

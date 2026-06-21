@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.visual-render-adapter.v1",
+  "title": "Visual Render Adapter",
+  "type": "object",
+  "required": [
+    "adapterKey",
+    "adapterKind",
+    "adapterStatus",
+    "adapterFamily",
+    "inputModelKind",
+    "outputArtifactKinds",
+    "deterministicRules",
+    "forbiddenClaims",
+    "completionPosture"
+  ],
+  "properties": {
+    "adapterKey": {
+      "type": "string"
+    },
+    "adapterKind": {
+      "type": "string",
+      "const": "visual-render-adapter"
+    },
+    "adapterStatus": {
+      "type": "string",
+      "enum": ["draft", "accepted", "blocked", "ready-for-materialization"]
+    },
+    "adapterFamily": {
+      "type": "string"
+    },
+    "inputModelKind": {
+      "type": "string",
+      "const": "visual-projection-model"
+    },
+    "outputArtifactKinds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "deterministicRules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

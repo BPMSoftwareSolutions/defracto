@@ -1711,7 +1711,214 @@ Blocks:
 - Slice 007D.2 target sketch definition must remain complete.
 - No renderer-owned layout meaning may be invented during validation.
 
-## Slice 008: Narrative Coverage Prototype
+## Slice 007E.1: Re-materialize Target Sketch To Canonical Path
+
+Goal:
+
+Re-run the governed materialization against the reconciled canonical target path so the resolver writes the sketch at `examples/target-sketches/projections/founding-lineage-flow.ascii` without changing the sketch content by hand.
+
+Changes:
+
+- Invoke the resolver against the accepted materialization SEJ.
+- Materialize the governed ASCII sketch doorway at the canonical target-sketch path.
+- Emit the reconciled render receipt at the canonical evidence path.
+- Keep the existing rendered doorway file untouched until a later cleanup slice.
+- Keep equivalence invocation out of scope for this slice.
+
+Artifacts:
+
+```text
+reports/slice-007e1-rematerialize-target-sketch-canonical-path.latest.md
+```
+
+Completion rule:
+
+```text
+The sketch is resolver-materialized at the canonical target-sketch path, and the receipt references that canonical path.
+```
+
+Blocks:
+
+- Slice 007D.2 target sketch definition must remain complete.
+- No equivalence invocation may be re-run in this slice.
+- No hand-authored layout changes may be introduced.
+
+## Slice 007F.1: Target Sketch Projection Path Reconciliation
+
+Goal:
+
+Reconcile the projection authority chain so the target sketch fixture, projection manifest, layout contract, render SEJ, materialization SEJ, and equivalence SEJ all name the same canonical target artifact path without changing the rendered doorway content in this slice.
+
+Changes:
+
+- Update the governed projection path to `examples/target-sketches/projections/founding-lineage-flow.ascii`.
+- Update the governed receipt path to `examples/target-sketches/evidence/founding-lineage-flow.render.receipt.v1.json`.
+- Keep the existing rendered doorway file untouched until a later materialization slice.
+- Keep equivalence invocation out of scope for this slice.
+
+Artifacts:
+
+```text
+reports/slice-007f1-target-sketch-projection-path-reconciliation.latest.md
+```
+
+Completion rule:
+
+```text
+The governed projection path is consistent across the contract chain, and the stale doorway artifact is left intact until the next materialization slice.
+```
+
+Blocks:
+
+- Slice 007D.2 target sketch definition must remain complete.
+- No rendered doorway content may be changed in this slice.
+- No equivalence invocation may be re-run in this slice.
+
+Ships next:
+
+Slice 007F: Target Sketch Equivalence Invocation Evidence.
+
+## Slice 007F.2: Target Sketch Equivalence Validation
+
+Goal:
+
+Validate the canonical-path materialized sketch against the founding-lineage-flow target sketch fixture and record the passed judgment as evidence.
+
+Changes:
+
+- Re-run the equivalence gate against the canonical path sketch.
+- Record the target sketch fixture path, rendered sketch path, equivalence rule set, checked node keys, checked edge keys, checked semantic bindings, checked layout constraints, and hashes.
+- Keep renderer code, layout repair, and generalized UI rendering out of scope.
+
+Artifacts:
+
+```text
+reports/slice-007f2-target-sketch-equivalence-validation.latest.md
+```
+
+Completion rule:
+
+```text
+The materialized sketch validates against the declared target sketch fixture, and the receipt records the passed judgment.
+```
+
+Blocks:
+
+- Slice 007D.2 target sketch definition must remain complete.
+- No renderer-owned layout meaning may be invented during validation.
+- No hand-authored rendering logic may be introduced.
+
+## Slice 007G.1: Visual Projection Model Navigation Alignment
+
+Goal:
+
+Align repo navigation and posture around the new visual projection model report without introducing schemas, renderers, or materialization.
+
+Changes:
+
+- Record `reports/slice-007g-visual-projection-model-contract.latest.md` as the report-first Slice 007G artifact.
+- State that the current system proves deterministic writing, not yet deterministic visual projection.
+- State that `visualProjectionModel` is the product center for future renderers.
+- Point the repo toward Slice 007G.2 as the next implementation slice.
+
+Artifacts:
+
+```text
+README.md
+ROADMAP.md
+docs/Implementation Plan.md
+docs/architecture/working-tree-shape.md
+contracts/schemas/README.md
+reports/README.md
+```
+
+Completion rule:
+
+```text
+The repo navigation clearly discovers Slice 007G, names the visualProjectionModel as the center for future renderers, and points implementation to Slice 007G.2 without adding schemas or renderer code.
+```
+
+Blocks:
+
+- Slice 007G report-only posture must remain intact.
+- No schema artifacts may be introduced yet.
+- No renderer, materialization, or equivalence behavior may be introduced.
+
+## Slice 007G.2: Visual Projection Model Schema and Policy Artifacts
+
+Goal:
+
+Promote the visual projection model from report-only posture into governed schema and policy artifacts, without introducing a renderer or any materialized visual output.
+
+Changes:
+
+- Create the visual projection model schema and supporting surface/region/render-adapter schemas.
+- Create the visual projection determinism policy.
+- Keep target sketches as visual intent fixtures.
+- Keep future adapters subordinate to the governed `visualProjectionModel`.
+
+Artifacts:
+
+```text
+contracts/schemas/visual-projection-model.schema.v1.json
+contracts/schemas/visual-surface.schema.v1.json
+contracts/schemas/visual-region.schema.v1.json
+contracts/schemas/visual-render-adapter.schema.v1.json
+contracts/policies/visual-projection-determinism.policy.v1.json
+reports/slice-007g2-visual-projection-model-schema-policy.latest.md
+```
+
+Completion rule:
+
+```text
+The repo has the governing visual projection schemas and policy artifacts, but no renderer and no materialized visual artifact.
+```
+
+Blocks:
+
+- Slice 007G.1 report-only posture must remain intact.
+- No renderer, adapter implementation, or materialized visual artifact may be introduced.
+- No resolver code may be changed.
+
+Ships next:
+
+Slice 007H: Deterministic ASCII Render Kernel Contract.
+
+## Slice 007H: Deterministic ASCII Render Kernel Contract
+
+Goal:
+
+Declare a deterministic ASCII render kernel as a governed mechanism that consumes `visualProjectionModel`, emits `asciiRenderResult`, and stays subordinate to SEJ materialization and evidence receipts.
+
+Changes:
+
+- Add an ASCII render kernel schema and result schema.
+- Add operation requirements for the kernel boundary.
+- Add a boundary policy that forbids the kernel from writing artifacts or receipts directly.
+- Keep renderer code, runtime projection, and visual artifact generation out of scope.
+
+Artifacts:
+
+```text
+contracts/schemas/ascii-render-kernel.schema.v1.json
+contracts/schemas/ascii-render-result.schema.v1.json
+contracts/operations/ascii-render-kernel.operation-requirements.v1.json
+contracts/policies/ascii-render-kernel-boundary.policy.v1.json
+reports/slice-007h-deterministic-ascii-render-kernel-contract.latest.md
+```
+
+Completion rule:
+
+```text
+The kernel is contractually bounded as a deterministic mechanism only, and it does not own artifact writing or receipt emission.
+```
+
+Blocks:
+
+- Slice 007G.2 visual projection model schema and policy artifacts must remain complete.
+- No renderer code may be introduced yet.
+
+Ships next:
 
 ## Slice 008: Narrative Coverage Prototype
 

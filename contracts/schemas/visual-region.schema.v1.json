@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.visual-region.v1",
+  "title": "Visual Region",
+  "type": "object",
+  "required": [
+    "regionKey",
+    "regionKind",
+    "regionStatus",
+    "regionRole",
+    "surfaceKey",
+    "row",
+    "column",
+    "width",
+    "height",
+    "forbiddenClaims",
+    "completionPosture"
+  ],
+  "properties": {
+    "regionKey": {
+      "type": "string"
+    },
+    "regionKind": {
+      "type": "string",
+      "const": "visual-region"
+    },
+    "regionStatus": {
+      "type": "string",
+      "enum": ["draft", "accepted", "blocked", "ready-for-materialization"]
+    },
+    "regionRole": {
+      "type": "string"
+    },
+    "surfaceKey": {
+      "type": "string"
+    },
+    "row": {
+      "type": "integer"
+    },
+    "column": {
+      "type": "integer"
+    },
+    "width": {
+      "type": "integer"
+    },
+    "height": {
+      "type": "integer"
+    },
+    "nodeKeys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "edgeKeys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "semanticBindings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

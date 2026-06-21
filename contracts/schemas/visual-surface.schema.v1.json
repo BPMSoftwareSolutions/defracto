@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.visual-surface.v1",
+  "title": "Visual Surface",
+  "type": "object",
+  "required": [
+    "surfaceKey",
+    "surfaceKind",
+    "surfaceStatus",
+    "surfaceRole",
+    "allowedRenderAdapters",
+    "forbiddenClaims",
+    "completionPosture"
+  ],
+  "properties": {
+    "surfaceKey": {
+      "type": "string"
+    },
+    "surfaceKind": {
+      "type": "string",
+      "const": "visual-surface"
+    },
+    "surfaceStatus": {
+      "type": "string",
+      "enum": ["draft", "accepted", "blocked", "ready-for-materialization"]
+    },
+    "surfaceRole": {
+      "type": "string"
+    },
+    "allowedRenderAdapters": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "regionKeys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
