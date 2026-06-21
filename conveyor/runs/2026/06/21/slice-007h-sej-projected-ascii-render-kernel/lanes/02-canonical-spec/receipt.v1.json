@@ -1,0 +1,10 @@
+{
+  "receiptKey": "defracto.run.slice-007h.02-canonical-spec.receipt.v1",
+  "laneKey": "02-canonical-spec",
+  "status": "passed",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "inputArtifact": "stories/kernels/ascii-render-kernel.story.v1.json",
+  "outputArtifact": "specs/canonical/kernels/ascii-render-kernel.canonical-spec.v1.json",
+  "priorReceiptStatus": "passed",
+  "blockedReasons": []
+}

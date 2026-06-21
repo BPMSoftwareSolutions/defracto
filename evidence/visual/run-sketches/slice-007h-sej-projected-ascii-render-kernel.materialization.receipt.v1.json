@@ -1,0 +1,15 @@
+{
+  "receiptKey": "defracto.visual.run-sketch.slice-007h.materialization-receipt.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "scanMode": "governed_visual_proof",
+  "source": "conveyor/runs/2026/06/21/sketches/slice-007h-sej-projected-ascii-render-kernel-conveyor.ascii",
+  "targetPath": "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/final/run-sketch.ascii",
+  "artifactHash": "sha256:607BE8BDBEBF679357C5582919C7E0B4DF4D044439118A1BCA92BB1D0541A48C",
+  "proofMode": "ascii_declared",
+  "conveyorStatus": "visual_proof_only",
+  "laneEvidence": [
+    "evidence/kernels/ascii-render-kernel.node-projection.receipt.v1.json",
+    "evidence/kernels/ascii-render-kernel.generated-test.materialization.receipt.v1.json"
+  ]
+}

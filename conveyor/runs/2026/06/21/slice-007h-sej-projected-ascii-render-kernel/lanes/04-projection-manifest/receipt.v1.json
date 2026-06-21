@@ -1,0 +1,10 @@
+{
+  "receiptKey": "defracto.run.slice-007h.04-projection-manifest.receipt.v1",
+  "laneKey": "04-projection-manifest",
+  "status": "passed",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "inputArtifact": "contracts/sej/ascii-render-kernel.semantic-kernel.v1.json",
+  "outputArtifact": "contracts/projections/ascii-render-kernel.node-projection-manifest.v1.json",
+  "priorReceiptStatus": "passed",
+  "blockedReasons": []
+}

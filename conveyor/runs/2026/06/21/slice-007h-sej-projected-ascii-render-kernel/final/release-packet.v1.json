@@ -1,0 +1,23 @@
+{
+  "releaseKey": "defracto.release.slice-007h-sej-projected-ascii-render-kernel.v1",
+  "status": "approved",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "runKey": "defracto.run.slice-007h-sej-projected-ascii-render-kernel.v1",
+  "laneEvidence": [
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/01-story/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/02-canonical-spec/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/03-semantic-kernel-sej/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/04-projection-manifest/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/05-materialization-sej/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/06-resolver-invocation/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/07-conformance/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/08-visual-proof/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/09-evidence-review/receipt.v1.json"
+  ],
+  "finalArtifacts": [
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/final/slice-report.latest.md",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/final/run-sketch.ascii",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/final/commit-message.txt"
+  ],
+  "promotionTarget": "conveyor/runs/2026/06/21/reports/slice-007h-deterministic-ascii-render-kernel-contract.latest.md"
+}

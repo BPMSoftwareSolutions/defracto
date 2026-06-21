@@ -1,0 +1,6 @@
+{
+  "artifactPath": "stories/kernels/ascii-render-kernel.story.v1.json",
+  "artifactStatus": "authorized",
+  "sourceLane": "operator-intent",
+  "handoffTo": "02-canonical-spec"
+}

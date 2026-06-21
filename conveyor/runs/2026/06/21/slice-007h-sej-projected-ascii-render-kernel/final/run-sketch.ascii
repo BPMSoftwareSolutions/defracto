@@ -1,0 +1,15 @@
++----------------------------------------------------------+
+| STORY -> SPEC -> SEJ -> PROJECTION -> KERNEL -> PROOF    |
++----------------------------------------------------------+
+| story intent                                             |
+|   v                                                      |
+| canonical spec                                           |
+|   v                                                      |
+| semantic kernel SEJ                                      |
+|   v                                                      |
+| projection manifest                                      |
+|   v                                                      |
+| generated kernel js                                      |
+|   v                                                      |
+| visual proof                                             |
++----------------------------------------------------------+

@@ -1,0 +1,21 @@
+{
+  "runKey": "defracto.run.slice-007h-sej-projected-ascii-render-kernel.v1",
+  "laneKey": "02-canonical-spec",
+  "agentRole": "Canonical Spec Agent",
+  "responsibility": "Turn the story packet into the kernel canonical specification.",
+  "inputs": [
+    "stories/kernels/ascii-render-kernel.story.v1.json"
+  ],
+  "outputs": [
+    "specs/canonical/kernels/ascii-render-kernel.canonical-spec.v1.json"
+  ],
+  "forbiddenResponsibilities": [
+    "author SEJ",
+    "author projection manifest",
+    "materialize kernel code",
+    "emit visual proof",
+    "change story meaning"
+  ],
+  "requiredReceiptPath": "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/02-canonical-spec/receipt.v1.json",
+  "status": "assigned"
+}

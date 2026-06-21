@@ -1,0 +1,23 @@
+{
+  "runKey": "defracto.run.slice-007h-sej-projected-ascii-render-kernel.v1",
+  "laneKey": "06-resolver-invocation",
+  "agentRole": "Resolver Invocation Agent",
+  "responsibility": "Invoke the resolver to materialize the generated kernel and generated test artifacts.",
+  "inputs": [
+    "contracts/sej/materialize-ascii-render-kernel-node.sej.v1.json"
+  ],
+  "outputs": [
+    "kernels/ascii-render-kernel/ascii-render-kernel.js",
+    "tests/kernels/ascii-render-kernel.generated.test.js",
+    "evidence/kernels/ascii-render-kernel.node-projection.receipt.v1.json",
+    "evidence/kernels/ascii-render-kernel.generated-test.materialization.receipt.v1.json"
+  ],
+  "forbiddenResponsibilities": [
+    "author the kernel by hand",
+    "author the test by hand",
+    "emit visual proof",
+    "change semantic truth"
+  ],
+  "requiredReceiptPath": "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/06-resolver-invocation/receipt.v1.json",
+  "status": "assigned"
+}

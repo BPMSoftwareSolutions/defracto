@@ -1,0 +1,6 @@
+{
+  "artifactPath": "specs/canonical/kernels/ascii-render-kernel.canonical-spec.v1.json",
+  "artifactStatus": "authorized",
+  "sourceLane": "01-story",
+  "handoffTo": "03-semantic-kernel-sej"
+}

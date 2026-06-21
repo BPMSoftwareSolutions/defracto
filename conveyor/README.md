@@ -17,3 +17,9 @@ Structure:
 - `lanes/` defines reusable lane contracts.
 - `gates/` defines blocking conditions.
 - `runs/` contains concrete run envelopes and receipts.
+
+Operating rule:
+
+- The conveyor is the development environment.
+- Agents are lane workers.
+- One lane owns one transformation and one receipt.

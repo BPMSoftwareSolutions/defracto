@@ -1,0 +1,3 @@
+Slice 007H: encode the ASCII render kernel as a bounded multi-agent conveyor
+
+Promote the kernel work into lane-scoped handoffs with receipts, evidence review, and visual proof.

@@ -1,0 +1,6 @@
+{
+  "artifactPath": "contracts/sej/materialize-ascii-render-kernel-node.sej.v1.json",
+  "artifactStatus": "authorized",
+  "sourceLane": "04-projection-manifest",
+  "handoffTo": "06-resolver-invocation"
+}

@@ -1,0 +1,16 @@
+{
+  "receiptKey": "defracto.run.slice-007h.06-resolver-invocation.receipt.v1",
+  "laneKey": "06-resolver-invocation",
+  "status": "passed",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "outputArtifacts": [
+    "kernels/ascii-render-kernel/ascii-render-kernel.js",
+    "tests/kernels/ascii-render-kernel.generated.test.js"
+  ],
+  "proofReceipts": [
+    "evidence/kernels/ascii-render-kernel.node-projection.receipt.v1.json",
+    "evidence/kernels/ascii-render-kernel.generated-test.materialization.receipt.v1.json"
+  ],
+  "priorReceiptStatus": "passed",
+  "blockedReasons": []
+}

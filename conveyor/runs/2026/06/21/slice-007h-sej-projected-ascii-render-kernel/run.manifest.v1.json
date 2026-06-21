@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-007h-sej-projected-ascii-render-kernel.v1",
+  "runKind": "conveyor-run",
+  "sliceKey": "slice-007h-sej-projected-ascii-render-kernel",
+  "operatorRole": "platform agent",
+  "objective": "Prove the ASCII render kernel as a bounded multi-agent conveyor.",
+  "laneOrder": [
+    "01-story",
+    "02-canonical-spec",
+    "03-semantic-kernel-sej",
+    "04-projection-manifest",
+    "05-materialization-sej",
+    "06-resolver-invocation",
+    "07-conformance",
+    "08-visual-proof",
+    "09-evidence-review"
+  ],
+  "inputs": [
+    "source/conversations/founding-conversation/conversation-fractal.md",
+    "stories/kernels/ascii-render-kernel.story.v1.json",
+    "specs/canonical/kernels/ascii-render-kernel.canonical-spec.v1.json",
+    "contracts/sej/ascii-render-kernel.semantic-kernel.v1.json",
+    "contracts/projections/ascii-render-kernel.node-projection-manifest.v1.json",
+    "contracts/sej/materialize-ascii-render-kernel-node.sej.v1.json",
+    "kernels/ascii-render-kernel/ascii-render-kernel.js",
+    "tests/kernels/ascii-render-kernel.generated.test.js",
+    "conveyor/runs/2026/06/21/sketches/slice-007h-sej-projected-ascii-render-kernel-conveyor.ascii"
+  ],
+  "requiredReceipts": [
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/01-story/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/02-canonical-spec/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/03-semantic-kernel-sej/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/04-projection-manifest/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/05-materialization-sej/receipt.v1.json",
+    "evidence/kernels/ascii-render-kernel.node-projection.receipt.v1.json",
+    "evidence/kernels/ascii-render-kernel.generated-test.materialization.receipt.v1.json",
+    "evidence/visual/run-sketches/slice-007h-sej-projected-ascii-render-kernel.materialization.receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/09-evidence-review/receipt.v1.json"
+  ],
+  "finalArtifacts": [
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/final/slice-report.latest.md",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/final/run-sketch.ascii",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/final/commit-message.txt",
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/final/release-packet.v1.json"
+  ],
+  "blockedIfMissing": [
+    "prior lane receipt",
+    "generated kernel receipt",
+    "generated test receipt",
+    "visual proof receipt"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "runKey": "defracto.run.slice-007h-sej-projected-ascii-render-kernel.v1",
+  "laneKey": "01-story",
+  "agentRole": "Story Agent",
+  "responsibility": "Turn operator intent into the ASCII render kernel story packet.",
+  "inputs": [
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/operator-intent.md"
+  ],
+  "outputs": [
+    "stories/kernels/ascii-render-kernel.story.v1.json"
+  ],
+  "forbiddenResponsibilities": [
+    "author canonical spec",
+    "author SEJ",
+    "author projection manifest",
+    "materialize kernel code",
+    "emit visual proof"
+  ],
+  "requiredReceiptPath": "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/01-story/receipt.v1.json",
+  "status": "assigned"
+}

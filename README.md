@@ -26,6 +26,7 @@ Evidence is memory.
 
 - `source/` holds intake surfaces and preserved narrative entry points.
 - `conveyor/` defines the lanes, gates, pipelines, and run envelopes.
+- `conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/` shows the bounded multi-agent pattern for the ASCII render kernel slice.
 - `stories/` preserves the story packets that authorize transformations.
 - `specs/` preserves canonical specs for source, tool, and projection authority.
 - `contracts/` declares the minimum schema, policy, operation, and SEJ shapes.

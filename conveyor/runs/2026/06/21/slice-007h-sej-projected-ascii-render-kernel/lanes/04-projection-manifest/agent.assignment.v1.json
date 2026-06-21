@@ -1,0 +1,20 @@
+{
+  "runKey": "defracto.run.slice-007h-sej-projected-ascii-render-kernel.v1",
+  "laneKey": "04-projection-manifest",
+  "agentRole": "Projection Manifest Agent",
+  "responsibility": "Turn the semantic kernel SEJ into the node projection manifest.",
+  "inputs": [
+    "contracts/sej/ascii-render-kernel.semantic-kernel.v1.json"
+  ],
+  "outputs": [
+    "contracts/projections/ascii-render-kernel.node-projection-manifest.v1.json"
+  ],
+  "forbiddenResponsibilities": [
+    "author materialization SEJ",
+    "materialize kernel code",
+    "emit visual proof",
+    "change kernel meaning"
+  ],
+  "requiredReceiptPath": "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/04-projection-manifest/receipt.v1.json",
+  "status": "assigned"
+}

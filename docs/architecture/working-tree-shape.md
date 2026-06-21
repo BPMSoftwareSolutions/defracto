@@ -26,7 +26,8 @@ defracto/
 |               `-- 21/
 |                   |-- README.md
 |                   |-- reports/
-|                   `-- sketches/
+|                   |-- sketches/
+|                   `-- slice-007h-sej-projected-ascii-render-kernel/
 |
 |-- docs/
 |   |-- Implementation Plan.md

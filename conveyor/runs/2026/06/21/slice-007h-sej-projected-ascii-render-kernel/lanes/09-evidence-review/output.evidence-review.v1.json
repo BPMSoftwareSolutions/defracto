@@ -1,0 +1,6 @@
+{
+  "artifactPath": "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/final/slice-report.latest.md",
+  "releasePacketPath": "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/final/release-packet.v1.json",
+  "sourceLane": "08-visual-proof",
+  "handoffTo": "final"
+}

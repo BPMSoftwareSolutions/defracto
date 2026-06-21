@@ -1,0 +1,6 @@
+{
+  "artifactPath": "contracts/projections/ascii-render-kernel.node-projection-manifest.v1.json",
+  "artifactStatus": "authorized",
+  "sourceLane": "03-semantic-kernel-sej",
+  "handoffTo": "05-materialization-sej"
+}

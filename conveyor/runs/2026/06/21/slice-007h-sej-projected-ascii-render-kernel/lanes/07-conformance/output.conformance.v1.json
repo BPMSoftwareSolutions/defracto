@@ -1,0 +1,8 @@
+{
+  "artifactPaths": [
+    "evidence/kernels/ascii-render-kernel.node-projection.receipt.v1.json",
+    "evidence/kernels/ascii-render-kernel.generated-test.materialization.receipt.v1.json"
+  ],
+  "sourceLane": "06-resolver-invocation",
+  "handoffTo": "08-visual-proof"
+}

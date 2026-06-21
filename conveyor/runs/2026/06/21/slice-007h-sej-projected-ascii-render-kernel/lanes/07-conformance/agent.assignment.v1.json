@@ -1,0 +1,22 @@
+{
+  "runKey": "defracto.run.slice-007h-sej-projected-ascii-render-kernel.v1",
+  "laneKey": "07-conformance",
+  "agentRole": "Conformance Agent",
+  "responsibility": "Run the generated conformance test against the generated kernel and record the evidence.",
+  "inputs": [
+    "kernels/ascii-render-kernel/ascii-render-kernel.js",
+    "tests/kernels/ascii-render-kernel.generated.test.js"
+  ],
+  "outputs": [
+    "evidence/kernels/ascii-render-kernel.node-projection.receipt.v1.json",
+    "evidence/kernels/ascii-render-kernel.generated-test.materialization.receipt.v1.json"
+  ],
+  "forbiddenResponsibilities": [
+    "repair the kernel by hand",
+    "repair the test by hand",
+    "emit visual proof",
+    "change semantic truth"
+  ],
+  "requiredReceiptPath": "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/07-conformance/receipt.v1.json",
+  "status": "assigned"
+}

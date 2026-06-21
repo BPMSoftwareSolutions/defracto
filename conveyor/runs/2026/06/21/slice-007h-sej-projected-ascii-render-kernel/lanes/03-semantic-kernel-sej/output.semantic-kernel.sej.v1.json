@@ -1,0 +1,6 @@
+{
+  "artifactPath": "contracts/sej/ascii-render-kernel.semantic-kernel.v1.json",
+  "artifactStatus": "authorized",
+  "sourceLane": "02-canonical-spec",
+  "handoffTo": "04-projection-manifest"
+}

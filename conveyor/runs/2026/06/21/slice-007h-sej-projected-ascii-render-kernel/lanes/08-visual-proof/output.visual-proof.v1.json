@@ -1,0 +1,6 @@
+{
+  "artifactPath": "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/final/run-sketch.ascii",
+  "visualReceiptPath": "evidence/visual/run-sketches/slice-007h-sej-projected-ascii-render-kernel.materialization.receipt.v1.json",
+  "sourceLane": "07-conformance",
+  "handoffTo": "09-evidence-review"
+}

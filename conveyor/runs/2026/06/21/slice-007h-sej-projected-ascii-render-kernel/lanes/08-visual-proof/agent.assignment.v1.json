@@ -1,0 +1,23 @@
+{
+  "runKey": "defracto.run.slice-007h-sej-projected-ascii-render-kernel.v1",
+  "laneKey": "08-visual-proof",
+  "agentRole": "Visual Proof Agent",
+  "responsibility": "Render the final ASCII proof surface from the governed sketch and record the visual proof receipt.",
+  "inputs": [
+    "conveyor/runs/2026/06/21/sketches/slice-007h-sej-projected-ascii-render-kernel-conveyor.ascii",
+    "evidence/kernels/ascii-render-kernel.node-projection.receipt.v1.json",
+    "evidence/kernels/ascii-render-kernel.generated-test.materialization.receipt.v1.json"
+  ],
+  "outputs": [
+    "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/final/run-sketch.ascii",
+    "evidence/visual/run-sketches/slice-007h-sej-projected-ascii-render-kernel.materialization.receipt.v1.json"
+  ],
+  "forbiddenResponsibilities": [
+    "invent new proof text",
+    "repair prior lane artifacts",
+    "change semantic truth",
+    "emit release judgment"
+  ],
+  "requiredReceiptPath": "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/08-visual-proof/receipt.v1.json",
+  "status": "assigned"
+}

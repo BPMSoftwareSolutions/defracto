@@ -1,0 +1,20 @@
+{
+  "runKey": "defracto.run.slice-007h-sej-projected-ascii-render-kernel.v1",
+  "laneKey": "03-semantic-kernel-sej",
+  "agentRole": "Semantic Kernel SEJ Agent",
+  "responsibility": "Turn the canonical spec into the ASCII render kernel semantic kernel SEJ.",
+  "inputs": [
+    "specs/canonical/kernels/ascii-render-kernel.canonical-spec.v1.json"
+  ],
+  "outputs": [
+    "contracts/sej/ascii-render-kernel.semantic-kernel.v1.json"
+  ],
+  "forbiddenResponsibilities": [
+    "author projection manifest",
+    "materialize kernel code",
+    "emit visual proof",
+    "change canonical meaning"
+  ],
+  "requiredReceiptPath": "conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/lanes/03-semantic-kernel-sej/receipt.v1.json",
+  "status": "assigned"
+}

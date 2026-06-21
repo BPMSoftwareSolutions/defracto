@@ -1,0 +1,10 @@
+{
+  "receiptKey": "defracto.run.slice-007h.05-materialization-sej.receipt.v1",
+  "laneKey": "05-materialization-sej",
+  "status": "passed",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "inputArtifact": "contracts/projections/ascii-render-kernel.node-projection-manifest.v1.json",
+  "outputArtifact": "contracts/sej/materialize-ascii-render-kernel-node.sej.v1.json",
+  "priorReceiptStatus": "passed",
+  "blockedReasons": []
+}

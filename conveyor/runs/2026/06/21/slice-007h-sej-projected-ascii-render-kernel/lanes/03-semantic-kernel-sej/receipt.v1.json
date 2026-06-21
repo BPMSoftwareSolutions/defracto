@@ -1,0 +1,10 @@
+{
+  "receiptKey": "defracto.run.slice-007h.03-semantic-kernel-sej.receipt.v1",
+  "laneKey": "03-semantic-kernel-sej",
+  "status": "passed",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "inputArtifact": "specs/canonical/kernels/ascii-render-kernel.canonical-spec.v1.json",
+  "outputArtifact": "contracts/sej/ascii-render-kernel.semantic-kernel.v1.json",
+  "priorReceiptStatus": "passed",
+  "blockedReasons": []
+}
