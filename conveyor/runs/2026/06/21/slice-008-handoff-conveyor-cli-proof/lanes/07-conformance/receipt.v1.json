@@ -1,0 +1,17 @@
+{
+  "receiptKey": "defracto.run.slice-008.07-conformance.receipt.v1",
+  "laneKey": "07-conformance",
+  "status": "blocked",
+  "shapeValidation": "passed",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "dispatchArtifact": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/dispatch.gemini-flash.v1.json",
+  "responseArtifact": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/response.gemini-flash.v1.json",
+  "outputArtifact": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/response.gemini-flash.v1.json",
+  "nextHandoffArtifact": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/08-visual-proof/dispatch.gemini-flash.v1.json",
+  "ledgerEntryArtifact": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-ledger.v1.json",
+  "priorReceiptStatus": "blocked",
+  "blockedReasons": [
+    "no live Gemini Flash execution was performed",
+    "this lane is a shape proof only"
+  ]
+}

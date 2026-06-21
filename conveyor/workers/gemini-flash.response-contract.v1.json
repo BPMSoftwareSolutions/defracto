@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "defracto.worker-response-contract.v1",
+  "responseContractKey": "defracto.workers.gemini_flash.response.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "sourceTruth": "declared_json_contract",
+  "status": "visible_existing_route",
+  "purpose": "Declare how Gemini Flash worker output is shaped before it becomes Defracto evidence.",
+  "sourceResponseShape": {
+    "schemaVersion": "defracto.handoff.response.v1",
+    "laneKey": "string",
+    "workerKey": "string",
+    "status": "passed|blocked|declared",
+    "summary": "string",
+    "findings": "array",
+    "artifacts": "object",
+    "nextHandoff": "object|null",
+    "receipt": "object|null"
+  },
+  "aggregateConveyorShape": {
+    "state": "LANE_CONVEYOR_RESPONSE_RECORDED",
+    "status": "passed|blocked|declared",
+    "executedLaneCount": "number",
+    "findings": "array",
+    "artifacts": "object",
+    "laneResults": "array"
+  },
+  "targetReceiptShape": {
+    "schemaVersion": "defracto.gemini-worker-response.receipt.v1",
+    "state": "GEMINI_WORKER_RESPONSE_MAPPED_FROM_EXISTING_HANDOFF_CONVEYOR",
+    "status": "received|blocked|declared",
+    "workerIdentity": "object",
+    "summary": "string",
+    "findings": "array",
+    "artifactsProduced": "object",
+    "nextHandoff": "object|null",
+    "responseReceived": "boolean",
+    "surfaceSignature": "object|null"
+  },
+  "normalizationBinding": "conveyor/handoff/handoff-response.schema.v1.json",
+  "signatureBinding": "conveyor/trust/surface-signature.schema.v1.json"
+}

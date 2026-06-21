@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "defracto.worker-dispatch-contract.v1",
+  "dispatchContractKey": "defracto.workers.gemini_flash.dispatch.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "sourceTruth": "declared_json_contract",
+  "status": "visible_existing_route",
+  "purpose": "Declare the packet shape used when Defracto dispatches bounded work to the existing Gemini Flash conveyor lane.",
+  "dispatchRoute": "conveyor/handoff/handoff-dispatch.schema.v1.json",
+  "requiredPacketFields": [
+    "schemaVersion",
+    "handoffKey",
+    "runKey",
+    "sliceKey",
+    "laneKey",
+    "dispatchKey",
+    "workerKey",
+    "workerProfilePath",
+    "dispatchContractPath",
+    "responseContractPath",
+    "cliCommand",
+    "inputArtifacts",
+    "resolvedInputArtifacts",
+    "outputArtifacts",
+    "allowedMutation",
+    "forbiddenMutation",
+    "loopbackOnBlocked",
+    "loopbackOnRegressionFailure",
+    "successCriteria",
+    "promptTitle",
+    "contextFile",
+    "promptFile",
+    "evidenceFile",
+    "ledgerPath",
+    "receiptPath",
+    "nextHandoffPath"
+  ],
+  "dispatchGuardrails": [
+    "conveyor/gates/receipt-required.gate.v1.json",
+    "conveyor/gates/generated-surface-only.gate.v1.json",
+    "conveyor/trust/surface-signature.policy.v1.json"
+  ]
+}

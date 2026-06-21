@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "defracto.handoff-response.schema.v1",
+  "title": "Defracto Handoff Response Schema",
+  "purpose": "Describe the lane response packet returned by a Gemini Flash worker.",
+  "requiredFields": [
+    "schemaVersion",
+    "handoffKey",
+    "runKey",
+    "sliceKey",
+    "laneKey",
+    "workerKey",
+    "status",
+    "summary",
+    "findings",
+    "artifacts",
+    "receipt",
+    "nextHandoff",
+    "surfaceSignature"
+  ],
+  "optionalFields": [
+    "responseReceived",
+    "ledgerEntry",
+    "blockedReasons",
+    "executionMode",
+    "workerProfilePath",
+    "dispatchPath"
+  ]
+}

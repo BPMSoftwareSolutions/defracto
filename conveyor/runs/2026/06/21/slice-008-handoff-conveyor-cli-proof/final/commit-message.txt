@@ -1,0 +1,3 @@
+Slice 008: make the CLI-to-Gemini Flash handoff conveyor explicit
+
+Prove the runtime stack with lane-scoped dispatch, response, receipts, a run ledger, and a blocked release packet.

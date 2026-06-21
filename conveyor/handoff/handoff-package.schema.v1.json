@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "defracto.handoff-package.schema.v1",
+  "title": "Defracto Handoff Package Schema",
+  "purpose": "Describe the CLI-authored package that moves bounded work into the conveyor.",
+  "requiredFields": [
+    "schemaVersion",
+    "handoffKey",
+    "runKey",
+    "sliceKey",
+    "cliEntrypoint",
+    "operatorRole",
+    "objective",
+    "runtimeStack",
+    "lanes",
+    "blockedUntilReceipts",
+    "signaturePolicyPath"
+  ],
+  "laneFields": [
+    "laneKey",
+    "workerKey",
+    "dispatchContractPath",
+    "responseContractPath",
+    "dispatchPath",
+    "responsePath",
+    "receiptPath",
+    "ledgerEntryPath",
+    "nextLaneKey"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "defracto.surface-signature.policy.v1",
+  "policyKey": "defracto.trust.surface-signature.policy.v1",
+  "purpose": "Require a trust signature on every meaningful lane surface before release can advance.",
+  "rules": [
+    "Every Gemini Flash lane response must carry a surface signature.",
+    "Every Gemini Flash lane receipt must carry a surface signature or an explicit blocked reason for its absence.",
+    "The run ledger must tie each lane signature to the dispatch, response, receipt, and next handoff.",
+    "No release packet may be approved if any required lane signature is missing."
+  ],
+  "blockedConditions": [
+    "surface signature missing",
+    "surface signature not live verified",
+    "signature does not match the lane artifact hash",
+    "signature claims a worker runtime that is not Gemini Flash"
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "defracto.handoff.package.v1",
+  "handoffKey": "defracto.handoff.slice-008-handoff-conveyor-cli-proof.v1",
+  "runKey": "defracto.run.slice-008-handoff-conveyor-cli-proof.v1",
+  "sliceKey": "slice-008-handoff-conveyor-cli-proof",
+  "cliEntrypoint": "ndd",
+  "operatorRole": "platform agent",
+  "objective": "Prove the explicit CLI-to-Gemini Flash handoff conveyor shape.",
+  "runtimeStack": [
+    "CLI entrypoint",
+    "handoff package",
+    "lane dispatch contract",
+    "Gemini Flash worker profile",
+    "Gemini Flash response contract",
+    "lane receipt",
+    "run ledger",
+    "tie-out review",
+    "release packet"
+  ],
+  "blockedUntilReceipts": true,
+  "executionPosture": "shape-proof-only",
+  "cliCommand": "ndd handoff run --slice slice-008-handoff-conveyor-cli-proof",
+  "signaturePolicyPath": "conveyor/trust/surface-signature.policy.v1.json",
+  "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+  "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+  "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "lanes": [
+    {
+      "laneKey": "01-story",
+      "workerKey": "defracto.workers.gemini_flash.v1",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/receipt.v1.json",
+      "ledgerEntryPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-ledger.v1.json",
+      "signaturePolicyPath": "conveyor/trust/surface-signature.policy.v1.json",
+      "nextLaneKey": "02-canonical-spec"
+    },
+    {
+      "laneKey": "02-canonical-spec",
+      "workerKey": "defracto.workers.gemini_flash.v1",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/02-canonical-spec/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/02-canonical-spec/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/02-canonical-spec/receipt.v1.json",
+      "ledgerEntryPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-ledger.v1.json",
+      "signaturePolicyPath": "conveyor/trust/surface-signature.policy.v1.json",
+      "nextLaneKey": "03-semantic-kernel-sej"
+    },
+    {
+      "laneKey": "03-semantic-kernel-sej",
+      "workerKey": "defracto.workers.gemini_flash.v1",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/03-semantic-kernel-sej/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/03-semantic-kernel-sej/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/03-semantic-kernel-sej/receipt.v1.json",
+      "ledgerEntryPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-ledger.v1.json",
+      "signaturePolicyPath": "conveyor/trust/surface-signature.policy.v1.json",
+      "nextLaneKey": "04-projection-manifest"
+    },
+    {
+      "laneKey": "04-projection-manifest",
+      "workerKey": "defracto.workers.gemini_flash.v1",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/04-projection-manifest/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/04-projection-manifest/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/04-projection-manifest/receipt.v1.json",
+      "ledgerEntryPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-ledger.v1.json",
+      "signaturePolicyPath": "conveyor/trust/surface-signature.policy.v1.json",
+      "nextLaneKey": "05-materialization-sej"
+    },
+    {
+      "laneKey": "05-materialization-sej",
+      "workerKey": "defracto.workers.gemini_flash.v1",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/05-materialization-sej/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/05-materialization-sej/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/05-materialization-sej/receipt.v1.json",
+      "ledgerEntryPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-ledger.v1.json",
+      "signaturePolicyPath": "conveyor/trust/surface-signature.policy.v1.json",
+      "nextLaneKey": "06-resolver-invocation"
+    },
+    {
+      "laneKey": "06-resolver-invocation",
+      "workerKey": "defracto.workers.gemini_flash.v1",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/06-resolver-invocation/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/06-resolver-invocation/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/06-resolver-invocation/receipt.v1.json",
+      "ledgerEntryPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-ledger.v1.json",
+      "signaturePolicyPath": "conveyor/trust/surface-signature.policy.v1.json",
+      "nextLaneKey": "07-conformance"
+    },
+    {
+      "laneKey": "07-conformance",
+      "workerKey": "defracto.workers.gemini_flash.v1",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/receipt.v1.json",
+      "ledgerEntryPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-ledger.v1.json",
+      "signaturePolicyPath": "conveyor/trust/surface-signature.policy.v1.json",
+      "nextLaneKey": "08-visual-proof"
+    },
+    {
+      "laneKey": "08-visual-proof",
+      "workerKey": "defracto.workers.gemini_flash.v1",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/08-visual-proof/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/08-visual-proof/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/08-visual-proof/receipt.v1.json",
+      "ledgerEntryPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-ledger.v1.json",
+      "signaturePolicyPath": "conveyor/trust/surface-signature.policy.v1.json",
+      "nextLaneKey": "09-evidence-review"
+    },
+    {
+      "laneKey": "09-evidence-review",
+      "workerKey": "defracto.workers.gemini_flash.v1",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/receipt.v1.json",
+      "ledgerEntryPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-ledger.v1.json",
+      "signaturePolicyPath": "conveyor/trust/surface-signature.policy.v1.json",
+      "nextLaneKey": null
+    }
+  ]
+}

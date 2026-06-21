@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "defracto.handoff-dispatch.v1",
+  "handoffKey": "defracto.handoff.slice-008-handoff-conveyor-cli-proof.v1",
+  "runKey": "defracto.run.slice-008-handoff-conveyor-cli-proof.v1",
+  "sliceKey": "slice-008-handoff-conveyor-cli-proof",
+  "laneKey": "01-story",
+  "dispatchKey": "defracto.run.slice-008.01-story.dispatch.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+  "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+  "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "cliCommand": "ndd handoff lane --slice slice-008-handoff-conveyor-cli-proof --lane 01-story",
+  "inputArtifacts": [
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/handoff.package.v1.json"
+  ],
+  "resolvedInputArtifacts": [
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/handoff.package.v1.json",
+    "conveyor/cli/ndd-handoff-cli.contract.v1.json",
+    "conveyor/workers/gemini-flash.worker-profile.v1.json"
+  ],
+  "outputArtifacts": [
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/response.gemini-flash.v1.json",
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/receipt.v1.json"
+  ],
+  "allowedMutation": [
+    "write lane-local dispatch, response, and receipt records"
+  ],
+  "forbiddenMutation": [
+    "skip receipts",
+    "advance release without receipts",
+    "mutate source truth",
+    "invent hidden worker execution"
+  ],
+  "loopbackOnBlocked": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/handoff.package.v1.json",
+  "loopbackOnRegressionFailure": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/handoff.package.v1.json",
+  "successCriteria": [
+    "dispatch packet is explicit",
+    "response packet is explicit",
+    "receipt exists",
+    "ledger entry can tie the lane together"
+  ],
+  "promptTitle": "Story lane handoff proof",
+  "contextFile": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/handoff.package.v1.json",
+  "promptFile": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/dispatch.gemini-flash.v1.json",
+  "evidenceFile": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/receipt.v1.json",
+  "ledgerPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-ledger.v1.json",
+  "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/receipt.v1.json",
+  "nextHandoffPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/02-canonical-spec/dispatch.gemini-flash.v1.json"
+}

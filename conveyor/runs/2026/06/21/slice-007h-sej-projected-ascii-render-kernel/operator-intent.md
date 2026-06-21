@@ -1,6 +1,6 @@
 # Operator Intent
 
-Run Slice 007H as a multi-agent conveyor.
+Run Slice 007H as a CLI-orchestrated conveyor with explicit lane receipts.
 
 Do not perform the whole slice as one agent.
 

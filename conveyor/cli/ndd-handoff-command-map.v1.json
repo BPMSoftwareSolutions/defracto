@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.cli-command-map.v1",
+  "cliKey": "defracto.cli.ndd-handoff.v1",
+  "purpose": "Map supported CLI commands to the handoff conveyor entrypoints.",
+  "commands": [
+    {
+      "command": "ndd handoff run --slice slice-008-handoff-conveyor-cli-proof",
+      "contractPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/run.manifest.v1.json",
+      "handoffPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/handoff.package.v1.json",
+      "signaturePolicyPath": "conveyor/trust/surface-signature.policy.v1.json"
+    },
+    {
+      "command": "ndd handoff lane --lane 01-story",
+      "contractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+      "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+      "signaturePolicyPath": "conveyor/trust/surface-signature.policy.v1.json"
+    }
+  ],
+  "forbiddenCommands": [
+    "direct worker invocation without a dispatch packet",
+    "release without receipts",
+    "hidden worker execution"
+  ]
+}

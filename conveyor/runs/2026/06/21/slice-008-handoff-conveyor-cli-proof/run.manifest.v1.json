@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-008-handoff-conveyor-cli-proof.v1",
+  "runKind": "conveyor-run",
+  "sliceKey": "slice-008-handoff-conveyor-cli-proof",
+  "operatorRole": "platform agent",
+  "objective": "Prove the CLI-to-Gemini Flash handoff conveyor as explicit contracts, receipts, and blocked release posture.",
+  "runtimeStack": [
+    "CLI entrypoint",
+    "handoff package",
+    "lane dispatch contract",
+    "Gemini Flash worker profile",
+    "Gemini Flash response contract",
+    "lane receipt",
+    "run ledger",
+    "tie-out review",
+    "release packet"
+  ],
+  "laneOrder": [
+    "01-story",
+    "02-canonical-spec",
+    "03-semantic-kernel-sej",
+    "04-projection-manifest",
+    "05-materialization-sej",
+    "06-resolver-invocation",
+    "07-conformance",
+    "08-visual-proof",
+    "09-evidence-review"
+  ],
+  "inputs": [
+    "conveyor/cli/ndd-handoff-cli.contract.v1.json",
+    "conveyor/cli/ndd-handoff-command-map.v1.json",
+    "conveyor/handoff/handoff-package.schema.v1.json",
+    "conveyor/handoff/handoff-dispatch.schema.v1.json",
+    "conveyor/handoff/handoff-response.schema.v1.json",
+    "conveyor/trust/surface-signature.schema.v1.json",
+    "conveyor/trust/surface-signature.policy.v1.json",
+    "conveyor/workers/gemini-flash.worker-profile.v1.json",
+    "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+    "conveyor/workers/gemini-flash.response-contract.v1.json"
+  ],
+  "requiredReceipts": [
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/02-canonical-spec/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/03-semantic-kernel-sej/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/04-projection-manifest/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/05-materialization-sej/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/06-resolver-invocation/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/08-visual-proof/receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/receipt.v1.json"
+  ],
+  "finalArtifacts": [
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-ledger.v1.json",
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-summary.md",
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/commit-message.txt",
+    "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/release-packet.v1.json"
+  ],
+  "blockedIfMissing": [
+    "worker profile",
+    "dispatch contract",
+    "response contract",
+    "surface signature policy",
+    "lane dispatch packet",
+    "lane response packet",
+    "lane receipt",
+    "run ledger",
+    "tie-out review"
+  ],
+  "releaseBlockedUntilAllReceiptsExist": true
+}

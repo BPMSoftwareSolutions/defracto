@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "defracto.worker-profile.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "workerKind": "gemini-flash",
+  "sourceTruth": "declared_json_contract",
+  "status": "visible_existing_route",
+  "purpose": "Make the existing Gemini Flash worker lane visible as Defracto conveyor file-system topology.",
+  "model": {
+    "provider": "google_gemini_rest",
+    "defaultModel": "gemini-2.5-flash",
+    "responseMimeType": "application/json",
+    "temperature": 0.2,
+    "maxOutputTokens": 8192
+  },
+  "credentialPolicy": {
+    "envVarNames": [
+      "LOC_GEMINI_KEY",
+      "LOC_GEMINI_API_KEY",
+      "DEFRACTO_GEMINI_API_KEY",
+      "GOOGLE_API_KEY",
+      "GEMINI_API_KEY",
+      "AI_ENGINE_API_KEY"
+    ],
+    "secretMaterialAllowedInContracts": false,
+    "secretMaterialAllowedInEvidence": false
+  },
+  "workerExecutionPolicy": {
+    "providerEnvVar": "DEFRACTO_WORKER_PROVIDER",
+    "executionModeEnvVar": "DEFRACTO_WORKER_EXECUTION_MODE",
+    "requireProviderReceiptEnvVar": "DEFRACTO_REQUIRE_PROVIDER_RECEIPT",
+    "allowExistingWorkerLedgerEnvVar": "DEFRACTO_ALLOW_EXISTING_WORKER_LEDGER",
+    "defaultProvider": "gemini_flash",
+    "defaultExecutionMode": "live_provider_api",
+    "replayExecutionMode": "replay_existing_ledger"
+  },
+  "authorityPosture": {
+    "mayMutateProductSource": false,
+    "mayDecideMaturity": false,
+    "mayPromote": false,
+    "mayEmitCandidateArtifacts": true,
+    "mayEmitEvidence": true
+  },
+  "outputPolicy": {
+    "requiredResponseShape": "conveyor/workers/gemini-flash.response-contract.v1.json",
+    "receiptShape": "defracto.gemini-worker-response.receipt.v1",
+    "mustReturnJson": true
+  },
+  "sourceBindings": {
+    "handoffRoute": "conveyor/handoff/handoff-dispatch.schema.v1.json",
+    "commandMap": "conveyor/cli/ndd-handoff-command-map.v1.json",
+    "workerRuntimeLanguage": "gemini-flash"
+  },
+  "signaturePolicy": {
+    "signatureSchemaPath": "conveyor/trust/surface-signature.schema.v1.json",
+    "signaturePolicyPath": "conveyor/trust/surface-signature.policy.v1.json",
+    "requiredOnArtifacts": [
+      "response",
+      "receipt",
+      "ledger entry",
+      "release packet"
+    ],
+    "mustBeLiveVerified": true
+  }
+}

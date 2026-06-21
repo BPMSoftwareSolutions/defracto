@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "defracto.handoff.response.v1",
+  "handoffKey": "defracto.handoff.slice-008-handoff-conveyor-cli-proof.v1",
+  "runKey": "defracto.run.slice-008-handoff-conveyor-cli-proof.v1",
+  "sliceKey": "slice-008-handoff-conveyor-cli-proof",
+  "laneKey": "01-story",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "status": "declared",
+  "summary": "Declared the lane-local handoff shape for the story lane without claiming live worker execution.",
+  "findings": [
+    "CLI orchestration is explicit",
+    "Gemini Flash worker runtime is explicit",
+    "lane receipts remain required before release"
+  ],
+  "artifacts": {
+    "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/dispatch.gemini-flash.v1.json",
+    "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/receipt.v1.json",
+    "nextHandoffPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/02-canonical-spec/dispatch.gemini-flash.v1.json"
+  },
+  "nextHandoff": {
+    "laneKey": "02-canonical-spec",
+    "path": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/02-canonical-spec/dispatch.gemini-flash.v1.json"
+  },
+  "receipt": {
+    "path": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/receipt.v1.json"
+  },
+  "responseReceived": false
+}

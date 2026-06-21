@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "defracto.handoff.response.v1",
+  "handoffKey": "defracto.handoff.slice-008-handoff-conveyor-cli-proof.v1",
+  "runKey": "defracto.run.slice-008-handoff-conveyor-cli-proof.v1",
+  "sliceKey": "slice-008-handoff-conveyor-cli-proof",
+  "laneKey": "06-resolver-invocation",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "status": "declared",
+  "summary": "Declared the resolver-invocation lane handoff shape without claiming live worker execution.",
+  "findings": [
+    "dispatch shape is lane-scoped",
+    "response shape is explicit",
+    "release remains blocked until receipts exist"
+  ],
+  "artifacts": {
+    "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/06-resolver-invocation/dispatch.gemini-flash.v1.json",
+    "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/06-resolver-invocation/receipt.v1.json",
+    "nextHandoffPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/dispatch.gemini-flash.v1.json"
+  },
+  "nextHandoff": {
+    "laneKey": "07-conformance",
+    "path": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/dispatch.gemini-flash.v1.json"
+  },
+  "receipt": {
+    "path": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/06-resolver-invocation/receipt.v1.json"
+  },
+  "responseReceived": false
+}

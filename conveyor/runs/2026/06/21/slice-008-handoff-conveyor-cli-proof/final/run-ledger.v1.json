@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "defracto.run-ledger.v1",
+  "ledgerKey": "defracto.run.slice-008-handoff-conveyor-cli-proof.ledger.v1",
+  "runKey": "defracto.run.slice-008-handoff-conveyor-cli-proof.v1",
+  "sliceKey": "slice-008-handoff-conveyor-cli-proof",
+  "status": "blocked",
+  "blockedReasons": [
+    "no live Gemini Flash execution was performed",
+    "no live trust signature was attached by a Gemini Flash worker",
+    "release requires all lane receipts",
+    "release requires all lane signatures",
+    "this slice proves shape and explicitness only"
+  ],
+  "laneEntries": [
+    {
+      "laneKey": "01-story",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/01-story/receipt.v1.json",
+      "nextHandoffPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/02-canonical-spec/dispatch.gemini-flash.v1.json",
+      "executionStatus": "blocked"
+    },
+    {
+      "laneKey": "02-canonical-spec",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/02-canonical-spec/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/02-canonical-spec/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/02-canonical-spec/receipt.v1.json",
+      "nextHandoffPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/03-semantic-kernel-sej/dispatch.gemini-flash.v1.json",
+      "executionStatus": "blocked"
+    },
+    {
+      "laneKey": "03-semantic-kernel-sej",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/03-semantic-kernel-sej/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/03-semantic-kernel-sej/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/03-semantic-kernel-sej/receipt.v1.json",
+      "nextHandoffPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/04-projection-manifest/dispatch.gemini-flash.v1.json",
+      "executionStatus": "blocked"
+    },
+    {
+      "laneKey": "04-projection-manifest",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/04-projection-manifest/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/04-projection-manifest/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/04-projection-manifest/receipt.v1.json",
+      "nextHandoffPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/05-materialization-sej/dispatch.gemini-flash.v1.json",
+      "executionStatus": "blocked"
+    },
+    {
+      "laneKey": "05-materialization-sej",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/05-materialization-sej/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/05-materialization-sej/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/05-materialization-sej/receipt.v1.json",
+      "nextHandoffPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/06-resolver-invocation/dispatch.gemini-flash.v1.json",
+      "executionStatus": "blocked"
+    },
+    {
+      "laneKey": "06-resolver-invocation",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/06-resolver-invocation/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/06-resolver-invocation/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/06-resolver-invocation/receipt.v1.json",
+      "nextHandoffPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/dispatch.gemini-flash.v1.json",
+      "executionStatus": "blocked"
+    },
+    {
+      "laneKey": "07-conformance",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/receipt.v1.json",
+      "nextHandoffPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/08-visual-proof/dispatch.gemini-flash.v1.json",
+      "executionStatus": "blocked"
+    },
+    {
+      "laneKey": "08-visual-proof",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/08-visual-proof/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/08-visual-proof/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/08-visual-proof/receipt.v1.json",
+      "nextHandoffPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/dispatch.gemini-flash.v1.json",
+      "executionStatus": "blocked"
+    },
+    {
+      "laneKey": "09-evidence-review",
+      "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/dispatch.gemini-flash.v1.json",
+      "responsePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/response.gemini-flash.v1.json",
+      "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/receipt.v1.json",
+      "nextHandoffPath": null,
+      "executionStatus": "blocked"
+    }
+  ],
+  "conveyorAdvanceReady": false,
+  "receiptCount": 9,
+  "requiredReceiptCount": 9,
+  "signatureCount": 0,
+  "requiredSignatureCount": 9
+}

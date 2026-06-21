@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.handoff.response.v1",
+  "handoffKey": "defracto.handoff.slice-008-handoff-conveyor-cli-proof.v1",
+  "runKey": "defracto.run.slice-008-handoff-conveyor-cli-proof.v1",
+  "sliceKey": "slice-008-handoff-conveyor-cli-proof",
+  "laneKey": "09-evidence-review",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "status": "declared",
+  "summary": "Declared the evidence-review lane handoff shape without claiming live worker execution.",
+  "findings": [
+    "dispatch shape is lane-scoped",
+    "response shape is explicit",
+    "release remains blocked until receipts exist"
+  ],
+  "artifacts": {
+    "dispatchPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/dispatch.gemini-flash.v1.json",
+    "receiptPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/receipt.v1.json"
+  },
+  "nextHandoff": null,
+  "receipt": {
+    "path": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/receipt.v1.json"
+  },
+  "responseReceived": false
+}

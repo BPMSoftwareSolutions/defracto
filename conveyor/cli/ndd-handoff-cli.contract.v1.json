@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "defracto.cli-contract.v1",
+  "cliKey": "defracto.cli.ndd-handoff.v1",
+  "cliEntrypoint": "ndd",
+  "sourceTruth": "declared_json_contract",
+  "status": "visible_orchestration_route",
+  "purpose": "Declare the CLI entrypoint that orchestrates handoff packages without doing lane work itself.",
+  "orchestrationRule": "CLI orchestrates. Gemini Flash performs bounded lane work. Receipts decide whether the conveyor advances.",
+  "blockedBehaviors": [
+    "execute lane work invisibly",
+    "skip dispatch packets",
+    "skip worker response packets",
+    "skip receipts",
+    "skip run ledger entries",
+    "approve release without receipts"
+  ],
+  "commandMapPath": "conveyor/cli/ndd-handoff-command-map.v1.json",
+  "handoffPackagePath": "conveyor/handoff/handoff-package.schema.v1.json",
+  "dispatchSchemaPath": "conveyor/handoff/handoff-dispatch.schema.v1.json",
+  "responseSchemaPath": "conveyor/handoff/handoff-response.schema.v1.json",
+  "trustSignatureSchemaPath": "conveyor/trust/surface-signature.schema.v1.json",
+  "trustSignaturePolicyPath": "conveyor/trust/surface-signature.policy.v1.json"
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "defracto.handoff-dispatch.schema.v1",
+  "title": "Defracto Handoff Dispatch Schema",
+  "purpose": "Describe the lane-scoped dispatch packet sent from the CLI to a Gemini Flash worker.",
+  "requiredFields": [
+    "schemaVersion",
+    "handoffKey",
+    "runKey",
+    "sliceKey",
+    "laneKey",
+    "dispatchKey",
+    "workerKey",
+    "workerProfilePath",
+    "dispatchContractPath",
+    "responseContractPath",
+    "cliCommand",
+    "inputArtifacts",
+    "outputArtifacts",
+    "receiptPath",
+    "ledgerPath",
+    "nextHandoffPath",
+    "signaturePolicyPath"
+  ],
+  "optionalFields": [
+    "resolvedInputArtifacts",
+    "allowedMutation",
+    "forbiddenMutation",
+    "loopbackOnBlocked",
+    "loopbackOnRegressionFailure",
+    "successCriteria",
+    "promptTitle",
+    "contextFile",
+    "promptFile",
+    "evidenceFile"
+  ]
+}

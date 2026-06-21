@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "defracto.surface-signature.schema.v1",
+  "title": "Defracto Surface Signature Schema",
+  "purpose": "Describe the attestation object a Gemini Flash worker must leave on conveyor surfaces.",
+  "requiredFields": [
+    "signatureKey",
+    "signedBy",
+    "signedAt",
+    "attestationMode",
+    "workerKey",
+    "runKey",
+    "sliceKey",
+    "laneKey",
+    "surfaceArtifactPath",
+    "surfaceArtifactHash",
+    "sourceArtifactPaths",
+    "sourceArtifactHashes",
+    "trustFabricStatus"
+  ],
+  "recommendedFields": [
+    "dispatchArtifactPath",
+    "responseArtifactPath",
+    "receiptArtifactPath",
+    "ledgerEntryPath",
+    "nextHandoffPath",
+    "signatureHash"
+  ]
+}

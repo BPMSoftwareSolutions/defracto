@@ -4,7 +4,7 @@
   "runKind": "conveyor-run",
   "sliceKey": "slice-007h-sej-projected-ascii-render-kernel",
   "operatorRole": "platform agent",
-  "objective": "Prove the ASCII render kernel as a bounded multi-agent conveyor.",
+  "objective": "Prove the ASCII render kernel as a bounded CLI-orchestrated conveyor with explicit lane receipts.",
   "laneOrder": [
     "01-story",
     "02-canonical-spec",
