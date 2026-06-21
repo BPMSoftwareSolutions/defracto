@@ -1,3 +1,3 @@
-# shipper
+# Shipper Source
 
-Placeholder file materialized to satisfy the declared filesystem shape.
+Source narrative for the Shipper conveyor character.

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.shipper.command-input.v1",
+  "title": "Shipper Command Input",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "commandKey",
+    "runKey",
+    "failClosed"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.shipper.command-input.v1"
+    },
+    "commandKey": {
+      "type": "string",
+      "enum": [
+        "shipper.prepare-release",
+        "shipper.commit-message",
+        "shipper.ship"
+      ]
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "runPath": {
+      "type": "string"
+    },
+    "payload": {},
+    "failClosed": {
+      "type": "boolean",
+      "const": true
+    }
+  },
+  "additionalProperties": false
+}

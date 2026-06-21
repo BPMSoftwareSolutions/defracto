@@ -1,3 +1,3 @@
-# inspector
+# Evidence Inspector / Truth Reconciler Source
 
-Placeholder file materialized to satisfy the declared filesystem shape.
+Source narrative for the Evidence Inspector / Truth Reconciler conveyor character.

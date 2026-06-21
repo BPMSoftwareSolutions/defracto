@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.telemetry-observer.command-result.v1",
+  "title": "Telemetry Observer Command Result",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "status",
+    "runKey",
+    "artifacts",
+    "blockers"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.telemetry-observer.command-result.v1"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "runPath": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "object"
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": false
+}

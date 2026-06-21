@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.shipper.execute.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "accepted-for-target-shape",
+  "toolKey": "defracto.conveyor.shipper",
+  "sourceLineage": {
+    "storyKey": "stories/shipper/shipper.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/shipper/shipper.canonical-spec.v1.json",
+    "executableProjectionContractKey": "contracts/projections/shipper.node-projection-manifest.v1.json",
+    "bodyDispositionKey": "defracto.body.shipper.generated-surface"
+  },
+  "findingTaxonomyKey": "defracto.finding-taxonomy.v1",
+  "operationRequirementsKey": "contracts/operations/shipper.operation-requirements.v1.json",
+  "boundedInputs": [
+    "defracto.shipper.command-input.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.shipper.command-result.v1"
+  ],
+  "allowedFindingKeys": [
+    "missing_input",
+    "missing_receipt",
+    "invalid_response",
+    "hash_mismatch",
+    "release_blocked"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "purpose": "resolve.contract.v1 required for Shipper conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "purpose": "resolve.value.v1 required for Shipper conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "purpose": "evaluate.predicate.v1 required for Shipper conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "purpose": "artifact.materialize.v1 required for Shipper conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "purpose": "hash.compute.v1 required for Shipper conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "evidence.emit.v1 required for Shipper conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "failurePosture": "fail-closed"
+}

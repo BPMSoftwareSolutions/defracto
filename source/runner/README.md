@@ -1,3 +1,3 @@
-# runner
+# Conveyor Runner Source
 
-Placeholder file materialized to satisfy the declared filesystem shape.
+Source narrative for the Conveyor Runner conveyor character.

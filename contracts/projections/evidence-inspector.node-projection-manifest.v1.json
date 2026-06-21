@@ -1,5 +1,33 @@
 {
-  "status": "placeholder",
-  "target": "contracts/projections/evidence-inspector.node-projection-manifest.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.facade-manifest.v1",
+  "manifestKey": "defracto.evidence-inspector.node-projection-manifest.v1",
+  "manifestKind": "projected-node-conveyor-character",
+  "manifestStatus": "accepted-for-target-shape",
+  "toolKey": "defracto.conveyor.evidence-inspector",
+  "projectedPath": "generated/inspector/node/evidence-inspector.cjs",
+  "projectionTarget": "contracts/sej/materialize-evidence-inspector-node.sej.v1.json",
+  "sourceLineage": {
+    "storyKey": "stories/inspector/evidence-inspector.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/inspector/evidence-inspector.canonical-spec.v1.json",
+    "sejContractKey": "contracts/sej/evidence-inspector.execute.sej.v1.json"
+  },
+  "generatedDoorway": {
+    "status": "future",
+    "bodyKind": "projected_conveyor_character_surface",
+    "generationMode": "resolver-materialization",
+    "generationAuthority": "semantic-contract-only"
+  },
+  "allowedResponsibilities": [
+    "receipt validation",
+    "content mismatch disposition",
+    "truth reconciliation",
+    "pass/block judgment"
+  ],
+  "forbiddenResponsibilities": [
+    "silent repair",
+    "artifact invention",
+    "worker output mutation",
+    "shipping"
+  ],
+  "completionPosture": "This projection manifest authorizes a future generated surface only; it does not treat hand-authored code as fully governed."
 }

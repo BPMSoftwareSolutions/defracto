@@ -1,5 +1,82 @@
 {
-  "status": "placeholder",
-  "target": "projections/visual-models/telemetry-observer.visual-model.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.visual-projection-model.v1",
+  "visualProjectionModelKey": "defracto.visual.telemetry-observer.self.v1",
+  "modelStatus": "accepted-for-target-shape",
+  "sourceLineage": {
+    "storyKey": "stories/telemetry/telemetry-observer.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/telemetry/telemetry-observer.canonical-spec.v1.json"
+  },
+  "surface": {
+    "surfaceKey": "telemetry-observer.self.ascii",
+    "surfaceKind": "ascii"
+  },
+  "nodes": [
+    {
+      "nodeKey": "source_narrative",
+      "label": "Source Narrative",
+      "row": 1,
+      "column": 1
+    },
+    {
+      "nodeKey": "story",
+      "label": "Story",
+      "row": 3,
+      "column": 1
+    },
+    {
+      "nodeKey": "canonical_spec",
+      "label": "Canonical Spec",
+      "row": 5,
+      "column": 1
+    },
+    {
+      "nodeKey": "sej",
+      "label": "SEJ",
+      "row": 7,
+      "column": 1
+    },
+    {
+      "nodeKey": "projection",
+      "label": "Projection",
+      "row": 9,
+      "column": 1
+    },
+    {
+      "nodeKey": "receipt",
+      "label": "Receipt",
+      "row": 11,
+      "column": 1
+    }
+  ],
+  "edges": [
+    {
+      "from": "source_narrative",
+      "to": "story",
+      "label": "becomes"
+    },
+    {
+      "from": "story",
+      "to": "canonical_spec",
+      "label": "hardens into"
+    },
+    {
+      "from": "canonical_spec",
+      "to": "sej",
+      "label": "authorizes"
+    },
+    {
+      "from": "sej",
+      "to": "projection",
+      "label": "projects"
+    },
+    {
+      "from": "projection",
+      "to": "receipt",
+      "label": "proves"
+    }
+  ],
+  "forbiddenClaims": [
+    "renderer-owned product truth",
+    "hard-coded final proof"
+  ]
 }

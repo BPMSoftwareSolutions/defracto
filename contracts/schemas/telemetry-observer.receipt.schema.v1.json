@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.telemetry-observer.receipt.v1",
+  "title": "Telemetry Observer Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptKey",
+    "status",
+    "checkedAt",
+    "sourceLineage",
+    "artifactHashes"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.telemetry-observer.receipt.v1"
+    },
+    "receiptKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "checkedAt": {
+      "type": "string"
+    },
+    "sourceLineage": {
+      "type": "object",
+      "required": [
+        "storyKey",
+        "canonicalSpecKey",
+        "sejContractKey"
+      ],
+      "properties": {
+        "storyKey": {
+          "type": "string"
+        },
+        "canonicalSpecKey": {
+          "type": "string"
+        },
+        "sejContractKey": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "artifactHashes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": false
+}

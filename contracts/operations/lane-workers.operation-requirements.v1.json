@@ -1,0 +1,38 @@
+{
+  "operationRequirementVersion": "defracto.lane-workers.operation-requirements.v1",
+  "characterKey": "defracto.lane-workers",
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.reference.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    }
+  ],
+  "forbiddenResponsibilities": [
+    "whole pipeline truth",
+    "previous lane repair",
+    "downstream release",
+    "hidden fallback"
+  ],
+  "completionPosture": "Lane Workers is complete only when its declared operations, projection surface, and receipts align."
+}

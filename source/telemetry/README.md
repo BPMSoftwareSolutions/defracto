@@ -1,3 +1,3 @@
-# telemetry
+# Telemetry Observer Source
 
-Placeholder file materialized to satisfy the declared filesystem shape.
+Source narrative for the Telemetry Observer conveyor character.

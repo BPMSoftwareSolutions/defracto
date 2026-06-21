@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.lane-workers.execute.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "accepted-for-target-shape",
+  "toolKey": "defracto.conveyor.lane-workers",
+  "sourceLineage": {
+    "storyKey": "stories/workers/lane-workers.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/workers/lane-workers.canonical-spec.v1.json",
+    "executableProjectionContractKey": "contracts/projections/lane-workers.node-projection-manifest.v1.json",
+    "bodyDispositionKey": "defracto.body.lane-workers.generated-surface"
+  },
+  "findingTaxonomyKey": "defracto.finding-taxonomy.v1",
+  "operationRequirementsKey": "contracts/operations/lane-workers.operation-requirements.v1.json",
+  "boundedInputs": [
+    "defracto.lane-workers.command-input.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.lane-workers.command-result.v1"
+  ],
+  "allowedFindingKeys": [
+    "missing_input",
+    "missing_receipt",
+    "invalid_response",
+    "hash_mismatch",
+    "release_blocked"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.reference.v1",
+      "purpose": "resolve.reference.v1 required for Lane Workers conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "purpose": "resolve.value.v1 required for Lane Workers conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "purpose": "project.value.v1 required for Lane Workers conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "purpose": "hash.compute.v1 required for Lane Workers conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "evidence.emit.v1 required for Lane Workers conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "failurePosture": "fail-closed"
+}

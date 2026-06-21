@@ -1,5 +1,67 @@
 {
-  "status": "placeholder",
-  "target": "contracts/sej/conveyor-runner.execute.sej.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.conveyor-runner.execute.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "accepted-for-target-shape",
+  "toolKey": "defracto.conveyor.conveyor-runner",
+  "sourceLineage": {
+    "storyKey": "stories/runner/conveyor-runner.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/runner/conveyor-runner.canonical-spec.v1.json",
+    "executableProjectionContractKey": "contracts/projections/conveyor-runner.node-projection-manifest.v1.json",
+    "bodyDispositionKey": "defracto.body.conveyor-runner.generated-surface"
+  },
+  "findingTaxonomyKey": "defracto.finding-taxonomy.v1",
+  "operationRequirementsKey": "contracts/operations/conveyor-runner.operation-requirements.v1.json",
+  "boundedInputs": [
+    "defracto.conveyor-runner.command-input.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.conveyor-runner.command-result.v1"
+  ],
+  "allowedFindingKeys": [
+    "missing_input",
+    "missing_receipt",
+    "invalid_response",
+    "hash_mismatch",
+    "release_blocked"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "purpose": "resolve.contract.v1 required for Conveyor Runner conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "purpose": "resolve.value.v1 required for Conveyor Runner conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "purpose": "evaluate.predicate.v1 required for Conveyor Runner conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "execute.stage.v1",
+      "purpose": "execute.stage.v1 required for Conveyor Runner conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "purpose": "artifact.materialize.v1 required for Conveyor Runner conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "evidence.emit.v1 required for Conveyor Runner conveyor execution.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "failurePosture": "fail-closed"
 }

@@ -1,5 +1,43 @@
 {
-  "status": "placeholder",
-  "target": "contracts/operations/shipper.operation-requirements.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "operationRequirementVersion": "defracto.shipper.operation-requirements.v1",
+  "characterKey": "defracto.shipper",
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    }
+  ],
+  "forbiddenResponsibilities": [
+    "truth creation",
+    "evidence invention",
+    "canonical meaning",
+    "unverified shipping"
+  ],
+  "completionPosture": "Shipper is complete only when its declared operations, projection surface, and receipts align."
 }

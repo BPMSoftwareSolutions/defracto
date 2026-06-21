@@ -1,5 +1,32 @@
 {
-  "status": "placeholder",
-  "target": "contracts/projections/telemetry-observer.node-projection-manifest.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.facade-manifest.v1",
+  "manifestKey": "defracto.telemetry-observer.node-projection-manifest.v1",
+  "manifestKind": "projected-node-conveyor-character",
+  "manifestStatus": "accepted-for-target-shape",
+  "toolKey": "defracto.conveyor.telemetry-observer",
+  "projectedPath": "generated/telemetry/node/telemetry-observer.cjs",
+  "projectionTarget": "contracts/sej/materialize-telemetry-observer-node.sej.v1.json",
+  "sourceLineage": {
+    "storyKey": "stories/telemetry/telemetry-observer.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/telemetry/telemetry-observer.canonical-spec.v1.json",
+    "sejContractKey": "contracts/sej/telemetry-observer.execute.sej.v1.json"
+  },
+  "generatedDoorway": {
+    "status": "future",
+    "bodyKind": "projected_conveyor_character_surface",
+    "generationMode": "resolver-materialization",
+    "generationAuthority": "semantic-contract-only"
+  },
+  "allowedResponsibilities": [
+    "runtime observations",
+    "feedback signals",
+    "post-ship status",
+    "source promotion candidates"
+  ],
+  "forbiddenResponsibilities": [
+    "canonical truth before promotion",
+    "release authority",
+    "silent product changes"
+  ],
+  "completionPosture": "This projection manifest authorizes a future generated surface only; it does not treat hand-authored code as fully governed."
 }

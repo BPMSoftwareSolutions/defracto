@@ -1,58 +1,42 @@
-# NDD CLI Source Narrative
+# NDD CLI Doorway Source Narrative
 
-Artifact Key: `defracto.source.cli.ndd.self_binding.v1`
+Artifact Key: `defracto.source.ndd-cli.v1`
 
 ## Narrative
 
-The `ndd` CLI is the doorway into the Defracto / Narrative-Driven Development conveyor.
+The NDD CLI Doorway is the conveyor character responsible for **doorway**.
 
-The CLI must not become a hidden brain, a hand-authored exception, or a competing narrative. It must only accept operator intent, shape that intent into a bounded invocation, and hand execution to the governed conveyor through declared Semantic Executable JSON and resolver-backed stages.
+It exists so that the Defracto/NDD conveyor can keep each responsibility bounded, visible, receipt-backed, and unable to become a competing narrative.
 
-The CLI exists so an operator can submit conversational intent into the conveyor and receive generated artifacts, receipts, visual evidence, and release posture without relying on invisible platform-agent edits.
+## Owns
 
-## Governing Principle
+- argument boundary
+- stdin boundary
+- command invocation
+- resolver invocation shell
+- exit code mapping
 
-```text
-The CLI is not the brain.
-The CLI is the doorway.
-The SEJ is the executable instruction.
-The resolver is the mechanism.
-The conveyor is the development environment.
-The receipt is memory.
-The self-sketch is visual evidence.
-```
+## Does Not Own
 
-## Product Boundary
+- product meaning
+- DTO shaping
+- worker output truth
+- visual layout truth
+- release authority
 
-The CLI may parse arguments, read stdin, construct bounded invocation DTOs, call the resolver runtime, forward output, and fail closed.
-
-The CLI must not invent story truth, canonical behavior, worker outputs, ASCII sketches, signatures, release authority, or documentation truth.
-
-## Trust Requirement
-
-The CLI is trusted only when its behavior is bound to:
+## Doctrine
 
 ```text
-source narrative
--> story packet
--> canonical spec
--> DTO contracts
--> SEJ contract
--> projection manifest
--> generated facade
--> resolver invocation receipt
--> visual evidence receipt
+The CLI opens.
+The runner moves.
+The workers transform.
+The ledger remembers.
+The inspector judges.
+The shipper releases.
+Telemetry reflects.
+The conveyor lives.
 ```
-
-## Initial Commands
-
-- `ndd handoff run --text <text>`
-- `ndd handoff status <run-path>`
-- `ndd handoff continue <run-path>`
-- `ndd handoff review <run-path>`
-- `ndd self sketch`
-- `ndd self explain`
 
 ## Completion Posture
 
-The CLI self-binding is complete only when the CLI source surface is projected from declared authority, the generated facade is receipt-backed, and the CLI can produce a visual sketch of itself through the same governed projection path it enforces.
+This character is fully governed only when its story, canonical spec, SEJ contract, DTO contracts, projection manifest, generated surface, and receipts all align.

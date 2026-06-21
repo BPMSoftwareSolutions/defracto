@@ -1,5 +1,59 @@
 {
-  "status": "placeholder",
-  "target": "specs/canonical/runner/conveyor-runner.canonical-spec.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.conveyor-runner.canonical-spec.v1",
+  "derivedFromStory": "defracto.conveyor-runner.story.v1",
+  "purpose": "Define the authoritative role, boundaries, commands, execution posture, evidence posture, and projection surfaces for Conveyor Runner.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.runner.identity",
+      "storyPath": "$.story.asA",
+      "statement": "Conveyor Runner is the conveyor character for movement.",
+      "nodeType": "identity"
+    },
+    {
+      "canonicalPath": "$.runner.allowedResponsibilities",
+      "storyPath": "$.acceptanceCriteria[0]",
+      "statement": "run envelope; lane dispatch; status ledger; handoff sequencing; sync and async progression",
+      "nodeType": "allowed-responsibility"
+    },
+    {
+      "canonicalPath": "$.runner.forbiddenResponsibilities",
+      "storyPath": "$.acceptanceCriteria[1]",
+      "statement": "lane content meaning; truth judgment; shipping authority; worker response invention",
+      "nodeType": "forbidden-responsibility"
+    },
+    {
+      "canonicalPath": "$.runner.commands",
+      "storyPath": "$.story.iWant",
+      "statement": "runner.start; runner.advance; runner.status; runner.block; runner.complete",
+      "nodeType": "command-surface"
+    },
+    {
+      "canonicalPath": "$.runner.execution.sej",
+      "storyPath": "$.acceptanceCriteria[2]",
+      "statement": "Executable behavior is declared in contracts/sej/conveyor-runner.execute.sej.v1.json.",
+      "nodeType": "execution-authority"
+    },
+    {
+      "canonicalPath": "$.runner.projection",
+      "storyPath": "$.acceptanceCriteria[3]",
+      "statement": "Projected runtime surface targets generated/runner/node/conveyor-runner.cjs.",
+      "nodeType": "projection-surface"
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "rule.conveyor-runner.no-competing-narrative",
+      "statement": "Conveyor Runner may not claim responsibilities outside its declared role."
+    },
+    {
+      "ruleKey": "rule.conveyor-runner.receipt-required",
+      "statement": "Outputs require receipts before downstream authority can pass."
+    },
+    {
+      "ruleKey": "rule.conveyor-runner.fail-closed",
+      "statement": "Missing inputs, missing receipts, invalid responses, or hash mismatches block the conveyor."
+    }
+  ],
+  "status": "accepted-for-target-shape"
 }

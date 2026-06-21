@@ -2,47 +2,63 @@
   "schemaVersion": "defracto.sej-contract.v1",
   "contractKey": "defracto.sej.ndd-cli.execute.v1",
   "contractKind": "semantic-executable-json",
-  "toolKey": "defracto.cli.ndd",
+  "contractStatus": "accepted-for-target-shape",
+  "toolKey": "defracto.conveyor.ndd-cli",
+  "sourceLineage": {
+    "storyKey": "stories/cli/ndd-cli.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/cli/ndd-cli.canonical-spec.v1.json",
+    "executableProjectionContractKey": "contracts/projections/ndd-cli.node-projection-manifest.v1.json",
+    "bodyDispositionKey": "defracto.body.ndd-cli.generated-surface"
+  },
+  "findingTaxonomyKey": "defracto.finding-taxonomy.v1",
+  "operationRequirementsKey": "contracts/operations/ndd-cli.operation-requirements.v1.json",
   "boundedInputs": [
-    "nddCliCommandInput"
+    "defracto.ndd-cli.command-input.v1"
   ],
   "boundedOutputs": [
-    "nddCliCommandResult"
+    "defracto.ndd-cli.command-result.v1"
+  ],
+  "allowedFindingKeys": [
+    "missing_input",
+    "missing_receipt",
+    "invalid_response",
+    "hash_mismatch",
+    "release_blocked"
   ],
   "requiredOperations": [
     {
       "operationKey": "resolve.contract.v1",
-      "purpose": "Resolve CLI command contract.",
+      "purpose": "resolve.contract.v1 required for NDD CLI Doorway conveyor execution.",
       "requirementState": "required",
       "missingCapabilityBehavior": "blocked"
     },
     {
       "operationKey": "resolve.value.v1",
-      "purpose": "Resolve command input values.",
+      "purpose": "resolve.value.v1 required for NDD CLI Doorway conveyor execution.",
       "requirementState": "required",
       "missingCapabilityBehavior": "blocked"
     },
     {
       "operationKey": "execute.stage.v1",
-      "purpose": "Sequence CLI conveyor stages.",
+      "purpose": "execute.stage.v1 required for NDD CLI Doorway conveyor execution.",
       "requirementState": "required",
       "missingCapabilityBehavior": "blocked"
     },
     {
       "operationKey": "artifact.materialize.v1",
-      "purpose": "Materialize run artifacts.",
+      "purpose": "artifact.materialize.v1 required for NDD CLI Doorway conveyor execution.",
       "requirementState": "required",
       "missingCapabilityBehavior": "blocked"
     },
     {
       "operationKey": "hash.compute.v1",
-      "purpose": "Compute hashes from materialized files.",
+      "purpose": "hash.compute.v1 required for NDD CLI Doorway conveyor execution.",
       "requirementState": "required",
       "missingCapabilityBehavior": "blocked"
     },
     {
       "operationKey": "evidence.emit.v1",
-      "purpose": "Emit receipts and run ledger evidence.",
+      "purpose": "evidence.emit.v1 required for NDD CLI Doorway conveyor execution.",
       "requirementState": "required",
       "missingCapabilityBehavior": "blocked"
     }

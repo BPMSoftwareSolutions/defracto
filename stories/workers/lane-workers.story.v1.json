@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.lane-workers.story.v1",
+  "storyTitle": "Lane Workers",
+  "derivedFrom": {
+    "sourceKey": "defracto.source.lane-workers.v1",
+    "sourcePath": "source/workers/lane-workers.source-narrative.md",
+    "sourceHash": "sha256:deferred-until-materialization"
+  },
+  "actor": {
+    "role": "Lane Workers",
+    "goal": "to transform one authorized artifact into the next authorized artifact"
+  },
+  "story": {
+    "asA": "Lane worker",
+    "iWant": "to transform one authorized artifact into the next authorized artifact",
+    "soThat": "no single agent becomes a giant hidden authoring blob"
+  },
+  "acceptanceCriteria": [
+    {
+      "criterionKey": "lane-workers.owns-only-declared-responsibility",
+      "statement": "Lane Workers owns only: one lane input, one lane output, one lane receipt, bounded transformation."
+    },
+    {
+      "criterionKey": "lane-workers.refuses-forbidden-responsibility",
+      "statement": "Lane Workers must not own: whole pipeline truth, previous lane repair, downstream release, hidden fallback."
+    },
+    {
+      "criterionKey": "lane-workers.receipt-backed",
+      "statement": "Every materialized output must be receipt-backed."
+    },
+    {
+      "criterionKey": "lane-workers.no-invisible-execution",
+      "statement": "No invisible execution path is allowed."
+    }
+  ],
+  "forbiddenClaims": [
+    "Lane Workers owns whole pipeline truth",
+    "Lane Workers owns previous lane repair",
+    "Lane Workers owns downstream release",
+    "Lane Workers owns hidden fallback"
+  ],
+  "status": "accepted-for-target-shape"
+}

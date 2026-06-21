@@ -1,5 +1,43 @@
 {
-  "status": "placeholder",
-  "target": "stories/telemetry/telemetry-observer.story.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.telemetry-observer.story.v1",
+  "storyTitle": "Telemetry Observer",
+  "derivedFrom": {
+    "sourceKey": "defracto.source.telemetry-observer.v1",
+    "sourcePath": "source/telemetry/telemetry-observer.source-narrative.md",
+    "sourceHash": "sha256:deferred-until-materialization"
+  },
+  "actor": {
+    "role": "Telemetry Observer",
+    "goal": "to capture post-ship observation and promote meaningful signals back into source narrative"
+  },
+  "story": {
+    "asA": "Telemetry observer",
+    "iWant": "to capture post-ship observation and promote meaningful signals back into source narrative",
+    "soThat": "live cognition becomes a closed loop from value back to narrative"
+  },
+  "acceptanceCriteria": [
+    {
+      "criterionKey": "telemetry-observer.owns-only-declared-responsibility",
+      "statement": "Telemetry Observer owns only: runtime observations, feedback signals, post-ship status, source promotion candidates."
+    },
+    {
+      "criterionKey": "telemetry-observer.refuses-forbidden-responsibility",
+      "statement": "Telemetry Observer must not own: canonical truth before promotion, release authority, silent product changes."
+    },
+    {
+      "criterionKey": "telemetry-observer.receipt-backed",
+      "statement": "Every materialized output must be receipt-backed."
+    },
+    {
+      "criterionKey": "telemetry-observer.no-invisible-execution",
+      "statement": "No invisible execution path is allowed."
+    }
+  ],
+  "forbiddenClaims": [
+    "Telemetry Observer owns canonical truth before promotion",
+    "Telemetry Observer owns release authority",
+    "Telemetry Observer owns silent product changes"
+  ],
+  "status": "accepted-for-target-shape"
 }

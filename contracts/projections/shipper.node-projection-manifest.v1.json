@@ -1,5 +1,33 @@
 {
-  "status": "placeholder",
-  "target": "contracts/projections/shipper.node-projection-manifest.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.facade-manifest.v1",
+  "manifestKey": "defracto.shipper.node-projection-manifest.v1",
+  "manifestKind": "projected-node-conveyor-character",
+  "manifestStatus": "accepted-for-target-shape",
+  "toolKey": "defracto.conveyor.shipper",
+  "projectedPath": "generated/shipper/node/shipper.cjs",
+  "projectionTarget": "contracts/sej/materialize-shipper-node.sej.v1.json",
+  "sourceLineage": {
+    "storyKey": "stories/shipper/shipper.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/shipper/shipper.canonical-spec.v1.json",
+    "sejContractKey": "contracts/sej/shipper.execute.sej.v1.json"
+  },
+  "generatedDoorway": {
+    "status": "future",
+    "bodyKind": "projected_conveyor_character_surface",
+    "generationMode": "resolver-materialization",
+    "generationAuthority": "semantic-contract-only"
+  },
+  "allowedResponsibilities": [
+    "release packet",
+    "commit message",
+    "ship receipt",
+    "release gate enforcement"
+  ],
+  "forbiddenResponsibilities": [
+    "truth creation",
+    "evidence invention",
+    "canonical meaning",
+    "unverified shipping"
+  ],
+  "completionPosture": "This projection manifest authorizes a future generated surface only; it does not treat hand-authored code as fully governed."
 }

@@ -1,5 +1,59 @@
 {
-  "status": "placeholder",
-  "target": "specs/canonical/telemetry/telemetry-observer.canonical-spec.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.telemetry-observer.canonical-spec.v1",
+  "derivedFromStory": "defracto.telemetry-observer.story.v1",
+  "purpose": "Define the authoritative role, boundaries, commands, execution posture, evidence posture, and projection surfaces for Telemetry Observer.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.telemetry.identity",
+      "storyPath": "$.story.asA",
+      "statement": "Telemetry Observer is the conveyor character for reflection.",
+      "nodeType": "identity"
+    },
+    {
+      "canonicalPath": "$.telemetry.allowedResponsibilities",
+      "storyPath": "$.acceptanceCriteria[0]",
+      "statement": "runtime observations; feedback signals; post-ship status; source promotion candidates",
+      "nodeType": "allowed-responsibility"
+    },
+    {
+      "canonicalPath": "$.telemetry.forbiddenResponsibilities",
+      "storyPath": "$.acceptanceCriteria[1]",
+      "statement": "canonical truth before promotion; release authority; silent product changes",
+      "nodeType": "forbidden-responsibility"
+    },
+    {
+      "canonicalPath": "$.telemetry.commands",
+      "storyPath": "$.story.iWant",
+      "statement": "telemetry.capture; telemetry.observe; telemetry.promote-source",
+      "nodeType": "command-surface"
+    },
+    {
+      "canonicalPath": "$.telemetry.execution.sej",
+      "storyPath": "$.acceptanceCriteria[2]",
+      "statement": "Executable behavior is declared in contracts/sej/telemetry-observer.execute.sej.v1.json.",
+      "nodeType": "execution-authority"
+    },
+    {
+      "canonicalPath": "$.telemetry.projection",
+      "storyPath": "$.acceptanceCriteria[3]",
+      "statement": "Projected runtime surface targets generated/telemetry/node/telemetry-observer.cjs.",
+      "nodeType": "projection-surface"
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "rule.telemetry-observer.no-competing-narrative",
+      "statement": "Telemetry Observer may not claim responsibilities outside its declared role."
+    },
+    {
+      "ruleKey": "rule.telemetry-observer.receipt-required",
+      "statement": "Outputs require receipts before downstream authority can pass."
+    },
+    {
+      "ruleKey": "rule.telemetry-observer.fail-closed",
+      "statement": "Missing inputs, missing receipts, invalid responses, or hash mismatches block the conveyor."
+    }
+  ],
+  "status": "accepted-for-target-shape"
 }

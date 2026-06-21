@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.evidence-inspector.command-input.v1",
+  "title": "Evidence Inspector / Truth Reconciler Command Input",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "commandKey",
+    "runKey",
+    "failClosed"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.evidence-inspector.command-input.v1"
+    },
+    "commandKey": {
+      "type": "string",
+      "enum": [
+        "inspector.inspect",
+        "inspector.reconcile",
+        "inspector.block",
+        "inspector.pass"
+      ]
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "runPath": {
+      "type": "string"
+    },
+    "payload": {},
+    "failClosed": {
+      "type": "boolean",
+      "const": true
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,39 +1,59 @@
 {
-  "specKey": "ndd-cli.canonical-spec.v1",
-  "title": "NDD CLI Canonical Spec",
-  "sourceTruth": "declared_json_contract",
-  "purpose": "Define the command behavior and fail-closed rules for the NDD CLI.",
-  "authorityBoundary": "The CLI may orchestrate the conveyor, but it may not invent product truth.",
-  "behaviorAuthority": [
-    "parse command-line arguments",
-    "read stdin",
-    "construct bounded invocation DTOs",
-    "dispatch live work to Gemini Flash",
-    "materialize declared run artifacts",
-    "compute hashes from actual files on disk",
-    "write receipts",
-    "write a local run ledger",
-    "print the final verified result"
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.ndd-cli.canonical-spec.v1",
+  "derivedFromStory": "defracto.ndd-cli.story.v1",
+  "purpose": "Define the authoritative role, boundaries, commands, execution posture, evidence posture, and projection surfaces for NDD CLI Doorway.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.cli.identity",
+      "storyPath": "$.story.asA",
+      "statement": "NDD CLI Doorway is the conveyor character for doorway.",
+      "nodeType": "identity"
+    },
+    {
+      "canonicalPath": "$.cli.allowedResponsibilities",
+      "storyPath": "$.acceptanceCriteria[0]",
+      "statement": "argument boundary; stdin boundary; command invocation; resolver invocation shell; exit code mapping",
+      "nodeType": "allowed-responsibility"
+    },
+    {
+      "canonicalPath": "$.cli.forbiddenResponsibilities",
+      "storyPath": "$.acceptanceCriteria[1]",
+      "statement": "product meaning; DTO shaping; worker output truth; visual layout truth; release authority",
+      "nodeType": "forbidden-responsibility"
+    },
+    {
+      "canonicalPath": "$.cli.commands",
+      "storyPath": "$.story.iWant",
+      "statement": "ndd handoff run; ndd handoff status; ndd handoff continue; ndd handoff review; ndd self sketch; ndd self explain",
+      "nodeType": "command-surface"
+    },
+    {
+      "canonicalPath": "$.cli.execution.sej",
+      "storyPath": "$.acceptanceCriteria[2]",
+      "statement": "Executable behavior is declared in contracts/sej/ndd-cli.execute.sej.v1.json.",
+      "nodeType": "execution-authority"
+    },
+    {
+      "canonicalPath": "$.cli.projection",
+      "storyPath": "$.acceptanceCriteria[3]",
+      "statement": "Projected runtime surface targets generated/cli/node/ndd.cjs.",
+      "nodeType": "projection-surface"
+    }
   ],
-  "forbiddenBehaviors": [
-    "invent story truth",
-    "invent canonical behavior",
-    "invent worker outputs",
-    "invent ASCII sketches",
-    "invent signatures",
-    "silently fall back to mock mode",
-    "silently run dry",
-    "repair Gemini responses",
-    "approve release without receipts"
+  "rules": [
+    {
+      "ruleKey": "rule.ndd-cli.no-competing-narrative",
+      "statement": "NDD CLI Doorway may not claim responsibilities outside its declared role."
+    },
+    {
+      "ruleKey": "rule.ndd-cli.receipt-required",
+      "statement": "Outputs require receipts before downstream authority can pass."
+    },
+    {
+      "ruleKey": "rule.ndd-cli.fail-closed",
+      "statement": "Missing inputs, missing receipts, invalid responses, or hash mismatches block the conveyor."
+    }
   ],
-  "failClosedRules": [
-    "Missing LOC_GEMINI_API_KEY fails closed.",
-    "Unavailable Gemini Flash fails closed.",
-    "Invalid structured response fails closed.",
-    "Missing asciiSketch fails closed.",
-    "Hash computation failure fails closed.",
-    "Receipt write failure fails closed."
-  ],
-  "selfBindingRule": "The CLI must project its own self sketch from its declared visualProjectionModel in projections/visual-models rather than hard-code final proof.",
-  "completionPosture": "The CLI is a doorway and a trust surface, not a competing narrative."
+  "status": "accepted-for-target-shape"
 }

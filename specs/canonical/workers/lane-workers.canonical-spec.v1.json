@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.lane-workers.canonical-spec.v1",
+  "derivedFromStory": "defracto.lane-workers.story.v1",
+  "purpose": "Define the authoritative role, boundaries, commands, execution posture, evidence posture, and projection surfaces for Lane Workers.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.workers.identity",
+      "storyPath": "$.story.asA",
+      "statement": "Lane Workers is the conveyor character for bounded transformation.",
+      "nodeType": "identity"
+    },
+    {
+      "canonicalPath": "$.workers.allowedResponsibilities",
+      "storyPath": "$.acceptanceCriteria[0]",
+      "statement": "one lane input; one lane output; one lane receipt; bounded transformation",
+      "nodeType": "allowed-responsibility"
+    },
+    {
+      "canonicalPath": "$.workers.forbiddenResponsibilities",
+      "storyPath": "$.acceptanceCriteria[1]",
+      "statement": "whole pipeline truth; previous lane repair; downstream release; hidden fallback",
+      "nodeType": "forbidden-responsibility"
+    },
+    {
+      "canonicalPath": "$.workers.commands",
+      "storyPath": "$.story.iWant",
+      "statement": "worker.dispatch; worker.respond; worker.receipt",
+      "nodeType": "command-surface"
+    },
+    {
+      "canonicalPath": "$.workers.execution.sej",
+      "storyPath": "$.acceptanceCriteria[2]",
+      "statement": "Executable behavior is declared in contracts/sej/lane-workers.execute.sej.v1.json.",
+      "nodeType": "execution-authority"
+    },
+    {
+      "canonicalPath": "$.workers.projection",
+      "storyPath": "$.acceptanceCriteria[3]",
+      "statement": "Projected runtime surface targets generated/workers/node/lane-worker.cjs.",
+      "nodeType": "projection-surface"
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "rule.lane-workers.no-competing-narrative",
+      "statement": "Lane Workers may not claim responsibilities outside its declared role."
+    },
+    {
+      "ruleKey": "rule.lane-workers.receipt-required",
+      "statement": "Outputs require receipts before downstream authority can pass."
+    },
+    {
+      "ruleKey": "rule.lane-workers.fail-closed",
+      "statement": "Missing inputs, missing receipts, invalid responses, or hash mismatches block the conveyor."
+    }
+  ],
+  "status": "accepted-for-target-shape"
+}

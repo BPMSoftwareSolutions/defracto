@@ -1,5 +1,37 @@
 {
-  "status": "placeholder",
-  "target": "contracts/operations/telemetry-observer.operation-requirements.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "operationRequirementVersion": "defracto.telemetry-observer.operation-requirements.v1",
+  "characterKey": "defracto.telemetry-observer",
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.value.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    }
+  ],
+  "forbiddenResponsibilities": [
+    "canonical truth before promotion",
+    "release authority",
+    "silent product changes"
+  ],
+  "completionPosture": "Telemetry Observer is complete only when its declared operations, projection surface, and receipts align."
 }

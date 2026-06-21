@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.ndd-cli.command-input.v1",
+  "title": "NDD CLI Doorway Command Input",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "commandKey",
+    "runKey",
+    "failClosed"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.ndd-cli.command-input.v1"
+    },
+    "commandKey": {
+      "type": "string",
+      "enum": [
+        "ndd handoff run",
+        "ndd handoff status",
+        "ndd handoff continue",
+        "ndd handoff review",
+        "ndd self sketch",
+        "ndd self explain"
+      ]
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "runPath": {
+      "type": "string"
+    },
+    "payload": {},
+    "failClosed": {
+      "type": "boolean",
+      "const": true
+    }
+  },
+  "additionalProperties": false
+}

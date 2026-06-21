@@ -1,5 +1,44 @@
 {
-  "status": "placeholder",
-  "target": "stories/inspector/evidence-inspector.story.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.evidence-inspector.story.v1",
+  "storyTitle": "Evidence Inspector / Truth Reconciler",
+  "derivedFrom": {
+    "sourceKey": "defracto.source.evidence-inspector.v1",
+    "sourcePath": "source/inspector/evidence-inspector.source-narrative.md",
+    "sourceHash": "sha256:deferred-until-materialization"
+  },
+  "actor": {
+    "role": "Evidence Inspector / Truth Reconciler",
+    "goal": "to reconcile artifacts, receipts, hashes, and narrative lineage"
+  },
+  "story": {
+    "asA": "Evidence inspector",
+    "iWant": "to reconcile artifacts, receipts, hashes, and narrative lineage",
+    "soThat": "the conveyor cannot pass path parity as truth parity"
+  },
+  "acceptanceCriteria": [
+    {
+      "criterionKey": "evidence-inspector.owns-only-declared-responsibility",
+      "statement": "Evidence Inspector / Truth Reconciler owns only: receipt validation, content mismatch disposition, truth reconciliation, pass/block judgment."
+    },
+    {
+      "criterionKey": "evidence-inspector.refuses-forbidden-responsibility",
+      "statement": "Evidence Inspector / Truth Reconciler must not own: silent repair, artifact invention, worker output mutation, shipping."
+    },
+    {
+      "criterionKey": "evidence-inspector.receipt-backed",
+      "statement": "Every materialized output must be receipt-backed."
+    },
+    {
+      "criterionKey": "evidence-inspector.no-invisible-execution",
+      "statement": "No invisible execution path is allowed."
+    }
+  ],
+  "forbiddenClaims": [
+    "Evidence Inspector / Truth Reconciler owns silent repair",
+    "Evidence Inspector / Truth Reconciler owns artifact invention",
+    "Evidence Inspector / Truth Reconciler owns worker output mutation",
+    "Evidence Inspector / Truth Reconciler owns shipping"
+  ],
+  "status": "accepted-for-target-shape"
 }

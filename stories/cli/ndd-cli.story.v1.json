@@ -1,24 +1,45 @@
 {
-  "storyKey": "ndd-cli.story.v1",
-  "title": "NDD CLI Self-Binding Conveyor",
-  "sourceTruth": "declared_json_contract",
-  "narrativeSourcePath": "projections/founding-conversation/cli/self-binding-conveyor.md",
-  "purpose": "Bind the NDD CLI to the same conveyor it orchestrates so the doorway is projected, not hand-stitched.",
-  "summary": "The CLI is a first-class Defracto surface that must be governed by story, canonical spec, SEJ, projection manifest, receipts, and visual evidence.",
-  "operatorStory": "As the Defracto operator, I want one command that submits narrative intent into the conveyor and can also sketch itself from its own declared visual model, so that every generated artifact is produced through declared truth and local verification.",
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.ndd-cli.story.v1",
+  "storyTitle": "NDD CLI Doorway",
+  "derivedFrom": {
+    "sourceKey": "defracto.source.ndd-cli.v1",
+    "sourcePath": "source/cli/ndd-cli.source-narrative.md",
+    "sourceHash": "sha256:deferred-until-materialization"
+  },
+  "actor": {
+    "role": "NDD CLI Doorway",
+    "goal": "the ndd CLI to open a governed doorway into the conveyor"
+  },
+  "story": {
+    "asA": "Defracto operator",
+    "iWant": "the ndd CLI to open a governed doorway into the conveyor",
+    "soThat": "operator intent enters execution without becoming hand-authored product truth"
+  },
   "acceptanceCriteria": [
-    "The CLI is treated as Defracto source-bound behavior rather than bootstrap trivia.",
-    "The CLI can fail closed when Gemini Flash is unavailable.",
-    "The CLI can write runner-verified live envelopes with hashes from files on disk.",
-    "The CLI can render a self sketch from its declared visualProjectionModel.",
-    "The CLI cannot silently fall back to mock or dry-run behavior."
+    {
+      "criterionKey": "ndd-cli.owns-only-declared-responsibility",
+      "statement": "NDD CLI Doorway owns only: argument boundary, stdin boundary, command invocation, resolver invocation shell, exit code mapping."
+    },
+    {
+      "criterionKey": "ndd-cli.refuses-forbidden-responsibility",
+      "statement": "NDD CLI Doorway must not own: product meaning, DTO shaping, worker output truth, visual layout truth, release authority."
+    },
+    {
+      "criterionKey": "ndd-cli.receipt-backed",
+      "statement": "Every materialized output must be receipt-backed."
+    },
+    {
+      "criterionKey": "ndd-cli.no-invisible-execution",
+      "statement": "No invisible execution path is allowed."
+    }
   ],
-  "completionPosture": "This story authorizes the CLI to become a governed doorway, not the brain.",
-  "linkedArtifacts": [
-    "specs/canonical/cli/ndd-cli.canonical-spec.v1.json",
-    "contracts/sej/ndd-cli.execute.sej.v1.json",
-    "contracts/sej/ndd-cli.self-sketch.sej.v1.json",
-    "contracts/projections/ndd-cli.node-projection-manifest.v1.json",
-    "projections/visual-models/ndd-cli-self.visual-model.v1.json"
-  ]
+  "forbiddenClaims": [
+    "NDD CLI Doorway owns product meaning",
+    "NDD CLI Doorway owns DTO shaping",
+    "NDD CLI Doorway owns worker output truth",
+    "NDD CLI Doorway owns visual layout truth",
+    "NDD CLI Doorway owns release authority"
+  ],
+  "status": "accepted-for-target-shape"
 }

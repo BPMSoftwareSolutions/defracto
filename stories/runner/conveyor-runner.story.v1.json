@@ -1,5 +1,44 @@
 {
-  "status": "placeholder",
-  "target": "stories/runner/conveyor-runner.story.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.conveyor-runner.story.v1",
+  "storyTitle": "Conveyor Runner",
+  "derivedFrom": {
+    "sourceKey": "defracto.source.conveyor-runner.v1",
+    "sourcePath": "source/runner/conveyor-runner.source-narrative.md",
+    "sourceHash": "sha256:deferred-until-materialization"
+  },
+  "actor": {
+    "role": "Conveyor Runner",
+    "goal": "to move handoff packets through each lane and update status"
+  },
+  "story": {
+    "asA": "Conveyor runner",
+    "iWant": "to move handoff packets through each lane and update status",
+    "soThat": "live cognition can be observed without invisible agent execution"
+  },
+  "acceptanceCriteria": [
+    {
+      "criterionKey": "conveyor-runner.owns-only-declared-responsibility",
+      "statement": "Conveyor Runner owns only: run envelope, lane dispatch, status ledger, handoff sequencing, sync and async progression."
+    },
+    {
+      "criterionKey": "conveyor-runner.refuses-forbidden-responsibility",
+      "statement": "Conveyor Runner must not own: lane content meaning, truth judgment, shipping authority, worker response invention."
+    },
+    {
+      "criterionKey": "conveyor-runner.receipt-backed",
+      "statement": "Every materialized output must be receipt-backed."
+    },
+    {
+      "criterionKey": "conveyor-runner.no-invisible-execution",
+      "statement": "No invisible execution path is allowed."
+    }
+  ],
+  "forbiddenClaims": [
+    "Conveyor Runner owns lane content meaning",
+    "Conveyor Runner owns truth judgment",
+    "Conveyor Runner owns shipping authority",
+    "Conveyor Runner owns worker response invention"
+  ],
+  "status": "accepted-for-target-shape"
 }

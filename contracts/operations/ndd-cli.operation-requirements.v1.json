@@ -1,5 +1,44 @@
 {
-  "status": "placeholder",
-  "target": "contracts/operations/ndd-cli.operation-requirements.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "operationRequirementVersion": "defracto.ndd-cli.operation-requirements.v1",
+  "characterKey": "defracto.ndd-cli",
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "execute.stage.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    }
+  ],
+  "forbiddenResponsibilities": [
+    "product meaning",
+    "DTO shaping",
+    "worker output truth",
+    "visual layout truth",
+    "release authority"
+  ],
+  "completionPosture": "NDD CLI Doorway is complete only when its declared operations, projection surface, and receipts align."
 }

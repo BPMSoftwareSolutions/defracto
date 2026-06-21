@@ -1,5 +1,44 @@
 {
-  "status": "placeholder",
-  "target": "stories/shipper/shipper.story.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.shipper.story.v1",
+  "storyTitle": "Shipper",
+  "derivedFrom": {
+    "sourceKey": "defracto.source.shipper.v1",
+    "sourcePath": "source/shipper/shipper.source-narrative.md",
+    "sourceHash": "sha256:deferred-until-materialization"
+  },
+  "actor": {
+    "role": "Shipper",
+    "goal": "to ship only evidence-authorized repo state"
+  },
+  "story": {
+    "asA": "Shipper",
+    "iWant": "to ship only evidence-authorized repo state",
+    "soThat": "release becomes the final act of trust rather than a shortcut"
+  },
+  "acceptanceCriteria": [
+    {
+      "criterionKey": "shipper.owns-only-declared-responsibility",
+      "statement": "Shipper owns only: release packet, commit message, ship receipt, release gate enforcement."
+    },
+    {
+      "criterionKey": "shipper.refuses-forbidden-responsibility",
+      "statement": "Shipper must not own: truth creation, evidence invention, canonical meaning, unverified shipping."
+    },
+    {
+      "criterionKey": "shipper.receipt-backed",
+      "statement": "Every materialized output must be receipt-backed."
+    },
+    {
+      "criterionKey": "shipper.no-invisible-execution",
+      "statement": "No invisible execution path is allowed."
+    }
+  ],
+  "forbiddenClaims": [
+    "Shipper owns truth creation",
+    "Shipper owns evidence invention",
+    "Shipper owns canonical meaning",
+    "Shipper owns unverified shipping"
+  ],
+  "status": "accepted-for-target-shape"
 }

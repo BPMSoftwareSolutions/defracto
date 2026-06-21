@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "defracto.visual-projection-model.v1",
+  "visualProjectionModelKey": "defracto.visual.ndd-cli.self.v1",
+  "modelStatus": "accepted-for-target-shape",
+  "sourceLineage": {
+    "storyKey": "stories/cli/ndd-cli.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/cli/ndd-cli.canonical-spec.v1.json"
+  },
+  "surface": {
+    "surfaceKey": "ndd-cli.self.ascii",
+    "surfaceKind": "ascii"
+  },
+  "nodes": [
+    {
+      "nodeKey": "source_narrative",
+      "label": "Source Narrative",
+      "row": 1,
+      "column": 1
+    },
+    {
+      "nodeKey": "story",
+      "label": "Story",
+      "row": 3,
+      "column": 1
+    },
+    {
+      "nodeKey": "canonical_spec",
+      "label": "Canonical Spec",
+      "row": 5,
+      "column": 1
+    },
+    {
+      "nodeKey": "sej",
+      "label": "SEJ",
+      "row": 7,
+      "column": 1
+    },
+    {
+      "nodeKey": "projection",
+      "label": "Projection",
+      "row": 9,
+      "column": 1
+    },
+    {
+      "nodeKey": "receipt",
+      "label": "Receipt",
+      "row": 11,
+      "column": 1
+    }
+  ],
+  "edges": [
+    {
+      "from": "source_narrative",
+      "to": "story",
+      "label": "becomes"
+    },
+    {
+      "from": "story",
+      "to": "canonical_spec",
+      "label": "hardens into"
+    },
+    {
+      "from": "canonical_spec",
+      "to": "sej",
+      "label": "authorizes"
+    },
+    {
+      "from": "sej",
+      "to": "projection",
+      "label": "projects"
+    },
+    {
+      "from": "projection",
+      "to": "receipt",
+      "label": "proves"
+    }
+  ],
+  "forbiddenClaims": [
+    "renderer-owned product truth",
+    "hard-coded final proof"
+  ]
+}

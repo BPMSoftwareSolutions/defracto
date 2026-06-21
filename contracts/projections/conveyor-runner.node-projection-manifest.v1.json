@@ -1,5 +1,34 @@
 {
-  "status": "placeholder",
-  "target": "contracts/projections/conveyor-runner.node-projection-manifest.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.facade-manifest.v1",
+  "manifestKey": "defracto.conveyor-runner.node-projection-manifest.v1",
+  "manifestKind": "projected-node-conveyor-character",
+  "manifestStatus": "accepted-for-target-shape",
+  "toolKey": "defracto.conveyor.conveyor-runner",
+  "projectedPath": "generated/runner/node/conveyor-runner.cjs",
+  "projectionTarget": "contracts/sej/materialize-conveyor-runner-node.sej.v1.json",
+  "sourceLineage": {
+    "storyKey": "stories/runner/conveyor-runner.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/runner/conveyor-runner.canonical-spec.v1.json",
+    "sejContractKey": "contracts/sej/conveyor-runner.execute.sej.v1.json"
+  },
+  "generatedDoorway": {
+    "status": "future",
+    "bodyKind": "projected_conveyor_character_surface",
+    "generationMode": "resolver-materialization",
+    "generationAuthority": "semantic-contract-only"
+  },
+  "allowedResponsibilities": [
+    "run envelope",
+    "lane dispatch",
+    "status ledger",
+    "handoff sequencing",
+    "sync and async progression"
+  ],
+  "forbiddenResponsibilities": [
+    "lane content meaning",
+    "truth judgment",
+    "shipping authority",
+    "worker response invention"
+  ],
+  "completionPosture": "This projection manifest authorizes a future generated surface only; it does not treat hand-authored code as fully governed."
 }

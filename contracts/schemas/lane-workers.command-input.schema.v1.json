@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.lane-workers.command-input.v1",
+  "title": "Lane Workers Command Input",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "commandKey",
+    "runKey",
+    "failClosed"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.lane-workers.command-input.v1"
+    },
+    "commandKey": {
+      "type": "string",
+      "enum": [
+        "worker.dispatch",
+        "worker.respond",
+        "worker.receipt"
+      ]
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "runPath": {
+      "type": "string"
+    },
+    "payload": {},
+    "failClosed": {
+      "type": "boolean",
+      "const": true
+    }
+  },
+  "additionalProperties": false
+}

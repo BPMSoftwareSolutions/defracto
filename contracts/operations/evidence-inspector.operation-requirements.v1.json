@@ -1,5 +1,43 @@
 {
-  "status": "placeholder",
-  "target": "contracts/operations/evidence-inspector.operation-requirements.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "operationRequirementVersion": "defracto.evidence-inspector.operation-requirements.v1",
+  "characterKey": "defracto.evidence-inspector",
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    }
+  ],
+  "forbiddenResponsibilities": [
+    "silent repair",
+    "artifact invention",
+    "worker output mutation",
+    "shipping"
+  ],
+  "completionPosture": "Evidence Inspector / Truth Reconciler is complete only when its declared operations, projection surface, and receipts align."
 }

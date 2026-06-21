@@ -1,5 +1,59 @@
 {
-  "status": "placeholder",
-  "target": "specs/canonical/shipper/shipper.canonical-spec.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.shipper.canonical-spec.v1",
+  "derivedFromStory": "defracto.shipper.story.v1",
+  "purpose": "Define the authoritative role, boundaries, commands, execution posture, evidence posture, and projection surfaces for Shipper.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.shipper.identity",
+      "storyPath": "$.story.asA",
+      "statement": "Shipper is the conveyor character for release.",
+      "nodeType": "identity"
+    },
+    {
+      "canonicalPath": "$.shipper.allowedResponsibilities",
+      "storyPath": "$.acceptanceCriteria[0]",
+      "statement": "release packet; commit message; ship receipt; release gate enforcement",
+      "nodeType": "allowed-responsibility"
+    },
+    {
+      "canonicalPath": "$.shipper.forbiddenResponsibilities",
+      "storyPath": "$.acceptanceCriteria[1]",
+      "statement": "truth creation; evidence invention; canonical meaning; unverified shipping",
+      "nodeType": "forbidden-responsibility"
+    },
+    {
+      "canonicalPath": "$.shipper.commands",
+      "storyPath": "$.story.iWant",
+      "statement": "shipper.prepare-release; shipper.commit-message; shipper.ship",
+      "nodeType": "command-surface"
+    },
+    {
+      "canonicalPath": "$.shipper.execution.sej",
+      "storyPath": "$.acceptanceCriteria[2]",
+      "statement": "Executable behavior is declared in contracts/sej/shipper.execute.sej.v1.json.",
+      "nodeType": "execution-authority"
+    },
+    {
+      "canonicalPath": "$.shipper.projection",
+      "storyPath": "$.acceptanceCriteria[3]",
+      "statement": "Projected runtime surface targets generated/shipper/node/shipper.cjs.",
+      "nodeType": "projection-surface"
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "rule.shipper.no-competing-narrative",
+      "statement": "Shipper may not claim responsibilities outside its declared role."
+    },
+    {
+      "ruleKey": "rule.shipper.receipt-required",
+      "statement": "Outputs require receipts before downstream authority can pass."
+    },
+    {
+      "ruleKey": "rule.shipper.fail-closed",
+      "statement": "Missing inputs, missing receipts, invalid responses, or hash mismatches block the conveyor."
+    }
+  ],
+  "status": "accepted-for-target-shape"
 }

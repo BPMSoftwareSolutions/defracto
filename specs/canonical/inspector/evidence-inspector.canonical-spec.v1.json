@@ -1,5 +1,59 @@
 {
-  "status": "placeholder",
-  "target": "specs/canonical/inspector/evidence-inspector.canonical-spec.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.evidence-inspector.canonical-spec.v1",
+  "derivedFromStory": "defracto.evidence-inspector.story.v1",
+  "purpose": "Define the authoritative role, boundaries, commands, execution posture, evidence posture, and projection surfaces for Evidence Inspector / Truth Reconciler.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.inspector.identity",
+      "storyPath": "$.story.asA",
+      "statement": "Evidence Inspector / Truth Reconciler is the conveyor character for judgment.",
+      "nodeType": "identity"
+    },
+    {
+      "canonicalPath": "$.inspector.allowedResponsibilities",
+      "storyPath": "$.acceptanceCriteria[0]",
+      "statement": "receipt validation; content mismatch disposition; truth reconciliation; pass/block judgment",
+      "nodeType": "allowed-responsibility"
+    },
+    {
+      "canonicalPath": "$.inspector.forbiddenResponsibilities",
+      "storyPath": "$.acceptanceCriteria[1]",
+      "statement": "silent repair; artifact invention; worker output mutation; shipping",
+      "nodeType": "forbidden-responsibility"
+    },
+    {
+      "canonicalPath": "$.inspector.commands",
+      "storyPath": "$.story.iWant",
+      "statement": "inspector.inspect; inspector.reconcile; inspector.block; inspector.pass",
+      "nodeType": "command-surface"
+    },
+    {
+      "canonicalPath": "$.inspector.execution.sej",
+      "storyPath": "$.acceptanceCriteria[2]",
+      "statement": "Executable behavior is declared in contracts/sej/evidence-inspector.execute.sej.v1.json.",
+      "nodeType": "execution-authority"
+    },
+    {
+      "canonicalPath": "$.inspector.projection",
+      "storyPath": "$.acceptanceCriteria[3]",
+      "statement": "Projected runtime surface targets generated/inspector/node/evidence-inspector.cjs.",
+      "nodeType": "projection-surface"
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "rule.evidence-inspector.no-competing-narrative",
+      "statement": "Evidence Inspector / Truth Reconciler may not claim responsibilities outside its declared role."
+    },
+    {
+      "ruleKey": "rule.evidence-inspector.receipt-required",
+      "statement": "Outputs require receipts before downstream authority can pass."
+    },
+    {
+      "ruleKey": "rule.evidence-inspector.fail-closed",
+      "statement": "Missing inputs, missing receipts, invalid responses, or hash mismatches block the conveyor."
+    }
+  ],
+  "status": "accepted-for-target-shape"
 }
