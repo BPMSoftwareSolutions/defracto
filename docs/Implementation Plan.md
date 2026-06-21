@@ -1920,6 +1920,118 @@ Blocks:
 
 Ships next:
 
+Slice 007L: Visual Narrative Source Contract.
+
+## Slice 007L: Visual Narrative Source Contract
+
+Goal:
+
+Define a governed source-surface family for sketches, whiteboards, diagrams, wireframes, and similar authored visual intent surfaces so they can enter the conveyor as source truth only through explicit role change and evidence.
+
+Changes:
+
+- Add a schema for visual narrative source records.
+- Add a story packet for treating visual surfaces as source intent.
+- Add a canonical spec that requires capture, normalization, ambiguity tracking, and explicit role-change evidence.
+- Keep visual extraction, OCR, and source-to-code automation out of scope.
+
+Artifacts:
+
+```text
+contracts/schemas/visual-narrative-source.schema.v1.json
+stories/sources/visual-narrative-source.story.v1.json
+specs/canonical/sources/visual-narrative-source.canonical-spec.v1.json
+reports/slice-007l-visual-narrative-source-contract-review.latest.md
+```
+
+Completion rule:
+
+```text
+Visual intent surfaces may enter the conveyor as source truth only when their source role is explicit, bounded, and evidenced.
+```
+
+Blocks:
+
+- Slice 007H deterministic ASCII render kernel contract must remain complete.
+- No source extraction engine may be introduced yet.
+
+Ships next:
+
+Slice 007M: Visual Source Role-Change Receipt Contract.
+
+## Slice 007M: Visual Source Role-Change Receipt Contract
+
+Goal:
+
+Define the receipt boundary for changing an artifact role from projection output to source-intent surface without implementing extraction, OCR, or canonicalization.
+
+Changes:
+
+- Add a schema for source role-change receipts.
+- Add a policy for projection-output-to-source-intent transitions.
+- Record prior projection evidence and source capture evidence as separate governed inputs.
+- Keep visual extraction, OCR, image analysis, and canonicalization out of scope.
+
+Artifacts:
+
+```text
+contracts/schemas/source-role-change-receipt.schema.v1.json
+contracts/policies/source-surface-role-change.policy.v1.json
+reports/slice-007m-visual-source-role-change-receipt-contract.latest.md
+```
+
+Completion rule:
+
+```text
+An artifact can change role from projection output to source-intent surface only through an explicit governed receipt, and no extraction or canonicalization is implied.
+```
+
+Blocks:
+
+- Slice 007L visual narrative source contract must remain complete.
+- No visual extraction engine may be introduced yet.
+
+Ships next:
+
+Slice 007M.1: Run Visual Evidence Standard.
+
+## Slice 007M.1: Run Visual Evidence Standard
+
+Goal:
+
+Make ASCII visual evidence a required proof surface for meaningful slices so every meaningful run leaves a visual trace alongside textual evidence.
+
+Changes:
+
+- Add a schema for run visual evidence.
+- Add a policy requiring visual evidence for meaningful slices.
+- Add a sketch folder README that defines the run-sketch convention.
+- Add the first run sketch artifact for this standard slice.
+- Keep renderer code, SVG, HTML/CSS, DOCX, PDF, PPTX, Google Docs, Google Slides, and video out of scope.
+
+Artifacts:
+
+```text
+contracts/schemas/run-visual-evidence.schema.v1.json
+contracts/policies/run-visual-evidence-required.policy.v1.json
+reports/sketches/README.md
+reports/sketches/slice-007m1-run-visual-evidence-standard.ascii
+reports/slice-007m1-run-visual-evidence-standard.latest.md
+```
+
+Completion rule:
+
+```text
+Meaningful slices produce or update visual evidence, and the evidence is still subordinate to textual reports and receipts.
+```
+
+Blocks:
+
+- Slice 007M visual source role-change receipt contract must remain complete.
+- No renderer may be introduced yet.
+
+Ships next:
+
 ## Slice 008: Narrative Coverage Prototype
 
 Goal:

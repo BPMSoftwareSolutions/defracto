@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.visual-narrative-source.v1",
+  "title": "Visual Narrative Source",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "sourceKey",
+    "sourceType",
+    "sourceRole",
+    "surfaceKind",
+    "authoredBy",
+    "capturedAt",
+    "sourcePath",
+    "sourceHash",
+    "summary",
+    "observedNodes",
+    "observedRelationships",
+    "observedLabels",
+    "ambiguities",
+    "requiresHumanConfirmation",
+    "authorizedCanonicalSpecKey",
+    "roleChangeReceiptPath",
+    "status"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "sourceKey": {
+      "type": "string"
+    },
+    "sourceType": {
+      "type": "string",
+      "const": "visual-narrative-source"
+    },
+    "sourceRole": {
+      "type": "string",
+      "const": "source-intent"
+    },
+    "surfaceKind": {
+      "type": "string"
+    },
+    "authoredBy": {
+      "type": "string"
+    },
+    "capturedAt": {
+      "type": "string"
+    },
+    "sourcePath": {
+      "type": "string"
+    },
+    "sourceHash": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "observedNodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["nodeKey", "label"],
+        "properties": {
+          "nodeKey": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "observedRelationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["relationshipKey", "fromNodeKey", "toNodeKey"],
+        "properties": {
+          "relationshipKey": {
+            "type": "string"
+          },
+          "fromNodeKey": {
+            "type": "string"
+          },
+          "toNodeKey": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "observedLabels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ambiguities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiresHumanConfirmation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "authorizedCanonicalSpecKey": {
+      "type": "string"
+    },
+    "roleChangeReceiptPath": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

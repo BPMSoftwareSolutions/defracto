@@ -1,0 +1,37 @@
+{
+  "policyVersion": "defracto.source-surface-role-change.policy.v1",
+  "policyKey": "defracto.source-surface-role-change",
+  "scope": "projection-output-to-source-intent-surface-role-change",
+  "previousArtifactRole": "projection-output",
+  "newArtifactRole": "source-intent-surface",
+  "whatTheReceiptMustProve": [
+    "the artifact previously existed as a governed projection output",
+    "the artifact is being recast as source intent through an explicit role change",
+    "source capture evidence exists",
+    "prior projection evidence exists",
+    "human review posture is recorded",
+    "canonicalization remains deferred or bounded by explicit status"
+  ],
+  "whatTheReceiptMustNotDo": [
+    "claim canonicalization has happened if it has not",
+    "claim visual extraction was performed if it was not",
+    "claim OCR or image analysis was performed if it was not",
+    "claim source truth without evidence",
+    "erase the artifact's prior projection role"
+  ],
+  "allowedNextStates": [
+    "source-intent-surface-under-review",
+    "source-intent-surface-captured",
+    "source-intent-surface-canonicalization-pending",
+    "source-intent-surface-canonicalized"
+  ],
+  "forbiddenClaims": [
+    "visual extraction is implemented",
+    "OCR is implemented",
+    "image analysis is implemented",
+    "canonical spec has been generated from source intent",
+    "renderer-owned truth exists",
+    "extractor-owned truth exists"
+  ],
+  "completionPosture": "Slice 007M is complete when a role-change receipt can bind a former projection output to a new source-intent surface role without implying extraction, OCR, image analysis, or canonicalization."
+}

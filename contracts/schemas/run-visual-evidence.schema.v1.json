@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.run-visual-evidence.v1",
+  "title": "Run Visual Evidence",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "evidenceKey",
+    "sliceKey",
+    "sliceTitle",
+    "evidenceStatus",
+    "textualEvidence",
+    "visualEvidence",
+    "artifactClassifications",
+    "forbiddenClaims",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "evidenceKey": {
+      "type": "string"
+    },
+    "sliceKey": {
+      "type": "string"
+    },
+    "sliceTitle": {
+      "type": "string"
+    },
+    "evidenceStatus": {
+      "type": "string",
+      "enum": ["passed", "blocked", "deferred", "stale"]
+    },
+    "textualEvidence": {
+      "type": "object",
+      "required": [
+        "reportPath",
+        "receiptPaths",
+        "changedFiles"
+      ],
+      "properties": {
+        "reportPath": {
+          "type": "string"
+        },
+        "receiptPaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "changedFiles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "visualEvidence": {
+      "type": "object",
+      "required": [
+        "sketchPath",
+        "visualEvidenceMode",
+        "visualStatus",
+        "linkedTextualReportPath"
+      ],
+      "properties": {
+        "sketchPath": {
+          "type": "string"
+        },
+        "visualEvidenceMode": {
+          "type": "string",
+          "enum": ["ascii-declared", "model-backed"]
+        },
+        "visualStatus": {
+          "type": "string",
+          "enum": ["passed", "blocked", "deferred", "stale"]
+        },
+        "linkedTextualReportPath": {
+          "type": "string"
+        },
+        "linkedReceiptPaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "artifactClassifications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifactPath",
+          "artifactState",
+          "stateReason"
+        ],
+        "properties": {
+          "artifactPath": {
+            "type": "string"
+          },
+          "artifactState": {
+            "type": "string",
+            "enum": ["passed", "blocked", "deferred", "stale"]
+          },
+          "stateReason": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

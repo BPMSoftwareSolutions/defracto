@@ -1,0 +1,35 @@
+{
+  "policyVersion": "defracto.run-visual-evidence-required.policy.v1",
+  "policyKey": "defracto.run-visual-evidence-required",
+  "scope": "meaningful-slice-reporting",
+  "requiredForMeaningfulSlices": true,
+  "visualEvidenceMust": [
+    "produce or update a visual evidence artifact for each meaningful slice",
+    "show what the run achieved",
+    "distinguish passed artifacts from blocked, deferred, and stale artifacts",
+    "link to textual reports and receipts",
+    "avoid inventing product truth",
+    "start as ASCII and remain renderable through the visualProjectionModel later"
+  ],
+  "textualEvidenceMust": [
+    "point to the slice report",
+    "point to the receipts or explicitly say why receipts are deferred",
+    "identify changed files"
+  ],
+  "visualEvidenceMustNot": [
+    "invent product truth",
+    "invent execution authority",
+    "hide stale artifacts",
+    "pretend a renderer exists when it does not",
+    "claim equivalence beyond the evidence available"
+  ],
+  "artifactStatusValues": [
+    "passed",
+    "blocked",
+    "deferred",
+    "stale"
+  ],
+  "initialFormat": "ascii",
+  "futureRenderableThrough": "visualProjectionModel",
+  "completionPosture": "Slice 007M.1 is complete when meaningful-slice reporting has a required visual evidence standard and the evidence is still clearly subordinate to textual receipts and reports."
+}

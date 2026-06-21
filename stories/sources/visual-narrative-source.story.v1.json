@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.sources.visual-narrative-source.story.v1",
+  "derivedFrom": {
+    "sourceKey": "defracto.origin.conversation_fractal.v1",
+    "sourcePath": "examples/founding-conversation/source/conversation-fractal.md",
+    "sourceHash": "sha256:seed-manual"
+  },
+  "actor": {
+    "role": "Defracto maintainer",
+    "goal": "treat authored visual intent surfaces as governed source truth before canonicalization"
+  },
+  "story": {
+    "asA": "Defracto maintainer",
+    "iWant": "a contract that lets sketches, whiteboards, and similar visual intent surfaces enter the conveyor as source truth with explicit role boundaries",
+    "soThat": "projection outputs and source inputs never get confused"
+  },
+  "acceptanceCriteria": [
+    {
+      "criteriaKey": "visual_source_bounded",
+      "statement": "Visual intent surfaces can be captured as source intent with explicit source-role boundaries."
+    },
+    {
+      "criteriaKey": "role_change_explicit",
+      "statement": "A surface may only change from projection output to source input when an explicit receipt or equivalent bounded artifact records the role change."
+    },
+    {
+      "criteriaKey": "canonicalization_authorized",
+      "statement": "The source contract can authorize canonicalization without allowing the source surface to become authority by itself."
+    }
+  ],
+  "status": "authorized"
+}

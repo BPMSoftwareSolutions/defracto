@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.source-role-change-receipt.v1",
+  "title": "Source Role Change Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptKey",
+    "receiptStatus",
+    "artifactPath",
+    "artifactHash",
+    "previousArtifactRole",
+    "newArtifactRole",
+    "priorProjectionEvidence",
+    "sourceCaptureEvidence",
+    "roleChangeReason",
+    "humanReviewPosture",
+    "canonicalizationStatus",
+    "allowedNextStates",
+    "forbiddenClaims",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "receiptKey": {
+      "type": "string"
+    },
+    "receiptStatus": {
+      "type": "string",
+      "enum": ["draft", "accepted", "blocked", "ready-for-review"]
+    },
+    "artifactPath": {
+      "type": "string"
+    },
+    "artifactHash": {
+      "type": "string"
+    },
+    "previousArtifactRole": {
+      "type": "string",
+      "const": "projection-output"
+    },
+    "newArtifactRole": {
+      "type": "string",
+      "const": "source-intent-surface"
+    },
+    "priorProjectionEvidence": {
+      "type": "object",
+      "required": [
+        "projectionManifestKey",
+        "projectionReceiptPath",
+        "projectionEvidencePath"
+      ],
+      "properties": {
+        "projectionManifestKey": {
+          "type": "string"
+        },
+        "projectionReceiptPath": {
+          "type": "string"
+        },
+        "projectionEvidencePath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sourceCaptureEvidence": {
+      "type": "object",
+      "required": [
+        "captureReceiptPath",
+        "captureMode",
+        "capturedBy"
+      ],
+      "properties": {
+        "captureReceiptPath": {
+          "type": "string"
+        },
+        "captureMode": {
+          "type": "string"
+        },
+        "capturedBy": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "roleChangeReason": {
+      "type": "string"
+    },
+    "humanReviewPosture": {
+      "type": "string"
+    },
+    "canonicalizationStatus": {
+      "type": "string"
+    },
+    "allowedNextStates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

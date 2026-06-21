@@ -1,0 +1,53 @@
++----------------------------------------------------------+
+| SLICE 007M.1: RUN VISUAL EVIDENCE STANDARD              |
++----------------------------------------------------------+
+
+  textual evidence
+  +-------------------------------------------------------+
+  | report: reports/slice-007m1-run-visual-evidence-      |
+  |         standard.latest.md                            |
+  | receipts: deferred until future slice                 |
+  | changed files: README, ROADMAP, Plan, tree, README... |
+  +-------------------------------------------------------+
+
+  visual authority
+  +-------------------------------------------------------+
+  | policy: contracts/policies/run-visual-evidence-      |
+  |         required.policy.v1.json                       |
+  | schema: contracts/schemas/run-visual-evidence.schema |
+  |         .v1.json                                      |
+  | rule: future slices need visual evidence or defer     |
+  +-------------------------------------------------------+
+
+  visual evidence
+  +-------------------------------------------------------+
+  | sketch: reports/sketches/slice-007m1-run-visual-     |
+  |         evidence-standard.ascii                       |
+  | mode: ascii-declared                                  |
+  | status: passed                                        |
+  +-------------------------------------------------------+
+
+  artifact states
+  +-----------------------+-------------------------------+
+  | passed                | policy + schema + sketch     |
+  |                       | folder                       |
+  +-----------------------+-------------------------------+
+  | deferred              | future renderer/model        |
+  +-----------------------+-------------------------------+
+  | blocked               | none                         |
+  +-----------------------+-------------------------------+
+  | stale                 | none                         |
+  +-----------------------+-------------------------------+
+
+  future run rule
+  +-------------------------------------------------------+
+  | every meaningful slice                                |
+  |   -> produces visual evidence                         |
+  |   OR records visual evidence as deferred with reason  |
+  +-------------------------------------------------------+
+
+Status:
+  contract only
+  no renderer
+  no product truth
+  no canonicalization

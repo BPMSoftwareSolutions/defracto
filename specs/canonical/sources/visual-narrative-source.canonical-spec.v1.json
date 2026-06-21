@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.sources.visual-narrative-source.canonical_spec.v1",
+  "derivedFromStory": "defracto.sources.visual-narrative-source.story.v1",
+  "purpose": "Authorize a visual narrative source surface as governed input to story extraction and canonicalization.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.source.capture",
+      "storyPath": "$.acceptanceCriteria[0].statement",
+      "statement": "The source surface is captured with a stable key, hash, author, and surface kind.",
+      "nodeType": "capture"
+    },
+    {
+      "canonicalPath": "$.source.normalization",
+      "storyPath": "$.acceptanceCriteria[0].statement",
+      "statement": "The surface is normalized into observed nodes, relationships, labels, and summary intent without inventing missing meaning.",
+      "nodeType": "normalization"
+    },
+    {
+      "canonicalPath": "$.source.ambiguity",
+      "storyPath": "$.acceptanceCriteria[0].statement",
+      "statement": "Ambiguities and human confirmation requirements are recorded before canonical authority is granted.",
+      "nodeType": "ambiguity"
+    },
+    {
+      "canonicalPath": "$.source.roleChangeReceipt",
+      "storyPath": "$.acceptanceCriteria[1].statement",
+      "statement": "A source-role change must be evidenced explicitly before a prior projection may be consumed as source intent.",
+      "nodeType": "evidence"
+    },
+    {
+      "canonicalPath": "$.source.canonicalization",
+      "storyPath": "$.acceptanceCriteria[2].statement",
+      "statement": "The source can authorize a canonical spec while remaining subordinate to review and evidence.",
+      "nodeType": "authorization"
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "source_surface_not_authority",
+      "statement": "No source surface becomes authority by itself; captured intent must be normalized, canonicalized, and evidenced before downstream use."
+    },
+    {
+      "ruleKey": "projection_role_change_explicit",
+      "statement": "A projection output may become future source input only through an explicit role-change receipt or equivalent governed evidence."
+    }
+  ],
+  "status": "authorized"
+}

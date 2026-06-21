@@ -54,7 +54,10 @@ Slice 000.1 and Slice 000.2 are required before Slice 001 can be accepted as com
 45. Slice 007G.1: Visual Projection Model Navigation Alignment.
 46. Slice 007G.2: Visual Projection Model Schema and Policy Artifacts.
 47. Slice 007H: Deterministic ASCII Render Kernel Contract.
-48. Slice 008: Narrative Coverage Prototype.
+48. Slice 007L: Visual Narrative Source Contract.
+49. Slice 007M: Visual Source Role-Change Receipt Contract.
+50. Slice 007M.1: Run Visual Evidence Standard.
+51. Slice 008: Narrative Coverage Prototype.
 
 ## Near-Term Deliverables
 
@@ -64,7 +67,9 @@ Slice 000.1 and Slice 000.2 are required before Slice 001 can be accepted as com
 - Treat Slice 007G as report-first posture alignment: the visualProjectionModel is the product center, but deterministic visual projection is still not implemented.
 - Slice 007G.2 now introduces the visual projection model schema and policy artifacts after navigation alignment.
 - Slice 007H now introduces the deterministic ASCII render kernel contract as a governed mechanism only.
-- Future Slice 007I may implement or bind the approved ASCII render kernel.
+- Slice 007L now introduces the visual narrative source contract for sketches, whiteboards, diagrams, and similar authored visual surfaces.
+- Slice 007M now introduces the source role-change receipt contract for projection-output-to-source-intent transitions.
+- Slice 007M.1 now makes visual evidence a required proof surface for meaningful slices, starting as ASCII.
 
 ## Long-Term Direction
 

@@ -39,6 +39,9 @@ defracto/
 |   |   |-- visual-render-adapter.schema.v1.json
 |   |   |-- ascii-render-kernel.schema.v1.json
 |   |   |-- ascii-render-result.schema.v1.json
+|   |   |-- visual-narrative-source.schema.v1.json
+|   |   |-- source-role-change-receipt.schema.v1.json
+|   |   |-- run-visual-evidence.schema.v1.json
 |   |   `-- sketch-equivalence.schema.v1.json
 |   |   `-- sej-contract.schema.v1.json
 |   `-- policies/
@@ -71,17 +74,21 @@ defracto/
 |       `-- no-competing-narratives.policy.v1.json
 |
 |-- stories/
-|   `-- tools/
+|   |-- tools/
 |       |-- render-narrative-graph.story.v1.json
 |       |-- validate-story-packet.story.v1.json
 |       `-- validate-lineage.story.v1.json
+|   `-- sources/
+|       `-- visual-narrative-source.story.v1.json
 |
 |-- specs/
-|   `-- canonical/
+|   |-- canonical/
 |       `-- tools/
 |           |-- render-narrative-graph.canonical-spec.v1.json
 |           |-- validate-story-packet.canonical-spec.v1.json
 |           `-- validate-lineage.canonical-spec.v1.json
+|       `-- sources/
+|           `-- visual-narrative-source.canonical-spec.v1.json
 |
 |-- conveyor/
 |   |-- lanes/
@@ -135,6 +142,9 @@ defracto/
 |
 `-- reports/
     |-- README.md
+    |-- sketches/
+    |   |-- README.md
+    |   `-- slice-007m1-run-visual-evidence-standard.ascii
     |-- body-disposition.seed.md
     |-- narrative-graph.latest.md
     |-- lineage.latest.md
@@ -181,6 +191,9 @@ defracto/
 |-- slice-007g-visual-projection-model-contract.latest.md
 |-- slice-007g2-visual-projection-model-schema-policy.latest.md
 |-- slice-007h-deterministic-ascii-render-kernel-contract.latest.md
+|-- slice-007l-visual-narrative-source-contract-review.latest.md
+|-- slice-007m-visual-source-role-change-receipt-contract.latest.md
+|-- slice-007m1-run-visual-evidence-standard.latest.md
 `-- semantic-coherence-review.latest.md
 ```
 
@@ -218,7 +231,7 @@ Current generated-doorway posture:
 - `examples/target-sketches/evidence/founding-lineage-flow.render.receipt.v1.json` records the canonical-path render receipt.
 - `evidence/invocations/founding-ui-sketch.equivalence-invocation.receipt.v1.json` records the passed equivalence invocation evidence, including target and rendered hashes.
 - The current system proves deterministic writing, not yet deterministic visual projection.
-- Slice 007H defines the deterministic ASCII render kernel contract; future Slice 007I may implement or bind it.
+- Slice 007H defines the deterministic ASCII render kernel contract, Slice 007L defines the visual narrative source contract, and Slice 007M defines the visual source role-change receipt contract.
 
 Operational doorway shape under contract review:
 
