@@ -1,0 +1,13 @@
+[CLI Entrypoint]
+      |
+      v
+[Conveyor Belt]
+      |
+      v
+[Gemini Flash Worker]
+      |
+      v
+   [Receipt]
+      |
+      v
+ [Release Gate]

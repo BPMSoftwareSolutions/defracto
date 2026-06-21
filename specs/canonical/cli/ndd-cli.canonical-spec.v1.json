@@ -1,0 +1,39 @@
+{
+  "specKey": "ndd-cli.canonical-spec.v1",
+  "title": "NDD CLI Canonical Spec",
+  "sourceTruth": "declared_json_contract",
+  "purpose": "Define the command behavior and fail-closed rules for the NDD CLI.",
+  "authorityBoundary": "The CLI may orchestrate the conveyor, but it may not invent product truth.",
+  "behaviorAuthority": [
+    "parse command-line arguments",
+    "read stdin",
+    "construct bounded invocation DTOs",
+    "dispatch live work to Gemini Flash",
+    "materialize declared run artifacts",
+    "compute hashes from actual files on disk",
+    "write receipts",
+    "write a local run ledger",
+    "print the final verified result"
+  ],
+  "forbiddenBehaviors": [
+    "invent story truth",
+    "invent canonical behavior",
+    "invent worker outputs",
+    "invent ASCII sketches",
+    "invent signatures",
+    "silently fall back to mock mode",
+    "silently run dry",
+    "repair Gemini responses",
+    "approve release without receipts"
+  ],
+  "failClosedRules": [
+    "Missing LOC_GEMINI_API_KEY fails closed.",
+    "Unavailable Gemini Flash fails closed.",
+    "Invalid structured response fails closed.",
+    "Missing asciiSketch fails closed.",
+    "Hash computation failure fails closed.",
+    "Receipt write failure fails closed."
+  ],
+  "selfBindingRule": "The CLI must project its own self sketch from its declared visualProjectionModel rather than hard-code final proof.",
+  "completionPosture": "The CLI is a doorway and a trust surface, not a competing narrative."
+}

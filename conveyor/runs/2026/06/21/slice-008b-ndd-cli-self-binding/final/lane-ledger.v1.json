@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "defracto.lane-ledger.v1",
+  "ledgerKey": "defracto.slice-008b-ndd-cli-self-binding.ledger.v1",
+  "status": "passed",
+  "sketchPath": "conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/sketches/ndd-cli-self.ascii",
+  "receiptPath": "evidence/cli/ndd-cli.self-sketch.receipt.v1.json",
+  "nodeProjectionReceiptPath": "evidence/cli/ndd-cli.node-projection.receipt.v1.json"
+}

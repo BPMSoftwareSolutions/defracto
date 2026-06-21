@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "defracto.ndd-cli-command-input.v1",
+  "title": "NDD CLI Command Input",
+  "requiredFields": [
+    "schemaVersion",
+    "commandKey",
+    "operatorText",
+    "runKey",
+    "workerProfileKey",
+    "failClosed"
+  ],
+  "fieldTypes": {
+    "commandKey": "string",
+    "operatorText": "string",
+    "runKey": "string",
+    "workerProfileKey": "string",
+    "failClosed": "boolean"
+  }
+}

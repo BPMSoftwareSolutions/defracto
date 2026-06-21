@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "defracto.ndd-cli-run-envelope.v1",
+  "title": "NDD CLI Run Envelope",
+  "requiredFields": [
+    "schemaVersion",
+    "runKey",
+    "sliceKey",
+    "liveEnvelopePath",
+    "artifacts",
+    "fileHashes",
+    "trustPosture"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.ndd-cli.self-sketch.v1",
+  "contractKind": "semantic-executable-json",
+  "toolKey": "defracto.cli.ndd",
+  "boundedInputs": [
+    "nddCliSelfSketchInput"
+  ],
+  "boundedOutputs": [
+    "nddCliSelfSketchResult"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.value.v1",
+      "purpose": "Load the declared visual projection model.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "render.ascii.v1",
+      "purpose": "Render the self sketch from the declared model.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "purpose": "Materialize the self sketch and receipt.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "purpose": "Compute hashes from the written files.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "Emit the self-sketch receipt.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "failurePosture": "fail-closed"
+}

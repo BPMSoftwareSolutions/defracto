@@ -1,0 +1,24 @@
+{
+  "manifestKey": "defracto.ndd-cli.node-projection-manifest.v1",
+  "title": "NDD CLI Node Projection Manifest",
+  "sourceTruth": "declared_json_contract",
+  "projectionTarget": "generated/cli/node/ndd.cjs",
+  "sourceContract": "contracts/sej/materialize-ndd-cli-node.sej.v1.json",
+  "projectionKind": "thin_generated_facade",
+  "allowedResponsibilities": [
+    "argument parsing",
+    "stdin reading",
+    "bounded invocation construction",
+    "resolver/runtime call",
+    "exit code mapping",
+    "stdout/stderr forwarding"
+  ],
+  "forbiddenResponsibilities": [
+    "Gemini prompt logic",
+    "business meaning",
+    "ASCII sketch generation",
+    "receipt truth",
+    "mock mode",
+    "fallback outputs"
+  ]
+}

@@ -22,6 +22,15 @@ Structure:
 - `trust/` defines the surface-signature language used to prove provenance through the trust fabric.
 - `runs/` contains concrete run envelopes and receipts.
 
+Slice 008B makes the doorway explicit:
+
+- `stories/cli/ndd-cli.story.v1.json` authorizes the CLI as part of the narrative fabric.
+- `specs/canonical/cli/ndd-cli.canonical-spec.v1.json` declares the CLI behavior authority.
+- `contracts/sej/ndd-cli.execute.sej.v1.json` and `contracts/sej/ndd-cli.self-sketch.sej.v1.json` define executable command truth.
+- `contracts/projections/ndd-cli.*-projection-manifest.v1.json` classify the generated doorway surfaces.
+- `examples/visual-projection-models/ndd-cli-self.visual-model.v1.json` drives the self-sketch.
+- `conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/` holds the ledgered self-binding run envelope.
+
 Operating rule:
 
 - The CLI is the orchestration entrypoint.

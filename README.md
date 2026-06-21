@@ -1,6 +1,6 @@
 # Defracto: Narrative Execution Fabric
 
-Defracto is a truth-escalation system for turning preserved narrative into governed story, canonical specification, projections, lineage evidence, and reports.
+Defracto is a truth-escalation system for turning preserved narrative into governed story, canonical specification, projections, lineage evidence, release material, and reports.
 
 The repository is now shaped as a delivery conveyor:
 
@@ -31,6 +31,7 @@ Evidence is memory.
 - `conveyor/cli/` declares the CLI orchestration contract and command map.
 - `conveyor/trust/` declares the surface-signature language that proves a lane passed through the trust fabric.
 - `conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/` shows the explicit CLI-to-Gemini Flash handoff stack for the conveyor proof slice.
+- `conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/` shows the CLI self-binding envelope, including the projected self-sketch and ledgered receipts.
 - `stories/` preserves the story packets that authorize transformations.
 - `specs/` preserves canonical specs for source, tool, and projection authority.
 - `contracts/` declares the minimum schema, policy, operation, and SEJ shapes.
@@ -49,6 +50,8 @@ The repo is accepted for architecture.
 
 The existing lineage and visual-proof slices remain valid, but the next structural lock is the handoff spine itself: CLI entrypoint, handoff package, lane dispatch, Gemini Flash worker profile, Gemini Flash response, receipt, run ledger, tie-out review, and release packet.
 
+The CLI is now part of the doctrine, not a hidden bootstrap afterthought. Slice 008B binds the `ndd` doorway back to its story, canonical spec, SEJ, projection manifest, self visual-projection model, and receipt-backed self-sketch.
+
 `generated/tools/validate-lineage.js`, `generated/tools/validate-story-packet.js`, and `generated/tools/render-narrative-graph.js` exist only as resolver-materialized generated doorways.
 No hand-authored executable validator body, SEJ runtime, resolver execution code, UI projection, or automation script exists yet.
 The canonical target sketch validation has passed for `projections/target-sketches/founding-lineage-flow.ascii`; the older doorway file remains a stale artifact until a later cleanup slice classifies or removes it.
@@ -63,6 +66,14 @@ Live CLI entrypoint:
 ```text
 npx ndd handoff run --text "Describe the conveyor as a clean ASCII sketch."
 ```
+
+CLI self-binding proof:
+
+```text
+ndd self sketch
+```
+
+That command materializes the CLI self visual projection model into a receipt-backed ASCII surface under `conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/`.
 
 The CLI fails closed if Gemini Flash is unavailable, the key is missing, or the response does not carry a live trust signature.
 

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "defracto.ndd-cli.node-projection.receipt.v1",
+  "receiptKey": "defracto.ndd-cli.node-projection.receipt.v1",
+  "status": "pending",
+  "projectionTarget": "generated/cli/node/ndd.cjs",
+  "projectionKind": "thin_generated_facade",
+  "verificationStatus": "pending_projection_receipt",
+  "reason": "The CLI facade remains a bootstrap mechanism until a resolver-backed projection receipt is materialized.",
+  "sourceTruth": "declared_json_contract"
+}

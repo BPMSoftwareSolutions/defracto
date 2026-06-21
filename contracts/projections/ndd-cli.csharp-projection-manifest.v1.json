@@ -1,0 +1,8 @@
+{
+  "manifestKey": "defracto.ndd-cli.csharp-projection-manifest.v1",
+  "title": "NDD CLI C# Projection Manifest",
+  "sourceTruth": "declared_json_contract",
+  "projectionTarget": "generated/cli/csharp/NddCli.cs",
+  "projectionKind": "thin_generated_facade",
+  "status": "pending_projection"
+}

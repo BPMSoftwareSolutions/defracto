@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.materialize-ndd-cli-node.v1",
+  "contractKind": "semantic-executable-json",
+  "toolKey": "defracto.cli.ndd",
+  "boundedInputs": [
+    "nddCliNodeProjectionManifest"
+  ],
+  "boundedOutputs": [
+    "generatedNodeFacade"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "purpose": "Resolve the Node projection manifest.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "purpose": "Write the generated Node facade.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "purpose": "Compute the facade hash.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "Emit the projection receipt.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "failurePosture": "fail-closed"
+}

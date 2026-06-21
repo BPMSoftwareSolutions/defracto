@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "defracto.live-run-ledger.v1",
+  "ledgerKey": "defracto.live.slice-008-handoff-conveyor-cli-proof.ledger.v1",
+  "runKey": "defracto.run.slice-008-handoff-conveyor-cli-proof.live.v1",
+  "sliceKey": "slice-008-handoff-conveyor-cli-proof",
+  "laneKey": "live",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "status": "passed",
+  "verificationStatus": "locally_verified",
+  "externalTrustServiceStatus": "not_integrated",
+  "liveEnvelopePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/",
+  "fileHashes": {
+    "input": "sha256:c616a3885d41324dfdcd63dc29c4f83a1932c01a4ca37a48223ee7437bdf0d9d",
+    "dispatch": "sha256:0803c30012ec0cc3bacebb6cbbf1813ddfc3a675ad012a61cbee58c87e4d7087",
+    "response": "sha256:9265371035791cf6aa47dcec9c8c2bd8b54721552ad77da16ce8307724e2d69a",
+    "sketch": "sha256:7755c496acfb39b7342f4e782483b642264d5e717f868a56e45e8921a701c216",
+    "workerAttestation": "sha256:fd21b5090872187ccd00320714ea22f4f31cdfc6badc33b845002b997b7e0496",
+    "runnerSignature": "sha256:f44b42b7a3e69ffeb5e6a2923863444a4c29a365d3d026fd6714b7870f757a8c",
+    "receipt": "sha256:440fe4ed3c7acc6cb36d4197f7632ad3e472b80c6b6ce328ff13cf49e7aec95f"
+  },
+  "artifacts": {
+    "input": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/input.txt",
+    "dispatch": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/dispatch.gemini-flash.v1.json",
+    "response": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/response.gemini-flash.v1.json",
+    "sketch": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/sketch.ascii",
+    "workerAttestation": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/worker-attestation.model-produced.v1.json",
+    "runnerSignature": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/surface-signature.runner-verified.v1.json",
+    "receipt": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/receipt.v1.json"
+  },
+  "trustPosture": {
+    "workerAttestationMode": "model_produced_live_worker_attestation",
+    "workerVerificationStatus": "unverified_by_external_trust_service",
+    "runnerAttestationMode": "cli_runner_verified_materialization",
+    "runnerVerificationStatus": "locally_verified",
+    "runnerExternalTrustServiceStatus": "not_integrated"
+  },
+  "checks": [
+    "Gemini call succeeded",
+    "structured response validated",
+    "asciiSketch present",
+    "sketch file hash verified from disk",
+    "response written",
+    "receipt written"
+  ]
+}

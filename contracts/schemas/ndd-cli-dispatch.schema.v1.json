@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "defracto.ndd-cli-dispatch.v1",
+  "title": "NDD CLI Dispatch",
+  "requiredFields": [
+    "schemaVersion",
+    "dispatchKey",
+    "runKey",
+    "laneKey",
+    "workerKey",
+    "inputTextHash",
+    "responseContract"
+  ]
+}

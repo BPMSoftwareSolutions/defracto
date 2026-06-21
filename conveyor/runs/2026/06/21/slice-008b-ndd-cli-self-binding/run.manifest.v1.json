@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-008b-ndd-cli-self-binding.v1",
+  "runKind": "conveyor-run",
+  "sliceKey": "slice-008b-ndd-cli-self-binding",
+  "operatorRole": "platform agent",
+  "objective": "Bind the NDD CLI to the same conveyor it orchestrates.",
+  "laneOrder": [
+    "self-sketch"
+  ],
+  "inputs": [
+    "examples/visual-projection-models/ndd-cli-self.visual-model.v1.json",
+    "stories/cli/ndd-cli.story.v1.json",
+    "specs/canonical/cli/ndd-cli.canonical-spec.v1.json",
+    "contracts/sej/ndd-cli.self-sketch.sej.v1.json",
+    "contracts/projections/ndd-cli.node-projection-manifest.v1.json"
+  ],
+  "requiredReceipts": [
+    "evidence/cli/ndd-cli.self-sketch.receipt.v1.json",
+    "evidence/cli/ndd-cli.node-projection.receipt.v1.json"
+  ],
+  "finalArtifacts": [
+    "conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/sketches/ndd-cli-self.ascii",
+    "conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/final/run-summary.md",
+    "conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/final/commit-message.txt",
+    "conveyor/runs/2026/06/21/slice-008b-ndd-cli-self-binding/final/release-packet.v1.json"
+  ],
+  "blockedIfMissing": [
+    "visual projection model",
+    "self sketch receipt",
+    "node projection receipt"
+  ],
+  "releaseBlockedUntilAllReceiptsExist": true
+}

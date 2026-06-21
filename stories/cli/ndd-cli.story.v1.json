@@ -1,0 +1,24 @@
+{
+  "storyKey": "ndd-cli.story.v1",
+  "title": "NDD CLI Self-Binding Conveyor",
+  "sourceTruth": "declared_json_contract",
+  "narrativeSourcePath": "projections/founding-conversation/cli/self-binding-conveyor.md",
+  "purpose": "Bind the NDD CLI to the same conveyor it orchestrates so the doorway is projected, not hand-stitched.",
+  "summary": "The CLI is a first-class Defracto surface that must be governed by story, canonical spec, SEJ, projection manifest, receipts, and visual evidence.",
+  "operatorStory": "As the Defracto operator, I want one command that submits narrative intent into the conveyor and can also sketch itself from its own declared visual model, so that every generated artifact is produced through declared truth and local verification.",
+  "acceptanceCriteria": [
+    "The CLI is treated as Defracto source-bound behavior rather than bootstrap trivia.",
+    "The CLI can fail closed when Gemini Flash is unavailable.",
+    "The CLI can write runner-verified live envelopes with hashes from files on disk.",
+    "The CLI can render a self sketch from its declared visualProjectionModel.",
+    "The CLI cannot silently fall back to mock or dry-run behavior."
+  ],
+  "completionPosture": "This story authorizes the CLI to become a governed doorway, not the brain.",
+  "linkedArtifacts": [
+    "specs/canonical/cli/ndd-cli.canonical-spec.v1.json",
+    "contracts/sej/ndd-cli.execute.sej.v1.json",
+    "contracts/sej/ndd-cli.self-sketch.sej.v1.json",
+    "contracts/projections/ndd-cli.node-projection-manifest.v1.json",
+    "examples/visual-projection-models/ndd-cli-self.visual-model.v1.json"
+  ]
+}

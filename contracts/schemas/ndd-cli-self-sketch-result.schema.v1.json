@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "defracto.ndd-cli-self-sketch-result.v1",
+  "title": "NDD CLI Self Sketch Result",
+  "requiredFields": [
+    "schemaVersion",
+    "status",
+    "visualProjectionModelPath",
+    "sketchPath",
+    "sketchHash",
+    "receiptPath"
+  ],
+  "statusValues": [
+    "passed",
+    "blocked"
+  ]
+}

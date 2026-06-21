@@ -1,0 +1,8 @@
+{
+  "manifestKey": "defracto.ndd-cli.python-projection-manifest.v1",
+  "title": "NDD CLI Python Projection Manifest",
+  "sourceTruth": "declared_json_contract",
+  "projectionTarget": "generated/cli/python/ndd.py",
+  "projectionKind": "thin_generated_facade",
+  "status": "pending_projection"
+}

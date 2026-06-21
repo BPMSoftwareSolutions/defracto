@@ -4,10 +4,10 @@
   "description": "Defracto is a truth-escalation system for turning preserved narrative into governed story, canonical specification, projections, lineage evidence, release material, and reports.",
   "main": "index.js",
   "bin": {
-    "ndd": "bin/ndd.cjs"
+    "ndd": "generated/cli/node/ndd.cjs"
   },
   "scripts": {
-    "ndd": "node bin/ndd.cjs",
+    "ndd": "node generated/cli/node/ndd.cjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

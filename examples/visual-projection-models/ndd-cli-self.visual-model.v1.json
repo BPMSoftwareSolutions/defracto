@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "defracto.visual-projection-model.v1",
+  "modelKey": "defracto.visual-projection-model.ndd-cli-self.v1",
+  "title": "NDD CLI Self Visual Projection Model",
+  "purpose": "Declare how the CLI sketches itself as a governed doorway in the conveyor.",
+  "nodes": [
+    { "nodeKey": "operator-intent", "label": "Operator Intent" },
+    { "nodeKey": "cli-doorway", "label": "NDD CLI Doorway" },
+    { "nodeKey": "sej-contract", "label": "SEJ Contract" },
+    { "nodeKey": "resolver-runtime", "label": "Resolver Runtime" },
+    { "nodeKey": "gemini-worker", "label": "Gemini Flash Worker" },
+    { "nodeKey": "receipt-writer", "label": "Receipt Writer" },
+    { "nodeKey": "release-gate", "label": "Release Gate" }
+  ],
+  "edges": [
+    { "from": "operator-intent", "to": "cli-doorway" },
+    { "from": "cli-doorway", "to": "sej-contract" },
+    { "from": "sej-contract", "to": "resolver-runtime" },
+    { "from": "resolver-runtime", "to": "gemini-worker" },
+    { "from": "gemini-worker", "to": "receipt-writer" },
+    { "from": "receipt-writer", "to": "release-gate" }
+  ],
+  "rendering": {
+    "type": "vertical-ascii",
+    "orderedNodeKeys": [
+      "operator-intent",
+      "cli-doorway",
+      "sej-contract",
+      "resolver-runtime",
+      "gemini-worker",
+      "receipt-writer",
+      "release-gate"
+    ]
+  }
+}

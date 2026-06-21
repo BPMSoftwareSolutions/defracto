@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.ndd-cli.execute.v1",
+  "contractKind": "semantic-executable-json",
+  "toolKey": "defracto.cli.ndd",
+  "boundedInputs": [
+    "nddCliCommandInput"
+  ],
+  "boundedOutputs": [
+    "nddCliCommandResult"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "purpose": "Resolve CLI command contract.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "purpose": "Resolve command input values.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "execute.stage.v1",
+      "purpose": "Sequence CLI conveyor stages.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "purpose": "Materialize run artifacts.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "purpose": "Compute hashes from materialized files.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "Emit receipts and run ledger evidence.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "failurePosture": "fail-closed"
+}
