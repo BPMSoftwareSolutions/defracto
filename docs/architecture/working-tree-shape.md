@@ -8,6 +8,7 @@ defracto/
 |
 |-- source/
 |   |-- README.md
+|   |-- cli/
 |   |-- visual-intent/
 |   |-- conversations/
 |   |-- voice-notes/
@@ -68,6 +69,8 @@ defracto/
 The active repository shape is now conveyor-first.
 
 Source enters through `source/`, transformation logic lives in `conveyor/`, and published or derived surfaces leave through `projections/`, `generated/`, `evidence/`, `conveyor/runs/2026/06/21/reports/`, and `releases/`.
+
+The CLI source narrative now lives under `source/cli/` so the doorway has an explicit narrative origin before it becomes story, spec, SEJ, and projection.
 
 The active conveyor spine is now explicit:
 

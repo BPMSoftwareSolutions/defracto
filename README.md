@@ -25,6 +25,7 @@ Evidence is memory.
 ## Repository Shape
 
 - `source/` holds intake surfaces and preserved narrative entry points.
+- `source/cli/` holds the source narrative for the NDD CLI doorway.
 - `conveyor/` defines the lanes, gates, pipelines, and run envelopes.
 - `conveyor/workers/` declares the bounded Gemini Flash worker profiles and response contracts.
 - `conveyor/handoff/` declares the handoff package, dispatch, and response schemas.
@@ -51,6 +52,7 @@ The repo is accepted for architecture.
 The existing lineage and visual-proof slices remain valid, but the next structural lock is the handoff spine itself: CLI entrypoint, handoff package, lane dispatch, Gemini Flash worker profile, Gemini Flash response, receipt, run ledger, tie-out review, and release packet.
 
 The CLI is now part of the doctrine, not a hidden bootstrap afterthought. Slice 008B binds the `ndd` doorway back to its story, canonical spec, SEJ, projection manifest, self visual-projection model, and receipt-backed self-sketch.
+The CLI lineage now also starts in `source/cli/ndd-cli.source-narrative.md`, so the doorway is traceable from source narrative through story and projection.
 
 `generated/tools/validate-lineage.js`, `generated/tools/validate-story-packet.js`, and `generated/tools/render-narrative-graph.js` exist only as resolver-materialized generated doorways.
 No hand-authored executable validator body, SEJ runtime, resolver execution code, UI projection, or automation script exists yet.
