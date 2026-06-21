@@ -23,5 +23,20 @@
     "release cannot pass until all lane signatures exist",
     "this slice is a runtime-explicitness proof, not a live delivery run"
   ],
+  "surfaceSignature": {
+    "signatureKey": "defracto.surface-signature.slice-008.release-packet.v1",
+    "signedBy": "defracto.workers.gemini_flash.v1",
+    "signedAt": null,
+    "attestationMode": "live_gemini_flash_required",
+    "trustFabricStatus": "missing",
+    "surfaceArtifactPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/release-packet.v1.json",
+    "surfaceArtifactHash": null,
+    "sourceArtifactPaths": [
+      "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-ledger.v1.json"
+    ],
+    "sourceArtifactHashes": [],
+    "signatureHash": null,
+    "reason": "No live Gemini Flash execution was performed."
+  },
   "promotionTarget": "conveyor/runs/2026/06/21/reports/slice-008-handoff-conveyor-cli-proof.latest.md"
 }

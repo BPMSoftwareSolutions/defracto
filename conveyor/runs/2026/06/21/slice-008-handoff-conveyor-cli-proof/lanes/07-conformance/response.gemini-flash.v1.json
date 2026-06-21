@@ -24,5 +24,20 @@
   "receipt": {
     "path": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/receipt.v1.json"
   },
+  "surfaceSignature": {
+    "signatureKey": "defracto.surface-signature.slice-008.07-conformance.response.v1",
+    "signedBy": "defracto.workers.gemini_flash.v1",
+    "signedAt": null,
+    "attestationMode": "live_gemini_flash_required",
+    "trustFabricStatus": "missing",
+    "surfaceArtifactPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/response.gemini-flash.v1.json",
+    "surfaceArtifactHash": null,
+    "sourceArtifactPaths": [
+      "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/07-conformance/dispatch.gemini-flash.v1.json"
+    ],
+    "sourceArtifactHashes": [],
+    "signatureHash": null,
+    "reason": "No live Gemini Flash execution was performed."
+  },
   "responseReceived": false
 }

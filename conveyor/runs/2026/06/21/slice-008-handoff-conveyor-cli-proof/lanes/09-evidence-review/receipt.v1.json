@@ -9,6 +9,22 @@
   "outputArtifact": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/response.gemini-flash.v1.json",
   "nextHandoffArtifact": null,
   "ledgerEntryArtifact": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/final/run-ledger.v1.json",
+  "surfaceSignature": {
+    "signatureKey": "defracto.surface-signature.slice-008.09-evidence-review.receipt.v1",
+    "signedBy": "defracto.workers.gemini_flash.v1",
+    "signedAt": null,
+    "attestationMode": "live_gemini_flash_required",
+    "trustFabricStatus": "missing",
+    "surfaceArtifactPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/receipt.v1.json",
+    "surfaceArtifactHash": null,
+    "sourceArtifactPaths": [
+      "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/dispatch.gemini-flash.v1.json",
+      "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/lanes/09-evidence-review/response.gemini-flash.v1.json"
+    ],
+    "sourceArtifactHashes": [],
+    "signatureHash": null,
+    "reason": "No live Gemini Flash execution was performed."
+  },
   "priorReceiptStatus": "blocked",
   "blockedReasons": [
     "no live Gemini Flash execution was performed",
