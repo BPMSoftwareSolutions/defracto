@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.visual-node.v1",
+  "title": "Visual Node",
+  "type": "object",
+  "required": [
+    "nodeKey",
+    "nodeKind",
+    "label",
+    "artifactPath",
+    "semanticRole",
+    "row",
+    "column",
+    "width",
+    "height"
+  ],
+  "properties": {
+    "nodeKey": {
+      "type": "string"
+    },
+    "nodeKind": {
+      "type": "string",
+      "const": "visual-node"
+    },
+    "label": {
+      "type": "string"
+    },
+    "artifactPath": {
+      "type": "string"
+    },
+    "semanticRole": {
+      "type": "string"
+    },
+    "row": {
+      "type": "integer"
+    },
+    "column": {
+      "type": "integer"
+    },
+    "width": {
+      "type": "integer"
+    },
+    "height": {
+      "type": "integer"
+    },
+    "lineContent": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

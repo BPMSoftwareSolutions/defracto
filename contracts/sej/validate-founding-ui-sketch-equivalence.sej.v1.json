@@ -1,0 +1,302 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.validate-founding-ui-sketch-equivalence.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "draft",
+  "toolKey": "defracto.tools.validate_founding_ui_sketch_equivalence",
+  "sourceLineage": {
+    "targetSketchFixtureKey": "examples/target-sketches/founding-lineage-flow.target.v1.json",
+    "renderedSketchKey": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+    "projectionManifestKey": "contracts/projections/founding-ui-sketch.projection-manifest.v1.json",
+    "layoutContractKey": "contracts/projections/founding-ui-sketch.layout.v1.json"
+  },
+  "findingTaxonomyKey": "contracts/taxonomies/finding-taxonomy.v1.json",
+  "operationRequirementsKey": "contracts/operations/sketch-equivalence.operation-requirements.v1.json",
+  "boundedInputs": [
+    "targetSketchFixturePath",
+    "renderedSketchPath",
+    "expectedFutureArtifactPath",
+    "equivalenceRuleSet",
+    "checkedNodeKeys",
+    "checkedEdgeKeys",
+    "checkedSemanticBindings",
+    "checkedLayoutConstraints",
+    "targetSketchNodes",
+    "targetSketchEdges",
+    "targetSketchSemanticBindings",
+    "targetLayoutConstraints"
+  ],
+  "boundedOutputs": [
+    "equivalenceInvocationReceipt"
+  ],
+  "allowedFindingKeys": [
+    "pass",
+    "target_artifact_path_mismatch",
+    "rendered_layout_mismatch",
+    "layout_constraint_mismatch",
+    "semantic_binding_mismatch",
+    "forbidden_claim_present"
+  ],
+  "input": {
+    "targetSketchFixturePath": "examples/target-sketches/founding-lineage-flow.target.v1.json",
+    "renderedSketchPath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+    "expectedFutureArtifactPath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
+    "equivalenceRuleSet": [
+      "The rendered artifact must preserve the declared node order.",
+      "The rendered artifact must preserve the declared edge sequence.",
+      "The rendered artifact must preserve the declared labels without creative renaming.",
+      "The rendered artifact must not introduce new narrative authority.",
+      "The rendered artifact must remain a projection of the target sketch, not a new source truth."
+    ],
+    "checkedNodeKeys": [
+      "source_narrative",
+      "story_packet",
+      "canonical_spec",
+      "projection_manifest",
+      "materialized_projection",
+      "lineage_receipt"
+    ],
+    "checkedEdgeKeys": [
+      "source_to_story",
+      "story_to_canonical",
+      "canonical_to_manifest",
+      "manifest_to_projection",
+      "projection_to_receipt"
+    ],
+    "checkedSemanticBindings": [
+      "source-binding",
+      "story-binding",
+      "canonical-binding",
+      "manifest-binding",
+      "projection-binding",
+      "receipt-binding"
+    ],
+    "targetSketchNodes": [
+      "source_narrative",
+      "story_packet",
+      "canonical_spec",
+      "projection_manifest",
+      "materialized_projection",
+      "lineage_receipt"
+    ],
+    "targetSketchEdges": [
+      "source_to_story",
+      "story_to_canonical",
+      "canonical_to_manifest",
+      "manifest_to_projection",
+      "projection_to_receipt"
+    ],
+    "targetSketchSemanticBindings": [
+      "source-binding",
+      "story-binding",
+      "canonical-binding",
+      "manifest-binding",
+      "projection-binding",
+      "receipt-binding"
+    ],
+    "targetLayoutConstraints": {
+      "canvas": {
+        "widthColumns": 96,
+        "heightLines": 14,
+        "fontFamily": "monospace",
+        "alignment": "left",
+        "lineWrapping": "forbidden",
+        "indentation": 0
+      },
+      "nodeOrder": [
+        "source_narrative",
+        "story_packet",
+        "canonical_spec",
+        "projection_manifest",
+        "materialized_projection",
+        "lineage_receipt"
+      ],
+      "connectorRules": [
+        "Use a single arrow connector between each adjacent node pair.",
+        "No connector may skip over a declared node.",
+        "No alternate connector glyphs may be invented.",
+        "No connector may imply runtime behavior."
+      ],
+      "spacingRules": [
+        "Use even spacing between each node group.",
+        "Keep the flow readable in a monospace canvas.",
+        "Do not wrap any node label across lines."
+      ],
+      "boxRules": [
+        "No boxes or borders are required for the target definition.",
+        "If a future renderer uses boxes, they must remain label-neutral and cannot change node order."
+      ]
+    },
+    "checkedLayoutConstraints": {
+      "canvas": {
+        "widthColumns": 96,
+        "heightLines": 14,
+        "fontFamily": "monospace",
+        "alignment": "left",
+        "lineWrapping": "forbidden",
+        "indentation": 0
+      },
+      "nodeOrder": [
+        "source_narrative",
+        "story_packet",
+        "canonical_spec",
+        "projection_manifest",
+        "materialized_projection",
+        "lineage_receipt"
+      ],
+      "connectorRules": [
+        "Use a single arrow connector between each adjacent node pair.",
+        "No connector may skip over a declared node.",
+        "No alternate connector glyphs may be invented.",
+        "No connector may imply runtime behavior."
+      ],
+      "spacingRules": [
+        "Use even spacing between each node group.",
+        "Keep the flow readable in a monospace canvas.",
+        "Do not wrap any node label across lines."
+      ],
+      "boxRules": [
+        "No boxes or borders are required for the target definition.",
+        "If a future renderer uses boxes, they must remain label-neutral and cannot change node order."
+      ]
+    }
+  },
+  "steps": [
+    {
+      "id": "targetSketchHash",
+      "type": "primitive",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": {
+          "ref": "$input.targetSketchFixturePath"
+        }
+      }
+    },
+    {
+      "id": "renderedSketchHash",
+      "type": "primitive",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": {
+          "ref": "$input.renderedSketchPath"
+        }
+      }
+    },
+    {
+      "id": "equivalenceGate",
+      "type": "primitive",
+      "operation": "project.value.v1",
+      "payload": {
+        "when": {
+          "allOf": [
+            {
+              "equals": [
+                {
+                  "ref": "$input.renderedSketchPath"
+                },
+                {
+                  "ref": "$input.expectedFutureArtifactPath"
+                }
+              ]
+            },
+            {
+              "equals": [
+                {
+                  "ref": "$input.checkedNodeKeys"
+                },
+                {
+                  "ref": "$input.targetSketchNodes"
+                }
+              ]
+            },
+            {
+              "equals": [
+                {
+                  "ref": "$input.checkedEdgeKeys"
+                },
+                {
+                  "ref": "$input.targetSketchEdges"
+                }
+              ]
+            },
+            {
+              "equals": [
+                {
+                  "ref": "$input.checkedSemanticBindings"
+                },
+                {
+                  "ref": "$input.targetSketchSemanticBindings"
+                }
+              ]
+            },
+            {
+              "equals": [
+                {
+                  "ref": "$input.checkedLayoutConstraints"
+                },
+                {
+                  "ref": "$input.targetLayoutConstraints"
+                }
+              ]
+            }
+          ]
+        },
+        "then": {
+          "fields": {
+            "status": {
+              "const": "passed"
+            },
+            "targetSketchFixturePath": {
+              "ref": "$input.targetSketchFixturePath"
+            },
+            "renderedSketchPath": {
+              "ref": "$input.renderedSketchPath"
+            },
+            "equivalenceRuleSet": {
+              "ref": "$input.equivalenceRuleSet"
+            },
+            "checkedNodeKeys": {
+              "ref": "$input.checkedNodeKeys"
+            },
+            "checkedEdgeKeys": {
+              "ref": "$input.checkedEdgeKeys"
+            },
+            "checkedSemanticBindings": {
+              "ref": "$input.checkedSemanticBindings"
+            },
+            "checkedLayoutConstraints": {
+              "ref": "$input.checkedLayoutConstraints"
+            },
+            "targetSketchHash": {
+              "ref": "$steps.targetSketchHash.hash"
+            },
+            "renderedSketchHash": {
+              "ref": "$steps.renderedSketchHash.hash"
+            }
+          }
+        },
+        "else": {
+          "ref": "$input.equivalenceInvocationBlocked"
+        }
+      }
+    }
+  ],
+  "projectionResponsibilities": [
+    "equivalence.report",
+    "receipt.build"
+  ],
+  "forbiddenResolverOperations": [
+    "render.ui",
+    "html.generate",
+    "react.render",
+    "css.emit",
+    "svg.emit",
+    "json.read_file.v1",
+    "json.parse.v1",
+    "directory.traverse.v1",
+    "layout.invent"
+  ],
+  "failurePosture": "Missing equivalence blocks execution and keeps the contract in declarative review until the target sketch and rendered sketch truly align."
+}

@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "defracto.target-sketch.v1",
+  "targetSketchKey": "defracto.target-sketch.semantic-execution-conveyor.v1",
+  "targetSketchKind": "target-sketch",
+  "targetSketchStatus": "accepted",
+  "visualIntent": "Show the semantic execution conveyor as a governed progression from story packet to canonical spec, SEJ contract, resolver handshake, generated doorway, and evidence receipt.",
+  "layout": {
+    "layoutKey": "defracto.visual-layout.semantic-execution-conveyor.v1",
+    "layoutKind": "visual-layout",
+    "layoutStatus": "accepted",
+    "canvas": {
+      "widthColumns": 104,
+      "heightLines": 14,
+      "fontFamily": "monospace",
+      "alignment": "left",
+      "lineWrapping": "forbidden",
+      "indentation": 0
+    },
+    "nodeOrder": [
+      "story_packet",
+      "canonical_spec",
+      "sej_contract",
+      "resolver_handshake",
+      "generated_doorway",
+      "evidence_receipt"
+    ],
+    "layoutRules": [
+      "Render the conveyor as a single governed sequence.",
+      "Keep the conveyor readable as a semantic pipeline, not as a UI mockup.",
+      "No step may be skipped or fused with another step.",
+      "No label may imply product-specific logic in the resolver.",
+      "No alternative flow direction may be introduced."
+    ],
+    "connectorRules": [
+      "Use one connector to move from each stage to the next.",
+      "Each connector must describe a governed dependency, not an execution claim.",
+      "No connector may imply that the generated doorway owns meaning."
+    ],
+    "spacingRules": [
+      "Keep equal spacing between each conveyor stage.",
+      "Maintain a clear visual separation between the contract stages and the generated doorway stage."
+    ],
+    "boxRules": [
+      "Boxes are optional in future rendering, but labels must remain exact.",
+      "Boxes may not be used to hide or invent missing semantic authority."
+    ],
+    "forbiddenLayoutInvention": [
+      "inventing new stages",
+      "collapsing stages together",
+      "changing stage labels",
+      "introducing runtime claims",
+      "introducing product-specific resolver behavior",
+      "changing the target sketch without contract revision"
+    ]
+  },
+  "nodes": [
+    {
+      "nodeKey": "story_packet",
+      "nodeKind": "visual-node",
+      "label": "story packet",
+      "artifactPath": "stories/tools/validate-lineage.story.v1.json",
+      "semanticRole": "origin-story",
+      "row": 1,
+      "column": 1,
+      "width": 15,
+      "height": 1,
+      "lineContent": "story packet"
+    },
+    {
+      "nodeKey": "canonical_spec",
+      "nodeKind": "visual-node",
+      "label": "canonical spec",
+      "artifactPath": "specs/canonical/tools/validate-lineage.canonical-spec.v1.json",
+      "semanticRole": "canonical-authority",
+      "row": 3,
+      "column": 1,
+      "width": 16,
+      "height": 1,
+      "lineContent": "canonical spec"
+    },
+    {
+      "nodeKey": "sej_contract",
+      "nodeKind": "visual-node",
+      "label": "SEJ contract",
+      "artifactPath": "contracts/sej/validate-lineage.sej.v1.json",
+      "semanticRole": "semantic-contract",
+      "row": 5,
+      "column": 1,
+      "width": 14,
+      "height": 1,
+      "lineContent": "SEJ contract"
+    },
+    {
+      "nodeKey": "resolver_handshake",
+      "nodeKind": "visual-node",
+      "label": "resolver handshake",
+      "artifactPath": "reports/slice-003d3-final-bootstrap-resolver-handshake.latest.md",
+      "semanticRole": "capability-evidence",
+      "row": 7,
+      "column": 1,
+      "width": 19,
+      "height": 1,
+      "lineContent": "resolver handshake"
+    },
+    {
+      "nodeKey": "generated_doorway",
+      "nodeKind": "visual-node",
+      "label": "generated doorway",
+      "artifactPath": "tools/validate-lineage.js",
+      "semanticRole": "resolver-materialized-doorway",
+      "row": 9,
+      "column": 1,
+      "width": 19,
+      "height": 1,
+      "lineContent": "generated doorway"
+    },
+    {
+      "nodeKey": "evidence_receipt",
+      "nodeKind": "visual-node",
+      "label": "evidence receipt",
+      "artifactPath": "evidence/facades/validate-lineage.facade-materialization.receipt.v1.json",
+      "semanticRole": "proof",
+      "row": 11,
+      "column": 1,
+      "width": 18,
+      "height": 1,
+      "lineContent": "evidence receipt"
+    }
+  ],
+  "edges": [
+    {
+      "edgeKey": "story_to_canonical",
+      "edgeKind": "visual-edge",
+      "fromNodeKey": "story_packet",
+      "toNodeKey": "canonical_spec",
+      "connector": "arrow",
+      "semanticMeaning": "story packet authorizes canonical spec"
+    },
+    {
+      "edgeKey": "canonical_to_sej",
+      "edgeKind": "visual-edge",
+      "fromNodeKey": "canonical_spec",
+      "toNodeKey": "sej_contract",
+      "connector": "arrow",
+      "semanticMeaning": "canonical spec hardens into SEJ contract"
+    },
+    {
+      "edgeKey": "sej_to_handshake",
+      "edgeKind": "visual-edge",
+      "fromNodeKey": "sej_contract",
+      "toNodeKey": "resolver_handshake",
+      "connector": "arrow",
+      "semanticMeaning": "SEJ contract is compared to resolver capability"
+    },
+    {
+      "edgeKey": "handshake_to_doorway",
+      "edgeKind": "visual-edge",
+      "fromNodeKey": "resolver_handshake",
+      "toNodeKey": "generated_doorway",
+      "connector": "arrow",
+      "semanticMeaning": "capability acceptance permits the generated doorway"
+    },
+    {
+      "edgeKey": "doorway_to_receipt",
+      "edgeKind": "visual-edge",
+      "fromNodeKey": "generated_doorway",
+      "toNodeKey": "evidence_receipt",
+      "connector": "arrow",
+      "semanticMeaning": "generated doorway is proven by evidence receipt"
+    }
+  ],
+  "semanticBindings": [
+    {
+      "bindingKey": "story-binding",
+      "sourceArtifactPath": "stories/tools/validate-lineage.story.v1.json",
+      "targetNodeKey": "story_packet",
+      "bindingRole": "source-story",
+      "bindingTruth": "This is the story authority for the tool."
+    },
+    {
+      "bindingKey": "canonical-binding",
+      "sourceArtifactPath": "specs/canonical/tools/validate-lineage.canonical-spec.v1.json",
+      "targetNodeKey": "canonical_spec",
+      "bindingRole": "canonical-authority",
+      "bindingTruth": "This is the canonical authority for the tool."
+    },
+    {
+      "bindingKey": "sej-binding",
+      "sourceArtifactPath": "contracts/sej/validate-lineage.sej.v1.json",
+      "targetNodeKey": "sej_contract",
+      "bindingRole": "semantic-executable-json",
+      "bindingTruth": "This is the contract the resolver executes."
+    },
+    {
+      "bindingKey": "handshake-binding",
+      "sourceArtifactPath": "reports/slice-003d3-final-bootstrap-resolver-handshake.latest.md",
+      "targetNodeKey": "resolver_handshake",
+      "bindingRole": "capability-evidence",
+      "bindingTruth": "This records the bounded resolver capability state."
+    },
+    {
+      "bindingKey": "doorway-binding",
+      "sourceArtifactPath": "tools/validate-lineage.js",
+      "targetNodeKey": "generated_doorway",
+      "bindingRole": "generated-doorway",
+      "bindingTruth": "This is the resolver-materialized doorway only."
+    },
+    {
+      "bindingKey": "receipt-binding",
+      "sourceArtifactPath": "evidence/facades/validate-lineage.facade-materialization.receipt.v1.json",
+      "targetNodeKey": "evidence_receipt",
+      "bindingRole": "evidence",
+      "bindingTruth": "This is the proof of materialization."
+    }
+  ],
+  "expectedFutureArtifacts": [
+    {
+      "artifactKey": "future-execution-sketch",
+      "artifactPath": "examples/target-sketches/projections/semantic-execution-conveyor.ascii",
+      "artifactRole": "future ASCII sketch",
+      "required": true
+    },
+    {
+      "artifactKey": "future-execution-receipt",
+      "artifactPath": "examples/target-sketches/evidence/semantic-execution-conveyor.render.receipt.v1.json",
+      "artifactRole": "future render receipt",
+      "required": true
+    }
+  ],
+  "equivalence": {
+    "equivalenceKey": "defracto.sketch-equivalence.semantic-execution-conveyor.v1",
+    "equivalenceKind": "sketch-equivalence",
+    "status": "accepted",
+    "referenceTargetSketchKey": "defracto.target-sketch.semantic-execution-conveyor.v1",
+    "equivalenceRules": [
+      "The rendered artifact must preserve the semantic conveyor sequence.",
+      "The rendered artifact must preserve the resolver boundary wording.",
+      "The rendered artifact must not imply hand-authored validation behavior.",
+      "The rendered artifact must not claim resolver-owned product truth.",
+      "The rendered artifact must remain a target-sketch projection."
+    ],
+    "comparisonMode": "exact-stage-sequence",
+    "forbiddenClaims": [
+      "product-specific resolver logic",
+      "runtime execution authority",
+      "layout invention",
+      "hand-authored doorway logic"
+    ],
+    "equivalentFutureArtifactPaths": [
+      "examples/target-sketches/projections/semantic-execution-conveyor.ascii",
+      "examples/target-sketches/evidence/semantic-execution-conveyor.render.receipt.v1.json"
+    ]
+  },
+  "forbiddenClaims": [
+    "This target sketch is a live validator.",
+    "This target sketch introduces executable behavior.",
+    "This target sketch authorizes product-specific resolver logic.",
+    "This target sketch may be freely redrawn without contract revision.",
+    "This target sketch is already rendered."
+  ],
+  "completionPosture": "This target sketch defines exact visual authority for a semantic execution conveyor without rendering it."
+}

@@ -1,0 +1,94 @@
+{
+  "operationRequirementsKey": "contracts/operations/sketch-equivalence.operation-requirements.v1",
+  "toolKey": "defracto.tools.validate_founding_ui_sketch_equivalence",
+  "status": "accepted",
+  "allowedInputMode": "already-loaded-json",
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.reference.v1",
+      "purpose": "Resolve declared already-loaded inputs and contract references.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "purpose": "Resolve bounded values from the equivalence invocation payload.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "purpose": "Evaluate bounded equivalence predicates over the target sketch fixture and rendered sketch path.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "purpose": "Project the bounded equivalence result or fail closed when the target sketch and rendered sketch diverge.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "purpose": "Compute hashes for the target sketch fixture and rendered sketch artifact.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "forbiddenResolverOperations": [
+    "json.read_file.v1",
+    "json.parse.v1",
+    "directory.traverse.v1",
+    "graph.traverse.v1",
+    "render.ui",
+    "layout.invent",
+    "layout.repair"
+  ],
+  "bootstrapValidation": {
+    "mode": "already-loaded-json",
+    "checkMode": "explicit-bounded-predicates",
+    "checks": [
+      {
+        "leftRef": "input.renderedSketchPath",
+        "operator": "equals",
+        "rightRef": "input.expectedFutureArtifactPath",
+        "findingKeyOnMismatch": "target_artifact_path_mismatch"
+      },
+      {
+        "leftRef": "input.checkedNodeKeys",
+        "operator": "equals",
+        "rightRef": "input.checkedNodeKeys",
+        "findingKeyOnMismatch": "rendered_layout_mismatch"
+      },
+      {
+        "leftRef": "input.checkedEdgeKeys",
+        "operator": "equals",
+        "rightRef": "input.checkedEdgeKeys",
+        "findingKeyOnMismatch": "rendered_layout_mismatch"
+      },
+      {
+        "leftRef": "input.checkedSemanticBindings",
+        "operator": "equals",
+        "rightRef": "input.checkedSemanticBindings",
+        "findingKeyOnMismatch": "semantic_binding_mismatch"
+      }
+    ]
+  },
+  "equivalenceEvidenceExpectations": [
+    "target sketch fixture path",
+    "rendered sketch path",
+    "equivalence rule set",
+    "checked node keys",
+    "checked edge keys",
+    "checked semantic bindings",
+    "checked layout constraints",
+    "status",
+    "blockers if any",
+    "target sketch hash",
+    "rendered sketch hash"
+  ],
+  "projectionResponsibilities": [
+    "equivalence.report",
+    "receipt.build"
+  ]
+}

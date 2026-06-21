@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.ascii-sketch-layout.v1",
+  "title": "ASCII Sketch Layout",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "layoutKey",
+    "layoutKind",
+    "layoutStatus",
+    "targetPath",
+    "sourceLineage",
+    "canvas",
+    "nodeOrder",
+    "nodeLabels",
+    "edgeRelationships",
+    "connectorRules",
+    "renderedLineContent",
+    "completionPosture",
+    "forbiddenLayoutInvention"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string" },
+    "layoutKey": { "type": "string" },
+    "layoutKind": { "type": "string", "const": "ascii-sketch-layout" },
+    "layoutStatus": {
+      "type": "string",
+      "enum": ["draft", "accepted", "blocked", "ready-for-materialization"]
+    },
+    "targetPath": { "type": "string" },
+    "sourceLineage": {
+      "type": "object",
+      "required": [
+        "storyKey",
+        "canonicalSpecKey",
+        "projectionManifestKey",
+        "renderSejKey"
+      ],
+      "properties": {
+        "storyKey": { "type": "string" },
+        "canonicalSpecKey": { "type": "string" },
+        "projectionManifestKey": { "type": "string" },
+        "renderSejKey": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "canvas": {
+      "type": "object",
+      "required": [
+        "widthColumns",
+        "heightLines",
+        "fontFamily",
+        "alignment",
+        "lineWrapping",
+        "indentation"
+      ],
+      "properties": {
+        "widthColumns": { "type": "integer" },
+        "heightLines": { "type": "integer" },
+        "fontFamily": { "type": "string" },
+        "alignment": { "type": "string" },
+        "lineWrapping": { "type": "string" },
+        "indentation": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+    "nodeOrder": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "nodeLabels": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "edgeRelationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "connector"],
+        "properties": {
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "connector": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "connectorRules": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "renderedLineContent": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "completionPosture": { "type": "string" },
+    "forbiddenLayoutInvention": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

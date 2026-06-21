@@ -1,0 +1,234 @@
+{
+  "schemaVersion": "defracto.target-sketch.v1",
+  "targetSketchKey": "defracto.target-sketch.governed-visual-projection.v1",
+  "targetSketchKind": "target-sketch",
+  "targetSketchStatus": "accepted",
+  "visualIntent": "Show the governed visual projection boundary as a chain from projection manifest to layout contract, target sketch, materialized sketch, and render receipt.",
+  "layout": {
+    "layoutKey": "defracto.visual-layout.governed-visual-projection.v1",
+    "layoutKind": "visual-layout",
+    "layoutStatus": "accepted",
+    "canvas": {
+      "widthColumns": 100,
+      "heightLines": 14,
+      "fontFamily": "monospace",
+      "alignment": "left",
+      "lineWrapping": "forbidden",
+      "indentation": 0
+    },
+    "nodeOrder": [
+      "projection_manifest",
+      "layout_contract",
+      "target_sketch",
+      "materialized_sketch",
+      "render_receipt"
+    ],
+    "layoutRules": [
+      "Render the projection authority chain in the declared order.",
+      "Make the difference between target definition and materialized artifact visually obvious.",
+      "Keep the receipt as evidence, not as a second source of truth.",
+      "Do not make the sketch claim more authority than the manifest and layout contract allow.",
+      "Do not introduce a hidden renderer narrative."
+    ],
+    "connectorRules": [
+      "Each connector must show governed dependency, not creative rendering.",
+      "No connector may imply that the materialized sketch is a source of truth.",
+      "No connector may alter the authority chain."
+    ],
+    "spacingRules": [
+      "Separate authority artifacts from output artifacts with clear spacing.",
+      "Keep the target sketch visually centered between its governing contracts and its output evidence."
+    ],
+    "boxRules": [
+      "Boxes may be used only to distinguish authority from output.",
+      "Boxes may not hide missing lineage or change labels."
+    ],
+    "forbiddenLayoutInvention": [
+      "inventing new authority",
+      "switching the order of manifest and layout",
+      "changing the target sketch label",
+      "collapsing evidence into authority",
+      "claiming runtime projection",
+      "changing the target sketch without contract revision"
+    ]
+  },
+  "nodes": [
+    {
+      "nodeKey": "projection_manifest",
+      "nodeKind": "visual-node",
+      "label": "projection manifest",
+      "artifactPath": "contracts/projections/founding-ui-sketch.projection-manifest.v1.json",
+      "semanticRole": "projection-authority",
+      "row": 1,
+      "column": 1,
+      "width": 21,
+      "height": 1,
+      "lineContent": "projection manifest"
+    },
+    {
+      "nodeKey": "layout_contract",
+      "nodeKind": "visual-node",
+      "label": "layout contract",
+      "artifactPath": "contracts/projections/founding-ui-sketch.layout.v1.json",
+      "semanticRole": "layout-authority",
+      "row": 3,
+      "column": 1,
+      "width": 17,
+      "height": 1,
+      "lineContent": "layout contract"
+    },
+    {
+      "nodeKey": "target_sketch",
+      "nodeKind": "visual-node",
+      "label": "target sketch",
+      "artifactPath": "examples/target-sketches/governed-visual-projection.target.v1.json",
+      "semanticRole": "sketch-definition",
+      "row": 5,
+      "column": 1,
+      "width": 15,
+      "height": 1,
+      "lineContent": "target sketch"
+    },
+    {
+      "nodeKey": "materialized_sketch",
+      "nodeKind": "visual-node",
+      "label": "materialized sketch",
+      "artifactPath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+      "semanticRole": "materialized-output",
+      "row": 7,
+      "column": 1,
+      "width": 21,
+      "height": 1,
+      "lineContent": "materialized sketch"
+    },
+    {
+      "nodeKey": "render_receipt",
+      "nodeKind": "visual-node",
+      "label": "render receipt",
+      "artifactPath": "examples/founding-conversation/evidence/founding-ui-sketch.render.receipt.v1.json",
+      "semanticRole": "evidence",
+      "row": 9,
+      "column": 1,
+      "width": 16,
+      "height": 1,
+      "lineContent": "render receipt"
+    }
+  ],
+  "edges": [
+    {
+      "edgeKey": "manifest_to_layout",
+      "edgeKind": "visual-edge",
+      "fromNodeKey": "projection_manifest",
+      "toNodeKey": "layout_contract",
+      "connector": "arrow",
+      "semanticMeaning": "projection manifest authorizes the layout contract"
+    },
+    {
+      "edgeKey": "layout_to_target",
+      "edgeKind": "visual-edge",
+      "fromNodeKey": "layout_contract",
+      "toNodeKey": "target_sketch",
+      "connector": "arrow",
+      "semanticMeaning": "layout contract governs the target sketch"
+    },
+    {
+      "edgeKey": "target_to_materialized",
+      "edgeKind": "visual-edge",
+      "fromNodeKey": "target_sketch",
+      "toNodeKey": "materialized_sketch",
+      "connector": "arrow",
+      "semanticMeaning": "target sketch is realized as the materialized sketch"
+    },
+    {
+      "edgeKey": "materialized_to_receipt",
+      "edgeKind": "visual-edge",
+      "fromNodeKey": "materialized_sketch",
+      "toNodeKey": "render_receipt",
+      "connector": "arrow",
+      "semanticMeaning": "materialized sketch is proven by render receipt"
+    }
+  ],
+  "semanticBindings": [
+    {
+      "bindingKey": "manifest-binding",
+      "sourceArtifactPath": "contracts/projections/founding-ui-sketch.projection-manifest.v1.json",
+      "targetNodeKey": "projection_manifest",
+      "bindingRole": "projection-authority",
+      "bindingTruth": "This node governs the sketch boundary."
+    },
+    {
+      "bindingKey": "layout-binding",
+      "sourceArtifactPath": "contracts/projections/founding-ui-sketch.layout.v1.json",
+      "targetNodeKey": "layout_contract",
+      "bindingRole": "layout-authority",
+      "bindingTruth": "This node governs the exact layout authority."
+    },
+    {
+      "bindingKey": "target-binding",
+      "sourceArtifactPath": "examples/target-sketches/governed-visual-projection.target.v1.json",
+      "targetNodeKey": "target_sketch",
+      "bindingRole": "target-definition",
+      "bindingTruth": "This node defines the target sketch before rendering."
+    },
+    {
+      "bindingKey": "materialized-binding",
+      "sourceArtifactPath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+      "targetNodeKey": "materialized_sketch",
+      "bindingRole": "materialized-output",
+      "bindingTruth": "This node is the governed visual output."
+    },
+    {
+      "bindingKey": "receipt-binding",
+      "sourceArtifactPath": "examples/founding-conversation/evidence/founding-ui-sketch.render.receipt.v1.json",
+      "targetNodeKey": "render_receipt",
+      "bindingRole": "evidence",
+      "bindingTruth": "This node records the proof of materialization."
+    }
+  ],
+  "expectedFutureArtifacts": [
+    {
+      "artifactKey": "future-visual-projection-sketch",
+      "artifactPath": "examples/target-sketches/projections/governed-visual-projection.ascii",
+      "artifactRole": "future ASCII sketch",
+      "required": true
+    },
+    {
+      "artifactKey": "future-visual-projection-receipt",
+      "artifactPath": "examples/target-sketches/evidence/governed-visual-projection.render.receipt.v1.json",
+      "artifactRole": "future render receipt",
+      "required": true
+    }
+  ],
+  "equivalence": {
+    "equivalenceKey": "defracto.sketch-equivalence.governed-visual-projection.v1",
+    "equivalenceKind": "sketch-equivalence",
+    "status": "accepted",
+    "referenceTargetSketchKey": "defracto.target-sketch.governed-visual-projection.v1",
+    "equivalenceRules": [
+      "The rendered artifact must preserve the governance chain.",
+      "The rendered artifact must preserve the difference between target definition and output.",
+      "The rendered artifact must preserve the receipt as evidence only.",
+      "The rendered artifact must not claim renderer-owned product truth.",
+      "The rendered artifact must remain equivalent to the target sketch, not superior to it."
+    ],
+    "comparisonMode": "authority-chain-sequence",
+    "forbiddenClaims": [
+      "renderer-owned truth",
+      "runtime rendering authority",
+      "layout invention",
+      "authority reversal"
+    ],
+    "equivalentFutureArtifactPaths": [
+      "examples/target-sketches/projections/governed-visual-projection.ascii",
+      "examples/target-sketches/evidence/governed-visual-projection.render.receipt.v1.json"
+    ]
+  },
+  "forbiddenClaims": [
+    "This target sketch replaces the governing manifest.",
+    "This target sketch is already materialized.",
+    "This target sketch authorizes HTML, SVG, React, or CSS.",
+    "This target sketch grants runtime projection authority.",
+    "This target sketch may change its own meaning without review."
+  ],
+  "completionPosture": "This target sketch defines exact visual authority for a governed visual projection without rendering it."
+}

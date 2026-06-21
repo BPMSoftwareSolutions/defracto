@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.visual-edge.v1",
+  "title": "Visual Edge",
+  "type": "object",
+  "required": [
+    "edgeKey",
+    "edgeKind",
+    "fromNodeKey",
+    "toNodeKey",
+    "connector",
+    "semanticMeaning"
+  ],
+  "properties": {
+    "edgeKey": {
+      "type": "string"
+    },
+    "edgeKind": {
+      "type": "string",
+      "const": "visual-edge"
+    },
+    "fromNodeKey": {
+      "type": "string"
+    },
+    "toNodeKey": {
+      "type": "string"
+    },
+    "connector": {
+      "type": "string"
+    },
+    "semanticMeaning": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

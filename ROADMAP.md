@@ -44,8 +44,12 @@ Slice 000.1 and Slice 000.2 are required before Slice 001 can be accepted as com
 35. Slice 007B: UI Sketch SEJ Render Contract.
 36. Slice 007C: UI Sketch Resolver Capability Handshake.
 37. Slice 007D: UI Sketch Materialization SEJ.
-38. Slice 007: UI Projection Expansion.
-39. Slice 008: Narrative Coverage Prototype.
+38. Slice 007D.1: UI Sketch Deterministic Layout Contract.
+39. Slice 007D.2: Visual Target Sketch Definition Contract.
+40. Slice 007E: Resolver-Backed UI Sketch Materialization.
+41. Slice 007F: Target Sketch Equivalence Invocation Evidence.
+42. Slice 007: UI Projection Expansion.
+43. Slice 008: Narrative Coverage Prototype.
 
 ## Near-Term Deliverables
 

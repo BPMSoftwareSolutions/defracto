@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.visual-layout.v1",
+  "title": "Visual Layout",
+  "type": "object",
+  "required": [
+    "layoutKey",
+    "layoutKind",
+    "layoutStatus",
+    "canvas",
+    "nodeOrder",
+    "layoutRules",
+    "connectorRules",
+    "spacingRules",
+    "boxRules",
+    "forbiddenLayoutInvention"
+  ],
+  "properties": {
+    "layoutKey": {
+      "type": "string"
+    },
+    "layoutKind": {
+      "type": "string",
+      "const": "visual-layout"
+    },
+    "layoutStatus": {
+      "type": "string",
+      "enum": ["draft", "accepted", "blocked", "ready-for-materialization"]
+    },
+    "canvas": {
+      "type": "object",
+      "required": [
+        "widthColumns",
+        "heightLines",
+        "fontFamily",
+        "alignment",
+        "lineWrapping",
+        "indentation"
+      ],
+      "properties": {
+        "widthColumns": {
+          "type": "integer"
+        },
+        "heightLines": {
+          "type": "integer"
+        },
+        "fontFamily": {
+          "type": "string"
+        },
+        "alignment": {
+          "type": "string"
+        },
+        "lineWrapping": {
+          "type": "string"
+        },
+        "indentation": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "nodeOrder": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "layoutRules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "connectorRules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "spacingRules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "boxRules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenLayoutInvention": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

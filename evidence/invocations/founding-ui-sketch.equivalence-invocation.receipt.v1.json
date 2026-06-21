@@ -1,0 +1,105 @@
+{
+  "receiptKey": "defracto.founding-ui-sketch.equivalence-invocation.receipt.v1",
+  "status": "blocked",
+  "checkedAt": "2026-06-21T08:11:28.3620345-04:00",
+  "invocationKind": "target-sketch-equivalence-invocation",
+  "toolPath": "contracts/sej/validate-founding-ui-sketch-equivalence.sej.v1.json",
+  "sourceSej": "contracts/sej/validate-founding-ui-sketch-equivalence.sej.v1.json",
+  "targetSketchFixturePath": "examples/target-sketches/founding-lineage-flow.target.v1.json",
+  "renderedSketchPath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+  "equivalenceRuleSet": [
+    "The rendered artifact must preserve the declared node order.",
+    "The rendered artifact must preserve the declared edge sequence.",
+    "The rendered artifact must preserve the declared labels without creative renaming.",
+    "The rendered artifact must not introduce new narrative authority.",
+    "The rendered artifact must remain a projection of the target sketch, not a new source truth."
+  ],
+  "checkedNodeKeys": [
+    "source_narrative",
+    "story_packet",
+    "canonical_spec",
+    "projection_manifest",
+    "materialized_projection",
+    "lineage_receipt"
+  ],
+  "checkedEdgeKeys": [
+    "source_to_story",
+    "story_to_canonical",
+    "canonical_to_manifest",
+    "manifest_to_projection",
+    "projection_to_receipt"
+  ],
+  "checkedSemanticBindings": [
+    "source-binding",
+    "story-binding",
+    "canonical-binding",
+    "manifest-binding",
+    "projection-binding",
+    "receipt-binding"
+  ],
+  "checkedLayoutConstraints": {
+    "canvas": {
+      "widthColumns": 96,
+      "heightLines": 14,
+      "fontFamily": "monospace",
+      "alignment": "left",
+      "lineWrapping": "forbidden",
+      "indentation": 0
+    },
+    "nodeOrder": [
+      "source_narrative",
+      "story_packet",
+      "canonical_spec",
+      "projection_manifest",
+      "materialized_projection",
+      "lineage_receipt"
+    ],
+    "connectorRules": [
+      "Use a single arrow connector between each adjacent node pair.",
+      "No connector may skip over a declared node.",
+      "No alternate connector glyphs may be invented.",
+      "No connector may imply runtime behavior."
+    ],
+    "spacingRules": [
+      "Use even spacing between each node group.",
+      "Keep the flow readable in a monospace canvas.",
+      "Do not wrap any node label across lines."
+    ],
+    "boxRules": [
+      "No boxes or borders are required for the target definition.",
+      "If a future renderer uses boxes, they must remain label-neutral and cannot change node order."
+    ]
+  },
+  "targetSketchHash": "be784d53dbf7af232aebc2f343a20bf76352e7bb8ca97594a0f92d7c4acf63a5",
+  "renderedSketchHash": "ce5845f9e567e44ccd2e6691fbe1c2777dbd747602841d309ec0da5330abfa2d",
+  "invocationShape": "already-loaded-json",
+  "exitCode": 1,
+  "stdout": "{\"status\":\"blocked\",\"result\":null,\"evidence\":{\"failClosed\":true,\"code\":\"missing_reference\",\"details\":{\"stepId\":\"equivalenceGate\"}},\"findings\":[{\"severity\":\"blocker\",\"code\":\"missing_reference\",\"message\":\"Reference could not be resolved.\",\"details\":{\"stepId\":\"equivalenceGate\"}}],\"blocker\":\"missing_reference\",\"error\":\"Reference could not be resolved.\"}",
+  "stderr": "",
+  "blocker": "missing_reference",
+  "error": "Reference could not be resolved.",
+  "findings": [
+    {
+      "severity": "blocker",
+      "code": "missing_reference",
+      "message": "Reference could not be resolved.",
+      "details": {
+        "stepId": "equivalenceGate"
+      }
+    }
+  ],
+  "generatedFileAnchors": [
+    {
+      "anchorKey": "targetSketchFixtureChecked",
+      "filePath": "examples/target-sketches/founding-lineage-flow.target.v1.json",
+      "anchorRole": "target sketch fixture under equivalence check",
+      "anchorState": "checked"
+    },
+    {
+      "anchorKey": "renderedSketchChecked",
+      "filePath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+      "anchorRole": "rendered doorway under equivalence check",
+      "anchorState": "checked"
+    }
+  ]
+}

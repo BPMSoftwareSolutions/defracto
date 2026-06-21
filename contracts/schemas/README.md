@@ -11,5 +11,12 @@ Seed schema families:
 - `canonicalSpec`
 - `projectionManifest`
 - `lineageReceipt`
+- `targetSketch`
+- `visualNode`
+- `visualEdge`
+- `visualLayout`
+- `sketchEquivalence`
+- `resolverInvocationReceipt`
+- `resolverEquivalenceReport`
 
 Later slices may add more schemas, but they must not invent fields outside the approved decision and story/spec chain.

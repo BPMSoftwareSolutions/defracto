@@ -41,6 +41,10 @@ Seed reports:
 - `slice-007b-ui-sketch-sej-render-contract-review.latest.md`
 - `slice-007c-ui-sketch-resolver-capability-handshake.latest.md`
 - `slice-007d-ui-sketch-materialization-sej-review.latest.md`
+- `slice-007d1-ui-sketch-deterministic-layout-review.latest.md`
+- `slice-007e-resolver-backed-ui-sketch-materialization.latest.md`
+- `slice-007d2-visual-target-sketch-definition-review.latest.md`
+- `slice-007f-target-sketch-equivalence-invocation-evidence.latest.md`
 - `body-disposition.seed.md`
 
 Report bodies may be manually generated in Slice 001, but their section structure must remain aligned with the approved minimum shape.

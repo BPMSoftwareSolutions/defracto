@@ -29,12 +29,18 @@ defracto/
 |   |   |-- lineage-finding.schema.v1.json
 |   |   |-- projection-manifest.schema.v1.json
 |   |   |-- lineage-receipt.schema.v1.json
+|   |   |-- target-sketch.schema.v1.json
+|   |   |-- visual-node.schema.v1.json
+|   |   |-- visual-edge.schema.v1.json
+|   |   |-- visual-layout.schema.v1.json
+|   |   `-- sketch-equivalence.schema.v1.json
 |   |   `-- sej-contract.schema.v1.json
 |   |-- operations/
 |   |   |-- render-narrative-graph.operation-requirements.v1.json
 |   |   |-- validate-story-packet.operation-requirements.v1.json
 |   |   |-- validate-lineage.operation-requirements.v1.json
-|   |   `-- validate-lineage.resolver-capability-requirements.v1.json
+|   |   |-- validate-lineage.resolver-capability-requirements.v1.json
+|   |   `-- sketch-equivalence.operation-requirements.v1.json
 |   |-- projections/
 |   |   |-- render-narrative-graph.facade-manifest.v1.json
 |   |   `-- validate-story-packet.facade-manifest.v1.json
@@ -45,7 +51,8 @@ defracto/
 |       |-- render-narrative-graph.sej.v1.json
 |       |-- validate-story-packet.sej.v1.json
 |       `-- materialize-validate-lineage-facade.sej.v1.json
-|       `-- validate-lineage.sej.v1.json
+|       |-- validate-lineage.sej.v1.json
+|       `-- validate-founding-ui-sketch-equivalence.sej.v1.json
 |   `-- taxonomies/
 |       |-- body-kind.taxonomy.v1.json
 |       |-- body-disposition.taxonomy.v1.json
@@ -90,15 +97,17 @@ defracto/
 |       |       `-- founding-story.md
 |       `-- evidence/
 |           `-- founding-lineage.receipt.v1.json
-|   `-- tools/
-|       `-- validate-lineage/
-|           `-- README.md
-|
+|   |-- target-sketches/
+|       |-- founding-lineage-flow.target.v1.json
+|       |-- semantic-execution-conveyor.target.v1.json
+|       `-- governed-visual-projection.target.v1.json
 |-- evidence/
-|   `-- facades/
-|       |-- render-narrative-graph.facade-materialization.receipt.v1.json
-|       |-- validate-story-packet.facade-materialization.receipt.v1.json
-|       `-- validate-lineage.facade-materialization.receipt.v1.json
+|   |-- facades/
+|   |   |-- render-narrative-graph.facade-materialization.receipt.v1.json
+|   |   |-- validate-story-packet.facade-materialization.receipt.v1.json
+|   |   `-- validate-lineage.facade-materialization.receipt.v1.json
+|   `-- invocations/
+|       `-- founding-ui-sketch.equivalence-invocation.receipt.v1.json
 |
 |-- tools/
 |   |-- README.md
@@ -148,6 +157,10 @@ defracto/
 |-- slice-007b-ui-sketch-sej-render-contract-review.latest.md
 |-- slice-007c-ui-sketch-resolver-capability-handshake.latest.md
 |-- slice-007d-ui-sketch-materialization-sej-review.latest.md
+|-- slice-007d1-ui-sketch-deterministic-layout-review.latest.md
+|-- slice-007e-resolver-backed-ui-sketch-materialization.latest.md
+|-- slice-007d2-visual-target-sketch-definition-review.latest.md
+|-- slice-007f-target-sketch-equivalence-invocation-evidence.latest.md
 `-- semantic-coherence-review.latest.md
 ```
 
@@ -173,6 +186,11 @@ Current generated-doorway posture:
 - `reports/slice-007b-ui-sketch-sej-render-contract-review.latest.md` declares the UI sketch SEJ render contract without rendering behavior.
 - `reports/slice-007c-ui-sketch-resolver-capability-handshake.latest.md` confirms the bounded render SEJ against the current resolver primitive surface.
 - `reports/slice-007d-ui-sketch-materialization-sej-review.latest.md` declares the UI sketch materialization SEJ without invoking the resolver.
+- `reports/slice-007d1-ui-sketch-deterministic-layout-review.latest.md` locks the ASCII sketch layout authority without rendering behavior.
+- `reports/slice-007e-resolver-backed-ui-sketch-materialization.latest.md` records resolver-backed ASCII sketch materialization only, using deterministic layout authority.
+- `reports/slice-007d2-visual-target-sketch-definition-review.latest.md` defines target sketch fixtures for future governed visual projections without rendering behavior.
+- `reports/slice-007f-target-sketch-equivalence-invocation-evidence.latest.md` records target-sketch equivalence invocation evidence for the materialized doorway.
+- `evidence/invocations/founding-ui-sketch.equivalence-invocation.receipt.v1.json` records the blocked equivalence invocation evidence, including target and rendered hashes.
 
 Operational doorway shape under contract review:
 

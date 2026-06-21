@@ -6,6 +6,7 @@
   "toolKey": "defracto.projections.ui_sketch_projection",
   "sourceLineage": {
     "facadeManifestKey": "contracts/projections/founding-ui-sketch.projection-manifest.v1.json",
+    "layoutContractKey": "contracts/projections/founding-ui-sketch.layout.v1.json",
     "sejContractKey": "contracts/sej/render-founding-ui-sketch.sej.v1.json",
     "materializationReviewKey": "reports/slice-007c-ui-sketch-resolver-capability-handshake.latest.md"
   },
@@ -40,6 +41,7 @@
   ],
   "materializationSteps": [
     "resolve the accepted UI sketch projection manifest",
+    "resolve the accepted UI sketch layout contract",
     "resolve the accepted UI sketch SEJ render contract",
     "project the target artifact path for the ASCII sketch doorway",
     "materialize the governed ASCII sketch artifact shape",
@@ -116,6 +118,7 @@
             "checkedAt": "2026-06-21T00:00:00-04:00",
             "sourceSej": "contracts/sej/materialize-founding-ui-sketch.sej.v1.json",
             "facadeManifest": "contracts/projections/founding-ui-sketch.projection-manifest.v1.json",
+            "layoutContract": "contracts/projections/founding-ui-sketch.layout.v1.json",
             "targetPath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
             "artifactHash": {
               "ref": "$steps.materializeSketch.contentHash"

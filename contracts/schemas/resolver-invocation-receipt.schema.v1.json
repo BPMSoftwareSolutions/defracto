@@ -22,6 +22,50 @@
     "sourceSej": { "type": "string" },
     "facadeManifest": { "type": "string" },
     "materializationReceipt": { "type": "string" },
+    "targetSketchFixturePath": { "type": "string" },
+    "renderedSketchPath": { "type": "string" },
+    "equivalenceRuleSet": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "blocker": { "type": "string" },
+    "error": { "type": "string" },
+    "checkedNodeKeys": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "checkedEdgeKeys": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "checkedSemanticBindings": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "checkedLayoutConstraints": {
+      "type": "object"
+    },
+    "targetSketchHash": { "type": "string" },
+    "renderedSketchHash": { "type": "string" },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "message"],
+        "properties": {
+          "code": { "type": "string" },
+          "message": { "type": "string" },
+          "details": {}
+        },
+        "additionalProperties": false
+      }
+    },
     "invocationShape": { "type": "string" },
     "invocationArguments": { "type": "string" },
     "exitCode": { "type": "integer" },

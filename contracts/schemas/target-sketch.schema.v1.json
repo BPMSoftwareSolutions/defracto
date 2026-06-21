@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.target-sketch.v1",
+  "title": "Target Sketch",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "targetSketchKey",
+    "targetSketchKind",
+    "targetSketchStatus",
+    "visualIntent",
+    "layout",
+    "nodes",
+    "edges",
+    "semanticBindings",
+    "expectedFutureArtifacts",
+    "equivalence",
+    "forbiddenClaims",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "targetSketchKey": {
+      "type": "string"
+    },
+    "targetSketchKind": {
+      "type": "string",
+      "const": "target-sketch"
+    },
+    "targetSketchStatus": {
+      "type": "string",
+      "enum": ["draft", "accepted", "blocked", "ready-for-materialization"]
+    },
+    "visualIntent": {
+      "type": "string"
+    },
+    "layout": {
+      "$ref": "./visual-layout.schema.v1.json"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "./visual-node.schema.v1.json"
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "$ref": "./visual-edge.schema.v1.json"
+      }
+    },
+    "semanticBindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "bindingKey",
+          "sourceArtifactPath",
+          "targetNodeKey",
+          "bindingRole"
+        ],
+        "properties": {
+          "bindingKey": {
+            "type": "string"
+          },
+          "sourceArtifactPath": {
+            "type": "string"
+          },
+          "targetNodeKey": {
+            "type": "string"
+          },
+          "bindingRole": {
+            "type": "string"
+          },
+          "bindingTruth": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "expectedFutureArtifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifactKey",
+          "artifactPath",
+          "artifactRole",
+          "required"
+        ],
+        "properties": {
+          "artifactKey": {
+            "type": "string"
+          },
+          "artifactPath": {
+            "type": "string"
+          },
+          "artifactRole": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "equivalence": {
+      "$ref": "./sketch-equivalence.schema.v1.json"
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

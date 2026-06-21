@@ -1,0 +1,265 @@
+{
+  "schemaVersion": "defracto.target-sketch.v1",
+  "targetSketchKey": "defracto.target-sketch.founding-lineage-flow.v1",
+  "targetSketchKind": "target-sketch",
+  "targetSketchStatus": "accepted",
+  "visualIntent": "Show the founding lineage as a governed left-to-right flow from source narrative to story packet, canonical spec, projection manifest, materialized projection, and lineage receipt.",
+  "layout": {
+    "layoutKey": "defracto.visual-layout.founding-lineage-flow.v1",
+    "layoutKind": "visual-layout",
+    "layoutStatus": "accepted",
+    "canvas": {
+      "widthColumns": 96,
+      "heightLines": 14,
+      "fontFamily": "monospace",
+      "alignment": "left",
+      "lineWrapping": "forbidden",
+      "indentation": 0
+    },
+    "nodeOrder": [
+      "source_narrative",
+      "story_packet",
+      "canonical_spec",
+      "projection_manifest",
+      "materialized_projection",
+      "lineage_receipt"
+    ],
+    "layoutRules": [
+      "Render the six nodes in the declared order without reordering.",
+      "Keep the flow strictly left-to-right with one arrow relationship between each adjacent node.",
+      "Reserve one line of text per node label when materialized.",
+      "Do not compress or abbreviate any node label.",
+      "Do not introduce decorative frames, callouts, or side branches."
+    ],
+    "connectorRules": [
+      "Use a single arrow connector between each adjacent node pair.",
+      "No connector may skip over a declared node.",
+      "No alternate connector glyphs may be invented.",
+      "No connector may imply runtime behavior."
+    ],
+    "spacingRules": [
+      "Use even spacing between each node group.",
+      "Keep the flow readable in a monospace canvas.",
+      "Do not wrap any node label across lines."
+    ],
+    "boxRules": [
+      "No boxes or borders are required for the target definition.",
+      "If a future renderer uses boxes, they must remain label-neutral and cannot change node order."
+    ],
+    "forbiddenLayoutInvention": [
+      "reordering nodes",
+      "changing node labels",
+      "adding extra nodes",
+      "adding extra edges",
+      "introducing decorative frames",
+      "inventing runtime or execution claims",
+      "altering the target sketch without contract revision"
+    ]
+  },
+  "nodes": [
+    {
+      "nodeKey": "source_narrative",
+      "nodeKind": "visual-node",
+      "label": "source narrative",
+      "artifactPath": "examples/founding-conversation/source/conversation-fractal.md",
+      "semanticRole": "origin",
+      "row": 1,
+      "column": 1,
+      "width": 18,
+      "height": 1,
+      "lineContent": "source narrative"
+    },
+    {
+      "nodeKey": "story_packet",
+      "nodeKind": "visual-node",
+      "label": "story packet",
+      "artifactPath": "examples/founding-conversation/story/founding-story.v1.json",
+      "semanticRole": "story-authority",
+      "row": 3,
+      "column": 1,
+      "width": 15,
+      "height": 1,
+      "lineContent": "story packet"
+    },
+    {
+      "nodeKey": "canonical_spec",
+      "nodeKind": "visual-node",
+      "label": "canonical spec",
+      "artifactPath": "examples/founding-conversation/canonical/founding-canonical-spec.v1.json",
+      "semanticRole": "authority",
+      "row": 5,
+      "column": 1,
+      "width": 16,
+      "height": 1,
+      "lineContent": "canonical spec"
+    },
+    {
+      "nodeKey": "projection_manifest",
+      "nodeKind": "visual-node",
+      "label": "projection manifest",
+      "artifactPath": "examples/founding-conversation/projections/markdown/founding-markdown.projection-manifest.v1.json",
+      "semanticRole": "projection-authority",
+      "row": 7,
+      "column": 1,
+      "width": 21,
+      "height": 1,
+      "lineContent": "projection manifest"
+    },
+    {
+      "nodeKey": "materialized_projection",
+      "nodeKind": "visual-node",
+      "label": "materialized projection",
+      "artifactPath": "examples/founding-conversation/projections/markdown/founding-story.md",
+      "semanticRole": "rendered-output",
+      "row": 9,
+      "column": 1,
+      "width": 24,
+      "height": 1,
+      "lineContent": "materialized projection"
+    },
+    {
+      "nodeKey": "lineage_receipt",
+      "nodeKind": "visual-node",
+      "label": "lineage receipt",
+      "artifactPath": "examples/founding-conversation/evidence/founding-lineage.receipt.v1.json",
+      "semanticRole": "evidence",
+      "row": 11,
+      "column": 1,
+      "width": 17,
+      "height": 1,
+      "lineContent": "lineage receipt"
+    }
+  ],
+  "edges": [
+    {
+      "edgeKey": "source_to_story",
+      "edgeKind": "visual-edge",
+      "fromNodeKey": "source_narrative",
+      "toNodeKey": "story_packet",
+      "connector": "arrow",
+      "semanticMeaning": "source narrative authorizes the story packet"
+    },
+    {
+      "edgeKey": "story_to_canonical",
+      "edgeKind": "visual-edge",
+      "fromNodeKey": "story_packet",
+      "toNodeKey": "canonical_spec",
+      "connector": "arrow",
+      "semanticMeaning": "story packet hardens into canonical spec"
+    },
+    {
+      "edgeKey": "canonical_to_manifest",
+      "edgeKind": "visual-edge",
+      "fromNodeKey": "canonical_spec",
+      "toNodeKey": "projection_manifest",
+      "connector": "arrow",
+      "semanticMeaning": "canonical spec authorizes the projection manifest"
+    },
+    {
+      "edgeKey": "manifest_to_projection",
+      "edgeKind": "visual-edge",
+      "fromNodeKey": "projection_manifest",
+      "toNodeKey": "materialized_projection",
+      "connector": "arrow",
+      "semanticMeaning": "projection manifest yields the materialized projection"
+    },
+    {
+      "edgeKey": "projection_to_receipt",
+      "edgeKind": "visual-edge",
+      "fromNodeKey": "materialized_projection",
+      "toNodeKey": "lineage_receipt",
+      "connector": "arrow",
+      "semanticMeaning": "materialized projection is proven by lineage receipt"
+    }
+  ],
+  "semanticBindings": [
+    {
+      "bindingKey": "source-binding",
+      "sourceArtifactPath": "examples/founding-conversation/source/conversation-fractal.md",
+      "targetNodeKey": "source_narrative",
+      "bindingRole": "origin-text",
+      "bindingTruth": "This node is the preserved origin conversation."
+    },
+    {
+      "bindingKey": "story-binding",
+      "sourceArtifactPath": "examples/founding-conversation/story/founding-story.v1.json",
+      "targetNodeKey": "story_packet",
+      "bindingRole": "story-authority",
+      "bindingTruth": "This node is the first structured story derivation."
+    },
+    {
+      "bindingKey": "canonical-binding",
+      "sourceArtifactPath": "examples/founding-conversation/canonical/founding-canonical-spec.v1.json",
+      "targetNodeKey": "canonical_spec",
+      "bindingRole": "canonical-authority",
+      "bindingTruth": "This node is the hardened canonical spec."
+    },
+    {
+      "bindingKey": "manifest-binding",
+      "sourceArtifactPath": "examples/founding-conversation/projections/markdown/founding-markdown.projection-manifest.v1.json",
+      "targetNodeKey": "projection_manifest",
+      "bindingRole": "projection-authority",
+      "bindingTruth": "This node authorizes a governed markdown projection."
+    },
+    {
+      "bindingKey": "projection-binding",
+      "sourceArtifactPath": "examples/founding-conversation/projections/markdown/founding-story.md",
+      "targetNodeKey": "materialized_projection",
+      "bindingRole": "materialized-output",
+      "bindingTruth": "This node represents the rendered projection output."
+    },
+    {
+      "bindingKey": "receipt-binding",
+      "sourceArtifactPath": "examples/founding-conversation/evidence/founding-lineage.receipt.v1.json",
+      "targetNodeKey": "lineage_receipt",
+      "bindingRole": "evidence",
+      "bindingTruth": "This node records the governed proof of lineage."
+    }
+  ],
+  "expectedFutureArtifacts": [
+    {
+      "artifactKey": "future-lineage-flow-sketch",
+      "artifactPath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
+      "artifactRole": "future ASCII sketch",
+      "required": true
+    },
+    {
+      "artifactKey": "future-lineage-flow-receipt",
+      "artifactPath": "examples/target-sketches/evidence/founding-lineage-flow.render.receipt.v1.json",
+      "artifactRole": "future render receipt",
+      "required": true
+    }
+  ],
+  "equivalence": {
+    "equivalenceKey": "defracto.sketch-equivalence.founding-lineage-flow.v1",
+    "equivalenceKind": "sketch-equivalence",
+    "status": "accepted",
+    "referenceTargetSketchKey": "defracto.target-sketch.founding-lineage-flow.v1",
+    "equivalenceRules": [
+      "The rendered artifact must preserve the declared node order.",
+      "The rendered artifact must preserve the declared edge sequence.",
+      "The rendered artifact must preserve the declared labels without creative renaming.",
+      "The rendered artifact must not introduce new narrative authority.",
+      "The rendered artifact must remain a projection of the target sketch, not a new source truth."
+    ],
+    "comparisonMode": "exact-node-and-edge-sequence",
+    "forbiddenClaims": [
+      "renderer-owned truth",
+      "runtime execution",
+      "generalized validation",
+      "layout invention"
+    ],
+    "equivalentFutureArtifactPaths": [
+      "examples/target-sketches/projections/founding-lineage-flow.ascii",
+      "examples/target-sketches/evidence/founding-lineage-flow.render.receipt.v1.json"
+    ]
+  },
+  "forbiddenClaims": [
+    "This target sketch is already rendered.",
+    "This target sketch authorizes runtime execution.",
+    "This target sketch authorizes HTML, SVG, React, or CSS.",
+    "This target sketch permits layout invention.",
+    "This target sketch is a source of truth."
+  ],
+  "completionPosture": "This target sketch defines exact visual authority for a founding lineage flow without rendering it."
+}

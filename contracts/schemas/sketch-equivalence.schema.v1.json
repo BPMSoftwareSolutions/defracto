@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.sketch-equivalence.v1",
+  "title": "Sketch Equivalence",
+  "type": "object",
+  "required": [
+    "equivalenceKey",
+    "equivalenceKind",
+    "status",
+    "referenceTargetSketchKey",
+    "equivalenceRules",
+    "comparisonMode",
+    "forbiddenClaims"
+  ],
+  "properties": {
+    "equivalenceKey": {
+      "type": "string"
+    },
+    "equivalenceKind": {
+      "type": "string",
+      "const": "sketch-equivalence"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "accepted", "blocked"]
+    },
+    "referenceTargetSketchKey": {
+      "type": "string"
+    },
+    "equivalenceRules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "comparisonMode": {
+      "type": "string"
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "equivalentFutureArtifactPaths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

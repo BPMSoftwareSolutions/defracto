@@ -1563,7 +1563,153 @@ Blocks:
 
 Ships next:
 
-Slice 007E: UI Sketch Materialization Invocation.
+Slice 007D.1: UI Sketch Deterministic Layout Contract.
+
+## Slice 007D.1: UI Sketch Deterministic Layout Contract
+
+Goal:
+
+Define exact layout authority for the governed ASCII sketch so later materialization can render it without creative interpretation.
+
+Changes:
+
+- Add a schema for deterministic ASCII sketch layouts.
+- Add a layout manifest for the founding UI sketch.
+- Lock canvas constraints, node order, node labels, edge relationships, connector rules, and rendered line content.
+- Forbid layout invention and alternate spacing or box behavior.
+
+Artifacts:
+
+```text
+contracts/schemas/ascii-sketch-layout.schema.v1.json
+contracts/projections/founding-ui-sketch.layout.v1.json
+reports/slice-007d1-ui-sketch-deterministic-layout-review.latest.md
+```
+
+Completion rule:
+
+```text
+The ASCII sketch has deterministic layout authority and materialization may not invent layout meaning.
+```
+
+Blocks:
+
+- Slice 007D UI sketch materialization SEJ must remain complete.
+- No sketch is rendered in this slice.
+
+Ships next:
+
+Slice 007D.2: Visual Target Sketch Definition Contract.
+
+## Slice 007D.2: Visual Target Sketch Definition Contract
+
+Goal:
+
+Define exact visual target sketches for the governed projection line so future materialization can validate against fixed target fixtures instead of inventing layout or semantic meaning.
+
+Changes:
+
+- Add a schema family for target sketches, visual nodes, visual edges, visual layouts, and sketch equivalence.
+- Add target sketch fixtures for the founding lineage flow, semantic execution conveyor, and governed visual projection.
+- Lock exact visual intent, canvas constraints, node lists, edge lists, layout rules, semantic bindings, expected future artifacts, equivalence rules, and forbidden claims.
+- Keep rendering, resolver invocation, and executable behavior out of scope.
+
+Artifacts:
+
+```text
+contracts/schemas/target-sketch.schema.v1.json
+contracts/schemas/visual-node.schema.v1.json
+contracts/schemas/visual-edge.schema.v1.json
+contracts/schemas/visual-layout.schema.v1.json
+contracts/schemas/sketch-equivalence.schema.v1.json
+examples/target-sketches/founding-lineage-flow.target.v1.json
+examples/target-sketches/semantic-execution-conveyor.target.v1.json
+examples/target-sketches/governed-visual-projection.target.v1.json
+reports/slice-007d2-visual-target-sketch-definition-review.latest.md
+```
+
+Completion rule:
+
+```text
+The target sketches define exact visual authority, and future materialized sketches must validate against them without creative interpretation.
+```
+
+Blocks:
+
+- Slice 007D.1 deterministic layout authority must remain complete.
+- No sketch is rendered in this slice.
+
+Ships next:
+
+Slice 007E: Resolver-Backed UI Sketch Materialization.
+
+## Slice 007E: Resolver-Backed UI Sketch Materialization
+
+Goal:
+
+Materialize the governed ASCII sketch doorway from the accepted UI sketch SEJ materialization contract and deterministic layout authority without adding any renderer behavior.
+
+Changes:
+
+- Invoke the resolver against the accepted UI sketch materialization SEJ.
+- Materialize the ASCII sketch doorway at the approved target path.
+- Emit the declared render receipt.
+- Keep HTML, React, CSS, SVG, and runtime projection out of scope.
+
+Artifacts:
+
+```text
+examples/founding-conversation/projections/ui/founding-ui-sketch.ascii
+examples/founding-conversation/evidence/founding-ui-sketch.render.receipt.v1.json
+reports/slice-007e-resolver-backed-ui-sketch-materialization.latest.md
+```
+
+Completion rule:
+
+```text
+The ASCII sketch is resolver-materialized from deterministic layout authority and the receipt proves materialization only.
+```
+
+Blocks:
+
+- Slice 007D UI sketch materialization SEJ must remain complete.
+- No renderer-owned product truth may be introduced.
+
+Ships next:
+
+Slice 007F: Target Sketch Equivalence Invocation Evidence.
+
+## Slice 007F: Target Sketch Equivalence Invocation Evidence
+
+Goal:
+
+Invoke the bounded target-sketch equivalence contract against the current materialized ASCII doorway and record whether the rendered sketch genuinely matches the declared target sketch fixture.
+
+Changes:
+
+- Validate the materialized sketch against the founding-lineage-flow target sketch fixture.
+- Record the target sketch fixture path, rendered sketch path, equivalence rule set, checked node keys, checked edge keys, checked semantic bindings, checked layout constraints, and hashes.
+- Keep renderer code, layout repair, and generalized UI rendering out of scope.
+
+Artifacts:
+
+```text
+contracts/sej/validate-founding-ui-sketch-equivalence.sej.v1.json
+contracts/operations/sketch-equivalence.operation-requirements.v1.json
+evidence/invocations/founding-ui-sketch.equivalence-invocation.receipt.v1.json
+reports/slice-007f-target-sketch-equivalence-invocation-evidence.latest.md
+```
+
+Completion rule:
+
+```text
+The materialized sketch validates against the declared target sketch fixture, or the invocation evidence remains blocked if it does not.
+```
+
+Blocks:
+
+- Slice 007D.2 target sketch definition must remain complete.
+- No renderer-owned layout meaning may be invented during validation.
 
 ## Slice 008: Narrative Coverage Prototype
 
