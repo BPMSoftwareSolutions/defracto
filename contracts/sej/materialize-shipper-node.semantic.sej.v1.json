@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.materialize-shipper-node.semantic.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.shipper.materialize-node",
+  "sourceLineage": {
+    "storyKey": "stories/shipper/shipper.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/shipper/shipper.canonical-spec.v1.json",
+    "projectionManifestKey": "contracts/projections/shipper.node-projection-manifest.v1.json",
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/shipper/shipper.execute.sog.v1.json"
+  },
+  "bodyDisposition": {
+    "bodyKind": "facade_composition_graph",
+    "hostLanguageBodyAllowed": false,
+    "projectionOnly": true,
+    "promotionValidSource": false,
+    "regenerable": true,
+    "forbiddenBodyForms": [
+      "inline_js_blob",
+      "inline_python_blob",
+      "inline_csharp_blob",
+      "dto_stitching",
+      "local_business_logic",
+      "manual_fallback"
+    ]
+  },
+  "semanticBody": {
+    "bodyKind": "facade_composition_graph",
+    "bodyRef": "contracts/facade-compositions/shipper/shipper.node-resolver-doorway.composition.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "capabilityBindings": {
+    "bindingRef": "contracts/capabilities/facade-materialization.capability-bindings.v1.json",
+    "missingCapabilityBehavior": "blocked"
+  },
+  "boundedOutputs": [
+    "generated/shipper/node/shipper.cjs",
+    "evidence/shipper/shipper.node-projection.receipt.v1.json"
+  ],
+  "steps": [
+    {
+      "id": "resolveProjectionAuthority",
+      "type": "resolver",
+      "operation": "resolve.contract.v1",
+      "payload": {
+        "requiredContracts": [
+          "stories/shipper/shipper.story.v1.json",
+          "specs/canonical/shipper/shipper.canonical-spec.v1.json",
+          "contracts/projections/shipper.node-projection-manifest.v1.json",
+          "contracts/sej/shipper.execute.sej.v1.json"
+        ]
+      }
+    },
+    {
+      "id": "composeFacadeBody",
+      "type": "resolver",
+      "operation": "facade.compose.v1",
+      "payload": {
+        "compositionRef": "contracts/facade-compositions/shipper/shipper.node-resolver-doorway.composition.v1.json"
+      }
+    },
+    {
+      "id": "materializeFacade",
+      "type": "resolver",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "artifact": {
+          "path": "generated/shipper/node/shipper.cjs",
+          "format": "text",
+          "contentRef": "$steps.composeFacadeBody.renderedText"
+        }
+      }
+    },
+    {
+      "id": "hashFacade",
+      "type": "resolver",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "path": "generated/shipper/node/shipper.cjs"
+      }
+    },
+    {
+      "id": "emitReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "receipt": {
+          "path": "evidence/shipper/shipper.node-projection.receipt.v1.json",
+          "content": {
+            "schemaVersion": "defracto.shipper.node-projection.receipt.v1",
+            "status": "passed",
+            "projectedPath": "generated/shipper/node/shipper.cjs",
+            "sourceSej": "contracts/sej/materialize-shipper-node.semantic.sej.v1.json",
+            "projectionManifest": "contracts/projections/shipper.node-projection-manifest.v1.json",
+            "semanticOperationGraph": "contracts/semantic-operation-graphs/shipper/shipper.execute.sog.v1.json",
+            "artifactHash": "$steps.hashFacade.hash",
+            "bodyDisposition": "generated_thin_resolver_facade"
+          }
+        }
+      }
+    }
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Shipper materialization SEJ contains no JS body; it composes a facade from governed graph references."
+}

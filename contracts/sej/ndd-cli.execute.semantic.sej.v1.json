@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.ndd-cli.execute.v2",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.ndd-cli",
+  "commandKey": "defracto.conveyor.ndd-cli.execute.v1",
+  "sourceLineage": {
+    "storyKey": "stories/cli/ndd-cli.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/cli/ndd-cli.canonical-spec.v1.json",
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/cli/ndd-cli.execute.sog.v1.json",
+    "bodyDispositionKey": "defracto.body.ndd-cli.semantic-operation-graph"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/cli/ndd-cli.execute.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "capabilityBindings": {
+    "bindingRef": "contracts/capabilities/cli/ndd-cli.capability-bindings.v1.json",
+    "missingCapabilityBehavior": "blocked"
+  },
+  "boundedInputs": [
+    "defracto.ndd-cli.command-input.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.ndd-cli.command-result.v1"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "NDD CLI Doorway behavior executes only through the referenced semantic operation graph."
+}

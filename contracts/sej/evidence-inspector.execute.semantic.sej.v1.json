@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.evidence-inspector.execute.v2",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.evidence-inspector",
+  "commandKey": "defracto.conveyor.evidence-inspector.execute.v1",
+  "sourceLineage": {
+    "storyKey": "stories/inspector/evidence-inspector.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/inspector/evidence-inspector.canonical-spec.v1.json",
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/inspector/evidence-inspector.execute.sog.v1.json",
+    "bodyDispositionKey": "defracto.body.evidence-inspector.semantic-operation-graph"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/inspector/evidence-inspector.execute.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "capabilityBindings": {
+    "bindingRef": "contracts/capabilities/inspector/evidence-inspector.capability-bindings.v1.json",
+    "missingCapabilityBehavior": "blocked"
+  },
+  "boundedInputs": [
+    "defracto.evidence-inspection-input.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.evidence-inspection-result.v1"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Evidence Inspector behavior executes only through the referenced semantic operation graph."
+}

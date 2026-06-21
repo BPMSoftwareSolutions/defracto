@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.evidence-inspector.verify-hashes.semantic-action.v1",
+  "capabilityKey": "hash.verify_set.v1",
+  "intent": "Verify materialized artifact hashes.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "context": "$context",
+    "graph": "$graph"
+  },
+  "output": {
+    "path": "$graph.verify_hashes"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "evidence_inspector_verify_hashes_blocked"
+  }
+}

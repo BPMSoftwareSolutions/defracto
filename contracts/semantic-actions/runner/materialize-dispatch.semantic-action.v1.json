@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.conveyor-runner.materialize-dispatch.semantic-action.v1",
+  "capabilityKey": "artifact.materialize.v1",
+  "intent": "Materialize dispatch packet.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "context": "$context",
+    "graph": "$graph"
+  },
+  "output": {
+    "path": "$graph.materialize_dispatch"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "conveyor_runner_materialize_dispatch_blocked"
+  }
+}

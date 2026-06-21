@@ -1,0 +1,214 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.lane-workers.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "accepted",
+  "commandKey": "defracto.conveyor.lane-workers.execute.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.lane-workers.validate-dispatch.semantic-action.v1",
+      "capabilityKey": "object.require_fields.v1",
+      "intent": "Validate required dispatch fields."
+    },
+    {
+      "actionKey": "defracto.lane-workers.resolve-worker-profile.semantic-action.v1",
+      "capabilityKey": "resolve.contract.v1",
+      "intent": "Resolve worker profile and response contract."
+    },
+    {
+      "actionKey": "defracto.lane-workers.project-worker-response.semantic-action.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Project lane-scoped worker response shape."
+    },
+    {
+      "actionKey": "defracto.lane-workers.materialize-response.semantic-action.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize worker response artifact."
+    },
+    {
+      "actionKey": "defracto.lane-workers.hash-response.semantic-action.v1",
+      "capabilityKey": "hash.compute.v1",
+      "intent": "Hash response artifact from disk."
+    },
+    {
+      "actionKey": "defracto.lane-workers.emit-lane-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit lane receipt for downstream advance."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "validate-dispatch",
+        "capabilityKey": "object.require_fields.v1",
+        "intent": "Validate required dispatch fields.",
+        "input": {
+          "object": {
+            "$context": "payload"
+          },
+          "fields": [
+            "schemaVersion",
+            "runKey",
+            "laneKey",
+            "workerKey"
+          ]
+        },
+        "output": {
+          "path": "$graph.validate_dispatch"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "lane_workers_validate_dispatch_failed"
+        }
+      },
+      {
+        "id": "resolve-worker-profile",
+        "capabilityKey": "resolve.contract.v1",
+        "intent": "Resolve worker profile and response contract.",
+        "input": {
+          "contractPath": {
+            "$context": "contractPath"
+          }
+        },
+        "output": {
+          "path": "$graph.resolve_worker_profile"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "lane_workers_resolve_worker_profile_failed"
+        }
+      },
+      {
+        "id": "project-worker-response",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project lane-scoped worker response shape.",
+        "input": {
+          "fields": {
+            "schemaVersion": {
+              "literal": "defracto.worker-response.v1"
+            },
+            "toolKey": {
+              "literal": "defracto.conveyor.lane-workers"
+            },
+            "commandKey": {
+              "literal": "defracto.conveyor.lane-workers.execute.v1"
+            },
+            "status": {
+              "literal": "passed"
+            },
+            "context": {
+              "$context": "$"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.project_worker_response"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "lane_workers_project_worker_response_failed"
+        }
+      },
+      {
+        "id": "materialize-response",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize worker response artifact.",
+        "input": {
+          "path": {
+            "$context": "targetPath"
+          },
+          "format": "json",
+          "content": {
+            "$graph": "project_worker_response"
+          }
+        },
+        "output": {
+          "path": "$graph.materialize_response"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "lane_workers_materialize_response_failed"
+        },
+        "effect": {
+          "type": "filesystem.write",
+          "authority": "generated_surface_write_only"
+        }
+      },
+      {
+        "id": "hash-response",
+        "capabilityKey": "hash.compute.v1",
+        "intent": "Hash response artifact from disk.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.hash_response"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "lane_workers_hash_response_failed"
+        }
+      },
+      {
+        "id": "emit-lane-receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit lane receipt for downstream advance.",
+        "input": {
+          "path": {
+            "$context": "receiptPath"
+          },
+          "receipt": {
+            "schemaVersion": "defracto.semantic-body-execution-receipt.v1",
+            "toolKey": {
+              "literal": "defracto.conveyor.lane-workers"
+            },
+            "commandKey": {
+              "literal": "defracto.conveyor.lane-workers.execute.v1"
+            },
+            "status": "passed",
+            "steps": [
+              "validate-dispatch",
+              "resolve-worker-profile",
+              "project-worker-response",
+              "materialize-response",
+              "hash-response",
+              "emit-lane-receipt"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.emit_lane_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "lane_workers_emit_lane_receipt_failed"
+        },
+        "effect": {
+          "type": "filesystem.write",
+          "authority": "evidence_write_only"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "emit_lane_receipt"
+    }
+  },
+  "evidenceObligations": [
+    "semantic_actions_resolved",
+    "capabilities_bound",
+    "graph_steps_executed",
+    "receipt_emitted"
+  ],
+  "forbiddenClaims": [
+    "whole pipeline truth",
+    "previous lane repair",
+    "downstream release",
+    "hidden fallback"
+  ],
+  "completionPosture": "Lane Workers executable body is valid only as this semantic operation graph, not as host-language code.",
+  "objectHash": "sha256:a4907816d7e5908a93d09bdbec0da280d22241dfac06c8eb8bd45d8de7af5958"
+}

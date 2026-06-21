@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.conveyor-runner.verify-prior-receipt.semantic-action.v1",
+  "capabilityKey": "evidence.verify_receipt.v1",
+  "intent": "Verify prior lane receipt before advance.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "context": "$context",
+    "graph": "$graph"
+  },
+  "output": {
+    "path": "$graph.verify_prior_receipt"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "conveyor_runner_verify_prior_receipt_blocked"
+  }
+}

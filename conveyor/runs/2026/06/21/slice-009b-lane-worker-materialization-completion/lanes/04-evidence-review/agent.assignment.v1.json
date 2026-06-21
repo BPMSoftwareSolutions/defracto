@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "defracto.agent-assignment.v1",
+  "runKey": "defracto.run.slice-009b-lane-worker-materialization-completion.v1",
+  "laneKey": "04-evidence-review",
+  "laneTitle": "Evidence Review",
+  "agentRole": "Evidence Review Agent",
+  "responsibility": "Evidence Review",
+  "inputs": [
+    "evidence/workers/lane-worker.node-projection.receipt.v1.json",
+    "evidence/workers/lane-worker.conformance.receipt.v1.json"
+  ],
+  "outputs": [
+    "conveyor/runs/2026/06/21/slice-009b-lane-worker-materialization-completion/final/release-packet.v1.json",
+    "conveyor/runs/2026/06/21/slice-009b-lane-worker-materialization-completion/final/run-summary.md",
+    "conveyor/runs/2026/06/21/slice-009b-lane-worker-materialization-completion/final/commit-message.txt"
+  ],
+  "forbiddenResponsibilities": [
+    "hand-author generated facade",
+    "skip receipts",
+    "claim completion without materialization evidence",
+    "repair output by hand"
+  ],
+  "requiredReceiptPath": "conveyor/runs/2026/06/21/slice-009b-lane-worker-materialization-completion/lanes/04-evidence-review/receipt.v1.json",
+  "nextLane": null,
+  "status": "assigned"
+}

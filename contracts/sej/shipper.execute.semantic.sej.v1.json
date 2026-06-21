@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.shipper.execute.v2",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.shipper",
+  "commandKey": "defracto.conveyor.shipper.execute.v1",
+  "sourceLineage": {
+    "storyKey": "stories/shipper/shipper.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/shipper/shipper.canonical-spec.v1.json",
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/shipper/shipper.execute.sog.v1.json",
+    "bodyDispositionKey": "defracto.body.shipper.semantic-operation-graph"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/shipper/shipper.execute.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "capabilityBindings": {
+    "bindingRef": "contracts/capabilities/shipper/shipper.capability-bindings.v1.json",
+    "missingCapabilityBehavior": "blocked"
+  },
+  "boundedInputs": [
+    "defracto.release-packet.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.ship-receipt.v1"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Shipper behavior executes only through the referenced semantic operation graph."
+}

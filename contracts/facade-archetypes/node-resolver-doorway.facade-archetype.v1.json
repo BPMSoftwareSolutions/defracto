@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "defracto.facade-archetype.v1",
+  "archetypeKey": "defracto.facade-archetype.node.resolver-doorway.v1",
+  "archetypeKind": "thin_resolver_doorway",
+  "targetLanguage": "node",
+  "bodyPolicy": {
+    "hostLanguageBodyAllowed": true,
+    "bodyRole": "doorway_mechanism_only",
+    "productTruthAllowed": false,
+    "dtoShapingAllowed": false,
+    "localBusinessLogicAllowed": false,
+    "manualEditAllowed": false
+  },
+  "semanticSections": [
+    {
+      "sectionKey": "generatedAnchors",
+      "capabilityKey": "facade.emit_generated_anchors.v1"
+    },
+    {
+      "sectionKey": "runtimeImports",
+      "capabilityKey": "facade.emit_runtime_imports.v1",
+      "inputs": {
+        "resolverPackage": "$bindings.resolverPackage"
+      }
+    },
+    {
+      "sectionKey": "stdinJsonBoundary",
+      "capabilityKey": "facade.emit_stdin_json_boundary.v1"
+    },
+    {
+      "sectionKey": "resolverInvocation",
+      "capabilityKey": "facade.emit_resolver_invocation.v1",
+      "inputs": {
+        "toolKey": "$bindings.toolKey",
+        "executeSejPath": "$bindings.executeSejPath"
+      }
+    },
+    {
+      "sectionKey": "stdoutResultBoundary",
+      "capabilityKey": "facade.emit_stdout_json_boundary.v1"
+    },
+    {
+      "sectionKey": "exitMapper",
+      "capabilityKey": "facade.emit_fail_closed_exit_mapper.v1"
+    }
+  ],
+  "forbiddenSections": [
+    "domainRules",
+    "dtoMapping",
+    "pathTraversal",
+    "workerRepair",
+    "releaseDecision",
+    "fallbackBehavior"
+  ],
+  "completionPosture": "The archetype may project host-language doorway code, but the code remains disposable and owns no product meaning."
+}

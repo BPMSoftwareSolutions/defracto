@@ -1,0 +1,206 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.shipper.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "accepted",
+  "commandKey": "defracto.conveyor.shipper.execute.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.shipper.load-release-packet.semantic-action.v1",
+      "capabilityKey": "json.read.v1",
+      "intent": "Load release packet."
+    },
+    {
+      "actionKey": "defracto.shipper.verify-release-authority.semantic-action.v1",
+      "capabilityKey": "evaluate.predicate.v1",
+      "intent": "Verify release is approved by inspector."
+    },
+    {
+      "actionKey": "defracto.shipper.project-commit-message.semantic-action.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Project commit message from evidence summary."
+    },
+    {
+      "actionKey": "defracto.shipper.materialize-commit-message.semantic-action.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize commit message."
+    },
+    {
+      "actionKey": "defracto.shipper.perform-ship-transition.semantic-action.v1",
+      "capabilityKey": "ship.transition.v1",
+      "intent": "Perform authorized ship transition."
+    },
+    {
+      "actionKey": "defracto.shipper.emit-ship-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit ship receipt."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "load-release-packet",
+        "capabilityKey": "json.read.v1",
+        "intent": "Load release packet.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.load_release_packet"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "shipper_load_release_packet_failed"
+        }
+      },
+      {
+        "id": "verify-release-authority",
+        "capabilityKey": "evaluate.predicate.v1",
+        "intent": "Verify release is approved by inspector.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.verify_release_authority"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "shipper_verify_release_authority_failed"
+        }
+      },
+      {
+        "id": "project-commit-message",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project commit message from evidence summary.",
+        "input": {
+          "fields": {
+            "schemaVersion": {
+              "literal": "defracto.ship-receipt.v1"
+            },
+            "toolKey": {
+              "literal": "defracto.conveyor.shipper"
+            },
+            "commandKey": {
+              "literal": "defracto.conveyor.shipper.execute.v1"
+            },
+            "status": {
+              "literal": "passed"
+            },
+            "context": {
+              "$context": "$"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.project_commit_message"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "shipper_project_commit_message_failed"
+        }
+      },
+      {
+        "id": "materialize-commit-message",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize commit message.",
+        "input": {
+          "path": {
+            "$context": "targetPath"
+          },
+          "format": "json",
+          "content": {
+            "$graph": "$"
+          }
+        },
+        "output": {
+          "path": "$graph.materialize_commit_message"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "shipper_materialize_commit_message_failed"
+        },
+        "effect": {
+          "type": "filesystem.write",
+          "authority": "generated_surface_write_only"
+        }
+      },
+      {
+        "id": "perform-ship-transition",
+        "capabilityKey": "ship.transition.v1",
+        "intent": "Perform authorized ship transition.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.perform_ship_transition"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "shipper_perform_ship_transition_failed"
+        }
+      },
+      {
+        "id": "emit-ship-receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit ship receipt.",
+        "input": {
+          "path": {
+            "$context": "receiptPath"
+          },
+          "receipt": {
+            "schemaVersion": "defracto.semantic-body-execution-receipt.v1",
+            "toolKey": {
+              "literal": "defracto.conveyor.shipper"
+            },
+            "commandKey": {
+              "literal": "defracto.conveyor.shipper.execute.v1"
+            },
+            "status": "passed",
+            "steps": [
+              "load-release-packet",
+              "verify-release-authority",
+              "project-commit-message",
+              "materialize-commit-message",
+              "perform-ship-transition",
+              "emit-ship-receipt"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.emit_ship_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "shipper_emit_ship_receipt_failed"
+        },
+        "effect": {
+          "type": "filesystem.write",
+          "authority": "evidence_write_only"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "emit_ship_receipt"
+    }
+  },
+  "evidenceObligations": [
+    "semantic_actions_resolved",
+    "capabilities_bound",
+    "graph_steps_executed",
+    "receipt_emitted"
+  ],
+  "forbiddenClaims": [
+    "truth creation",
+    "evidence invention",
+    "canonical meaning",
+    "unverified shipping"
+  ],
+  "completionPosture": "Shipper executable body is valid only as this semantic operation graph, not as host-language code.",
+  "objectHash": "sha256:4015c34f2935693e74ef7c6eae62875249f0e4529b7861139ba4c159a9000456"
+}

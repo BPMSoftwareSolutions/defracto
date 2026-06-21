@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "loc.semantic-action.v1",
+  "title": "Semantic Action",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "objectKind",
+    "actionKey",
+    "capabilityKey",
+    "stableSignature",
+    "input",
+    "output",
+    "failure"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "loc.semantic-action.v1"
+    },
+    "objectKind": {
+      "type": "string",
+      "const": "semantic_action"
+    },
+    "actionKey": {
+      "type": "string"
+    },
+    "capabilityKey": {
+      "type": "string"
+    },
+    "intent": {
+      "type": "string"
+    },
+    "stableSignature": {
+      "type": "object"
+    },
+    "input": {
+      "type": "object"
+    },
+    "output": {
+      "type": "object"
+    },
+    "failure": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

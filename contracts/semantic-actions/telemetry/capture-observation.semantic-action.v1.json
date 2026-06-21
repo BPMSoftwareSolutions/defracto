@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.telemetry-observer.capture-observation.semantic-action.v1",
+  "capabilityKey": "telemetry.capture.v1",
+  "intent": "Capture runtime/operator/release observation.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "context": "$context",
+    "graph": "$graph"
+  },
+  "output": {
+    "path": "$graph.capture_observation"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "telemetry_observer_capture_observation_blocked"
+  }
+}

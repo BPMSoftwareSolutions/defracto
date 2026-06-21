@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.lane-workers.materialize-response.semantic-action.v1",
+  "capabilityKey": "artifact.materialize.v1",
+  "intent": "Materialize worker response artifact.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "context": "$context",
+    "graph": "$graph"
+  },
+  "output": {
+    "path": "$graph.materialize_response"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "lane_workers_materialize_response_blocked"
+  }
+}

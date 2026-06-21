@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.conform-shipper-semantic-body.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.shipper.semantic-body-conformance",
+  "purpose": "Validate Shipper uses semantic operation graph and facade composition, not embedded host-language body blobs.",
+  "sourceLineage": {
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/shipper/shipper.execute.sog.v1.json",
+    "facadeCompositionKey": "contracts/facade-compositions/shipper/shipper.node-resolver-doorway.composition.v1.json",
+    "materializationSejKey": "contracts/sej/materialize-shipper-node.semantic.sej.v1.json"
+  },
+  "boundedInputs": [
+    "contracts/semantic-operation-graphs/shipper/shipper.execute.sog.v1.json",
+    "contracts/facade-compositions/shipper/shipper.node-resolver-doorway.composition.v1.json",
+    "contracts/sej/materialize-shipper-node.semantic.sej.v1.json"
+  ],
+  "boundedOutputs": [
+    "evidence/shipper/shipper.semantic-body-conformance.receipt.v1.json"
+  ],
+  "checks": [
+    {
+      "checkKey": "host-language-body-disallowed",
+      "requiredPath": "$.semanticBody.hostLanguageBodyAllowed",
+      "expected": false
+    },
+    {
+      "checkKey": "semantic-operation-graph-present",
+      "requiredPath": "$.semanticBody.bodyKind",
+      "expected": "semantic_operation_graph"
+    },
+    {
+      "checkKey": "no-inline-js-blob",
+      "forbiddenPaths": [
+        "$.steps[*].content",
+        "$.steps[*].payload.artifact.content"
+      ]
+    },
+    {
+      "checkKey": "facade-composition-ref-present",
+      "requiredPath": "$.semanticBody.bodyRef"
+    }
+  ],
+  "failurePosture": "fail-closed"
+}

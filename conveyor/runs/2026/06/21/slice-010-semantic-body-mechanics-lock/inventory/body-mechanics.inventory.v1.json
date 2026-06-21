@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "defracto.body-mechanics-inventory.v1",
+  "inventoryKey": "defracto.inventory.slice-010.semantic-body-mechanics.v1",
+  "status": "ready-for-resolver-review",
+  "characters": [
+    {
+      "characterKey": "ndd-cli",
+      "semanticOperationGraph": "contracts/semantic-operation-graphs/cli/ndd-cli.execute.sog.v1.json",
+      "facadeComposition": "contracts/facade-compositions/cli/ndd-cli.node-resolver-doorway.composition.v1.json",
+      "semanticExecuteSej": "contracts/sej/ndd-cli.execute.semantic.sej.v1.json",
+      "semanticMaterializationSej": "contracts/sej/materialize-ndd-cli-node.semantic.sej.v1.json",
+      "semanticBodyConformanceSej": "contracts/sej/conform-ndd-cli-semantic-body.sej.v1.json"
+    },
+    {
+      "characterKey": "conveyor-runner",
+      "semanticOperationGraph": "contracts/semantic-operation-graphs/runner/conveyor-runner.execute.sog.v1.json",
+      "facadeComposition": "contracts/facade-compositions/runner/conveyor-runner.node-resolver-doorway.composition.v1.json",
+      "semanticExecuteSej": "contracts/sej/conveyor-runner.execute.semantic.sej.v1.json",
+      "semanticMaterializationSej": "contracts/sej/materialize-conveyor-runner-node.semantic.sej.v1.json",
+      "semanticBodyConformanceSej": "contracts/sej/conform-conveyor-runner-semantic-body.sej.v1.json"
+    },
+    {
+      "characterKey": "lane-workers",
+      "semanticOperationGraph": "contracts/semantic-operation-graphs/workers/lane-workers.execute.sog.v1.json",
+      "facadeComposition": "contracts/facade-compositions/workers/lane-workers.node-resolver-doorway.composition.v1.json",
+      "semanticExecuteSej": "contracts/sej/lane-workers.execute.semantic.sej.v1.json",
+      "semanticMaterializationSej": "contracts/sej/materialize-lane-workers-node.semantic.sej.v1.json",
+      "semanticBodyConformanceSej": "contracts/sej/conform-lane-workers-semantic-body.sej.v1.json"
+    },
+    {
+      "characterKey": "evidence-inspector",
+      "semanticOperationGraph": "contracts/semantic-operation-graphs/inspector/evidence-inspector.execute.sog.v1.json",
+      "facadeComposition": "contracts/facade-compositions/inspector/evidence-inspector.node-resolver-doorway.composition.v1.json",
+      "semanticExecuteSej": "contracts/sej/evidence-inspector.execute.semantic.sej.v1.json",
+      "semanticMaterializationSej": "contracts/sej/materialize-evidence-inspector-node.semantic.sej.v1.json",
+      "semanticBodyConformanceSej": "contracts/sej/conform-evidence-inspector-semantic-body.sej.v1.json"
+    },
+    {
+      "characterKey": "shipper",
+      "semanticOperationGraph": "contracts/semantic-operation-graphs/shipper/shipper.execute.sog.v1.json",
+      "facadeComposition": "contracts/facade-compositions/shipper/shipper.node-resolver-doorway.composition.v1.json",
+      "semanticExecuteSej": "contracts/sej/shipper.execute.semantic.sej.v1.json",
+      "semanticMaterializationSej": "contracts/sej/materialize-shipper-node.semantic.sej.v1.json",
+      "semanticBodyConformanceSej": "contracts/sej/conform-shipper-semantic-body.sej.v1.json"
+    },
+    {
+      "characterKey": "telemetry-observer",
+      "semanticOperationGraph": "contracts/semantic-operation-graphs/telemetry/telemetry-observer.execute.sog.v1.json",
+      "facadeComposition": "contracts/facade-compositions/telemetry/telemetry-observer.node-resolver-doorway.composition.v1.json",
+      "semanticExecuteSej": "contracts/sej/telemetry-observer.execute.semantic.sej.v1.json",
+      "semanticMaterializationSej": "contracts/sej/materialize-telemetry-observer-node.semantic.sej.v1.json",
+      "semanticBodyConformanceSej": "contracts/sej/conform-telemetry-observer-semantic-body.sej.v1.json"
+    }
+  ],
+  "completionPosture": "This inventory is complete when every character body has SOG, facade composition, semantic execute SEJ, semantic materialization SEJ, and conformance SEJ."
+}

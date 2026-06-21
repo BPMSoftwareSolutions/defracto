@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "loc.capability-binding.v1",
+  "bindingKey": "defracto.conveyor-runner.capability-bindings.v1",
+  "bindingStatus": "ready-for-resolver-handshake",
+  "semanticOperationGraphRef": "contracts/semantic-operation-graphs/runner/conveyor-runner.execute.sog.v1.json",
+  "bindings": [
+    {
+      "capabilityKey": "json.read.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "macro_or_capability_gap_candidate",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "json.read.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "macro_or_capability_gap_candidate",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "array.first_matching.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "macro_or_capability_gap_candidate",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "evidence.verify_receipt.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "macro_or_capability_gap_candidate",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "project.value.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "artifact.materialize.v1",
+      "primitiveKey": "artifact.materialize.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "artifact.materialize.v1",
+      "primitiveKey": "artifact.materialize.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "evidence.emit.v1",
+      "primitiveKey": "evidence.emit.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    }
+  ],
+  "forbiddenHostFallback": true,
+  "completionPosture": "Any unresolved capability blocks; it may not become host-language logic in a facade."
+}

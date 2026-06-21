@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "loc.capability-binding.v1",
+  "bindingKey": "defracto.facade-materialization.capability-bindings.v1",
+  "bindingStatus": "ready-for-resolver-handshake",
+  "bindings": [
+    {
+      "capabilityKey": "resolve.contract.v1",
+      "primitiveKey": "resolve.contract.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "facade.compose.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "macro_candidate",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "artifact.materialize.v1",
+      "primitiveKey": "artifact.materialize.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "hash.compute.v1",
+      "primitiveKey": "hash.compute.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "evidence.emit.v1",
+      "primitiveKey": "evidence.emit.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    }
+  ],
+  "forbiddenHostFallback": true,
+  "completionPosture": "Facade materialization is graph composition plus materialization, not inline host-language body embedding."
+}

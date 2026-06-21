@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "defracto.agent-assignment.v1",
+  "runKey": "defracto.run.slice-009b-lane-worker-materialization-completion.v1",
+  "laneKey": "03-conformance",
+  "laneTitle": "Conformance",
+  "agentRole": "Conformance Agent",
+  "responsibility": "Conformance",
+  "inputs": [
+    "generated/workers/node/lane-worker.cjs",
+    "evidence/workers/lane-worker.node-projection.receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-009b-lane-worker-materialization-completion/resolver-invocation/conform-lane-workers-node-facade.invocation.v1.json"
+  ],
+  "outputs": [
+    "evidence/workers/lane-worker.conformance.receipt.v1.json"
+  ],
+  "forbiddenResponsibilities": [
+    "hand-author generated facade",
+    "skip receipts",
+    "claim completion without materialization evidence",
+    "repair output by hand"
+  ],
+  "requiredReceiptPath": "conveyor/runs/2026/06/21/slice-009b-lane-worker-materialization-completion/lanes/03-conformance/receipt.v1.json",
+  "nextLane": "04-evidence-review",
+  "status": "assigned"
+}

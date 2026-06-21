@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.evidence-inspector.emit-truth-reconciliation.semantic-action.v1",
+  "capabilityKey": "evidence.emit.v1",
+  "intent": "Emit truth reconciliation receipt.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "context": "$context",
+    "graph": "$graph"
+  },
+  "output": {
+    "path": "$graph.emit_truth_reconciliation"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "evidence_inspector_emit_truth_reconciliation_blocked"
+  }
+}

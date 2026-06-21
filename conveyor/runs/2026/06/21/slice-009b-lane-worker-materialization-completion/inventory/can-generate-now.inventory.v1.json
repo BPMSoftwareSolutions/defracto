@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "defracto.generation-readiness-inventory.v1",
+  "inventoryKey": "defracto.inventory.slice-009b.can-generate-now.v1",
+  "status": "action_required",
+  "summary": "The JSON authority exists to generate the missing lane-worker facade. The generated surface and receipts are missing.",
+  "items": [
+    {
+      "surfaceKey": "lane-workers.node",
+      "projectedPath": "generated/workers/node/lane-worker.cjs",
+      "currentState": "missing",
+      "authorityState": "present",
+      "projectionManifestPath": "contracts/projections/lane-workers.node-projection-manifest.v1.json",
+      "materializationSejPath": "contracts/sej/materialize-lane-workers-node.sej.v1.json",
+      "executeSejPath": "contracts/sej/lane-workers.execute.sej.v1.json",
+      "requiredReceiptPath": "evidence/workers/lane-worker.node-projection.receipt.v1.json",
+      "requiredConformanceReceiptPath": "evidence/workers/lane-worker.conformance.receipt.v1.json",
+      "decision": "run_resolver_materialization"
+    }
+  ],
+  "completionPosture": "Inventory closes when missing generated surface and both receipts exist."
+}

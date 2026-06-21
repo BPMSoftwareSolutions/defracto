@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.lane-workers.hash-response.semantic-action.v1",
+  "capabilityKey": "hash.compute.v1",
+  "intent": "Hash response artifact from disk.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "context": "$context",
+    "graph": "$graph"
+  },
+  "output": {
+    "path": "$graph.hash_response"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "lane_workers_hash_response_blocked"
+  }
+}

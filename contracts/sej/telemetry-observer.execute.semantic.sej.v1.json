@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.telemetry-observer.execute.v2",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.telemetry-observer",
+  "commandKey": "defracto.conveyor.telemetry-observer.execute.v1",
+  "sourceLineage": {
+    "storyKey": "stories/telemetry/telemetry-observer.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/telemetry/telemetry-observer.canonical-spec.v1.json",
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/telemetry/telemetry-observer.execute.sog.v1.json",
+    "bodyDispositionKey": "defracto.body.telemetry-observer.semantic-operation-graph"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/telemetry/telemetry-observer.execute.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "capabilityBindings": {
+    "bindingRef": "contracts/capabilities/telemetry/telemetry-observer.capability-bindings.v1.json",
+    "missingCapabilityBehavior": "blocked"
+  },
+  "boundedInputs": [
+    "defracto.telemetry-observation.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.telemetry-capture.v1"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Telemetry Observer behavior executes only through the referenced semantic operation graph."
+}

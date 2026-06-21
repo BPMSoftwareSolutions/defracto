@@ -1,0 +1,259 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.conveyor-runner.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "accepted",
+  "commandKey": "defracto.conveyor.runner.execute.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.conveyor-runner.load-run-manifest.semantic-action.v1",
+      "capabilityKey": "json.read.v1",
+      "intent": "Load the run manifest."
+    },
+    {
+      "actionKey": "defracto.conveyor-runner.load-status-ledger.semantic-action.v1",
+      "capabilityKey": "json.read.v1",
+      "intent": "Load or initialize the status ledger."
+    },
+    {
+      "actionKey": "defracto.conveyor-runner.find-next-lane.semantic-action.v1",
+      "capabilityKey": "array.first_matching.v1",
+      "intent": "Find the next pending lane."
+    },
+    {
+      "actionKey": "defracto.conveyor-runner.verify-prior-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.verify_receipt.v1",
+      "intent": "Verify prior lane receipt before advance."
+    },
+    {
+      "actionKey": "defracto.conveyor-runner.create-dispatch.semantic-action.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Project lane dispatch packet."
+    },
+    {
+      "actionKey": "defracto.conveyor-runner.materialize-dispatch.semantic-action.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize dispatch packet."
+    },
+    {
+      "actionKey": "defracto.conveyor-runner.update-ledger.semantic-action.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Update runner ledger."
+    },
+    {
+      "actionKey": "defracto.conveyor-runner.emit-runner-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit runner receipt."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "load-run-manifest",
+        "capabilityKey": "json.read.v1",
+        "intent": "Load the run manifest.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.load_run_manifest"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "conveyor_runner_load_run_manifest_failed"
+        }
+      },
+      {
+        "id": "load-status-ledger",
+        "capabilityKey": "json.read.v1",
+        "intent": "Load or initialize the status ledger.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.load_status_ledger"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "conveyor_runner_load_status_ledger_failed"
+        }
+      },
+      {
+        "id": "find-next-lane",
+        "capabilityKey": "array.first_matching.v1",
+        "intent": "Find the next pending lane.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.find_next_lane"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "conveyor_runner_find_next_lane_failed"
+        }
+      },
+      {
+        "id": "verify-prior-receipt",
+        "capabilityKey": "evidence.verify_receipt.v1",
+        "intent": "Verify prior lane receipt before advance.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.verify_prior_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "conveyor_runner_verify_prior_receipt_failed"
+        }
+      },
+      {
+        "id": "create-dispatch",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project lane dispatch packet.",
+        "input": {
+          "fields": {
+            "schemaVersion": {
+              "literal": "defracto.runner-command-result.v1"
+            },
+            "toolKey": {
+              "literal": "defracto.conveyor.runner"
+            },
+            "commandKey": {
+              "literal": "defracto.conveyor.runner.execute.v1"
+            },
+            "status": {
+              "literal": "passed"
+            },
+            "context": {
+              "$context": "$"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.create_dispatch"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "conveyor_runner_create_dispatch_failed"
+        }
+      },
+      {
+        "id": "materialize-dispatch",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize dispatch packet.",
+        "input": {
+          "path": {
+            "$context": "targetPath"
+          },
+          "format": "json",
+          "content": {
+            "$graph": "$"
+          }
+        },
+        "output": {
+          "path": "$graph.materialize_dispatch"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "conveyor_runner_materialize_dispatch_failed"
+        },
+        "effect": {
+          "type": "filesystem.write",
+          "authority": "generated_surface_write_only"
+        }
+      },
+      {
+        "id": "update-ledger",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Update runner ledger.",
+        "input": {
+          "path": {
+            "$context": "targetPath"
+          },
+          "format": "json",
+          "content": {
+            "$graph": "$"
+          }
+        },
+        "output": {
+          "path": "$graph.update_ledger"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "conveyor_runner_update_ledger_failed"
+        },
+        "effect": {
+          "type": "filesystem.write",
+          "authority": "generated_surface_write_only"
+        }
+      },
+      {
+        "id": "emit-runner-receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit runner receipt.",
+        "input": {
+          "path": {
+            "$context": "receiptPath"
+          },
+          "receipt": {
+            "schemaVersion": "defracto.semantic-body-execution-receipt.v1",
+            "toolKey": {
+              "literal": "defracto.conveyor.runner"
+            },
+            "commandKey": {
+              "literal": "defracto.conveyor.runner.execute.v1"
+            },
+            "status": "passed",
+            "steps": [
+              "load-run-manifest",
+              "load-status-ledger",
+              "find-next-lane",
+              "verify-prior-receipt",
+              "create-dispatch",
+              "materialize-dispatch",
+              "update-ledger",
+              "emit-runner-receipt"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.emit_runner_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "conveyor_runner_emit_runner_receipt_failed"
+        },
+        "effect": {
+          "type": "filesystem.write",
+          "authority": "evidence_write_only"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "emit_runner_receipt"
+    }
+  },
+  "evidenceObligations": [
+    "semantic_actions_resolved",
+    "capabilities_bound",
+    "graph_steps_executed",
+    "receipt_emitted"
+  ],
+  "forbiddenClaims": [
+    "lane content meaning",
+    "truth judgment",
+    "shipping authority",
+    "worker response invention"
+  ],
+  "completionPosture": "Conveyor Runner executable body is valid only as this semantic operation graph, not as host-language code.",
+  "objectHash": "sha256:f4db9c30067311f5c1ca91de909d03449437bf056b8ca2140e19611cb7211280"
+}

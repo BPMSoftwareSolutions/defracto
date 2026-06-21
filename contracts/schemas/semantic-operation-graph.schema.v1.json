@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "loc.semantic-operation-graph.v1",
+  "title": "Semantic Operation Graph",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "objectKind",
+    "objectKey",
+    "sourceTruth",
+    "status",
+    "commandKey",
+    "bodyKind",
+    "hostLanguageBodyAllowed",
+    "semanticActions",
+    "graph",
+    "evidenceObligations",
+    "forbiddenClaims"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "loc.semantic-operation-graph.v1"
+    },
+    "objectKind": {
+      "type": "string",
+      "const": "sej_code_body"
+    },
+    "objectKey": {
+      "type": "string"
+    },
+    "sourceTruth": {
+      "type": "string",
+      "const": "sej_semantic_body"
+    },
+    "status": {
+      "type": "string"
+    },
+    "commandKey": {
+      "type": "string"
+    },
+    "bodyKind": {
+      "type": "string",
+      "const": "semantic_operation_graph"
+    },
+    "hostLanguageBodyAllowed": {
+      "type": "boolean",
+      "const": false
+    },
+    "semanticActions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "graph": {
+      "type": "object"
+    },
+    "evidenceObligations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

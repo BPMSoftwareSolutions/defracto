@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-receipt.v1",
+  "receiptKey": "defracto.run.slice-009b.04-evidence-review.receipt.v1",
+  "laneKey": "04-evidence-review",
+  "status": "blocked",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "inputArtifacts": [
+    "evidence/workers/lane-worker.node-projection.receipt.v1.json",
+    "evidence/workers/lane-worker.conformance.receipt.v1.json"
+  ],
+  "outputArtifacts": [
+    "conveyor/runs/2026/06/21/slice-009b-lane-worker-materialization-completion/final/release-packet.v1.json",
+    "conveyor/runs/2026/06/21/slice-009b-lane-worker-materialization-completion/final/run-summary.md",
+    "conveyor/runs/2026/06/21/slice-009b-lane-worker-materialization-completion/final/commit-message.txt"
+  ],
+  "hashes": [],
+  "findings": [
+    {
+      "findingKey": "lane_not_executed",
+      "status": "blocked",
+      "message": "Template receipt must be replaced by live resolver/runner evidence."
+    }
+  ],
+  "nextLane": null
+}

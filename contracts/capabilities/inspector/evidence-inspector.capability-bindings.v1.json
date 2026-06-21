@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "loc.capability-binding.v1",
+  "bindingKey": "defracto.evidence-inspector.capability-bindings.v1",
+  "bindingStatus": "ready-for-resolver-handshake",
+  "semanticOperationGraphRef": "contracts/semantic-operation-graphs/inspector/evidence-inspector.execute.sog.v1.json",
+  "bindings": [
+    {
+      "capabilityKey": "json.read.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "macro_or_capability_gap_candidate",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "evidence.verify_receipt_set.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "macro_or_capability_gap_candidate",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "hash.verify_set.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "macro_or_capability_gap_candidate",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "content.disposition_classify.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "macro_or_capability_gap_candidate",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "evaluate.predicate.v1",
+      "primitiveKey": "evaluate.predicate.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "evidence.emit.v1",
+      "primitiveKey": "evidence.emit.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    }
+  ],
+  "forbiddenHostFallback": true,
+  "completionPosture": "Any unresolved capability blocks; it may not become host-language logic in a facade."
+}

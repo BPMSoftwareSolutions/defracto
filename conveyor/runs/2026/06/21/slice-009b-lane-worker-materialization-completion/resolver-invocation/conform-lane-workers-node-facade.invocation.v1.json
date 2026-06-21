@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "defracto.resolver-invocation.v1",
+  "invocationKey": "defracto.invocation.conform-lane-workers-node-facade.v1",
+  "runKey": "defracto.run.slice-009b-lane-worker-materialization-completion.v1",
+  "commandIntent": "resolver.conform",
+  "sourceSejPath": "contracts/sej/conform-lane-workers-node-facade.sej.v1.json",
+  "targetArtifactPath": "generated/workers/node/lane-worker.cjs",
+  "materializationReceiptPath": "evidence/workers/lane-worker.node-projection.receipt.v1.json",
+  "conformanceReceiptPath": "evidence/workers/lane-worker.conformance.receipt.v1.json",
+  "requiredChecks": [
+    "generated header present",
+    "sourceSEJ anchor present",
+    "projectionManifest anchor present",
+    "resolver delegation present",
+    "no DTO shaping",
+    "no product truth ownership"
+  ],
+  "failClosed": true
+}

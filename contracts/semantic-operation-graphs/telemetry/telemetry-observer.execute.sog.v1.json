@@ -1,0 +1,205 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.telemetry-observer.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "accepted",
+  "commandKey": "defracto.conveyor.telemetry-observer.execute.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.telemetry-observer.capture-observation.semantic-action.v1",
+      "capabilityKey": "telemetry.capture.v1",
+      "intent": "Capture runtime/operator/release observation."
+    },
+    {
+      "actionKey": "defracto.telemetry-observer.classify-observation.semantic-action.v1",
+      "capabilityKey": "telemetry.classify.v1",
+      "intent": "Classify observation source and severity."
+    },
+    {
+      "actionKey": "defracto.telemetry-observer.project-capture.semantic-action.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Project telemetry capture object."
+    },
+    {
+      "actionKey": "defracto.telemetry-observer.materialize-capture.semantic-action.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize telemetry capture."
+    },
+    {
+      "actionKey": "defracto.telemetry-observer.maybe-promote-source-candidate.semantic-action.v1",
+      "capabilityKey": "telemetry.promote_source_candidate.v1",
+      "intent": "Create source promotion candidate when authorized."
+    },
+    {
+      "actionKey": "defracto.telemetry-observer.emit-telemetry-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit telemetry receipt."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "capture-observation",
+        "capabilityKey": "telemetry.capture.v1",
+        "intent": "Capture runtime/operator/release observation.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.capture_observation"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "telemetry_observer_capture_observation_failed"
+        }
+      },
+      {
+        "id": "classify-observation",
+        "capabilityKey": "telemetry.classify.v1",
+        "intent": "Classify observation source and severity.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.classify_observation"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "telemetry_observer_classify_observation_failed"
+        }
+      },
+      {
+        "id": "project-capture",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project telemetry capture object.",
+        "input": {
+          "fields": {
+            "schemaVersion": {
+              "literal": "defracto.telemetry-capture.v1"
+            },
+            "toolKey": {
+              "literal": "defracto.conveyor.telemetry-observer"
+            },
+            "commandKey": {
+              "literal": "defracto.conveyor.telemetry-observer.execute.v1"
+            },
+            "status": {
+              "literal": "passed"
+            },
+            "context": {
+              "$context": "$"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.project_capture"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "telemetry_observer_project_capture_failed"
+        }
+      },
+      {
+        "id": "materialize-capture",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize telemetry capture.",
+        "input": {
+          "path": {
+            "$context": "targetPath"
+          },
+          "format": "json",
+          "content": {
+            "$graph": "$"
+          }
+        },
+        "output": {
+          "path": "$graph.materialize_capture"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "telemetry_observer_materialize_capture_failed"
+        },
+        "effect": {
+          "type": "filesystem.write",
+          "authority": "generated_surface_write_only"
+        }
+      },
+      {
+        "id": "maybe-promote-source-candidate",
+        "capabilityKey": "telemetry.promote_source_candidate.v1",
+        "intent": "Create source promotion candidate when authorized.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.maybe_promote_source_candidate"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "telemetry_observer_maybe_promote_source_candidate_failed"
+        }
+      },
+      {
+        "id": "emit-telemetry-receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit telemetry receipt.",
+        "input": {
+          "path": {
+            "$context": "receiptPath"
+          },
+          "receipt": {
+            "schemaVersion": "defracto.semantic-body-execution-receipt.v1",
+            "toolKey": {
+              "literal": "defracto.conveyor.telemetry-observer"
+            },
+            "commandKey": {
+              "literal": "defracto.conveyor.telemetry-observer.execute.v1"
+            },
+            "status": "passed",
+            "steps": [
+              "capture-observation",
+              "classify-observation",
+              "project-capture",
+              "materialize-capture",
+              "maybe-promote-source-candidate",
+              "emit-telemetry-receipt"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.emit_telemetry_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "telemetry_observer_emit_telemetry_receipt_failed"
+        },
+        "effect": {
+          "type": "filesystem.write",
+          "authority": "evidence_write_only"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "emit_telemetry_receipt"
+    }
+  },
+  "evidenceObligations": [
+    "semantic_actions_resolved",
+    "capabilities_bound",
+    "graph_steps_executed",
+    "receipt_emitted"
+  ],
+  "forbiddenClaims": [
+    "canonical truth before promotion",
+    "release authority",
+    "silent product changes"
+  ],
+  "completionPosture": "Telemetry Observer executable body is valid only as this semantic operation graph, not as host-language code.",
+  "objectHash": "sha256:3a771e1b316eeaa62ac001d3da417bc3f464852cce35cbe5b1487106ac317f5a"
+}

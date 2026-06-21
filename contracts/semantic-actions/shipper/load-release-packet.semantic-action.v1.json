@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.shipper.load-release-packet.semantic-action.v1",
+  "capabilityKey": "json.read.v1",
+  "intent": "Load release packet.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "context": "$context",
+    "graph": "$graph"
+  },
+  "output": {
+    "path": "$graph.load_release_packet"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "shipper_load_release_packet_blocked"
+  }
+}

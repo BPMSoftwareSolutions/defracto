@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.evidence-inspector.load-review-set.semantic-action.v1",
+  "capabilityKey": "json.read.v1",
+  "intent": "Load artifacts, receipts, gates, and ledgers for inspection.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "context": "$context",
+    "graph": "$graph"
+  },
+  "output": {
+    "path": "$graph.load_review_set"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "evidence_inspector_load_review_set_blocked"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.ndd-cli.emit-cli-receipt.semantic-action.v1",
+  "capabilityKey": "evidence.emit.v1",
+  "intent": "Emit CLI receipt for doorway execution.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "context": "$context",
+    "graph": "$graph"
+  },
+  "output": {
+    "path": "$graph.emit_cli_receipt"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "ndd_cli_emit_cli_receipt_blocked"
+  }
+}

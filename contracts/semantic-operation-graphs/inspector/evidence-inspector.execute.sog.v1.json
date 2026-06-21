@@ -1,0 +1,182 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.evidence-inspector.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "accepted",
+  "commandKey": "defracto.conveyor.evidence-inspector.execute.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.evidence-inspector.load-review-set.semantic-action.v1",
+      "capabilityKey": "json.read.v1",
+      "intent": "Load artifacts, receipts, gates, and ledgers for inspection."
+    },
+    {
+      "actionKey": "defracto.evidence-inspector.verify-receipts.semantic-action.v1",
+      "capabilityKey": "evidence.verify_receipt_set.v1",
+      "intent": "Verify required receipts exist and pass."
+    },
+    {
+      "actionKey": "defracto.evidence-inspector.verify-hashes.semantic-action.v1",
+      "capabilityKey": "hash.verify_set.v1",
+      "intent": "Verify materialized artifact hashes."
+    },
+    {
+      "actionKey": "defracto.evidence-inspector.classify-mismatches.semantic-action.v1",
+      "capabilityKey": "content.disposition_classify.v1",
+      "intent": "Classify content mismatches."
+    },
+    {
+      "actionKey": "defracto.evidence-inspector.evaluate-release-gates.semantic-action.v1",
+      "capabilityKey": "evaluate.predicate.v1",
+      "intent": "Evaluate release gates."
+    },
+    {
+      "actionKey": "defracto.evidence-inspector.emit-truth-reconciliation.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit truth reconciliation receipt."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "load-review-set",
+        "capabilityKey": "json.read.v1",
+        "intent": "Load artifacts, receipts, gates, and ledgers for inspection.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.load_review_set"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "evidence_inspector_load_review_set_failed"
+        }
+      },
+      {
+        "id": "verify-receipts",
+        "capabilityKey": "evidence.verify_receipt_set.v1",
+        "intent": "Verify required receipts exist and pass.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.verify_receipts"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "evidence_inspector_verify_receipts_failed"
+        }
+      },
+      {
+        "id": "verify-hashes",
+        "capabilityKey": "hash.verify_set.v1",
+        "intent": "Verify materialized artifact hashes.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.verify_hashes"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "evidence_inspector_verify_hashes_failed"
+        }
+      },
+      {
+        "id": "classify-mismatches",
+        "capabilityKey": "content.disposition_classify.v1",
+        "intent": "Classify content mismatches.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.classify_mismatches"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "evidence_inspector_classify_mismatches_failed"
+        }
+      },
+      {
+        "id": "evaluate-release-gates",
+        "capabilityKey": "evaluate.predicate.v1",
+        "intent": "Evaluate release gates.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.evaluate_release_gates"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "evidence_inspector_evaluate_release_gates_failed"
+        }
+      },
+      {
+        "id": "emit-truth-reconciliation",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit truth reconciliation receipt.",
+        "input": {
+          "path": {
+            "$context": "receiptPath"
+          },
+          "receipt": {
+            "schemaVersion": "defracto.semantic-body-execution-receipt.v1",
+            "toolKey": {
+              "literal": "defracto.conveyor.evidence-inspector"
+            },
+            "commandKey": {
+              "literal": "defracto.conveyor.evidence-inspector.execute.v1"
+            },
+            "status": "passed",
+            "steps": [
+              "load-review-set",
+              "verify-receipts",
+              "verify-hashes",
+              "classify-mismatches",
+              "evaluate-release-gates",
+              "emit-truth-reconciliation"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.emit_truth_reconciliation"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "evidence_inspector_emit_truth_reconciliation_failed"
+        },
+        "effect": {
+          "type": "filesystem.write",
+          "authority": "evidence_write_only"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "emit_truth_reconciliation"
+    }
+  },
+  "evidenceObligations": [
+    "semantic_actions_resolved",
+    "capabilities_bound",
+    "graph_steps_executed",
+    "receipt_emitted"
+  ],
+  "forbiddenClaims": [
+    "silent repair",
+    "artifact invention",
+    "worker output mutation",
+    "shipping"
+  ],
+  "completionPosture": "Evidence Inspector executable body is valid only as this semantic operation graph, not as host-language code.",
+  "objectHash": "sha256:ef2792aa05a38d9fc974ba3422f7697976271a22f9843d5fde5f3eea2b1a35e2"
+}

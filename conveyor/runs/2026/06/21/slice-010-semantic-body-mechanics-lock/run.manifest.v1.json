@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-010-semantic-body-mechanics-lock.v1",
+  "runKind": "conveyor-run",
+  "sliceKey": "slice-010-semantic-body-mechanics-lock",
+  "objective": "Replace bulky embedded JS body generation with semantic operation graphs and facade composition graphs for all conveyor characters.",
+  "laneOrder": [
+    "01-semantic-actions",
+    "02-semantic-operation-graphs",
+    "03-capability-bindings",
+    "04-facade-compositions",
+    "05-materialization-sejs",
+    "06-conformance-sejs",
+    "07-evidence-review"
+  ],
+  "inputs": [
+    "contracts/facade-archetypes/node-resolver-doorway.facade-archetype.v1.json",
+    "contracts/capabilities/conveyor.semantic-body-capability-catalog.v1.json"
+  ],
+  "outputs": [
+    "contracts/semantic-actions/**",
+    "contracts/semantic-operation-graphs/**",
+    "contracts/capabilities/**",
+    "contracts/facade-compositions/**",
+    "contracts/sej/*.semantic.sej.v1.json"
+  ],
+  "blockedIf": [
+    "inline host-language blob remains in materialization SEJ",
+    "semantic operation graph missing for a conveyor character",
+    "facade composition missing for a conveyor character",
+    "capability binding unresolved without blocker"
+  ],
+  "completionPosture": "Passes when all conveyor character bodies are graph-backed and no materialization SEJ embeds bulky JS bodies."
+}

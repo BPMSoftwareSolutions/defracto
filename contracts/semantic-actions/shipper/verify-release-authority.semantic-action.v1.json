@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.shipper.verify-release-authority.semantic-action.v1",
+  "capabilityKey": "evaluate.predicate.v1",
+  "intent": "Verify release is approved by inspector.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "context": "$context",
+    "graph": "$graph"
+  },
+  "output": {
+    "path": "$graph.verify_release_authority"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "shipper_verify_release_authority_blocked"
+  }
+}

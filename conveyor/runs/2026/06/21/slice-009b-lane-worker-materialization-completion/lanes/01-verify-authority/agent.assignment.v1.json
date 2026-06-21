@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "defracto.agent-assignment.v1",
+  "runKey": "defracto.run.slice-009b-lane-worker-materialization-completion.v1",
+  "laneKey": "01-verify-authority",
+  "laneTitle": "Verify Authority",
+  "agentRole": "Verify Authority Agent",
+  "responsibility": "Verify Authority",
+  "inputs": [
+    "contracts/projections/lane-workers.node-projection-manifest.v1.json",
+    "contracts/sej/materialize-lane-workers-node.sej.v1.json",
+    "contracts/sej/lane-workers.execute.sej.v1.json",
+    "specs/canonical/workers/lane-workers.canonical-spec.v1.json",
+    "stories/workers/lane-workers.story.v1.json"
+  ],
+  "outputs": [
+    "conveyor/runs/2026/06/21/slice-009b-lane-worker-materialization-completion/lanes/01-verify-authority/authority.review.v1.json"
+  ],
+  "forbiddenResponsibilities": [
+    "hand-author generated facade",
+    "skip receipts",
+    "claim completion without materialization evidence",
+    "repair output by hand"
+  ],
+  "requiredReceiptPath": "conveyor/runs/2026/06/21/slice-009b-lane-worker-materialization-completion/lanes/01-verify-authority/receipt.v1.json",
+  "nextLane": "02-resolver-materialize-lane-worker",
+  "status": "assigned"
+}

@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "defracto.generated-document.v1",
+  "documentKey": "defracto.slice-009b.run-summary.v1",
+  "targetPath": "conveyor/runs/2026/06/21/slice-009b-lane-worker-materialization-completion/final/run-summary.md",
+  "status": "pending-materialization",
+  "summary": "Slice 009B closes the missing lane-worker generated surface and receipts."
+}

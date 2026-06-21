@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.ndd-cli.delegate-to-runner.semantic-action.v1",
+  "capabilityKey": "resolve.contract.v1",
+  "intent": "Delegate execution to runner SEJ through resolver.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "context": "$context",
+    "graph": "$graph"
+  },
+  "output": {
+    "path": "$graph.delegate_to_runner"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "ndd_cli_delegate_to_runner_blocked"
+  }
+}

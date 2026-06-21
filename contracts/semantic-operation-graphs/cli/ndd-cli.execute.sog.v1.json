@@ -1,0 +1,199 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.ndd-cli.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "accepted",
+  "commandKey": "defracto.conveyor.ndd-cli.execute.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.ndd-cli.parse-command-boundary.semantic-action.v1",
+      "capabilityKey": "cli.parse_command_boundary.v1",
+      "intent": "Parse operator command boundary without owning meaning."
+    },
+    {
+      "actionKey": "defracto.ndd-cli.resolve-run-mode.semantic-action.v1",
+      "capabilityKey": "cli.resolve_run_mode.v1",
+      "intent": "Resolve sync/async/status/review command mode from input."
+    },
+    {
+      "actionKey": "defracto.ndd-cli.create-run-invocation.semantic-action.v1",
+      "capabilityKey": "runner.create_invocation.v1",
+      "intent": "Project a runner invocation from accepted CLI input."
+    },
+    {
+      "actionKey": "defracto.ndd-cli.delegate-to-runner.semantic-action.v1",
+      "capabilityKey": "resolve.contract.v1",
+      "intent": "Delegate execution to runner SEJ through resolver."
+    },
+    {
+      "actionKey": "defracto.ndd-cli.project-cli-result.semantic-action.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Project CLI command result from runner output."
+    },
+    {
+      "actionKey": "defracto.ndd-cli.emit-cli-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit CLI receipt for doorway execution."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "parse-command-boundary",
+        "capabilityKey": "cli.parse_command_boundary.v1",
+        "intent": "Parse operator command boundary without owning meaning.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.parse_command_boundary"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "ndd_cli_parse_command_boundary_failed"
+        }
+      },
+      {
+        "id": "resolve-run-mode",
+        "capabilityKey": "cli.resolve_run_mode.v1",
+        "intent": "Resolve sync/async/status/review command mode from input.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.resolve_run_mode"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "ndd_cli_resolve_run_mode_failed"
+        }
+      },
+      {
+        "id": "create-run-invocation",
+        "capabilityKey": "runner.create_invocation.v1",
+        "intent": "Project a runner invocation from accepted CLI input.",
+        "input": {
+          "context": "$context",
+          "priorGraph": "$graph"
+        },
+        "output": {
+          "path": "$graph.create_run_invocation"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "ndd_cli_create_run_invocation_failed"
+        }
+      },
+      {
+        "id": "delegate-to-runner",
+        "capabilityKey": "resolve.contract.v1",
+        "intent": "Delegate execution to runner SEJ through resolver.",
+        "input": {
+          "contractPath": {
+            "$context": "contractPath"
+          }
+        },
+        "output": {
+          "path": "$graph.delegate_to_runner"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "ndd_cli_delegate_to_runner_failed"
+        }
+      },
+      {
+        "id": "project-cli-result",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project CLI command result from runner output.",
+        "input": {
+          "fields": {
+            "schemaVersion": {
+              "literal": "defracto.ndd-cli.command-result.v1"
+            },
+            "toolKey": {
+              "literal": "defracto.conveyor.ndd-cli"
+            },
+            "commandKey": {
+              "literal": "defracto.conveyor.ndd-cli.execute.v1"
+            },
+            "status": {
+              "literal": "passed"
+            },
+            "context": {
+              "$context": "$"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.project_cli_result"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "ndd_cli_project_cli_result_failed"
+        }
+      },
+      {
+        "id": "emit-cli-receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit CLI receipt for doorway execution.",
+        "input": {
+          "path": {
+            "$context": "receiptPath"
+          },
+          "receipt": {
+            "schemaVersion": "defracto.semantic-body-execution-receipt.v1",
+            "toolKey": {
+              "literal": "defracto.conveyor.ndd-cli"
+            },
+            "commandKey": {
+              "literal": "defracto.conveyor.ndd-cli.execute.v1"
+            },
+            "status": "passed",
+            "steps": [
+              "parse-command-boundary",
+              "resolve-run-mode",
+              "create-run-invocation",
+              "delegate-to-runner",
+              "project-cli-result",
+              "emit-cli-receipt"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.emit_cli_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "ndd_cli_emit_cli_receipt_failed"
+        },
+        "effect": {
+          "type": "filesystem.write",
+          "authority": "evidence_write_only"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "emit_cli_receipt"
+    }
+  },
+  "evidenceObligations": [
+    "semantic_actions_resolved",
+    "capabilities_bound",
+    "graph_steps_executed",
+    "receipt_emitted"
+  ],
+  "forbiddenClaims": [
+    "DTO shaping",
+    "product meaning",
+    "worker output truth",
+    "release authority",
+    "visual layout truth"
+  ],
+  "completionPosture": "NDD CLI Doorway executable body is valid only as this semantic operation graph, not as host-language code.",
+  "objectHash": "sha256:b55d2ba05dee8e5371e1d6ffa3b96a0275be826e818a9de835f75f7ec651a234"
+}

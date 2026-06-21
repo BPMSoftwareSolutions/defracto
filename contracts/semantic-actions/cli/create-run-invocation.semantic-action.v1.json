@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.ndd-cli.create-run-invocation.semantic-action.v1",
+  "capabilityKey": "runner.create_invocation.v1",
+  "intent": "Project a runner invocation from accepted CLI input.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "context": "$context",
+    "graph": "$graph"
+  },
+  "output": {
+    "path": "$graph.create_run_invocation"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "ndd_cli_create_run_invocation_blocked"
+  }
+}

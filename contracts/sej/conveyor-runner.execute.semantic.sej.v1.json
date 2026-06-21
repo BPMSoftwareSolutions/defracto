@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.conveyor-runner.execute.v2",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.runner",
+  "commandKey": "defracto.conveyor.runner.execute.v1",
+  "sourceLineage": {
+    "storyKey": "stories/runner/conveyor-runner.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/runner/conveyor-runner.canonical-spec.v1.json",
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/runner/conveyor-runner.execute.sog.v1.json",
+    "bodyDispositionKey": "defracto.body.conveyor-runner.semantic-operation-graph"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/runner/conveyor-runner.execute.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "capabilityBindings": {
+    "bindingRef": "contracts/capabilities/runner/conveyor-runner.capability-bindings.v1.json",
+    "missingCapabilityBehavior": "blocked"
+  },
+  "boundedInputs": [
+    "defracto.runner-command-input.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.runner-command-result.v1"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Conveyor Runner behavior executes only through the referenced semantic operation graph."
+}

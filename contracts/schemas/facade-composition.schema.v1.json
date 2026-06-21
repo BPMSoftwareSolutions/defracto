@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.facade-composition.v1",
+  "title": "Facade Composition",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "compositionKey",
+    "targetLanguage",
+    "targetPath",
+    "archetype",
+    "bindings",
+    "generatedAnchors"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.facade-composition.v1"
+    },
+    "compositionKey": {
+      "type": "string"
+    },
+    "targetLanguage": {
+      "type": "string"
+    },
+    "targetPath": {
+      "type": "string"
+    },
+    "archetype": {
+      "type": "object"
+    },
+    "bindings": {
+      "type": "object"
+    },
+    "generatedAnchors": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.telemetry-observer.classify-observation.semantic-action.v1",
+  "capabilityKey": "telemetry.classify.v1",
+  "intent": "Classify observation source and severity.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "context": "$context",
+    "graph": "$graph"
+  },
+  "output": {
+    "path": "$graph.classify_observation"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "telemetry_observer_classify_observation_blocked"
+  }
+}

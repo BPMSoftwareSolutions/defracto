@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.lane-workers.execute.v2",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.lane-workers",
+  "commandKey": "defracto.conveyor.lane-workers.execute.v1",
+  "sourceLineage": {
+    "storyKey": "stories/workers/lane-workers.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/workers/lane-workers.canonical-spec.v1.json",
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/workers/lane-workers.execute.sog.v1.json",
+    "bodyDispositionKey": "defracto.body.lane-workers.semantic-operation-graph"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/workers/lane-workers.execute.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "capabilityBindings": {
+    "bindingRef": "contracts/capabilities/workers/lane-workers.capability-bindings.v1.json",
+    "missingCapabilityBehavior": "blocked"
+  },
+  "boundedInputs": [
+    "defracto.worker-dispatch.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.worker-response.v1"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Lane Workers behavior executes only through the referenced semantic operation graph."
+}
