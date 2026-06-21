@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-dispatch.v1",
+  "dispatchKey": "{runKey}.10-ship.dispatch",
+  "runKey": "{runKey}",
+  "laneKey": "defracto.lanes.10-ship.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "agentRole": "shipper-agent",
+  "inputArtifactRefs": [
+    "{input.releasePacket}",
+    "{input.releasePreparationReceipt}"
+  ],
+  "expectedOutputContracts": [
+    "shipReceipt",
+    "shippedState"
+  ],
+  "forbiddenResponsibilities": [
+    "truth creation",
+    "post-ship telemetry interpretation"
+  ],
+  "responseContract": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "instructions": {
+    "mission": "Ship only evidence-authorized state and emit ship receipt.",
+    "mustEmit": [
+      "shipReceipt",
+      "shippedState"
+    ],
+    "mustNotOwn": [
+      "truth creation",
+      "post-ship telemetry interpretation"
+    ],
+    "failClosedOn": [
+      "release packet blocked",
+      "ship authority missing",
+      "git state dirty unexpectedly",
+      "ship receipt cannot be emitted"
+    ]
+  }
+}

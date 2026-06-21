@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-dispatch.v1",
+  "dispatchKey": "{runKey}.02-author-canonical-spec.dispatch",
+  "runKey": "{runKey}",
+  "laneKey": "defracto.lanes.02-author-canonical-spec.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "agentRole": "canonical-spec-agent",
+  "inputArtifactRefs": [
+    "{input.storyPacket}",
+    "{input.storyExtractionReceipt}"
+  ],
+  "expectedOutputContracts": [
+    "canonicalSpec",
+    "canonicalizationReceipt"
+  ],
+  "forbiddenResponsibilities": [
+    "SEJ body",
+    "projection code",
+    "worker execution",
+    "shipping"
+  ],
+  "responseContract": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "instructions": {
+    "mission": "Harden the accepted story into canonical authority.",
+    "mustEmit": [
+      "canonicalSpec",
+      "canonicalizationReceipt"
+    ],
+    "mustNotOwn": [
+      "SEJ body",
+      "projection code",
+      "worker execution",
+      "shipping"
+    ],
+    "failClosedOn": [
+      "story receipt missing",
+      "canonical node lacks story path",
+      "rule lacks story authority",
+      "conflicting story claims"
+    ]
+  }
+}

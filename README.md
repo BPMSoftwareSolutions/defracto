@@ -1,36 +1,32 @@
-# Conveyor Character Artifact Bundle
+# Conveyor Lane Contracts
 
-This downloadable bundle recreates the JSON/document artifacts for the full Defracto/NDD conveyor cast.
+This bundle replaces placeholder lane contracts with runnable lane authority.
 
-Characters included:
+Each lane declares:
 
-- CLI Doorway
-- Conveyor Runner
-- Lane Workers
-- Evidence Inspector / Truth Reconciler
-- Shipper
-- Telemetry Observer
+- inputs
+- outputs
+- worker runtime
+- handoff behavior
+- evidence requirements
+- blocked conditions
+- allowed responsibilities
+- forbidden responsibilities
+- next lane
 
-Each character has:
-
-- source narrative
-- story packet
-- canonical spec
-- SEJ contract
-- DTO/schema contracts
-- projection manifest
-- visual projection model
-- README
-
-The intended doctrine is:
+These contracts are designed for the Defracto / NDD handoff conveyor:
 
 ```text
-The CLI opens.
-The runner moves.
-The workers transform.
-The ledger remembers.
-The inspector judges.
-The shipper releases.
-Telemetry reflects.
-The conveyor lives.
+00 capture source
+-> 01 extract story
+-> 02 author canonical spec
+-> 03 author semantic contract
+-> 04 project runtime surface
+-> 05 materialize artifacts
+-> 06 run conformance
+-> 07 render visual evidence
+-> 08 review evidence
+-> 09 prepare release
+-> 10 ship
+-> 11 observe telemetry
 ```

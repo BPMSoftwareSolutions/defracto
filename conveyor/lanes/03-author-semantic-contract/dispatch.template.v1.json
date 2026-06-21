@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-dispatch.v1",
+  "dispatchKey": "{runKey}.03-author-semantic-contract.dispatch",
+  "runKey": "{runKey}",
+  "laneKey": "defracto.lanes.03-author-semantic-contract.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "agentRole": "semantic-contract-agent",
+  "inputArtifactRefs": [
+    "{input.canonicalSpec}",
+    "{input.canonicalizationReceipt}"
+  ],
+  "expectedOutputContracts": [
+    "sejContract",
+    "operationRequirements",
+    "semanticContractReceipt"
+  ],
+  "forbiddenResponsibilities": [
+    "host-language source",
+    "manual artifact materialization",
+    "release judgment"
+  ],
+  "responseContract": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "instructions": {
+    "mission": "Express canonical behavior as Semantic Executable JSON and operation requirements.",
+    "mustEmit": [
+      "sejContract",
+      "operationRequirements",
+      "semanticContractReceipt"
+    ],
+    "mustNotOwn": [
+      "host-language source",
+      "manual artifact materialization",
+      "release judgment"
+    ],
+    "failClosedOn": [
+      "canonical spec missing",
+      "required operation unsupported",
+      "SEJ invents rule",
+      "unbounded input/output"
+    ]
+  }
+}

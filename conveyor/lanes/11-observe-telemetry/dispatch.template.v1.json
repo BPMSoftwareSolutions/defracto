@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-dispatch.v1",
+  "dispatchKey": "{runKey}.11-observe-telemetry.dispatch",
+  "runKey": "{runKey}",
+  "laneKey": "defracto.lanes.11-observe-telemetry.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "agentRole": "telemetry-observer-agent",
+  "inputArtifactRefs": [
+    "{input.shipReceipt}",
+    "{input.runtimeObservation}",
+    "{input.operatorFeedback}"
+  ],
+  "expectedOutputContracts": [
+    "telemetryCapture",
+    "sourcePromotionCandidates",
+    "telemetryReceipt"
+  ],
+  "forbiddenResponsibilities": [
+    "canonical promotion without review",
+    "silent product change",
+    "release authority"
+  ],
+  "responseContract": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "instructions": {
+    "mission": "Capture post-ship observations and promote meaningful signals back to source candidates.",
+    "mustEmit": [
+      "telemetryCapture",
+      "sourcePromotionCandidates",
+      "telemetryReceipt"
+    ],
+    "mustNotOwn": [
+      "canonical promotion without review",
+      "silent product change",
+      "release authority"
+    ],
+    "failClosedOn": [
+      "ship receipt missing",
+      "observation source ambiguous",
+      "telemetry cannot be captured",
+      "promotion would bypass source review"
+    ]
+  }
+}

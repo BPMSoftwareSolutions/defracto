@@ -1,9 +1,9 @@
 {
-  "id": "voice-to-value",
-  "version": "v1",
-  "entry": "source",
-  "exit": "telemetry",
-  "lanes": [
+  "schemaVersion": "defracto.conveyor-pipeline.v1",
+  "pipelineKey": "defracto.pipeline.voice-to-value.v1",
+  "pipelineTitle": "Voice to Value Conveyor",
+  "pipelineStatus": "accepted",
+  "laneOrder": [
     "00-capture-source",
     "01-extract-story",
     "02-author-canonical-spec",
@@ -16,5 +16,9 @@
     "09-prepare-release",
     "10-ship",
     "11-observe-telemetry"
-  ]
+  ],
+  "failClosed": true,
+  "syncMode": "supported",
+  "asyncMode": "supported",
+  "completionPosture": "The pipeline passes only when every lane emits a receipt and the evidence review permits release."
 }

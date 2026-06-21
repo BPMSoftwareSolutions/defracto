@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-receipt.v1",
+  "receiptKey": "{runKey}.05-materialize-artifacts.receipt",
+  "laneKey": "defracto.lanes.05-materialize-artifacts.v1",
+  "status": "blocked",
+  "checkedAt": "{checkedAt}",
+  "inputArtifacts": [],
+  "outputArtifacts": [],
+  "workerResponse": {
+    "workerKey": "defracto.workers.gemini_flash.v1",
+    "responsePath": "{runPath}/lanes/05-materialize-artifacts/response.gemini-flash.v1.json"
+  },
+  "hashes": [],
+  "findings": [
+    {
+      "findingKey": "receipt_template_not_executed",
+      "status": "blocked",
+      "message": "This template must be replaced by a live lane receipt."
+    }
+  ],
+  "nextLane": "06-run-conformance"
+}

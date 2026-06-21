@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-dispatch.v1",
+  "dispatchKey": "{runKey}.09-prepare-release.dispatch",
+  "runKey": "{runKey}",
+  "laneKey": "defracto.lanes.09-prepare-release.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "agentRole": "release-preparation-agent",
+  "inputArtifactRefs": [
+    "{input.truthReconciliationReceipt}",
+    "{input.contentDispositionLedger}"
+  ],
+  "expectedOutputContracts": [
+    "releasePacket",
+    "commitMessage",
+    "releasePreparationReceipt"
+  ],
+  "forbiddenResponsibilities": [
+    "truth creation",
+    "bypassing evidence review",
+    "actual ship execution"
+  ],
+  "responseContract": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "instructions": {
+    "mission": "Assemble release packet and commit message only after evidence review permits it.",
+    "mustEmit": [
+      "releasePacket",
+      "commitMessage",
+      "releasePreparationReceipt"
+    ],
+    "mustNotOwn": [
+      "truth creation",
+      "bypassing evidence review",
+      "actual ship execution"
+    ],
+    "failClosedOn": [
+      "evidence review blocked",
+      "required receipt missing",
+      "release packet incomplete",
+      "commit message lacks evidence summary"
+    ]
+  }
+}

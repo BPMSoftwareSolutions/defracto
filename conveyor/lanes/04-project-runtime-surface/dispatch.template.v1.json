@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-dispatch.v1",
+  "dispatchKey": "{runKey}.04-project-runtime-surface.dispatch",
+  "runKey": "{runKey}",
+  "laneKey": "defracto.lanes.04-project-runtime-surface.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "agentRole": "projection-manifest-agent",
+  "inputArtifactRefs": [
+    "{input.sejContract}",
+    "{input.operationRequirements}",
+    "{input.semanticContractReceipt}"
+  ],
+  "expectedOutputContracts": [
+    "projectionManifest",
+    "runtimeSurfaceBinding",
+    "projectionReceipt"
+  ],
+  "forbiddenResponsibilities": [
+    "generated source content",
+    "product truth",
+    "manual code edits"
+  ],
+  "responseContract": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "instructions": {
+    "mission": "Bind semantic contract to projected runtime surfaces without hand-authoring behavior.",
+    "mustEmit": [
+      "projectionManifest",
+      "runtimeSurfaceBinding",
+      "projectionReceipt"
+    ],
+    "mustNotOwn": [
+      "generated source content",
+      "product truth",
+      "manual code edits"
+    ],
+    "failClosedOn": [
+      "SEJ receipt missing",
+      "target path ambiguous",
+      "projection would own product meaning",
+      "runtime binding missing"
+    ]
+  }
+}

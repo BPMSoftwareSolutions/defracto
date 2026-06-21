@@ -1,5 +1,81 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/lanes/03-author-semantic-contract/lane.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.conveyor-lane-contract.v1",
+  "laneKey": "defracto.lanes.03-author-semantic-contract.v1",
+  "laneIndex": 3,
+  "laneTitle": "Author Semantic Contract",
+  "laneStatus": "accepted",
+  "role": "Express canonical behavior as Semantic Executable JSON and operation requirements.",
+  "inputContracts": [
+    {
+      "artifactKind": "canonicalSpec",
+      "required": true,
+      "source": "prior-lane"
+    },
+    {
+      "artifactKind": "canonicalizationReceipt",
+      "required": true,
+      "source": "prior-lane"
+    }
+  ],
+  "outputContracts": [
+    {
+      "artifactKind": "sejContract",
+      "required": true,
+      "target": "conveyor/lanes/03-author-semantic-contract/outputs/sejContract.json"
+    },
+    {
+      "artifactKind": "operationRequirements",
+      "required": true,
+      "target": "conveyor/lanes/03-author-semantic-contract/outputs/operationRequirements.json"
+    },
+    {
+      "artifactKind": "semanticContractReceipt",
+      "required": true,
+      "target": "conveyor/lanes/03-author-semantic-contract/outputs/semanticContractReceipt.json"
+    }
+  ],
+  "workerRuntime": {
+    "workerKey": "defracto.workers.gemini_flash.v1",
+    "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+    "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+    "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+    "agentRole": "semantic-contract-agent",
+    "liveRuntimeRequired": true,
+    "failClosedIfUnavailable": true
+  },
+  "handoff": {
+    "mode": "lane-scoped-dispatch",
+    "nextLane": "04-project-runtime-surface",
+    "requiresPriorReceipt": true,
+    "requiresReceiptBeforeAdvance": true,
+    "dispatchShape": "defracto.conveyor-lane-dispatch.v1",
+    "receiptShape": "defracto.conveyor-lane-receipt.v1"
+  },
+  "evidence": {
+    "required": true,
+    "receiptPathTemplate": "{runPath}/lanes/03-author-semantic-contract/receipt.v1.json",
+    "responsePathTemplate": "{runPath}/lanes/03-author-semantic-contract/response.gemini-flash.v1.json",
+    "dispatchPathTemplate": "{runPath}/lanes/03-author-semantic-contract/dispatch.gemini-flash.v1.json",
+    "hashMaterializedOutputs": true,
+    "surfaceSignatureRequired": true
+  },
+  "blockedConditions": [
+    "canonical spec missing",
+    "required operation unsupported",
+    "SEJ invents rule",
+    "unbounded input/output"
+  ],
+  "allowedResponsibilities": [
+    "SEJ stages",
+    "bounded inputs",
+    "bounded outputs",
+    "required operations",
+    "fail-closed posture"
+  ],
+  "forbiddenResponsibilities": [
+    "host-language source",
+    "manual artifact materialization",
+    "release judgment"
+  ],
+  "completionPosture": "Author Semantic Contract passes only when it emits sejContract, operationRequirements, semanticContractReceipt and a receipt before handing off to 04-project-runtime-surface."
 }

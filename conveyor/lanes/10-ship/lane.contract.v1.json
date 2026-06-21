@@ -1,5 +1,73 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/lanes/10-ship/lane.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.conveyor-lane-contract.v1",
+  "laneKey": "defracto.lanes.10-ship.v1",
+  "laneIndex": 10,
+  "laneTitle": "Ship",
+  "laneStatus": "accepted",
+  "role": "Ship only evidence-authorized state and emit ship receipt.",
+  "inputContracts": [
+    {
+      "artifactKind": "releasePacket",
+      "required": true,
+      "source": "prior-lane"
+    },
+    {
+      "artifactKind": "releasePreparationReceipt",
+      "required": true,
+      "source": "prior-lane"
+    }
+  ],
+  "outputContracts": [
+    {
+      "artifactKind": "shipReceipt",
+      "required": true,
+      "target": "conveyor/lanes/10-ship/outputs/shipReceipt.json"
+    },
+    {
+      "artifactKind": "shippedState",
+      "required": true,
+      "target": "conveyor/lanes/10-ship/outputs/shippedState.json"
+    }
+  ],
+  "workerRuntime": {
+    "workerKey": "defracto.workers.gemini_flash.v1",
+    "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+    "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+    "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+    "agentRole": "shipper-agent",
+    "liveRuntimeRequired": true,
+    "failClosedIfUnavailable": true
+  },
+  "handoff": {
+    "mode": "lane-scoped-dispatch",
+    "nextLane": "11-observe-telemetry",
+    "requiresPriorReceipt": true,
+    "requiresReceiptBeforeAdvance": true,
+    "dispatchShape": "defracto.conveyor-lane-dispatch.v1",
+    "receiptShape": "defracto.conveyor-lane-receipt.v1"
+  },
+  "evidence": {
+    "required": true,
+    "receiptPathTemplate": "{runPath}/lanes/10-ship/receipt.v1.json",
+    "responsePathTemplate": "{runPath}/lanes/10-ship/response.gemini-flash.v1.json",
+    "dispatchPathTemplate": "{runPath}/lanes/10-ship/dispatch.gemini-flash.v1.json",
+    "hashMaterializedOutputs": true,
+    "surfaceSignatureRequired": true
+  },
+  "blockedConditions": [
+    "release packet blocked",
+    "ship authority missing",
+    "git state dirty unexpectedly",
+    "ship receipt cannot be emitted"
+  ],
+  "allowedResponsibilities": [
+    "ship execution",
+    "ship receipt",
+    "release state transition"
+  ],
+  "forbiddenResponsibilities": [
+    "truth creation",
+    "post-ship telemetry interpretation"
+  ],
+  "completionPosture": "Ship passes only when it emits shipReceipt, shippedState and a receipt before handing off to 11-observe-telemetry."
 }

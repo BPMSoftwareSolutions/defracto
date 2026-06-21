@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-dispatch.v1",
+  "dispatchKey": "{runKey}.08-review-evidence.dispatch",
+  "runKey": "{runKey}",
+  "laneKey": "defracto.lanes.08-review-evidence.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "agentRole": "evidence-inspector-agent",
+  "inputArtifactRefs": [
+    "{input.allLaneReceipts}",
+    "{input.materializedArtifacts}",
+    "{input.visualEvidenceReceipt}"
+  ],
+  "expectedOutputContracts": [
+    "evidenceReview",
+    "contentDispositionLedger",
+    "truthReconciliationReceipt"
+  ],
+  "forbiddenResponsibilities": [
+    "silent repair",
+    "shipping",
+    "artifact invention"
+  ],
+  "responseContract": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "instructions": {
+    "mission": "Inspect artifacts, receipts, content parity, signatures, and blocked claims.",
+    "mustEmit": [
+      "evidenceReview",
+      "contentDispositionLedger",
+      "truthReconciliationReceipt"
+    ],
+    "mustNotOwn": [
+      "silent repair",
+      "shipping",
+      "artifact invention"
+    ],
+    "failClosedOn": [
+      "receipt missing",
+      "hash mismatch",
+      "unauthorized drift",
+      "forbidden claim present"
+    ]
+  }
+}

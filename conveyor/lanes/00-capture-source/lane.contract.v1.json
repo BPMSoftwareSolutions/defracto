@@ -1,5 +1,86 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/lanes/00-capture-source/lane.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.conveyor-lane-contract.v1",
+  "laneKey": "defracto.lanes.00-capture-source.v1",
+  "laneIndex": 0,
+  "laneTitle": "Capture Source",
+  "laneStatus": "accepted",
+  "role": "Preserve operator/source intent as governed source material.",
+  "inputContracts": [
+    {
+      "artifactKind": "operatorText",
+      "required": true,
+      "source": "operator-or-source"
+    },
+    {
+      "artifactKind": "uploadedSource",
+      "required": true,
+      "source": "operator-or-source"
+    },
+    {
+      "artifactKind": "visualSource",
+      "required": true,
+      "source": "operator-or-source"
+    },
+    {
+      "artifactKind": "telemetrySourceCandidate",
+      "required": true,
+      "source": "operator-or-source"
+    }
+  ],
+  "outputContracts": [
+    {
+      "artifactKind": "narrativeSource",
+      "required": true,
+      "target": "conveyor/lanes/00-capture-source/outputs/narrativeSource.json"
+    },
+    {
+      "artifactKind": "sourceCaptureReceipt",
+      "required": true,
+      "target": "conveyor/lanes/00-capture-source/outputs/sourceCaptureReceipt.json"
+    }
+  ],
+  "workerRuntime": {
+    "workerKey": "defracto.workers.gemini_flash.v1",
+    "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+    "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+    "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+    "agentRole": "source-capture-agent",
+    "liveRuntimeRequired": true,
+    "failClosedIfUnavailable": true
+  },
+  "handoff": {
+    "mode": "lane-scoped-dispatch",
+    "nextLane": "01-extract-story",
+    "requiresPriorReceipt": false,
+    "requiresReceiptBeforeAdvance": true,
+    "dispatchShape": "defracto.conveyor-lane-dispatch.v1",
+    "receiptShape": "defracto.conveyor-lane-receipt.v1"
+  },
+  "evidence": {
+    "required": true,
+    "receiptPathTemplate": "{runPath}/lanes/00-capture-source/receipt.v1.json",
+    "responsePathTemplate": "{runPath}/lanes/00-capture-source/response.gemini-flash.v1.json",
+    "dispatchPathTemplate": "{runPath}/lanes/00-capture-source/dispatch.gemini-flash.v1.json",
+    "hashMaterializedOutputs": true,
+    "surfaceSignatureRequired": true
+  },
+  "blockedConditions": [
+    "missing source",
+    "source cannot be preserved",
+    "source hash cannot be computed",
+    "source role ambiguous"
+  ],
+  "allowedResponsibilities": [
+    "source preservation",
+    "source summary",
+    "source hash reference",
+    "source capture receipt"
+  ],
+  "forbiddenResponsibilities": [
+    "story extraction",
+    "canonical spec",
+    "implementation",
+    "visual rendering"
+  ],
+  "completionPosture": "Capture Source passes only when it emits narrativeSource, sourceCaptureReceipt and a receipt before handing off to 01-extract-story."
 }

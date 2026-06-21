@@ -1,5 +1,85 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/lanes/08-review-evidence/lane.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.conveyor-lane-contract.v1",
+  "laneKey": "defracto.lanes.08-review-evidence.v1",
+  "laneIndex": 8,
+  "laneTitle": "Review Evidence",
+  "laneStatus": "accepted",
+  "role": "Inspect artifacts, receipts, content parity, signatures, and blocked claims.",
+  "inputContracts": [
+    {
+      "artifactKind": "allLaneReceipts",
+      "required": true,
+      "source": "prior-lane"
+    },
+    {
+      "artifactKind": "materializedArtifacts",
+      "required": true,
+      "source": "prior-lane"
+    },
+    {
+      "artifactKind": "visualEvidenceReceipt",
+      "required": true,
+      "source": "prior-lane"
+    }
+  ],
+  "outputContracts": [
+    {
+      "artifactKind": "evidenceReview",
+      "required": true,
+      "target": "conveyor/lanes/08-review-evidence/outputs/evidenceReview.json"
+    },
+    {
+      "artifactKind": "contentDispositionLedger",
+      "required": true,
+      "target": "conveyor/lanes/08-review-evidence/outputs/contentDispositionLedger.json"
+    },
+    {
+      "artifactKind": "truthReconciliationReceipt",
+      "required": true,
+      "target": "conveyor/lanes/08-review-evidence/outputs/truthReconciliationReceipt.json"
+    }
+  ],
+  "workerRuntime": {
+    "workerKey": "defracto.workers.gemini_flash.v1",
+    "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+    "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+    "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+    "agentRole": "evidence-inspector-agent",
+    "liveRuntimeRequired": true,
+    "failClosedIfUnavailable": true
+  },
+  "handoff": {
+    "mode": "lane-scoped-dispatch",
+    "nextLane": "09-prepare-release",
+    "requiresPriorReceipt": true,
+    "requiresReceiptBeforeAdvance": true,
+    "dispatchShape": "defracto.conveyor-lane-dispatch.v1",
+    "receiptShape": "defracto.conveyor-lane-receipt.v1"
+  },
+  "evidence": {
+    "required": true,
+    "receiptPathTemplate": "{runPath}/lanes/08-review-evidence/receipt.v1.json",
+    "responsePathTemplate": "{runPath}/lanes/08-review-evidence/response.gemini-flash.v1.json",
+    "dispatchPathTemplate": "{runPath}/lanes/08-review-evidence/dispatch.gemini-flash.v1.json",
+    "hashMaterializedOutputs": true,
+    "surfaceSignatureRequired": true
+  },
+  "blockedConditions": [
+    "receipt missing",
+    "hash mismatch",
+    "unauthorized drift",
+    "forbidden claim present"
+  ],
+  "allowedResponsibilities": [
+    "truth reconciliation",
+    "content disposition",
+    "receipt validation",
+    "pass/block judgment"
+  ],
+  "forbiddenResponsibilities": [
+    "silent repair",
+    "shipping",
+    "artifact invention"
+  ],
+  "completionPosture": "Review Evidence passes only when it emits evidenceReview, contentDispositionLedger, truthReconciliationReceipt and a receipt before handing off to 09-prepare-release."
 }

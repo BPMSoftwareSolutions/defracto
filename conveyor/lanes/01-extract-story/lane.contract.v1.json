@@ -1,5 +1,76 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/lanes/01-extract-story/lane.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.conveyor-lane-contract.v1",
+  "laneKey": "defracto.lanes.01-extract-story.v1",
+  "laneIndex": 1,
+  "laneTitle": "Extract Story",
+  "laneStatus": "accepted",
+  "role": "Transform captured source into a bounded story packet.",
+  "inputContracts": [
+    {
+      "artifactKind": "narrativeSource",
+      "required": true,
+      "source": "prior-lane"
+    },
+    {
+      "artifactKind": "sourceCaptureReceipt",
+      "required": true,
+      "source": "prior-lane"
+    }
+  ],
+  "outputContracts": [
+    {
+      "artifactKind": "storyPacket",
+      "required": true,
+      "target": "conveyor/lanes/01-extract-story/outputs/storyPacket.json"
+    },
+    {
+      "artifactKind": "storyExtractionReceipt",
+      "required": true,
+      "target": "conveyor/lanes/01-extract-story/outputs/storyExtractionReceipt.json"
+    }
+  ],
+  "workerRuntime": {
+    "workerKey": "defracto.workers.gemini_flash.v1",
+    "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+    "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+    "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+    "agentRole": "story-extraction-agent",
+    "liveRuntimeRequired": true,
+    "failClosedIfUnavailable": true
+  },
+  "handoff": {
+    "mode": "lane-scoped-dispatch",
+    "nextLane": "02-author-canonical-spec",
+    "requiresPriorReceipt": true,
+    "requiresReceiptBeforeAdvance": true,
+    "dispatchShape": "defracto.conveyor-lane-dispatch.v1",
+    "receiptShape": "defracto.conveyor-lane-receipt.v1"
+  },
+  "evidence": {
+    "required": true,
+    "receiptPathTemplate": "{runPath}/lanes/01-extract-story/receipt.v1.json",
+    "responsePathTemplate": "{runPath}/lanes/01-extract-story/response.gemini-flash.v1.json",
+    "dispatchPathTemplate": "{runPath}/lanes/01-extract-story/dispatch.gemini-flash.v1.json",
+    "hashMaterializedOutputs": true,
+    "surfaceSignatureRequired": true
+  },
+  "blockedConditions": [
+    "missing source receipt",
+    "untraceable story claim",
+    "hallucinated rule",
+    "ambiguous actor/goal"
+  ],
+  "allowedResponsibilities": [
+    "actor/goal extraction",
+    "story packet",
+    "acceptance criteria candidates",
+    "forbidden claim candidates"
+  ],
+  "forbiddenResponsibilities": [
+    "canonical authority",
+    "SEJ execution",
+    "runtime projection",
+    "release authority"
+  ],
+  "completionPosture": "Extract Story passes only when it emits storyPacket, storyExtractionReceipt and a receipt before handing off to 02-author-canonical-spec."
 }

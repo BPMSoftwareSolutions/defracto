@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-dispatch.v1",
+  "dispatchKey": "{runKey}.06-run-conformance.dispatch",
+  "runKey": "{runKey}",
+  "laneKey": "defracto.lanes.06-run-conformance.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "agentRole": "conformance-agent",
+  "inputArtifactRefs": [
+    "{input.materializedArtifacts}",
+    "{input.artifactMaterializationReceipts}"
+  ],
+  "expectedOutputContracts": [
+    "conformanceReport",
+    "conformanceReceipt"
+  ],
+  "forbiddenResponsibilities": [
+    "repairing generated artifacts",
+    "changing target fixtures",
+    "release decision"
+  ],
+  "responseContract": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "instructions": {
+    "mission": "Run conformance and equivalence checks against materialized artifacts.",
+    "mustEmit": [
+      "conformanceReport",
+      "conformanceReceipt"
+    ],
+    "mustNotOwn": [
+      "repairing generated artifacts",
+      "changing target fixtures",
+      "release decision"
+    ],
+    "failClosedOn": [
+      "materialization receipt missing",
+      "test failure",
+      "target mismatch",
+      "unsupported conformance check"
+    ]
+  }
+}

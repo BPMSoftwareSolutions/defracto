@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-dispatch.v1",
+  "dispatchKey": "{runKey}.01-extract-story.dispatch",
+  "runKey": "{runKey}",
+  "laneKey": "defracto.lanes.01-extract-story.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "agentRole": "story-extraction-agent",
+  "inputArtifactRefs": [
+    "{input.narrativeSource}",
+    "{input.sourceCaptureReceipt}"
+  ],
+  "expectedOutputContracts": [
+    "storyPacket",
+    "storyExtractionReceipt"
+  ],
+  "forbiddenResponsibilities": [
+    "canonical authority",
+    "SEJ execution",
+    "runtime projection",
+    "release authority"
+  ],
+  "responseContract": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "instructions": {
+    "mission": "Transform captured source into a bounded story packet.",
+    "mustEmit": [
+      "storyPacket",
+      "storyExtractionReceipt"
+    ],
+    "mustNotOwn": [
+      "canonical authority",
+      "SEJ execution",
+      "runtime projection",
+      "release authority"
+    ],
+    "failClosedOn": [
+      "missing source receipt",
+      "untraceable story claim",
+      "hallucinated rule",
+      "ambiguous actor/goal"
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.conveyor-lane-contract.v1",
+  "title": "Conveyor Lane Contract",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "laneKey",
+    "laneIndex",
+    "laneTitle",
+    "laneStatus",
+    "role",
+    "inputContracts",
+    "outputContracts",
+    "workerRuntime",
+    "handoff",
+    "evidence",
+    "blockedConditions",
+    "allowedResponsibilities",
+    "forbiddenResponsibilities",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "laneKey": {
+      "type": "string"
+    },
+    "laneIndex": {
+      "type": "integer"
+    },
+    "laneTitle": {
+      "type": "string"
+    },
+    "laneStatus": {
+      "type": "string",
+      "enum": [
+        "accepted",
+        "draft",
+        "blocked"
+      ]
+    },
+    "role": {
+      "type": "string"
+    },
+    "inputContracts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "outputContracts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "workerRuntime": {
+      "type": "object"
+    },
+    "handoff": {
+      "type": "object"
+    },
+    "evidence": {
+      "type": "object"
+    },
+    "blockedConditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowedResponsibilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenResponsibilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

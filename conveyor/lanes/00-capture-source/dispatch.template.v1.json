@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-dispatch.v1",
+  "dispatchKey": "{runKey}.00-capture-source.dispatch",
+  "runKey": "{runKey}",
+  "laneKey": "defracto.lanes.00-capture-source.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "agentRole": "source-capture-agent",
+  "inputArtifactRefs": [
+    "{input.operatorText}",
+    "{input.uploadedSource}",
+    "{input.visualSource}",
+    "{input.telemetrySourceCandidate}"
+  ],
+  "expectedOutputContracts": [
+    "narrativeSource",
+    "sourceCaptureReceipt"
+  ],
+  "forbiddenResponsibilities": [
+    "story extraction",
+    "canonical spec",
+    "implementation",
+    "visual rendering"
+  ],
+  "responseContract": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "instructions": {
+    "mission": "Preserve operator/source intent as governed source material.",
+    "mustEmit": [
+      "narrativeSource",
+      "sourceCaptureReceipt"
+    ],
+    "mustNotOwn": [
+      "story extraction",
+      "canonical spec",
+      "implementation",
+      "visual rendering"
+    ],
+    "failClosedOn": [
+      "missing source",
+      "source cannot be preserved",
+      "source hash cannot be computed",
+      "source role ambiguous"
+    ]
+  }
+}

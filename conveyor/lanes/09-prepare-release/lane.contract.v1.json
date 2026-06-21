@@ -1,5 +1,79 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/lanes/09-prepare-release/lane.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.conveyor-lane-contract.v1",
+  "laneKey": "defracto.lanes.09-prepare-release.v1",
+  "laneIndex": 9,
+  "laneTitle": "Prepare Release",
+  "laneStatus": "accepted",
+  "role": "Assemble release packet and commit message only after evidence review permits it.",
+  "inputContracts": [
+    {
+      "artifactKind": "truthReconciliationReceipt",
+      "required": true,
+      "source": "prior-lane"
+    },
+    {
+      "artifactKind": "contentDispositionLedger",
+      "required": true,
+      "source": "prior-lane"
+    }
+  ],
+  "outputContracts": [
+    {
+      "artifactKind": "releasePacket",
+      "required": true,
+      "target": "conveyor/lanes/09-prepare-release/outputs/releasePacket.json"
+    },
+    {
+      "artifactKind": "commitMessage",
+      "required": true,
+      "target": "conveyor/lanes/09-prepare-release/outputs/commitMessage.json"
+    },
+    {
+      "artifactKind": "releasePreparationReceipt",
+      "required": true,
+      "target": "conveyor/lanes/09-prepare-release/outputs/releasePreparationReceipt.json"
+    }
+  ],
+  "workerRuntime": {
+    "workerKey": "defracto.workers.gemini_flash.v1",
+    "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+    "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+    "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+    "agentRole": "release-preparation-agent",
+    "liveRuntimeRequired": true,
+    "failClosedIfUnavailable": true
+  },
+  "handoff": {
+    "mode": "lane-scoped-dispatch",
+    "nextLane": "10-ship",
+    "requiresPriorReceipt": true,
+    "requiresReceiptBeforeAdvance": true,
+    "dispatchShape": "defracto.conveyor-lane-dispatch.v1",
+    "receiptShape": "defracto.conveyor-lane-receipt.v1"
+  },
+  "evidence": {
+    "required": true,
+    "receiptPathTemplate": "{runPath}/lanes/09-prepare-release/receipt.v1.json",
+    "responsePathTemplate": "{runPath}/lanes/09-prepare-release/response.gemini-flash.v1.json",
+    "dispatchPathTemplate": "{runPath}/lanes/09-prepare-release/dispatch.gemini-flash.v1.json",
+    "hashMaterializedOutputs": true,
+    "surfaceSignatureRequired": true
+  },
+  "blockedConditions": [
+    "evidence review blocked",
+    "required receipt missing",
+    "release packet incomplete",
+    "commit message lacks evidence summary"
+  ],
+  "allowedResponsibilities": [
+    "release packet",
+    "commit message",
+    "release gate preparation"
+  ],
+  "forbiddenResponsibilities": [
+    "truth creation",
+    "bypassing evidence review",
+    "actual ship execution"
+  ],
+  "completionPosture": "Prepare Release passes only when it emits releasePacket, commitMessage, releasePreparationReceipt and a receipt before handing off to 10-ship."
 }

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.conveyor-lane-dispatch.v1",
+  "title": "Conveyor Lane Dispatch",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "dispatchKey",
+    "runKey",
+    "laneKey",
+    "workerKey",
+    "inputArtifactRefs",
+    "expectedOutputContracts",
+    "forbiddenResponsibilities",
+    "responseContract"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "dispatchKey": {
+      "type": "string"
+    },
+    "runKey": {
+      "type": "string"
+    },
+    "laneKey": {
+      "type": "string"
+    },
+    "workerKey": {
+      "type": "string"
+    },
+    "inputArtifactRefs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expectedOutputContracts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenResponsibilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "responseContract": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

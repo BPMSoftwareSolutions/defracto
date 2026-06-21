@@ -1,5 +1,80 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/lanes/05-materialize-artifacts/lane.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.conveyor-lane-contract.v1",
+  "laneKey": "defracto.lanes.05-materialize-artifacts.v1",
+  "laneIndex": 5,
+  "laneTitle": "Materialize Artifacts",
+  "laneStatus": "accepted",
+  "role": "Materialize generated surfaces, documents, sketches, receipts, and run artifacts through declared authority.",
+  "inputContracts": [
+    {
+      "artifactKind": "projectionManifest",
+      "required": true,
+      "source": "prior-lane"
+    },
+    {
+      "artifactKind": "runtimeSurfaceBinding",
+      "required": true,
+      "source": "prior-lane"
+    },
+    {
+      "artifactKind": "projectionReceipt",
+      "required": true,
+      "source": "prior-lane"
+    }
+  ],
+  "outputContracts": [
+    {
+      "artifactKind": "materializedArtifacts",
+      "required": true,
+      "target": "conveyor/lanes/05-materialize-artifacts/outputs/materializedArtifacts.json"
+    },
+    {
+      "artifactKind": "artifactMaterializationReceipts",
+      "required": true,
+      "target": "conveyor/lanes/05-materialize-artifacts/outputs/artifactMaterializationReceipts.json"
+    }
+  ],
+  "workerRuntime": {
+    "workerKey": "defracto.workers.gemini_flash.v1",
+    "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+    "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+    "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+    "agentRole": "materialization-agent",
+    "liveRuntimeRequired": true,
+    "failClosedIfUnavailable": true
+  },
+  "handoff": {
+    "mode": "lane-scoped-dispatch",
+    "nextLane": "06-run-conformance",
+    "requiresPriorReceipt": true,
+    "requiresReceiptBeforeAdvance": true,
+    "dispatchShape": "defracto.conveyor-lane-dispatch.v1",
+    "receiptShape": "defracto.conveyor-lane-receipt.v1"
+  },
+  "evidence": {
+    "required": true,
+    "receiptPathTemplate": "{runPath}/lanes/05-materialize-artifacts/receipt.v1.json",
+    "responsePathTemplate": "{runPath}/lanes/05-materialize-artifacts/response.gemini-flash.v1.json",
+    "dispatchPathTemplate": "{runPath}/lanes/05-materialize-artifacts/dispatch.gemini-flash.v1.json",
+    "hashMaterializedOutputs": true,
+    "surfaceSignatureRequired": true
+  },
+  "blockedConditions": [
+    "projection receipt missing",
+    "write authority missing",
+    "hash mismatch",
+    "manual output detected"
+  ],
+  "allowedResponsibilities": [
+    "artifact materialization request",
+    "target artifact list",
+    "hash expectations",
+    "materialization receipts"
+  ],
+  "forbiddenResponsibilities": [
+    "artifact meaning",
+    "manual repair",
+    "post-materialization edits"
+  ],
+  "completionPosture": "Materialize Artifacts passes only when it emits materializedArtifacts, artifactMaterializationReceipts and a receipt before handing off to 06-run-conformance."
 }

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-dispatch.v1",
+  "dispatchKey": "{runKey}.05-materialize-artifacts.dispatch",
+  "runKey": "{runKey}",
+  "laneKey": "defracto.lanes.05-materialize-artifacts.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "agentRole": "materialization-agent",
+  "inputArtifactRefs": [
+    "{input.projectionManifest}",
+    "{input.runtimeSurfaceBinding}",
+    "{input.projectionReceipt}"
+  ],
+  "expectedOutputContracts": [
+    "materializedArtifacts",
+    "artifactMaterializationReceipts"
+  ],
+  "forbiddenResponsibilities": [
+    "artifact meaning",
+    "manual repair",
+    "post-materialization edits"
+  ],
+  "responseContract": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "instructions": {
+    "mission": "Materialize generated surfaces, documents, sketches, receipts, and run artifacts through declared authority.",
+    "mustEmit": [
+      "materializedArtifacts",
+      "artifactMaterializationReceipts"
+    ],
+    "mustNotOwn": [
+      "artifact meaning",
+      "manual repair",
+      "post-materialization edits"
+    ],
+    "failClosedOn": [
+      "projection receipt missing",
+      "write authority missing",
+      "hash mismatch",
+      "manual output detected"
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.conveyor-lane-receipt.v1",
+  "title": "Conveyor Lane Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptKey",
+    "laneKey",
+    "status",
+    "checkedAt",
+    "inputArtifacts",
+    "outputArtifacts",
+    "workerResponse",
+    "hashes",
+    "findings",
+    "nextLane"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "receiptKey": {
+      "type": "string"
+    },
+    "laneKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "checkedAt": {
+      "type": "string"
+    },
+    "inputArtifacts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "outputArtifacts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "workerResponse": {
+      "type": "object"
+    },
+    "hashes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "nextLane": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

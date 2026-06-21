@@ -1,5 +1,85 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/lanes/04-project-runtime-surface/lane.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.conveyor-lane-contract.v1",
+  "laneKey": "defracto.lanes.04-project-runtime-surface.v1",
+  "laneIndex": 4,
+  "laneTitle": "Project Runtime Surface",
+  "laneStatus": "accepted",
+  "role": "Bind semantic contract to projected runtime surfaces without hand-authoring behavior.",
+  "inputContracts": [
+    {
+      "artifactKind": "sejContract",
+      "required": true,
+      "source": "prior-lane"
+    },
+    {
+      "artifactKind": "operationRequirements",
+      "required": true,
+      "source": "prior-lane"
+    },
+    {
+      "artifactKind": "semanticContractReceipt",
+      "required": true,
+      "source": "prior-lane"
+    }
+  ],
+  "outputContracts": [
+    {
+      "artifactKind": "projectionManifest",
+      "required": true,
+      "target": "conveyor/lanes/04-project-runtime-surface/outputs/projectionManifest.json"
+    },
+    {
+      "artifactKind": "runtimeSurfaceBinding",
+      "required": true,
+      "target": "conveyor/lanes/04-project-runtime-surface/outputs/runtimeSurfaceBinding.json"
+    },
+    {
+      "artifactKind": "projectionReceipt",
+      "required": true,
+      "target": "conveyor/lanes/04-project-runtime-surface/outputs/projectionReceipt.json"
+    }
+  ],
+  "workerRuntime": {
+    "workerKey": "defracto.workers.gemini_flash.v1",
+    "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+    "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+    "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+    "agentRole": "projection-manifest-agent",
+    "liveRuntimeRequired": true,
+    "failClosedIfUnavailable": true
+  },
+  "handoff": {
+    "mode": "lane-scoped-dispatch",
+    "nextLane": "05-materialize-artifacts",
+    "requiresPriorReceipt": true,
+    "requiresReceiptBeforeAdvance": true,
+    "dispatchShape": "defracto.conveyor-lane-dispatch.v1",
+    "receiptShape": "defracto.conveyor-lane-receipt.v1"
+  },
+  "evidence": {
+    "required": true,
+    "receiptPathTemplate": "{runPath}/lanes/04-project-runtime-surface/receipt.v1.json",
+    "responsePathTemplate": "{runPath}/lanes/04-project-runtime-surface/response.gemini-flash.v1.json",
+    "dispatchPathTemplate": "{runPath}/lanes/04-project-runtime-surface/dispatch.gemini-flash.v1.json",
+    "hashMaterializedOutputs": true,
+    "surfaceSignatureRequired": true
+  },
+  "blockedConditions": [
+    "SEJ receipt missing",
+    "target path ambiguous",
+    "projection would own product meaning",
+    "runtime binding missing"
+  ],
+  "allowedResponsibilities": [
+    "projection manifest",
+    "target paths",
+    "runtime bindings",
+    "generated surface responsibilities"
+  ],
+  "forbiddenResponsibilities": [
+    "generated source content",
+    "product truth",
+    "manual code edits"
+  ],
+  "completionPosture": "Project Runtime Surface passes only when it emits projectionManifest, runtimeSurfaceBinding, projectionReceipt and a receipt before handing off to 05-materialize-artifacts."
 }

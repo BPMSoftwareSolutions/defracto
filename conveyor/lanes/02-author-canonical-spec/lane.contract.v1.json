@@ -1,5 +1,76 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/lanes/02-author-canonical-spec/lane.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.conveyor-lane-contract.v1",
+  "laneKey": "defracto.lanes.02-author-canonical-spec.v1",
+  "laneIndex": 2,
+  "laneTitle": "Author Canonical Spec",
+  "laneStatus": "accepted",
+  "role": "Harden the accepted story into canonical authority.",
+  "inputContracts": [
+    {
+      "artifactKind": "storyPacket",
+      "required": true,
+      "source": "prior-lane"
+    },
+    {
+      "artifactKind": "storyExtractionReceipt",
+      "required": true,
+      "source": "prior-lane"
+    }
+  ],
+  "outputContracts": [
+    {
+      "artifactKind": "canonicalSpec",
+      "required": true,
+      "target": "conveyor/lanes/02-author-canonical-spec/outputs/canonicalSpec.json"
+    },
+    {
+      "artifactKind": "canonicalizationReceipt",
+      "required": true,
+      "target": "conveyor/lanes/02-author-canonical-spec/outputs/canonicalizationReceipt.json"
+    }
+  ],
+  "workerRuntime": {
+    "workerKey": "defracto.workers.gemini_flash.v1",
+    "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+    "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+    "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+    "agentRole": "canonical-spec-agent",
+    "liveRuntimeRequired": true,
+    "failClosedIfUnavailable": true
+  },
+  "handoff": {
+    "mode": "lane-scoped-dispatch",
+    "nextLane": "03-author-semantic-contract",
+    "requiresPriorReceipt": true,
+    "requiresReceiptBeforeAdvance": true,
+    "dispatchShape": "defracto.conveyor-lane-dispatch.v1",
+    "receiptShape": "defracto.conveyor-lane-receipt.v1"
+  },
+  "evidence": {
+    "required": true,
+    "receiptPathTemplate": "{runPath}/lanes/02-author-canonical-spec/receipt.v1.json",
+    "responsePathTemplate": "{runPath}/lanes/02-author-canonical-spec/response.gemini-flash.v1.json",
+    "dispatchPathTemplate": "{runPath}/lanes/02-author-canonical-spec/dispatch.gemini-flash.v1.json",
+    "hashMaterializedOutputs": true,
+    "surfaceSignatureRequired": true
+  },
+  "blockedConditions": [
+    "story receipt missing",
+    "canonical node lacks story path",
+    "rule lacks story authority",
+    "conflicting story claims"
+  ],
+  "allowedResponsibilities": [
+    "canonical nodes",
+    "canonical paths",
+    "rules",
+    "source/story traceability"
+  ],
+  "forbiddenResponsibilities": [
+    "SEJ body",
+    "projection code",
+    "worker execution",
+    "shipping"
+  ],
+  "completionPosture": "Author Canonical Spec passes only when it emits canonicalSpec, canonicalizationReceipt and a receipt before handing off to 03-author-semantic-contract."
 }

@@ -1,5 +1,84 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/lanes/11-observe-telemetry/lane.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.conveyor-lane-contract.v1",
+  "laneKey": "defracto.lanes.11-observe-telemetry.v1",
+  "laneIndex": 11,
+  "laneTitle": "Observe Telemetry",
+  "laneStatus": "accepted",
+  "role": "Capture post-ship observations and promote meaningful signals back to source candidates.",
+  "inputContracts": [
+    {
+      "artifactKind": "shipReceipt",
+      "required": true,
+      "source": "prior-lane"
+    },
+    {
+      "artifactKind": "runtimeObservation",
+      "required": true,
+      "source": "prior-lane"
+    },
+    {
+      "artifactKind": "operatorFeedback",
+      "required": true,
+      "source": "prior-lane"
+    }
+  ],
+  "outputContracts": [
+    {
+      "artifactKind": "telemetryCapture",
+      "required": true,
+      "target": "conveyor/lanes/11-observe-telemetry/outputs/telemetryCapture.json"
+    },
+    {
+      "artifactKind": "sourcePromotionCandidates",
+      "required": true,
+      "target": "conveyor/lanes/11-observe-telemetry/outputs/sourcePromotionCandidates.json"
+    },
+    {
+      "artifactKind": "telemetryReceipt",
+      "required": true,
+      "target": "conveyor/lanes/11-observe-telemetry/outputs/telemetryReceipt.json"
+    }
+  ],
+  "workerRuntime": {
+    "workerKey": "defracto.workers.gemini_flash.v1",
+    "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+    "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+    "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+    "agentRole": "telemetry-observer-agent",
+    "liveRuntimeRequired": true,
+    "failClosedIfUnavailable": true
+  },
+  "handoff": {
+    "mode": "lane-scoped-dispatch",
+    "nextLane": null,
+    "requiresPriorReceipt": true,
+    "requiresReceiptBeforeAdvance": true,
+    "dispatchShape": "defracto.conveyor-lane-dispatch.v1",
+    "receiptShape": "defracto.conveyor-lane-receipt.v1"
+  },
+  "evidence": {
+    "required": true,
+    "receiptPathTemplate": "{runPath}/lanes/11-observe-telemetry/receipt.v1.json",
+    "responsePathTemplate": "{runPath}/lanes/11-observe-telemetry/response.gemini-flash.v1.json",
+    "dispatchPathTemplate": "{runPath}/lanes/11-observe-telemetry/dispatch.gemini-flash.v1.json",
+    "hashMaterializedOutputs": true,
+    "surfaceSignatureRequired": true
+  },
+  "blockedConditions": [
+    "ship receipt missing",
+    "observation source ambiguous",
+    "telemetry cannot be captured",
+    "promotion would bypass source review"
+  ],
+  "allowedResponsibilities": [
+    "observation capture",
+    "feedback summarization",
+    "source promotion candidate creation"
+  ],
+  "forbiddenResponsibilities": [
+    "canonical promotion without review",
+    "silent product change",
+    "release authority"
+  ],
+  "completionPosture": "Observe Telemetry passes only when it emits telemetryCapture, sourcePromotionCandidates, telemetryReceipt and a receipt before handing off to pipeline completion."
 }

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-dispatch.v1",
+  "dispatchKey": "{runKey}.07-render-visual-evidence.dispatch",
+  "runKey": "{runKey}",
+  "laneKey": "defracto.lanes.07-render-visual-evidence.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "agentRole": "visual-proof-agent",
+  "inputArtifactRefs": [
+    "{input.runState}",
+    "{input.conformanceReceipt}",
+    "{input.visualProjectionModel}"
+  ],
+  "expectedOutputContracts": [
+    "visualEvidenceSurface",
+    "visualEvidenceReceipt"
+  ],
+  "forbiddenResponsibilities": [
+    "freehand ASCII",
+    "layout invention",
+    "renderer-owned truth"
+  ],
+  "responseContract": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "instructions": {
+    "mission": "Generate or update run visual evidence from declared visual authority.",
+    "mustEmit": [
+      "visualEvidenceSurface",
+      "visualEvidenceReceipt"
+    ],
+    "mustNotOwn": [
+      "freehand ASCII",
+      "layout invention",
+      "renderer-owned truth"
+    ],
+    "failClosedOn": [
+      "visual authority missing",
+      "conformance receipt missing",
+      "manual sketch detected",
+      "visual receipt missing"
+    ]
+  }
+}

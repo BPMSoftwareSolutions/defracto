@@ -1,5 +1,75 @@
 {
-  "status": "placeholder",
-  "target": "conveyor/lanes/06-run-conformance/lane.contract.v1.json",
-  "note": "Materialized to satisfy the declared filesystem shape."
+  "schemaVersion": "defracto.conveyor-lane-contract.v1",
+  "laneKey": "defracto.lanes.06-run-conformance.v1",
+  "laneIndex": 6,
+  "laneTitle": "Run Conformance",
+  "laneStatus": "accepted",
+  "role": "Run conformance and equivalence checks against materialized artifacts.",
+  "inputContracts": [
+    {
+      "artifactKind": "materializedArtifacts",
+      "required": true,
+      "source": "prior-lane"
+    },
+    {
+      "artifactKind": "artifactMaterializationReceipts",
+      "required": true,
+      "source": "prior-lane"
+    }
+  ],
+  "outputContracts": [
+    {
+      "artifactKind": "conformanceReport",
+      "required": true,
+      "target": "conveyor/lanes/06-run-conformance/outputs/conformanceReport.json"
+    },
+    {
+      "artifactKind": "conformanceReceipt",
+      "required": true,
+      "target": "conveyor/lanes/06-run-conformance/outputs/conformanceReceipt.json"
+    }
+  ],
+  "workerRuntime": {
+    "workerKey": "defracto.workers.gemini_flash.v1",
+    "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+    "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+    "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+    "agentRole": "conformance-agent",
+    "liveRuntimeRequired": true,
+    "failClosedIfUnavailable": true
+  },
+  "handoff": {
+    "mode": "lane-scoped-dispatch",
+    "nextLane": "07-render-visual-evidence",
+    "requiresPriorReceipt": true,
+    "requiresReceiptBeforeAdvance": true,
+    "dispatchShape": "defracto.conveyor-lane-dispatch.v1",
+    "receiptShape": "defracto.conveyor-lane-receipt.v1"
+  },
+  "evidence": {
+    "required": true,
+    "receiptPathTemplate": "{runPath}/lanes/06-run-conformance/receipt.v1.json",
+    "responsePathTemplate": "{runPath}/lanes/06-run-conformance/response.gemini-flash.v1.json",
+    "dispatchPathTemplate": "{runPath}/lanes/06-run-conformance/dispatch.gemini-flash.v1.json",
+    "hashMaterializedOutputs": true,
+    "surfaceSignatureRequired": true
+  },
+  "blockedConditions": [
+    "materialization receipt missing",
+    "test failure",
+    "target mismatch",
+    "unsupported conformance check"
+  ],
+  "allowedResponsibilities": [
+    "test invocation",
+    "equivalence checks",
+    "conformance findings",
+    "conformance receipt"
+  ],
+  "forbiddenResponsibilities": [
+    "repairing generated artifacts",
+    "changing target fixtures",
+    "release decision"
+  ],
+  "completionPosture": "Run Conformance passes only when it emits conformanceReport, conformanceReceipt and a receipt before handing off to 07-render-visual-evidence."
 }
