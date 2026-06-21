@@ -194,6 +194,7 @@ defracto/
 |-- slice-007l-visual-narrative-source-contract-review.latest.md
 |-- slice-007m-visual-source-role-change-receipt-contract.latest.md
 |-- slice-007m1-run-visual-evidence-standard.latest.md
+|-- slice-007m2-run-sketch-authoring-violation-disposition.latest.md
 `-- semantic-coherence-review.latest.md
 ```
 

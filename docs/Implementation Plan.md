@@ -2032,6 +2032,41 @@ Blocks:
 
 Ships next:
 
+Slice 007M.2: Run Sketch Authoring Violation Disposition.
+
+## Slice 007M.2: Run Sketch Authoring Violation Disposition
+
+Goal:
+
+Record that the `Slice 007M.1` ASCII sketch was hand-authored and therefore cannot be treated as governed pipeline evidence.
+
+Changes:
+
+- Classify the existing sketch as manual visual seed or ungoverned visual draft.
+- Record that the artifact does not prove deterministic visual generation.
+- Record that the artifact does not prove `visualProjectionModel` rendering.
+- Record that the artifact does not satisfy future governed visual evidence requirements.
+- Keep renderer code, extraction, OCR, image analysis, and canonicalization out of scope.
+
+Artifacts:
+
+```text
+reports/slice-007m2-run-sketch-authoring-violation-disposition.latest.md
+```
+
+Completion rule:
+
+```text
+The existing run sketch is downgraded to manual visual seed or ungoverned visual draft, and no hand repair is treated as governed evidence.
+```
+
+Blocks:
+
+- Slice 007M.1 run visual evidence standard must remain complete.
+- No sketch is repaired by hand.
+
+Ships next:
+
 ## Slice 008: Narrative Coverage Prototype
 
 Goal:

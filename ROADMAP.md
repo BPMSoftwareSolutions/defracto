@@ -57,7 +57,8 @@ Slice 000.1 and Slice 000.2 are required before Slice 001 can be accepted as com
 48. Slice 007L: Visual Narrative Source Contract.
 49. Slice 007M: Visual Source Role-Change Receipt Contract.
 50. Slice 007M.1: Run Visual Evidence Standard.
-51. Slice 008: Narrative Coverage Prototype.
+51. Slice 007M.2: Run Sketch Authoring Violation Disposition.
+52. Slice 008: Narrative Coverage Prototype.
 
 ## Near-Term Deliverables
 
@@ -70,6 +71,7 @@ Slice 000.1 and Slice 000.2 are required before Slice 001 can be accepted as com
 - Slice 007L now introduces the visual narrative source contract for sketches, whiteboards, diagrams, and similar authored visual surfaces.
 - Slice 007M now introduces the source role-change receipt contract for projection-output-to-source-intent transitions.
 - Slice 007M.1 now makes visual evidence a required proof surface for meaningful slices, starting as ASCII.
+- Slice 007M.2 now records that the current 007M.1 sketch is manual visual seed / ungoverned draft until a pipeline receipt exists.
 
 ## Long-Term Direction
 

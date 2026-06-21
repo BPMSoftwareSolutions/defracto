@@ -28,6 +28,7 @@ reports/sketches/slice-007m1-run-visual-evidence-standard.ascii
 - Visual model: deferred until the `visualProjectionModel` is used for rendering
 - Target fixture: not applicable yet
 - Equivalence posture: deferred
+- Artifact note: the on-disk sketch is later dispositioned in Slice 007M.2 as a manual visual seed / ungoverned visual draft, so this report establishes the standard rather than claiming governed pipeline evidence.
 
 ## Evidence Boundary
 
@@ -50,3 +51,4 @@ Slice 007M.1 passes only as a run visual evidence standard.
 No renderer exists yet.
 
 Future slices must include visual evidence or explicitly record why visual evidence is deferred.
+The existing sketch artifact is not governed evidence until a pipeline materialization receipt exists.
