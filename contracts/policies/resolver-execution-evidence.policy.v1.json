@@ -1,0 +1,48 @@
+{
+  "policyVersion": "defracto.resolver-execution-evidence.policy.v1",
+  "policyKey": "defracto.resolver-execution-evidence",
+  "scope": "resolver-backed execution evidence",
+  "whatResolverBackedInvocationProves": [
+    "The resolver accepted a declared SEJ contract invocation.",
+    "The resolver executed only the declared primitive surface.",
+    "The resolver produced evidence attached to that declared contract."
+  ],
+  "whatMaterializationReceiptsProve": [
+    "A generated doorway or facade was materialized from accepted semantic truth.",
+    "The artifact path, source SEJ, manifest, and content hash were recorded."
+  ],
+  "whatBootstrapInvocationReceiptsProve": [
+    "A generated doorway was invoked against bounded already-loaded bootstrap inputs.",
+    "The invocation exited as recorded without implying generalized validation or reporting."
+  ],
+  "deferredCapabilities": [
+    "generalized file loading",
+    "directory traversal",
+    "generalized graph traversal",
+    "generalized validation",
+    "generalized reporting"
+  ],
+  "requiredFutureResolverReceiptFields": [
+    "receiptKey",
+    "status",
+    "checkedAt",
+    "invocationKind",
+    "toolPath",
+    "sourceSej",
+    "invocationShape",
+    "exitCode"
+  ],
+  "requiredEvidenceForEquivalenceClaims": [
+    "resolver invocation receipt",
+    "materialization receipt",
+    "bootstrap invocation receipt",
+    "equivalence report"
+  ],
+  "forbiddenClaimsWhenOnlyBootstrapEvidenceExists": [
+    "generalized validation is implemented",
+    "generalized reporting is implemented",
+    "file loading is implemented",
+    "graph traversal is implemented",
+    "equivalence has been proven for all future inputs"
+  ]
+}

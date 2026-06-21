@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.resolver-invocation-receipt.schema.v1",
+  "title": "Resolver Invocation Receipt",
+  "type": "object",
+  "required": [
+    "receiptKey",
+    "status",
+    "checkedAt",
+    "invocationKind",
+    "toolPath",
+    "sourceSej",
+    "invocationShape",
+    "exitCode"
+  ],
+  "properties": {
+    "receiptKey": { "type": "string" },
+    "status": { "type": "string", "enum": ["passed", "blocked", "failed"] },
+    "checkedAt": { "type": "string" },
+    "invocationKind": { "type": "string" },
+    "toolPath": { "type": "string" },
+    "sourceSej": { "type": "string" },
+    "facadeManifest": { "type": "string" },
+    "materializationReceipt": { "type": "string" },
+    "invocationShape": { "type": "string" },
+    "invocationArguments": { "type": "string" },
+    "exitCode": { "type": "integer" },
+    "stdout": { "type": "string" },
+    "stderr": { "type": "string" },
+    "contentHash": { "type": "string" },
+    "generatedFileAnchors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["anchorKey", "filePath", "anchorRole", "anchorState"],
+        "properties": {
+          "anchorKey": { "type": "string" },
+          "filePath": { "type": "string" },
+          "anchorRole": { "type": "string" },
+          "anchorState": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

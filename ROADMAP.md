@@ -39,9 +39,13 @@ Slice 000.1 and Slice 000.2 are required before Slice 001 can be accepted as com
 30. Slice 004K: Story/Graph Bootstrap Invocation Evidence.
 31. Slice 004: Story Packet Validator and Narrative Graph Reporter Bootstrap Closure.
 32. Slice 005: Generalized SEJ Validation Contract Expansion.
-33. Slice 006: Resolver Path Spike.
-34. Slice 007: Projection Expansion.
-35. Slice 008: Narrative Coverage Prototype.
+33. Slice 006: Resolver Path Consolidation and Evidence Model.
+34. Slice 007A: UI Sketch Projection Contract.
+35. Slice 007B: UI Sketch SEJ Render Contract.
+36. Slice 007C: UI Sketch Resolver Capability Handshake.
+37. Slice 007D: UI Sketch Materialization SEJ.
+38. Slice 007: UI Projection Expansion.
+39. Slice 008: Narrative Coverage Prototype.
 
 ## Near-Term Deliverables
 

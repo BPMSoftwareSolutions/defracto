@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.ui-sketch-render-result.v1",
+  "title": "UI Sketch Render Result",
+  "type": "object",
+  "required": [
+    "renderResultKey",
+    "status",
+    "projectionManifestKey",
+    "sourceStoryKey",
+    "sourceCanonicalSpecKey",
+    "outputPath",
+    "contentHash",
+    "generatedFileAnchors"
+  ],
+  "properties": {
+    "renderResultKey": { "type": "string" },
+    "status": { "type": "string" },
+    "projectionManifestKey": { "type": "string" },
+    "sourceStoryKey": { "type": "string" },
+    "sourceCanonicalSpecKey": { "type": "string" },
+    "outputPath": { "type": "string" },
+    "contentHash": { "type": "string" },
+    "generatedFileAnchors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["anchorKey", "filePath", "anchorRole", "anchorState"],
+        "properties": {
+          "anchorKey": { "type": "string" },
+          "filePath": { "type": "string" },
+          "anchorRole": { "type": "string" },
+          "anchorState": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

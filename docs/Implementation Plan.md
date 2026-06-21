@@ -1344,58 +1344,59 @@ Blocks:
 
 Ships next:
 
-Slice 006: Resolver Path Spike.
+Slice 006: Resolver Path Consolidation and Evidence Model.
 
-## Slice 006: Resolver Path Spike
+## Slice 006: Resolver Path Consolidation and Evidence Model
 
 Goal:
 
-Prove the smallest resolver-mediated execution path for one bounded validation operation.
+Consolidate resolver invocation, materialization, bootstrap invocation, and equivalence evidence into a single evidence model without adding runtime capability.
 
 Changes:
 
-- Add a minimal resolver spike.
-- Execute the `validate-lineage` SEJ contract against the founding example.
-- Compare resolver output against the existing direct validator output.
-- Emit evidence for equivalence or discrepancy.
+- Define resolver invocation receipt requirements.
+- Define equivalence report receipt requirements.
+- Define evidence policy for materialization and bootstrap invocation claims.
+- Keep generalized validation, generalized graph rendering, and report writing out of scope.
 
-Resolver spike classification:
+Evidence model classification:
 
-The resolver spike is not a product runtime and not a permanent source of execution truth. It is either:
+Resolver-backed evidence is not a product runtime and not a permanent source of execution truth. It is:
 
-1. A temporary compatibility spike used to compare direct validator behavior against SEJ-declared behavior.
-2. A binding to the external semantic executable JSON runtime resolver SDK.
+1. A record of resolver-mediated invocation against declared SEJ contracts.
+2. A bounded proof surface for materialization and bootstrap invocation receipts.
 
-The resolver run receipt must state which mode was used.
+Resolver evidence receipts must state which declared source SEJ and invocation shape were used.
 
 Artifacts:
 
 ```text
-runtime/resolver/
-examples/founding-conversation/evidence/validate-lineage.resolver-run.receipt.v1.json
-reports/resolver-equivalence.latest.md
+contracts/schemas/resolver-invocation-receipt.schema.v1.json
+contracts/schemas/resolver-equivalence-report.schema.v1.json
+contracts/policies/resolver-execution-evidence.policy.v1.json
+reports/slice-006-resolver-path-consolidation.latest.md
 ```
 
 Completion rule:
 
 ```text
-The resolver path can execute the lineage validation contract and produce evidence consistent with the direct validator.
+The resolver evidence model is bounded before implementation and introduces no runtime capability.
 ```
 
 Blocks:
 
 - Slice 005 generalized validation contract expansion.
-- Operation catalog design.
+- Existing generated doorways must remain unchanged.
 
 Ships next:
 
-Slice 007: Projection Expansion.
+Slice 007: UI Projection Expansion.
 
-## Slice 007: Projection Expansion
+## Slice 007: UI Projection Expansion
 
 Goal:
 
-Add a second projection type only after Markdown lineage is proven.
+Add a governed UI projection track after Markdown lineage is proven.
 
 Candidate order:
 
@@ -1412,11 +1413,159 @@ Each new projection type must carry a projection manifest, semantic anchors, lin
 
 Blocks:
 
-- Slice 003 validator must support projection types cleanly.
+- Slice 006 evidence model must remain complete.
 
 Ships next:
 
-Slice 008: Narrative Coverage Prototype.
+Slice 007A: UI Sketch Projection Contract.
+
+## Slice 007A: UI Sketch Projection Contract
+
+Goal:
+
+Declare a governed UI/ASCII sketch projection as a non-Markdown projection contract before any rendering implementation exists.
+
+Changes:
+
+- Add a story for the UI sketch projection.
+- Add a canonical spec for the UI sketch projection.
+- Add a projection manifest schema and render-result schema.
+- Add a facade projection manifest for the founding UI sketch.
+- Keep HTML, React, CSS, SVG, and runtime projection out of scope.
+
+Artifacts:
+
+```text
+stories/projections/ui-sketch-projection.story.v1.json
+specs/canonical/projections/ui-sketch-projection.canonical-spec.v1.json
+contracts/schemas/ui-sketch-projection-manifest.schema.v1.json
+contracts/schemas/ui-sketch-render-result.schema.v1.json
+contracts/projections/founding-ui-sketch.projection-manifest.v1.json
+reports/slice-007a-ui-sketch-projection-contract-review.latest.md
+```
+
+Completion rule:
+
+```text
+The UI sketch projection is declared but not rendered, and no executable behavior is introduced.
+```
+
+Blocks:
+
+- Slice 006 resolver evidence model must remain complete.
+- No rendering behavior may be introduced.
+
+Ships next:
+
+Slice 007B: UI Sketch Projection Handshake.
+
+## Slice 007B: UI Sketch SEJ Render Contract
+
+Goal:
+
+Define a declarative SEJ render contract for the governed UI/ASCII sketch projection without introducing any renderer or rendering behavior.
+
+Changes:
+
+- Add a SEJ contract for the founding UI sketch projection.
+- Add operation requirement seeds for bounded render execution.
+- Declare render output shape, semantic anchors, deferred rendering surfaces, and evidence expectations.
+- Keep HTML, React, CSS, SVG, and runtime projection out of scope.
+
+Artifacts:
+
+```text
+contracts/sej/render-founding-ui-sketch.sej.v1.json
+contracts/operations/ui-sketch-render.operation-requirements.v1.json
+reports/slice-007b-ui-sketch-sej-render-contract-review.latest.md
+```
+
+Completion rule:
+
+```text
+The UI sketch projection remains unrendered, and no executable renderer exists.
+```
+
+Blocks:
+
+- Slice 007A UI sketch projection contract must remain complete.
+- No resolver invocation may occur yet.
+
+Ships next:
+
+Slice 007C: UI Sketch Resolver Capability Handshake.
+
+## Slice 007C: UI Sketch Resolver Capability Handshake
+
+Goal:
+
+Compare the UI sketch render SEJ against the current resolver-supported primitive surface without invoking the resolver.
+
+Changes:
+
+- Review the UI sketch render SEJ.
+- Review the UI sketch render operation requirements.
+- Review the founding UI sketch projection manifest.
+- Determine whether the bounded render SEJ is executable by the current resolver surface.
+- Keep rendering, materialization, and resolver code changes out of scope.
+
+Artifacts:
+
+```text
+reports/slice-007c-ui-sketch-resolver-capability-handshake.latest.md
+```
+
+Completion rule:
+
+```text
+The UI sketch render SEJ is executable by the current resolver surface if it requires only supported primitives and no narrowing is needed before materialization.
+```
+
+Blocks:
+
+- Slice 007B UI sketch SEJ render contract must remain complete.
+- No resolver invocation may occur yet.
+
+Ships next:
+
+Slice 007D: UI Sketch Materialization SEJ.
+
+## Slice 007D: UI Sketch Materialization SEJ
+
+Goal:
+
+Define the resolver-mediated materialization contract for the governed UI/ASCII sketch projection without invoking the resolver.
+
+Changes:
+
+- Add a materialization SEJ for the founding UI sketch projection.
+- Declare the future ASCII sketch target and future render receipt target.
+- Declare generated/rendered artifact anchors and evidence emission shape.
+- Keep HTML, React, CSS, SVG, and runtime projection out of scope.
+
+Artifacts:
+
+```text
+contracts/sej/materialize-founding-ui-sketch.sej.v1.json
+reports/slice-007d-ui-sketch-materialization-sej-review.latest.md
+```
+
+Completion rule:
+
+```text
+The UI sketch materialization SEJ is accepted as a projection contract review, but no UI sketch artifact exists yet.
+```
+
+Blocks:
+
+- Slice 007C UI sketch resolver capability handshake must remain complete.
+- No resolver invocation may occur yet.
+
+Ships next:
+
+Slice 007E: UI Sketch Materialization Invocation.
+
+## Slice 008: Narrative Coverage Prototype
 
 ## Slice 008: Narrative Coverage Prototype
 

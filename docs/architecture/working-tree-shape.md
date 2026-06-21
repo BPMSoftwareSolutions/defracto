@@ -143,6 +143,11 @@ defracto/
 |-- slice-004k-story-graph-bootstrap-invocation-evidence.latest.md
 |-- slice-004-story-graph-bootstrap-closure.latest.md
 |-- slice-005-sej-validation-contract-expansion.latest.md
+|-- slice-006-resolver-path-consolidation.latest.md
+|-- slice-007a-ui-sketch-projection-contract-review.latest.md
+|-- slice-007b-ui-sketch-sej-render-contract-review.latest.md
+|-- slice-007c-ui-sketch-resolver-capability-handshake.latest.md
+|-- slice-007d-ui-sketch-materialization-sej-review.latest.md
 `-- semantic-coherence-review.latest.md
 ```
 
@@ -163,6 +168,11 @@ Current generated-doorway posture:
 - No hand-authored executable validator body owns truth yet.
 - `reports/slice-004-story-graph-bootstrap-closure.latest.md` closes the bootstrap line as evidence-backed and bounded.
 - `reports/slice-005-sej-validation-contract-expansion.latest.md` expands the SEJ validation boundary without adding executable behavior.
+- `reports/slice-006-resolver-path-consolidation.latest.md` consolidates resolver evidence posture without adding runtime capability.
+- `reports/slice-007a-ui-sketch-projection-contract-review.latest.md` declares a governed UI sketch projection without rendering behavior.
+- `reports/slice-007b-ui-sketch-sej-render-contract-review.latest.md` declares the UI sketch SEJ render contract without rendering behavior.
+- `reports/slice-007c-ui-sketch-resolver-capability-handshake.latest.md` confirms the bounded render SEJ against the current resolver primitive surface.
+- `reports/slice-007d-ui-sketch-materialization-sej-review.latest.md` declares the UI sketch materialization SEJ without invoking the resolver.
 
 Operational doorway shape under contract review:
 

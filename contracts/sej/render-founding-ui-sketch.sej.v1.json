@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.render-founding-ui-sketch.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "draft",
+  "toolKey": "defracto.projections.ui_sketch_projection",
+  "sourceLineage": {
+    "storyKey": "stories/projections/ui-sketch-projection.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/projections/ui-sketch-projection.canonical-spec.v1.json",
+    "executableProjectionContractKey": "contracts/projections/founding-ui-sketch.projection-manifest.v1.json",
+    "bodyDispositionKey": "contracts/policies/sej-validation-expansion.policy.v1.json"
+  },
+  "findingTaxonomyKey": "contracts/taxonomies/finding-taxonomy.v1.json",
+  "operationRequirementsKey": "contracts/operations/ui-sketch-render.operation-requirements.v1.json",
+  "boundedInputs": [
+    "projectionManifest"
+  ],
+  "boundedOutputs": [
+    "uiSketchRender"
+  ],
+  "allowedFindingKeys": [
+    "pass",
+    "missing_section",
+    "broken_anchor",
+    "invented_layout_meaning"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.reference.v1",
+      "purpose": "Resolve the already-loaded projection manifest from the invocation payload.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "purpose": "Resolve bounded values from the projection manifest without inventing UI meaning.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "purpose": "Evaluate bounded predicates over the projection manifest, anchors, and output shape.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "purpose": "Project the bounded UI sketch render result from explicit predicate outcomes.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "bootstrapValidation": {
+    "mode": "already-loaded-json",
+    "checkMode": "explicit-bounded-predicates",
+    "checks": [
+      {
+        "leftRef": "projectionManifest.projectedPath",
+        "operator": "equals",
+        "rightValue": "projections/ui/founding-ui-sketch.latest.txt",
+        "findingKeyOnMismatch": "missing_section"
+      },
+      {
+        "leftRef": "projectionManifest.sourceLineage.storyKey",
+        "operator": "equals",
+        "rightValue": "stories/projections/ui-sketch-projection.story.v1.json",
+        "findingKeyOnMismatch": "broken_anchor"
+      }
+    ]
+  },
+  "projectionResponsibilities": [
+    "finding.emit",
+    "result.build"
+  ],
+  "forbiddenResolverOperations": [
+    "render.ui",
+    "html.generate",
+    "react.render",
+    "css.emit",
+    "svg.emit",
+    "json.read_file.v1",
+    "json.parse.v1",
+    "directory.traverse.v1"
+  ],
+  "failurePosture": "Missing capability blocks execution and keeps the contract in declarative review until a resolver handshake is later authorized."
+}

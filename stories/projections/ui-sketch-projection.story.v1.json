@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.projections.ui-sketch-projection.story.v1",
+  "derivedFrom": {
+    "sourceKey": "defracto.origin.conversation_fractal.v1",
+    "sourcePath": "examples/founding-conversation/source/conversation-fractal.md",
+    "sourceHash": "sha256:seed-manual"
+  },
+  "actor": {
+    "role": "Defracto maintainer",
+    "goal": "preserve a governed UI sketch projection before any rendered UI exists"
+  },
+  "story": {
+    "asA": "Defracto maintainer",
+    "iWant": "a contract for a UI/ASCII sketch projection that is fully described before rendering",
+    "soThat": "no sketch renderer can become a hidden source of truth"
+  },
+  "acceptanceCriteria": [
+    {
+      "criteriaKey": "ui_sketch_bounded",
+      "statement": "The UI sketch projection is fully described before any executable or rendered UI exists."
+    },
+    {
+      "criteriaKey": "projection_trace_bounded",
+      "statement": "The sketch projection points back to a canonical spec, manifest, and evidence posture without adding runtime behavior."
+    }
+  ],
+  "status": "authorized"
+}

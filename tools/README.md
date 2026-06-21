@@ -141,4 +141,11 @@ Slice 005 generalized SEJ validation contract expansion:
 - `contracts/policies/sej-validation-expansion.policy.v1.json`
 - `reports/slice-005-sej-validation-contract-expansion.latest.md`
 
+Slice 006 resolver path consolidation and evidence model:
+
+- `contracts/schemas/resolver-invocation-receipt.schema.v1.json`
+- `contracts/schemas/resolver-equivalence-report.schema.v1.json`
+- `contracts/policies/resolver-execution-evidence.policy.v1.json`
+- `reports/slice-006-resolver-path-consolidation.latest.md`
+
 Future hand-authored tools must be introduced only after their story, canonical spec, schemas, and evidence expectations are approved.

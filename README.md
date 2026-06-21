@@ -38,8 +38,8 @@ The repo is accepted for architecture.
 
 Slice 000, Slice 000.1, Slice 000.2, and the manual-seed Slice 001 artifact review have passed.
 
-The current proof posture is manual-seed, bootstrap-contract, resolver-backed facade materialization, operational doorway materialization, bootstrap invocation evidence, bootstrap closure, and generalized SEJ validation contract expansion.
+The current proof posture is manual-seed, bootstrap-contract, resolver-backed facade materialization, operational doorway materialization, bootstrap invocation evidence, bootstrap closure, generalized SEJ validation contract expansion, resolver evidence consolidation, UI sketch projection contract review, UI sketch SEJ render contract review, UI sketch resolver capability handshake, and UI sketch materialization SEJ review.
 `tools/validate-lineage.js`, `tools/validate-story-packet.js`, and `tools/render-narrative-graph.js` exist only as resolver-materialized generated doorways.
 No hand-authored executable validator body, SEJ runtime, resolver execution code, UI projection, or automation script exists yet.
 
-Next work begins with Slice 006: Resolver Path Spike.
+Next work begins with Slice 007E: UI Sketch Materialization Invocation.

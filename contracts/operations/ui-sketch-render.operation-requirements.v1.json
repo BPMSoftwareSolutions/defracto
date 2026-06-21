@@ -1,0 +1,66 @@
+{
+  "operationRequirementVersion": "defracto.ui-sketch-render.operation-requirements.v1",
+  "toolKey": "defracto.projections.ui_sketch_projection",
+  "contractKey": "defracto.sej.render-founding-ui-sketch.v1",
+  "resolverHandshakeStatus": "pending",
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.reference.v1",
+      "status": "required",
+      "purpose": "Resolve the already-loaded projection manifest from the invocation payload.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "status": "required",
+      "purpose": "Resolve bounded values from the projection manifest without inventing UI meaning.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "status": "required",
+      "purpose": "Evaluate bounded predicates over the projection manifest, anchors, and output shape.",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "status": "required",
+      "purpose": "Project the bounded UI sketch render result from explicit predicate outcomes.",
+      "ifMissing": "blocked"
+    }
+  ],
+  "renderOutputShape": [
+    "uiSketchRender",
+    "renderResultKey",
+    "status",
+    "projectionManifestKey",
+    "sourceStoryKey",
+    "sourceCanonicalSpecKey",
+    "outputPath",
+    "contentHash",
+    "generatedFileAnchors"
+  ],
+  "semanticAnchors": [
+    "projectionManifest.projectedPath",
+    "projectionManifest.sourceLineage.storyKey",
+    "projectionManifest.sourceLineage.canonicalSpecKey"
+  ],
+  "deferredRenderingSurfaces": [
+    "html",
+    "react",
+    "css",
+    "svg",
+    "runtime projection"
+  ],
+  "evidenceExpectations": [
+    "projection-manifest acceptance",
+    "declared render contract review",
+    "future resolver receipt when invocation is authorized"
+  ],
+  "forbiddenClaims": [
+    "invented layout meaning",
+    "renderer-owned product truth",
+    "rendering implementation exists",
+    "runtime projection exists"
+  ]
+}

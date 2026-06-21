@@ -36,6 +36,11 @@ Seed reports:
 - `slice-004k-story-graph-bootstrap-invocation-evidence.latest.md`
 - `slice-004-story-graph-bootstrap-closure.latest.md`
 - `slice-005-sej-validation-contract-expansion.latest.md`
+- `slice-006-resolver-path-consolidation.latest.md`
+- `slice-007a-ui-sketch-projection-contract-review.latest.md`
+- `slice-007b-ui-sketch-sej-render-contract-review.latest.md`
+- `slice-007c-ui-sketch-resolver-capability-handshake.latest.md`
+- `slice-007d-ui-sketch-materialization-sej-review.latest.md`
 - `body-disposition.seed.md`
 
 Report bodies may be manually generated in Slice 001, but their section structure must remain aligned with the approved minimum shape.

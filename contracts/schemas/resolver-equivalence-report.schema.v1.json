@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.resolver-equivalence-report.schema.v1",
+  "title": "Resolver Equivalence Report",
+  "type": "object",
+  "required": [
+    "reportKey",
+    "status",
+    "checkedAt",
+    "sourceSej",
+    "resolverRunReceipt",
+    "materializationReceipts",
+    "bootstrapInvocationReceipts",
+    "equivalenceClaimPosture",
+    "deferredCapabilities",
+    "forbiddenClaims"
+  ],
+  "properties": {
+    "reportKey": { "type": "string" },
+    "status": { "type": "string", "enum": ["passed", "blocked", "failed"] },
+    "checkedAt": { "type": "string" },
+    "sourceSej": { "type": "string" },
+    "resolverRunReceipt": { "type": "string" },
+    "materializationReceipts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "bootstrapInvocationReceipts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "equivalenceClaimPosture": { "type": "string" },
+    "deferredCapabilities": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

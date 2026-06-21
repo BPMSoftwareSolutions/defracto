@@ -1,0 +1,141 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.materialize-founding-ui-sketch.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "draft",
+  "toolKey": "defracto.projections.ui_sketch_projection",
+  "sourceLineage": {
+    "facadeManifestKey": "contracts/projections/founding-ui-sketch.projection-manifest.v1.json",
+    "sejContractKey": "contracts/sej/render-founding-ui-sketch.sej.v1.json",
+    "materializationReviewKey": "reports/slice-007c-ui-sketch-resolver-capability-handshake.latest.md"
+  },
+  "targetArtifact": {
+    "artifactKey": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+    "artifactPath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+    "artifactKind": "generated_ascii_sketch_doorway",
+    "artifactStatus": "future"
+  },
+  "generatedFileAnchors": [
+    {
+      "anchorKey": "generatedFacadeTarget",
+      "filePath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+      "anchorRole": "generated ascii sketch target",
+      "anchorState": "future"
+    },
+    {
+      "anchorKey": "generatedReceiptTarget",
+      "filePath": "examples/founding-conversation/evidence/founding-ui-sketch.render.receipt.v1.json",
+      "anchorRole": "render receipt target",
+      "anchorState": "future"
+    }
+  ],
+  "materializationPrimitives": [
+    "resolve.contract",
+    "resolve.reference",
+    "resolve.value",
+    "project.value",
+    "artifact.materialize",
+    "hash.compute",
+    "evidence.emit"
+  ],
+  "materializationSteps": [
+    "resolve the accepted UI sketch projection manifest",
+    "resolve the accepted UI sketch SEJ render contract",
+    "project the target artifact path for the ASCII sketch doorway",
+    "materialize the governed ASCII sketch artifact shape",
+    "compute the declared artifact hash",
+    "emit the declared render receipt"
+  ],
+  "receiptEmission": {
+    "receiptKey": "defracto.founding-ui-sketch.render-receipt.v1",
+    "receiptPath": "examples/founding-conversation/evidence/founding-ui-sketch.render.receipt.v1.json",
+    "receiptKind": "render-receipt",
+    "required": true
+  },
+  "allowedResponsibilities": [
+    "materialize a governed ASCII sketch doorway from accepted semantic truth",
+    "emit evidence for the generated sketch artifact",
+    "keep the sketch doorway subordinate to the accepted SEJ contract"
+  ],
+  "forbiddenResponsibilities": [
+    "invented layout meaning",
+    "renderer-owned product truth",
+    "direct rendering behavior",
+    "HTML generation",
+    "React generation",
+    "CSS generation",
+    "SVG generation",
+    "runtime projection",
+    "file loading in the facade",
+    "JSON parsing in the facade",
+    "array traversal in the facade",
+    "finding-key invention",
+    "resolver modification",
+    "source mutation",
+    "projection mutation"
+  ],
+  "steps": [
+    {
+      "id": "materializeSketch",
+      "type": "primitive",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "sketch.materialization"
+        },
+        "artifact": {
+          "path": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+          "format": "text",
+          "anchor": {
+            "enabled": true,
+            "sourceSej": "contracts/sej/materialize-founding-ui-sketch.sej.v1.json",
+            "contractKey": "defracto.sej.materialize-founding-ui-sketch.v1",
+            "commentPrefix": "#"
+          },
+          "content": [
+            "# Generated UI sketch doorway for defracto.projections.ui_sketch_projection.",
+            "# This file is resolver-materialized and owns no layout truth."
+          ],
+          "joinWith": "\n"
+        }
+      }
+    },
+    {
+      "id": "emitReceipt",
+      "type": "primitive",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "sketch.evidence"
+        },
+        "receipt": {
+          "path": "examples/founding-conversation/evidence/founding-ui-sketch.render.receipt.v1.json",
+          "content": {
+            "receiptKey": "defracto.founding-ui-sketch.render-receipt.v1",
+            "status": "passed",
+            "checkedAt": "2026-06-21T00:00:00-04:00",
+            "sourceSej": "contracts/sej/materialize-founding-ui-sketch.sej.v1.json",
+            "facadeManifest": "contracts/projections/founding-ui-sketch.projection-manifest.v1.json",
+            "targetPath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+            "artifactHash": {
+              "ref": "$steps.materializeSketch.contentHash"
+            },
+            "generatedFileAnchors": [
+              {
+                "anchorKey": "generatedFacadeTarget",
+                "filePath": "examples/founding-conversation/projections/ui/founding-ui-sketch.ascii",
+                "anchorRole": "generated ascii sketch target",
+                "anchorState": "materialized"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitReceipt"
+  },
+  "completionPosture": "This SEJ authorizes only resolver-mediated ASCII sketch materialization and receipt emission; the sketch artifact remains absent until a later invocation slice."
+}

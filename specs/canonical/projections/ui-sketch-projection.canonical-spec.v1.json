@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.projections.ui-sketch-projection.canonical_spec.v1",
+  "derivedFromStory": "defracto.projections.ui-sketch-projection.story.v1",
+  "purpose": "Authorize a governed UI/ASCII sketch projection before any rendering implementation exists.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.projection.inputs.required",
+      "storyPath": "$.acceptanceCriteria[0].statement",
+      "statement": "The sketch projection requires bounded story, spec, and projection-manifest inputs.",
+      "nodeType": "contract"
+    },
+    {
+      "canonicalPath": "$.projection.output.asciiSketch",
+      "storyPath": "$.acceptanceCriteria[0].statement",
+      "statement": "The projection can emit a governed ASCII sketch output rather than rendered UI code.",
+      "nodeType": "projection"
+    },
+    {
+      "canonicalPath": "$.projection.evidence.receipt",
+      "storyPath": "$.acceptanceCriteria[1].statement",
+      "statement": "The projection can carry evidence that the sketch was declared and later rendered through governed contracts only.",
+      "nodeType": "evidence"
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "no_hidden_ui_truth",
+      "statement": "No executable UI or ASCII sketch body may introduce behavior not named in story, canonical spec, schemas, manifests, and evidence expectations."
+    }
+  ],
+  "status": "authorized"
+}

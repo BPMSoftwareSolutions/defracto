@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "defracto.facade-manifest.v1",
+  "manifestKey": "defracto.founding-ui-sketch.projection-manifest.v1",
+  "manifestKind": "projected-doorway",
+  "manifestStatus": "accepted",
+  "toolKey": "defracto.projections.ui_sketch_projection",
+  "projectedPath": "projections/ui/founding-ui-sketch.latest.txt",
+  "projectionTarget": "contracts/sej/materialize-founding-ui-sketch.projection.sej.v1.json",
+  "sourceLineage": {
+    "storyKey": "stories/projections/ui-sketch-projection.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/projections/ui-sketch-projection.canonical-spec.v1.json",
+    "sejContractKey": "contracts/sej/materialize-founding-ui-sketch.projection.sej.v1.json"
+  },
+  "generatedDoorway": {
+    "status": "future",
+    "bodyKind": "projected_ascii_sketch_doorway",
+    "generationMode": "not-yet-generated",
+    "generationAuthority": "semantic-contract-only"
+  },
+  "allowedResponsibilities": [
+    "project the accepted SEJ contract into a future ASCII sketch doorway",
+    "carry the validated projection identity",
+    "remain subordinate to semantic truth"
+  ],
+  "forbiddenResponsibilities": [
+    "direct rendering behavior",
+    "HTML generation",
+    "React generation",
+    "CSS generation",
+    "SVG generation",
+    "runtime projection",
+    "file loading in the facade",
+    "JSON parsing in the facade",
+    "array traversal in the facade",
+    "finding-key invention",
+    "resolver modification",
+    "source mutation",
+    "projection mutation"
+  ],
+  "currentState": {
+    "uiSketchProjectionJs": "absent",
+    "generatedFacade": "absent",
+    "resolverCodeChanged": false
+  },
+  "completionPosture": "This is a future UI/ASCII sketch projection only; the projection does not authorize executable implementation."
+}
