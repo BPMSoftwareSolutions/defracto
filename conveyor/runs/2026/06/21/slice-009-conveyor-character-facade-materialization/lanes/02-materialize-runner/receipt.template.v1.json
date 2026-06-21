@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-receipt.v1",
+  "receiptKey": "defracto.run.slice-009.02-materialize-runner.receipt.v1",
+  "laneKey": "02-materialize-runner",
+  "status": "blocked",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "inputArtifacts": [
+    "contracts/sej/materialize-conveyor-runner-node.sej.v1.json"
+  ],
+  "outputArtifacts": [
+    "generated/runner/node/conveyor-runner.cjs",
+    "evidence/runner/conveyor-runner.node-projection.receipt.v1.json"
+  ],
+  "hashes": [],
+  "findings": [
+    {
+      "findingKey": "lane_not_executed",
+      "status": "blocked",
+      "message": "Template receipt must be replaced by resolver/runner execution evidence."
+    }
+  ],
+  "nextLane": "03-materialize-workers"
+}

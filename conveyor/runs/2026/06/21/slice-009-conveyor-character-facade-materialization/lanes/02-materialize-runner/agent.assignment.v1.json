@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.agent-assignment.v1",
+  "runKey": "defracto.run.slice-009-conveyor-character-facade-materialization.v1",
+  "laneKey": "02-materialize-runner",
+  "laneTitle": "Materialize Runner",
+  "agentRole": "Materialize Runner Agent",
+  "responsibility": "Materialize Runner for conveyor character facade materialization.",
+  "inputs": [
+    "contracts/sej/materialize-conveyor-runner-node.sej.v1.json"
+  ],
+  "outputs": [
+    "generated/runner/node/conveyor-runner.cjs",
+    "evidence/runner/conveyor-runner.node-projection.receipt.v1.json"
+  ],
+  "forbiddenResponsibilities": [
+    "silent repair",
+    "hand-author generated facade bodies",
+    "skip receipts",
+    "claim release authority before evidence review"
+  ],
+  "requiredReceiptPath": "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/lanes/02-materialize-runner/receipt.v1.json",
+  "nextLane": "03-materialize-workers",
+  "status": "assigned"
+}

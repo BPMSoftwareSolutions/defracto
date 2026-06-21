@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-009-conveyor-character-facade-materialization.v1",
+  "runKind": "conveyor-run",
+  "sliceKey": "slice-009-conveyor-character-facade-materialization",
+  "operatorRole": "platform agent",
+  "objective": "Materialize conveyor character facades through resolver-backed SEJ contracts.",
+  "laneOrder": [
+    "01-resolver-handshake",
+    "02-materialize-runner",
+    "03-materialize-workers",
+    "04-materialize-inspector",
+    "05-materialize-shipper",
+    "06-materialize-telemetry",
+    "07-conformance",
+    "08-visual-proof",
+    "09-evidence-review"
+  ],
+  "inputs": [
+    "stories/conveyor/conveyor-character-facade-materialization.story.v1.json",
+    "specs/canonical/conveyor/conveyor-character-facade-materialization.canonical-spec.v1.json",
+    "contracts/sej/materialize-all-conveyor-character-facades.sej.v1.json",
+    "contracts/sej/materialize-conveyor-runner-node.sej.v1.json",
+    "contracts/sej/materialize-lane-workers-node.sej.v1.json",
+    "contracts/sej/materialize-evidence-inspector-node.sej.v1.json",
+    "contracts/sej/materialize-shipper-node.sej.v1.json",
+    "contracts/sej/materialize-telemetry-observer-node.sej.v1.json"
+  ],
+  "requiredReceipts": [
+    "evidence/runner/conveyor-runner.node-projection.receipt.v1.json",
+    "evidence/workers/lane-worker.node-projection.receipt.v1.json",
+    "evidence/inspector/evidence-inspector.node-projection.receipt.v1.json",
+    "evidence/shipper/shipper.node-projection.receipt.v1.json",
+    "evidence/telemetry/telemetry-observer.node-projection.receipt.v1.json",
+    "evidence/runner/conveyor-runner.conformance.receipt.v1.json",
+    "evidence/workers/lane-worker.conformance.receipt.v1.json",
+    "evidence/inspector/evidence-inspector.conformance.receipt.v1.json",
+    "evidence/shipper/shipper.conformance.receipt.v1.json",
+    "evidence/telemetry/telemetry-observer.conformance.receipt.v1.json"
+  ],
+  "finalArtifacts": [
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/final/run-summary.md",
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/final/release-packet.v1.json",
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/final/commit-message.txt",
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/final/run-sketch.ascii"
+  ],
+  "blockedIfMissing": [
+    "resolver capability handshake",
+    "node projection receipts",
+    "conformance receipts",
+    "visual proof",
+    "evidence review"
+  ],
+  "releaseBlockedUntilAllReceiptsExist": true
+}

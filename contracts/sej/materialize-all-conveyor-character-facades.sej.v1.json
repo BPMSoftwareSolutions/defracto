@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.materialize-all-conveyor-character-facades.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.materialize-all-character-facades",
+  "purpose": "Materialize every conveyor character facade through the resolver as a coordinated package.",
+  "sourceLineage": {
+    "storyKey": "stories/conveyor/conveyor-character-facade-materialization.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/conveyor/conveyor-character-facade-materialization.canonical-spec.v1.json",
+    "executableProjectionContractKey": "contracts/projections/*.node-projection-manifest.v1.json",
+    "bodyDispositionKey": "defracto.body.conveyor-characters.generated-thin-facades"
+  },
+  "boundedInputs": [
+    "contracts/sej/materialize-conveyor-runner-node.sej.v1.json",
+    "contracts/sej/materialize-lane-workers-node.sej.v1.json",
+    "contracts/sej/materialize-evidence-inspector-node.sej.v1.json",
+    "contracts/sej/materialize-shipper-node.sej.v1.json",
+    "contracts/sej/materialize-telemetry-observer-node.sej.v1.json"
+  ],
+  "boundedOutputs": [
+    "evidence/runner/conveyor-runner.node-projection.receipt.v1.json",
+    "evidence/workers/lane-worker.node-projection.receipt.v1.json",
+    "evidence/inspector/evidence-inspector.node-projection.receipt.v1.json",
+    "evidence/shipper/shipper.node-projection.receipt.v1.json",
+    "evidence/telemetry/telemetry-observer.node-projection.receipt.v1.json"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "execute.stage.v1",
+      "purpose": "Execute each materialization SEJ in order.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "Emit package receipt after all child receipts pass.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "stages": [
+    {
+      "stageKey": "materialize-all.conveyor-runner",
+      "operation": "execute.stage.v1",
+      "contractPath": "contracts/sej/materialize-conveyor-runner-node.sej.v1.json",
+      "requiredReceipt": "evidence/runner/conveyor-runner.node-projection.receipt.v1.json",
+      "blocksOnFailure": true
+    },
+    {
+      "stageKey": "materialize-all.lane-workers",
+      "operation": "execute.stage.v1",
+      "contractPath": "contracts/sej/materialize-lane-workers-node.sej.v1.json",
+      "requiredReceipt": "evidence/workers/lane-worker.node-projection.receipt.v1.json",
+      "blocksOnFailure": true
+    },
+    {
+      "stageKey": "materialize-all.evidence-inspector",
+      "operation": "execute.stage.v1",
+      "contractPath": "contracts/sej/materialize-evidence-inspector-node.sej.v1.json",
+      "requiredReceipt": "evidence/inspector/evidence-inspector.node-projection.receipt.v1.json",
+      "blocksOnFailure": true
+    },
+    {
+      "stageKey": "materialize-all.shipper",
+      "operation": "execute.stage.v1",
+      "contractPath": "contracts/sej/materialize-shipper-node.sej.v1.json",
+      "requiredReceipt": "evidence/shipper/shipper.node-projection.receipt.v1.json",
+      "blocksOnFailure": true
+    },
+    {
+      "stageKey": "materialize-all.telemetry-observer",
+      "operation": "execute.stage.v1",
+      "contractPath": "contracts/sej/materialize-telemetry-observer-node.sej.v1.json",
+      "requiredReceipt": "evidence/telemetry/telemetry-observer.node-projection.receipt.v1.json",
+      "blocksOnFailure": true
+    }
+  ],
+  "packageReceiptPath": "evidence/releases/conveyor-character-facades.materialization-package.receipt.v1.json",
+  "failurePosture": "fail-closed",
+  "completionPosture": "The package passes only when all conveyor character facades are materialized and each node projection receipt passes."
+}

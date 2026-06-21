@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "defracto.agent-assignment.v1",
+  "runKey": "defracto.run.slice-009-conveyor-character-facade-materialization.v1",
+  "laneKey": "01-resolver-handshake",
+  "laneTitle": "Resolver Handshake",
+  "agentRole": "Resolver Handshake Agent",
+  "responsibility": "Resolver Handshake for conveyor character facade materialization.",
+  "inputs": [
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/handshakes/conveyor-runner.resolver-handshake.v1.json",
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/handshakes/lane-workers.resolver-handshake.v1.json",
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/handshakes/evidence-inspector.resolver-handshake.v1.json",
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/handshakes/shipper.resolver-handshake.v1.json",
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/handshakes/telemetry-observer.resolver-handshake.v1.json"
+  ],
+  "outputs": [
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/lanes/01-resolver-handshake/receipt.v1.json"
+  ],
+  "forbiddenResponsibilities": [
+    "silent repair",
+    "hand-author generated facade bodies",
+    "skip receipts",
+    "claim release authority before evidence review"
+  ],
+  "requiredReceiptPath": "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/lanes/01-resolver-handshake/receipt.v1.json",
+  "nextLane": "02-materialize-runner",
+  "status": "assigned"
+}

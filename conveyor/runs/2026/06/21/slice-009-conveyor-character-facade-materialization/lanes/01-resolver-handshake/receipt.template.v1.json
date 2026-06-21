@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-receipt.v1",
+  "receiptKey": "defracto.run.slice-009.01-resolver-handshake.receipt.v1",
+  "laneKey": "01-resolver-handshake",
+  "status": "blocked",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "inputArtifacts": [
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/handshakes/conveyor-runner.resolver-handshake.v1.json",
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/handshakes/lane-workers.resolver-handshake.v1.json",
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/handshakes/evidence-inspector.resolver-handshake.v1.json",
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/handshakes/shipper.resolver-handshake.v1.json",
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/handshakes/telemetry-observer.resolver-handshake.v1.json"
+  ],
+  "outputArtifacts": [
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/lanes/01-resolver-handshake/receipt.v1.json"
+  ],
+  "hashes": [],
+  "findings": [
+    {
+      "findingKey": "lane_not_executed",
+      "status": "blocked",
+      "message": "Template receipt must be replaced by resolver/runner execution evidence."
+    }
+  ],
+  "nextLane": "02-materialize-runner"
+}

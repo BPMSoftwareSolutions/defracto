@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "defracto.resolver-capability-handshake.v1",
+  "handshakeKey": "defracto.handshake.evidence-inspector.materialization-and-execution.v1",
+  "handshakeStatus": "ready-for-run",
+  "characterKey": "evidence-inspector",
+  "title": "Evidence Inspector Resolver Capability Handshake",
+  "reviewedContracts": [
+    "contracts/sej/evidence-inspector.execute.sej.v1.json",
+    "contracts/sej/materialize-evidence-inspector-node.sej.v1.json",
+    "contracts/operations/evidence-inspector.operation-requirements.v1.json"
+  ],
+  "requiredPrimitiveFamilies": [
+    "resolve.contract.v1",
+    "resolve.value.v1",
+    "evaluate.predicate.v1",
+    "execute.stage.v1",
+    "artifact.materialize.v1",
+    "hash.compute.v1",
+    "evidence.emit.v1"
+  ],
+  "expectedSupportedByResolver": [
+    "resolve.contract.v1",
+    "resolve.value.v1",
+    "evaluate.predicate.v1",
+    "execute.stage.v1",
+    "artifact.materialize.v1",
+    "hash.compute.v1",
+    "evidence.emit.v1"
+  ],
+  "blockedIfMissing": [
+    "artifact.materialize.v1",
+    "hash.compute.v1",
+    "evidence.emit.v1"
+  ],
+  "forbiddenResolverLogic": [
+    "product-specific DTO shaping",
+    "release judgment",
+    "worker output invention",
+    "content mismatch interpretation outside inspector contract",
+    "ship authority override"
+  ],
+  "completionPosture": "Handshake passes only when the resolver confirms every required primitive and no product-specific logic is introduced."
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-receipt.v1",
+  "receiptKey": "defracto.run.slice-009.09-evidence-review.receipt.v1",
+  "laneKey": "09-evidence-review",
+  "status": "blocked",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "inputArtifacts": [
+    "evidence/runner/conveyor-runner.node-projection.receipt.v1.json",
+    "evidence/workers/lane-worker.node-projection.receipt.v1.json",
+    "evidence/inspector/evidence-inspector.node-projection.receipt.v1.json",
+    "evidence/shipper/shipper.node-projection.receipt.v1.json",
+    "evidence/telemetry/telemetry-observer.node-projection.receipt.v1.json",
+    "evidence/runner/conveyor-runner.conformance.receipt.v1.json",
+    "evidence/workers/lane-worker.conformance.receipt.v1.json",
+    "evidence/inspector/evidence-inspector.conformance.receipt.v1.json",
+    "evidence/shipper/shipper.conformance.receipt.v1.json",
+    "evidence/telemetry/telemetry-observer.conformance.receipt.v1.json"
+  ],
+  "outputArtifacts": [
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/final/release-packet.v1.json"
+  ],
+  "hashes": [],
+  "findings": [
+    {
+      "findingKey": "lane_not_executed",
+      "status": "blocked",
+      "message": "Template receipt must be replaced by resolver/runner execution evidence."
+    }
+  ],
+  "nextLane": null
+}

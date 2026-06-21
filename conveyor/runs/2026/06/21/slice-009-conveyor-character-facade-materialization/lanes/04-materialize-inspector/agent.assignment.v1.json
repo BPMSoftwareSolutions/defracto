@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.agent-assignment.v1",
+  "runKey": "defracto.run.slice-009-conveyor-character-facade-materialization.v1",
+  "laneKey": "04-materialize-inspector",
+  "laneTitle": "Materialize Inspector",
+  "agentRole": "Materialize Inspector Agent",
+  "responsibility": "Materialize Inspector for conveyor character facade materialization.",
+  "inputs": [
+    "contracts/sej/materialize-evidence-inspector-node.sej.v1.json"
+  ],
+  "outputs": [
+    "generated/inspector/node/evidence-inspector.cjs",
+    "evidence/inspector/evidence-inspector.node-projection.receipt.v1.json"
+  ],
+  "forbiddenResponsibilities": [
+    "silent repair",
+    "hand-author generated facade bodies",
+    "skip receipts",
+    "claim release authority before evidence review"
+  ],
+  "requiredReceiptPath": "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/lanes/04-materialize-inspector/receipt.v1.json",
+  "nextLane": "05-materialize-shipper",
+  "status": "assigned"
+}

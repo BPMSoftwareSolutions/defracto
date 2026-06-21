@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.conveyor.character_facade_materialization.story.v1",
+  "storyTitle": "Conveyor Character Facade Materialization",
+  "story": {
+    "asA": "Defracto conveyor",
+    "iWant": "to materialize the runner, lane-worker, inspector, shipper, and telemetry facades through SEJ/resolver authority",
+    "soThat": "the conveyor can move from declared architecture into executable, receipt-backed doorway surfaces"
+  },
+  "acceptanceCriteria": [
+    "each character has a materialization SEJ",
+    "each generated facade is a thin resolver doorway",
+    "each generated facade has a node projection receipt",
+    "each generated facade has a conformance receipt",
+    "release remains blocked until all receipts pass"
+  ],
+  "forbiddenClaims": [
+    "hand-authored generated facade",
+    "facade owns product truth",
+    "facade shapes DTOs",
+    "release passes without inspector receipt"
+  ],
+  "status": "accepted"
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-receipt.v1",
+  "receiptKey": "defracto.run.slice-009.08-visual-proof.receipt.v1",
+  "laneKey": "08-visual-proof",
+  "status": "blocked",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "inputArtifacts": [
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/run.manifest.v1.json"
+  ],
+  "outputArtifacts": [
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/final/run-sketch.ascii"
+  ],
+  "hashes": [],
+  "findings": [
+    {
+      "findingKey": "lane_not_executed",
+      "status": "blocked",
+      "message": "Template receipt must be replaced by resolver/runner execution evidence."
+    }
+  ],
+  "nextLane": "09-evidence-review"
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.conveyor.character_facade_materialization.canonical_spec.v1",
+  "derivedFromStory": "defracto.conveyor.character_facade_materialization.story.v1",
+  "purpose": "Authorize materialization of conveyor character facades through SEJ and resolver receipts.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.characters.runner",
+      "storyPath": "$.acceptanceCriteria[0]",
+      "statement": "Conveyor runner facade must be materialized through materialize-conveyor-runner-node SEJ.",
+      "nodeType": "materialization-authority"
+    },
+    {
+      "canonicalPath": "$.characters.workers",
+      "storyPath": "$.acceptanceCriteria[0]",
+      "statement": "Lane-worker facade must be materialized through materialize-lane-workers-node SEJ.",
+      "nodeType": "materialization-authority"
+    },
+    {
+      "canonicalPath": "$.characters.inspector",
+      "storyPath": "$.acceptanceCriteria[0]",
+      "statement": "Evidence inspector facade must be materialized through materialize-evidence-inspector-node SEJ.",
+      "nodeType": "materialization-authority"
+    },
+    {
+      "canonicalPath": "$.characters.shipper",
+      "storyPath": "$.acceptanceCriteria[0]",
+      "statement": "Shipper facade must be materialized through materialize-shipper-node SEJ.",
+      "nodeType": "materialization-authority"
+    },
+    {
+      "canonicalPath": "$.characters.telemetry",
+      "storyPath": "$.acceptanceCriteria[0]",
+      "statement": "Telemetry observer facade must be materialized through materialize-telemetry-observer-node SEJ.",
+      "nodeType": "materialization-authority"
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "generated-facades-thin-only",
+      "statement": "Generated conveyor character facades must delegate to resolver contracts and must not own product truth."
+    },
+    {
+      "ruleKey": "receipts-required",
+      "statement": "Every materialized facade requires a node projection receipt and conformance receipt."
+    }
+  ],
+  "status": "accepted"
+}

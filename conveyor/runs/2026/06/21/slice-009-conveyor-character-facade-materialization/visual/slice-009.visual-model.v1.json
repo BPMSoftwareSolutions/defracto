@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "defracto.visual-projection-model.v1",
+  "visualProjectionModelKey": "defracto.visual.slice-009-conveyor-character-facade-materialization.v1",
+  "modelStatus": "accepted",
+  "surface": {
+    "surfaceKey": "slice-009.run-sketch",
+    "surfaceKind": "ascii"
+  },
+  "nodes": [
+    {
+      "nodeKey": "runner",
+      "label": "Runner Facade"
+    },
+    {
+      "nodeKey": "workers",
+      "label": "Worker Facade"
+    },
+    {
+      "nodeKey": "inspector",
+      "label": "Inspector Facade"
+    },
+    {
+      "nodeKey": "shipper",
+      "label": "Shipper Facade"
+    },
+    {
+      "nodeKey": "telemetry",
+      "label": "Telemetry Facade"
+    },
+    {
+      "nodeKey": "receipts",
+      "label": "Receipts"
+    }
+  ],
+  "edges": [
+    {
+      "from": "runner",
+      "to": "workers",
+      "label": "dispatches"
+    },
+    {
+      "from": "workers",
+      "to": "inspector",
+      "label": "reports"
+    },
+    {
+      "from": "inspector",
+      "to": "shipper",
+      "label": "authorizes"
+    },
+    {
+      "from": "shipper",
+      "to": "telemetry",
+      "label": "ships then observes"
+    },
+    {
+      "from": "telemetry",
+      "to": "receipts",
+      "label": "records"
+    }
+  ],
+  "forbiddenClaims": [
+    "freehand visual proof",
+    "unreceipted facade generation"
+  ]
+}

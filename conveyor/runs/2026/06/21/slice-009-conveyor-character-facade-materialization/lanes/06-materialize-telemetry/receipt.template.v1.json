@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "defracto.conveyor-lane-receipt.v1",
+  "receiptKey": "defracto.run.slice-009.06-materialize-telemetry.receipt.v1",
+  "laneKey": "06-materialize-telemetry",
+  "status": "blocked",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "inputArtifacts": [
+    "contracts/sej/materialize-telemetry-observer-node.sej.v1.json"
+  ],
+  "outputArtifacts": [
+    "generated/telemetry/node/telemetry-observer.cjs",
+    "evidence/telemetry/telemetry-observer.node-projection.receipt.v1.json"
+  ],
+  "hashes": [],
+  "findings": [
+    {
+      "findingKey": "lane_not_executed",
+      "status": "blocked",
+      "message": "Template receipt must be replaced by resolver/runner execution evidence."
+    }
+  ],
+  "nextLane": "07-conformance"
+}

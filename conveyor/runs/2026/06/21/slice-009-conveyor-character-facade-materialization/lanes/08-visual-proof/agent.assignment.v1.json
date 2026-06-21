@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "defracto.agent-assignment.v1",
+  "runKey": "defracto.run.slice-009-conveyor-character-facade-materialization.v1",
+  "laneKey": "08-visual-proof",
+  "laneTitle": "Render Visual Proof",
+  "agentRole": "Render Visual Proof Agent",
+  "responsibility": "Render Visual Proof for conveyor character facade materialization.",
+  "inputs": [
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/run.manifest.v1.json"
+  ],
+  "outputs": [
+    "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/final/run-sketch.ascii"
+  ],
+  "forbiddenResponsibilities": [
+    "silent repair",
+    "hand-author generated facade bodies",
+    "skip receipts",
+    "claim release authority before evidence review"
+  ],
+  "requiredReceiptPath": "conveyor/runs/2026/06/21/slice-009-conveyor-character-facade-materialization/lanes/08-visual-proof/receipt.v1.json",
+  "nextLane": "09-evidence-review",
+  "status": "assigned"
+}
