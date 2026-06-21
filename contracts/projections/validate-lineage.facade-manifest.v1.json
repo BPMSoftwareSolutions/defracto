@@ -4,13 +4,13 @@
   "manifestKind": "projected-doorway",
   "manifestStatus": "accepted",
   "toolKey": "defracto.tools.validate_lineage",
-  "projectedPath": "tools/validate-lineage.js",
+  "projectedPath": "generated/tools/validate-lineage.js",
   "projectionTarget": "contracts/sej/validate-lineage.sej.v1.json",
   "sourceLineage": {
     "storyKey": "stories/tools/validate-lineage.story.v1.json",
     "canonicalSpecKey": "specs/canonical/tools/validate-lineage.canonical-spec.v1.json",
     "sejContractKey": "contracts/sej/validate-lineage.sej.v1.json",
-    "bootstrapReviewKey": "reports/slice-003d3-final-bootstrap-resolver-handshake.latest.md"
+    "bootstrapReviewKey": "conveyor/runs/2026/06/21/reports/slice-003d3-final-bootstrap-resolver-handshake.latest.md"
   },
   "generatedDoorway": {
     "status": "future",
@@ -40,3 +40,5 @@
   },
   "completionPosture": "This is a future generated doorway only; the manifest does not authorize executable implementation."
 }
+
+

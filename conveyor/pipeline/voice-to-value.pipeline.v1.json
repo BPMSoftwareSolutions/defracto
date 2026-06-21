@@ -1,0 +1,20 @@
+{
+  "id": "voice-to-value",
+  "version": "v1",
+  "entry": "source",
+  "exit": "telemetry",
+  "lanes": [
+    "00-capture-source",
+    "01-extract-story",
+    "02-author-canonical-spec",
+    "03-author-semantic-contract",
+    "04-project-runtime-surface",
+    "05-materialize-artifacts",
+    "06-run-conformance",
+    "07-render-visual-evidence",
+    "08-review-evidence",
+    "09-prepare-release",
+    "10-ship",
+    "11-observe-telemetry"
+  ]
+}

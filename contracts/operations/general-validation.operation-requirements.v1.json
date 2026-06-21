@@ -21,8 +21,8 @@
   "requiredResolverHandshakes": [
     "contracts/sej/validate-story-packet.sej.v1.json",
     "contracts/sej/render-narrative-graph.sej.v1.json",
-    "reports/slice-004e-story-graph-resolver-capability-handshake.latest.md",
-    "reports/slice-004k-story-graph-bootstrap-invocation-evidence.latest.md"
+    "conveyor/runs/2026/06/21/reports/slice-004e-story-graph-resolver-capability-handshake.latest.md",
+    "conveyor/runs/2026/06/21/reports/slice-004k-story-graph-bootstrap-invocation-evidence.latest.md"
   ],
   "requiredProjectionManifests": [
     "contracts/projections/validate-story-packet.facade-manifest.v1.json",
@@ -43,3 +43,4 @@
     "claiming resolver authority without handshake"
   ]
 }
+

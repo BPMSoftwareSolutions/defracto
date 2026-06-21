@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "defracto.lineage-receipt.v1",
+  "lineageReceiptKey": "defracto.founding.lineage_receipt.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "mode": "manual-seed",
+  "source": {
+    "sourceKey": "defracto.origin.conversation_fractal.v1",
+    "sourceHash": "sha256:seed-manual"
+  },
+  "story": {
+    "storyKey": "defracto.founding.story.v1"
+  },
+  "canonicalSpec": {
+    "canonicalSpecKey": "defracto.founding.canonical_spec.v1"
+  },
+  "projection": {
+    "projectionManifestKey": "defracto.founding.markdown_manifest.v1",
+    "projectionType": "markdown",
+    "outputPath": "projections/founding-conversation/markdown/founding-story.md"
+  },
+  "checks": [
+    {
+      "checkKey": "projection_section_maps_to_canonical_path",
+      "status": "passed",
+      "details": "Every projection section declares a canonical path."
+    }
+  ],
+  "findings": []
+}
+

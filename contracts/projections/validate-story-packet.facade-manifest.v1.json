@@ -4,7 +4,7 @@
   "manifestKind": "projected-doorway",
   "manifestStatus": "accepted",
   "toolKey": "defracto.tools.validate_story_packet",
-  "projectedPath": "tools/validate-story-packet.js",
+  "projectedPath": "generated/tools/validate-story-packet.js",
   "projectionTarget": "contracts/sej/validate-story-packet.sej.v1.json",
   "sourceLineage": {
     "storyKey": "stories/tools/validate-story-packet.story.v1.json",
@@ -39,3 +39,4 @@
   },
   "completionPosture": "This is a future generated doorway only; the manifest does not authorize executable implementation."
 }
+

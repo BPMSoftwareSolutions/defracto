@@ -4,7 +4,7 @@
   "manifestKind": "projected-doorway",
   "manifestStatus": "accepted",
   "toolKey": "defracto.projections.ui_sketch_projection",
-  "projectedPath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
+  "projectedPath": "projections/target-sketches/founding-lineage-flow.ascii",
   "projectionTarget": "contracts/sej/materialize-founding-ui-sketch.sej.v1.json",
   "sourceLineage": {
     "storyKey": "stories/projections/ui-sketch-projection.story.v1.json",
@@ -44,3 +44,4 @@
   },
   "completionPosture": "This is a future UI/ASCII sketch projection only; the projection does not authorize executable implementation."
 }
+

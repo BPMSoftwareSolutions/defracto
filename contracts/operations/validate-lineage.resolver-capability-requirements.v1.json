@@ -3,7 +3,7 @@
   "packetKey": "defracto.validate-lineage.resolver-capability-requirements",
   "toolKey": "defracto.tools.validate_lineage",
   "sourceSejContractKey": "contracts/sej/validate-lineage.sej.v1.json",
-  "resolverHandshakeKey": "reports/slice-003d-resolver-capability-handshake.latest.md",
+  "resolverHandshakeKey": "conveyor/runs/2026/06/21/reports/slice-003d-resolver-capability-handshake.latest.md",
   "sejRewriteRecommended": false,
   "classifications": [
     {
@@ -48,3 +48,4 @@
     }
   ]
 }
+

@@ -4,7 +4,7 @@
   "manifestKind": "projected-doorway",
   "manifestStatus": "accepted",
   "toolKey": "defracto.tools.render_narrative_graph",
-  "projectedPath": "tools/render-narrative-graph.js",
+  "projectedPath": "generated/tools/render-narrative-graph.js",
   "projectionTarget": "contracts/sej/render-narrative-graph.sej.v1.json",
   "sourceLineage": {
     "storyKey": "stories/tools/render-narrative-graph.story.v1.json",
@@ -40,3 +40,4 @@
   },
   "completionPosture": "This is a future generated doorway only; the manifest does not authorize executable implementation."
 }
+

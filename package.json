@@ -1,12 +1,8 @@
 {
   "name": "narrative-execution-fabric",
   "version": "1.0.0",
-  "description": "Defracto is a truth-escalation system for turning preserved narrative into governed story, canonical specification, projections, lineage evidence, and reports.",
+  "description": "Defracto is a truth-escalation system for turning preserved narrative into governed story, canonical specification, projections, lineage evidence, release material, and reports.",
   "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "example": "examples"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -7,18 +7,18 @@
   "sourceLineage": {
     "facadeManifestKey": "contracts/projections/render-narrative-graph.facade-manifest.v1.json",
     "sejContractKey": "contracts/sej/render-narrative-graph.sej.v1.json",
-    "materializationReviewKey": "reports/slice-004i-story-graph-doorway-operationalization-contract-review.latest.md"
+    "materializationReviewKey": "conveyor/runs/2026/06/21/reports/slice-004i-story-graph-doorway-operationalization-contract-review.latest.md"
   },
   "targetArtifact": {
-    "artifactKey": "tools/render-narrative-graph.js",
-    "artifactPath": "tools/render-narrative-graph.js",
+    "artifactKey": "generated/tools/render-narrative-graph.js",
+    "artifactPath": "generated/tools/render-narrative-graph.js",
     "artifactKind": "generated_operational_doorway",
     "artifactStatus": "future"
   },
   "generatedFileAnchors": [
     {
       "anchorKey": "generatedFacadeTarget",
-      "filePath": "tools/render-narrative-graph.js",
+      "filePath": "generated/tools/render-narrative-graph.js",
       "anchorRole": "generated operational doorway target",
       "anchorState": "future"
     },
@@ -41,7 +41,7 @@
   "materializationSteps": [
     "resolve the accepted facade manifest",
     "resolve the accepted render-narrative-graph SEJ contract",
-    "project the target artifact path for tools/render-narrative-graph.js",
+    "project the target artifact path for generated/tools/render-narrative-graph.js",
     "materialize the operational doorway artifact shape",
     "compute the declared artifact hash",
     "emit the declared projection receipt"
@@ -83,7 +83,7 @@
           "scope": "facade.materialization"
         },
         "artifact": {
-          "path": "tools/render-narrative-graph.js",
+          "path": "generated/tools/render-narrative-graph.js",
           "format": "text",
           "anchor": {
             "enabled": true,
@@ -123,14 +123,14 @@
             "checkedAt": "2026-06-21T00:00:00-04:00",
             "sourceSej": "contracts/sej/materialize-operational-render-narrative-graph-facade.sej.v1.json",
             "facadeManifest": "contracts/projections/render-narrative-graph.facade-manifest.v1.json",
-            "targetPath": "tools/render-narrative-graph.js",
+            "targetPath": "generated/tools/render-narrative-graph.js",
             "artifactHash": {
               "ref": "$steps.materializeFacade.contentHash"
             },
             "generatedFileAnchors": [
               {
                 "anchorKey": "generatedFacadeTarget",
-                "filePath": "tools/render-narrative-graph.js",
+                "filePath": "generated/tools/render-narrative-graph.js",
                 "anchorRole": "generated operational doorway target",
                 "anchorState": "future"
               }
@@ -146,3 +146,5 @@
   },
   "completionPosture": "This SEJ authorizes only the next operational doorway materialization shape; the operationalized doorway remains deferred to Slice 004J."
 }
+
+

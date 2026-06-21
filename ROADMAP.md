@@ -4,6 +4,7 @@
 
 The architecture is accepted.
 Slice 000.1 and Slice 000.2 are required before Slice 001 can be accepted as complete.
+The next structural lock is the conveyor spine.
 
 ## Sequence
 
@@ -61,6 +62,7 @@ Slice 000.1 and Slice 000.2 are required before Slice 001 can be accepted as com
 52. Slice 007M.3: Run Sketch Materialization SEJ Contract.
 53. Slice 007M.3A: Static ASCII Materialization Posture Correction.
 54. Slice 008: Narrative Coverage Prototype.
+55. Slice 008A: Voice-to-Value Conveyor Shape Lock.
 
 ## Near-Term Deliverables
 
@@ -76,6 +78,7 @@ Slice 000.1 and Slice 000.2 are required before Slice 001 can be accepted as com
 - Slice 007M.2 now records that the current 007M.1 sketch is manual visual seed / ungoverned draft until a pipeline receipt exists.
 - Slice 007M.3 now declares the run-sketch materialization path and receipt boundary as a static ASCII bridge; the sketch remains ungoverned until resolver-backed materialization occurs.
 - Slice 007M.3A now corrects the posture so the bridge is explicitly not mistaken for deterministic visual projection.
+- Slice 008A should establish the source, conveyor, projection, generated, evidence, release, telemetry, and archive roots as the active working-tree shape.
 
 ## Long-Term Direction
 
@@ -83,3 +86,4 @@ Slice 000.1 and Slice 000.2 are required before Slice 001 can be accepted as com
 - Add SEJ contracts before any facade body and keep projected tools subordinate to semantic truth.
 - Expand into additional projections only after Markdown lineage is proven.
 - Use narrative coverage as the modernization metric for legacy codebases.
+- Promote root documentation into conveyor projections rather than treating README files as manual truth.

@@ -57,7 +57,7 @@
       {
         "leftRef": "projectionManifest.projectedPath",
         "operator": "equals",
-        "rightValue": "examples/target-sketches/projections/founding-lineage-flow.ascii",
+        "rightValue": "projections/target-sketches/founding-lineage-flow.ascii",
         "findingKeyOnMismatch": "missing_section"
       },
       {
@@ -84,3 +84,4 @@
   ],
   "failurePosture": "Missing capability blocks execution and keeps the contract in declarative review until a resolver handshake is later authorized."
 }
+

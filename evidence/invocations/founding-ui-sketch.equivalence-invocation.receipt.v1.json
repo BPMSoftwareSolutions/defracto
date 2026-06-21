@@ -6,9 +6,9 @@
   "toolPath": "contracts/sej/validate-founding-ui-sketch-equivalence.sej.v1.json",
   "sourceSej": "contracts/sej/validate-founding-ui-sketch-equivalence.sej.v1.json",
   "facadeManifest": "contracts/projections/founding-ui-sketch.projection-manifest.v1.json",
-  "materializationReceipt": "examples/target-sketches/evidence/founding-lineage-flow.render.receipt.v1.json",
-  "targetSketchFixturePath": "examples/target-sketches/founding-lineage-flow.target.v1.json",
-  "renderedSketchPath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
+  "materializationReceipt": "evidence/target-sketches/founding-lineage-flow.render.receipt.v1.json",
+  "targetSketchFixturePath": "source/visual-intent/founding-lineage-flow.target.v1.json",
+  "renderedSketchPath": "projections/target-sketches/founding-lineage-flow.ascii",
   "equivalenceRuleSet": [
     "The rendered artifact must preserve the declared node order.",
     "The rendered artifact must preserve the declared edge sequence.",
@@ -75,7 +75,7 @@
   "targetSketchHash": "be784d53dbf7af232aebc2f343a20bf76352e7bb8ca97594a0f92d7c4acf63a5",
   "renderedSketchHash": "ce5845f9e567e44ccd2e6691fbe1c2777dbd747602841d309ec0da5330abfa2d",
   "invocationShape": "already-loaded-json",
-  "invocationArguments": "{\"targetSketchFixturePath\":\"examples/target-sketches/founding-lineage-flow.target.v1.json\",\"renderedSketchPath\":\"examples/target-sketches/projections/founding-lineage-flow.ascii\",\"expectedFutureArtifactPath\":\"examples/target-sketches/projections/founding-lineage-flow.ascii\"}",
+  "invocationArguments": "{\"targetSketchFixturePath\":\"source/visual-intent/founding-lineage-flow.target.v1.json\",\"renderedSketchPath\":\"projections/target-sketches/founding-lineage-flow.ascii\",\"expectedFutureArtifactPath\":\"projections/target-sketches/founding-lineage-flow.ascii\"}",
   "exitCode": 0,
   "stdout": "",
   "stderr": "",
@@ -85,15 +85,16 @@
   "generatedFileAnchors": [
     {
       "anchorKey": "targetSketchFixtureChecked",
-      "filePath": "examples/target-sketches/founding-lineage-flow.target.v1.json",
+      "filePath": "source/visual-intent/founding-lineage-flow.target.v1.json",
       "anchorRole": "target sketch fixture under equivalence check",
       "anchorState": "checked"
     },
     {
       "anchorKey": "renderedSketchChecked",
-      "filePath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
+      "filePath": "projections/target-sketches/founding-lineage-flow.ascii",
       "anchorRole": "rendered doorway under equivalence check",
       "anchorState": "checked"
     }
   ]
 }
+

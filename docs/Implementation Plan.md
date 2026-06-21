@@ -154,7 +154,7 @@ Changes:
 
 Minimum report shapes:
 
-- `reports/narrative-graph.latest.md`
+- `conveyor/runs/2026/06/21/reports/narrative-graph.latest.md`
   - `# Narrative Graph Report`
   - `## Report Metadata`
   - `## Graph Summary`
@@ -162,7 +162,7 @@ Minimum report shapes:
   - `## Edges`
   - `## Findings`
   - `## Completion Posture`
-- `reports/lineage.latest.md`
+- `conveyor/runs/2026/06/21/reports/lineage.latest.md`
   - `# Lineage Report`
   - `## Report Metadata`
   - `## Source Narrative`
@@ -179,7 +179,7 @@ Artifacts:
 ```text
 docs/decisions/D006-minimum-artifact-shapes.md
 contracts/schemas/README.md
-reports/README.md
+conveyor/runs/2026/06/21/reports/README.md
 ```
 
 Completion rule:
@@ -213,10 +213,10 @@ ROADMAP.md
 docs/
 contracts/
 conveyor/
-examples/founding-conversation/
-tools/README.md
-tools/validate-lineage.contract.md
-reports/
+source/conversations/founding-conversation/
+generated/tools/README.md
+generated/tools/contracts/validate-lineage.contract.md
+conveyor/runs/2026/06/21/reports/
 ```
 
 Explicitly out of scope:
@@ -241,9 +241,9 @@ Artifacts:
 
 ```text
 docs/architecture/working-tree-shape.md
-reports/semantic-coherence-review.latest.md
-tools/README.md
-tools/validate-lineage.contract.md
+conveyor/runs/2026/06/21/reports/semantic-coherence-review.latest.md
+generated/tools/README.md
+generated/tools/contracts/validate-lineage.contract.md
 ```
 
 Completion rule:
@@ -296,18 +296,18 @@ conveyor/lanes/03-project-markdown/README.md
 conveyor/gates/no-competing-narratives.gate.v1.json
 conveyor/gates/projection-lineage-required.gate.v1.json
 
-examples/founding-conversation/source/conversation-fractal.md
-examples/founding-conversation/story/founding-story.v1.json
-examples/founding-conversation/canonical/founding-canonical-spec.v1.json
-examples/founding-conversation/projections/markdown/founding-markdown.projection-manifest.v1.json
-examples/founding-conversation/projections/markdown/founding-story.md
-examples/founding-conversation/evidence/founding-lineage.receipt.v1.json
+source/conversations/founding-conversation/conversation-fractal.md
+stories/founding-conversation/founding-story.v1.json
+specs/canonical/founding-conversation/founding-canonical-spec.v1.json
+projections/founding-conversation/markdown/founding-markdown.projection-manifest.v1.json
+projections/founding-conversation/markdown/founding-story.md
+evidence/founding-conversation/founding-lineage.receipt.v1.json
 
-tools/README.md
-tools/validate-lineage.contract.md
+generated/tools/README.md
+generated/tools/contracts/validate-lineage.contract.md
 
-reports/narrative-graph.latest.md
-reports/lineage.latest.md
+conveyor/runs/2026/06/21/reports/narrative-graph.latest.md
+conveyor/runs/2026/06/21/reports/lineage.latest.md
 ```
 
 Completion rule:
@@ -343,7 +343,7 @@ Changes:
 
 Path rule:
 
-Root-level `stories/` and `specs/` begin in Slice 002 as the first promoted pattern after the founding example proves lineage. Until then, `examples/founding-conversation` remains the canonical seed proof.
+Root-level `stories/` and `specs/` begin in Slice 002 as the first promoted pattern after the founding example proves lineage. Until then, `source/conversations/founding-conversation` remains the canonical seed proof.
 
 Artifacts:
 
@@ -353,8 +353,8 @@ specs/canonical/tools/validate-lineage.canonical-spec.v1.json
 contracts/schemas/lineage-validation-input.schema.v1.json
 contracts/schemas/lineage-validation-result.schema.v1.json
 contracts/schemas/lineage-finding.schema.v1.json
-examples/tools/validate-lineage/
-tools/validate-lineage.contract.md
+archive/tools/validate-lineage/
+generated/tools/contracts/validate-lineage.contract.md
 ```
 
 Completion rule:
@@ -426,7 +426,7 @@ contracts/schemas/body-record.schema.v1.json
 contracts/taxonomies/body-kind.taxonomy.v1.json
 contracts/taxonomies/body-disposition.taxonomy.v1.json
 docs/doctrine/body-disposition.md
-reports/body-disposition.seed.md
+conveyor/runs/2026/06/21/reports/body-disposition.seed.md
 ```
 
 Completion rule:
@@ -451,7 +451,7 @@ Define the future executable validator body as a projection of the Slice 002 con
 
 Changes:
 
-- Define the executable identity for `tools/validate-lineage.js`.
+- Define the executable identity for `generated/tools/validate-lineage.js`.
 - Define the allowed and forbidden responsibilities of the future executable body.
 - Define the allowed finding taxonomy as the executable boundary.
 - Define the bounded input and output mechanics for the future executable doorway.
@@ -459,7 +459,7 @@ Changes:
 Artifacts:
 
 ```text
-tools/validate-lineage.executable-projection.contract.md
+generated/tools/contracts/validate-lineage.executable-projection.contract.md
 ```
 
 Completion rule:
@@ -481,7 +481,7 @@ Slice 003B: Executable Entry Gate Review.
 
 Goal:
 
-Confirm that the future executable body has a minimum executable-body rule before `tools/validate-lineage.js` is introduced.
+Confirm that the future executable body has a minimum executable-body rule before `generated/tools/validate-lineage.js` is introduced.
 
 Changes:
 
@@ -513,7 +513,7 @@ Artifacts:
 
 ```text
 docs/doctrine/executable-entry-gate.md
-reports/slice-003b-entry-gate-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-003b-entry-gate-review.latest.md
 ```
 
 Completion rule:
@@ -550,7 +550,7 @@ Artifacts:
 contracts/schemas/sej-contract.schema.v1.json
 contracts/sej/validate-lineage.sej.v1.json
 contracts/operations/validate-lineage.operation-requirements.v1.json
-reports/slice-003c-sej-contract-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-003c-sej-contract-review.latest.md
 ```
 
 Completion rule:
@@ -585,7 +585,7 @@ Artifacts:
 
 ```text
 docs/architecture/sej-resolver-boundary.md
-reports/slice-003d-resolver-handshake-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-003d-resolver-handshake-review.latest.md
 ```
 
 Completion rule:
@@ -619,7 +619,7 @@ Artifacts:
 
 ```text
 contracts/operations/validate-lineage.resolver-capability-requirements.v1.json
-reports/slice-003d1-resolver-capability-requirements.latest.md
+conveyor/runs/2026/06/21/reports/slice-003d1-resolver-capability-requirements.latest.md
 ```
 
 Completion rule:
@@ -651,7 +651,7 @@ Changes:
 Artifacts:
 
 ```text
-reports/slice-003d2-resolver-capability-handshake-refresh.latest.md
+conveyor/runs/2026/06/21/reports/slice-003d2-resolver-capability-handshake-refresh.latest.md
 ```
 
 Completion rule:
@@ -685,7 +685,7 @@ Changes:
 Artifacts:
 
 ```text
-reports/slice-003c2-bootstrap-sej-narrowing.latest.md
+conveyor/runs/2026/06/21/reports/slice-003c2-bootstrap-sej-narrowing.latest.md
 ```
 
 Completion rule:
@@ -718,7 +718,7 @@ Changes:
 Artifacts:
 
 ```text
-reports/slice-003d3-final-bootstrap-resolver-handshake.latest.md
+conveyor/runs/2026/06/21/reports/slice-003d3-final-bootstrap-resolver-handshake.latest.md
 ```
 
 Completion rule:
@@ -751,7 +751,7 @@ Artifacts:
 
 ```text
 contracts/projections/validate-lineage.facade-manifest.v1.json
-reports/slice-003e-facade-projection-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-003e-facade-projection-review.latest.md
 ```
 
 Completion rule:
@@ -778,7 +778,7 @@ Changes:
 
 - Reference the accepted facade manifest.
 - Reference the accepted validate-lineage SEJ contract.
-- Declare `tools/validate-lineage.js` as the target artifact.
+- Declare `generated/tools/validate-lineage.js` as the target artifact.
 - Use resolver materialization primitives only.
 - Declare receipt emission and generated-file anchors.
 - Forbid hand-authored validation behavior.
@@ -787,7 +787,7 @@ Artifacts:
 
 ```text
 contracts/sej/materialize-validate-lineage-facade.sej.v1.json
-reports/slice-003f-facade-materialization-sej-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-003f-facade-materialization-sej-review.latest.md
 ```
 
 Completion rule:
@@ -815,14 +815,14 @@ Invoke the resolver against the accepted facade materialization SEJ to materiali
 Changes:
 
 - Call the resolver with the accepted facade manifest and accepted materialization SEJ.
-- Materialize `tools/validate-lineage.js` as a generated doorway.
+- Materialize `generated/tools/validate-lineage.js` as a generated doorway.
 - Emit the declared projection receipt.
 - Keep the facade generated, evidenced, and subordinate to semantic truth.
 
 Artifacts:
 
 ```text
-reports/slice-003g-resolver-backed-facade-materialization.latest.md
+conveyor/runs/2026/06/21/reports/slice-003g-resolver-backed-facade-materialization.latest.md
 evidence/facades/validate-lineage.facade-materialization.receipt.v1.json
 ```
 
@@ -844,7 +844,7 @@ Slice 003H: Generated Doorway Coherence Review.
 
 Goal:
 
-Review the repo after resolver-backed facade materialization so all docs consistently say that `tools/validate-lineage.js` exists only as a resolver-materialized generated doorway.
+Review the repo after resolver-backed facade materialization so all docs consistently say that `generated/tools/validate-lineage.js` exists only as a resolver-materialized generated doorway.
 
 Changes:
 
@@ -855,7 +855,7 @@ Changes:
 Artifacts:
 
 ```text
-reports/slice-003h-generated-doorway-coherence-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-003h-generated-doorway-coherence-review.latest.md
 ```
 
 Completion rule:
@@ -892,8 +892,8 @@ stories/tools/validate-story-packet.story.v1.json
 specs/canonical/tools/validate-story-packet.canonical-spec.v1.json
 contracts/schemas/story-packet-validation-input.schema.v1.json
 contracts/schemas/story-packet-validation-result.schema.v1.json
-tools/validate-story-packet.contract.md
-reports/slice-004a-story-packet-validator-contract-review.latest.md
+generated/tools/contracts/validate-story-packet.contract.md
+conveyor/runs/2026/06/21/reports/slice-004a-story-packet-validator-contract-review.latest.md
 ```
 
 Completion rule:
@@ -931,8 +931,8 @@ stories/tools/render-narrative-graph.story.v1.json
 specs/canonical/tools/render-narrative-graph.canonical-spec.v1.json
 contracts/schemas/narrative-graph-render-input.schema.v1.json
 contracts/schemas/narrative-graph-render-result.schema.v1.json
-tools/render-narrative-graph.contract.md
-reports/slice-004b-narrative-graph-reporter-contract-review.latest.md
+generated/tools/contracts/render-narrative-graph.contract.md
+conveyor/runs/2026/06/21/reports/slice-004b-narrative-graph-reporter-contract-review.latest.md
 ```
 
 Completion rule:
@@ -966,7 +966,7 @@ Changes:
 Artifacts:
 
 ```text
-reports/slice-004c-story-graph-tool-pair-coherence-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-004c-story-graph-tool-pair-coherence-review.latest.md
 ```
 
 Completion rule:
@@ -1005,7 +1005,7 @@ contracts/sej/validate-story-packet.sej.v1.json
 contracts/sej/render-narrative-graph.sej.v1.json
 contracts/operations/validate-story-packet.operation-requirements.v1.json
 contracts/operations/render-narrative-graph.operation-requirements.v1.json
-reports/slice-004d-story-graph-sej-contract-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-004d-story-graph-sej-contract-review.latest.md
 ```
 
 Completion rule:
@@ -1042,7 +1042,7 @@ Artifacts:
 ```text
 contracts/projections/validate-story-packet.facade-manifest.v1.json
 contracts/projections/render-narrative-graph.facade-manifest.v1.json
-reports/slice-004f-story-graph-facade-projection-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-004f-story-graph-facade-projection-review.latest.md
 ```
 
 Completion rule:
@@ -1069,14 +1069,14 @@ Invoke the resolver against the accepted story/graph materialization SEJs to mat
 Changes:
 
 - Call the resolver with the accepted story/graph materialization SEJs.
-- Materialize `tools/validate-story-packet.js` as a generated doorway.
-- Materialize `tools/render-narrative-graph.js` as a generated doorway.
+- Materialize `generated/tools/validate-story-packet.js` as a generated doorway.
+- Materialize `generated/tools/render-narrative-graph.js` as a generated doorway.
 - Emit the declared projection receipts.
 
 Artifacts:
 
 ```text
-reports/slice-004h-story-graph-resolver-backed-facade-materialization.latest.md
+conveyor/runs/2026/06/21/reports/slice-004h-story-graph-resolver-backed-facade-materialization.latest.md
 evidence/facades/validate-story-packet.facade-materialization.receipt.v1.json
 evidence/facades/render-narrative-graph.facade-materialization.receipt.v1.json
 ```
@@ -1113,7 +1113,7 @@ Artifacts:
 ```text
 contracts/sej/materialize-operational-validate-story-packet-facade.sej.v1.json
 contracts/sej/materialize-operational-render-narrative-graph-facade.sej.v1.json
-reports/slice-004i-story-graph-doorway-operationalization-contract-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-004i-story-graph-doorway-operationalization-contract-review.latest.md
 ```
 
 Completion rule:
@@ -1139,8 +1139,8 @@ Invoke the generated operational doorways against bounded already-loaded bootstr
 
 Changes:
 
-- Run `tools/validate-story-packet.js` against its authorized bootstrap payload.
-- Run `tools/render-narrative-graph.js` against its authorized bootstrap payload.
+- Run `generated/tools/validate-story-packet.js` against its authorized bootstrap payload.
+- Run `generated/tools/render-narrative-graph.js` against its authorized bootstrap payload.
 - Record invocation receipts only.
 - Keep generalized traversal, file loading, and report writing deferred.
 
@@ -1149,7 +1149,7 @@ Artifacts:
 ```text
 evidence/invocations/validate-story-packet.bootstrap-invocation.receipt.v1.json
 evidence/invocations/render-narrative-graph.bootstrap-invocation.receipt.v1.json
-reports/slice-004k-story-graph-bootstrap-invocation-evidence.latest.md
+conveyor/runs/2026/06/21/reports/slice-004k-story-graph-bootstrap-invocation-evidence.latest.md
 ```
 
 Completion rule:
@@ -1182,7 +1182,7 @@ Changes:
 Artifacts:
 
 ```text
-reports/slice-004-story-graph-bootstrap-closure.latest.md
+conveyor/runs/2026/06/21/reports/slice-004-story-graph-bootstrap-closure.latest.md
 ```
 
 Completion rule:
@@ -1218,7 +1218,7 @@ Artifacts:
 ```text
 contracts/sej/materialize-validate-story-packet-facade.sej.v1.json
 contracts/sej/materialize-render-narrative-graph-facade.sej.v1.json
-reports/slice-004g-story-graph-facade-materialization-sej-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-004g-story-graph-facade-materialization-sej-review.latest.md
 ```
 
 Completion rule:
@@ -1252,7 +1252,7 @@ Changes:
 Artifacts:
 
 ```text
-reports/slice-004e-story-graph-resolver-capability-handshake.latest.md
+conveyor/runs/2026/06/21/reports/slice-004e-story-graph-resolver-capability-handshake.latest.md
 ```
 
 Completion rule:
@@ -1290,9 +1290,9 @@ stories/tools/validate-story-packet.story.v1.json
 stories/tools/render-narrative-graph.story.v1.json
 specs/canonical/tools/validate-story-packet.canonical-spec.v1.json
 specs/canonical/tools/render-narrative-graph.canonical-spec.v1.json
-tools/validate-story-packet.js
-tools/render-narrative-graph.js
-reports/narrative-graph.latest.md
+generated/tools/validate-story-packet.js
+generated/tools/render-narrative-graph.js
+conveyor/runs/2026/06/21/reports/narrative-graph.latest.md
 ```
 
 Completion rule:
@@ -1328,7 +1328,7 @@ Artifacts:
 contracts/schemas/sej-validation-contract.schema.v1.json
 contracts/operations/general-validation.operation-requirements.v1.json
 contracts/policies/sej-validation-expansion.policy.v1.json
-reports/slice-005-sej-validation-contract-expansion.latest.md
+conveyor/runs/2026/06/21/reports/slice-005-sej-validation-contract-expansion.latest.md
 ```
 
 Completion rule:
@@ -1374,7 +1374,7 @@ Artifacts:
 contracts/schemas/resolver-invocation-receipt.schema.v1.json
 contracts/schemas/resolver-equivalence-report.schema.v1.json
 contracts/policies/resolver-execution-evidence.policy.v1.json
-reports/slice-006-resolver-path-consolidation.latest.md
+conveyor/runs/2026/06/21/reports/slice-006-resolver-path-consolidation.latest.md
 ```
 
 Completion rule:
@@ -1441,7 +1441,7 @@ specs/canonical/projections/ui-sketch-projection.canonical-spec.v1.json
 contracts/schemas/ui-sketch-projection-manifest.schema.v1.json
 contracts/schemas/ui-sketch-render-result.schema.v1.json
 contracts/projections/founding-ui-sketch.projection-manifest.v1.json
-reports/slice-007a-ui-sketch-projection-contract-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-007a-ui-sketch-projection-contract-review.latest.md
 ```
 
 Completion rule:
@@ -1477,7 +1477,7 @@ Artifacts:
 ```text
 contracts/sej/render-founding-ui-sketch.sej.v1.json
 contracts/operations/ui-sketch-render.operation-requirements.v1.json
-reports/slice-007b-ui-sketch-sej-render-contract-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-007b-ui-sketch-sej-render-contract-review.latest.md
 ```
 
 Completion rule:
@@ -1512,7 +1512,7 @@ Changes:
 Artifacts:
 
 ```text
-reports/slice-007c-ui-sketch-resolver-capability-handshake.latest.md
+conveyor/runs/2026/06/21/reports/slice-007c-ui-sketch-resolver-capability-handshake.latest.md
 ```
 
 Completion rule:
@@ -1547,7 +1547,7 @@ Artifacts:
 
 ```text
 contracts/sej/materialize-founding-ui-sketch.sej.v1.json
-reports/slice-007d-ui-sketch-materialization-sej-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-007d-ui-sketch-materialization-sej-review.latest.md
 ```
 
 Completion rule:
@@ -1583,7 +1583,7 @@ Artifacts:
 ```text
 contracts/schemas/ascii-sketch-layout.schema.v1.json
 contracts/projections/founding-ui-sketch.layout.v1.json
-reports/slice-007d1-ui-sketch-deterministic-layout-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-007d1-ui-sketch-deterministic-layout-review.latest.md
 ```
 
 Completion rule:
@@ -1622,10 +1622,10 @@ contracts/schemas/visual-node.schema.v1.json
 contracts/schemas/visual-edge.schema.v1.json
 contracts/schemas/visual-layout.schema.v1.json
 contracts/schemas/sketch-equivalence.schema.v1.json
-examples/target-sketches/founding-lineage-flow.target.v1.json
-examples/target-sketches/semantic-execution-conveyor.target.v1.json
-examples/target-sketches/governed-visual-projection.target.v1.json
-reports/slice-007d2-visual-target-sketch-definition-review.latest.md
+source/visual-intent/founding-lineage-flow.target.v1.json
+source/visual-intent/semantic-execution-conveyor.target.v1.json
+source/visual-intent/governed-visual-projection.target.v1.json
+conveyor/runs/2026/06/21/reports/slice-007d2-visual-target-sketch-definition-review.latest.md
 ```
 
 Completion rule:
@@ -1659,9 +1659,9 @@ Changes:
 Artifacts:
 
 ```text
-examples/founding-conversation/projections/ui/founding-ui-sketch.ascii
-examples/founding-conversation/evidence/founding-ui-sketch.render.receipt.v1.json
-reports/slice-007e-resolver-backed-ui-sketch-materialization.latest.md
+projections/founding-conversation/ui/founding-ui-sketch.ascii
+evidence/founding-conversation/founding-ui-sketch.render.receipt.v1.json
+conveyor/runs/2026/06/21/reports/slice-007e-resolver-backed-ui-sketch-materialization.latest.md
 ```
 
 Completion rule:
@@ -1697,7 +1697,7 @@ Artifacts:
 contracts/sej/validate-founding-ui-sketch-equivalence.sej.v1.json
 contracts/operations/sketch-equivalence.operation-requirements.v1.json
 evidence/invocations/founding-ui-sketch.equivalence-invocation.receipt.v1.json
-reports/slice-007f-target-sketch-equivalence-invocation-evidence.latest.md
+conveyor/runs/2026/06/21/reports/slice-007f-target-sketch-equivalence-invocation-evidence.latest.md
 ```
 
 Completion rule:
@@ -1715,7 +1715,7 @@ Blocks:
 
 Goal:
 
-Re-run the governed materialization against the reconciled canonical target path so the resolver writes the sketch at `examples/target-sketches/projections/founding-lineage-flow.ascii` without changing the sketch content by hand.
+Re-run the governed materialization against the reconciled canonical target path so the resolver writes the sketch at `projections/target-sketches/founding-lineage-flow.ascii` without changing the sketch content by hand.
 
 Changes:
 
@@ -1728,7 +1728,7 @@ Changes:
 Artifacts:
 
 ```text
-reports/slice-007e1-rematerialize-target-sketch-canonical-path.latest.md
+conveyor/runs/2026/06/21/reports/slice-007e1-rematerialize-target-sketch-canonical-path.latest.md
 ```
 
 Completion rule:
@@ -1751,15 +1751,15 @@ Reconcile the projection authority chain so the target sketch fixture, projectio
 
 Changes:
 
-- Update the governed projection path to `examples/target-sketches/projections/founding-lineage-flow.ascii`.
-- Update the governed receipt path to `examples/target-sketches/evidence/founding-lineage-flow.render.receipt.v1.json`.
+- Update the governed projection path to `projections/target-sketches/founding-lineage-flow.ascii`.
+- Update the governed receipt path to `evidence/target-sketches/founding-lineage-flow.render.receipt.v1.json`.
 - Keep the existing rendered doorway file untouched until a later materialization slice.
 - Keep equivalence invocation out of scope for this slice.
 
 Artifacts:
 
 ```text
-reports/slice-007f1-target-sketch-projection-path-reconciliation.latest.md
+conveyor/runs/2026/06/21/reports/slice-007f1-target-sketch-projection-path-reconciliation.latest.md
 ```
 
 Completion rule:
@@ -1793,7 +1793,7 @@ Changes:
 Artifacts:
 
 ```text
-reports/slice-007f2-target-sketch-equivalence-validation.latest.md
+conveyor/runs/2026/06/21/reports/slice-007f2-target-sketch-equivalence-validation.latest.md
 ```
 
 Completion rule:
@@ -1816,7 +1816,7 @@ Align repo navigation and posture around the new visual projection model report 
 
 Changes:
 
-- Record `reports/slice-007g-visual-projection-model-contract.latest.md` as the report-first Slice 007G artifact.
+- Record `conveyor/runs/2026/06/21/reports/slice-007g-visual-projection-model-contract.latest.md` as the report-first Slice 007G artifact.
 - State that the current system proves deterministic writing, not yet deterministic visual projection.
 - State that `visualProjectionModel` is the product center for future renderers.
 - Point the repo toward Slice 007G.2 as the next implementation slice.
@@ -1829,7 +1829,7 @@ ROADMAP.md
 docs/Implementation Plan.md
 docs/architecture/working-tree-shape.md
 contracts/schemas/README.md
-reports/README.md
+conveyor/runs/2026/06/21/reports/README.md
 ```
 
 Completion rule:
@@ -1868,7 +1868,7 @@ contracts/schemas/visual-region.schema.v1.json
 contracts/schemas/visual-container.schema.v1.json
 contracts/schemas/visual-render-adapter.schema.v1.json
 contracts/policies/visual-projection-determinism.policy.v1.json
-reports/slice-007g2-visual-projection-model-schema-policy.latest.md
+conveyor/runs/2026/06/21/reports/slice-007g2-visual-projection-model-schema-policy.latest.md
 ```
 
 Completion rule:
@@ -1907,7 +1907,7 @@ contracts/schemas/ascii-render-kernel.schema.v1.json
 contracts/schemas/ascii-render-result.schema.v1.json
 contracts/operations/ascii-render-kernel.operation-requirements.v1.json
 contracts/policies/ascii-render-kernel-boundary.policy.v1.json
-reports/slice-007h-deterministic-ascii-render-kernel-contract.latest.md
+conveyor/runs/2026/06/21/reports/slice-007h-deterministic-ascii-render-kernel-contract.latest.md
 ```
 
 Completion rule:
@@ -1944,7 +1944,7 @@ Artifacts:
 contracts/schemas/visual-narrative-source.schema.v1.json
 stories/sources/visual-narrative-source.story.v1.json
 specs/canonical/sources/visual-narrative-source.canonical-spec.v1.json
-reports/slice-007l-visual-narrative-source-contract-review.latest.md
+conveyor/runs/2026/06/21/reports/slice-007l-visual-narrative-source-contract-review.latest.md
 ```
 
 Completion rule:
@@ -1980,7 +1980,7 @@ Artifacts:
 ```text
 contracts/schemas/source-role-change-receipt.schema.v1.json
 contracts/policies/source-surface-role-change.policy.v1.json
-reports/slice-007m-visual-source-role-change-receipt-contract.latest.md
+conveyor/runs/2026/06/21/reports/slice-007m-visual-source-role-change-receipt-contract.latest.md
 ```
 
 Completion rule:
@@ -2017,9 +2017,9 @@ Artifacts:
 ```text
 contracts/schemas/run-visual-evidence.schema.v1.json
 contracts/policies/run-visual-evidence-required.policy.v1.json
-reports/sketches/README.md
-reports/sketches/slice-007m1-run-visual-evidence-standard.ascii
-reports/slice-007m1-run-visual-evidence-standard.latest.md
+conveyor/runs/2026/06/21/sketches/README.md
+conveyor/runs/2026/06/21/sketches/slice-007m1-run-visual-evidence-standard.ascii
+conveyor/runs/2026/06/21/reports/slice-007m1-run-visual-evidence-standard.latest.md
 ```
 
 Completion rule:
@@ -2054,7 +2054,7 @@ Changes:
 Artifacts:
 
 ```text
-reports/slice-007m2-run-sketch-authoring-violation-disposition.latest.md
+conveyor/runs/2026/06/21/reports/slice-007m2-run-sketch-authoring-violation-disposition.latest.md
 ```
 
 Completion rule:
@@ -2091,7 +2091,7 @@ Artifacts:
 contracts/sej/materialize-run-sketch-007m1.sej.v1.json
 contracts/schemas/run-sketch-materialization-receipt.schema.v1.json
 contracts/policies/no-manual-run-sketch-authoring.policy.v1.json
-reports/slice-007m3-run-sketch-materialization-sej-contract.latest.md
+conveyor/runs/2026/06/21/reports/slice-007m3-run-sketch-materialization-sej-contract.latest.md
 ```
 
 Completion rule:
@@ -2125,7 +2125,7 @@ Changes:
 Artifacts:
 
 ```text
-reports/slice-007m3a-static-ascii-materialization-posture-correction.latest.md
+conveyor/runs/2026/06/21/reports/slice-007m3a-static-ascii-materialization-posture-correction.latest.md
 ```
 
 Completion rule:
@@ -2160,8 +2160,8 @@ Artifacts:
 
 ```text
 contracts/schemas/narrative-coverage-report.schema.v1.json
-examples/legacy-remediation/
-reports/narrative-coverage.latest.md
+source/legacy-code/
+conveyor/runs/2026/06/21/reports/narrative-coverage.latest.md
 ```
 
 Completion rule:
@@ -2182,12 +2182,12 @@ Blocks:
 4. Create Slice 001 directory structure.
 5. Define minimum schemas for source, story, canonical spec, projection manifest, and lineage receipt.
 6. Create the founding example chain.
-7. Add `tools/README.md` and `tools/validate-lineage.contract.md`, but no executable tool body yet.
-8. Add `reports/narrative-graph.latest.md` and `reports/lineage.latest.md` as manually generated seed reports.
+7. Add `generated/tools/README.md` and `generated/tools/contracts/validate-lineage.contract.md`, but no executable tool body yet.
+8. Add `conveyor/runs/2026/06/21/reports/narrative-graph.latest.md` and `conveyor/runs/2026/06/21/reports/lineage.latest.md` as manually generated seed reports.
 9. Define the validate-lineage SEJ contract in Slice 003C before any executable facade exists.
 10. Confirm resolver capability in Slice 003D before any facade projection is accepted.
 11. Project the facade manifest in Slice 003E before any executable body is considered.
-12. Keep `tools/validate-lineage.js` deferred until the semantic runway is complete.
+12. Keep `generated/tools/validate-lineage.js` deferred until the semantic runway is complete.
 
 ## First Completion Bar
 
@@ -2203,3 +2203,6 @@ What report shows the chain?
 ```
 
 No runtime execution is required for that first bar. That restraint is the point.
+
+
+

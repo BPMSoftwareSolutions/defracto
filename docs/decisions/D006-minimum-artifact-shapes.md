@@ -24,7 +24,7 @@ Slice 001: Founding Narrative Lineage.
 
 ## Minimum Report Shapes
 
-### `reports/narrative-graph.latest.md`
+### `conveyor/runs/2026/06/21/reports/narrative-graph.latest.md`
 
 - `# Narrative Graph Report`
 - `## Report Metadata`
@@ -34,7 +34,7 @@ Slice 001: Founding Narrative Lineage.
 - `## Findings`
 - `## Completion Posture`
 
-### `reports/lineage.latest.md`
+### `conveyor/runs/2026/06/21/reports/lineage.latest.md`
 
 - `# Lineage Report`
 - `## Report Metadata`
@@ -119,3 +119,4 @@ Slice 001: Founding Narrative Lineage.
 - `projection.outputPath`
 - `checks`
 - `findings`
+

@@ -7,18 +7,18 @@
   "sourceLineage": {
     "facadeManifestKey": "contracts/projections/validate-lineage.facade-manifest.v1.json",
     "sejContractKey": "contracts/sej/validate-lineage.sej.v1.json",
-    "materializationReviewKey": "reports/slice-003f-facade-materialization-sej-review.latest.md"
+    "materializationReviewKey": "conveyor/runs/2026/06/21/reports/slice-003f-facade-materialization-sej-review.latest.md"
   },
   "targetArtifact": {
-    "artifactKey": "tools/validate-lineage.js",
-    "artifactPath": "tools/validate-lineage.js",
+    "artifactKey": "generated/tools/validate-lineage.js",
+    "artifactPath": "generated/tools/validate-lineage.js",
     "artifactKind": "generated_executable_doorway",
     "artifactStatus": "future"
   },
   "generatedFileAnchors": [
     {
       "anchorKey": "generatedFacadeTarget",
-      "filePath": "tools/validate-lineage.js",
+      "filePath": "generated/tools/validate-lineage.js",
       "anchorRole": "generated facade target",
       "anchorState": "future"
     },
@@ -41,7 +41,7 @@
   "materializationSteps": [
     "resolve the accepted facade manifest",
     "resolve the accepted validate-lineage SEJ contract",
-    "project the target artifact path for tools/validate-lineage.js",
+    "project the target artifact path for generated/tools/validate-lineage.js",
     "materialize the generated doorway artifact",
     "compute the declared artifact hash",
     "emit the declared projection receipt"
@@ -79,7 +79,7 @@
           "scope": "facade.materialization"
         },
         "artifact": {
-          "path": "tools/validate-lineage.js",
+          "path": "generated/tools/validate-lineage.js",
           "format": "text",
           "anchor": {
             "enabled": true,
@@ -119,14 +119,14 @@
             "checkedAt": "2026-06-21T00:00:00-04:00",
             "sourceSej": "contracts/sej/materialize-validate-lineage-facade.sej.v1.json",
             "facadeManifest": "contracts/projections/validate-lineage.facade-manifest.v1.json",
-            "targetPath": "tools/validate-lineage.js",
+            "targetPath": "generated/tools/validate-lineage.js",
             "artifactHash": {
               "ref": "$steps.materializeFacade.contentHash"
             },
             "generatedFileAnchors": [
               {
                 "anchorKey": "generatedFacadeTarget",
-                "filePath": "tools/validate-lineage.js",
+                "filePath": "generated/tools/validate-lineage.js",
                 "anchorRole": "generated facade target",
                 "anchorState": "materialized"
               }
@@ -142,3 +142,5 @@
   },
   "completionPosture": "This SEJ authorizes only resolver-mediated facade materialization and receipt emission; the executable doorway remains absent until a later invocation slice."
 }
+
+

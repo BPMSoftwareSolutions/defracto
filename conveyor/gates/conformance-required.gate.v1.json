@@ -1,0 +1,5 @@
+{
+  "id": "conformance-required",
+  "version": "v1",
+  "rule": "Derived artifacts must satisfy conformance checks before release."
+}

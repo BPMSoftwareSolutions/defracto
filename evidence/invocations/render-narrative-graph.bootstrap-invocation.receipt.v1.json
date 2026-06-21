@@ -3,7 +3,7 @@
   "status": "passed",
   "checkedAt": "2026-06-21T00:00:00-04:00",
   "invocationKind": "bootstrap-invocation",
-  "toolPath": "tools/render-narrative-graph.js",
+  "toolPath": "generated/tools/render-narrative-graph.js",
   "sourceSej": "contracts/sej/render-narrative-graph.sej.v1.json",
   "facadeManifest": "contracts/projections/render-narrative-graph.facade-manifest.v1.json",
   "boundedInputs": [
@@ -14,16 +14,18 @@
     "lineageReceipt"
   ],
   "invocationShape": "already-loaded-json",
-  "invocationArguments": "{\"sourceNarrative\":{\"sourceKey\":\"examples/founding/conversation-fractal.md\"},\"storyPacket\":{\"storyKey\":\"stories/tools/validate-story-packet.story.v1.json\"},\"canonicalSpec\":{\"canonicalSpecKey\":\"specs/canonical/tools/render-narrative-graph.canonical-spec.v1.json\"},\"projectionManifest\":{\"projectionManifestKey\":\"contracts/projections/render-narrative-graph.facade-manifest.v1.json\",\"sections\":[{\"canonicalPath\":\"a\",\"storyPath\":\"b\"}]},\"lineageReceipt\":{\"projection\":{\"projectionManifestKey\":\"contracts/projections/render-narrative-graph.facade-manifest.v1.json\"}}}",
+  "invocationArguments": "{\"sourceNarrative\":{\"sourceKey\":\"source/conversations/founding-conversation/conversation-fractal.md\"},\"storyPacket\":{\"storyKey\":\"stories/tools/validate-story-packet.story.v1.json\"},\"canonicalSpec\":{\"canonicalSpecKey\":\"specs/canonical/tools/render-narrative-graph.canonical-spec.v1.json\"},\"projectionManifest\":{\"projectionManifestKey\":\"contracts/projections/render-narrative-graph.facade-manifest.v1.json\",\"sections\":[{\"canonicalPath\":\"a\",\"storyPath\":\"b\"}]},\"lineageReceipt\":{\"projection\":{\"projectionManifestKey\":\"contracts/projections/render-narrative-graph.facade-manifest.v1.json\"}}}",
   "exitCode": 0,
   "stdout": "",
   "stderr": "",
   "generatedFileAnchors": [
     {
       "anchorKey": "generatedFacadeTarget",
-      "filePath": "tools/render-narrative-graph.js",
+      "filePath": "generated/tools/render-narrative-graph.js",
       "anchorRole": "generated operational doorway target",
       "anchorState": "present"
     }
   ]
 }
+
+

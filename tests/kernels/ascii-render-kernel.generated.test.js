@@ -13,11 +13,11 @@ const test = require('node:test');
 
 const { renderAsciiProjection } = require('../../kernels/ascii-render-kernel/ascii-render-kernel.js');
 
-const fixturePath = path.resolve(__dirname, '../../examples/kernels/ascii-render-kernel/founding-conveyor.visual-projection-model.v1.json');
+const fixturePath = path.resolve(__dirname, '../../source/visual-intent/founding-conveyor.visual-projection-model.v1.json');
 const fixture = JSON.parse(fs.readFileSync(fixturePath, 'utf8'));
 const options = {
-  visualProjectionModelPath: 'examples/kernels/ascii-render-kernel/founding-conveyor.visual-projection-model.v1.json',
-  targetArtifactPath: 'reports/sketches/slice-007h-sej-projected-ascii-render-kernel-conveyor.ascii'
+  visualProjectionModelPath: 'source/visual-intent/founding-conveyor.visual-projection-model.v1.json',
+  targetArtifactPath: 'conveyor/runs/2026/06/21/sketches/slice-007h-sej-projected-ascii-render-kernel-conveyor.ascii'
 };
 
 const expectedText = [
@@ -63,3 +63,4 @@ test('fails closed on unsupported connectors', () => {
   invalid.edges[0].connector = 'diagonal';
   assert.throws(() => renderAsciiProjection(invalid, options), /unsupported connector/i);
 });
+

@@ -8,7 +8,7 @@
     "storyKey": "stories/kernels/ascii-render-kernel.story.v1.json",
     "canonicalSpecKey": "specs/canonical/kernels/ascii-render-kernel.canonical-spec.v1.json",
     "projectionManifestKey": "contracts/projections/ascii-render-kernel.node-projection-manifest.v1.json",
-    "materializationReviewKey": "reports/slice-007h-deterministic-ascii-render-kernel-contract.latest.md"
+    "materializationReviewKey": "conveyor/runs/2026/06/21/reports/slice-007h-deterministic-ascii-render-kernel-contract.latest.md"
   },
   "inputModelKey": "visualProjectionModel",
   "outputResultKey": "asciiRenderResult",
@@ -105,3 +105,4 @@
   ],
   "failurePosture": "Missing capability or invalid model blocks execution and keeps the kernel in declarative review until the projection manifest and generated module exist."
 }
+

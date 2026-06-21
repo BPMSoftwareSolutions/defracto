@@ -7,18 +7,18 @@
   "sourceLineage": {
     "facadeManifestKey": "contracts/projections/validate-story-packet.facade-manifest.v1.json",
     "sejContractKey": "contracts/sej/validate-story-packet.sej.v1.json",
-    "materializationReviewKey": "reports/slice-004i-story-graph-doorway-operationalization-contract-review.latest.md"
+    "materializationReviewKey": "conveyor/runs/2026/06/21/reports/slice-004i-story-graph-doorway-operationalization-contract-review.latest.md"
   },
   "targetArtifact": {
-    "artifactKey": "tools/validate-story-packet.js",
-    "artifactPath": "tools/validate-story-packet.js",
+    "artifactKey": "generated/tools/validate-story-packet.js",
+    "artifactPath": "generated/tools/validate-story-packet.js",
     "artifactKind": "generated_operational_doorway",
     "artifactStatus": "future"
   },
   "generatedFileAnchors": [
     {
       "anchorKey": "generatedFacadeTarget",
-      "filePath": "tools/validate-story-packet.js",
+      "filePath": "generated/tools/validate-story-packet.js",
       "anchorRole": "generated operational doorway target",
       "anchorState": "future"
     },
@@ -41,7 +41,7 @@
   "materializationSteps": [
     "resolve the accepted facade manifest",
     "resolve the accepted validate-story-packet SEJ contract",
-    "project the target artifact path for tools/validate-story-packet.js",
+    "project the target artifact path for generated/tools/validate-story-packet.js",
     "materialize the operational doorway artifact shape",
     "compute the declared artifact hash",
     "emit the declared projection receipt"
@@ -82,7 +82,7 @@
           "scope": "facade.materialization"
         },
         "artifact": {
-          "path": "tools/validate-story-packet.js",
+          "path": "generated/tools/validate-story-packet.js",
           "format": "text",
           "anchor": {
             "enabled": true,
@@ -122,14 +122,14 @@
             "checkedAt": "2026-06-21T00:00:00-04:00",
             "sourceSej": "contracts/sej/materialize-operational-validate-story-packet-facade.sej.v1.json",
             "facadeManifest": "contracts/projections/validate-story-packet.facade-manifest.v1.json",
-            "targetPath": "tools/validate-story-packet.js",
+            "targetPath": "generated/tools/validate-story-packet.js",
             "artifactHash": {
               "ref": "$steps.materializeFacade.contentHash"
             },
             "generatedFileAnchors": [
               {
                 "anchorKey": "generatedFacadeTarget",
-                "filePath": "tools/validate-story-packet.js",
+                "filePath": "generated/tools/validate-story-packet.js",
                 "anchorRole": "generated operational doorway target",
                 "anchorState": "future"
               }
@@ -145,3 +145,5 @@
   },
   "completionPosture": "This SEJ authorizes only the next operational doorway materialization shape; the operationalized doorway remains deferred to Slice 004J."
 }
+
+

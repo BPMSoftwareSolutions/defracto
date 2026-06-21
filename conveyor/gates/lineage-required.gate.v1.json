@@ -1,0 +1,5 @@
+{
+  "id": "lineage-required",
+  "version": "v1",
+  "rule": "Source-to-output lineage must be present before promotion."
+}

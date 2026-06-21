@@ -7,7 +7,7 @@
   "sourceLineage": {
     "storyKey": "stories/tools/validate-story-packet.story.v1.json",
     "canonicalSpecKey": "specs/canonical/tools/validate-story-packet.canonical-spec.v1.json",
-    "executableProjectionContractKey": "tools/validate-story-packet.contract.md",
+    "executableProjectionContractKey": "generated/tools/contracts/validate-story-packet.contract.md",
     "bodyDispositionKey": "contracts/taxonomies/body-disposition.taxonomy.v1.json"
   },
   "findingTaxonomyKey": "contracts/taxonomies/finding-taxonomy.v1.json",
@@ -75,3 +75,4 @@
   ],
   "failurePosture": "Missing capability blocks execution and keeps the contract in declarative review until a resolver handshake is later authorized."
 }
+

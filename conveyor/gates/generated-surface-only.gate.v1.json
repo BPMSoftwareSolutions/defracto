@@ -1,0 +1,5 @@
+{
+  "id": "generated-surface-only",
+  "version": "v1",
+  "rule": "Generated surfaces must be produced by the conveyor rather than hand-authored as truth."
+}

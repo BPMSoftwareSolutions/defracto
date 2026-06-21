@@ -3,7 +3,7 @@
   "storyKey": "defracto.tools.validate-story-packet.story.v1",
   "derivedFrom": {
     "sourceKey": "defracto.origin.conversation_fractal.v1",
-    "sourcePath": "examples/founding-conversation/source/conversation-fractal.md",
+    "sourcePath": "source/conversations/founding-conversation/conversation-fractal.md",
     "sourceHash": "sha256:seed-manual"
   },
   "actor": {
@@ -27,3 +27,4 @@
   ],
   "status": "authorized"
 }
+

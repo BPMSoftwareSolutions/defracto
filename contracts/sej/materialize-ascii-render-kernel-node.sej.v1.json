@@ -9,7 +9,7 @@
     "projectionManifestKey": "contracts/projections/ascii-render-kernel.node-projection-manifest.v1.json",
     "storyKey": "stories/kernels/ascii-render-kernel.story.v1.json",
     "canonicalSpecKey": "specs/canonical/kernels/ascii-render-kernel.canonical-spec.v1.json",
-    "materializationReviewKey": "reports/slice-007h-deterministic-ascii-render-kernel-contract.latest.md"
+    "materializationReviewKey": "conveyor/runs/2026/06/21/reports/slice-007h-deterministic-ascii-render-kernel-contract.latest.md"
   },
   "targetArtifact": {
     "artifactKey": "kernels/ascii-render-kernel/ascii-render-kernel.js",
@@ -380,11 +380,11 @@
             "",
             "const { renderAsciiProjection } = require('../../kernels/ascii-render-kernel/ascii-render-kernel.js');",
             "",
-            "const fixturePath = path.resolve(__dirname, '../../examples/kernels/ascii-render-kernel/founding-conveyor.visual-projection-model.v1.json');",
+            "const fixturePath = path.resolve(__dirname, '../../source/visual-intent/founding-conveyor.visual-projection-model.v1.json');",
             "const fixture = JSON.parse(fs.readFileSync(fixturePath, 'utf8'));",
             "const options = {",
-            "  visualProjectionModelPath: 'examples/kernels/ascii-render-kernel/founding-conveyor.visual-projection-model.v1.json',",
-            "  targetArtifactPath: 'reports/sketches/slice-007h-sej-projected-ascii-render-kernel-conveyor.ascii'",
+            "  visualProjectionModelPath: 'source/visual-intent/founding-conveyor.visual-projection-model.v1.json',",
+            "  targetArtifactPath: 'conveyor/runs/2026/06/21/sketches/slice-007h-sej-projected-ascii-render-kernel-conveyor.ascii'",
             "};",
             "",
             "const expectedText = [",
@@ -473,3 +473,5 @@
   },
   "completionPosture": "This SEJ authorizes only resolver-mediated kernel and test materialization; the executable kernel remains subordinate to semantic truth until the generated test and visual proof complete the conveyor."
 }
+
+

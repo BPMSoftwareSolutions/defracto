@@ -7,20 +7,20 @@
   "sourceLineage": {
     "visualEvidencePolicyPath": "contracts/policies/run-visual-evidence-required.policy.v1.json",
     "visualEvidenceSchemaPath": "contracts/schemas/run-visual-evidence.schema.v1.json",
-    "runEvidenceStandardReportKey": "reports/slice-007m1-run-visual-evidence-standard.latest.md",
-    "violationDispositionReportKey": "reports/slice-007m2-run-sketch-authoring-violation-disposition.latest.md"
+    "runEvidenceStandardReportKey": "conveyor/runs/2026/06/21/reports/slice-007m1-run-visual-evidence-standard.latest.md",
+    "violationDispositionReportKey": "conveyor/runs/2026/06/21/reports/slice-007m2-run-sketch-authoring-violation-disposition.latest.md"
   },
   "materializationMode": "static_ascii_materialization",
   "targetArtifact": {
-    "artifactKey": "reports/sketches/slice-007m1-run-visual-evidence-standard.ascii",
-    "artifactPath": "reports/sketches/slice-007m1-run-visual-evidence-standard.ascii",
+    "artifactKey": "conveyor/runs/2026/06/21/sketches/slice-007m1-run-visual-evidence-standard.ascii",
+    "artifactPath": "conveyor/runs/2026/06/21/sketches/slice-007m1-run-visual-evidence-standard.ascii",
     "artifactKind": "static_ascii_materialization",
     "artifactStatus": "future"
   },
   "generatedFileAnchors": [
     {
       "anchorKey": "generatedSketchTarget",
-      "filePath": "reports/sketches/slice-007m1-run-visual-evidence-standard.ascii",
+      "filePath": "conveyor/runs/2026/06/21/sketches/slice-007m1-run-visual-evidence-standard.ascii",
       "anchorRole": "generated run sketch target",
       "anchorState": "future"
     },
@@ -88,7 +88,7 @@
           "scope": "run-sketch.materialization"
         },
         "artifact": {
-          "path": "reports/sketches/slice-007m1-run-visual-evidence-standard.ascii",
+          "path": "conveyor/runs/2026/06/21/sketches/slice-007m1-run-visual-evidence-standard.ascii",
           "format": "text",
           "anchor": {
             "enabled": true,
@@ -108,7 +108,7 @@
             "",
             "  textual evidence",
             "  +-------------------------------------------------------+",
-            "  | report: reports/slice-007m1-run-visual-evidence-      |",
+            "  | report: conveyor/runs/2026/06/21/reports/slice-007m1-run-visual-evidence-      |",
             "  |         standard.latest.md                            |",
             "  | receipts: deferred until future slice                 |",
             "  | changed files: README, ROADMAP, Plan, tree, README... |",
@@ -125,7 +125,7 @@
             "",
             "  visual evidence",
             "  +-------------------------------------------------------+",
-            "  | sketch: reports/sketches/slice-007m1-run-visual-     |",
+            "  | sketch: conveyor/runs/2026/06/21/sketches/slice-007m1-run-visual-     |",
             "  |         evidence-standard.ascii                       |",
             "  | mode: ascii-declared                                  |",
             "  | status: generated                                     |",
@@ -183,7 +183,7 @@
             "rendererStatus": "not_implemented",
             "visualProjectionModelStatus": "deferred",
             "deterministicVisualProjectionStatus": "not_proven",
-            "targetPath": "reports/sketches/slice-007m1-run-visual-evidence-standard.ascii",
+            "targetPath": "conveyor/runs/2026/06/21/sketches/slice-007m1-run-visual-evidence-standard.ascii",
             "receiptPath": "evidence/visual/run-sketches/slice-007m1-run-visual-evidence-standard.materialization.receipt.v1.json",
             "artifactHash": {
               "ref": "$steps.materializeRunSketch.contentHash"
@@ -191,7 +191,7 @@
             "generatedFileAnchors": [
               {
                 "anchorKey": "generatedSketchTarget",
-                "filePath": "reports/sketches/slice-007m1-run-visual-evidence-standard.ascii",
+                "filePath": "conveyor/runs/2026/06/21/sketches/slice-007m1-run-visual-evidence-standard.ascii",
                 "anchorRole": "generated run sketch target",
                 "anchorState": "materialized"
               }
@@ -215,3 +215,4 @@
   },
   "completionPosture": "This SEJ authorizes only resolver-mediated static ASCII materialization and receipt emission; deterministic visual projection remains deferred until a visualProjectionModel-driven renderer exists."
 }
+

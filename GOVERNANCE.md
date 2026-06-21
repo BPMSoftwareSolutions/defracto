@@ -6,6 +6,15 @@ No Competing Narratives.
 
 No artifact may claim behavior, policy, design intent, data shape, UI layout, execution authority, or evidence posture that cannot be traced back to authorized story truth.
 
+## Conveyor Rule
+
+The repository is organized as a conveyor, not as a flat archive of artifacts.
+
+Source enters through `source/`, changes move through `conveyor/`, and published surfaces leave through `projections/`, `generated/`, `evidence/`, and `releases/`.
+
+Documentation is a projection surface.
+Working truth lives in the story, spec, contract, and conveyor layers that authorize it.
+
 ## Working Decisions
 
 - D001: Project identity is `Defracto`, with `Narrative Execution Fabric` as the architecture category.

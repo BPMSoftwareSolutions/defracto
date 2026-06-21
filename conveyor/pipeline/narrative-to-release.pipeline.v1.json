@@ -1,0 +1,17 @@
+{
+  "id": "narrative-to-release",
+  "version": "v1",
+  "entry": "source",
+  "exit": "release",
+  "lanes": [
+    "00-capture-source",
+    "01-extract-story",
+    "02-author-canonical-spec",
+    "03-project-surface",
+    "04-materialize-artifacts",
+    "05-run-conformance",
+    "06-review-evidence",
+    "07-prepare-release",
+    "08-ship"
+  ]
+}

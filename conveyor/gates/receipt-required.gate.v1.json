@@ -1,0 +1,5 @@
+{
+  "id": "receipt-required",
+  "version": "v1",
+  "rule": "Each lane must leave a receipt."
+}

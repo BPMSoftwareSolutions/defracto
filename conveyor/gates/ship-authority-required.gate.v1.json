@@ -1,0 +1,5 @@
+{
+  "id": "ship-authority-required",
+  "version": "v1",
+  "rule": "Release requires explicit authority and review disposition."
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.founding.story.v1",
+  "derivedFrom": {
+    "sourceKey": "defracto.origin.conversation_fractal.v1",
+    "sourcePath": "source/conversations/founding-conversation/conversation-fractal.md",
+    "sourceHash": "sha256:seed-manual"
+  },
+  "actor": {
+    "role": "Defracto maintainer",
+    "goal": "preserve narrative truth through projection and evidence"
+  },
+  "story": {
+    "asA": "Defracto maintainer",
+    "iWant": "to preserve source narrative as story, canonical spec, projection, and evidence",
+    "soThat": "future implementation cannot invent a competing narrative"
+  },
+  "acceptanceCriteria": [
+    {
+      "criteriaKey": "lineage_complete",
+      "statement": "Every projection section maps to canonical and story lineage."
+    }
+  ],
+  "status": "authorized"
+}
+

@@ -3,7 +3,7 @@
   "storyKey": "defracto.kernels.ascii-render-kernel.story.v1",
   "derivedFrom": {
     "sourceKey": "defracto.origin.ascii_render_kernel_conveyor.v1",
-    "sourcePath": "reports/slice-007h-deterministic-ascii-render-kernel-contract.latest.md",
+    "sourcePath": "conveyor/runs/2026/06/21/reports/slice-007h-deterministic-ascii-render-kernel-contract.latest.md",
     "sourceHash": "sha256:seed-manual"
   },
   "actor": {
@@ -31,3 +31,4 @@
   ],
   "status": "authorized"
 }
+

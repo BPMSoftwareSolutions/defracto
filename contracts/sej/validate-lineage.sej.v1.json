@@ -7,7 +7,7 @@
   "sourceLineage": {
     "storyKey": "stories/tools/validate-lineage.story.v1.json",
     "canonicalSpecKey": "specs/canonical/tools/validate-lineage.canonical-spec.v1.json",
-    "executableProjectionContractKey": "tools/validate-lineage.executable-projection.contract.md",
+    "executableProjectionContractKey": "generated/tools/contracts/validate-lineage.executable-projection.contract.md",
     "bodyDispositionKey": "contracts/taxonomies/body-disposition.taxonomy.v1.json"
   },
   "findingTaxonomyKey": "contracts/taxonomies/finding-taxonomy.v1.json",
@@ -124,3 +124,4 @@
   ],
   "failurePosture": "Missing capability blocks execution and sends the contract back to the resolver handshake rather than allowing host-code invention."
 }
+

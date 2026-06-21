@@ -3,7 +3,7 @@
   "layoutKey": "defracto.founding-ui-sketch.layout.v1",
   "layoutKind": "ascii-sketch-layout",
   "layoutStatus": "accepted",
-  "targetPath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
+  "targetPath": "projections/target-sketches/founding-lineage-flow.ascii",
   "sourceLineage": {
     "storyKey": "stories/projections/ui-sketch-projection.story.v1.json",
     "canonicalSpecKey": "specs/canonical/projections/ui-sketch-projection.canonical-spec.v1.json",
@@ -64,3 +64,4 @@
     "changing the layout content without contract revision"
   ]
 }
+

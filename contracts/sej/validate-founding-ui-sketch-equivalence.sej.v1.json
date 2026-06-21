@@ -5,8 +5,8 @@
   "contractStatus": "draft",
   "toolKey": "defracto.tools.validate_founding_ui_sketch_equivalence",
   "sourceLineage": {
-    "targetSketchFixtureKey": "examples/target-sketches/founding-lineage-flow.target.v1.json",
-    "renderedSketchKey": "examples/target-sketches/projections/founding-lineage-flow.ascii",
+    "targetSketchFixtureKey": "source/visual-intent/founding-lineage-flow.target.v1.json",
+    "renderedSketchKey": "projections/target-sketches/founding-lineage-flow.ascii",
     "projectionManifestKey": "contracts/projections/founding-ui-sketch.projection-manifest.v1.json",
     "layoutContractKey": "contracts/projections/founding-ui-sketch.layout.v1.json"
   },
@@ -38,9 +38,9 @@
     "forbidden_claim_present"
   ],
   "input": {
-    "targetSketchFixturePath": "examples/target-sketches/founding-lineage-flow.target.v1.json",
-    "renderedSketchPath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
-    "expectedFutureArtifactPath": "examples/target-sketches/projections/founding-lineage-flow.ascii",
+    "targetSketchFixturePath": "source/visual-intent/founding-lineage-flow.target.v1.json",
+    "renderedSketchPath": "projections/target-sketches/founding-lineage-flow.ascii",
+    "expectedFutureArtifactPath": "projections/target-sketches/founding-lineage-flow.ascii",
     "equivalenceRuleSet": [
       "The rendered artifact must preserve the declared node order.",
       "The rendered artifact must preserve the declared edge sequence.",
@@ -300,3 +300,4 @@
   ],
   "failurePosture": "Missing equivalence blocks execution and keeps the contract in declarative review until the target sketch and rendered sketch truly align."
 }
+
