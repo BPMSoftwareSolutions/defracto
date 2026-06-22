@@ -484,6 +484,79 @@ This enables several powerful refactoring modes:
 
 The refactoring promise is not automatic perfection. It is controlled decomposition: every extracted behavior either becomes authorized truth, rejected noise, or an explicitly preserved compatibility fossil.
 
+## GitRefactor SDK And LOC Integration
+
+The GitRefactor SDK is the best available local pattern for turning the refactoring promise into an operational conveyor. It should be borrowed as the refactoring adapter layer, not as a replacement for the Narrative Execution Fabric's story/spec/projection governance.
+
+The useful boundary is:
+
+```text
+Narrative Execution Fabric
+-> owns source intake, story authority, canonical specs, projection governance, receipts, and release posture
+
+GitRefactor SDK
+-> owns codebase refactor lanes, target profiles, dependency census, DTO collapse, promotion transactions, rollback, and self-heal routing
+```
+
+Live Operational Cognition (LOC) is the intelligence layer that lets this become more than a linear script. In the GitRefactor contracts, LOC is expressed as route intelligence for known friction: detect a blocker, classify it against a taxonomy, select an authorized route, bind the mutation envelope, validate the repair, rollback on failure, and resume the interrupted lane with receipts.
+
+That is exactly the self-healing shape this fabric needs. Self-healing should not mean "an agent guesses at edits." It should mean "the conveyor knows the failure class, knows which repair route is authorized, knows what files may be touched, knows how to validate, and knows how to resume or stop cleanly."
+
+The concrete refactoring flow should look like this:
+
+```text
+external repository or SDK target
+-> refactor target profile
+-> source/code inventory
+-> dependency and runtime census
+-> code-to-SEJ collapse
+-> DTO shape census
+-> dependency and symbol authority gates
+-> thin facade or generated projection
+-> target tests and equivalence checks
+-> promotion transaction
+-> rollback/resume evidence
+-> Narrative Execution Fabric receipt
+```
+
+Capabilities worth borrowing from `C:\source\repos\bpm\internal\ai-engine\sdks\git-refactor-sdk`:
+
+1. `route-next` and handoff packet flow as the next-lane selector pattern.
+2. `target-profile.v1.json` style maturity ladder for external codebases.
+3. Code-to-SEJ collapse lanes for lifting existing implementation bodies into semantic execution authority.
+4. DTO census and DTO stitching collapse lanes for transfer-shape coherence.
+5. Dependency readiness, package import readiness, and symbol authority lanes for multi-language refactors.
+6. Promotion transactions with rollback-aware source/facade relocation.
+7. Self-healing policy, route table, blocker taxonomies, router agent, repair agent, and resume validator contracts.
+8. Generation Fabric handoff policy that blocks raw platform-agent JSON from becoming mature authority without trusted generation or reviewed bootstrap exception.
+9. The disposable `git-refactor-test-target-sdk` as a safe Node/Python/C# proving ground before touching production repositories.
+
+The integration gap is mostly namespace and evidence plumbing. The Narrative Execution Fabric needs a `refactor-target` intake model that can reference external repositories without copying their source into this repo. It also needs an evidence bridge so GitRefactor receipts can be indexed under the fabric's lineage graph.
+
+Recommended adapter contracts:
+
+1. `contracts/refactor-targets/refactor-target-profile.schema.v1.json`
+2. `contracts/refactor-targets/external-repository-binding.schema.v1.json`
+3. `contracts/refactor-targets/gitrefactor-evidence-bridge.schema.v1.json`
+4. `contracts/refactor-targets/refactor-equivalence-gate.schema.v1.json`
+5. `contracts/refactor-targets/promotion-transaction-bridge.schema.v1.json`
+
+Recommended first pilot:
+
+```text
+git-refactor-test-target-sdk
+-> declare external target binding
+-> import target profile as source evidence
+-> run tests read-only
+-> select one dirty Node specimen
+-> extract behavior candidates
+-> author one story/spec/SOG collapse slice
+-> run GitRefactor smoke against the disposable target
+-> emit Narrative Execution Fabric evidence bridge receipt
+```
+
+This would prove the real thesis: a legacy codebase can enter through operational evidence, be lifted into semantic authority, and come back out as a cleaner implementation without losing the story.
+
 ## Scale Outlook
 
 The model can scale if the artifact graph becomes first-class.
@@ -517,6 +590,7 @@ Scale requirements:
 - A supersession ledger for seed artifacts and historical reports.
 - A reusable import pipeline for legacy codebases.
 - Cross-language resolver conformance for Node, Python, and C# before treating multi-language projections as mature.
+- A GitRefactor bridge for external target profiles, self-heal routes, promotion transactions, and rollback/resume receipts.
 
 ## Recommended Next Moves
 
@@ -531,6 +605,8 @@ Scale requirements:
 9. Add a voice-to-value pilot slice with transcript receipt, unified CLI command contract, and one tiny implemented solution.
 10. Add a document-to-product pilot slice using a PPTX strategy deck as source, with extraction receipt, strategy ontology, product candidates, and one generated runnable app.
 11. Add a projection-registry pilot with ASCII-to-SVG, SVG-to-HTML, DOCX/PDF, and website article adapters.
+12. Add a GitRefactor bridge pilot using `git-refactor-test-target-sdk` as the disposable target and `git-refactor-sdk` as the refactoring lane provider.
+13. Model LOC as first-class conveyor intelligence: blocker taxonomy, route decision, mutation envelope, rollback plan, validation receipt, and resume receipt.
 
 ## Verification Performed
 
@@ -543,6 +619,7 @@ Scale requirements:
 - Audited the voice-to-value pipeline, source voice-notes bucket, capture-source lane, CLI handoff command map, and CLI input schemas.
 - Inspected the Roll-Rite growth roadmap PPTX as a concrete document-to-product source sample: 47 slides, with text extracted from the PPTX package without modifying the original file.
 - Audited visual projection model, visual render adapter, visual determinism policy, UI sketch projection manifest, and documentation surface catalog.
+- Audited the local GitRefactor SDK and test target SDK READMEs, package manifests, conveyor map, generation handoff policy, self-healing policy, route table, blocker taxonomies, and target profile.
 
 ## Bottom Line
 
