@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-014-generated-surface-drift-gate.v1",
+  "runKind": "conveyor-run",
+  "sliceKey": "slice-014-generated-surface-drift-gate",
+  "operatorRole": "platform agent",
+  "objective": "Regenerate the governed CLI and worker surfaces, compare their hashes, and fail closed on any manual drift.",
+  "laneOrder": [
+    "01-regenerate-cli",
+    "02-regenerate-worker",
+    "03-compare-hashes",
+    "04-verify-receipts",
+    "05-release-review"
+  ],
+  "inputs": [
+    "contracts/sej/materialize-ndd-cli-node.sej.v1.json",
+    "contracts/sej/materialize-lane-workers-node.sej.v1.json",
+    "contracts/sej/conform-lane-workers-node-facade.sej.v1.json",
+    "contracts/facade-compositions/cli/ndd-cli.node-resolver-doorway.composition.v1.json",
+    "contracts/facade-compositions/workers/lane-workers.node-resolver-doorway.composition.v1.json",
+    "contracts/gates/generated-surface-only.gate.v1.json",
+    "contracts/gates/trust-signature-required.gate.v1.json",
+    "evidence/cli/ndd-cli.node-projection.receipt.v1.json",
+    "evidence/workers/lane-worker.node-projection.receipt.v1.json",
+    "evidence/workers/lane-worker.conformance.receipt.v1.json"
+  ],
+  "requiredReceipts": [
+    "evidence/cli/ndd-cli.node-projection.receipt.v1.json",
+    "evidence/workers/lane-worker.node-projection.receipt.v1.json",
+    "evidence/workers/lane-worker.conformance.receipt.v1.json",
+    "evidence/conveyor/slice-012-lane-worker-mature-materialization.receipt.v1.json"
+  ],
+  "requiredHashes": [
+    {
+      "path": "generated/cli/node/ndd.cjs",
+      "expectedHash": "sha256:b311972b2a5384b4acf0a0647348cffa0e10c36d464388ea9735d87387ccddf1"
+    },
+    {
+      "path": "generated/workers/node/lane-worker.cjs",
+      "expectedHash": "sha256:df847af9471946f891f346e2dac2bf84c0595cdaf67e63bfe6b7dc0656323ca8"
+    }
+  ],
+  "finalArtifacts": [
+    "conveyor/runs/2026/06/21/slice-014-generated-surface-drift-gate/final/run-summary.md",
+    "conveyor/runs/2026/06/21/slice-014-generated-surface-drift-gate/final/release-packet.v1.json",
+    "conveyor/runs/2026/06/21/slice-014-generated-surface-drift-gate/final/commit-message.txt"
+  ],
+  "blockedIfMissing": [
+    "generated CLI receipt",
+    "generated worker receipt",
+    "worker conformance receipt",
+    "generated CLI hash mismatch",
+    "generated worker hash mismatch",
+    "manual drift evidence absent"
+  ],
+  "releaseBlockedUntilAllReceiptsExist": true,
+  "completionPosture": "Passes when the generated CLI and worker surfaces are reproducible from SEJ authority and no manual drift is present."
+}

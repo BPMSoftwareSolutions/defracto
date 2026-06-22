@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.doc-projection.v1",
+  "projectionKey": "defracto.doc-projection.visual-proof.v1",
+  "projectionKind": "visual_proof_projection",
+  "projectionStatus": "accepted-for-target-shape",
+  "targetPath": "conveyor/runs/2026/06/21/sketches/slice-015-documentation-projection-conveyor.ascii",
+  "sourceLineage": {
+    "visualModel": "projections/founding-conversation/cli/the-cli-story.md",
+    "runManifest": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/run.manifest.v1.json",
+    "receipts": [
+      "evidence/conveyor/slice-012-lane-worker-mature-materialization.receipt.v1.json"
+    ]
+  },
+  "generatedResponsibilities": [
+    "show the doc projection conveyor",
+    "name the source authority",
+    "keep the ASCII proof deterministic"
+  ],
+  "forbiddenResponsibilities": [
+    "hand-authored proof masquerading as generated proof",
+    "visual claims without source lineage"
+  ],
+  "completionPosture": "Visual proof is a projection of conveyor state, not a freeform illustration."
+}

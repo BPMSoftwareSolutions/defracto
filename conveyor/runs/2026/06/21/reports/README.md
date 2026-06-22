@@ -57,6 +57,8 @@ Seed reports in this envelope:
 - `slice-007m2-run-sketch-authoring-violation-disposition.latest.md`
 - `slice-007m3-run-sketch-materialization-sej-contract.latest.md`
 - `slice-007m3a-static-ascii-materialization-posture-correction.latest.md`
+- `slice-014-generated-surface-drift-gate.latest.md`
+- `slice-015-documentation-projection-conveyor.latest.md`
 - `body-disposition.seed.md`
 
 Related visual evidence:
@@ -65,5 +67,6 @@ Related visual evidence:
 
 Report bodies may be manually generated in Slice 001, but their section structure must remain aligned with the approved minimum shape.
 Slice 007G.1 is report-only posture alignment, Slice 007G.2 is the visual projection model schema and policy slice, Slice 007H is the deterministic ASCII render kernel contract slice, Slice 007L is the visual narrative source contract slice, Slice 007M is the visual source role-change receipt contract slice, Slice 007M.1 is the run visual evidence standard slice, Slice 007M.2 is the run sketch authoring violation disposition slice, Slice 007M.3 is the run sketch materialization SEJ contract slice, and Slice 007M.3A is the static ASCII materialization posture correction slice.
+Slice 014 is the generated-surface drift gate slice and Slice 015 is the documentation projection conveyor slice.
 
 Hard-coded ASCII is only a transitional static bridge; future renderers must derive output from `visualProjectionModel`.

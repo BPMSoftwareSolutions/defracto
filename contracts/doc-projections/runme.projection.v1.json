@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.doc-projection.v1",
+  "projectionKey": "defracto.doc-projection.runme.v1",
+  "projectionKind": "runme_projection",
+  "projectionStatus": "accepted-for-target-shape",
+  "targetPath": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/RUNME.md",
+  "sourceLineage": {
+    "runManifest": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/run.manifest.v1.json",
+    "commandSources": [
+      "contracts/sej/project-run-docs.sej.v1.json",
+      "contracts/semantic-operation-graphs/docs/project-run-docs.sog.v1.json"
+    ]
+  },
+  "generatedResponsibilities": [
+    "list the authoritative run commands",
+    "name the expected gate posture",
+    "avoid manual status drift"
+  ],
+  "forbiddenResponsibilities": [
+    "inventing commands outside the manifest",
+    "hiding blocking conditions"
+  ],
+  "completionPosture": "RUNME projection should mirror the run manifest exactly enough to be executable by a human or a conveyor runner."
+}

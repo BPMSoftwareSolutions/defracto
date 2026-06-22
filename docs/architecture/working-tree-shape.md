@@ -99,6 +99,10 @@ CLI entrypoint -> handoff package -> lane dispatch contract -> Gemini Flash work
 
 Trust fabric signature -> lane dispatch -> lane response -> lane receipt -> run ledger -> release packet
 
+Documentation also follows the conveyor now:
+
+run manifests -> receipts -> projection contracts -> README/RUNME/latest/index/ASCII surfaces -> doc drift gate
+
 The CLI is also self-bound:
 
 CLI story -> CLI canonical spec -> CLI SEJ -> projection manifest -> generated thin facade -> self visual projection model -> self-sketch receipt

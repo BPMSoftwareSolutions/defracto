@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "defracto.doc-projection.v1",
+  "projectionKey": "defracto.doc-projection.readme.v1",
+  "projectionKind": "readme_projection",
+  "projectionStatus": "accepted-for-target-shape",
+  "targetPath": "conveyor/runs/2026/06/21/README.md",
+  "sourceLineage": {
+    "runManifests": [
+      "conveyor/runs/2026/06/21/slice-012-lane-worker-mature-materialization/run.manifest.v1.json",
+      "conveyor/runs/2026/06/21/slice-014-generated-surface-drift-gate/run.manifest.v1.json"
+    ],
+    "receipts": [
+      "evidence/conveyor/slice-012-lane-worker-mature-materialization.receipt.v1.json",
+      "evidence/workers/lane-worker.conformance.receipt.v1.json"
+    ]
+  },
+  "generatedResponsibilities": [
+    "summarize run envelopes",
+    "list current live slices",
+    "cite receipts and gates",
+    "mark generated surfaces as projections"
+  ],
+  "forbiddenResponsibilities": [
+    "inventing slice outcomes",
+    "claiming execution without receipts",
+    "manual narrative drift"
+  ],
+  "completionPosture": "README projection reflects conveyor state, not manual recollection."
+}

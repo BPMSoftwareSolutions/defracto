@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.project-run-docs.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.docs.project-run",
+  "sourceLineage": {
+    "semanticOperationGraph": "contracts/semantic-operation-graphs/docs/project-run-docs.sog.v1.json",
+    "projectionManifests": [
+      "contracts/doc-projections/readme.projection.v1.json",
+      "contracts/doc-projections/run-index.projection.v1.json",
+      "contracts/doc-projections/run-report.projection.v1.json",
+      "contracts/doc-projections/runme.projection.v1.json",
+      "contracts/doc-projections/visual-proof.projection.v1.json"
+    ]
+  },
+  "semanticBody": {
+    "bodyKind": "documentation_projection_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/docs/project-run-docs.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "requiresResolverCapabilities": [
+    "docs.project.readme.v1",
+    "docs.project.run_index.v1",
+    "docs.project.run_report.v1",
+    "docs.project.runme.v1",
+    "docs.project.visual_proof.v1",
+    "hash.compute.v1",
+    "evidence.emit.v1"
+  ],
+  "steps": [
+    {
+      "id": "projectReadme",
+      "type": "resolver",
+      "operation": "docs.project.readme.v1",
+      "payload": {
+        "projection": {
+          "$inline": "contracts/doc-projections/readme.projection.v1.json"
+        }
+      }
+    },
+    {
+      "id": "projectRunIndex",
+      "type": "resolver",
+      "operation": "docs.project.run_index.v1",
+      "payload": {
+        "projection": {
+          "$inline": "contracts/doc-projections/run-index.projection.v1.json"
+        }
+      }
+    },
+    {
+      "id": "projectRunReport",
+      "type": "resolver",
+      "operation": "docs.project.run_report.v1",
+      "payload": {
+        "projection": {
+          "$inline": "contracts/doc-projections/run-report.projection.v1.json"
+        }
+      }
+    },
+    {
+      "id": "projectRunme",
+      "type": "resolver",
+      "operation": "docs.project.runme.v1",
+      "payload": {
+        "projection": {
+          "$inline": "contracts/doc-projections/runme.projection.v1.json"
+        }
+      }
+    },
+    {
+      "id": "projectVisualProof",
+      "type": "resolver",
+      "operation": "docs.project.visual_proof.v1",
+      "payload": {
+        "projection": {
+          "$inline": "contracts/doc-projections/visual-proof.projection.v1.json"
+        }
+      }
+    },
+    {
+      "id": "hashDocSurfaces",
+      "type": "resolver",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": "conveyor/runs/2026/06/21/README.md"
+      }
+    },
+    {
+      "id": "emitReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "evidence_write_only"
+        },
+        "receipt": {
+          "path": "evidence/docs/generated-docs.receipt.v1.json",
+          "content": {
+            "schemaVersion": "defracto.docs.generated.receipt.v1",
+            "receiptKey": "defracto.receipt.docs.generated.v1",
+            "status": "planned",
+            "sourceSej": "contracts/sej/project-run-docs.sej.v1.json",
+            "semanticOperationGraph": "contracts/semantic-operation-graphs/docs/project-run-docs.sog.v1.json",
+            "projectionManifests": [
+              "contracts/doc-projections/readme.projection.v1.json",
+              "contracts/doc-projections/run-index.projection.v1.json",
+              "contracts/doc-projections/run-report.projection.v1.json",
+              "contracts/doc-projections/runme.projection.v1.json",
+              "contracts/doc-projections/visual-proof.projection.v1.json"
+            ],
+            "completionPosture": "Docs are projections of conveyor state, not manual operational artifacts."
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitReceipt"
+  },
+  "completionPosture": "Documentation projection authority is declared; materialization remains gated on a docs projection resolver path."
+}

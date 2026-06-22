@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.docs.project-run-docs.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "accepted",
+  "commandKey": "defracto.conveyor.docs.project-run.v1",
+  "bodyKind": "documentation_projection_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.docs.project-readme.semantic-action.v1",
+      "capabilityKey": "docs.project.readme.v1"
+    },
+    {
+      "actionKey": "defracto.docs.project-run-index.semantic-action.v1",
+      "capabilityKey": "docs.project.run_index.v1"
+    },
+    {
+      "actionKey": "defracto.docs.project-run-report.semantic-action.v1",
+      "capabilityKey": "docs.project.run_report.v1"
+    },
+    {
+      "actionKey": "defracto.docs.project-runme.semantic-action.v1",
+      "capabilityKey": "docs.project.runme.v1"
+    },
+    {
+      "actionKey": "defracto.docs.project-visual-proof.semantic-action.v1",
+      "capabilityKey": "docs.project.visual_proof.v1"
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "projectReadme",
+        "capabilityKey": "docs.project.readme.v1",
+        "input": {
+          "projection": {
+            "$inline": "contracts/doc-projections/readme.projection.v1.json"
+          }
+        },
+        "output": {
+          "path": "$graph.readme"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "docs_readme_projection_failed"
+        }
+      },
+      {
+        "id": "projectRunIndex",
+        "capabilityKey": "docs.project.run_index.v1",
+        "input": {
+          "projection": {
+            "$inline": "contracts/doc-projections/run-index.projection.v1.json"
+          }
+        },
+        "output": {
+          "path": "$graph.run_index"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "docs_run_index_projection_failed"
+        }
+      },
+      {
+        "id": "projectRunReport",
+        "capabilityKey": "docs.project.run_report.v1",
+        "input": {
+          "projection": {
+            "$inline": "contracts/doc-projections/run-report.projection.v1.json"
+          }
+        },
+        "output": {
+          "path": "$graph.run_report"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "docs_run_report_projection_failed"
+        }
+      },
+      {
+        "id": "projectRunme",
+        "capabilityKey": "docs.project.runme.v1",
+        "input": {
+          "projection": {
+            "$inline": "contracts/doc-projections/runme.projection.v1.json"
+          }
+        },
+        "output": {
+          "path": "$graph.runme"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "docs_runme_projection_failed"
+        }
+      },
+      {
+        "id": "projectVisualProof",
+        "capabilityKey": "docs.project.visual_proof.v1",
+        "input": {
+          "projection": {
+            "$inline": "contracts/doc-projections/visual-proof.projection.v1.json"
+          }
+        },
+        "output": {
+          "path": "$graph.visual_proof"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "docs_visual_proof_projection_failed"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "evidenceObligations": [
+    "docs_readme_projection_passed",
+    "docs_run_index_projection_passed",
+    "docs_run_report_projection_passed",
+    "docs_runme_projection_passed",
+    "docs_visual_proof_projection_passed"
+  ],
+  "forbiddenClaims": [
+    "manual docs are source truth",
+    "report says passed without receipt",
+    "README says latest without run evidence",
+    "ASCII proof is hand-authored proof"
+  ],
+  "completionPosture": "Docs are projections of conveyor state and must be rendered from declared authority."
+}

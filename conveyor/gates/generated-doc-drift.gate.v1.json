@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.generated_doc_drift.v1",
+  "gateTitle": "Generated Doc Drift",
+  "gateStatus": "accepted",
+  "purpose": "Block documentation surfaces that drift from run authority or receipts.",
+  "passConditions": [
+    "docs projection manifest exists",
+    "docs projection receipt exists",
+    "document path matches projection target",
+    "document hash matches projected hash"
+  ],
+  "blockConditions": [
+    "missing docs projection receipt",
+    "manual doc edit",
+    "report hash mismatch",
+    "README says passed without receipt",
+    "RUNME claims a command not present in the manifest"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Generated Doc Drift passes only when docs are reproducible from authority and no manual drift is present."
+}

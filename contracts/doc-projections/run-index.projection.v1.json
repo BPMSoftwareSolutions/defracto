@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "defracto.doc-projection.v1",
+  "projectionKey": "defracto.doc-projection.run-index.v1",
+  "projectionKind": "run_index_projection",
+  "projectionStatus": "accepted-for-target-shape",
+  "targetPath": "conveyor/runs/2026/06/21/reports/README.md",
+  "sourceLineage": {
+    "runManifests": [
+      "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/run.manifest.v1.json",
+      "conveyor/runs/2026/06/21/slice-012-lane-worker-mature-materialization/run.manifest.v1.json",
+      "conveyor/runs/2026/06/21/slice-014-generated-surface-drift-gate/run.manifest.v1.json"
+    ],
+    "reportReceipts": [
+      "evidence/conveyor/slice-012-lane-worker-mature-materialization.receipt.v1.json",
+      "evidence/conveyor/slice-014-generated-surface-drift-gate.receipt.v1.json"
+    ]
+  },
+  "generatedResponsibilities": [
+    "index run reports",
+    "point to current latest notes",
+    "preserve order by slice",
+    "cite receipts that justify the index"
+  ],
+  "forbiddenResponsibilities": [
+    "stale report drift",
+    "fake latest claims",
+    "manual ordering without manifest lineage"
+  ],
+  "completionPosture": "Run index projection should be derivable from run manifests and receipts."
+}

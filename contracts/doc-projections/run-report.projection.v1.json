@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "defracto.doc-projection.v1",
+  "projectionKey": "defracto.doc-projection.run-report.v1",
+  "projectionKind": "run_report_projection",
+  "projectionStatus": "accepted-for-target-shape",
+  "targetPath": "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+  "sourceLineage": {
+    "runManifest": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/run.manifest.v1.json",
+    "gates": [
+      "conveyor/gates/generated-doc-drift.gate.v1.json",
+      "contracts/gates/generated-surface-only.gate.v1.json"
+    ],
+    "receipts": [
+      "evidence/conveyor/slice-012-lane-worker-mature-materialization.receipt.v1.json",
+      "evidence/workers/lane-worker.conformance.receipt.v1.json"
+    ]
+  },
+  "generatedResponsibilities": [
+    "describe the drift gate",
+    "name the generated surfaces",
+    "record expected hashes",
+    "state the proof posture clearly"
+  ],
+  "forbiddenResponsibilities": [
+    "claim generated docs are live before projection",
+    "hide hash expectations",
+    "bury blocked status"
+  ],
+  "completionPosture": "Run report projection is a receipt-backed summary of the slice and its gates."
+}
