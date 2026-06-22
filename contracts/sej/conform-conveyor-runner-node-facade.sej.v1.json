@@ -58,7 +58,7 @@
     },
     {
       "checkKey": "conveyor-runner.resolver-delegation-present",
-      "requiredText": "resolveContract",
+      "requiredText": "require('@bpmsoftwaresolutions/sej-resolver-node/doorway').run({",
       "onMissing": "blocked"
     },
     {

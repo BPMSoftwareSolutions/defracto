@@ -1,3 +1,3 @@
 # runner
 
-Placeholder file materialized to satisfy the declared filesystem shape.
+Thin resolver doorway surface for the Conveyor Runner projection.

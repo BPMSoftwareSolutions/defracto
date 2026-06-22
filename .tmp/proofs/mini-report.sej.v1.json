@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.tmp.compiler-proof.report.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.tmp.compiler-proof.report",
+  "purpose": "Project a small Markdown report in the temp bench.",
+  "semanticBody": {
+    "bodyKind": "artifact_materialization",
+    "hostLanguageBodyAllowed": false
+  },
+  "boundedOutputs": [
+    ".tmp/proofs/output/compiler-proof-report.md",
+    ".tmp/proofs/evidence/compiler-proof-report.receipt.v1.json"
+  ],
+  "steps": [
+    {
+      "id": "materializeReport",
+      "type": "resolver",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "tmp_proof_write"
+        },
+        "artifact": {
+          "path": ".tmp/proofs/output/compiler-proof-report.md",
+          "format": "text",
+          "content": [
+            "# Compiler Proof Report",
+            "",
+            "- status: passed",
+            "- surface: markdown",
+            "- posture: resolver-only",
+            "- note: no hand-authored runtime glue"
+          ],
+          "joinWith": "\n"
+        }
+      }
+    },
+    {
+      "id": "hashReport",
+      "type": "resolver",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": ".tmp/proofs/output/compiler-proof-report.md"
+      }
+    },
+    {
+      "id": "emitReportReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "tmp_proof_evidence_write"
+        },
+        "receipt": {
+          "path": ".tmp/proofs/evidence/compiler-proof-report.receipt.v1.json",
+          "content": {
+            "schemaVersion": "defracto.tmp.compiler-proof-report.receipt.v1",
+            "receiptKey": "defracto.receipt.tmp.compiler-proof-report.v1",
+            "status": "passed",
+            "projectedPath": ".tmp/proofs/output/compiler-proof-report.md",
+            "artifactHash": "$steps.hashReport.hash",
+            "completionPosture": "The compiler can project documentation surfaces directly from JSON authority."
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitReportReceipt"
+  }
+}

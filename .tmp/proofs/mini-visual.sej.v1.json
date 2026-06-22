@@ -1,0 +1,174 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.tmp.compiler-proof.visual.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.tmp.compiler-proof.visual",
+  "purpose": "Project a small SVG and HTML visual proof surface in the temp bench.",
+  "semanticBody": {
+    "bodyKind": "visual_projection",
+    "hostLanguageBodyAllowed": false
+  },
+  "boundedOutputs": [
+    ".tmp/proofs/output/compiler-proof.visual.svg",
+    ".tmp/proofs/output/compiler-proof.visual.html",
+    ".tmp/proofs/evidence/compiler-proof-visual.receipt.v1.json"
+  ],
+  "steps": [
+    {
+      "id": "materializeSvg",
+      "type": "resolver",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "tmp_proof_write"
+        },
+        "artifact": {
+          "path": ".tmp/proofs/output/compiler-proof.visual.svg",
+          "format": "text",
+          "content": [
+            "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"920\" height=\"360\" viewBox=\"0 0 920 360\" role=\"img\" aria-label=\"Compiler proof visual\">",
+            "  <rect x=\"0\" y=\"0\" width=\"920\" height=\"360\" fill=\"#f6f7fb\"/>",
+            "  <rect x=\"36\" y=\"44\" width=\"848\" height=\"272\" rx=\"14\" fill=\"#ffffff\" stroke=\"#d0d7de\"/>",
+            "  <text x=\"64\" y=\"96\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"28\" fill=\"#0f172a\">Compiler Proof</text>",
+            "  <text x=\"64\" y=\"136\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"16\" fill=\"#334155\">JSON authority in, governed artifact out.</text>",
+            "  <rect x=\"64\" y=\"176\" width=\"234\" height=\"116\" rx=\"10\" fill=\"#0ea5e9\" opacity=\"0.14\" stroke=\"#0ea5e9\"/>",
+            "  <text x=\"86\" y=\"212\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"18\" fill=\"#0369a1\">Source JSON</text>",
+            "  <text x=\"86\" y=\"242\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"14\" fill=\"#075985\">SEJ contract</text>",
+            "  <text x=\"86\" y=\"264\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"14\" fill=\"#075985\">resolver-ready</text>",
+            "  <rect x=\"343\" y=\"176\" width=\"234\" height=\"116\" rx=\"10\" fill=\"#22c55e\" opacity=\"0.14\" stroke=\"#22c55e\"/>",
+            "  <text x=\"365\" y=\"212\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"18\" fill=\"#166534\">Resolver</text>",
+            "  <text x=\"365\" y=\"242\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"14\" fill=\"#14532d\">compiles</text>",
+            "  <text x=\"365\" y=\"264\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"14\" fill=\"#14532d\">fail-closed</text>",
+            "  <rect x=\"622\" y=\"176\" width=\"234\" height=\"116\" rx=\"10\" fill=\"#f59e0b\" opacity=\"0.14\" stroke=\"#f59e0b\"/>",
+            "  <text x=\"644\" y=\"212\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"18\" fill=\"#92400e\">Outputs</text>",
+            "  <text x=\"644\" y=\"242\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"14\" fill=\"#78350f\">SVG + HTML</text>",
+            "  <text x=\"644\" y=\"264\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"14\" fill=\"#78350f\">receipts</text>",
+            "  <line x1=\"298\" y1=\"234\" x2=\"343\" y2=\"234\" stroke=\"#64748b\" stroke-width=\"3\" marker-end=\"url(#arrow)\"/>",
+            "  <line x1=\"577\" y1=\"234\" x2=\"622\" y2=\"234\" stroke=\"#64748b\" stroke-width=\"3\" marker-end=\"url(#arrow)\"/>",
+            "  <defs>",
+            "    <marker id=\"arrow\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"8\" markerHeight=\"8\" orient=\"auto-start-reverse\">",
+            "      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"#64748b\"/>",
+            "    </marker>",
+            "  </defs>",
+            "</svg>"
+          ],
+          "joinWith": "\n"
+        }
+      }
+    },
+    {
+      "id": "materializeHtml",
+      "type": "resolver",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "tmp_proof_write"
+        },
+        "artifact": {
+          "path": ".tmp/proofs/output/compiler-proof.visual.html",
+          "format": "text",
+          "content": [
+            "<!doctype html>",
+            "<html lang=\"en\">",
+            "<head>",
+            "  <meta charset=\"utf-8\" />",
+            "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />",
+            "  <title>Compiler Proof</title>",
+            "  <style>",
+            "    body { margin: 0; background: #f6f7fb; font-family: Arial, Helvetica, sans-serif; color: #0f172a; }",
+            "    main { padding: 32px; }",
+            "    .frame { background: #fff; border: 1px solid #d0d7de; border-radius: 14px; padding: 18px; max-width: 920px; }",
+            "    .caption { margin-top: 12px; font-size: 14px; color: #475569; }",
+            "    svg { width: 100%; height: auto; display: block; }",
+            "  </style>",
+            "</head>",
+            "<body>",
+            "  <main>",
+            "    <div class=\"frame\">",
+            "      <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"920\" height=\"360\" viewBox=\"0 0 920 360\" role=\"img\" aria-label=\"Compiler proof visual\">",
+            "        <rect x=\"0\" y=\"0\" width=\"920\" height=\"360\" fill=\"#f6f7fb\"/>",
+            "        <rect x=\"36\" y=\"44\" width=\"848\" height=\"272\" rx=\"14\" fill=\"#ffffff\" stroke=\"#d0d7de\"/>",
+            "        <text x=\"64\" y=\"96\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"28\" fill=\"#0f172a\">Compiler Proof</text>",
+            "        <text x=\"64\" y=\"136\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"16\" fill=\"#334155\">JSON authority in, governed artifact out.</text>",
+            "        <rect x=\"64\" y=\"176\" width=\"234\" height=\"116\" rx=\"10\" fill=\"#0ea5e9\" opacity=\"0.14\" stroke=\"#0ea5e9\"/>",
+            "        <text x=\"86\" y=\"212\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"18\" fill=\"#0369a1\">Source JSON</text>",
+            "        <text x=\"86\" y=\"242\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"14\" fill=\"#075985\">SEJ contract</text>",
+            "        <text x=\"86\" y=\"264\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"14\" fill=\"#075985\">resolver-ready</text>",
+            "        <rect x=\"343\" y=\"176\" width=\"234\" height=\"116\" rx=\"10\" fill=\"#22c55e\" opacity=\"0.14\" stroke=\"#22c55e\"/>",
+            "        <text x=\"365\" y=\"212\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"18\" fill=\"#166534\">Resolver</text>",
+            "        <text x=\"365\" y=\"242\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"14\" fill=\"#14532d\">compiles</text>",
+            "        <text x=\"365\" y=\"264\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"14\" fill=\"#14532d\">fail-closed</text>",
+            "        <rect x=\"622\" y=\"176\" width=\"234\" height=\"116\" rx=\"10\" fill=\"#f59e0b\" opacity=\"0.14\" stroke=\"#f59e0b\"/>",
+            "        <text x=\"644\" y=\"212\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"18\" fill=\"#92400e\">Outputs</text>",
+            "        <text x=\"644\" y=\"242\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"14\" fill=\"#78350f\">SVG + HTML</text>",
+            "        <text x=\"644\" y=\"264\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"14\" fill=\"#78350f\">receipts</text>",
+            "        <line x1=\"298\" y1=\"234\" x2=\"343\" y2=\"234\" stroke=\"#64748b\" stroke-width=\"3\" marker-end=\"url(#arrow)\"/>",
+            "        <line x1=\"577\" y1=\"234\" x2=\"622\" y2=\"234\" stroke=\"#64748b\" stroke-width=\"3\" marker-end=\"url(#arrow)\"/>",
+            "        <defs>",
+            "          <marker id=\"arrow\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"8\" markerHeight=\"8\" orient=\"auto-start-reverse\">",
+            "            <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"#64748b\"/>",
+            "          </marker>",
+            "        </defs>",
+            "      </svg>",
+            "      <div class=\"caption\">This page is a resolver-materialized visual proof surface from temp JSON authority.</div>",
+            "    </div>",
+            "  </main>",
+            "</body>",
+            "</html>"
+          ],
+          "joinWith": "\n"
+        }
+      }
+    },
+    {
+      "id": "hashSvg",
+      "type": "resolver",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": ".tmp/proofs/output/compiler-proof.visual.svg"
+      }
+    },
+    {
+      "id": "hashHtml",
+      "type": "resolver",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": ".tmp/proofs/output/compiler-proof.visual.html"
+      }
+    },
+    {
+      "id": "emitReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "tmp_proof_evidence_write"
+        },
+        "receipt": {
+          "path": ".tmp/proofs/evidence/compiler-proof-visual.receipt.v1.json",
+          "content": {
+            "schemaVersion": "defracto.tmp.compiler-proof-visual.receipt.v1",
+            "receiptKey": "defracto.receipt.tmp.compiler-proof-visual.v1",
+            "status": "passed",
+            "projectedPaths": [
+              ".tmp/proofs/output/compiler-proof.visual.svg",
+              ".tmp/proofs/output/compiler-proof.visual.html"
+            ],
+            "artifactHashes": {
+              "svg": "$steps.hashSvg.hash",
+              "html": "$steps.hashHtml.hash"
+            },
+            "completionPosture": "The compiler can project a visual surface as both SVG and HTML from JSON authority."
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitReceipt"
+  }
+}

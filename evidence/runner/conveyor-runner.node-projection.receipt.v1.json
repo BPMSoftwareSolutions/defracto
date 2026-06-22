@@ -1,16 +1,1 @@
-{
-  "schemaVersion": "defracto.evidence-receipt.v1",
-  "receiptKey": "defracto.receipt.runner.node_projection.v1",
-  "receiptTitle": "runner node projection",
-  "status": "blocked",
-  "checkedAt": "2026-06-21T00:00:00-04:00",
-  "verificationStatus": "not_executed",
-  "artifactHashes": [],
-  "blockers": [
-    {
-      "code": "not_executed",
-      "message": "Runner projection has not been materialized."
-    }
-  ],
-  "completionPosture": "This receipt is an honest blocked/not-executed evidence surface, not proof of execution."
-}
+{"artifactHash":"sha256:4dcd0065d5e0817edd62cf8434e9ab77086951fbd2a0e219a58fe6a815aec730","completionPosture":"Generated runner facade is a disposable resolver doorway. Conveyor run behavior is in SEJ/SOG.","contentSource":"facade.compose.v1 -> artifact.contentRef","executeSej":"contracts/sej/conveyor-runner.execute.sej.v1.json","expectedArtifactHash":"sha256:d2e458e0a22c57583d566edcd9f8088fa6a77c775d67441dd01f01233ad077e5","facadeComposition":"contracts/facade-compositions/runner/conveyor-runner.node-resolver-doorway.composition.v1.json","forbiddenResponsibilities":["runner brain","DTO shaping","stage policy invention","compiled bridge fallback","bootstrap delegate"],"projectedPath":"generated/runner/node/conveyor-runner.cjs","receiptKey":"defracto.receipt.conveyor-runner.node-projection.v1","schemaVersion":"defracto.conveyor-runner.node-projection.receipt.v1","semanticOperationGraph":"contracts/semantic-operation-graphs/runner/conveyor-runner.execute.sog.v1.json","sourceSej":"contracts/sej/materialize-conveyor-runner-node.sej.v1.json","status":"passed"}

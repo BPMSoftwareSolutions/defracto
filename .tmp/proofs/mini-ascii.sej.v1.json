@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.tmp.compiler-proof.ascii.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.tmp.compiler-proof.ascii",
+  "purpose": "Project a small ASCII proof surface in the temp bench.",
+  "semanticBody": {
+    "bodyKind": "artifact_materialization",
+    "hostLanguageBodyAllowed": false
+  },
+  "boundedOutputs": [
+    ".tmp/proofs/output/compiler-proof.ascii",
+    ".tmp/proofs/evidence/compiler-proof-ascii.receipt.v1.json"
+  ],
+  "steps": [
+    {
+      "id": "materializeAscii",
+      "type": "resolver",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "tmp_proof_write"
+        },
+        "artifact": {
+          "path": ".tmp/proofs/output/compiler-proof.ascii",
+          "format": "text",
+          "content": [
+            "+-----------+",
+            "| compiler  |",
+            "|   proof   |",
+            "+-----------+"
+          ],
+          "joinWith": "\n"
+        }
+      }
+    },
+    {
+      "id": "hashAscii",
+      "type": "resolver",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": ".tmp/proofs/output/compiler-proof.ascii"
+      }
+    },
+    {
+      "id": "emitAsciiReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "tmp_proof_evidence_write"
+        },
+        "receipt": {
+          "path": ".tmp/proofs/evidence/compiler-proof-ascii.receipt.v1.json",
+          "content": {
+            "schemaVersion": "defracto.tmp.compiler-proof-ascii.receipt.v1",
+            "receiptKey": "defracto.receipt.tmp.compiler-proof-ascii.v1",
+            "status": "passed",
+            "projectedPath": ".tmp/proofs/output/compiler-proof.ascii",
+            "artifactHash": "$steps.hashAscii.hash",
+            "completionPosture": "The compiler can project an ASCII proof surface directly from JSON authority."
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitAsciiReceipt"
+  }
+}

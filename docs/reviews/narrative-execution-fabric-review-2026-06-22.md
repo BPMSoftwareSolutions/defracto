@@ -8,9 +8,21 @@ Review status: manual analysis surface. This document is not canonical authority
 
 The Narrative Execution Fabric is coherent as a narrative-driven development system. Its strongest idea is also its clearest invariant: product behavior should not originate in generated code. Behavior originates in source narrative, hardens into story and canonical spec, becomes semantic executable JSON or a semantic operation graph, and only then projects into generated runtime, documentation, visual, evidence, and release surfaces.
 
-The architecture is already more than a document set. It has a working resolver doorway pattern, generated facades, receipts, gates, DTO contracts, conformance fixtures, and at least one passing generated test for the ASCII render kernel. The lane-worker and CLI surfaces are the most mature runtime paths. Runner, inspector, shipper, and telemetry are well described but mostly still in target-shape or blocked materialization posture.
+The architecture is already more than a document set. It has a working resolver doorway pattern, generated facades, receipts, gates, DTO contracts, conformance fixtures, and at least one passing generated test for the ASCII render kernel. The lane-worker and CLI surfaces are the most mature runtime paths. Runner is already materialized, and inspector, shipper, and telemetry now have resolver-built node doorways and projection receipts as well.
 
 The current risk is not that the story is incoherent. The risk is that some projected or historical surfaces look official while their receipts are blocked, stale, missing, or sensitive to line-ending drift. The system mostly tells the truth about this, but it needs a stronger live artifact graph and stricter drift receipts to make that truth obvious at scale.
+
+## What Matters Most
+
+The thing that matters most in this fabric is not whether something can be generated. It is whether the generated thing is faithful, polished, and receipted enough to be trusted as a projection of the story instead of a hand-shaped artifact.
+
+In practice, that means:
+
+- Narrative, canonical spec, semantic JSON, and projection output must stay in lockstep.
+- The conveyor must own the compiler path; generated surfaces should not quietly become the source of meaning.
+- Projection should be selectable by surface, audience, and channel, not hardwired to one output type.
+- Repair should be governed and receipted, not silent.
+- Refactoring should preserve meaning while changing implementation shape.
 
 ## The Story Spine
 
@@ -50,11 +62,11 @@ This is the no-drift contract: a generated surface must not invent meaning that 
 | Character | Verb | Source authority | Semantic authority | Projection surface | Current maturity |
 | --- | --- | --- | --- | --- | --- |
 | NDD CLI | opens | `source/cli/ndd-cli.source-narrative.md` | `contracts/sej/ndd-cli.execute.sej.v1.json` and `contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json` | `bin/ndd.cjs`, `generated/cli/node/ndd.cjs` | Real resolver doorway, but node receipt hash is stale |
-| Conveyor Runner | moves | `source/runner/conveyor-runner.source-narrative.md` | `contracts/semantic-operation-graphs/runner/conveyor-runner.execute.sog.v1.json` | `generated/runner/node/conveyor-runner.cjs` | Story/spec/SOG present, generated file placeholder, receipt blocked |
+| Conveyor Runner | moves | `source/runner/conveyor-runner.source-narrative.md` | `contracts/semantic-operation-graphs/runner/conveyor-runner.execute.sog.v1.json` | `generated/runner/node/conveyor-runner.cjs` | Story/spec/SOG present, generated thin facade materialized, receipt passed |
 | Lane Workers | transform | `source/workers/lane-workers.source-narrative.md` | `contracts/semantic-operation-graphs/workers/lane-workers.execute.sog.v1.json` | `generated/workers/node/lane-worker.cjs` | Strongest mature facade after CLI; receipt hash matches |
-| Evidence Inspector | judges | `source/inspector/evidence-inspector.source-narrative.md` | `contracts/semantic-operation-graphs/inspector/evidence-inspector.execute.sog.v1.json` | `generated/inspector/node/evidence-inspector.cjs` | Story/spec/SOG present, generated file placeholder, receipt blocked |
-| Shipper | releases | `source/shipper/shipper.source-narrative.md` | `contracts/semantic-operation-graphs/shipper/shipper.execute.sog.v1.json` | `generated/shipper/node/shipper.cjs` | Story/spec/SOG present, generated file placeholder, release blocked |
-| Telemetry Observer | reflects | `source/telemetry/telemetry-observer.source-narrative.md` | `contracts/semantic-operation-graphs/telemetry/telemetry-observer.execute.sog.v1.json` | `generated/telemetry/node/telemetry-observer.cjs` | Story/spec/SOG present, generated file placeholder, required node receipt missing |
+| Evidence Inspector | judges | `source/inspector/evidence-inspector.source-narrative.md` | `contracts/semantic-operation-graphs/inspector/evidence-inspector.execute.sog.v1.json` | `generated/inspector/node/evidence-inspector.cjs` | Story/spec/SOG present, generated doorway materialized, receipt passed |
+| Shipper | releases | `source/shipper/shipper.source-narrative.md` | `contracts/semantic-operation-graphs/shipper/shipper.execute.sog.v1.json` | `generated/shipper/node/shipper.cjs` | Story/spec/SOG present, generated doorway materialized, receipt passed |
+| Telemetry Observer | reflects | `source/telemetry/telemetry-observer.source-narrative.md` | `contracts/semantic-operation-graphs/telemetry/telemetry-observer.execute.sog.v1.json` | `generated/telemetry/node/telemetry-observer.cjs` | Story/spec/SOG present, generated doorway materialized, receipt passed |
 | ASCII Render Kernel | renders deterministic visual proof | `stories/kernels/ascii-render-kernel.story.v1.json` | `contracts/sej/ascii-render-kernel.semantic-kernel.v1.json` | `generated/kernels/ascii-render-kernel.cjs` | Executable and test-backed |
 
 ## Projection Surfaces
@@ -109,10 +121,9 @@ The important design choice is that movement, transformation, judgment, release,
    - `conveyor/runs/2026/06/21/slice-007h-sej-projected-ascii-render-kernel/final/run-sketch.ascii`
    - This is not semantic drift, but it is operational drift unless hash policy explicitly normalizes line endings.
 
-3. Slice 009 declares a package materialization goal for runner, workers, inspector, shipper, and telemetry, but only lane workers are mature.
-   - Runner, inspector, and shipper node projection receipts are blocked.
-   - `evidence/telemetry/telemetry-observer.node-projection.receipt.v1.json` is required but missing.
-   - Inspector, shipper, and telemetry conformance receipts required by the run manifest are also missing.
+3. Slice 009 declares a package materialization goal for runner, workers, inspector, shipper, and telemetry, and the doorway projections are now in better shape.
+   - Runner, inspector, shipper, and telemetry node projection receipts are now passed.
+   - The remaining gap is to persist companion conformance receipts and clean up any older placeholder claims that still point at the pre-materialized state.
 
 4. Several docs and decision/doctrine pages are placeholders while their filenames imply important authority.
    - Examples: `docs/architecture/voice-to-value-flow.md`, `docs/architecture/conveyor-cast.md`, `docs/doctrine/no-competing-narratives.md`, and decisions D007-D011.
@@ -139,6 +150,22 @@ The important design choice is that movement, transformation, judgment, release,
 ## Self-Healing Assessment
 
 The system has the beginning of self-healing, but it is not autonomous silent repair. That is good.
+
+A minimal repair-proposal authority now exists in the repo as governed candidate shape:
+
+- `contracts/schemas/repair-proposal.schema.v1.json`
+- `conveyor/inspector/repair-proposal.policy.v1.json`
+- `conveyor/telemetry/repair-proposal.flow.v1.json`
+
+That gives the conveyor a place to name the gap, the affected artifacts, and the proposed fix without pretending the fix is canonical before review.
+
+The first closed-loop pilot now exists as well:
+
+- `.tmp/proofs/repair-pilot.proposal.sej.v1.json` emitted an approved repair proposal for the stale slice-015 docs report.
+- `.tmp/proofs/repair-pilot.rematerialize.sej.v1.json` rematerialized the report from that proposal.
+- `conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md` now says `passed` and references the live receipt chain.
+
+That is the basic self-healing loop the fabric needed: observe, propose, approve, rematerialize, receipted verify.
 
 Current self-healing shape:
 
@@ -293,6 +320,8 @@ The Roll-Rite deck at `G:\My Drive\BPM Software Solutions\Clients\Roll-Rite\Exec
 
 Compiled as software, that deck is not just a presentation. It is a source program for a growth-execution system.
 
+A dedicated pilot note for that deck now lives at [docs/reviews/roll-rite-strategy-deck-conveyor-pilot.md](</C:/Users/Sidney Jones/OneDrive - bpmsoftwaresolutions.com/Documents/narrative-execution-fabric/docs/reviews/roll-rite-strategy-deck-conveyor-pilot.md>).
+
 Potential products the conveyor could derive:
 
 - Growth roadmap operating system: goals, milestones, owners, initiative status, receipts, and release-style governance for business execution.
@@ -437,6 +466,8 @@ To make this powerful, add:
 
 The end-state is a projection switchboard: one governed meaning model, many selectable outputs.
 
+This is the practical answer to the user's highest-priority concern. The conveyor is useful at scale only if it can keep meaning stable while changing the surface: HTML, SVG, DOCX, PDF, Google Docs, Slides, website pages, infographics, or runnable app shells.
+
 ## Refactoring Other Codebases
 
 Yes, this architecture can become a governed refactoring system for other codebases, but it needs additional intake and equivalence lanes.
@@ -561,6 +592,8 @@ This would prove the real thesis: a legacy codebase can enter through operationa
 
 The model can scale if the artifact graph becomes first-class.
 
+The first registry slices for that now exist in `contracts/registry/artifact-graph.index.v1.json` and `contracts/registry/receipt-registry.v1.json`. They do not solve the whole scale problem yet, but they give the conveyor a truthful place to query lineage and receipt maturity instead of forcing readers to reconstruct it by hand.
+
 What scales well:
 
 - Bounded responsibilities per conveyor character.
@@ -611,6 +644,9 @@ Scale requirements:
 ## Verification Performed
 
 - Ran `node --test tests/kernels/ascii-render-kernel.generated.test.js`: passed.
+- Materialized `generated/inspector/node/evidence-inspector.cjs`, `generated/shipper/node/shipper.cjs`, and `generated/telemetry/node/telemetry-observer.cjs` through the resolver, with node-projection receipts passing.
+- Ran the inspector, shipper, and telemetry conformance SEJs through the resolver; each returned `passed`.
+- Materialized a temp visual proof in `.tmp/proofs/mini-visual.sej.v1.json`, which projected both `compiler-proof.visual.svg` and `compiler-proof.visual.html` and emitted a passing receipt.
 - Ran `node generated/tools/validate-lineage.js`: exited successfully with no output, confirming it is currently a stub doorway.
 - Ran `node generated/tools/validate-story-packet.js`: exited successfully with no output, confirming it is currently a stub doorway.
 - Ran `node generated/tools/render-narrative-graph.js`: exited successfully with no output, confirming it is currently a stub doorway.
@@ -626,3 +662,14 @@ Scale requirements:
 This is a credible narrative execution fabric, not just a naming experiment. The big idea is viable: turn narrative into constrained executable authority and make every projection disposable unless receipts prove it.
 
 The next frontier is operational maturity. The fabric needs a live artifact graph, stricter drift gates, explicit supersession, normalized hash policy, and executable inspector/telemetry loops. With those in place, this could scale from "zero-code generated service" into a governed refactoring and software evolution system where the story remains the source of truth and code is only one projection of it.
+
+## Practical Build Order
+
+If the goal is to close the gap in the shortest useful path, the build order should be:
+
+1. First-class artifact graph and receipt registry.
+2. Governed repair-proposal loop with blocked-release posture.
+3. Projection registry for ASCII, SVG, HTML, DOCX, PDF, Slides, and publish-safe web surfaces.
+4. Voice-to-value intake lane with transcript and capture receipts.
+5. Document-to-product pilot for the Roll-Rite deck or a similar strategy deck.
+6. GitRefactor bridge for refactoring external codebases into reviewed, receipted projections.

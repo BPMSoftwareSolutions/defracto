@@ -10,12 +10,14 @@
   },
   "bindings": {
     "toolKey": "defracto.conveyor.telemetry-observer",
+    "sourceSej": "contracts/sej/materialize-telemetry-observer-node.sej.v1.json",
     "commandKey": "defracto.conveyor.telemetry-observer.execute.v1",
     "executeSejPath": "contracts/sej/telemetry-observer.execute.sej.v1.json",
     "semanticOperationGraphPath": "contracts/semantic-operation-graphs/telemetry/telemetry-observer.execute.sog.v1.json",
     "capabilityBindingsPath": "contracts/capabilities/telemetry/telemetry-observer.capability-bindings.v1.json",
     "projectionManifestPath": "contracts/projections/telemetry-observer.node-projection-manifest.v1.json",
     "resolverPackage": "@bpmsoftwaresolutions/sej-resolver-node",
+    "resolverDoorwayPackage": "@bpmsoftwaresolutions/sej-resolver-node/doorway",
     "inputMode": "stdin_json",
     "outputMode": "stdout_json",
     "failureMode": "fail_closed"
@@ -27,7 +29,11 @@
     },
     {
       "anchorKey": "source-sej",
-      "text": "sourceSEJ: contracts/sej/materialize-telemetry-observer-node.semantic.sej.v1.json"
+      "text": "sourceSEJ: contracts/sej/materialize-telemetry-observer-node.sej.v1.json"
+    },
+    {
+      "anchorKey": "semantic-source-sej",
+      "text": "semanticSourceSEJ: contracts/sej/materialize-telemetry-observer-node.semantic.sej.v1.json"
     },
     {
       "anchorKey": "projection-manifest",

@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.repair-proposal.v1",
+  "title": "Repair Proposal",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "proposalKey",
+    "status",
+    "sourceCaptureReceiptPath",
+    "observedGap",
+    "proposedActions",
+    "reviewRequired"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.repair-proposal.v1"
+    },
+    "proposalKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "candidate",
+        "blocked",
+        "approved"
+      ]
+    },
+    "sourceCaptureReceiptPath": {
+      "type": "string"
+    },
+    "telemetryCapturePath": {
+      "type": "string"
+    },
+    "observedGap": {
+      "type": "object",
+      "required": [
+        "gapKey",
+        "summary",
+        "affectedArtifacts"
+      ],
+      "properties": {
+        "gapKey": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "affectedArtifacts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "expectedFailureMode": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "proposedActions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "actionKey",
+          "targetPath",
+          "purpose"
+        ],
+        "properties": {
+          "actionKey": {
+            "type": "string"
+          },
+          "targetPath": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "expectedHash": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "regenerationReceiptPath": {
+      "type": "string"
+    },
+    "reviewRequired": {
+      "type": "boolean",
+      "const": true
+    },
+    "releaseBlocked": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

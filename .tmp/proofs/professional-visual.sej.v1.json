@@ -1,0 +1,226 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.tmp.professional.visual.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.tmp.professional.visual",
+  "purpose": "Project a professional HTML and SVG proof surface in the temp bench.",
+  "semanticBody": {
+    "bodyKind": "visual_projection",
+    "hostLanguageBodyAllowed": false
+  },
+  "boundedOutputs": [
+    ".tmp/proofs/output/professional-visual.svg",
+    ".tmp/proofs/output/professional-visual.html",
+    ".tmp/proofs/evidence/professional-visual.receipt.v1.json"
+  ],
+  "steps": [
+    {
+      "id": "materializeSvg",
+      "type": "resolver",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": { "scope": "tmp_proof_write" },
+        "artifact": {
+          "path": ".tmp/proofs/output/professional-visual.svg",
+          "format": "text",
+          "content": [
+            "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1200\" height=\"700\" viewBox=\"0 0 1200 700\" role=\"img\" aria-label=\"Conveyor proof diagram\">",
+            "  <rect width=\"1200\" height=\"700\" fill=\"#f3f4f6\"/>",
+            "  <rect x=\"72\" y=\"56\" width=\"1056\" height=\"588\" rx=\"24\" fill=\"#ffffff\" stroke=\"#d1d5db\"/>",
+            "  <text x=\"112\" y=\"126\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"30\" font-weight=\"700\" fill=\"#0f172a\">Conveyor Proof Surface</text>",
+            "  <text x=\"112\" y=\"162\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"16\" fill=\"#475569\">A clean projection from narrative authority to published artifact surfaces.</text>",
+            "  <rect x=\"112\" y=\"214\" width=\"296\" height=\"132\" rx=\"16\" fill=\"#0ea5e9\" opacity=\"0.12\" stroke=\"#0ea5e9\"/>",
+            "  <text x=\"138\" y=\"258\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"20\" font-weight=\"700\" fill=\"#0369a1\">Source Narrative</text>",
+            "  <text x=\"138\" y=\"288\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#075985\">Intent, constraints, and scope</text>",
+            "  <text x=\"138\" y=\"314\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#075985\">enter the conveyor as authority</text>",
+            "  <rect x=\"452\" y=\"214\" width=\"296\" height=\"132\" rx=\"16\" fill=\"#22c55e\" opacity=\"0.12\" stroke=\"#22c55e\"/>",
+            "  <text x=\"478\" y=\"258\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"20\" font-weight=\"700\" fill=\"#166534\">Gemini Flash</text>",
+            "  <text x=\"478\" y=\"288\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#14532d\">Bounded lane work</text>",
+            "  <text x=\"478\" y=\"314\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#14532d\">returns structured evidence</text>",
+            "  <rect x=\"792\" y=\"214\" width=\"296\" height=\"132\" rx=\"16\" fill=\"#f59e0b\" opacity=\"0.14\" stroke=\"#f59e0b\"/>",
+            "  <text x=\"818\" y=\"258\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"20\" font-weight=\"700\" fill=\"#92400e\">Projected Surfaces</text>",
+            "  <text x=\"818\" y=\"288\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#78350f\">HTML, SVG, docs, receipts</text>",
+            "  <text x=\"818\" y=\"314\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#78350f\">published through Drive</text>",
+            "  <line x1=\"408\" y1=\"280\" x2=\"452\" y2=\"280\" stroke=\"#64748b\" stroke-width=\"4\" marker-end=\"url(#arrow)\"/>",
+            "  <line x1=\"748\" y1=\"280\" x2=\"792\" y2=\"280\" stroke=\"#64748b\" stroke-width=\"4\" marker-end=\"url(#arrow)\"/>",
+            "  <rect x=\"112\" y=\"398\" width=\"976\" height=\"164\" rx=\"16\" fill=\"#f8fafc\" stroke=\"#e2e8f0\"/>",
+            "  <text x=\"138\" y=\"442\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"18\" font-weight=\"700\" fill=\"#0f172a\">What this proves</text>",
+            "  <text x=\"138\" y=\"472\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#334155\">The conveyor can take declared intent, route it through the live worker lane, and emit receipt-backed outputs.</text>",
+            "  <text x=\"138\" y=\"504\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#334155\">The result is not a hand-authored artifact pretending to be generated. The result is a governed projection with lineage.</text>",
+            "  <text x=\"138\" y=\"536\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#334155\">High fidelity means the output reads like a finished artifact, not a console transcript.</text>",
+            "  <defs>",
+            "    <marker id=\"arrow\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"8\" markerHeight=\"8\" orient=\"auto\">",
+            "      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"#64748b\"/>",
+            "    </marker>",
+            "  </defs>",
+            "</svg>"
+          ],
+          "joinWith": "\n"
+        }
+      }
+    },
+    {
+      "id": "materializeHtml",
+      "type": "resolver",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": { "scope": "tmp_proof_write" },
+        "artifact": {
+          "path": ".tmp/proofs/output/professional-visual.html",
+          "format": "text",
+          "content": [
+            "<!doctype html>",
+            "<html lang=\"en\">",
+            "<head>",
+            "  <meta charset=\"utf-8\" />",
+            "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />",
+            "  <title>Conveyor Proof Surface</title>",
+            "  <style>",
+            "    body { margin: 0; background: #f3f4f6; color: #0f172a; font-family: Arial, Helvetica, sans-serif; }",
+            "    main { max-width: 1200px; margin: 0 auto; padding: 32px 28px 40px; }",
+            "    .panel { background: #fff; border: 1px solid #d1d5db; border-radius: 24px; overflow: hidden; }",
+            "    .hero { padding: 34px 40px 20px; border-bottom: 1px solid #e5e7eb; }",
+            "    .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #64748b; margin: 0 0 10px; }",
+            "    h1 { margin: 0; font-size: 34px; line-height: 1.1; }",
+            "    .lede { margin: 10px 0 0; font-size: 17px; color: #334155; max-width: 72ch; }",
+            "    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }",
+            "    .chip { border: 1px solid #cbd5e1; background: #f8fafc; border-radius: 999px; padding: 8px 12px; font-size: 13px; color: #0f172a; }",
+            "    .content { padding: 30px 40px 40px; }",
+            "    .section { margin-top: 28px; }",
+            "    .section h2 { margin: 0 0 12px; font-size: 20px; line-height: 1.2; }",
+            "    .section p { margin: 0 0 12px; font-size: 15px; line-height: 1.62; color: #334155; }",
+            "    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }",
+            "    .card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 18px; padding: 18px; min-height: 126px; }",
+            "    .card h3 { margin: 0 0 10px; font-size: 16px; }",
+            "    .card p { margin: 0; font-size: 14px; color: #475569; }",
+            "    .figure { margin: 22px 0 0; background: #fff; border: 1px solid #e2e8f0; border-radius: 18px; padding: 18px; }",
+            "    svg { width: 100%; height: auto; display: block; }",
+            "    table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }",
+            "    th, td { text-align: left; border-top: 1px solid #e5e7eb; padding: 12px 10px; vertical-align: top; }",
+            "    th { width: 28%; color: #334155; font-weight: 700; }",
+            "    .foot { padding: 18px 40px 32px; color: #64748b; font-size: 13px; border-top: 1px solid #e5e7eb; }",
+            "  </style>",
+            "</head>",
+            "<body>",
+            "  <main>",
+            "    <article class=\"panel\">",
+            "      <header class=\"hero\">",
+            "        <p class=\"eyebrow\">Conveyor proof surface</p>",
+            "        <h1>High fidelity projection from narrative authority</h1>",
+            "        <p class=\"lede\">This surface is produced by the conveyor, not hand-stitched. It is designed to read like a finished artifact: clear hierarchy, restrained styling, and a clean visual explanation of how intent becomes a receipted output.</p>",
+            "        <div class=\"chips\">",
+            "          <span class=\"chip\">Gemini Flash lane</span>",
+            "          <span class=\"chip\">Receipt-backed output</span>",
+            "          <span class=\"chip\">Drive-publishable HTML</span>",
+            "        </div>",
+            "      </header>",
+            "      <div class=\"content\">",
+            "        <section class=\"section\">",
+            "          <h2>What the conveyor is proving</h2>",
+            "          <div class=\"grid\">",
+            "            <div class=\"card\"><h3>Authority in</h3><p>Declared narrative enters the conveyor as governed input, not as freeform runtime guesswork.</p></div>",
+            "            <div class=\"card\"><h3>Worker execution</h3><p>Gemini Flash performs bounded lane work and returns structured evidence that the runner can verify.</p></div>",
+            "            <div class=\"card\"><h3>Published surface</h3><p>The output is a clean artifact that can be reviewed, linked, and shipped through a trusted surface.</p></div>",
+            "          </div>",
+            "        </section>",
+            "        <section class=\"figure\" aria-label=\"Conveyor proof diagram\">",
+            "          <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 700\" role=\"img\" aria-label=\"Conveyor proof diagram\">",
+            "            <rect width=\"1200\" height=\"700\" fill=\"#f3f4f6\"/>",
+            "            <rect x=\"72\" y=\"56\" width=\"1056\" height=\"588\" rx=\"24\" fill=\"#ffffff\" stroke=\"#d1d5db\"/>",
+            "            <text x=\"112\" y=\"126\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"30\" font-weight=\"700\" fill=\"#0f172a\">Conveyor Proof Surface</text>",
+            "            <text x=\"112\" y=\"162\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"16\" fill=\"#475569\">A clean projection from narrative authority to published artifact surfaces.</text>",
+            "            <rect x=\"112\" y=\"214\" width=\"296\" height=\"132\" rx=\"16\" fill=\"#0ea5e9\" opacity=\"0.12\" stroke=\"#0ea5e9\"/>",
+            "            <text x=\"138\" y=\"258\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"20\" font-weight=\"700\" fill=\"#0369a1\">Source Narrative</text>",
+            "            <text x=\"138\" y=\"288\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#075985\">Intent, constraints, and scope</text>",
+            "            <text x=\"138\" y=\"314\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#075985\">enter the conveyor as authority</text>",
+            "            <rect x=\"452\" y=\"214\" width=\"296\" height=\"132\" rx=\"16\" fill=\"#22c55e\" opacity=\"0.12\" stroke=\"#22c55e\"/>",
+            "            <text x=\"478\" y=\"258\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"20\" font-weight=\"700\" fill=\"#166534\">Gemini Flash</text>",
+            "            <text x=\"478\" y=\"288\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#14532d\">Bounded lane work</text>",
+            "            <text x=\"478\" y=\"314\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#14532d\">returns structured evidence</text>",
+            "            <rect x=\"792\" y=\"214\" width=\"296\" height=\"132\" rx=\"16\" fill=\"#f59e0b\" opacity=\"0.14\" stroke=\"#f59e0b\"/>",
+            "            <text x=\"818\" y=\"258\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"20\" font-weight=\"700\" fill=\"#92400e\">Projected Surfaces</text>",
+            "            <text x=\"818\" y=\"288\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#78350f\">HTML, SVG, docs, receipts</text>",
+            "            <text x=\"818\" y=\"314\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#78350f\">published through Drive</text>",
+            "            <line x1=\"408\" y1=\"280\" x2=\"452\" y2=\"280\" stroke=\"#64748b\" stroke-width=\"4\" marker-end=\"url(#arrow)\"/>",
+            "            <line x1=\"748\" y1=\"280\" x2=\"792\" y2=\"280\" stroke=\"#64748b\" stroke-width=\"4\" marker-end=\"url(#arrow)\"/>",
+            "            <rect x=\"112\" y=\"398\" width=\"976\" height=\"164\" rx=\"16\" fill=\"#f8fafc\" stroke=\"#e2e8f0\"/>",
+            "            <text x=\"138\" y=\"442\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"18\" font-weight=\"700\" fill=\"#0f172a\">What this proves</text>",
+            "            <text x=\"138\" y=\"472\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#334155\">The conveyor can take declared intent, route it through the live worker lane, and emit receipt-backed outputs.</text>",
+            "            <text x=\"138\" y=\"504\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#334155\">The result is not a hand-authored artifact pretending to be generated. The result is a governed projection with lineage.</text>",
+            "            <text x=\"138\" y=\"536\" font-family=\"Arial, Helvetica, sans-serif\" font-size=\"15\" fill=\"#334155\">High fidelity means the output reads like a finished artifact, not a console transcript.</text>",
+            "            <defs>",
+            "              <marker id=\"arrow\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"8\" markerHeight=\"8\" orient=\"auto\">",
+            "                <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"#64748b\"/>",
+            "              </marker>",
+            "            </defs>",
+            "          </svg>",
+            "        </section>",
+            "        <section class=\"section\">",
+            "          <h2>Quality bar</h2>",
+            "          <table>",
+            "            <tr><th>Fidelity</th><td>The surface should look designed, not dumped. Clear hierarchy, whitespace, and no boilerplate bleeding through.</td></tr>",
+            "            <tr><th>Traceability</th><td>Every visible claim should still map back to the conveyor chain: source, worker, receipt, and published surface.</td></tr>",
+            "            <tr><th>Publishability</th><td>The artifact should be suitable for Drive or web publication without another pass to rescue formatting.</td></tr>",
+            "          </table>",
+            "        </section>",
+            "      </div>",
+            "      <div class=\"foot\">Produced through the conveyor as a receipt-backed proof surface.</div>",
+            "    </article>",
+            "  </main>",
+            "</body>",
+            "</html>"
+          ],
+          "joinWith": "\n"
+        }
+      }
+    },
+    {
+      "id": "hashSvg",
+      "type": "resolver",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": ".tmp/proofs/output/professional-visual.svg"
+      }
+    },
+    {
+      "id": "hashHtml",
+      "type": "resolver",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": ".tmp/proofs/output/professional-visual.html"
+      }
+    },
+    {
+      "id": "emitReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": { "scope": "tmp_proof_evidence_write" },
+        "receipt": {
+          "path": ".tmp/proofs/evidence/professional-visual.receipt.v1.json",
+          "content": {
+            "schemaVersion": "defracto.tmp.professional-visual.receipt.v1",
+            "receiptKey": "defracto.receipt.tmp.professional-visual.v1",
+            "status": "passed",
+            "projectedPaths": [
+              ".tmp/proofs/output/professional-visual.svg",
+              ".tmp/proofs/output/professional-visual.html"
+            ],
+            "artifactHashes": {
+              "svg": "$steps.hashSvg.hash",
+              "html": "$steps.hashHtml.hash"
+            },
+            "completionPosture": "The conveyor can project a professional visual surface as both SVG and HTML from JSON authority."
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitReceipt"
+  }
+}

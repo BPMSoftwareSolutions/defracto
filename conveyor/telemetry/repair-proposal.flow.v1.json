@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "defracto.telemetry-repair-proposal.flow.v1",
+  "flowKey": "defracto.telemetry.repair_proposal.v1",
+  "purpose": "Describe the telemetry-to-repair flow that can surface repair candidates without becoming canonical truth.",
+  "sourceInputs": [
+    "telemetry capture",
+    "source capture receipt",
+    "blocked artifact evidence"
+  ],
+  "outputs": [
+    "repair proposal candidate",
+    "source-promotion candidate",
+    "blocked-release evidence"
+  ],
+  "guardrails": [
+    "telemetry cannot directly mutate canonical truth",
+    "repair must name its affected artifacts",
+    "repair must require review before promotion"
+  ],
+  "completionPosture": "Telemetry may propose repair paths, but only the inspector and review chain can authorize them."
+}

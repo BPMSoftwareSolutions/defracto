@@ -1,16 +1,1 @@
-{
-  "schemaVersion": "defracto.evidence-receipt.v1",
-  "receiptKey": "defracto.receipt.shipper.node_projection.v1",
-  "receiptTitle": "shipper node projection",
-  "status": "blocked",
-  "checkedAt": "2026-06-21T00:00:00-04:00",
-  "verificationStatus": "not_executed",
-  "artifactHashes": [],
-  "blockers": [
-    {
-      "code": "not_executed",
-      "message": "Shipper projection has not been materialized."
-    }
-  ],
-  "completionPosture": "This receipt is an honest blocked/not-executed evidence surface, not proof of execution."
-}
+{"artifactHash":"sha256:2e93a1104e77d377968ffcb6ba18f613912d44b8a24e453cff94b3b3bc000e15","completionPosture":"Shipper facade is a generated thin resolver doorway and owns no product truth.","contentSource":"facade.compose.v1 -> artifact.contentRef","executeSejPath":"contracts/sej/shipper.execute.sej.v1.json","expectedArtifactHash":"sha256:2e93a1104e77d377968ffcb6ba18f613912d44b8a24e453cff94b3b3bc000e15","forbiddenResponsibilities":["truth creation","evidence invention","ship blocked release","canonical mutation"],"projectedBodyKind":"generated_thin_resolver_facade","projectedPath":"generated/shipper/node/shipper.cjs","projectionManifestPath":"contracts/projections/shipper.node-projection-manifest.v1.json","receiptKey":"defracto.receipt.shipper.node-projection.v1","schemaVersion":"defracto.shipper.node-projection.receipt.v1","semanticOperationGraphPath":"contracts/semantic-operation-graphs/shipper/shipper.execute.sog.v1.json","semanticSourceSejPath":"contracts/sej/materialize-shipper-node.semantic.sej.v1.json","sourceSejPath":"contracts/sej/materialize-shipper-node.sej.v1.json","status":"passed","verificationStatus":"resolver_materialized_semantic_facade_composition"}

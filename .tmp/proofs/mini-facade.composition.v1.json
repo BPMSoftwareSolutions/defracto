@@ -1,20 +1,20 @@
 {
   "schemaVersion": "defracto.facade-composition.v1",
-  "compositionKey": "defracto.facade.conveyor-runner.node-resolver-doorway.v1",
+  "compositionKey": "defracto.facade.tmp.compiler-proof.v1",
   "targetLanguage": "node",
-  "targetPath": "generated/runner/node/conveyor-runner.cjs",
+  "targetPath": ".tmp/proofs/output/mini-facade.cjs",
   "archetype": {
     "archetypeKey": "defracto.facade-archetype.node.resolver-doorway.v1",
     "archetypeRole": "thin_resolver_doorway",
     "templateSource": "contracts/facade-archetypes/node-resolver-doorway.facade-archetype.v1.json"
   },
   "bindings": {
-    "toolKey": "defracto.conveyor.runner",
-    "sourceSej": "contracts/sej/materialize-conveyor-runner-node.sej.v1.json",
-    "commandKey": "defracto.conveyor.runner.execute.v1",
-    "executeSejPath": "contracts/sej/conveyor-runner.execute.sej.v1.json",
+    "toolKey": "defracto.tmp.compiler-proof.facade",
+    "sourceSej": ".tmp/proofs/mini-facade.materialize.sej.v1.json",
+    "commandKey": "defracto.tmp.compiler-proof.facade.execute.v1",
+    "executeSejPath": ".tmp/proofs/mini-facade.materialize.sej.v1.json",
     "semanticOperationGraphPath": "contracts/semantic-operation-graphs/runner/conveyor-runner.execute.sog.v1.json",
-    "capabilityBindingsPath": "contracts/capabilities/runner/conveyor-runner.capability-bindings.v1.json",
+    "capabilityBindingsPath": "contracts/capabilities/facade-materialization.capability-bindings.v1.json",
     "projectionManifestPath": "contracts/projections/conveyor-runner.node-projection-manifest.v1.json",
     "resolverPackage": "@bpmsoftwaresolutions/sej-resolver-node",
     "resolverDoorwayPackage": "@bpmsoftwaresolutions/sej-resolver-node/doorway",
@@ -29,11 +29,11 @@
     },
     {
       "anchorKey": "source-sej",
-      "text": "sourceSEJ: contracts/sej/materialize-conveyor-runner-node.sej.v1.json"
+      "text": "sourceSEJ: .tmp/proofs/mini-facade.materialize.sej.v1.json"
     },
     {
       "anchorKey": "semantic-source-sej",
-      "text": "semanticSourceSEJ: contracts/sej/materialize-conveyor-runner-node.semantic.sej.v1.json"
+      "text": "semanticSourceSEJ: .tmp/proofs/mini-facade.materialize.sej.v1.json"
     },
     {
       "anchorKey": "projection-manifest",
@@ -41,7 +41,7 @@
     },
     {
       "anchorKey": "execute-sej",
-      "text": "executeSEJ: contracts/sej/conveyor-runner.execute.sej.v1.json"
+      "text": "executeSEJ: .tmp/proofs/mini-facade.materialize.sej.v1.json"
     },
     {
       "anchorKey": "semantic-operation-graph",
@@ -57,5 +57,5 @@
     "release_decision",
     "manual_fallback"
   ],
-  "completionPosture": "Conveyor Runner facade body is composed from archetype + bindings, not embedded as a host-language blob."
+  "completionPosture": "Temp proof facade body is composed from archetype + bindings, not embedded as a host-language blob."
 }

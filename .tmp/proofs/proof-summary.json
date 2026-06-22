@@ -1,0 +1,17 @@
+{
+  "pass": {
+    "status": "passed",
+    "artifactHash": "52b406fe7f5af4ff137b0cbb4e53e894bafaf61da546c3b3e9574ef1d2a5beed",
+    "evidenceContract": "defracto.sej.tmp.compiler-proof.pass.v1"
+  },
+  "blocked": {
+    "status": "blocked",
+    "blocker": "inline_host_body_forbidden",
+    "error": "Inline host-language artifact bodies are forbidden; use semantic facade composition or contentRef."
+  },
+  "missing": {
+    "status": "blocked",
+    "blocker": "contract_missing",
+    "error": "A SEJ contract object is required."
+  }
+}

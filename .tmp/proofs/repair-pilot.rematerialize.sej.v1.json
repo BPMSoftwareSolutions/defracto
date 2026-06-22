@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.tmp.repair-pilot.rematerialize.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.tmp.repair-pilot.rematerialize",
+  "purpose": "Rematerialize the slice-015 docs report from the approved repair proposal.",
+  "semanticBody": {
+    "bodyKind": "repair_rematerialization_graph",
+    "hostLanguageBodyAllowed": false
+  },
+  "sourceRepairProposalPath": ".tmp/proofs/output/repair-proposal.slice-015-report.v1.json",
+  "boundedOutputs": [
+    "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+    ".tmp/proofs/evidence/repair-rematerialize.slice-015-report.receipt.v1.json"
+  ],
+  "steps": [
+    {
+      "id": "materializeRepairedReport",
+      "type": "resolver",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "generated_surface_write_only"
+        },
+        "artifact": {
+          "path": "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+          "format": "text",
+          "content": [
+            "# Slice 015 Documentation Projection Conveyor",
+            "",
+            "Status: passed. The docs projection surfaces are materialized and receipted.",
+            "",
+            "Gate posture:",
+            "- generated docs are only valid when receipts exist",
+            "- manual drift is blocked",
+            "- the docs surfaces remain projections",
+            "",
+            "Receipts:",
+            "- `evidence/docs/generated-docs.receipt.v1.json`",
+            "- `evidence/docs/generated-doc-drift.receipt.v1.json`",
+            "- `evidence/conveyor/slice-015-documentation-projection-conveyor.receipt.v1.json`"
+          ],
+          "joinWith": "\n",
+          "newline": "lf"
+        }
+      }
+    },
+    {
+      "id": "hashRepairedReport",
+      "type": "resolver",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md"
+      }
+    },
+    {
+      "id": "emitRepairReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "evidence_write_only"
+        },
+        "receipt": {
+          "path": ".tmp/proofs/evidence/repair-rematerialize.slice-015-report.receipt.v1.json",
+          "content": {
+            "schemaVersion": "defracto.tmp.repair-rematerialize.slice-015-report.receipt.v1",
+            "receiptKey": "defracto.receipt.tmp.repair-rematerialize.slice-015-report.v1",
+            "status": "passed",
+            "sourceRepairProposalPath": ".tmp/proofs/output/repair-proposal.slice-015-report.v1.json",
+            "projectedPath": "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+            "artifactHash": "$steps.hashRepairedReport.hash",
+            "completionPosture": "The conveyor rematerialized the report from an approved repair proposal."
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitRepairReceipt"
+  }
+}

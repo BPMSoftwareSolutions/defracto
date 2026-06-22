@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.tmp.compiler-proof.facade.blocked.v2",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.tmp.compiler-proof.facade.blocked",
+  "purpose": "Prove the compiler rejects an incomplete facade composition authority.",
+  "semanticBody": {
+    "bodyKind": "facade_composition_graph",
+    "hostLanguageBodyAllowed": false
+  },
+  "boundedOutputs": [
+    ".tmp/proofs/output/mini-facade-blocked.cjs"
+  ],
+  "steps": [
+    {
+      "id": "composeFacadeBody",
+      "type": "resolver",
+      "operation": "facade.compose.v1",
+      "payload": {
+        "composition": {
+          "$inline": ".tmp/proofs/mini-facade.blocked.composition.v1.json"
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.composeFacadeBody"
+  }
+}

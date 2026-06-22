@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "defracto.inspector-repair-proposal.policy.v1",
+  "policyKey": "defracto.inspector.repair_proposal.v1",
+  "policyStatus": "accepted",
+  "purpose": "Govern when the inspector may emit a repair proposal and what it must not claim.",
+  "requires": [
+    "source capture receipt",
+    "affected artifact paths",
+    "expected regeneration target",
+    "blocked-release posture until review"
+  ],
+  "forbids": [
+    "silent canonical mutation",
+    "repair without source lineage",
+    "repair without affected artifact list",
+    "repair proposal that claims approval"
+  ],
+  "completionPosture": "Inspector repair proposals are candidate evidence only until reviewed and promoted."
+}

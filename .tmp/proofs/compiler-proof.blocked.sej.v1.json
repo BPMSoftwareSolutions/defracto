@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.tmp.compiler-proof.blocked.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.tmp.compiler-proof.blocked",
+  "purpose": "Prove the compiler fail-closed posture rejects inline host-language bodies.",
+  "semanticBody": {
+    "bodyKind": "artifact_materialization",
+    "hostLanguageBodyAllowed": false
+  },
+  "boundedOutputs": [
+    ".tmp/proofs/output/compiler-proof-blocked.js"
+  ],
+  "steps": [
+    {
+      "id": "materializeBlockedArtifact",
+      "type": "resolver",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "tmp_proof_write"
+        },
+        "artifact": {
+          "path": ".tmp/proofs/output/compiler-proof-blocked.js",
+          "format": "text",
+          "content": "const run = () => { return require('node:fs'); };",
+          "anchor": {
+            "enabled": false
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.materializeBlockedArtifact"
+  }
+}

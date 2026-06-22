@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.tmp.compiler-proof.facade.materialize.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.tmp.compiler-proof.facade.materialize",
+  "sourceLineage": {
+    "storyKey": "stories/runner/conveyor-runner.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/runner/conveyor-runner.canonical-spec.v1.json",
+    "executableProjectionContractKey": "contracts/projections/conveyor-runner.node-projection-manifest.v1.json",
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/runner/conveyor-runner.execute.sog.v1.json",
+    "bodyDispositionKey": "defracto.body.tmp.compiler-proof.generated-thin-facade"
+  },
+  "bodyDisposition": {
+    "bodyKind": "facade_composition_graph",
+    "hostLanguageBodyAllowed": false,
+    "compiledBridgeAllowed": false,
+    "bootstrapDelegateAllowed": false,
+    "promotionValidSource": true,
+    "forbiddenBodyForms": [
+      "inline_js_blob",
+      "dto_stitching",
+      "local_conveyor_brain"
+    ]
+  },
+  "semanticBody": {
+    "bodyKind": "facade_composition_graph",
+    "bodyRef": ".tmp/proofs/mini-facade.composition.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "boundedOutputs": [
+    ".tmp/proofs/output/mini-facade.cjs",
+    ".tmp/proofs/evidence/mini-facade.receipt.v1.json"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "facade.compose.v1",
+      "purpose": "Compose the temp resolver doorway body from declared composition authority.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "purpose": "Write the temp projected Node facade exactly as declared.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "purpose": "Compute the temp materialized facade hash from disk.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "Emit temp projection receipt for the materialized facade.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "steps": [
+    {
+      "id": "composeFacadeBody",
+      "type": "resolver",
+      "operation": "facade.compose.v1",
+      "payload": {
+        "composition": {
+          "$inline": ".tmp/proofs/mini-facade.composition.v1.json"
+        }
+      }
+    },
+    {
+      "id": "materializeFacade",
+      "type": "resolver",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "tmp_proof_write"
+        },
+        "artifact": {
+          "path": ".tmp/proofs/output/mini-facade.cjs",
+          "format": "text",
+          "contentRef": "$steps.composeFacadeBody.renderedText"
+        }
+      }
+    },
+    {
+      "id": "hashFacade",
+      "type": "resolver",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": ".tmp/proofs/output/mini-facade.cjs"
+      }
+    },
+    {
+      "id": "emitReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "tmp_proof_evidence_write"
+        },
+        "receipt": {
+          "path": ".tmp/proofs/evidence/mini-facade.receipt.v1.json",
+          "content": {
+            "schemaVersion": "defracto.tmp.mini-facade.receipt.v1",
+            "receiptKey": "defracto.receipt.tmp.mini-facade.v1",
+            "status": "passed",
+            "projectedPath": ".tmp/proofs/output/mini-facade.cjs",
+            "artifactHash": "$steps.hashFacade.hash",
+            "contentSource": "facade.compose.v1 -> artifact.contentRef"
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitReceipt"
+  }
+}

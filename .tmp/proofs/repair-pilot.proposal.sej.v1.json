@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.tmp.repair-pilot.proposal.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.tmp.repair-pilot.proposal",
+  "purpose": "Emit a repair proposal candidate for the slice-015 docs report drift.",
+  "semanticBody": {
+    "bodyKind": "repair_proposal_graph",
+    "hostLanguageBodyAllowed": false
+  },
+  "boundedOutputs": [
+    ".tmp/proofs/output/repair-proposal.slice-015-report.v1.json",
+    ".tmp/proofs/evidence/repair-proposal.slice-015-report.receipt.v1.json"
+  ],
+  "steps": [
+    {
+      "id": "materializeProposal",
+      "type": "resolver",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "tmp_proof_write"
+        },
+        "artifact": {
+          "path": ".tmp/proofs/output/repair-proposal.slice-015-report.v1.json",
+          "format": "json",
+          "content": {
+            "schemaVersion": "defracto.repair-proposal.v1",
+            "proposalKey": "defracto.repair-proposal.slice-015-report.v1",
+            "status": "approved",
+            "sourceCaptureReceiptPath": "evidence/conveyor/slice-015-documentation-projection-conveyor.receipt.v1.json",
+            "telemetryCapturePath": "evidence/telemetry/telemetry-source-promotion.receipt.v1.json",
+            "observedGap": {
+              "gapKey": "slice-015-report-status-drift",
+              "summary": "The slice-015 documentation projection report still says the docs surfaces are blocked, while the live conveyor receipt says the docs run passed.",
+              "affectedArtifacts": [
+                "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md"
+              ],
+              "expectedFailureMode": "stale_status_statement"
+            },
+            "proposedActions": [
+              {
+                "actionKey": "rewrite-report-status",
+                "targetPath": "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+                "purpose": "Replace the blocked status line with a passed status line that matches live receipt state.",
+                "expectedHash": "to-be-computed-by-rematerialization"
+              }
+            ],
+            "regenerationReceiptPath": ".tmp/proofs/evidence/repair-rematerialize.slice-015-report.receipt.v1.json",
+            "reviewRequired": true,
+            "releaseBlocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "hashProposal",
+      "type": "resolver",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": ".tmp/proofs/output/repair-proposal.slice-015-report.v1.json"
+      }
+    },
+    {
+      "id": "emitProposalReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "tmp_proof_evidence_write"
+        },
+        "receipt": {
+          "path": ".tmp/proofs/evidence/repair-proposal.slice-015-report.receipt.v1.json",
+          "content": {
+            "schemaVersion": "defracto.tmp.repair-proposal.slice-015-report.receipt.v1",
+            "receiptKey": "defracto.receipt.tmp.repair-proposal.slice-015-report.v1",
+            "status": "passed",
+            "projectedPath": ".tmp/proofs/output/repair-proposal.slice-015-report.v1.json",
+            "artifactHash": "$steps.hashProposal.hash",
+            "completionPosture": "The conveyor can name a repair candidate without canonizing it."
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitProposalReceipt"
+  }
+}

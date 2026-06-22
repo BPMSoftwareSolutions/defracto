@@ -10,12 +10,14 @@
   },
   "bindings": {
     "toolKey": "defracto.conveyor.shipper",
+    "sourceSej": "contracts/sej/materialize-shipper-node.sej.v1.json",
     "commandKey": "defracto.conveyor.shipper.execute.v1",
     "executeSejPath": "contracts/sej/shipper.execute.sej.v1.json",
     "semanticOperationGraphPath": "contracts/semantic-operation-graphs/shipper/shipper.execute.sog.v1.json",
     "capabilityBindingsPath": "contracts/capabilities/shipper/shipper.capability-bindings.v1.json",
     "projectionManifestPath": "contracts/projections/shipper.node-projection-manifest.v1.json",
     "resolverPackage": "@bpmsoftwaresolutions/sej-resolver-node",
+    "resolverDoorwayPackage": "@bpmsoftwaresolutions/sej-resolver-node/doorway",
     "inputMode": "stdin_json",
     "outputMode": "stdout_json",
     "failureMode": "fail_closed"
@@ -27,7 +29,11 @@
     },
     {
       "anchorKey": "source-sej",
-      "text": "sourceSEJ: contracts/sej/materialize-shipper-node.semantic.sej.v1.json"
+      "text": "sourceSEJ: contracts/sej/materialize-shipper-node.sej.v1.json"
+    },
+    {
+      "anchorKey": "semantic-source-sej",
+      "text": "semanticSourceSEJ: contracts/sej/materialize-shipper-node.semantic.sej.v1.json"
     },
     {
       "anchorKey": "projection-manifest",

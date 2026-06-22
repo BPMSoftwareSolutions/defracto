@@ -1,0 +1,202 @@
+{
+  "schemaVersion": "defracto.artifact-graph.index.v1",
+  "graphKey": "defracto.graph.narrative-execution-fabric.hifi.v1",
+  "graphStatus": "accepted",
+  "purpose": "Index the live lineage chain so the conveyor can answer what is current, stale, blocked, or superseded.",
+  "nodes": [
+    {
+      "nodeKey": "source.cli.narrative",
+      "nodeKind": "source-narrative",
+      "artifactPath": "source/cli/ndd-cli.source-narrative.md",
+      "status": "current"
+    },
+    {
+      "nodeKey": "spec.cli.sej",
+      "nodeKind": "semantic-executable-json",
+      "artifactPath": "contracts/sej/ndd-cli.execute.sej.v1.json",
+      "status": "current"
+    },
+    {
+      "nodeKey": "sog.cli.run",
+      "nodeKind": "semantic-operation-graph",
+      "artifactPath": "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json",
+      "status": "current"
+    },
+    {
+      "nodeKey": "projection.cli.node",
+      "nodeKind": "generated-surface",
+      "artifactPath": "generated/cli/node/ndd.cjs",
+      "receiptPath": "evidence/cli/ndd-cli.node-projection.receipt.v1.json",
+      "status": "stale"
+    },
+    {
+      "nodeKey": "projection.cli.bootstrap",
+      "nodeKind": "generated-surface",
+      "artifactPath": "bin/ndd.cjs",
+      "receiptPath": "evidence/cli/ndd-cli.bin-projection.receipt.v1.json",
+      "status": "current"
+    },
+    {
+      "nodeKey": "source.runner.narrative",
+      "nodeKind": "source-narrative",
+      "artifactPath": "source/runner/conveyor-runner.source-narrative.md",
+      "status": "current"
+    },
+    {
+      "nodeKey": "spec.runner.sej",
+      "nodeKind": "semantic-executable-json",
+      "artifactPath": "contracts/sej/conveyor-runner.execute.sej.v1.json",
+      "status": "current"
+    },
+    {
+      "nodeKey": "projection.runner.node",
+      "nodeKind": "generated-surface",
+      "artifactPath": "generated/runner/node/conveyor-runner.cjs",
+      "receiptPath": "evidence/runner/conveyor-runner.node-projection.receipt.v1.json",
+      "status": "current"
+    },
+    {
+      "nodeKey": "receipt.runner.conformance",
+      "nodeKind": "receipt",
+      "artifactPath": "evidence/runner/conveyor-runner.conformance.receipt.v1.json",
+      "status": "current"
+    },
+    {
+      "nodeKey": "source.docs.projection",
+      "nodeKind": "projection-contract",
+      "artifactPath": "contracts/docs/documentation-surface.catalog.v1.json",
+      "status": "current"
+    },
+    {
+      "nodeKey": "projection.docs.report",
+      "nodeKind": "generated-surface",
+      "artifactPath": "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+      "receiptPath": "evidence/docs/generated-docs.receipt.v1.json",
+      "status": "current"
+    },
+    {
+      "nodeKey": "receipt.docs.drift",
+      "nodeKind": "receipt",
+      "artifactPath": "evidence/docs/generated-doc-drift.receipt.v1.json",
+      "status": "current"
+    },
+    {
+      "nodeKey": "source.repair.schema",
+      "nodeKind": "schema",
+      "artifactPath": "contracts/schemas/repair-proposal.schema.v1.json",
+      "status": "current"
+    },
+    {
+      "nodeKey": "flow.telemetry.repair",
+      "nodeKind": "flow-contract",
+      "artifactPath": "conveyor/telemetry/repair-proposal.flow.v1.json",
+      "status": "current"
+    },
+    {
+      "nodeKey": "proposal.repair.slice-015",
+      "nodeKind": "repair-proposal",
+      "artifactPath": ".tmp/proofs/repair-pilot.proposal.sej.v1.json",
+      "status": "current"
+    },
+    {
+      "nodeKey": "projection.repair.slice-015-report",
+      "nodeKind": "generated-surface",
+      "artifactPath": "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+      "receiptPath": ".tmp/proofs/evidence/repair-rematerialize.slice-015-report.receipt.v1.json",
+      "status": "current"
+    },
+    {
+      "nodeKey": "supersession.cli.bootstrap",
+      "nodeKind": "supersession-receipt",
+      "artifactPath": "evidence/cli/ndd-cli.bootstrap-delegate-superseded.receipt.v1.json",
+      "status": "current"
+    },
+    {
+      "nodeKey": "supersession.worker.lane",
+      "nodeKind": "supersession-receipt",
+      "artifactPath": "evidence/workers/lane-worker.conformance-hash-supersession.receipt.v1.json",
+      "status": "current"
+    }
+  ],
+  "edges": [
+    {
+      "edgeKey": "cli-narrative-to-sej",
+      "fromNodeKey": "source.cli.narrative",
+      "toNodeKey": "spec.cli.sej",
+      "relation": "hardens-into"
+    },
+    {
+      "edgeKey": "cli-sej-to-sog",
+      "fromNodeKey": "spec.cli.sej",
+      "toNodeKey": "sog.cli.run",
+      "relation": "lowers-into"
+    },
+    {
+      "edgeKey": "cli-sog-to-node-projection",
+      "fromNodeKey": "sog.cli.run",
+      "toNodeKey": "projection.cli.node",
+      "relation": "projects-to"
+    },
+    {
+      "edgeKey": "cli-node-projection-to-receipt",
+      "fromNodeKey": "projection.cli.node",
+      "toNodeKey": "receipt.runner.conformance",
+      "relation": "verified-by"
+    },
+    {
+      "edgeKey": "cli-bootstrap-superseded-by-sej",
+      "fromNodeKey": "projection.cli.bootstrap",
+      "toNodeKey": "spec.cli.sej",
+      "relation": "superseded-by"
+    },
+    {
+      "edgeKey": "runner-narrative-to-projection",
+      "fromNodeKey": "source.runner.narrative",
+      "toNodeKey": "projection.runner.node",
+      "relation": "projects-to"
+    },
+    {
+      "edgeKey": "runner-projection-to-conformance",
+      "fromNodeKey": "projection.runner.node",
+      "toNodeKey": "receipt.runner.conformance",
+      "relation": "verified-by"
+    },
+    {
+      "edgeKey": "docs-catalog-to-report",
+      "fromNodeKey": "source.docs.projection",
+      "toNodeKey": "projection.docs.report",
+      "relation": "projects-to"
+    },
+    {
+      "edgeKey": "docs-report-to-drift-receipt",
+      "fromNodeKey": "projection.docs.report",
+      "toNodeKey": "receipt.docs.drift",
+      "relation": "verified-by"
+    },
+    {
+      "edgeKey": "repair-schema-to-telemetry-flow",
+      "fromNodeKey": "source.repair.schema",
+      "toNodeKey": "flow.telemetry.repair",
+      "relation": "binds-to"
+    },
+    {
+      "edgeKey": "repair-flow-to-proposal",
+      "fromNodeKey": "flow.telemetry.repair",
+      "toNodeKey": "proposal.repair.slice-015",
+      "relation": "proposes"
+    },
+    {
+      "edgeKey": "repair-proposal-to-rematerialized-report",
+      "fromNodeKey": "proposal.repair.slice-015",
+      "toNodeKey": "projection.repair.slice-015-report",
+      "relation": "rematerializes-into"
+    },
+    {
+      "edgeKey": "worker-supersession-records-conformance-replacement",
+      "fromNodeKey": "supersession.worker.lane",
+      "toNodeKey": "projection.runner.node",
+      "relation": "records-replacement"
+    }
+  ],
+  "completionPosture": "The artifact graph is a control plane for fidelity: it makes lineage, drift, supersession, and projection status queryable instead of implied."
+}

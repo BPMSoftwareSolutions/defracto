@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.tmp.compiler-proof.pass.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.tmp.compiler-proof.pass",
+  "purpose": "Prove a tiny executable JSON contract can materialize a text artifact and receipt in the temp bench.",
+  "semanticBody": {
+    "bodyKind": "artifact_materialization",
+    "hostLanguageBodyAllowed": false
+  },
+  "boundedOutputs": [
+    ".tmp/proofs/output/compiler-proof.txt",
+    ".tmp/proofs/evidence/compiler-proof.pass.receipt.v1.json"
+  ],
+  "steps": [
+    {
+      "id": "materializeProofArtifact",
+      "type": "resolver",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "tmp_proof_write"
+        },
+        "artifact": {
+          "path": ".tmp/proofs/output/compiler-proof.txt",
+          "format": "text",
+          "content": "compiler proof ok",
+          "anchor": {
+            "enabled": false
+          }
+        }
+      }
+    },
+    {
+      "id": "hashProofArtifact",
+      "type": "resolver",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": ".tmp/proofs/output/compiler-proof.txt"
+      }
+    },
+    {
+      "id": "emitProofReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "tmp_proof_evidence_write"
+        },
+        "receipt": {
+          "path": ".tmp/proofs/evidence/compiler-proof.pass.receipt.v1.json",
+          "content": {
+            "schemaVersion": "defracto.tmp.compiler-proof.pass.receipt.v1",
+            "receiptKey": "defracto.receipt.tmp.compiler-proof.pass.v1",
+            "status": "passed",
+            "projectedPath": ".tmp/proofs/output/compiler-proof.txt",
+            "artifactHash": "$steps.hashProofArtifact.hash",
+            "completionPosture": "This proof contract shows the compiler can project text from executable JSON into a writable surface."
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitProofReceipt"
+  }
+}
