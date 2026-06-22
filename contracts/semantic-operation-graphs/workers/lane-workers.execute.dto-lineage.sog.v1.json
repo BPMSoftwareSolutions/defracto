@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.lane-workers.execute.dto-lineage.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "accepted",
+  "commandKey": "defracto.conveyor.lane-workers.execute.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.lane-workers.validate-dispatch.v1",
+      "capabilityKey": "dto.shape.validate.v1"
+    },
+    {
+      "actionKey": "defracto.lane-workers.project-worker-response.v1",
+      "capabilityKey": "dto.project.v1"
+    },
+    {
+      "actionKey": "defracto.lane-workers.project-lane-receipt.v1",
+      "capabilityKey": "dto.project.v1"
+    },
+    {
+      "actionKey": "defracto.lane-workers.emit-receipt.v1",
+      "capabilityKey": "evidence.emit.v1"
+    }
+  ],
+  "declaredDtoContracts": [
+    "contracts/dto/worker-dispatch.dto.v1.json",
+    "contracts/dto/worker-response.dto.v1.json",
+    "contracts/dto/conveyor-lane-receipt.dto.v1.json"
+  ],
+  "declaredProjectionContracts": [
+    "contracts/dto-projections/worker-response.projection.v1.json",
+    "contracts/dto-projections/conveyor-lane-receipt.projection.v1.json"
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "validateDispatchDto",
+        "capabilityKey": "dto.shape.validate.v1",
+        "input": {
+          "dtoContract": "contracts/dto/worker-dispatch.dto.v1.json",
+          "value": {
+            "$context": "dispatch"
+          },
+          "strict": true
+        },
+        "output": {
+          "path": "$graph.dispatchDtoValidation"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "worker_dispatch_dto_invalid"
+        }
+      },
+      {
+        "id": "projectWorkerResponseDto",
+        "capabilityKey": "dto.project.v1",
+        "input": {
+          "dtoContract": "contracts/dto/worker-response.dto.v1.json",
+          "projectionContract": "contracts/dto-projections/worker-response.projection.v1.json",
+          "projectionSourceValue": {
+            "$context": "$"
+          }
+        },
+        "output": {
+          "path": "$graph.workerResponseProjection"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "worker_response_projection_failed"
+        }
+      },
+      {
+        "id": "projectLaneReceiptDto",
+        "capabilityKey": "dto.project.v1",
+        "input": {
+          "dtoContract": "contracts/dto/conveyor-lane-receipt.dto.v1.json",
+          "projectionContract": "contracts/dto-projections/conveyor-lane-receipt.projection.v1.json",
+          "projectionSourceValue": {
+            "$context": "$"
+          }
+        },
+        "output": {
+          "path": "$graph.laneReceiptProjection"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "lane_receipt_projection_failed"
+        }
+      },
+      {
+        "id": "emitLaneReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "effect": {
+          "type": "filesystem.write",
+          "authority": "evidence_write_only"
+        },
+        "input": {
+          "path": {
+            "$context": "dispatch.receiptPath"
+          },
+          "receipt": {
+            "$graph": "laneReceiptProjection.projectedOutputShape"
+          }
+        },
+        "output": {
+          "path": "$graph.receipt"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "receipt"
+    }
+  },
+  "evidenceObligations": [
+    "worker_dispatch_dto_validated",
+    "worker_response_projection_contract_used",
+    "lane_receipt_projection_contract_used",
+    "dto_projection_evidence_emitted"
+  ],
+  "forbiddenClaims": [
+    "local DTO stitching",
+    "matching shape without DTO lineage",
+    "projection bypass",
+    "ornamental DTO contract"
+  ]
+}

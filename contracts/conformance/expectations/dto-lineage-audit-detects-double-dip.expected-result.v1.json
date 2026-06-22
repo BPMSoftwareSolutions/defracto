@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "loc.sej-conformance-expected-result.v1",
+  "fixtureId": "dto-lineage-audit-detects-double-dip",
+  "status": "blocked",
+  "blocker": "local_dto_stitching_detected"
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "loc.dto-project-result.v1",
+  "title": "DTO Project Result",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "status",
+    "dtoContractKey",
+    "projectionContractKey",
+    "projectionSource",
+    "projectedOutputShape",
+    "resolverProjectionEvidence",
+    "unsupportedProjectionReason"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "dtoContractKey": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "projectionContractKey": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "projectionSource": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "projectedOutputShape": {},
+    "resolverProjectionEvidence": {
+      "type": "object"
+    },
+    "unsupportedProjectionReason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

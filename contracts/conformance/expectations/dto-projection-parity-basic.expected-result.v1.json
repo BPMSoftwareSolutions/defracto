@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "loc.sej-conformance-expected-result.v1",
+  "fixtureId": "dto-projection-parity-basic",
+  "status": "passed",
+  "resultByLanguage": {
+    "node": {
+      "dtoContractKey": "defracto.worker-response.dto.v1",
+      "projectionContractKey": "defracto.worker-response.projection.v1",
+      "projectionSource": "operationState",
+      "projectedOutputShape": {
+        "schemaVersion": "defracto.worker-response.v1",
+        "runKey": "run-001",
+        "laneKey": "03-materialize-workers",
+        "workerKey": "lane-worker",
+        "status": "passed",
+        "summary": "Lane worker completed materialization handoff.",
+        "artifacts": [
+          {
+            "path": "generated/workers/node/lane-worker.cjs",
+            "status": "passed"
+          }
+        ],
+        "findings": []
+      },
+      "resolverProjectionEvidence": {
+        "schemaVersion": "loc.sej.resolver.projection-evidence.v1",
+        "status": "passed",
+        "dtoContractKey": "defracto.worker-response.dto.v1",
+        "projectionContractKey": "defracto.worker-response.projection.v1",
+        "projectionSource": "operationState",
+        "projectedOutputShapeHash": "sha256:0d297b54d715215ef414a0a05e91915cbd3cbf8a70f3707ec9b5a0ad8fd6222a",
+        "resolverLanguage": "node",
+        "unsupportedProjectionReason": null
+      },
+      "unsupportedProjectionReason": null
+    },
+    "python": {
+      "dtoContractKey": "defracto.worker-response.dto.v1",
+      "projectionContractKey": "defracto.worker-response.projection.v1",
+      "projectionSource": "operationState",
+      "projectedOutputShape": {
+        "schemaVersion": "defracto.worker-response.v1",
+        "runKey": "run-001",
+        "laneKey": "03-materialize-workers",
+        "workerKey": "lane-worker",
+        "status": "passed",
+        "summary": "Lane worker completed materialization handoff.",
+        "artifacts": [
+          {
+            "path": "generated/workers/node/lane-worker.cjs",
+            "status": "passed"
+          }
+        ],
+        "findings": []
+      },
+      "resolverProjectionEvidence": {
+        "schemaVersion": "loc.sej.resolver.projection-evidence.v1",
+        "status": "passed",
+        "dtoContractKey": "defracto.worker-response.dto.v1",
+        "projectionContractKey": "defracto.worker-response.projection.v1",
+        "projectionSource": "operationState",
+        "projectedOutputShapeHash": "sha256:0d297b54d715215ef414a0a05e91915cbd3cbf8a70f3707ec9b5a0ad8fd6222a",
+        "resolverLanguage": "python",
+        "unsupportedProjectionReason": null
+      },
+      "unsupportedProjectionReason": null
+    },
+    "csharp": {
+      "dtoContractKey": "defracto.worker-response.dto.v1",
+      "projectionContractKey": "defracto.worker-response.projection.v1",
+      "projectionSource": "operationState",
+      "projectedOutputShape": {
+        "schemaVersion": "defracto.worker-response.v1",
+        "runKey": "run-001",
+        "laneKey": "03-materialize-workers",
+        "workerKey": "lane-worker",
+        "status": "passed",
+        "summary": "Lane worker completed materialization handoff.",
+        "artifacts": [
+          {
+            "path": "generated/workers/node/lane-worker.cjs",
+            "status": "passed"
+          }
+        ],
+        "findings": []
+      },
+      "resolverProjectionEvidence": {
+        "schemaVersion": "loc.sej.resolver.projection-evidence.v1",
+        "status": "passed",
+        "dtoContractKey": "defracto.worker-response.dto.v1",
+        "projectionContractKey": "defracto.worker-response.projection.v1",
+        "projectionSource": "operationState",
+        "projectedOutputShapeHash": "sha256:0d297b54d715215ef414a0a05e91915cbd3cbf8a70f3707ec9b5a0ad8fd6222a",
+        "resolverLanguage": "csharp",
+        "unsupportedProjectionReason": null
+      },
+      "unsupportedProjectionReason": null
+    }
+  }
+}

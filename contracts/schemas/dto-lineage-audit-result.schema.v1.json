@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "loc.dto-lineage-audit-result.v1",
+  "title": "DTO Lineage Audit Result",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "auditKey",
+    "status",
+    "targetExecutionPath",
+    "declaredDtoContracts",
+    "declaredProjectionContracts",
+    "downstreamUseEvidence",
+    "findings",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "auditKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "targetExecutionPath": {
+      "type": "object"
+    },
+    "declaredDtoContracts": {
+      "type": "array"
+    },
+    "declaredProjectionContracts": {
+      "type": "array"
+    },
+    "downstreamUseEvidence": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

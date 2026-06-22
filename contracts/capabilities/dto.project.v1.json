@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "dto.project.v1",
+  "capabilityStatus": "required",
+  "category": "dto.projection",
+  "purpose": "Project a language-neutral DTO shape from declared projection contract and declared projection source.",
+  "runtimeCategory": "resolver_interpreted_dto_projection",
+  "portableAcross": [
+    "node",
+    "python",
+    "csharp"
+  ],
+  "inputContract": "contracts/schemas/dto-project-input.schema.v1.json",
+  "outputContract": "contracts/schemas/dto-project-result.schema.v1.json",
+  "mustDo": [
+    "load declared dto contract",
+    "load declared dto projection contract",
+    "resolve projectionSource",
+    "apply declared projection fields only",
+    "validate projected shape against DTO contract",
+    "return projection evidence handles",
+    "fail closed when projection contract is missing"
+  ],
+  "mustNotDo": [
+    "shape DTOs outside projection contract",
+    "fall back to local mapping",
+    "project undeclared fields",
+    "invent defaults not declared by DTO or projection contract",
+    "hide unsupported projection reasons"
+  ],
+  "failureCodes": [
+    "dto_contract_missing",
+    "dto_projection_contract_missing",
+    "projection_source_missing",
+    "projected_output_shape_invalid",
+    "dto_projection_bypassed",
+    "cross_language_projection_mismatch"
+  ],
+  "completionPosture": "Complete when all supported resolver languages project the same DTO output shape and evidence from the same projection contract."
+}

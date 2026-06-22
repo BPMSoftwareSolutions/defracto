@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "dto.language_projection.v1",
+  "capabilityStatus": "required",
+  "category": "dto.language_projection",
+  "purpose": "Generate language-specific DTO type surfaces from a language-neutral DTO contract.",
+  "runtimeCategory": "resolver_interpreted_projection",
+  "portableAcross": [
+    "node",
+    "python",
+    "csharp"
+  ],
+  "inputContract": "contracts/schemas/dto-language-projection-input.schema.v1.json",
+  "outputContract": "contracts/schemas/dto-language-projection-result.schema.v1.json",
+  "mustDo": [
+    "load DTO contract",
+    "load language projection profile",
+    "emit deterministic projected type surface",
+    "preserve DTO contract key and hash in generated anchors",
+    "fail closed on unsupported language"
+  ],
+  "mustNotDo": [
+    "invent type names outside projection profile",
+    "drop required fields",
+    "change nullability",
+    "change enum values",
+    "introduce runtime behavior"
+  ],
+  "failureCodes": [
+    "dto_language_profile_missing",
+    "dto_language_projection_unsupported",
+    "dto_language_projection_failed"
+  ],
+  "completionPosture": "Complete when DTO contracts project deterministically into language-specific type surfaces without changing shape truth."
+}

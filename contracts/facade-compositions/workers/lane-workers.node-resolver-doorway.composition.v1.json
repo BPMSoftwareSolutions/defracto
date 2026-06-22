@@ -11,11 +11,13 @@
   "bindings": {
     "toolKey": "defracto.conveyor.lane-workers",
     "commandKey": "defracto.conveyor.lane-workers.execute.v1",
+    "sourceSej": "contracts/sej/lane-workers.execute.sej.v1.json",
     "executeSejPath": "contracts/sej/lane-workers.execute.sej.v1.json",
     "semanticOperationGraphPath": "contracts/semantic-operation-graphs/workers/lane-workers.execute.sog.v1.json",
     "capabilityBindingsPath": "contracts/capabilities/workers/lane-workers.capability-bindings.v1.json",
     "projectionManifestPath": "contracts/projections/lane-workers.node-projection-manifest.v1.json",
     "resolverPackage": "@bpmsoftwaresolutions/sej-resolver-node",
+    "resolverDoorwayPackage": "@bpmsoftwaresolutions/sej-resolver-node/doorway",
     "inputMode": "stdin_json",
     "outputMode": "stdout_json",
     "failureMode": "fail_closed"

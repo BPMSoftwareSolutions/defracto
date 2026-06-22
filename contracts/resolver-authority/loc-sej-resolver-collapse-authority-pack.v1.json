@@ -1,0 +1,3059 @@
+{
+  "schemaVersion": "loc.sej-resolver-collapse-authority-pack.v1",
+  "packKey": "loc.sej.resolver.collapse-authority-pack.v1",
+  "packStatus": "draft_ready_for_handoff",
+  "createdDate": "2026-06-21",
+  "purpose": "Evacuate public DTOs, result envelopes, fail-closed shapes, projection handles, runtime graph mappings, stage policies, supported sources, CLI usage, and message text from the resolver into JSON authority.",
+  "doctrine": {
+    "compression": "SEJ owns the world. Resolver reads the language.",
+    "collapseLaw": "If it is a public shape, policy, message, projection, graph mapping, blocker, usage surface, or evidence contract, it belongs in JSON.",
+    "resolverResidue": "Only generic interpretation mechanics remain in host language.",
+    "nonNegotiables": [
+      "No public result object shape in resolver code.",
+      "No hard-coded DTO shaping in resolver code.",
+      "No hard-coded projection handle fields in resolver code.",
+      "No hard-coded runtime dependency graph mappings in resolver code.",
+      "No hard-coded human-facing CLI usage or error text in resolver code.",
+      "No product-specific branching.",
+      "No hidden fallback logic."
+    ]
+  },
+  "sourceCensus": {
+    "resolverHash": "sha256:3ab4264b7d0f521b97aebc933c5b0ad415cfd3bcf316de2f53b0263370bdc5a2",
+    "resolverLineCount": 857,
+    "cliHash": "sha256:735c493e4265f0363659db2bdfecda9dec813553132a71d60ef5a27f14922c7c",
+    "cliLineCount": 101,
+    "hardcodeCensusRef": "evidence/resolver-collapse/resolver-hardcode-census.v1.json"
+  },
+  "dtoContracts": {
+    "loc.sej.resolver.result-envelope.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.result-envelope.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Canonical resolver result envelope. Replaces shapeResult object literal.",
+      "requiredFields": [
+        "status",
+        "result",
+        "evidence",
+        "findings",
+        "blocker",
+        "error"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "status",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "enum": [
+            "passed",
+            "blocked",
+            "failed",
+            "skipped"
+          ]
+        },
+        {
+          "fieldKey": "result",
+          "type": [
+            "object",
+            "array",
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "evidence",
+          "type": [
+            "object"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "findings",
+          "type": [
+            "array"
+          ],
+          "required": true,
+          "itemsShapeRef": "loc.sej.resolver.finding.dto.v1"
+        },
+        {
+          "fieldKey": "blocker",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "error",
+          "type": [
+            "object",
+            "string",
+            "null"
+          ],
+          "required": true
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.finding.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.finding.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Canonical finding shape used by fail-closed and guardrail outputs.",
+      "requiredFields": [
+        "severity",
+        "code",
+        "message",
+        "details"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "severity",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "enum": [
+            "info",
+            "warning",
+            "blocker",
+            "error"
+          ]
+        },
+        {
+          "fieldKey": "code",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "message",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "details",
+          "type": [
+            "object"
+          ],
+          "required": true
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.fail-closed-evidence.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.fail-closed-evidence.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Canonical evidence block for fail-closed resolver output.",
+      "requiredFields": [
+        "failClosed",
+        "code",
+        "details"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "failClosed",
+          "type": [
+            "boolean"
+          ],
+          "required": true,
+          "const": true
+        },
+        {
+          "fieldKey": "code",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "details",
+          "type": [
+            "object"
+          ],
+          "required": true
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.contract-execution-evidence.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.contract-execution-evidence.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Canonical evidence shape for resolved contracts.",
+      "requiredFields": [
+        "contractKey",
+        "stageCount",
+        "executedStageIds"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "contractKey",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "stageCount",
+          "type": [
+            "integer"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "executedStageIds",
+          "type": [
+            "array"
+          ],
+          "required": true
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.runtime-state.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.runtime-state.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Runtime state shape used by reference resolution.",
+      "requiredFields": [
+        "contract",
+        "input",
+        "context",
+        "constants",
+        "steps"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "contract",
+          "type": [
+            "object"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "input",
+          "type": [
+            "object",
+            "array",
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "context",
+          "type": [
+            "object"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "constants",
+          "type": [
+            "object"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "steps",
+          "type": [
+            "object"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "result",
+          "type": [
+            "object",
+            "array",
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "null"
+          ],
+          "required": false
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.operation-state.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.operation-state.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Operation state available to declared projection sources.",
+      "requiredFields": [
+        "input",
+        "invocation",
+        "context",
+        "constants",
+        "steps",
+        "result",
+        "stageResult",
+        "resolverState",
+        "adapterResult",
+        "runtimeDependencyFacts",
+        "runtimeSurfaceBindings"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "input",
+          "type": [
+            "object",
+            "array",
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "invocation",
+          "type": [
+            "object",
+            "array",
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "context",
+          "type": [
+            "object"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "constants",
+          "type": [
+            "object"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "steps",
+          "type": [
+            "object"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "status",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false
+        },
+        {
+          "fieldKey": "blocker",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false
+        },
+        {
+          "fieldKey": "error",
+          "type": [
+            "object",
+            "string",
+            "null"
+          ],
+          "required": false
+        },
+        {
+          "fieldKey": "evidence",
+          "type": [
+            "object"
+          ],
+          "required": false
+        },
+        {
+          "fieldKey": "result",
+          "type": [
+            "object",
+            "array",
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "stageResult",
+          "type": [
+            "object",
+            "array",
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "resolverState",
+          "type": [
+            "object"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "adapterResult",
+          "type": [
+            "object",
+            "array",
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "runtimeDependencyFacts",
+          "type": [
+            "array",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "runtimeSurfaceBindings",
+          "type": [
+            "object",
+            "array",
+            "null"
+          ],
+          "required": true
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.projection-evidence.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.projection-evidence.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Evidence emitted by DTO projection handling.",
+      "requiredFields": [
+        "schemaVersion",
+        "status",
+        "dtoContractKey",
+        "projectionContractKey",
+        "projectionSource",
+        "projectedOutputShapeHash",
+        "resolverPackage",
+        "resolverLanguage",
+        "unsupportedProjectionReason"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "schemaVersion",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "const": "loc.sej.resolver.projection-evidence.v1"
+        },
+        {
+          "fieldKey": "status",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "dtoContractKey",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "projectionContractKey",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "projectionSource",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "projectedOutputShapeHash",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "resolverPackage",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "resolverLanguage",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "enum": [
+            "node",
+            "python",
+            "csharp"
+          ]
+        },
+        {
+          "fieldKey": "unsupportedProjectionReason",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.dto-projection-handle.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.dto-projection-handle.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Resolver handle returned when resultProjection is declared.",
+      "requiredFields": [
+        "dtoContractKey",
+        "projectionContractKey",
+        "projectionSource",
+        "projectedOutputShape",
+        "resolverProjectionEvidence",
+        "unsupportedProjectionReason"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "dtoContractKey",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "projectionContractKey",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "projectionSource",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "projectedOutputShape",
+          "type": [
+            "object",
+            "array",
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "resolverProjectionEvidence",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "shapeRef": "loc.sej.resolver.projection-evidence.dto.v1"
+        },
+        {
+          "fieldKey": "unsupportedProjectionReason",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.runtime-dependency-fact.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.runtime-dependency-fact.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Runtime dependency fact shape consumed by runtime import projection.",
+      "requiredFields": [
+        "kind",
+        "sourceLocation"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "kind",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "sourceLocation",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "specifier",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false
+        },
+        {
+          "fieldKey": "path",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false
+        },
+        {
+          "fieldKey": "bindingKey",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false
+        },
+        {
+          "fieldKey": "graphNodeKey",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false
+        },
+        {
+          "fieldKey": "graphNodeType",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false
+        },
+        {
+          "fieldKey": "edgeType",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.runtime-dependency-fact-list.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.runtime-dependency-fact-list.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Runtime dependency fact collection consumed by runtime import projection.",
+      "type": [
+        "array"
+      ],
+      "itemsShapeRef": "loc.sej.resolver.runtime-dependency-fact.dto.v1",
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.projected-runtime-import.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.projected-runtime-import.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Projected runtime import DTO.",
+      "requiredFields": [
+        "bindingKey",
+        "bindingType",
+        "graphNodeType",
+        "sourceLocation"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "bindingKey",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "bindingType",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "graphNodeType",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "sourceLocation",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "specifier",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false
+        },
+        {
+          "fieldKey": "path",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false
+        },
+        {
+          "fieldKey": "graphRole",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.runtime-dependency-graph.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.runtime-dependency-graph.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Canonical runtime dependency graph DTO.",
+      "requiredFields": [
+        "schemaVersion",
+        "nodes",
+        "edges"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "schemaVersion",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "const": "loc.sej.runtime-dependency-graph.v1"
+        },
+        {
+          "fieldKey": "nodes",
+          "type": [
+            "array"
+          ],
+          "required": true,
+          "itemsShapeRef": "loc.sej.resolver.runtime-dependency-graph-node.dto.v1"
+        },
+        {
+          "fieldKey": "edges",
+          "type": [
+            "array"
+          ],
+          "required": true,
+          "itemsShapeRef": "loc.sej.resolver.runtime-dependency-graph-edge.dto.v1"
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.runtime-dependency-graph-node.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.runtime-dependency-graph-node.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Runtime dependency graph node.",
+      "requiredFields": [
+        "nodeKey",
+        "nodeType"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "nodeKey",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "nodeType",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "graphRole",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.runtime-dependency-graph-edge.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.runtime-dependency-graph-edge.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Runtime dependency graph edge.",
+      "requiredFields": [
+        "from",
+        "to",
+        "edgeType"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "from",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "to",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "edgeType",
+          "type": [
+            "string"
+          ],
+          "required": true
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.runtime-import-projection-evidence.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.runtime-import-projection-evidence.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Evidence emitted by runtime import projection.",
+      "requiredFields": [
+        "schemaVersion",
+        "status",
+        "runtimeImportContractKey",
+        "runtimeImportProjectionKey",
+        "runtimeDependencySource",
+        "projectedRuntimeImportShapeHash",
+        "projectedRuntimeDependencyGraphHash",
+        "resolverPackage",
+        "resolverLanguage",
+        "unsupportedRuntimeImportProjectionReason"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "schemaVersion",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "const": "loc.sej.resolver.runtime-import-projection-evidence.v1"
+        },
+        {
+          "fieldKey": "status",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "runtimeSurfaceBindingKey",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false
+        },
+        {
+          "fieldKey": "runtimeImportContractKey",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "runtimeImportProjectionKey",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "runtimeDependencySource",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "projectedRuntimeImportShapeHash",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "projectedRuntimeDependencyGraphHash",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "resolverPackage",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "resolverLanguage",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "enum": [
+            "node",
+            "python",
+            "csharp"
+          ]
+        },
+        {
+          "fieldKey": "unsupportedRuntimeImportProjectionReason",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.runtime-import-projection-handle.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.runtime-import-projection-handle.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "Resolver handle returned when runtimeImportProjection is declared.",
+      "requiredFields": [
+        "runtimeImportContractKey",
+        "runtimeImportProjectionKey",
+        "runtimeDependencySource",
+        "projectedRuntimeImports",
+        "projectedRuntimeDependencyGraph",
+        "resolverRuntimeImportProjectionEvidence",
+        "unsupportedRuntimeImportProjectionReason"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "runtimeSurfaceBindingKey",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": false
+        },
+        {
+          "fieldKey": "runtimeImportContractKey",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "runtimeImportProjectionKey",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "runtimeDependencySource",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "projectedRuntimeImports",
+          "type": [
+            "array"
+          ],
+          "required": true,
+          "itemsShapeRef": "loc.sej.resolver.projected-runtime-import.dto.v1"
+        },
+        {
+          "fieldKey": "projectedRuntimeDependencyGraph",
+          "type": [
+            "object",
+            "null"
+          ],
+          "required": true,
+          "shapeRef": "loc.sej.resolver.runtime-dependency-graph.dto.v1"
+        },
+        {
+          "fieldKey": "resolverRuntimeImportProjectionEvidence",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "shapeRef": "loc.sej.resolver.runtime-import-projection-evidence.dto.v1"
+        },
+        {
+          "fieldKey": "unsupportedRuntimeImportProjectionReason",
+          "type": [
+            "string",
+            "null"
+          ],
+          "required": true
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.cli-invocation.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.cli-invocation.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "CLI invocation DTO produced from declared CLI grammar.",
+      "requiredFields": [
+        "command",
+        "flags",
+        "contract",
+        "input",
+        "options"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "command",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "flags",
+          "type": [
+            "object"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "contract",
+          "type": [
+            "object"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "input",
+          "type": [
+            "object",
+            "array",
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "null"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "options",
+          "type": [
+            "object"
+          ],
+          "required": true
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    },
+    "loc.sej.resolver.cli-result.dto.v1": {
+      "schemaVersion": "loc.dto-contract.v1",
+      "dtoContractKey": "loc.sej.resolver.cli-result.dto.v1",
+      "sourceTruth": "json_declared_dto_shape",
+      "scope": "resolver",
+      "description": "CLI result DTO; exit code is projected from status catalog.",
+      "requiredFields": [
+        "stdout",
+        "exitCode",
+        "result"
+      ],
+      "additionalProperties": false,
+      "fields": [
+        {
+          "fieldKey": "stdout",
+          "type": [
+            "string"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "exitCode",
+          "type": [
+            "integer"
+          ],
+          "required": true
+        },
+        {
+          "fieldKey": "result",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "shapeRef": "loc.sej.resolver.result-envelope.dto.v1"
+        }
+      ],
+      "crossLanguageRequirement": {
+        "requiredAcross": [
+          "node",
+          "python",
+          "csharp"
+        ],
+        "sameProjectedOutputShape": true,
+        "sameBlockerCodes": true,
+        "sameEvidenceShape": true
+      }
+    }
+  },
+  "projectionContracts": {
+    "loc.sej.resolver.result-envelope.from-any.projection.v1": {
+      "schemaVersion": "loc.dto-projection-contract.v1",
+      "projectionContractKey": "loc.sej.resolver.result-envelope.from-any.projection.v1",
+      "dtoContractKey": "loc.sej.resolver.result-envelope.dto.v1",
+      "projectionKind": "declared_dto_projection",
+      "projection": {
+        "stableOrdering": true,
+        "fields": {
+          "status": {
+            "$from": "operationState.status",
+            "default": "passed"
+          },
+          "result": {
+            "$from": "operationState.result",
+            "default": null
+          },
+          "evidence": {
+            "$from": "operationState.evidence",
+            "default": {}
+          },
+          "findings": {
+            "$from": "operationState.findings",
+            "default": []
+          },
+          "blocker": {
+            "$from": "operationState.blocker",
+            "default": null
+          },
+          "error": {
+            "$from": "operationState.error",
+            "default": null
+          }
+        }
+      },
+      "failure": {
+        "status": "blocked",
+        "blocker": "projected_output_shape_invalid"
+      }
+    },
+    "loc.sej.resolver.fail-closed.from-reason.projection.v1": {
+      "schemaVersion": "loc.dto-projection-contract.v1",
+      "projectionContractKey": "loc.sej.resolver.fail-closed.from-reason.projection.v1",
+      "dtoContractKey": "loc.sej.resolver.result-envelope.dto.v1",
+      "projectionKind": "declared_dto_projection",
+      "projection": {
+        "stableOrdering": true,
+        "fields": {
+          "status": {
+            "literal": "blocked"
+          },
+          "result": {
+            "literal": null
+          },
+          "blocker": {
+            "$from": "operationState.blocker",
+            "default": "semantic_runtime_blocked"
+          },
+          "error": {
+            "$from": "operationState.message",
+            "default": "Semantic runtime blocked."
+          },
+          "evidence": {
+            "fields": {
+              "failClosed": {
+                "literal": true
+              },
+              "code": {
+                "$from": "operationState.blocker",
+                "default": "semantic_runtime_blocked"
+              },
+              "details": {
+                "$from": "operationState.details",
+                "default": {}
+              }
+            }
+          },
+          "findings": {
+            "value": [
+              {
+                "severity": {
+                  "literal": "blocker"
+                },
+                "code": {
+                  "$from": "operationState.blocker",
+                  "default": "semantic_runtime_blocked"
+                },
+                "message": {
+                  "$from": "operationState.message",
+                  "default": "Semantic runtime blocked."
+                },
+                "details": {
+                  "$from": "operationState.details",
+                  "default": {}
+                }
+              }
+            ]
+          }
+        }
+      },
+      "failure": {
+        "status": "blocked",
+        "blocker": "projected_output_shape_invalid"
+      }
+    },
+    "loc.sej.resolver.contract-execution-evidence.from-state.projection.v1": {
+      "schemaVersion": "loc.dto-projection-contract.v1",
+      "projectionContractKey": "loc.sej.resolver.contract-execution-evidence.from-state.projection.v1",
+      "dtoContractKey": "loc.sej.resolver.contract-execution-evidence.dto.v1",
+      "projectionKind": "declared_dto_projection",
+      "projection": {
+        "stableOrdering": true,
+        "fields": {
+          "contractKey": {
+            "$from": "operationState.contract.contractKey",
+            "default": null
+          },
+          "stageCount": {
+            "$from": "operationState.stageCount",
+            "default": 0
+          },
+          "executedStageIds": {
+            "$from": "operationState.executedStageIds",
+            "default": []
+          }
+        }
+      },
+      "failure": {
+        "status": "blocked",
+        "blocker": "projected_output_shape_invalid"
+      }
+    },
+    "loc.sej.resolver.operation-state.from-runtime.projection.v1": {
+      "schemaVersion": "loc.dto-projection-contract.v1",
+      "projectionContractKey": "loc.sej.resolver.operation-state.from-runtime.projection.v1",
+      "dtoContractKey": "loc.sej.resolver.operation-state.dto.v1",
+      "projectionKind": "declared_dto_projection",
+      "projection": {
+        "stableOrdering": true,
+        "fields": {
+          "input": { "$from": "operationState.inputValue" },
+          "invocation": { "$from": "operationState.inputValue" },
+          "context": { "$from": "operationState.context", "default": {} },
+          "constants": { "$from": "operationState.state.constants", "default": {} },
+          "steps": { "$from": "operationState.state.steps", "default": {} },
+          "status": {
+            "when": { "allOf": [{ "equals": [{ "$from": "operationState.envelopeResult" }, { "literal": true }] }, { "exists": { "$from": "operationState.baseResult.status", "default": null } }] },
+            "then": { "$from": "operationState.baseResult.status" },
+            "else": { "$from": "operationState.last.status" }
+          },
+          "blocker": {
+            "when": { "allOf": [{ "equals": [{ "$from": "operationState.envelopeResult" }, { "literal": true }] }, { "exists": { "$from": "operationState.baseResult.blocker", "default": null } }] },
+            "then": { "$from": "operationState.baseResult.blocker" },
+            "else": { "$from": "operationState.last.blocker" }
+          },
+          "error": {
+            "when": { "allOf": [{ "equals": [{ "$from": "operationState.envelopeResult" }, { "literal": true }] }, { "exists": { "$from": "operationState.baseResult.error", "default": null } }] },
+            "then": { "$from": "operationState.baseResult.error" },
+            "else": { "$from": "operationState.last.error" }
+          },
+          "evidence": {
+            "when": { "allOf": [{ "equals": [{ "$from": "operationState.envelopeResult" }, { "literal": true }] }, { "exists": { "$from": "operationState.baseResult.evidence", "default": null } }] },
+            "then": { "$from": "operationState.baseResult.evidence" },
+            "else": { "$from": "operationState.last.evidence" }
+          },
+          "result": {
+            "when": { "allOf": [{ "equals": [{ "$from": "operationState.envelopeResult" }, { "literal": true }] }, { "exists": { "$from": "operationState.baseResult.result", "default": null } }] },
+            "then": { "$from": "operationState.baseResult.result" },
+            "else": { "$from": "operationState.baseResult" }
+          },
+          "stageResult": { "$from": "operationState.last.result" },
+          "resolverState": {
+            "fields": {
+              "input": { "$from": "operationState.inputValue" },
+              "context": { "$from": "operationState.context", "default": {} },
+              "constants": { "$from": "operationState.state.constants", "default": {} },
+              "steps": { "$from": "operationState.state.steps", "default": {} },
+              "runtimeDependencyFacts": { "$from": "operationState.state.context.runtimeDependencyFacts", "default": null }
+            }
+          },
+          "adapterResult": {
+            "when": { "exists": { "$from": "operationState.state.steps.adapterResult", "default": null } },
+            "then": { "$from": "operationState.state.steps.adapterResult" },
+            "else": { "$from": "operationState.state.context.adapterResult", "default": null }
+          },
+          "runtimeDependencyFacts": { "$from": "operationState.state.context.runtimeDependencyFacts", "default": null },
+          "runtimeSurfaceBindings": { "$from": "operationState.state.context.runtimeSurfaceBindings", "default": null }
+        }
+      },
+      "failure": {
+        "status": "blocked",
+        "blocker": "projected_output_shape_invalid"
+      }
+    },
+    "loc.sej.resolver.dto-projection-handle.from-projection.projection.v1": {
+      "schemaVersion": "loc.dto-projection-contract.v1",
+      "projectionContractKey": "loc.sej.resolver.dto-projection-handle.from-projection.projection.v1",
+      "dtoContractKey": "loc.sej.resolver.dto-projection-handle.dto.v1",
+      "projectionKind": "declared_dto_projection",
+      "projection": {
+        "stableOrdering": true,
+        "fields": {
+          "dtoContractKey": {
+            "$from": "operationState.declaration.dtoContractKey",
+            "default": null
+          },
+          "projectionContractKey": {
+            "$from": "operationState.declaration.projectionContractKey",
+            "default": null
+          },
+          "projectionSource": {
+            "$from": "operationState.declaration.projectionSource",
+            "default": null
+          },
+          "projectedOutputShape": {
+            "$from": "operationState.projectedShape",
+            "default": null
+          },
+          "resolverProjectionEvidence": {
+            "$from": "operationState.projectionEvidence"
+          },
+          "unsupportedProjectionReason": {
+            "$from": "operationState.unsupportedReason",
+            "default": null
+          }
+        }
+      },
+      "failure": {
+        "status": "blocked",
+        "blocker": "projected_output_shape_invalid"
+      }
+    },
+    "loc.sej.resolver.runtime-import-handle.from-facts.projection.v1": {
+      "schemaVersion": "loc.dto-projection-contract.v1",
+      "projectionContractKey": "loc.sej.resolver.runtime-import-handle.from-facts.projection.v1",
+      "dtoContractKey": "loc.sej.resolver.runtime-import-projection-handle.dto.v1",
+      "projectionKind": "declared_dto_projection",
+      "projection": {
+        "stableOrdering": true,
+        "fields": {
+          "runtimeSurfaceBindingKey": {
+            "$from": "operationState.declaration.runtimeSurfaceBindingKey",
+            "default": null
+          },
+          "runtimeImportContractKey": {
+            "$from": "operationState.declaration.runtimeImportContractKey",
+            "default": null
+          },
+          "runtimeImportProjectionKey": {
+            "$from": "operationState.declaration.runtimeImportProjectionKey",
+            "default": null
+          },
+          "runtimeDependencySource": {
+            "$from": "operationState.declaration.runtimeDependencySource",
+            "default": null
+          },
+          "projectedRuntimeImports": {
+            "$from": "operationState.projectedRuntimeImports",
+            "default": []
+          },
+          "projectedRuntimeDependencyGraph": {
+            "$from": "operationState.projectedRuntimeDependencyGraph",
+            "default": null
+          },
+          "resolverRuntimeImportProjectionEvidence": {
+            "$from": "operationState.projectionEvidence"
+          },
+          "unsupportedRuntimeImportProjectionReason": {
+            "$from": "operationState.unsupportedReason",
+            "default": null
+          }
+        }
+      },
+      "failure": {
+        "status": "blocked",
+        "blocker": "projected_runtime_import_shape_invalid"
+      }
+    },
+    "loc.sej.resolver.cli-error.from-error.projection.v1": {
+      "schemaVersion": "loc.dto-projection-contract.v1",
+      "projectionContractKey": "loc.sej.resolver.cli-error.from-error.projection.v1",
+      "dtoContractKey": "loc.sej.resolver.result-envelope.dto.v1",
+      "projectionKind": "declared_dto_projection",
+      "projection": {
+        "stableOrdering": true,
+        "fields": {
+          "status": {
+            "literal": "blocked"
+          },
+          "result": {
+            "literal": null
+          },
+          "blocker": {
+            "literal": "cli_error"
+          },
+          "error": {
+            "$from": "operationState.errorMessage",
+            "default": "CLI error."
+          },
+          "evidence": {
+            "fields": {
+              "failClosed": {
+                "literal": true
+              },
+              "code": {
+                "literal": "cli_error"
+              },
+              "details": {
+                "$from": "operationState.details",
+                "default": {}
+              }
+            }
+          },
+          "findings": {
+            "literal": []
+          }
+        }
+      },
+      "failure": {
+        "status": "blocked",
+        "blocker": "projected_output_shape_invalid"
+      }
+    }
+  },
+  "authority": {
+    "statusCatalog": {
+      "schemaVersion": "loc.resolver.status-catalog.v1",
+      "catalogKey": "loc.sej.resolver.status.v1",
+      "statuses": [
+        {
+          "statusKey": "passed",
+          "terminal": true,
+          "exitCode": 0
+        },
+        {
+          "statusKey": "blocked",
+          "terminal": true,
+          "exitCode": 1
+        },
+        {
+          "statusKey": "failed",
+          "terminal": true,
+          "exitCode": 1
+        },
+        {
+          "statusKey": "skipped",
+          "terminal": false,
+          "exitCode": 0
+        }
+      ],
+      "defaultStatus": "passed",
+      "blockedStatuses": [
+        "blocked",
+        "failed"
+      ]
+    },
+    "blockerCatalog": {
+      "schemaVersion": "loc.resolver.blocker-catalog.v1",
+      "catalogKey": "loc.sej.resolver.blockers.v1",
+      "blockers": [
+        {
+          "blocker": "semantic_runtime_blocked",
+          "severity": "blocker",
+          "messageKey": "semantic_runtime_blocked"
+        },
+        {
+          "blocker": "contract_missing",
+          "severity": "blocker",
+          "messageKey": "contract_missing"
+        },
+        {
+          "blocker": "input_missing",
+          "severity": "blocker",
+          "messageKey": "fixture_path_required"
+        },
+        {
+          "blocker": "missing_reference",
+          "severity": "blocker",
+          "messageKey": "missing_reference"
+        },
+        {
+          "blocker": "invalid_step",
+          "severity": "blocker",
+          "messageKey": "invalid_step"
+        },
+        {
+          "blocker": "unsupported_step_type",
+          "severity": "blocker",
+          "messageKey": "unsupported_step_type"
+        },
+        {
+          "blocker": "adapter_blocked",
+          "severity": "blocker",
+          "messageKey": "adapter_blocked"
+        },
+        {
+          "blocker": "write_blocked",
+          "severity": "blocker",
+          "messageKey": "write_blocked"
+        },
+        {
+          "blocker": "runtime_exception",
+          "severity": "blocker",
+          "messageKey": "runtime_exception"
+        },
+        {
+          "blocker": "cli_error",
+          "severity": "blocker",
+          "messageKey": "cli_error"
+        },
+        {
+          "blocker": "dto_contract_missing",
+          "severity": "blocker",
+          "messageKey": "dto_contract_missing"
+        },
+        {
+          "blocker": "projection_contract_missing",
+          "severity": "blocker",
+          "messageKey": "projection_contract_missing"
+        },
+        {
+          "blocker": "projection_source_missing",
+          "severity": "blocker",
+          "messageKey": "projection_source_missing"
+        },
+        {
+          "blocker": "projection_operation_unsupported",
+          "severity": "blocker",
+          "messageKey": "projection_operation_unsupported"
+        },
+        {
+          "blocker": "projection_contract_invalid",
+          "severity": "blocker",
+          "messageKey": "projection_contract_invalid"
+        },
+        {
+          "blocker": "projected_output_shape_invalid",
+          "severity": "blocker",
+          "messageKey": "projected_output_shape_invalid"
+        },
+        {
+          "blocker": "cross_language_projection_mismatch",
+          "severity": "blocker",
+          "messageKey": "cross_language_projection_mismatch"
+        },
+        {
+          "blocker": "runtime_import_contract_missing",
+          "severity": "blocker",
+          "messageKey": "runtime_import_contract_missing"
+        },
+        {
+          "blocker": "runtime_import_projection_contract_missing",
+          "severity": "blocker",
+          "messageKey": "runtime_import_projection_contract_missing"
+        },
+        {
+          "blocker": "runtime_dependency_source_missing",
+          "severity": "blocker",
+          "messageKey": "runtime_dependency_source_missing"
+        },
+        {
+          "blocker": "runtime_dependency_fact_shape_invalid",
+          "severity": "blocker",
+          "messageKey": "runtime_dependency_fact_shape_invalid"
+        },
+        {
+          "blocker": "runtime_import_projection_operation_unsupported",
+          "severity": "blocker",
+          "messageKey": "runtime_import_projection_operation_unsupported"
+        },
+        {
+          "blocker": "projected_runtime_import_shape_invalid",
+          "severity": "blocker",
+          "messageKey": "projected_runtime_import_shape_invalid"
+        }
+      ]
+    },
+    "messageCatalog": {
+      "schemaVersion": "loc.resolver.message-catalog.v1",
+      "catalogKey": "loc.sej.resolver.messages.en-us.v1",
+      "locale": "en-US",
+      "messages": {
+        "semantic_runtime_blocked": "Semantic runtime blocked.",
+        "contract_missing": "A SEJ contract object is required.",
+        "fixture_path_required": "Provide a fixture path.",
+        "missing_reference": "Reference could not be resolved.",
+        "invalid_step": "Each stage must be an object.",
+        "unsupported_step_type": "Unsupported step type: {{stepType}}",
+        "adapter_blocked": "Adapter steps are not executed inside Resolver.",
+        "write_blocked": "Write steps are not executed inside Resolver.",
+        "runtime_exception": "{{errorMessage}}",
+        "cli_error": "{{errorMessage}}",
+        "cli_json_path_required": "A JSON file path is required.",
+        "cli_unexpected_positional_argument": "Unexpected positional argument: {{token}}",
+        "cli_facade_generate_requires_sej": "facade:generate requires --sej <path>.",
+        "cli_sej_or_contract_required": "Provide --sej <path> or --contract <path>.",
+        "cli_unsupported_command": "Unsupported command: {{command}}",
+        "projection_failed_closed": "{{failureLabel}} failed closed: {{reason}}",
+        "dto_contract_missing": "DTO contract is missing.",
+        "projection_contract_missing": "Projection contract is missing.",
+        "projection_source_missing": "Projection source is missing.",
+        "projection_operation_unsupported": "Projection operation is unsupported.",
+        "projection_contract_invalid": "Projection contract is invalid.",
+        "projected_output_shape_invalid": "Projected output shape is invalid.",
+        "cross_language_projection_mismatch": "Cross-language projection output mismatch.",
+        "runtime_import_contract_missing": "Runtime import contract is missing.",
+        "runtime_import_projection_contract_missing": "Runtime import projection contract is missing.",
+        "runtime_dependency_source_missing": "Runtime dependency source is missing.",
+        "runtime_dependency_fact_shape_invalid": "Runtime dependency fact shape is invalid.",
+        "runtime_import_projection_operation_unsupported": "Runtime import projection operation is unsupported.",
+        "projected_runtime_import_shape_invalid": "Projected runtime import shape is invalid."
+      }
+    },
+    "resolverPackageBindings": {
+      "node": "@bpmsoftwaresolutions/sej-resolver-node",
+      "python": "@bpmsoftwaresolutions/sej-resolver-python",
+      "csharp": "@bpmsoftwaresolutions/sej-resolver-csharp"
+    },
+    "referenceRoots": {
+      "schemaVersion": "loc.resolver.reference-roots.v1",
+      "roots": [
+        {
+          "token": "$",
+          "path": "$state"
+        },
+        {
+          "token": "$input",
+          "path": "$state.input"
+        },
+        {
+          "token": "$context",
+          "path": "$state.context"
+        },
+        {
+          "token": "$steps",
+          "path": "$state.steps"
+        },
+        {
+          "token": "$constants",
+          "path": "$state.constants"
+        },
+        {
+          "token": "$contract",
+          "path": "$state.contract"
+        },
+        {
+          "token": "$result",
+          "path": "$state.result"
+        }
+      ],
+      "dottedReferenceRootMap": {
+        "input": "$state.input",
+        "context": "$state.context",
+        "steps": "$state.steps",
+        "constants": "$state.constants",
+        "contract": "$state.contract",
+        "result": "$state.result"
+      },
+      "missingReferenceSymbol": "missing_reference",
+      "failure": {
+        "blocker": "missing_reference",
+        "messageKey": "missing_reference"
+      }
+    },
+    "valueSelectorCatalog": {
+      "schemaVersion": "loc.resolver.value-selector-catalog.v1",
+      "selectors": [
+        {
+          "key": "const",
+          "operation": "selector.literal.v1"
+        },
+        {
+          "key": "literal",
+          "operation": "selector.literal.v1"
+        },
+        {
+          "key": "ref",
+          "operation": "selector.reference.v1"
+        },
+        {
+          "key": "$ref",
+          "operation": "selector.reference.v1"
+        },
+        {
+          "key": "selector",
+          "operation": "selector.reference.v1"
+        },
+        {
+          "key": "$context",
+          "operation": "selector.context-path.v1",
+          "prefix": "$context."
+        },
+        {
+          "key": "$from",
+          "operation": "selector.source-path.v1",
+          "defaultField": "default"
+        },
+        {
+          "key": "value",
+          "operation": "selector.unwrap-value.v1",
+          "onlyWhenSingleKey": true
+        },
+        {
+          "key": "object",
+          "operation": "selector.object-project.v1"
+        },
+        {
+          "key": "array",
+          "operation": "selector.array-project.v1"
+        }
+      ],
+      "unknownSelectorPolicy": "resolve_object_fields",
+      "missingReferencePolicy": "fail_closed"
+    },
+    "predicateCatalog": {
+      "schemaVersion": "loc.resolver.predicate-catalog.v1",
+      "operators": [
+        {
+          "operator": "equals",
+          "arity": 2,
+          "operation": "predicate.deep_equal.v1"
+        },
+        {
+          "operator": "notEquals",
+          "arity": 2,
+          "operation": "predicate.not_deep_equal.v1"
+        },
+        {
+          "operator": "exists",
+          "arity": 1,
+          "operation": "predicate.exists.v1"
+        },
+        {
+          "operator": "missing",
+          "arity": 1,
+          "operation": "predicate.missing.v1"
+        },
+        {
+          "operator": "not",
+          "arity": 1,
+          "operation": "predicate.not.v1"
+        },
+        {
+          "operator": "allOf",
+          "arity": "array",
+          "operation": "predicate.all_of.v1"
+        },
+        {
+          "operator": "anyOf",
+          "arity": "array",
+          "operation": "predicate.any_of.v1"
+        },
+        {
+          "operator": "noneOf",
+          "arity": "array",
+          "operation": "predicate.none_of.v1"
+        }
+      ],
+      "unknownPredicateDefault": false,
+      "missingBehavior": "propagate_missing_reference"
+    },
+    "projectionOperatorCatalog": {
+      "schemaVersion": "loc.resolver.projection-operator-catalog.v1",
+      "operators": [
+        {
+          "operator": "when",
+          "operation": "projection.conditional.v1",
+          "requiredFields": [
+            "when",
+            "then",
+            "else"
+          ]
+        },
+        {
+          "operator": "fields",
+          "operation": "projection.object-fields.v1"
+        },
+        {
+          "operator": "literal",
+          "operation": "selector.literal.v1"
+        },
+        {
+          "operator": "ref",
+          "operation": "selector.reference.v1"
+        },
+        {
+          "operator": "$from",
+          "operation": "selector.source-path.v1"
+        },
+        {
+          "operator": "default",
+          "operation": "selector.default.v1"
+        }
+      ],
+      "stableOrdering": true,
+      "missingBehavior": "fail_closed"
+    },
+    "stageTypeCatalog": {
+      "schemaVersion": "loc.resolver.stage-type-catalog.v1",
+      "defaultStageType": "resolver",
+      "stageTypes": [
+        {
+          "stageType": "return",
+          "mode": "resolve_return_value",
+          "allowed": true,
+          "operation": "runtime.resolve_return_stage.v1"
+        },
+        {
+          "stageType": "resolver",
+          "mode": "dispatch_declared_primitive",
+          "allowed": true,
+          "operationFieldPriority": [
+            "operation",
+            "primitive",
+            "primitiveKey"
+          ]
+        },
+        {
+          "stageType": "primitive",
+          "mode": "dispatch_declared_primitive",
+          "allowed": true,
+          "operationFieldPriority": [
+            "operation",
+            "primitive",
+            "primitiveKey"
+          ]
+        },
+        {
+          "stageType": "adapter",
+          "mode": "blocked",
+          "allowed": false,
+          "blocker": "adapter_blocked",
+          "messageKey": "adapter_blocked"
+        },
+        {
+          "stageType": "write",
+          "mode": "blocked",
+          "allowed": false,
+          "blocker": "write_blocked",
+          "messageKey": "write_blocked"
+        },
+        {
+          "stageType": "render",
+          "mode": "dispatch_declared_primitive",
+          "allowed": true,
+          "operation": "template.render.v1",
+          "collapseNote": "Remove regex template replace from resolver and route through primitive catalog."
+        },
+        {
+          "stageType": "dto",
+          "mode": "project_value",
+          "allowed": true,
+          "operation": "project.value.v1",
+          "collapseNote": "Prefer declared resultProjection; dto stage remains compatibility-only."
+        }
+      ],
+      "unsupportedStageType": {
+        "mode": "blocked",
+        "blocker": "unsupported_step_type",
+        "messageKey": "unsupported_step_type"
+      }
+    },
+    "returnSpecCatalog": {
+      "schemaVersion": "loc.resolver.return-spec-catalog.v1",
+      "defaultReturn": {
+        "type": "step",
+        "ref": "$steps"
+      },
+      "types": [
+        {
+          "type": "step",
+          "valueField": "ref",
+          "operation": "resolve.value.v1"
+        },
+        {
+          "type": "value",
+          "valueField": "value",
+          "operation": "resolve.value.v1"
+        },
+        {
+          "type": "object",
+          "operation": "resolve.value.v1"
+        }
+      ]
+    },
+    "projectionSourceCatalog": {
+      "schemaVersion": "loc.resolver.projection-source-catalog.v1",
+      "sources": [
+        {
+          "projectionSource": "operationState",
+          "path": "$operationState"
+        },
+        {
+          "projectionSource": "stageResult",
+          "path": "$operationState.stageResult"
+        },
+        {
+          "projectionSource": "resolverState",
+          "path": "$operationState.resolverState"
+        },
+        {
+          "projectionSource": "adapterResult",
+          "path": "$operationState.adapterResult"
+        },
+        {
+          "projectionSource": "invocation",
+          "path": "$operationState.invocation"
+        },
+        {
+          "projectionSource": "explicitJsonPointer",
+          "pathFromDeclarationFields": [
+            "sourcePointer",
+            "jsonPointer",
+            "pointer"
+          ]
+        }
+      ],
+      "missingSourceBlocker": "projection_source_missing"
+    },
+    "declaredContractLookupPolicy": {
+      "schemaVersion": "loc.resolver.declared-contract-lookup-policy.v1",
+      "families": [
+        {
+          "family": "dto",
+          "singularField": "dtoContract",
+          "pluralField": "dtoContracts",
+          "keyField": "dtoContractKey"
+        },
+        {
+          "family": "projection",
+          "singularField": "projectionContract",
+          "pluralField": "projectionContracts",
+          "keyField": "projectionContractKey"
+        },
+        {
+          "family": "runtimeImport",
+          "singularField": "runtimeImportContract",
+          "pluralField": "runtimeImportContracts",
+          "keyField": "runtimeImportContractKey"
+        },
+        {
+          "family": "runtimeImportProjection",
+          "singularField": "runtimeImportProjectionContract",
+          "pluralField": "runtimeImportProjectionContracts",
+          "keyField": "runtimeImportProjectionKey"
+        }
+      ],
+      "lookupOrder": [
+        "pluralByKey",
+        "singularMatchingKey"
+      ],
+      "missingPolicy": "fail_closed"
+    },
+    "dtoValidationPolicy": {
+      "schemaVersion": "loc.resolver.dto-validation-policy.v1",
+      "requiredFieldSources": [
+        "requiredFields",
+        "fields.required"
+      ],
+      "requiredFieldKey": "fieldKey",
+      "requiredDefault": true,
+      "objectRequiredForRequiredFields": true,
+      "additionalPropertiesPolicy": "declared_by_dto_contract"
+    },
+    "projectionFamilies": {
+      "dtoProjection": {
+        "schemaVersion": "loc.resolver.projection-family.v1",
+        "familyKey": "dtoProjection",
+        "evidenceSchemaVersion": "loc.sej.resolver.projection-evidence.v1",
+        "resolverPackageRef": "$runtime.resolverPackage",
+        "resolverLanguageRef": "$runtime.resolverLanguage",
+        "declarationFields": {
+          "dtoContractKey": "dtoContractKey",
+          "projectionContractKey": "projectionContractKey"
+        },
+        "sourceField": "projectionSource",
+        "primaryHashField": "projectedOutputShapeHash",
+        "unsupportedEvidenceField": "unsupportedProjectionReason",
+        "handleDeclarationFields": [
+          "dtoContractKey",
+          "projectionContractKey",
+          "projectionSource"
+        ],
+        "primaryShapeField": "projectedOutputShape",
+        "emptyPrimaryShape": null,
+        "evidenceField": "resolverProjectionEvidence",
+        "unsupportedHandleField": "unsupportedProjectionReason",
+        "failureLabelKey": "dto_projection",
+        "handleDtoContractKey": "loc.sej.resolver.dto-projection-handle.dto.v1",
+        "evidenceDtoContractKey": "loc.sej.resolver.projection-evidence.dto.v1"
+      },
+      "runtimeImportProjection": {
+        "schemaVersion": "loc.resolver.projection-family.v1",
+        "familyKey": "runtimeImportProjection",
+        "evidenceSchemaVersion": "loc.sej.resolver.runtime-import-projection-evidence.v1",
+        "resolverPackageRef": "$runtime.resolverPackage",
+        "resolverLanguageRef": "$runtime.resolverLanguage",
+        "declarationFields": {
+          "runtimeSurfaceBindingKey": "runtimeSurfaceBindingKey",
+          "runtimeImportContractKey": "runtimeImportContractKey",
+          "runtimeImportProjectionKey": "runtimeImportProjectionKey"
+        },
+        "sourceField": "runtimeDependencySource",
+        "primaryHashField": "projectedRuntimeImportShapeHash",
+        "secondaryHashField": "projectedRuntimeDependencyGraphHash",
+        "unsupportedEvidenceField": "unsupportedRuntimeImportProjectionReason",
+        "handleDeclarationFields": [
+          "runtimeSurfaceBindingKey",
+          "runtimeImportContractKey",
+          "runtimeImportProjectionKey",
+          "runtimeDependencySource"
+        ],
+        "primaryShapeField": "projectedRuntimeImports",
+        "secondaryShapeField": "projectedRuntimeDependencyGraph",
+        "emptyPrimaryShape": [],
+        "emptySecondaryShape": null,
+        "evidenceField": "resolverRuntimeImportProjectionEvidence",
+        "unsupportedHandleField": "unsupportedRuntimeImportProjectionReason",
+        "failureLabelKey": "runtime_import_projection",
+        "handleDtoContractKey": "loc.sej.resolver.runtime-import-projection-handle.dto.v1",
+        "evidenceDtoContractKey": "loc.sej.resolver.runtime-import-projection-evidence.dto.v1"
+      }
+    },
+    "runtimeDependencyProjection": {
+      "schemaVersion": "loc.resolver.runtime-dependency-projection.v1",
+      "factInputContractKey": "loc.sej.resolver.runtime-dependency-fact-list.dto.v1",
+      "factKinds": {
+        "external_package_import": {
+          "requiredValueField": "specifier",
+          "graphNodeType": "package_dependency",
+          "nodeKeyTemplate": "package:{{specifier}}"
+        },
+        "node_builtin_import": {
+          "requiredValueField": "specifier",
+          "graphNodeType": "runtime_builtin_dependency",
+          "nodeKeyTemplate": "specifier:{{specifier}}"
+        },
+        "python_module_import": {
+          "requiredValueField": "specifier",
+          "graphNodeType": "runtime_module_dependency",
+          "nodeKeyTemplate": "specifier:{{specifier}}"
+        },
+        "csharp_namespace_import": {
+          "requiredValueField": "specifier",
+          "graphNodeType": "runtime_module_dependency",
+          "nodeKeyTemplate": "specifier:{{specifier}}"
+        },
+        "relative_module_import": {
+          "requiredValueField": "specifier",
+          "graphNodeType": "runtime_module_dependency",
+          "nodeKeyTemplate": "specifier:{{specifier}}"
+        },
+        "physical_runtime_path": {
+          "requiredValueField": "path",
+          "graphNodeType": "runtime_entrypoint",
+          "nodeKeyTemplate": "runtime_path:{{path}}"
+        },
+        "package_entrypoint": {
+          "requiredValueField": "path",
+          "graphNodeType": "runtime_entrypoint",
+          "nodeKeyTemplate": "runtime_path:{{path}}"
+        },
+        "source_facade_path": {
+          "requiredValueField": "path",
+          "graphNodeType": "source_facade",
+          "nodeKeyTemplate": "runtime_path:{{path}}"
+        },
+        "test_facade_path": {
+          "requiredValueField": "path",
+          "graphNodeType": "test_facade",
+          "nodeKeyTemplate": "runtime_path:{{path}}"
+        },
+        "evidence_output_path": {
+          "requiredValueField": "path",
+          "graphNodeType": "evidence_output",
+          "nodeKeyTemplate": "runtime_path:{{path}}"
+        },
+        "tmp_runtime_scratch_path": {
+          "requiredValueField": "path",
+          "graphNodeType": "tmp_runtime_scratch_path",
+          "nodeKeyTemplate": "tmp:{{path}}",
+          "graphRole": "scratch_runtime_artifact"
+        }
+      },
+      "importFieldProjection": [
+        {
+          "field": "bindingKey",
+          "template": "runtime-binding:{{kind}}:{{specifier|path}}",
+          "overrideField": "bindingKey"
+        },
+        {
+          "field": "bindingType",
+          "from": "kind"
+        },
+        {
+          "field": "graphNodeType",
+          "fromCatalog": "graphNodeType",
+          "overrideField": "graphNodeType"
+        },
+        {
+          "field": "sourceLocation",
+          "from": "sourceLocation"
+        },
+        {
+          "field": "specifier",
+          "from": "specifier",
+          "omitWhenMissing": true
+        },
+        {
+          "field": "path",
+          "from": "path",
+          "omitWhenMissing": true
+        },
+        {
+          "field": "graphRole",
+          "fromCatalog": "graphRole",
+          "omitWhenMissing": true
+        }
+      ],
+      "dependencyGraph": {
+        "schemaVersion": "loc.sej.runtime-dependency-graph.v1",
+        "rootNode": {
+          "nodeKeyFromContractFields": [
+            "contractKey",
+            "semanticExecutionKey",
+            "semanticModuleKey"
+          ],
+          "fallback": "contract:unknown",
+          "nodeType": "semantic_execution_contract"
+        },
+        "edgeTemplates": [
+          {
+            "from": "{{fact.sourceLocation}}",
+            "to": "{{node.nodeKey}}",
+            "edgeType": "{{fact.edgeType|declares_runtime_dependency}}"
+          },
+          {
+            "from": "{{contractKey}}",
+            "to": "{{node.nodeKey}}",
+            "edgeType": "projects_runtime_dependency"
+          }
+        ]
+      }
+    },
+    "declaredProjectionPipeline": {
+      "schemaVersion": "loc.resolver.declared-projection-pipeline.v1",
+      "pipelineKey": "loc.sej.resolver.apply-declared-projection.v1",
+      "steps": [
+        {
+          "step": "readProjectionDeclaration",
+          "operation": "object.get.v1"
+        },
+        {
+          "step": "resolveProjectionFamily",
+          "operation": "registry.lookup.v1"
+        },
+        {
+          "step": "resolveDeclaredContract",
+          "operation": "declared_contract.lookup.v1"
+        },
+        {
+          "step": "resolveProjectionContract",
+          "operation": "declared_contract.lookup.v1"
+        },
+        {
+          "step": "buildOperationState",
+          "operation": "state.project_operation_state.v1"
+        },
+        {
+          "step": "resolveProjectionSource",
+          "operation": "projection.source.resolve.v1"
+        },
+        {
+          "step": "applyProjectionSpec",
+          "operation": "project.value.v1"
+        },
+        {
+          "step": "validateProjectedShape",
+          "operation": "dto.validate.v1"
+        },
+        {
+          "step": "buildProjectionEvidence",
+          "operation": "projection.evidence.build.v1"
+        },
+        {
+          "step": "buildProjectionHandle",
+          "operation": "projection.handle.build.v1"
+        },
+        {
+          "step": "projectResultEnvelope",
+          "operation": "result.envelope.project.v1"
+        }
+      ],
+      "failClosedOn": [
+        "missing declaration",
+        "missing projection family",
+        "missing declared contract",
+        "missing projection contract",
+        "missing projection source",
+        "unsupported projection operation",
+        "invalid projected output shape"
+      ]
+    }
+  },
+  "cliContracts": {
+    "loc.sej.resolver.cli.v1": {
+      "schemaVersion": "loc.cli-contract.v1",
+      "cliKey": "loc.sej.resolver.cli.v1",
+      "commands": {
+        "resolve": {
+          "description": "Resolve a SEJ or contract file.",
+          "requiredOneOf": [
+            [
+              "sej"
+            ],
+            [
+              "contract"
+            ]
+          ],
+          "optionalFlags": [
+            "input",
+            "fixture"
+          ],
+          "operation": "resolve.contract.v1"
+        },
+        "facade:generate": {
+          "description": "Generate a facade through SEJ-declared facade composition.",
+          "requiredFlags": [
+            "sej"
+          ],
+          "optionalFlags": [
+            "input"
+          ],
+          "operation": "resolve.contract.v1"
+        }
+      },
+      "aliases": {
+        "fixture": "sej",
+        "h": "help"
+      },
+      "argumentGrammar": {
+        "flagPrefix": "--",
+        "assignment": "equals_or_next_token",
+        "unexpectedPositionalBlocker": "cli_error"
+      },
+      "usage": {
+        "projection": {
+          "header": "Usage:",
+          "lines": [
+            "  sej-resolver resolve --sej <path> [--input <path>]",
+            "  sej-resolver resolve --contract <path> [--input <path>]",
+            "  sej-resolver facade:generate --sej <path> [--input <path>]"
+          ],
+          "joinWith": "\n",
+          "trailingNewline": true
+        }
+      },
+      "sourceLoading": {
+        "contractSourcePriority": [
+          "source.contract",
+          "source"
+        ],
+        "inputSourcePriority": [
+          "flags.input",
+          "source.input",
+          "{}"
+        ],
+        "optionsSourcePriority": [
+          "source.options",
+          "{}"
+        ],
+        "contextAugmentation": {
+          "sourceSejPath": {
+            "whenFlagPresent": "sej",
+            "normalize": "posix_path"
+          }
+        }
+      },
+      "exitPolicy": {
+        "statusField": "status",
+        "passedStatuses": [
+          "passed"
+        ],
+        "passedExitCode": 0,
+        "blockedExitCode": 1,
+        "failedExitCode": 1
+      }
+    }
+  },
+  "semanticOperationGraphs": {
+    "loc.sej.resolver.resolve-contract.pipeline.v1": {
+      "schemaVersion": "loc.semantic-operation-graph.v1",
+      "objectKind": "sej_code_body",
+      "objectKey": "loc.sej.resolver.resolve-contract.pipeline.v1",
+      "sourceTruth": "sej_semantic_body",
+      "status": "draft",
+      "commandKey": "loc.sej.resolver.resolve-contract.v1",
+      "semanticActionKey": "loc.sej.resolver.resolve-contract.v1",
+      "bodyKind": "semantic_operation_graph",
+      "hostLanguageBodyAllowed": false,
+      "semanticActions": [
+        {
+          "actionKey": "resolver.contract.validate.v1",
+          "capabilityKey": "contract.validate.v1"
+        },
+        {
+          "actionKey": "resolver.state.create.v1",
+          "capabilityKey": "state.create.v1"
+        },
+        {
+          "actionKey": "resolver.stages.execute.v1",
+          "capabilityKey": "stage.execute_sequence.v1"
+        },
+        {
+          "actionKey": "resolver.return.resolve.v1",
+          "capabilityKey": "return.resolve.v1"
+        },
+        {
+          "actionKey": "resolver.projection.apply_first_declared.v1",
+          "capabilityKey": "projection.apply_first_declared.v1"
+        },
+        {
+          "actionKey": "resolver.result.envelope.project.v1",
+          "capabilityKey": "result.envelope.project.v1"
+        }
+      ],
+      "graph": {
+        "steps": [
+          {
+            "id": "validateContract",
+            "capabilityKey": "contract.validate.v1",
+            "input": {
+              "contract": {
+                "$context": "contract"
+              },
+              "requiredShape": "sej_contract_object"
+            },
+            "output": {
+              "path": "$graph.contractValidation"
+            },
+            "failure": {
+              "status": "blocked",
+              "blocker": "contract_missing"
+            }
+          },
+          {
+            "id": "createState",
+            "capabilityKey": "state.create.v1",
+            "input": {
+              "contract": {
+                "$context": "contract"
+              },
+              "input": {
+                "$context": "input"
+              },
+              "options": {
+                "$context": "options"
+              },
+              "stateDtoContractKey": "loc.sej.resolver.runtime-state.dto.v1"
+            },
+            "output": {
+              "path": "$graph.state"
+            }
+          },
+          {
+            "id": "executeDeclaredStages",
+            "capabilityKey": "stage.execute_sequence.v1",
+            "input": {
+              "stages": {
+                "$from": "contract.steps",
+                "default": {
+                  "$from": "contract.stages",
+                  "default": []
+                }
+              },
+              "state": {
+                "$graph": "state"
+              },
+              "stageTypeCatalog": {
+                "$authority": "stageTypeCatalog"
+              }
+            },
+            "output": {
+              "path": "$graph.last"
+            }
+          },
+          {
+            "id": "resolveDeclaredReturn",
+            "capabilityKey": "return.resolve.v1",
+            "input": {
+              "returnSpec": {
+                "$from": "contract.return",
+                "default": {
+                  "type": "step",
+                  "ref": "$steps"
+                }
+              },
+              "state": {
+                "$graph": "state"
+              },
+              "returnSpecCatalog": {
+                "$authority": "returnSpecCatalog"
+              }
+            },
+            "output": {
+              "path": "$graph.baseResult"
+            }
+          },
+          {
+            "id": "applyDeclaredProjections",
+            "capabilityKey": "projection.apply_first_declared.v1",
+            "input": {
+              "projectionOrder": [
+                "runtimeImportProjection",
+                "resultProjection"
+              ],
+              "contract": {
+                "$context": "contract"
+              },
+              "input": {
+                "$context": "input"
+              },
+              "state": {
+                "$graph": "state"
+              },
+              "last": {
+                "$graph": "last"
+              },
+              "baseResult": {
+                "$graph": "baseResult"
+              },
+              "projectionFamilies": {
+                "$authority": "projectionFamilies"
+              },
+              "declaredProjectionPipeline": {
+                "$authority": "declaredProjectionPipeline"
+              }
+            },
+            "output": {
+              "path": "$graph.projected"
+            }
+          },
+          {
+            "id": "projectFinalEnvelope",
+            "capabilityKey": "result.envelope.project.v1",
+            "input": {
+              "value": {
+                "$graph": "projected",
+                "default": {
+                  "$graph": "baseResult"
+                }
+              },
+              "dtoContractKey": "loc.sej.resolver.result-envelope.dto.v1",
+              "projectionContractKey": "loc.sej.resolver.result-envelope.from-any.projection.v1"
+            },
+            "output": {
+              "path": "$result"
+            }
+          }
+        ],
+        "return": {
+          "$result": true
+        }
+      },
+      "evidenceObligations": [
+        "contract_validated",
+        "stage_execution_receipts",
+        "projection_evidence_when_projection_declared",
+        "result_envelope_projected_from_json_authority"
+      ],
+      "forbiddenClaims": [
+        "host language result envelope authority",
+        "hard-coded blocker text",
+        "hard-coded projection handle fields",
+        "hard-coded runtime dependency graph mappings",
+        "hard-coded CLI usage text"
+      ]
+    }
+  },
+  "primitiveBacklog": {
+    "schemaVersion": "loc.resolver.primitive-backlog.v1",
+    "purpose": "Capabilities needed to fully collapse resolver.cjs from shape owner into JSON authority interpreter.",
+    "capabilities": [
+      {
+        "capabilityKey": "result.envelope.project.v1",
+        "reason": "Replace shapeResult object literal."
+      },
+      {
+        "capabilityKey": "failure.fail_closed.project.v1",
+        "reason": "Replace failClosed object literal and message text."
+      },
+      {
+        "capabilityKey": "message.render.v1",
+        "reason": "Render message catalog templates without JS string interpolation."
+      },
+      {
+        "capabilityKey": "selector.resolve_by_catalog.v1",
+        "reason": "Replace selector if-chain with selector catalog dispatch."
+      },
+      {
+        "capabilityKey": "predicate.evaluate_by_catalog.v1",
+        "reason": "Replace predicate if-chain with predicate catalog dispatch."
+      },
+      {
+        "capabilityKey": "stage.execute_by_catalog.v1",
+        "reason": "Replace stage type branching with stage type catalog dispatch."
+      },
+      {
+        "capabilityKey": "projection.source.resolve_by_catalog.v1",
+        "reason": "Replace projection source switch statement."
+      },
+      {
+        "capabilityKey": "projection.family.apply.v1",
+        "reason": "Unify DTO and runtime import projection handling."
+      },
+      {
+        "capabilityKey": "runtime.dependency.project_imports.v1",
+        "reason": "Project runtime imports from JSON mapping."
+      },
+      {
+        "capabilityKey": "runtime.dependency.build_graph.v1",
+        "reason": "Build runtime graph from JSON node/edge templates."
+      },
+      {
+        "capabilityKey": "cli.invoke_by_contract.v1",
+        "reason": "Replace CLI command/usage/error hard-coding."
+      }
+    ],
+    "implementationRule": "Each capability must be implemented once per resolver language only as generic interpreter mechanics; public shapes and mappings remain in JSON."
+  },
+  "guardrails": {
+    "schemaVersion": "loc.resolver-collapse.guardrails.v1",
+    "guardrailKey": "loc.sej.resolver.no-hardcoded-shape-authority.v1",
+    "status": "required",
+    "blockedSignals": [
+      {
+        "signalKey": "result_envelope_object_literal",
+        "patterns": [
+          "return {\\n    status:",
+          "shapeResult({",
+          "status: STATUS.PASSED"
+        ],
+        "allowedOnlyIn": [
+          "generic_json_projection_engine_with_no_field_names"
+        ],
+        "blocker": "hardcoded_result_envelope"
+      },
+      {
+        "signalKey": "message_text_in_resolver",
+        "patterns": [
+          "Semantic runtime blocked.",
+          "Reference could not be resolved.",
+          "Adapter steps are not executed inside Resolver.",
+          "Write steps are not executed inside Resolver.",
+          "Unsupported step type:"
+        ],
+        "allowedOnlyIn": [
+          "contracts/**/*.json",
+          "message-catalog"
+        ],
+        "blocker": "hardcoded_message_text"
+      },
+      {
+        "signalKey": "projection_family_config_in_code",
+        "patterns": [
+          "DTO_PROJECTION",
+          "RUNTIME_IMPORT_PROJECTION",
+          "evidenceSchemaVersion",
+          "projectedOutputShapeHash"
+        ],
+        "allowedOnlyIn": [
+          "contracts/**/*.json"
+        ],
+        "blocker": "hardcoded_projection_family"
+      },
+      {
+        "signalKey": "runtime_dependency_mapping_in_code",
+        "patterns": [
+          "RUNTIME_DEPENDENCY_REQUIREMENTS",
+          "RUNTIME_GRAPH_NODE_TYPES",
+          "RUNTIME_IMPORT_FIELDS",
+          "RUNTIME_GRAPH_EDGE_TEMPLATES"
+        ],
+        "allowedOnlyIn": [
+          "contracts/**/*.json"
+        ],
+        "blocker": "hardcoded_runtime_dependency_projection"
+      },
+      {
+        "signalKey": "cli_usage_text_in_code",
+        "patterns": [
+          "Usage:",
+          "sej-resolver resolve --sej",
+          "facade:generate requires --sej"
+        ],
+        "allowedOnlyIn": [
+          "contracts/**/*.json",
+          "cliContracts"
+        ],
+        "blocker": "hardcoded_cli_text"
+      },
+      {
+        "signalKey": "projection_source_switch_in_code",
+        "patterns": [
+          "case 'operationState'",
+          "case 'stageResult'",
+          "case 'resolverState'",
+          "case 'explicitJsonPointer'"
+        ],
+        "allowedOnlyIn": [
+          "generic_catalog_dispatch_without_literal_source_names"
+        ],
+        "blocker": "hardcoded_projection_source_catalog"
+      }
+    ],
+    "allowedKernelResidue": [
+      "load JSON authority pack",
+      "validate JSON schema",
+      "generic object traversal",
+      "generic array iteration",
+      "generic catalog lookup",
+      "generic primitive dispatch",
+      "generic hash computation",
+      "generic file read/write primitive mechanics",
+      "generic process argv mechanics for CLI doorway"
+    ],
+    "notAllowedKernelResidue": [
+      "public result object field names",
+      "DTO field names",
+      "projection family field names",
+      "blocker/message text",
+      "runtime dependency graph mapping",
+      "CLI command usage text",
+      "product-specific command names",
+      "hard-coded stage type business behavior"
+    ]
+  },
+  "conformance": {
+    "schemaVersion": "loc.resolver-collapse.conformance.v1",
+    "requiredLanguages": [
+      "node",
+      "python",
+      "csharp"
+    ],
+    "fixtures": [
+      {
+        "fixtureId": "result-envelope-projected-from-json",
+        "contract": {
+          "contractKey": "loc.sej.resolver.fixture.result-envelope-projected.v1",
+          "resultProjection": {
+            "dtoContractKey": "loc.sej.resolver.result-envelope.dto.v1",
+            "projectionContractKey": "loc.sej.resolver.result-envelope.from-any.projection.v1",
+            "projectionSource": "operationState"
+          },
+          "steps": [
+            {
+              "id": "value",
+              "type": "resolver",
+              "operation": "project.value.v1",
+              "payload": {
+                "fields": {
+                  "result": {
+                    "literal": "ok"
+                  }
+                }
+              }
+            }
+          ],
+          "return": {
+            "type": "step",
+            "ref": "$steps.value"
+          }
+        },
+        "expected": {
+          "status": "passed",
+          "assertion": "output matches result-envelope DTO and hash is stable across languages"
+        }
+      },
+      {
+        "fixtureId": "missing-reference-message-from-catalog",
+        "contract": {
+          "contractKey": "loc.sej.resolver.fixture.missing-reference-message.v1",
+          "steps": [
+            {
+              "id": "missing",
+              "type": "return",
+              "ref": "$input.nope"
+            }
+          ]
+        },
+        "expected": {
+          "status": "blocked",
+          "blocker": "missing_reference",
+          "messageKey": "missing_reference"
+        }
+      },
+      {
+        "fixtureId": "runtime-dependency-graph-from-json-mapping",
+        "contract": {
+          "contractKey": "loc.sej.resolver.fixture.runtime-dependency-graph-json.v1",
+          "runtimeImportProjection": {
+            "runtimeImportContractKey": "loc.sej.resolver.runtime-import-projection-handle.dto.v1",
+            "runtimeImportProjectionKey": "loc.sej.resolver.runtime-import-handle.from-facts.projection.v1",
+            "runtimeDependencySource": "stageResult.runtimeDependencyFacts"
+          },
+          "steps": [
+            {
+              "id": "facts",
+              "type": "resolver",
+              "operation": "project.value.v1",
+              "payload": {
+                "fields": {
+                  "runtimeDependencyFacts": {
+                    "literal": [
+                      {
+                        "kind": "external_package_import",
+                        "specifier": "@bpmsoftwaresolutions/sej-resolver-node",
+                        "sourceLocation": "contracts/example/runtime-command.v1.json#/codeBody/source"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "return": {
+            "type": "step",
+            "ref": "$steps.facts"
+          }
+        },
+        "expected": {
+          "status": "passed",
+          "assertion": "runtime graph node/edge projection comes from JSON authority pack"
+        }
+      },
+      {
+        "fixtureId": "cli-usage-from-command-contract",
+        "contract": {
+          "contractKey": "loc.sej.resolver.fixture.cli-usage.v1",
+          "cliContractKey": "loc.sej.resolver.cli.v1"
+        },
+        "expected": {
+          "status": "passed",
+          "assertion": "usage text projected from cliContracts, not JS array"
+        }
+      }
+    ]
+  },
+  "handoffPacket": {
+    "schemaVersion": "loc.handoff-packet.v1",
+    "packetId": "SR-COLLAPSE-001-RESOLVER-SHAPE-AUTHORITY-EVACUATION",
+    "lane": "sej-runtime-resolver-collapse",
+    "purpose": "Collapse resolver.cjs and cli.cjs from shape/policy/message owners into thin generic JSON authority interpreters.",
+    "allowedRoots": [
+      "contracts/resolver-authority",
+      "contracts/dto",
+      "contracts/projections",
+      "contracts/cli",
+      "contracts/conformance",
+      "packages/node/src",
+      "packages/python/src",
+      "packages/csharp/src",
+      "evidence/resolver-collapse"
+    ],
+    "blockedActions": [
+      "do not add new hard-coded result envelopes",
+      "do not add new message text in resolver code",
+      "do not add projection family config in host language",
+      "do not special-case product or SDK names",
+      "do not convert JSON authority into hidden JS/Python/C# scripts",
+      "do not treat generated bodies as promotion-valid"
+    ],
+    "requiredOutputs": [
+      "contracts/resolver-authority/loc-sej-resolver-collapse-authority-pack.v1.json",
+      "evidence/resolver-collapse/resolver-hardcode-census.v1.json",
+      "evidence/resolver-collapse/cross-language-collapse-conformance.v1.json",
+      "reports/resolver-collapse/resolver-collapse-summary.md"
+    ],
+    "acceptanceCriteria": [
+      "All public result envelopes are projected from JSON DTO/projection contracts.",
+      "All blocker and message text is resolved from JSON catalogs.",
+      "Projection family configs are loaded from JSON.",
+      "Runtime dependency graph mappings are loaded from JSON.",
+      "CLI usage and command policy are loaded from JSON.",
+      "Node/Python/C# produce the same shapes, blockers, hashes, and evidence for the conformance fixtures.",
+      "Resolver code contains only generic catalog lookup, traversal, dispatch, hash, file, and process mechanics."
+    ],
+    "nextPacket": "SR-COLLAPSE-002-GENERIC-CATALOG-DISPATCH-ENGINE"
+  },
+  "contentHash": "sha256:34fec3eb9c313e197497dfd95808029e735458ba0668df35cb04a6285d5b0a97"
+}

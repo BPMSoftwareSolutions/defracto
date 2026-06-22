@@ -1,24 +1,17 @@
 {
   "schemaVersion": "defracto.download-readme.v1",
-  "title": "Conveyor Semantic Body Mechanics JSON Bundle",
-  "summary": "Graph-backed body design package for all conveyor characters: CLI, runner, workers, inspector, shipper, telemetry.",
-  "doctrine": [
-    "Do not store generated JS bodies inside SEJ.",
-    "Store semantic operation graphs and facade composition graphs inside SEJ.",
-    "Let the resolver materialize host-language surfaces from governed graph composition.",
-    "Generated JS remains disposable projection."
+  "title": "DTO Shape + Lineage Body Mechanics Pack",
+  "summary": "RF-002/RF-003 package for DTO shape parity, projection parity, and downstream-use audit to prevent double-dipping and DTO drift.",
+  "primaryHandoffs": [
+    "handoff/RF-002-dto-shape-projection-parity.handoff.v1.json",
+    "handoff/RF-003-dto-lineage-downstream-use-audit.handoff.v1.json"
   ],
-  "included": {
-    "semanticActions": "contracts/semantic-actions/**",
-    "semanticOperationGraphs": "contracts/semantic-operation-graphs/**",
-    "capabilityBindings": "contracts/capabilities/**",
-    "facadeArchetypes": "contracts/facade-archetypes/**",
-    "facadeCompositions": "contracts/facade-compositions/**",
-    "semanticExecuteSejs": "contracts/sej/*.execute.semantic.sej.v1.json",
-    "semanticMaterializationSejs": "contracts/sej/materialize-*-node.semantic.sej.v1.json",
-    "semanticBodyConformanceSejs": "contracts/sej/conform-*-semantic-body.sej.v1.json",
-    "runEnvelope": "conveyor/runs/2026/06/21/slice-010-semantic-body-mechanics-lock"
-  },
-  "usage": "Unzip at repo root. Prefer these semantic materialization SEJs over older blob-content materialization SEJs.",
-  "completionPosture": "This package provides JSON authority. Resolver execution is still required to materialize generated surfaces and receipts."
+  "doctrine": [
+    "DTO contract is language-neutral shape truth.",
+    "Projection contract is language-neutral mapping truth.",
+    "Semantic operation graph must consume DTO/projection contracts explicitly.",
+    "Resolver applies projections and emits projection evidence.",
+    "Downstream audit blocks ornamental DTOs, projection bypass, local DTO stitching, and shape matches without lineage."
+  ],
+  "completionPosture": "Ready for resolver/conveyor implementation and conformance validation."
 }

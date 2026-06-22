@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "loc.sej-conformance-expected-result.v1",
+  "fixtureId": "dto-unsupported-field-blocked",
+  "status": "blocked",
+  "blocker": "dto_forbidden_field_present"
+}

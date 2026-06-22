@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-011-dto-shape-lineage-body-mechanics.v1",
+  "runKind": "resolver-and-conveyor-contract-run",
+  "sliceKey": "slice-011-dto-shape-lineage-body-mechanics",
+  "objective": "Add RF-002 DTO parity and RF-003 downstream-use audit body mechanics.",
+  "laneOrder": [
+    "01-dto-contracts",
+    "02-dto-projection-contracts",
+    "03-resolver-capabilities",
+    "04-conformance-fixtures",
+    "05-downstream-use-audit",
+    "06-visual-evidence"
+  ],
+  "outputs": [
+    "contracts/dto/**",
+    "contracts/dto-projections/**",
+    "contracts/capabilities/dto.*.json",
+    "contracts/conformance/corpus/dto-*.json",
+    "contracts/conformance/expectations/dto-*.json",
+    "contracts/policies/dto-lineage-zero-tolerance.policy.v1.json",
+    "conveyor/gates/dto-lineage-downstream-use.gate.v1.json"
+  ],
+  "completionPosture": "Passes when DTO shape/projection parity and downstream-use audit fixtures are green across Node, Python, and C#."
+}

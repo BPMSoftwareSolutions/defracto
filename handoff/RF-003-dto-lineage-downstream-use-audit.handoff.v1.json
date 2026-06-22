@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "defracto.resolver-handoff.v1",
+  "handoffKey": "defracto.resolver.rf003.dto-lineage-downstream-use-audit.v1",
+  "title": "RF-003 DTO Lineage And Downstream Use Audit",
+  "targetRepo": "C:/source/repos/bpm/internal/sej-runtime-resolver",
+  "objective": "Prove declared DTO/projection contracts are actually consumed downstream and block double-dipping/local DTO shaping.",
+  "requiredCapabilities": [
+    "dto.lineage.audit.v1"
+  ],
+  "requiredLanguageParity": [
+    "node",
+    "python",
+    "csharp"
+  ],
+  "acceptanceCriteria": [
+    "dto-lineage-audit-detects-double-dip blocks with local_dto_stitching_detected.",
+    "Audit result identifies declared DTOs, declared projection contracts, downstream use evidence, and findings.",
+    "Matching output shape without dtoContractKey/projectionContractKey lineage blocks.",
+    "Receipts missing DTO projection evidence block."
+  ],
+  "nonGoals": [
+    "Do not mutate canonical specs.",
+    "Do not promote or reject product features.",
+    "Do not scan arbitrary code beyond declared generated surfaces/evidence inputs."
+  ],
+  "completionPosture": "DTO contracts cannot be ornamental; every shape in the execution path must carry lineage or block."
+}

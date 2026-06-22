@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "defracto.visual-projection-model.v1",
+  "visualProjectionModelKey": "defracto.visual.slice-011.dto-lineage-audit.v1",
+  "modelStatus": "accepted",
+  "surface": {
+    "surfaceKey": "slice-011.dto-lineage-audit",
+    "surfaceKind": "ascii"
+  },
+  "nodes": [
+    {
+      "nodeKey": "dtoContracts",
+      "label": "DTO Contracts"
+    },
+    {
+      "nodeKey": "projectionContracts",
+      "label": "Projection Contracts"
+    },
+    {
+      "nodeKey": "sog",
+      "label": "Semantic Operation Graph"
+    },
+    {
+      "nodeKey": "resolver",
+      "label": "Resolver Projection"
+    },
+    {
+      "nodeKey": "receipts",
+      "label": "DTO Evidence Receipts"
+    },
+    {
+      "nodeKey": "audit",
+      "label": "Downstream Use Audit"
+    }
+  ],
+  "edges": [
+    {
+      "from": "dtoContracts",
+      "to": "projectionContracts",
+      "label": "shape truth"
+    },
+    {
+      "from": "projectionContracts",
+      "to": "sog",
+      "label": "declared use"
+    },
+    {
+      "from": "sog",
+      "to": "resolver",
+      "label": "executes"
+    },
+    {
+      "from": "resolver",
+      "to": "receipts",
+      "label": "emits evidence"
+    },
+    {
+      "from": "receipts",
+      "to": "audit",
+      "label": "proves lineage"
+    }
+  ],
+  "passCriteria": [
+    "No ornamental DTO contracts",
+    "No projection bypass",
+    "No local DTO stitching",
+    "No matching shape without lineage"
+  ]
+}

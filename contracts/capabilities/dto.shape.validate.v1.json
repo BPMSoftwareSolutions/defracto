@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "dto.shape.validate.v1",
+  "capabilityStatus": "required",
+  "category": "dto.shape",
+  "purpose": "Validate a projected value against a declared language-neutral DTO contract.",
+  "runtimeCategory": "resolver_interpreted_dto_validation",
+  "portableAcross": [
+    "node",
+    "python",
+    "csharp"
+  ],
+  "inputContract": "contracts/schemas/dto-shape-validate-input.schema.v1.json",
+  "outputContract": "contracts/schemas/dto-shape-validate-result.schema.v1.json",
+  "mustDo": [
+    "load declared dto contract",
+    "verify required fields",
+    "verify const fields",
+    "verify enum fields",
+    "verify forbidden fields are absent",
+    "verify nullability rules",
+    "compute projected shape hash",
+    "emit structured validation result"
+  ],
+  "mustNotDo": [
+    "invent DTO fields",
+    "silently accept unknown required fields",
+    "perform product-specific interpretation",
+    "repair mismatched shapes",
+    "treat same-looking shape as valid without contract key"
+  ],
+  "failureCodes": [
+    "dto_contract_missing",
+    "dto_required_field_missing",
+    "dto_const_mismatch",
+    "dto_enum_mismatch",
+    "dto_forbidden_field_present",
+    "dto_shape_invalid"
+  ],
+  "completionPosture": "Complete when Node, Python, and C# validate the same DTO contract and return the same result shape and blocker codes."
+}

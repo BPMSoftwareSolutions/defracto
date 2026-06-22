@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gate.dto-lineage-downstream-use.v1",
+  "gateStatus": "accepted",
+  "scope": "semantic-execution-path",
+  "requiredInputs": [
+    "dto contracts",
+    "dto projection contracts",
+    "semantic operation graphs",
+    "generated surfaces",
+    "execution receipts",
+    "projection evidence"
+  ],
+  "passCriteria": [
+    "all declared DTO contracts are consumed",
+    "all declared projection contracts are consumed",
+    "all output shapes carry dto/projection lineage",
+    "no local DTO stitching findings exist",
+    "all resolver languages agree on projected output hash"
+  ],
+  "blockedFindings": [
+    "declared_dto_not_consumed",
+    "declared_projection_not_consumed",
+    "dto_projection_bypassed",
+    "local_dto_stitching_detected",
+    "shape_match_without_contract_lineage",
+    "receipt_missing_dto_projection_evidence"
+  ],
+  "completionPosture": "Gate blocks if any DTO shape appears downstream without lineage to declared DTO/projection contracts."
+}

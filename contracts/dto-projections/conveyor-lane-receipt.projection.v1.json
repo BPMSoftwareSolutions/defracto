@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "loc.dto-projection-contract.v1",
+  "projectionContractKey": "defracto.conveyor-lane-receipt.projection.v1",
+  "dtoContractKey": "defracto.conveyor-lane-receipt.dto.v1",
+  "projectionSource": "operationState",
+  "projection": {
+    "fields": {
+      "schemaVersion": {
+        "literal": "defracto.conveyor-lane-receipt.v1"
+      },
+      "receiptKey": {
+        "template": "{runKey}.{laneKey}.receipt.v1",
+        "values": {
+          "runKey": {
+            "$from": "dispatch.runKey"
+          },
+          "laneKey": {
+            "$from": "dispatch.laneKey"
+          }
+        }
+      },
+      "laneKey": {
+        "$from": "dispatch.laneKey"
+      },
+      "status": {
+        "$from": "execution.status"
+      },
+      "responsePath": {
+        "$from": "execution.responsePath"
+      },
+      "responseHash": {
+        "$from": "execution.responseHash"
+      },
+      "nextLane": {
+        "$from": "dispatch.nextLaneKey"
+      }
+    }
+  },
+  "failure": {
+    "onMissingProjectionSource": "blocked",
+    "blocker": "lane_receipt_projection_source_missing"
+  },
+  "completionPosture": "Projection is valid only when resolver applies this contract and emits projection evidence.",
+  "projectionContractHash": "sha256:a3bd1ab3c5562a44a40a01a42dd065a95344f4833c45ff539cc319bb1384634f"
+}

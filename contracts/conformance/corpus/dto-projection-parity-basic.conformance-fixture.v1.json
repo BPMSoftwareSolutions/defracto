@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "loc.sej-conformance-fixture.v1",
+  "fixtureId": "dto-projection-parity-basic",
+  "contract": {
+    "contractKey": "loc.sej-resolver.dto-projection-parity-basic.v1",
+    "steps": [
+      {
+        "id": "project",
+        "type": "resolver",
+        "operation": "dto.project.v1",
+        "payload": {
+          "dtoContract": {
+            "$inline": "contracts/dto/worker-response.dto.v1.json"
+          },
+          "projectionContract": {
+            "$inline": "contracts/dto-projections/worker-response.projection.v1.json"
+          },
+          "projectionSourceValue": {
+            "dispatch": {
+              "schemaVersion": "defracto.worker-dispatch.v1",
+              "runKey": "run-001",
+              "laneKey": "03-materialize-workers",
+              "workerKey": "lane-worker",
+              "inputArtifacts": [
+                "contracts/sej/lane-workers.execute.sej.v1.json"
+              ],
+              "expectedOutputs": [
+                "evidence/workers/lane-worker.receipt.v1.json"
+              ],
+              "forbiddenResponsibilities": [
+                "release approval"
+              ],
+              "receiptPath": "evidence/workers/lane-worker.receipt.v1.json",
+              "nextLaneKey": "04-evidence-review"
+            },
+            "execution": {
+              "status": "passed",
+              "summary": "Lane worker completed materialization handoff.",
+              "artifacts": [
+                {
+                  "path": "generated/workers/node/lane-worker.cjs",
+                  "status": "passed"
+                }
+              ],
+              "findings": [],
+              "responsePath": "evidence/workers/lane-worker.response.v1.json",
+              "responseHash": "sha256:abc123"
+            }
+          }
+        }
+      }
+    ],
+    "return": {
+      "type": "step",
+      "ref": "$steps.project"
+    }
+  },
+  "input": {}
+}

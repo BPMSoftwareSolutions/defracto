@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "loc.dto-language-projection-input.v1",
+  "title": "DTO Language Projection Input",
+  "type": "object",
+  "required": [
+    "dtoContract",
+    "targetLanguage",
+    "projectionProfile"
+  ],
+  "properties": {
+    "dtoContract": {
+      "type": [
+        "object",
+        "string"
+      ]
+    },
+    "targetLanguage": {
+      "type": "string",
+      "enum": [
+        "typescript",
+        "python",
+        "csharp"
+      ]
+    },
+    "projectionProfile": {
+      "type": [
+        "object",
+        "string"
+      ]
+    },
+    "targetPath": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

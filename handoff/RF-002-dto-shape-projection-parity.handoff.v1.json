@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "defracto.resolver-handoff.v1",
+  "handoffKey": "defracto.resolver.rf002.dto-shape-projection-parity.v1",
+  "title": "RF-002 DTO Shape And Projection Parity",
+  "targetRepo": "C:/source/repos/bpm/internal/sej-runtime-resolver",
+  "objective": "Make DTO shape contracts and projection contracts first-class resolver-supported, cross-language parity surfaces.",
+  "requiredCapabilities": [
+    "dto.shape.validate.v1",
+    "dto.project.v1",
+    "dto.language_projection.v1"
+  ],
+  "requiredLanguageParity": [
+    "node",
+    "python",
+    "csharp"
+  ],
+  "acceptanceCriteria": [
+    "dto-shape-parity-basic passes in Node, Python, and C#.",
+    "dto-projection-parity-basic passes in Node, Python, and C#.",
+    "dto-unsupported-field-blocked blocks in Node, Python, and C#.",
+    "Projection evidence includes dtoContractKey, projectionContractKey, projectionSource, shape hash, resolver language, and unsupported reason."
+  ],
+  "nonGoals": [
+    "Do not invent product DTO vocabulary in resolver.",
+    "Do not detect DTO stitching in resolver as product governance; emit structured evidence for conveyor audit.",
+    "Do not generate hand-authored language DTOs."
+  ],
+  "completionPosture": "DTO shape truth is language-neutral and projection evidence is identical across resolver languages."
+}

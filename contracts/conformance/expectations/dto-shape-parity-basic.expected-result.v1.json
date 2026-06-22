@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "loc.sej-conformance-expected-result.v1",
+  "fixtureId": "dto-shape-parity-basic",
+  "status": "passed",
+  "resultByLanguage": {
+    "node": {
+      "dtoContractKey": "defracto.worker-response.dto.v1",
+      "projectedOutputShapeHash": "sha256:0d297b54d715215ef414a0a05e91915cbd3cbf8a70f3707ec9b5a0ad8fd6222a",
+      "unsupportedReason": null
+    },
+    "python": {
+      "dtoContractKey": "defracto.worker-response.dto.v1",
+      "projectedOutputShapeHash": "sha256:0d297b54d715215ef414a0a05e91915cbd3cbf8a70f3707ec9b5a0ad8fd6222a",
+      "unsupportedReason": null
+    },
+    "csharp": {
+      "dtoContractKey": "defracto.worker-response.dto.v1",
+      "projectedOutputShapeHash": "sha256:0d297b54d715215ef414a0a05e91915cbd3cbf8a70f3707ec9b5a0ad8fd6222a",
+      "unsupportedReason": null
+    }
+  }
+}

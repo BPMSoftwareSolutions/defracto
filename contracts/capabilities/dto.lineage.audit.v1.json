@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "dto.lineage.audit.v1",
+  "capabilityStatus": "required",
+  "category": "dto.audit",
+  "purpose": "Audit that declared DTO and projection contracts are actually consumed downstream in semantic execution, generated surfaces, and evidence receipts.",
+  "runtimeCategory": "resolver_or_conveyor_interpreted_audit",
+  "portableAcross": [
+    "node",
+    "python",
+    "csharp"
+  ],
+  "inputContract": "contracts/schemas/dto-lineage-audit-input.schema.v1.json",
+  "outputContract": "contracts/schemas/dto-lineage-audit-result.schema.v1.json",
+  "mustDo": [
+    "read declared DTO contracts",
+    "read declared projection contracts",
+    "read semantic operation graph references",
+    "read materialization and execution receipts",
+    "verify downstream use evidence references dtoContractKey and projectionContractKey",
+    "detect equivalent shape without lineage",
+    "detect local DTO stitching",
+    "block double-dipping"
+  ],
+  "mustNotDo": [
+    "treat matching shape as lineage",
+    "ignore missing projection evidence",
+    "accept local DTO shaping",
+    "permit ornamental DTO contracts",
+    "mutate canonical specs"
+  ],
+  "failureCodes": [
+    "declared_dto_not_consumed",
+    "declared_projection_not_consumed",
+    "dto_projection_bypassed",
+    "local_dto_stitching_detected",
+    "shape_match_without_contract_lineage",
+    "receipt_missing_dto_projection_evidence"
+  ],
+  "completionPosture": "Complete when every declared DTO/projection used by an execution path is trace-proven downstream and every untraced shape blocks."
+}

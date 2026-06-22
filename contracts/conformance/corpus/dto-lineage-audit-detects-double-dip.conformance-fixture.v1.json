@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "loc.sej-conformance-fixture.v1",
+  "fixtureId": "dto-lineage-audit-detects-double-dip",
+  "contract": {
+    "contractKey": "loc.sej-resolver.dto-lineage-audit-detects-double-dip.v1",
+    "steps": [
+      {
+        "id": "audit",
+        "type": "resolver",
+        "operation": "dto.lineage.audit.v1",
+        "payload": {
+          "targetExecutionPath": {
+            "commandKey": "defracto.conveyor.lane-workers.execute.v1",
+            "semanticOperationGraph": "contracts/semantic-operation-graphs/workers/lane-workers.execute.dto-lineage.sog.v1.json",
+            "generatedFacade": "generated/workers/node/lane-worker.cjs"
+          },
+          "declaredDtoContracts": [
+            "contracts/dto/worker-response.dto.v1.json"
+          ],
+          "declaredProjectionContracts": [
+            "contracts/dto-projections/worker-response.projection.v1.json"
+          ],
+          "semanticOperationGraphs": [
+            "contracts/semantic-operation-graphs/workers/lane-workers.execute.dto-lineage.sog.v1.json"
+          ],
+          "receipts": [
+            {
+              "schemaVersion": "defracto.fake.receipt.v1",
+              "status": "passed",
+              "projectedOutputShape": {
+                "schemaVersion": "defracto.worker-response.v1",
+                "runKey": "run-001",
+                "laneKey": "03-materialize-workers",
+                "workerKey": "lane-worker",
+                "status": "passed",
+                "summary": "Lane worker completed materialization handoff.",
+                "artifacts": [
+                  {
+                    "path": "generated/workers/node/lane-worker.cjs",
+                    "status": "passed"
+                  }
+                ],
+                "findings": []
+              }
+            }
+          ],
+          "generatedSurfaces": [
+            {
+              "path": "generated/workers/node/lane-worker.cjs",
+              "observedSignals": [
+                "local_object_literal_status_result_shape"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "return": {
+      "type": "step",
+      "ref": "$steps.audit"
+    }
+  },
+  "input": {}
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "loc.dto-shape-validate-result.v1",
+  "title": "DTO Shape Validate Result",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "status",
+    "dtoContractKey",
+    "projectedOutputShapeHash",
+    "findings"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "dtoContractKey": {
+      "type": "string"
+    },
+    "projectedOutputShapeHash": {
+      "type": "string"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "unsupportedReason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

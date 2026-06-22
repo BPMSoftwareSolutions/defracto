@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "loc.dto-shape-validate-input.v1",
+  "title": "DTO Shape Validate Input",
+  "type": "object",
+  "required": [
+    "dtoContract",
+    "value"
+  ],
+  "properties": {
+    "dtoContract": {
+      "type": [
+        "object",
+        "string"
+      ]
+    },
+    "value": {},
+    "strict": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "loc.dto-contract.v1",
+  "dtoContractKey": "defracto.worker-response.dto.v1",
+  "dtoKind": "execution_result",
+  "status": "accepted",
+  "fields": {
+    "schemaVersion": {
+      "type": "string",
+      "required": true,
+      "const": "defracto.worker-response.v1"
+    },
+    "runKey": {
+      "type": "string",
+      "required": true
+    },
+    "laneKey": {
+      "type": "string",
+      "required": true
+    },
+    "workerKey": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "required": true
+    },
+    "artifacts": {
+      "type": "array",
+      "required": true
+    },
+    "findings": {
+      "type": "array",
+      "required": true
+    }
+  },
+  "forbiddenFields": [
+    "rawJsBody",
+    "rawPythonBody",
+    "manualFallback",
+    "unapprovedMutation",
+    "localDtoShape"
+  ],
+  "projectionTargets": [
+    "typescript",
+    "python",
+    "csharp",
+    "json-schema"
+  ],
+  "conformance": {
+    "requiredAcross": [
+      "node",
+      "python",
+      "csharp"
+    ],
+    "requiredEvidence": [
+      "same_projected_shape",
+      "same_blocker_codes",
+      "same_unsupported_reason",
+      "same_shape_hash"
+    ]
+  },
+  "dtoContractHash": "sha256:ebb229690e36dbe34b2fbc06278ef3d9f219767496f9377b578d3e54ec2a82a6"
+}

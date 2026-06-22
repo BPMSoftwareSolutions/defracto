@@ -1,30 +1,23 @@
 {
-  "schemaVersion": "defracto.semantic-body-mechanics-package-manifest.v1",
-  "manifestKey": "defracto.package.conveyor-semantic-body-mechanics-json.v1",
-  "status": "ready-for-repo",
-  "characterKeys": [
-    "ndd-cli",
-    "conveyor-runner",
-    "lane-workers",
-    "evidence-inspector",
-    "shipper",
-    "telemetry-observer"
+  "schemaVersion": "defracto.dto-body-mechanics-package-manifest.v1",
+  "manifestKey": "defracto.package.dto-shape-lineage-body-mechanics.v1",
+  "status": "ready-for-resolver-and-conveyor",
+  "packageFamilies": [
+    "dto contracts",
+    "dto projection contracts",
+    "DTO capabilities",
+    "DTO schemas",
+    "DTO conformance fixtures",
+    "DTO lineage policy",
+    "DTO downstream use gate",
+    "RF-002 handoff",
+    "RF-003 handoff",
+    "slice-011 run envelope"
   ],
-  "fileFamilies": [
-    "semantic-actions",
-    "semantic-operation-graphs",
-    "capability-bindings",
-    "facade-archetypes",
-    "facade-compositions",
-    "semantic-execute-sejs",
-    "semantic-materialization-sejs",
-    "semantic-body-conformance-sejs",
-    "slice-010-run-envelope"
-  ],
-  "blockedClaims": [
-    "this package has already materialized JS",
-    "this package proves resolver execution",
-    "this package eliminates the need for receipts"
-  ],
-  "completionPosture": "Ready for repo ingestion and resolver review. It does not claim execution until receipts exist."
+  "acceptanceRequires": [
+    "RF-002 fixtures pass across Node, Python, and C#.",
+    "RF-003 double-dip audit fixture blocks consistently.",
+    "Receipts include DTO projection evidence handles.",
+    "Generated surfaces contain no local DTO stitching."
+  ]
 }

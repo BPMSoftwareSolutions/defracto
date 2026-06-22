@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "loc.dto-projection-contract.v1",
+  "title": "DTO Projection Contract",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "projectionContractKey",
+    "dtoContractKey",
+    "projectionSource",
+    "projection",
+    "failure"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "loc.dto-projection-contract.v1"
+    },
+    "projectionContractKey": {
+      "type": "string"
+    },
+    "dtoContractKey": {
+      "type": "string"
+    },
+    "projectionSource": {
+      "type": "string"
+    },
+    "projection": {
+      "type": "object"
+    },
+    "failure": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

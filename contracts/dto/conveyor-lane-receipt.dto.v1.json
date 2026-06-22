@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "loc.dto-contract.v1",
+  "dtoContractKey": "defracto.conveyor-lane-receipt.dto.v1",
+  "dtoKind": "evidence_receipt",
+  "status": "accepted",
+  "fields": {
+    "schemaVersion": {
+      "type": "string",
+      "required": true,
+      "const": "defracto.conveyor-lane-receipt.v1"
+    },
+    "receiptKey": {
+      "type": "string",
+      "required": true
+    },
+    "laneKey": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "responsePath": {
+      "type": "string",
+      "required": true
+    },
+    "responseHash": {
+      "type": "string",
+      "required": true
+    },
+    "nextLane": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "required": false
+    }
+  },
+  "forbiddenFields": [
+    "rawJsBody",
+    "rawPythonBody",
+    "manualFallback",
+    "unapprovedMutation",
+    "localDtoShape"
+  ],
+  "projectionTargets": [
+    "typescript",
+    "python",
+    "csharp",
+    "json-schema"
+  ],
+  "conformance": {
+    "requiredAcross": [
+      "node",
+      "python",
+      "csharp"
+    ],
+    "requiredEvidence": [
+      "same_projected_shape",
+      "same_blocker_codes",
+      "same_unsupported_reason",
+      "same_shape_hash"
+    ]
+  },
+  "dtoContractHash": "sha256:4286a2bb8d59182111231330ae3586e2ed943666b57dc92029031003b05698f5"
+}

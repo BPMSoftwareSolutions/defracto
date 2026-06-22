@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "loc.sej-conformance-fixture.v1",
+  "fixtureId": "dto-unsupported-field-blocked",
+  "contract": {
+    "contractKey": "loc.sej-resolver.dto-unsupported-field-blocked.v1",
+    "steps": [
+      {
+        "id": "validate",
+        "type": "resolver",
+        "operation": "dto.shape.validate.v1",
+        "payload": {
+          "dtoContract": {
+            "$inline": "contracts/dto/worker-response.dto.v1.json"
+          },
+          "value": {
+            "schemaVersion": "defracto.worker-response.v1",
+            "runKey": "run-001",
+            "laneKey": "03-materialize-workers",
+            "workerKey": "lane-worker",
+            "status": "passed",
+            "summary": "Lane worker completed materialization handoff.",
+            "artifacts": [
+              {
+                "path": "generated/workers/node/lane-worker.cjs",
+                "status": "passed"
+              }
+            ],
+            "findings": [],
+            "rawJsBody": "function hidden() {}"
+          },
+          "strict": true
+        }
+      }
+    ],
+    "return": {
+      "type": "step",
+      "ref": "$steps.validate"
+    }
+  },
+  "input": {}
+}

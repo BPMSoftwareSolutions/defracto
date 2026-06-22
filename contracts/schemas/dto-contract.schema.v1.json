@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "loc.dto-contract.v1",
+  "title": "DTO Contract",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "dtoContractKey",
+    "dtoKind",
+    "status",
+    "fields",
+    "forbiddenFields",
+    "projectionTargets",
+    "conformance"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "loc.dto-contract.v1"
+    },
+    "dtoContractKey": {
+      "type": "string"
+    },
+    "dtoKind": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "accepted",
+        "blocked"
+      ]
+    },
+    "fields": {
+      "type": "object"
+    },
+    "forbiddenFields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "projectionTargets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "conformance": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

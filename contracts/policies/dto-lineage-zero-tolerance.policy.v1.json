@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "defracto.policy.v1",
+  "policyKey": "defracto.policy.dto-lineage-zero-tolerance.v1",
+  "policyStatus": "accepted",
+  "purpose": "Ensure DTO contracts and projection contracts are actually used downstream; block ornamental DTO declarations and local DTO shaping.",
+  "rules": [
+    "No DTO contract may be ornamental.",
+    "Every declared DTO contract used by an execution path must be consumed downstream.",
+    "Every declared projection contract must be referenced by resolver projection evidence.",
+    "Matching shape without DTO lineage is blocked.",
+    "Local DTO stitching in generated facade, worker body, adapter body, receipt body, or semantic graph is blocked.",
+    "Receipts must include dtoContractKey, projectionContractKey, projectionSource, projectedOutputShapeHash, resolverLanguage, and unsupportedProjectionReason."
+  ],
+  "blockedFindings": [
+    "declared_dto_not_consumed",
+    "declared_projection_not_consumed",
+    "dto_projection_bypassed",
+    "local_dto_stitching_detected",
+    "shape_match_without_contract_lineage",
+    "receipt_missing_dto_projection_evidence"
+  ],
+  "completionPosture": "The execution path passes only when declared DTO/projection contracts are trace-used downstream and no local equivalent shaping exists."
+}

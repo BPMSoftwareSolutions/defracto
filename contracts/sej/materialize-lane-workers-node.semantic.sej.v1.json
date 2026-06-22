@@ -4,60 +4,29 @@
   "contractKind": "semantic-executable-json",
   "contractStatus": "ready-for-resolver",
   "toolKey": "defracto.conveyor.lane-workers.materialize-node",
-  "sourceLineage": {
-    "storyKey": "stories/workers/lane-workers.story.v1.json",
-    "canonicalSpecKey": "specs/canonical/workers/lane-workers.canonical-spec.v1.json",
-    "projectionManifestKey": "contracts/projections/lane-workers.node-projection-manifest.v1.json",
-    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/workers/lane-workers.execute.sog.v1.json"
-  },
-  "bodyDisposition": {
-    "bodyKind": "facade_composition_graph",
-    "hostLanguageBodyAllowed": false,
-    "projectionOnly": true,
-    "promotionValidSource": false,
-    "regenerable": true,
-    "forbiddenBodyForms": [
-      "inline_js_blob",
-      "inline_python_blob",
-      "inline_csharp_blob",
-      "dto_stitching",
-      "local_business_logic",
-      "manual_fallback"
-    ]
-  },
+  "purpose": "Semantic source for lane-worker facade materialization without embedded JS body content.",
   "semanticBody": {
     "bodyKind": "facade_composition_graph",
     "bodyRef": "contracts/facade-compositions/workers/lane-workers.node-resolver-doorway.composition.v1.json",
     "hostLanguageBodyAllowed": false
   },
-  "capabilityBindings": {
-    "bindingRef": "contracts/capabilities/facade-materialization.capability-bindings.v1.json",
-    "missingCapabilityBehavior": "blocked"
-  },
+  "requiresResolverCapabilities": [
+    "facade.compose.v1",
+    "artifact.contentRef"
+  ],
   "boundedOutputs": [
     "generated/workers/node/lane-worker.cjs",
     "evidence/workers/lane-worker.node-projection.receipt.v1.json"
   ],
   "steps": [
     {
-      "id": "resolveProjectionAuthority",
-      "type": "resolver",
-      "operation": "resolve.contract.v1",
-      "payload": {
-        "requiredContracts": [
-          "stories/workers/lane-workers.story.v1.json",
-          "specs/canonical/workers/lane-workers.canonical-spec.v1.json",
-          "contracts/projections/lane-workers.node-projection-manifest.v1.json",
-          "contracts/sej/lane-workers.execute.sej.v1.json"
-        ]
-      }
-    },
-    {
       "id": "composeFacadeBody",
       "type": "resolver",
       "operation": "facade.compose.v1",
       "payload": {
-        "compositionRef": "contracts/facade-compositions/workers/lane-workers.node-resolver-doorway.composition.v1.json"
+        "composition": {
+          "$inline": "contracts/facade-compositions/workers/lane-workers.node-resolver-doorway.composition.v1.json"
+        }
       }
     },
     {
@@ -65,10 +34,14 @@
       "type": "resolver",
       "operation": "artifact.materialize.v1",
       "payload": {
+        "authority": {
+          "scope": "generated_surface_write_only"
+        },
         "artifact": {
           "path": "generated/workers/node/lane-worker.cjs",
           "format": "text",
-          "contentRef": "$steps.composeFacadeBody.renderedText"
+          "contentRef": "$steps.composeFacadeBody.renderedLines",
+          "joinWith": "\n"
         }
       }
     },
@@ -77,6 +50,7 @@
       "type": "resolver",
       "operation": "hash.compute.v1",
       "payload": {
+        "algorithm": "sha256",
         "path": "generated/workers/node/lane-worker.cjs"
       }
     },
@@ -85,22 +59,33 @@
       "type": "resolver",
       "operation": "evidence.emit.v1",
       "payload": {
+        "authority": {
+          "scope": "evidence_write_only"
+        },
         "receipt": {
           "path": "evidence/workers/lane-worker.node-projection.receipt.v1.json",
           "content": {
             "schemaVersion": "defracto.lane-workers.node-projection.receipt.v1",
+            "receiptKey": "defracto.receipt.lane-workers.node-projection.v1",
             "status": "passed",
-            "projectedPath": "generated/workers/node/lane-worker.cjs",
+            "checkedAt": "2026-06-21T00:00:00-04:00",
+            "verificationStatus": "resolver_materialized_semantic_facade_composition",
             "sourceSej": "contracts/sej/materialize-lane-workers-node.semantic.sej.v1.json",
             "projectionManifest": "contracts/projections/lane-workers.node-projection-manifest.v1.json",
+            "executeSej": "contracts/sej/lane-workers.execute.sej.v1.json",
             "semanticOperationGraph": "contracts/semantic-operation-graphs/workers/lane-workers.execute.sog.v1.json",
+            "projectedPath": "generated/workers/node/lane-worker.cjs",
             "artifactHash": "$steps.hashFacade.hash",
-            "bodyDisposition": "generated_thin_resolver_facade"
+            "bodyDisposition": "generated_thin_resolver_facade",
+            "completionPosture": "The generated worker facade is materialized from facade.compose.v1 and contentRef. Semantic behavior remains in the semantic operation graph."
           }
         }
       }
     }
   ],
-  "failurePosture": "fail-closed",
-  "completionPosture": "Lane Workers materialization SEJ contains no JS body; it composes a facade from governed graph references."
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitReceipt"
+  },
+  "completionPosture": "This is the mature source authority for resolver-mediated lane-worker facade materialization."
 }

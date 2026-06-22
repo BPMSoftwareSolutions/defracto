@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "loc.dto-projection-contract.v1",
+  "projectionContractKey": "defracto.worker-response.projection.v1",
+  "dtoContractKey": "defracto.worker-response.dto.v1",
+  "projectionSource": "operationState",
+  "projection": {
+    "fields": {
+      "schemaVersion": {
+        "literal": "defracto.worker-response.v1"
+      },
+      "runKey": {
+        "$from": "dispatch.runKey"
+      },
+      "laneKey": {
+        "$from": "dispatch.laneKey"
+      },
+      "workerKey": {
+        "$from": "dispatch.workerKey"
+      },
+      "status": {
+        "$from": "execution.status"
+      },
+      "summary": {
+        "$from": "execution.summary"
+      },
+      "artifacts": {
+        "$from": "execution.artifacts"
+      },
+      "findings": {
+        "$from": "execution.findings"
+      }
+    }
+  },
+  "failure": {
+    "onMissingProjectionSource": "blocked",
+    "blocker": "worker_response_projection_source_missing"
+  },
+  "completionPosture": "Projection is valid only when resolver applies this contract and emits projection evidence.",
+  "projectionContractHash": "sha256:ae1960628b5f5f0fa8430b963acb487fafaa6fec5be2bc38b6d4e621e45905b7"
+}

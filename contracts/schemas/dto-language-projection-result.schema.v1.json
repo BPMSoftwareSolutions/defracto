@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "loc.dto-language-projection-result.v1",
+  "title": "DTO Language Projection Result",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "status",
+    "dtoContractKey",
+    "targetLanguage",
+    "renderedText",
+    "renderedLines",
+    "contentHash",
+    "generatedAnchors"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "dtoContractKey": {
+      "type": "string"
+    },
+    "targetLanguage": {
+      "type": "string"
+    },
+    "renderedText": {
+      "type": "string"
+    },
+    "renderedLines": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "contentHash": {
+      "type": "string"
+    },
+    "generatedAnchors": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": false
+}
