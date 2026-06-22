@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "defracto.live-run-receipt.v1",
+  "receiptKey": "defracto.live.slice-015-documentation-projection-conveyor.receipt.v1",
+  "runKey": "defracto.run.slice-015-documentation-projection-conveyor.live.v1",
+  "sliceKey": "slice-015-documentation-projection-conveyor",
+  "laneKey": "live",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "status": "passed",
+  "verificationStatus": "locally_verified",
+  "externalTrustServiceStatus": "not_integrated",
+  "pathAuthority": {
+    "derivedFrom": "invocation.receivedAt + invocation.sliceKey",
+    "overrideOutDir": null,
+    "liveEnvelopePath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/"
+  },
+  "liveEnvelopePath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/",
+  "inputArtifactPath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/input.txt",
+  "inputArtifactHash": "sha256:405518a0b3b1492bbc78941d3f07b0527fd9efd042c3e75584fdb524e569c6b5",
+  "dispatchArtifactPath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/dispatch.gemini-flash.v1.json",
+  "dispatchArtifactHash": "sha256:b0c3b5617d8a4885c00ab40b7c8b9f7b6534ac19d13be27fe0b0fac60e27a92e",
+  "responseArtifactPath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/response.gemini-flash.v1.json",
+  "responseArtifactHash": "sha256:4fca04ab79d968bfa05665a36c805c59a0b89e4a4dabad5ff8bc0d5a3824a346",
+  "sketchArtifactPath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/sketch.ascii",
+  "sketchArtifactHash": "sha256:4babf32eb873a7a6d460afa9f39181c21347c711ea407ee3676b014317dd737e",
+  "workerAttestationArtifactPath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/worker-attestation.model-produced.v1.json",
+  "workerAttestationArtifactHash": "sha256:7e1f7a64346f08199db1d49ca76dd39d39cf6f6dcd85270ada70e1b113e2b7b4",
+  "runnerSignatureArtifactPath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/surface-signature.runner-verified.v1.json",
+  "runnerSignatureArtifactHash": "sha256:fcfe51630dbda52e37837caf130e9fae3d5c2902262a788f1ec5d0095324050f",
+  "modelProvidedSurfaceSignature": {
+    "signatureKey": "dpa-design-v1-20240730T120000Z",
+    "signedBy": "defracto.workers.gemini_flash.v1",
+    "signedAt": "2024-07-30T12:00:00Z",
+    "attestationMode": "live_worker_attestation",
+    "trustFabricStatus": "live",
+    "workerKey": "defracto.workers.gemini_flash.v1",
+    "surfaceArtifactPath": "conveyor/slice-015-documentation-projection-conveyor/documentation-projection-adapter-design.json",
+    "sourceArtifactPaths": [
+      "conveyor/slice-015-documentation-projection-conveyor/conversation.txt"
+    ],
+    "reason": null,
+    "signatureHash": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
+    "sourceArtifactHashes": [
+      "f1e2d3c4b5a6f7e8d9c0b1a2f3e4d5c6b7a8f9e0d1c2b3a4f5e6d7c8b9a0f1e2"
+    ],
+    "surfaceArtifactHash": "b2a1c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2"
+  },
+  "modelHashComparison": {
+    "modelProvidedSurfaceArtifactHash": "b2a1c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
+    "actualSurfaceArtifactHash": "sha256:4babf32eb873a7a6d460afa9f39181c21347c711ea407ee3676b014317dd737e",
+    "verificationStatus": "mismatched",
+    "trustImpact": "model_attestation_preserved_but_not_final_proof"
+  },
+  "checks": [
+    "Gemini call succeeded",
+    "structured response validated",
+    "asciiSketch present",
+    "sketch hash verified from file on disk",
+    "response written",
+    "receipt written"
+  ],
+  "blockedReasons": []
+}

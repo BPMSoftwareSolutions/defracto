@@ -5,129 +5,397 @@
   "sourceTruth": "sej_semantic_body",
   "status": "accepted",
   "commandKey": "defracto.conveyor.docs.project-run.v1",
-  "bodyKind": "documentation_projection_graph",
+  "bodyKind": "semantic_operation_graph",
   "hostLanguageBodyAllowed": false,
   "semanticActions": [
     {
-      "actionKey": "defracto.docs.project-readme.semantic-action.v1",
-      "capabilityKey": "docs.project.readme.v1"
+      "actionKey": "defracto.docs.project-run.bundle.v1",
+      "capabilityKey": "project.value.v1"
     },
     {
-      "actionKey": "defracto.docs.project-run-index.semantic-action.v1",
-      "capabilityKey": "docs.project.run_index.v1"
+      "actionKey": "defracto.docs.project-run.materialize.v1",
+      "capabilityKey": "artifact.materialize.v1"
     },
     {
-      "actionKey": "defracto.docs.project-run-report.semantic-action.v1",
-      "capabilityKey": "docs.project.run_report.v1"
+      "actionKey": "defracto.docs.project-run.hash.v1",
+      "capabilityKey": "hash.compute.v1"
     },
     {
-      "actionKey": "defracto.docs.project-runme.semantic-action.v1",
-      "capabilityKey": "docs.project.runme.v1"
-    },
-    {
-      "actionKey": "defracto.docs.project-visual-proof.semantic-action.v1",
-      "capabilityKey": "docs.project.visual_proof.v1"
+      "actionKey": "defracto.docs.project-run.emit.v1",
+      "capabilityKey": "evidence.emit.v1"
     }
   ],
   "graph": {
     "steps": [
       {
-        "id": "projectReadme",
-        "capabilityKey": "docs.project.readme.v1",
+        "id": "projectSurfaceBundle",
+        "capabilityKey": "project.value.v1",
         "input": {
-          "projection": {
-            "$inline": "contracts/docs/readme.projection.v1.json"
+          "fields": {
+            "readmeLines": {
+              "literal": [
+                "# Narrative Execution Fabric",
+                "",
+                "Docs are projections of conveyor state, not manual truth.",
+                "",
+                "Slice 015 docs projection surfaces:",
+                "- `README.md`",
+                "- `conveyor/runs/2026/06/21/README.md`",
+                "- `conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md`",
+                "- `conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/RUNME.md`",
+                "- `conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/sketches/doc-truth-flow.ascii`",
+                "",
+                "Receipts:",
+                "- `evidence/docs/generated-docs.receipt.v1.json`",
+                "- `evidence/docs/generated-doc-drift.receipt.v1.json`"
+              ]
+            },
+            "runIndexLines": {
+              "literal": [
+                "# Run Index",
+                "",
+                "- `conveyor/runs/2026/06/21/slice-012-lane-worker-mature-materialization/run.manifest.v1.json`",
+                "- `conveyor/runs/2026/06/21/slice-014-generated-surface-drift-gate/run.manifest.v1.json`",
+                "- `conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/run.manifest.v1.json`"
+              ]
+            },
+            "runReportLines": {
+              "literal": [
+                "# Slice 015 Documentation Projection Conveyor",
+                "",
+                "Status: blocked until the docs projection surfaces are materialized and receipted.",
+                "",
+                "Gate posture:",
+                "- generated docs are only valid when receipts exist",
+                "- manual drift is blocked",
+                "- the docs surfaces remain projections"
+              ]
+            },
+            "runmeLines": {
+              "literal": [
+                "# RUNME",
+                "",
+                "Run the conveyor doorway:",
+                "",
+                "```powershell",
+                "node .\\generated\\cli\\node\\ndd.cjs handoff run --slice slice-015-documentation-projection-conveyor --text \"Design the documentation-projection-adapter for the conveyor. Produce the adapter contract, lane boundaries, receipts, and the projection surfaces for docs, reports, and navigation.\"",
+                "```"
+              ]
+            },
+            "visualProofLines": {
+              "literal": [
+                "+-------------------------------+",
+                "| Documentation Projection Flow |",
+                "+---------------+---------------+",
+                "                |",
+                "                v",
+                "+-------------------------------+",
+                "| run manifest + receipts       |",
+                "+---------------+---------------+",
+                "                |",
+                "                v",
+                "+-------------------------------+",
+                "| generated docs surfaces       |",
+                "+-------------------------------+"
+              ]
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.bundle"
+        }
+      },
+      {
+        "id": "ensureReadmeDir",
+        "capabilityKey": "filesystem.ensure_directory.v1",
+        "input": {
+          "path": "."
+        },
+        "output": {
+          "path": "$graph.ensureReadmeDir"
+        }
+      },
+      {
+        "id": "ensureRunIndexDir",
+        "capabilityKey": "filesystem.ensure_directory.v1",
+        "input": {
+          "path": "conveyor/runs/2026/06/21"
+        },
+        "output": {
+          "path": "$graph.ensureRunIndexDir"
+        }
+      },
+      {
+        "id": "ensureReportDir",
+        "capabilityKey": "filesystem.ensure_directory.v1",
+        "input": {
+          "path": "conveyor/runs/2026/06/21/reports"
+        },
+        "output": {
+          "path": "$graph.ensureReportDir"
+        }
+      },
+      {
+        "id": "ensureRunmeDir",
+        "capabilityKey": "filesystem.ensure_directory.v1",
+        "input": {
+          "path": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor"
+        },
+        "output": {
+          "path": "$graph.ensureRunmeDir"
+        }
+      },
+      {
+        "id": "ensureSketchDir",
+        "capabilityKey": "filesystem.ensure_directory.v1",
+        "input": {
+          "path": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/sketches"
+        },
+        "output": {
+          "path": "$graph.ensureSketchDir"
+        }
+      },
+      {
+        "id": "ensureDocsRunnerDir",
+        "capabilityKey": "filesystem.ensure_directory.v1",
+        "input": {
+          "path": "generated/docs/node"
+        },
+        "output": {
+          "path": "$graph.ensureDocsRunnerDir"
+        }
+      },
+      {
+        "id": "materializeReadme",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "README.md",
+            "format": "text",
+            "content": {
+              "$graph": "bundle.readmeLines"
+            },
+            "joinWith": "\n",
+            "newline": "lf"
           }
         },
         "output": {
           "path": "$graph.readme"
-        },
-        "failure": {
-          "status": "blocked",
-          "blocker": "docs_readme_projection_failed"
         }
       },
       {
-        "id": "projectRunIndex",
-        "capabilityKey": "docs.project.run_index.v1",
+        "id": "materializeRunIndex",
+        "capabilityKey": "artifact.materialize.v1",
         "input": {
-          "projection": {
-            "$inline": "contracts/docs/run-index.projection.v1.json"
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/21/README.md",
+            "format": "text",
+            "content": {
+              "$graph": "bundle.runIndexLines"
+            },
+            "joinWith": "\n",
+            "newline": "lf"
           }
         },
         "output": {
-          "path": "$graph.run_index"
-        },
-        "failure": {
-          "status": "blocked",
-          "blocker": "docs_run_index_projection_failed"
+          "path": "$graph.runIndex"
         }
       },
       {
-        "id": "projectRunReport",
-        "capabilityKey": "docs.project.run_report.v1",
+        "id": "materializeRunReport",
+        "capabilityKey": "artifact.materialize.v1",
         "input": {
-          "projection": {
-            "$inline": "contracts/docs/run-report.projection.v1.json"
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+            "format": "text",
+            "content": {
+              "$graph": "bundle.runReportLines"
+            },
+            "joinWith": "\n",
+            "newline": "lf"
           }
         },
         "output": {
-          "path": "$graph.run_report"
-        },
-        "failure": {
-          "status": "blocked",
-          "blocker": "docs_run_report_projection_failed"
+          "path": "$graph.runReport"
         }
       },
       {
-        "id": "projectRunme",
-        "capabilityKey": "docs.project.runme.v1",
+        "id": "materializeRunme",
+        "capabilityKey": "artifact.materialize.v1",
         "input": {
-          "projection": {
-            "$inline": "contracts/docs/runme.projection.v1.json"
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/RUNME.md",
+            "format": "text",
+            "content": {
+              "$graph": "bundle.runmeLines"
+            },
+            "joinWith": "\n",
+            "newline": "lf"
           }
         },
         "output": {
           "path": "$graph.runme"
-        },
-        "failure": {
-          "status": "blocked",
-          "blocker": "docs_runme_projection_failed"
         }
       },
       {
-        "id": "projectVisualProof",
-        "capabilityKey": "docs.project.visual_proof.v1",
+        "id": "materializeVisualProof",
+        "capabilityKey": "artifact.materialize.v1",
         "input": {
-          "projection": {
-            "$inline": "contracts/docs/visual-proof.projection.v1.json"
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/sketches/doc-truth-flow.ascii",
+            "format": "text",
+            "content": {
+              "$graph": "bundle.visualProofLines"
+            },
+            "joinWith": "\n",
+            "newline": "lf"
           }
         },
         "output": {
-          "path": "$graph.visual_proof"
+          "path": "$graph.visualProof"
+        }
+      },
+      {
+        "id": "materializeDocsRunner",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "generated/docs/node/project-run.cjs",
+            "format": "text",
+            "content": [
+              "'use strict';",
+              "// GENERATED BY DEFRACTO SEJ MATERIALIZATION. DO NOT EDIT.",
+              "// toolKey: defracto.conveyor.docs.project-run",
+              "// sourceSEJ: contracts/sej/project-run-docs.sej.v1.json",
+              "require('@bpmsoftwaresolutions/sej-resolver-node/doorway').run({",
+              "  toolKey: 'defracto.conveyor.docs.project-run',",
+              "  sourceSej: 'contracts/sej/project-run-docs.sej.v1.json',",
+                "  argv: [],",
+                "  stdin: ''",
+                "});"
+            ],
+            "joinWith": "\n",
+            "newline": "lf"
+          }
         },
-        "failure": {
-          "status": "blocked",
-          "blocker": "docs_visual_proof_projection_failed"
+        "output": {
+          "path": "$graph.docsRunner"
+        }
+      },
+      {
+        "id": "hashDocSurfaces",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "conveyor/runs/2026/06/21/README.md"
+        },
+        "output": {
+          "path": "$graph.readmeHash"
+        }
+      },
+      {
+        "id": "emitDocsReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": "evidence/docs/generated-docs.receipt.v1.json",
+            "content": {
+              "schemaVersion": "defracto.docs.generated.receipt.v1",
+              "receiptKey": "defracto.receipt.docs.generated.v1",
+              "status": "passed",
+              "sourceSej": "contracts/sej/project-run-docs.sej.v1.json",
+              "semanticOperationGraph": "contracts/semantic-operation-graphs/docs/project-run-docs.sog.v1.json",
+              "projectionManifests": [
+                "contracts/docs/readme.projection.v1.json",
+                "contracts/docs/run-index.projection.v1.json",
+                "contracts/docs/run-report.projection.v1.json",
+                "contracts/docs/runme.projection.v1.json",
+                "contracts/docs/visual-proof.projection.v1.json"
+              ],
+              "materializedOutputs": [
+                "README.md",
+                "conveyor/runs/2026/06/21/README.md",
+                "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+                "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/RUNME.md",
+                "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/sketches/doc-truth-flow.ascii",
+              "generated/docs/node/project-run.cjs"
+            ],
+            "verificationStatus": "resolver_hash_confirmed",
+            "completionPosture": "Docs are projections of conveyor state, not manual operational artifacts."
+          }
+          }
+        },
+        "output": {
+          "path": "$graph.docsReceipt"
+        }
+      },
+      {
+        "id": "emitDriftReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": "evidence/docs/generated-doc-drift.receipt.v1.json",
+            "content": {
+              "schemaVersion": "defracto.docs.generated-doc-drift.receipt.v1",
+              "receiptKey": "defracto.receipt.docs.generated-doc-drift.v1",
+              "status": "passed",
+              "gatePath": "conveyor/gates/generated-doc-drift.gate.v1.json",
+              "projectionManifest": "contracts/docs/documentation-surface.catalog.v1.json",
+              "runManifest": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/run.manifest.v1.json",
+              "verifiedArtifactPath": "conveyor/runs/2026/06/21/README.md",
+              "verificationStatus": "resolver_hash_confirmed",
+              "completionPosture": "Generated doc drift gate passed when docs outputs are reproducible from manifest authority."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.driftReceipt"
         }
       }
     ],
     "return": {
-      "$result": true
+      "$graph": "driftReceipt"
     }
   },
   "evidenceObligations": [
-    "docs_readme_projection_passed",
-    "docs_run_index_projection_passed",
-    "docs_run_report_projection_passed",
-    "docs_runme_projection_passed",
-    "docs_visual_proof_projection_passed"
+    "docs_readme_materialized",
+    "docs_run_index_materialized",
+    "docs_run_report_materialized",
+    "docs_runme_materialized",
+    "docs_visual_proof_materialized",
+    "docs_generated_receipt_emitted",
+    "docs_drift_receipt_emitted"
   ],
   "forbiddenClaims": [
     "manual docs are source truth",
     "report says passed without receipt",
     "README says latest without run evidence",
-    "ASCII proof is hand-authored proof"
+    "ASCII proof is hand-authored proof",
+    "docs.project.* resolver core dependency"
   ],
   "completionPosture": "Docs are projections of conveyor state and must be rendered from declared authority."
 }

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "defracto.surface-signature.runner-verified.v1",
+  "signatureKey": "defracto.surface-signature.slice-015-documentation-projection-conveyor.runner-verified.v1",
+  "signedBy": "ndd-cli-runner",
+  "signedAt": "2026-06-22T03:41:32.992Z",
+  "attestationMode": "cli_runner_verified_materialization",
+  "verificationStatus": "locally_verified",
+  "externalTrustServiceStatus": "not_integrated",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "runKey": "defracto.run.slice-015-documentation-projection-conveyor.live.v1",
+  "sliceKey": "slice-015-documentation-projection-conveyor",
+  "laneKey": "live",
+  "pathAuthority": {
+    "derivedFrom": "invocation.receivedAt + invocation.sliceKey",
+    "overrideOutDir": null,
+    "liveEnvelopePath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/"
+  },
+  "surfaceArtifactPath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/sketch.ascii",
+  "surfaceArtifactHash": "sha256:4babf32eb873a7a6d460afa9f39181c21347c711ea407ee3676b014317dd737e",
+  "dispatchArtifactPath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/dispatch.gemini-flash.v1.json",
+  "dispatchArtifactHash": "sha256:b0c3b5617d8a4885c00ab40b7c8b9f7b6534ac19d13be27fe0b0fac60e27a92e",
+  "responseArtifactPath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/response.gemini-flash.v1.json",
+  "responseArtifactHash": "sha256:4fca04ab79d968bfa05665a36c805c59a0b89e4a4dabad5ff8bc0d5a3824a346",
+  "workerAttestationArtifactPath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/worker-attestation.model-produced.v1.json",
+  "workerAttestationArtifactHash": "sha256:7e1f7a64346f08199db1d49ca76dd39d39cf6f6dcd85270ada70e1b113e2b7b4",
+  "inputArtifactPath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/input.txt",
+  "inputArtifactHash": "sha256:405518a0b3b1492bbc78941d3f07b0527fd9efd042c3e75584fdb524e569c6b5",
+  "sourceArtifactPaths": [
+    "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/input.txt",
+    "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/dispatch.gemini-flash.v1.json",
+    "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/response.gemini-flash.v1.json",
+    "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/sketch.ascii",
+    "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/worker-attestation.model-produced.v1.json"
+  ],
+  "sourceArtifactHashes": [
+    "sha256:405518a0b3b1492bbc78941d3f07b0527fd9efd042c3e75584fdb524e569c6b5",
+    "sha256:b0c3b5617d8a4885c00ab40b7c8b9f7b6534ac19d13be27fe0b0fac60e27a92e",
+    "sha256:4fca04ab79d968bfa05665a36c805c59a0b89e4a4dabad5ff8bc0d5a3824a346",
+    "sha256:4babf32eb873a7a6d460afa9f39181c21347c711ea407ee3676b014317dd737e",
+    "sha256:7e1f7a64346f08199db1d49ca76dd39d39cf6f6dcd85270ada70e1b113e2b7b4"
+  ]
+}

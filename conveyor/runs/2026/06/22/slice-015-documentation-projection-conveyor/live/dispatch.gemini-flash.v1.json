@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "defracto.handoff-dispatch.v1",
+  "handoffKey": "defracto.handoff.slice-015-documentation-projection-conveyor.live.v1",
+  "runKey": "defracto.run.slice-015-documentation-projection-conveyor.live.v1",
+  "sliceKey": "slice-015-documentation-projection-conveyor",
+  "laneKey": "live",
+  "dispatchKey": "defracto.dispatch.slice-015-documentation-projection-conveyor.live.v1",
+  "workerKey": "defracto.workers.gemini_flash.v1",
+  "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+  "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+  "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+  "cliCommand": "ndd handoff run --text <conversation> --slice slice-015-documentation-projection-conveyor",
+  "apiKeyEnvVar": "LOC_GEMINI_API_KEY",
+  "model": "gemini-2.5-flash",
+  "pathAuthority": {
+    "derivedFrom": "invocation.receivedAt + invocation.sliceKey",
+    "overrideOutDir": null,
+    "liveEnvelopePath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/"
+  },
+  "request": {
+    "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+    "responseMimeType": "application/json",
+    "responseSchema": {
+      "type": "object",
+      "required": [
+        "status",
+        "summary",
+        "asciiSketch",
+        "surfaceSignature",
+        "findings",
+        "artifacts"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "passed",
+            "blocked"
+          ]
+        },
+        "summary": {
+          "type": "string"
+        },
+        "asciiSketch": {
+          "type": "string"
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "artifacts": {
+          "type": "object",
+          "required": [
+            "responseText"
+          ],
+          "properties": {
+            "responseText": {
+              "type": "string"
+            }
+          }
+        },
+        "surfaceSignature": {
+          "type": "object",
+          "required": [
+            "signatureKey",
+            "signedBy",
+            "signedAt",
+            "attestationMode",
+            "trustFabricStatus",
+            "workerKey",
+            "surfaceArtifactPath",
+            "sourceArtifactPaths"
+          ],
+          "properties": {
+            "signatureKey": {
+              "type": "string"
+            },
+            "signedBy": {
+              "type": "string"
+            },
+            "signedAt": {
+              "type": "string"
+            },
+            "attestationMode": {
+              "type": "string"
+            },
+            "trustFabricStatus": {
+              "type": "string",
+              "enum": [
+                "live",
+                "missing"
+              ]
+            },
+            "workerKey": {
+              "type": "string"
+            },
+            "surfaceArtifactPath": {
+              "type": "string"
+            },
+            "surfaceArtifactHash": {
+              "type": "string"
+            },
+            "sourceArtifactPaths": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "sourceArtifactHashes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "signatureHash": {
+              "type": "string"
+            },
+            "reason": {}
+          }
+        }
+      }
+    },
+    "temperature": 0.2,
+    "maxOutputTokens": 8192
+  },
+  "inputArtifactPath": "conveyor/runs/2026/06/22/slice-015-documentation-projection-conveyor/live/input.txt",
+  "inputArtifactHash": "sha256:405518a0b3b1492bbc78941d3f07b0527fd9efd042c3e75584fdb524e569c6b5",
+  "prompt": "You are a Gemini Flash worker inside the Defracto conveyor.\nReturn one JSON object only.\nDo not wrap your answer in markdown.\nDo not invent any fields outside the schema.\nIf you cannot live-attest the output, return status blocked and explain in reason.\n\nSlice key: slice-015-documentation-projection-conveyor\nConversation text: Design the documentation-projection-adapter for the conveyor. Produce the adapter contract, lane boundaries, receipts, and the projection surfaces for docs, reports, and navigation.\n\nRequired shape:\n{\n  \"status\": \"passed\" | \"blocked\",\n  \"summary\": \"string\",\n  \"asciiSketch\": \"string\",\n  \"findings\": [\"string\"],\n  \"artifacts\": { \"responseText\": \"string\" },\n  \"surfaceSignature\": {\n    \"signatureKey\": \"string\",\n    \"signedBy\": \"defracto.workers.gemini_flash.v1\",\n    \"signedAt\": \"ISO-8601 timestamp\",\n    \"attestationMode\": \"live_worker_attestation\",\n    \"trustFabricStatus\": \"live\",\n    \"workerKey\": \"defracto.workers.gemini_flash.v1\",\n    \"surfaceArtifactPath\": \"string\",\n    \"surfaceArtifactHash\": \"string\",\n    \"sourceArtifactPaths\": [\"string\"],\n    \"sourceArtifactHashes\": [\"string\"],\n    \"signatureHash\": \"string\",\n    \"reason\": null | \"string\"\n  }\n}\n\nThe asciiSketch should be a real ASCII sketch with visible structure."
+}

@@ -52,6 +52,23 @@
           },
           "patterns": [
             {
+              "commandKey": "defracto.ndd-cli.handoff-run.v1",
+              "tokens": [
+                "handoff",
+                "run"
+              ],
+              "options": [
+                {
+                  "name": "manifest",
+                  "required": false
+                },
+                {
+                  "name": "slice",
+                  "required": false
+                }
+              ]
+            },
+            {
               "commandKey": "defracto.ndd-cli.conveyor-run.v1",
               "tokens": [
                 "conveyor",

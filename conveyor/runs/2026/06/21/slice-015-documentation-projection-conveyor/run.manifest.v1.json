@@ -1,53 +1,72 @@
 {
-  "schemaVersion": "defracto.run-manifest.v1",
+  "schemaVersion": "defracto.conveyor-run-manifest.v1",
   "runKey": "defracto.run.slice-015-documentation-projection-conveyor.v1",
   "runKind": "conveyor-run",
   "sliceKey": "slice-015-documentation-projection-conveyor",
   "operatorRole": "platform agent",
   "objective": "Turn operational docs into generated projections and make documentation drift detectable.",
-  "laneOrder": [
-    "01-author-doc-projection",
-    "02-project-readme",
-    "03-project-run-index",
-    "04-project-run-report",
-    "05-project-runme",
-    "06-project-visual-proof",
-    "07-doc-drift-gate",
-    "08-release-review"
+  "commandKey": "defracto.ndd-cli.conveyor-run.v1",
+  "requiredResolverCapabilities": [
+    "conveyor.run_manifest.load.v1",
+    "resolver.authority.verify.v1",
+    "sej.resolve.stage.v1",
+    "generated.facade.smoke_execute.v1",
+    "evidence.receipt.verify.v1",
+    "conveyor.run_receipt.emit.v1",
+    "semantic.operation_graph.execute.v1"
   ],
-  "inputs": [
-    "contracts/sej/project-run-docs.sej.v1.json",
-    "contracts/semantic-operation-graphs/docs/project-run-docs.sog.v1.json",
-    "contracts/docs/navigation-projection.contract.v1.json",
-    "contracts/docs/namespace-doctrine.contract.v1.json",
-    "contracts/docs/root-inventory-disposition.contract.v1.json",
-    "contracts/docs/readme.projection.v1.json",
-    "contracts/docs/run-index.projection.v1.json",
-    "contracts/docs/run-report.projection.v1.json",
-    "contracts/docs/runme.projection.v1.json",
-    "contracts/docs/visual-proof.projection.v1.json",
-    "conveyor/gates/generated-doc-drift.gate.v1.json",
-    "contracts/gates/generated-surface-only.gate.v1.json",
-    "contracts/gates/trust-signature-required.gate.v1.json"
-  ],
+  "stages": {
+    "materialization": {
+      "sej": "contracts/sej/project-run-docs.sej.v1.json",
+      "expectedOutputs": [
+        "README.md",
+        "conveyor/runs/2026/06/21/README.md",
+        "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+        "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/RUNME.md",
+        "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/sketches/doc-truth-flow.ascii",
+        "generated/docs/node/project-run.cjs",
+        "evidence/docs/generated-docs.receipt.v1.json",
+        "evidence/docs/generated-doc-drift.receipt.v1.json"
+      ]
+    },
+    "conformance": {
+      "sej": "contracts/sej/project-run-docs.sej.v1.json",
+      "expectedOutputs": [
+        "evidence/docs/generated-docs.receipt.v1.json",
+        "evidence/docs/generated-doc-drift.receipt.v1.json"
+      ]
+    },
+    "smokeTest": {
+      "targetPath": "generated/docs/node/project-run.cjs",
+      "stdinFixture": "projections/founding-conversation/cli/the-cli-story.md",
+      "expectedStatus": "passed",
+      "expectedContractKey": "defracto.sej.project-run-docs.v1"
+    }
+  },
   "requiredReceipts": [
     "evidence/docs/generated-docs.receipt.v1.json",
     "evidence/docs/generated-doc-drift.receipt.v1.json"
   ],
-  "finalArtifacts": [
-    "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/README.md",
-    "conveyor/runs/2026/06/21/README.md",
-    "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
-    "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/RUNME.md",
-    "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/sketches/doc-truth-flow.ascii"
+  "requiredHashes": [
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "conveyor/runs/2026/06/21/README.md"
+    },
+    {
+      "path": "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md"
+    },
+    {
+      "path": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/RUNME.md"
+    },
+    {
+      "path": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/sketches/doc-truth-flow.ascii"
+    },
+    {
+      "path": "generated/docs/node/project-run.cjs"
+    }
   ],
-  "blockedIfMissing": [
-    "docs projection authority",
-    "generated-doc drift gate",
-    "generated doc receipts",
-    "run report projection",
-    "run index projection"
-  ],
-  "releaseBlockedUntilAllReceiptsExist": true,
-  "completionPosture": "Passes when docs are treated as projections and any manual drift is blocked."
+  "runReceiptPath": "evidence/conveyor/slice-015-documentation-projection-conveyor.receipt.v1.json",
+  "completionPosture": "Passes when docs are treated as projections, receipts are emitted, and the generated surface remains reproducible from declared authority."
 }
