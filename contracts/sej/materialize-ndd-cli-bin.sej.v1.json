@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.materialize-ndd-cli-bin.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.ndd-cli.materialize-bin",
+  "sourceLineage": {
+    "executeSej": "contracts/sej/ndd-cli.execute.sej.v1.json",
+    "semanticOperationGraph": "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json",
+    "facadeComposition": "contracts/facade-compositions/cli/ndd-cli.bin-resolver-doorway.composition.v1.json"
+  },
+  "bodyDisposition": {
+    "bodyKind": "facade_composition_graph",
+    "hostLanguageBodyAllowed": false,
+    "compiledBridgeAllowed": false,
+    "bootstrapDelegateAllowed": false,
+    "promotionValidSource": true,
+    "forbiddenBodyForms": [
+      "require('../../../bin/ndd.cjs')",
+      "inline_js_blob",
+      "dto_stitching",
+      "local_conveyor_brain"
+    ]
+  },
+  "steps": [
+    {
+      "id": "composeCliFacade",
+      "type": "resolver",
+      "operation": "facade.compose.v1",
+      "payload": {
+        "composition": {
+          "$inline": "contracts/facade-compositions/cli/ndd-cli.bin-resolver-doorway.composition.v1.json"
+        }
+      }
+    },
+    {
+      "id": "ensureCliGeneratedDirectory",
+      "type": "resolver",
+      "operation": "filesystem.ensure_directory.v1",
+      "payload": {
+        "path": "bin",
+        "authority": {
+          "scope": "generated_surface_write_only"
+        }
+      }
+    },
+    {
+      "id": "ensureCliEvidenceDirectory",
+      "type": "resolver",
+      "operation": "filesystem.ensure_directory.v1",
+      "payload": {
+        "path": "evidence/cli",
+        "authority": {
+          "scope": "evidence_write_only"
+        }
+      }
+    },
+    {
+      "id": "materializeCliFacade",
+      "type": "resolver",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "generated_surface_write_only"
+        },
+        "artifact": {
+          "path": "bin/ndd.cjs",
+          "format": "text",
+          "contentRef": "$steps.composeCliFacade.renderedLines",
+          "joinWith": "\n",
+          "newline": "lf"
+        }
+      }
+    },
+    {
+      "id": "hashCliFacade",
+      "type": "resolver",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": "bin/ndd.cjs"
+      }
+    },
+    {
+      "id": "emitCliProjectionReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "evidence_write_only"
+        },
+        "receipt": {
+          "path": "evidence/cli/ndd-cli.bin-projection.receipt.v1.json",
+          "content": {
+            "schemaVersion": "defracto.ndd-cli.bin-projection.receipt.v1",
+            "receiptKey": "defracto.receipt.ndd-cli.bin-projection.v1",
+            "status": "passed",
+            "sourceSej": "contracts/sej/materialize-ndd-cli-bin.sej.v1.json",
+            "executeSej": "contracts/sej/ndd-cli.execute.sej.v1.json",
+            "semanticOperationGraph": "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json",
+            "facadeComposition": "contracts/facade-compositions/cli/ndd-cli.bin-resolver-doorway.composition.v1.json",
+            "projectedPath": "bin/ndd.cjs",
+            "artifactHash": "$steps.hashCliFacade.hash",
+            "expectedArtifactHash": "$steps.composeCliFacade.contentHash",
+            "contentSource": "facade.compose.v1 -> artifact.contentRef",
+            "forbiddenResponsibilities": [
+              "conveyor brain",
+              "DTO shaping",
+              "stage policy invention",
+              "compiled bridge fallback",
+              "bootstrap delegate"
+            ],
+            "completionPosture": "Generated CLI facade is a disposable resolver doorway. Conveyor run behavior is in SEJ/SOG."
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitCliProjectionReceipt"
+  }
+}
