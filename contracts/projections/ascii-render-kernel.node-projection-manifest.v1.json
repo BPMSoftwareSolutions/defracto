@@ -4,7 +4,7 @@
   "manifestKind": "projected-node-kernel",
   "manifestStatus": "accepted",
   "toolKey": "defracto.kernels.ascii_render_kernel",
-  "projectedPath": "kernels/ascii-render-kernel/ascii-render-kernel.js",
+  "projectedPath": "generated/kernels/ascii-render-kernel.cjs",
   "projectionTarget": "contracts/sej/materialize-ascii-render-kernel-node.sej.v1.json",
   "sourceLineage": {
     "storyKey": "stories/kernels/ascii-render-kernel.story.v1.json",
@@ -34,8 +34,8 @@
     "projection mutation"
   ],
   "currentState": {
-    "asciiRenderKernelJs": "absent",
-    "generatedFacade": "absent",
+    "asciiRenderKernelJs": "rehome-to-generated",
+    "generatedFacade": "pending",
     "resolverCodeChanged": false
   },
   "completionPosture": "This is a future projected kernel only; the manifest does not authorize executable implementation."
