@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "defracto.doc-contract.v1",
+  "contractKey": "defracto.docs.root-inventory-disposition.contract.v1",
+  "contractStatus": "accepted",
+  "purpose": "Classify root files and top-level navigation surfaces by disposition.",
+  "rootSurfaceDispositions": [
+    {
+      "path": "README.md",
+      "disposition": "active_navigation_surface"
+    },
+    {
+      "path": "ROADMAP.md",
+      "disposition": "active_navigation_surface"
+    },
+    {
+      "path": "README.json",
+      "disposition": "historical_pack_metadata"
+    },
+    {
+      "path": "replacement-manifest.v1.json",
+      "disposition": "historical_pack_metadata"
+    },
+    {
+      "path": "reports/README.md",
+      "disposition": "active_navigation_surface"
+    },
+    {
+      "path": "tools/README.md",
+      "disposition": "active_navigation_surface"
+    }
+  ],
+  "blockedIf": [
+    "root file has no disposition",
+    "historical pack metadata is presented as active truth",
+    "navigation surface is missing from the cold-start path"
+  ],
+  "completionPosture": "Root inventory is governed when every root-facing file is classified and no residue is mistaken for active truth."
+}

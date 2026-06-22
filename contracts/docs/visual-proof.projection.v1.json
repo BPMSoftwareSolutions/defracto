@@ -3,7 +3,7 @@
   "projectionKey": "defracto.doc-projection.visual-proof.v1",
   "projectionKind": "visual_proof_projection",
   "projectionStatus": "accepted-for-target-shape",
-  "targetPath": "conveyor/runs/2026/06/21/sketches/slice-015-documentation-projection-conveyor.ascii",
+  "targetPath": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/sketches/doc-truth-flow.ascii",
   "sourceLineage": {
     "visualModel": "projections/founding-conversation/cli/the-cli-story.md",
     "runManifest": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/run.manifest.v1.json",

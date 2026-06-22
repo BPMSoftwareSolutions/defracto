@@ -8,11 +8,8 @@
     "runManifests": [
       "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/run.manifest.v1.json",
       "conveyor/runs/2026/06/21/slice-012-lane-worker-mature-materialization/run.manifest.v1.json",
-      "conveyor/runs/2026/06/21/slice-014-generated-surface-drift-gate/run.manifest.v1.json"
-    ],
-    "reportReceipts": [
-      "evidence/conveyor/slice-012-lane-worker-mature-materialization.receipt.v1.json",
-      "evidence/conveyor/slice-014-generated-surface-drift-gate.receipt.v1.json"
+      "conveyor/runs/2026/06/21/slice-014-generated-surface-drift-gate/run.manifest.v1.json",
+      "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/run.manifest.v1.json"
     ]
   },
   "generatedResponsibilities": [

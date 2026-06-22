@@ -1,15 +1,15 @@
 {
   "schemaVersion": "defracto.handoff-dispatch.v1",
-  "handoffKey": "defracto.handoff.slice-008-handoff-conveyor-cli-proof.live.v1",
-  "runKey": "defracto.run.slice-008-handoff-conveyor-cli-proof.live.v1",
-  "sliceKey": "slice-008-handoff-conveyor-cli-proof",
+  "handoffKey": "defracto.handoff.slice-015-documentation-projection-conveyor.live.v1",
+  "runKey": "defracto.run.slice-015-documentation-projection-conveyor.live.v1",
+  "sliceKey": "slice-015-documentation-projection-conveyor",
   "laneKey": "live",
-  "dispatchKey": "defracto.dispatch.slice-008-handoff-conveyor-cli-proof.live.v1",
+  "dispatchKey": "defracto.dispatch.slice-015-documentation-projection-conveyor.live.v1",
   "workerKey": "defracto.workers.gemini_flash.v1",
   "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
   "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
   "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
-  "cliCommand": "ndd handoff run --text <conversation> --slice slice-008-handoff-conveyor-cli-proof",
+  "cliCommand": "ndd handoff run --text <conversation> --slice slice-015-documentation-projection-conveyor",
   "apiKeyEnvVar": "LOC_GEMINI_API_KEY",
   "model": "gemini-2.5-flash",
   "request": {
@@ -121,6 +121,6 @@
     "maxOutputTokens": 8192
   },
   "inputArtifactPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/input.txt",
-  "inputArtifactHash": "sha256:c616a3885d41324dfdcd63dc29c4f83a1932c01a4ca37a48223ee7437bdf0d9d",
-  "prompt": "You are a Gemini Flash worker inside the Defracto conveyor.\nReturn one JSON object only.\nDo not wrap your answer in markdown.\nDo not invent any fields outside the schema.\nIf you cannot live-attest the output, return status blocked and explain in reason.\n\nSlice key: slice-008-handoff-conveyor-cli-proof\nConversation text: Create a tiny ASCII sketch of a conveyor with CLI entrypoint, Gemini Flash worker, receipt, and release gate.\n\nRequired shape:\n{\n  \"status\": \"passed\" | \"blocked\",\n  \"summary\": \"string\",\n  \"asciiSketch\": \"string\",\n  \"findings\": [\"string\"],\n  \"artifacts\": { \"responseText\": \"string\" },\n  \"surfaceSignature\": {\n    \"signatureKey\": \"string\",\n    \"signedBy\": \"defracto.workers.gemini_flash.v1\",\n    \"signedAt\": \"ISO-8601 timestamp\",\n    \"attestationMode\": \"live_worker_attestation\",\n    \"trustFabricStatus\": \"live\",\n    \"workerKey\": \"defracto.workers.gemini_flash.v1\",\n    \"surfaceArtifactPath\": \"string\",\n    \"surfaceArtifactHash\": \"string\",\n    \"sourceArtifactPaths\": [\"string\"],\n    \"sourceArtifactHashes\": [\"string\"],\n    \"signatureHash\": \"string\",\n    \"reason\": null | \"string\"\n  }\n}\n\nThe asciiSketch should be a real ASCII sketch with visible structure."
+  "inputArtifactHash": "sha256:405518a0b3b1492bbc78941d3f07b0527fd9efd042c3e75584fdb524e569c6b5",
+  "prompt": "You are a Gemini Flash worker inside the Defracto conveyor.\nReturn one JSON object only.\nDo not wrap your answer in markdown.\nDo not invent any fields outside the schema.\nIf you cannot live-attest the output, return status blocked and explain in reason.\n\nSlice key: slice-015-documentation-projection-conveyor\nConversation text: Design the documentation-projection-adapter for the conveyor. Produce the adapter contract, lane boundaries, receipts, and the projection surfaces for docs, reports, and navigation.\n\nRequired shape:\n{\n  \"status\": \"passed\" | \"blocked\",\n  \"summary\": \"string\",\n  \"asciiSketch\": \"string\",\n  \"findings\": [\"string\"],\n  \"artifacts\": { \"responseText\": \"string\" },\n  \"surfaceSignature\": {\n    \"signatureKey\": \"string\",\n    \"signedBy\": \"defracto.workers.gemini_flash.v1\",\n    \"signedAt\": \"ISO-8601 timestamp\",\n    \"attestationMode\": \"live_worker_attestation\",\n    \"trustFabricStatus\": \"live\",\n    \"workerKey\": \"defracto.workers.gemini_flash.v1\",\n    \"surfaceArtifactPath\": \"string\",\n    \"surfaceArtifactHash\": \"string\",\n    \"sourceArtifactPaths\": [\"string\"],\n    \"sourceArtifactHashes\": [\"string\"],\n    \"signatureHash\": \"string\",\n    \"reason\": null | \"string\"\n  }\n}\n\nThe asciiSketch should be a real ASCII sketch with visible structure."
 }

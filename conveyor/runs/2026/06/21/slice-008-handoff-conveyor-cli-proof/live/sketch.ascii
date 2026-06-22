@@ -1,13 +1,40 @@
-[CLI Entrypoint]
-      |
-      v
-[Conveyor Belt]
-      |
-      v
-[Gemini Flash Worker]
-      |
-      v
-   [Receipt]
-      |
-      v
- [Release Gate]
++-------------------------------------+
+| Documentation Projection Adapter    |
+| (DPA)                               |
++-------------------------------------+
+| Input: Raw Documentation Stream     |
+|   (e.g., Markdown, AsciiDoc, JSON)  |
++-------------------------------------+
+| [Contract]                          |
+|   - Defines input/output schemas    |
+|   - Specifies transformation rules  |
++-------------------------------------+
+| [Lane Boundaries]                   |
+|   - Raw Doc Lane -> Processed Doc   |
+|   - Processed Doc -> Projected Doc  |
+|   - Projection Types: Docs, Reports,|
+|     Navigation                      |
++-------------------------------------+
+| [Receipts]                          |
+|   - Acknowledgment of processed     |
+|     documents                       |
+|   - Metadata for projections        |
++-------------------------------------+
+| [Projection Surfaces]               |
+|   +-------------------+             |
+|   | Docs Surface      |             |
+|   | (Rendered HTML/PDF)|             |
+|   +-------------------+             |
+|   +-------------------+             |
+|   | Reports Surface   |             |
+|   | (Aggregated Data) |             |
+|   +-------------------+             |
+|   +-------------------+             |
+|   | Navigation Surface|             |
+|   | (TOC, Site Map)   |             |
+|   +-------------------+             |
++-------------------------------------+
+| Output: Structured Projections      |
+|   (e.g., HTML, JSON, XML)           |
++-------------------------------------+
+

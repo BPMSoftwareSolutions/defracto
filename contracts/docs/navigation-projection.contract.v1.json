@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "defracto.doc-contract.v1",
+  "contractKey": "defracto.docs.navigation-projection.contract.v1",
+  "contractStatus": "accepted",
+  "purpose": "Describe the doc projection conveyor that turns conveyor state into navigation surfaces.",
+  "sourceAuthority": [
+    "conveyor/runs/2026/06/21/README.md",
+    "conveyor/runs/2026/06/21/reports/README.md",
+    "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/run.manifest.v1.json",
+    "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/sketches/doc-truth-flow.ascii"
+  ],
+  "projectionSurfaces": [
+    "README.md",
+    "ROADMAP.md",
+    "docs/README.md",
+    "reports/README.md",
+    "tools/README.md"
+  ],
+  "blockedIf": [
+    "navigation surface claims status without receipt",
+    "navigation surface claims current truth without authority",
+    "doc drift is not gated"
+  ],
+  "completionPosture": "Navigation projection is governed when doc surfaces derive from conveyor state and drift gates."
+}

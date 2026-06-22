@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "defracto.doc-surface-catalog.v1",
+  "catalogKey": "defracto.docs.documentation-surface.catalog.v1",
+  "catalogStatus": "accepted",
+  "purpose": "Enumerate the generated documentation surfaces that are projected from conveyor state.",
+  "surfaces": [
+    {
+      "surfaceKey": "readme",
+      "projection": "contracts/docs/readme.projection.v1.json",
+      "targetPath": "README.md"
+    },
+    {
+      "surfaceKey": "roadmap",
+      "projection": "contracts/docs/roadmap.projection.v1.json",
+      "targetPath": "ROADMAP.md"
+    },
+    {
+      "surfaceKey": "run-index",
+      "projection": "contracts/docs/run-index.projection.v1.json",
+      "targetPath": "conveyor/runs/2026/06/21/reports/README.md"
+    },
+    {
+      "surfaceKey": "run-report",
+      "projection": "contracts/docs/run-report.projection.v1.json",
+      "targetPath": "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md"
+    },
+    {
+      "surfaceKey": "runme",
+      "projection": "contracts/docs/runme.projection.v1.json",
+      "targetPath": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/RUNME.md"
+    },
+    {
+      "surfaceKey": "visual-proof",
+      "projection": "contracts/docs/visual-proof.projection.v1.json",
+      "targetPath": "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/sketches/doc-truth-flow.ascii"
+    }
+  ],
+  "completionPosture": "Docs are projections of conveyor state and their surfaces are cataloged for drift control."
+}

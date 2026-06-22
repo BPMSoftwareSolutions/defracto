@@ -1,8 +1,8 @@
 {
   "schemaVersion": "defracto.live-run-ledger.v1",
-  "ledgerKey": "defracto.live.slice-008-handoff-conveyor-cli-proof.ledger.v1",
-  "runKey": "defracto.run.slice-008-handoff-conveyor-cli-proof.live.v1",
-  "sliceKey": "slice-008-handoff-conveyor-cli-proof",
+  "ledgerKey": "defracto.live.slice-015-documentation-projection-conveyor.ledger.v1",
+  "runKey": "defracto.run.slice-015-documentation-projection-conveyor.live.v1",
+  "sliceKey": "slice-015-documentation-projection-conveyor",
   "laneKey": "live",
   "workerKey": "defracto.workers.gemini_flash.v1",
   "status": "passed",
@@ -10,13 +10,13 @@
   "externalTrustServiceStatus": "not_integrated",
   "liveEnvelopePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/",
   "fileHashes": {
-    "input": "sha256:c616a3885d41324dfdcd63dc29c4f83a1932c01a4ca37a48223ee7437bdf0d9d",
-    "dispatch": "sha256:0803c30012ec0cc3bacebb6cbbf1813ddfc3a675ad012a61cbee58c87e4d7087",
-    "response": "sha256:9265371035791cf6aa47dcec9c8c2bd8b54721552ad77da16ce8307724e2d69a",
-    "sketch": "sha256:7755c496acfb39b7342f4e782483b642264d5e717f868a56e45e8921a701c216",
-    "workerAttestation": "sha256:fd21b5090872187ccd00320714ea22f4f31cdfc6badc33b845002b997b7e0496",
-    "runnerSignature": "sha256:f44b42b7a3e69ffeb5e6a2923863444a4c29a365d3d026fd6714b7870f757a8c",
-    "receipt": "sha256:440fe4ed3c7acc6cb36d4197f7632ad3e472b80c6b6ce328ff13cf49e7aec95f"
+    "input": "sha256:405518a0b3b1492bbc78941d3f07b0527fd9efd042c3e75584fdb524e569c6b5",
+    "dispatch": "sha256:b818798083a2b0958d087e0e2255f92351c9ed264f3d3448e618f4706b069ba1",
+    "response": "sha256:c6343553a6fe6fa82d1b2afd33b380dc3bf134b1c59624f57e67755c1abfac33",
+    "sketch": "sha256:a4bb36a3fe7c38c22ae3bdacf533026ca22dd8666e5ee48bb6c0a432f2bd8fbe",
+    "workerAttestation": "sha256:cad7c079ffdd2f6dcb4cfec02170f8fb59219dfe95d80a43356ef8375acccdf4",
+    "runnerSignature": "sha256:f5c51ef5be5c167e73a70fc8fbd24bcafa7d99026750230c7ef978894103ec50",
+    "receipt": "sha256:3c076d655cc40e054de41b2a1a0df1c61908a9e01d96c3cd99e86ca1c1811d74"
   },
   "artifacts": {
     "input": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/input.txt",

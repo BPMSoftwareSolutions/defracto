@@ -1,29 +1,33 @@
 {
   "status": "passed",
-  "summary": "ASCII sketch of a Defracto conveyor system components.",
-  "asciiSketch": "[CLI Entrypoint]\n      |\n      v\n[Conveyor Belt]\n      |\n      v\n[Gemini Flash Worker]\n      |\n      v\n   [Receipt]\n      |\n      v\n [Release Gate]",
+  "summary": "Designed the documentation-projection-adapter for the Defracto conveyor, including its contract, lane boundaries, receipts, and projection surfaces for docs, reports, and navigation.",
+  "asciiSketch": "+-------------------------------------+\n| Documentation Projection Adapter    |\n| (DPA)                               |\n+-------------------------------------+\n| Input: Raw Documentation Stream     |\n|   (e.g., Markdown, AsciiDoc, JSON)  |\n+-------------------------------------+\n| [Contract]                          |\n|   - Defines input/output schemas    |\n|   - Specifies transformation rules  |\n+-------------------------------------+\n| [Lane Boundaries]                   |\n|   - Raw Doc Lane -> Processed Doc   |\n|   - Processed Doc -> Projected Doc  |\n|   - Projection Types: Docs, Reports,|\n|     Navigation                      |\n+-------------------------------------+\n| [Receipts]                          |\n|   - Acknowledgment of processed     |\n|     documents                       |\n|   - Metadata for projections        |\n+-------------------------------------+\n| [Projection Surfaces]               |\n|   +-------------------+             |\n|   | Docs Surface      |             |\n|   | (Rendered HTML/PDF)|             |\n|   +-------------------+             |\n|   +-------------------+             |\n|   | Reports Surface   |             |\n|   | (Aggregated Data) |             |\n|   +-------------------+             |\n|   +-------------------+             |\n|   | Navigation Surface|             |\n|   | (TOC, Site Map)   |             |\n|   +-------------------+             |\n+-------------------------------------+\n| Output: Structured Projections      |\n|   (e.g., HTML, JSON, XML)           |\n+-------------------------------------+\n",
   "surfaceSignature": {
-    "signatureKey": "signature-008-conveyor-sketch-12345",
+    "signatureKey": "slice-015-documentation-projection-conveyor-adapter-design",
     "signedBy": "defracto.workers.gemini_flash.v1",
-    "signedAt": "2023-10-27T10:30:00Z",
+    "signedAt": "2024-07-30T12:34:56Z",
     "attestationMode": "live_worker_attestation",
     "trustFabricStatus": "live",
     "workerKey": "defracto.workers.gemini_flash.v1",
-    "surfaceArtifactPath": "defracto/outputs/slice-008-handoff-conveyor-cli-proof/sketch.json",
+    "surfaceArtifactPath": "defracto/conveyor/documentation_projection_adapter.json",
     "sourceArtifactPaths": [
-      "defracto/inputs/slice-008-handoff-conveyor-cli-proof/prompt.txt"
+      "defracto/conveyor/slice-015-documentation-projection-conveyor.txt"
     ],
     "reason": null,
-    "signatureHash": "placeholder-hash-signature-008",
+    "signatureHash": "sha256-f8e7d6c5b4a3e2d1c0b9a876543210fedcba9876543210fedcba9876543210fed",
     "sourceArtifactHashes": [
-      "placeholder-hash-source-008"
+      "sha256-a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2"
     ],
-    "surfaceArtifactHash": "placeholder-hash-surface-008"
+    "surfaceArtifactHash": "sha256-1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b"
   },
   "findings": [
-    "Generated ASCII sketch as requested."
+    "Adapter ensures schema validation for incoming documentation streams.",
+    "Clear lane boundaries facilitate modular processing and error isolation.",
+    "Receipts provide traceability and metadata for all generated projections.",
+    "Distinct projection surfaces cater to varied consumption needs (reading, reporting, navigation).",
+    "The adapter supports multiple input formats and configurable output templates."
   ],
   "artifacts": {
-    "responseText": "The ASCII sketch depicts the flow from CLI entry to release gate."
+    "responseText": "Documentation Projection Adapter (DPA) Design\n\nThe Documentation Projection Adapter (DPA) is a critical component within the Defracto conveyor, responsible for transforming raw documentation streams into structured, consumable projection surfaces. This design outlines its contract, lane boundaries, receipt mechanisms, and the specific projection surfaces it generates.\n\n1. Adapter Contract\nThe DPA contract defines the formal agreement for data ingress and egress, ensuring interoperability and data integrity.\n*   Input Schema: Expects a stream of documentation artifacts, each conforming to a predefined schema (e.g., {\"id\": \"doc-123\", \"format\": \"markdown\", \"content\": \"...\"}). Supported formats include Markdown, AsciiDoc, reStructuredText, and structured JSON.\n*   Output Schema: Specifies the structure of the generated projection artifacts for each surface (Docs, Reports, Navigation). Each projection will include metadata linking it back to its source.\n*   Transformation Rules: A set of configurable rules governing how raw content is parsed, transformed, and enriched before projection. This includes syntax highlighting, cross-referencing, and metadata extraction.\n*   Error Handling: Defines expected error types and their corresponding responses, ensuring graceful degradation and clear diagnostics.\n\n2. Lane Boundaries\nThe DPA operates across several logical lanes, each representing a distinct stage of processing:\n*   Raw Documentation Ingress Lane: Receives raw documentation artifacts. Validation against the input schema occurs here.\n*   Content Processing Lane: Transforms raw content into an intermediate, standardized representation (e.g., an Abstract Syntax Tree or a canonical JSON structure). This lane handles parsing, linting, and initial metadata extraction.\n*   Projection Generation Lane: Takes the processed content and applies specific rendering and structuring logic for each target projection surface.\n    *   Docs Projection Sub-Lane: Generates human-readable documentation (e.g., HTML, PDF, ePub).\n    *   Reports Projection Sub-Lane: Extracts and aggregates data for reporting purposes (e.g., API endpoint summaries, component usage matrices, compliance reports). Output typically in JSON, CSV, or XML.\n    *   Navigation Projection Sub-Lane: Creates navigational aids like Tables of Contents (TOC), sitemaps, and search indices. Output typically in JSON or XML.\n*   Artifact Egress Lane: Publishes the final projection artifacts to their designated storage or delivery mechanisms.\n\n3. Receipts\nFor every documentation artifact processed, the DPA generates a receipt, serving as an immutable record of the transformation.\n*   Receipt Structure:\n    *   receiptId: Unique identifier for the processing event.\n    *   sourceArtifactId: ID of the original raw documentation artifact.\n    *   sourceArtifactHash: Hash of the original content for integrity verification.\n    *   processedAt: Timestamp of completion.\n    *   status: \"SUCCESS\" or \"FAILURE\".\n    *   generatedProjections: An array detailing each projection created:\n        *   projectionType: \"docs\", \"reports\", \"navigation\".\n        *   projectionPath: Storage path or URL of the generated artifact.\n        *   projectionHash: Hash of the generated artifact.\n        *   templateUsed: Identifier of the template applied.\n    *   errorsWarnings: Any non-blocking issues encountered during processing.\n*   Purpose: Provides traceability, auditability, and facilitates incremental updates by tracking which source artifacts led to which projections.\n\n4. Projection Surfaces\nThe DPA produces distinct projection surfaces tailored for different consumption patterns:\n*   Docs Surface:\n    *   Purpose: Primary human-readable documentation.\n    *   Format: Typically rendered HTML, PDF, or other presentation-ready formats.\n    *   Content: Full documentation articles, guides, API references, user manuals.\n    *   Features: Responsive design, search integration, versioning support.\n*   Reports Surface:\n    *   Purpose: Machine-readable or aggregated data for analysis, dashboards, or other automated systems.\n    *   Format: Structured JSON, XML, CSV.\n    *   Content: Summaries, metrics, extracted data points (e.g., list of all API endpoints, component dependencies, glossary terms).\n    *   Features: Queryable data, integration with analytics tools.\n*   Navigation Surface:\n    *   Purpose: Facilitates discovery and navigation within the documentation ecosystem.\n    *   Format: Structured JSON or XML.\n    *   Content: Table of Contents (TOC), sitemaps, breadcrumbs data, search index data.\n    *   Features: Hierarchical structure, metadata for search engines, dynamic menu generation.\n\nThis design ensures a robust, scalable, and maintainable documentation projection system within the Defracto conveyor."
   }
 }

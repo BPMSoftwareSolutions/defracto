@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "defracto.doc-projection.v1",
+  "projectionKey": "defracto.doc-projection.roadmap.v1",
+  "projectionKind": "roadmap_projection",
+  "projectionStatus": "accepted-for-target-shape",
+  "targetPath": "ROADMAP.md",
+  "sourceLineage": {
+    "runManifests": [
+      "conveyor/runs/2026/06/21/slice-012-lane-worker-mature-materialization/run.manifest.v1.json",
+      "conveyor/runs/2026/06/21/slice-014-generated-surface-drift-gate/run.manifest.v1.json",
+      "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/run.manifest.v1.json"
+    ]
+  },
+  "generatedResponsibilities": [
+    "show current architectural status",
+    "order the active slices",
+    "name near-term deliverables",
+    "separate live authority from historical slices"
+  ],
+  "forbiddenResponsibilities": [
+    "future promises without slices",
+    "manually curated backlog drift"
+  ],
+  "completionPosture": "Roadmap projection should track current conveyor maturity, not memory."
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "defracto.doc-contract.v1",
+  "contractKey": "defracto.docs.namespace-doctrine.contract.v1",
+  "contractStatus": "accepted",
+  "purpose": "Define the defracto.* and loc.* namespace split for cold-start readers.",
+  "definitions": {
+    "defracto": "product, conveyor, projection, release, and user-facing governance identity",
+    "loc": "runtime, resolver, semantic execution, primitive catalog, and cross-language substrate identity"
+  },
+  "rules": [
+    "Use defracto.* for product meaning.",
+    "Use loc.* for runtime substrate meaning.",
+    "A defracto artifact may depend on loc authority.",
+    "A loc artifact must not depend on Defracto product meaning."
+  ],
+  "blockedIf": [
+    "namespace claims overlap",
+    "runtime identity is presented as product identity"
+  ],
+  "completionPosture": "Namespace doctrine keeps the resolver from becoming a competing project identity."
+}

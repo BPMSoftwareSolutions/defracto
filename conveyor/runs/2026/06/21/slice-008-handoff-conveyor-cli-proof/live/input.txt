@@ -1,1 +1,1 @@
-Create a tiny ASCII sketch of a conveyor with CLI entrypoint, Gemini Flash worker, receipt, and release gate.
+Design the documentation-projection-adapter for the conveyor. Produce the adapter contract, lane boundaries, receipts, and the projection surfaces for docs, reports, and navigation.

@@ -1,8 +1,8 @@
 {
   "schemaVersion": "defracto.live-run-receipt.v1",
-  "receiptKey": "defracto.live.slice-008-handoff-conveyor-cli-proof.receipt.v1",
-  "runKey": "defracto.run.slice-008-handoff-conveyor-cli-proof.live.v1",
-  "sliceKey": "slice-008-handoff-conveyor-cli-proof",
+  "receiptKey": "defracto.live.slice-015-documentation-projection-conveyor.receipt.v1",
+  "runKey": "defracto.run.slice-015-documentation-projection-conveyor.live.v1",
+  "sliceKey": "slice-015-documentation-projection-conveyor",
   "laneKey": "live",
   "workerKey": "defracto.workers.gemini_flash.v1",
   "status": "passed",
@@ -10,38 +10,38 @@
   "externalTrustServiceStatus": "not_integrated",
   "liveEnvelopePath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/",
   "inputArtifactPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/input.txt",
-  "inputArtifactHash": "sha256:c616a3885d41324dfdcd63dc29c4f83a1932c01a4ca37a48223ee7437bdf0d9d",
+  "inputArtifactHash": "sha256:405518a0b3b1492bbc78941d3f07b0527fd9efd042c3e75584fdb524e569c6b5",
   "dispatchArtifactPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/dispatch.gemini-flash.v1.json",
-  "dispatchArtifactHash": "sha256:0803c30012ec0cc3bacebb6cbbf1813ddfc3a675ad012a61cbee58c87e4d7087",
+  "dispatchArtifactHash": "sha256:b818798083a2b0958d087e0e2255f92351c9ed264f3d3448e618f4706b069ba1",
   "responseArtifactPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/response.gemini-flash.v1.json",
-  "responseArtifactHash": "sha256:9265371035791cf6aa47dcec9c8c2bd8b54721552ad77da16ce8307724e2d69a",
+  "responseArtifactHash": "sha256:c6343553a6fe6fa82d1b2afd33b380dc3bf134b1c59624f57e67755c1abfac33",
   "sketchArtifactPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/sketch.ascii",
-  "sketchArtifactHash": "sha256:7755c496acfb39b7342f4e782483b642264d5e717f868a56e45e8921a701c216",
+  "sketchArtifactHash": "sha256:a4bb36a3fe7c38c22ae3bdacf533026ca22dd8666e5ee48bb6c0a432f2bd8fbe",
   "workerAttestationArtifactPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/worker-attestation.model-produced.v1.json",
-  "workerAttestationArtifactHash": "sha256:fd21b5090872187ccd00320714ea22f4f31cdfc6badc33b845002b997b7e0496",
+  "workerAttestationArtifactHash": "sha256:cad7c079ffdd2f6dcb4cfec02170f8fb59219dfe95d80a43356ef8375acccdf4",
   "runnerSignatureArtifactPath": "conveyor/runs/2026/06/21/slice-008-handoff-conveyor-cli-proof/live/surface-signature.runner-verified.v1.json",
-  "runnerSignatureArtifactHash": "sha256:f44b42b7a3e69ffeb5e6a2923863444a4c29a365d3d026fd6714b7870f757a8c",
+  "runnerSignatureArtifactHash": "sha256:f5c51ef5be5c167e73a70fc8fbd24bcafa7d99026750230c7ef978894103ec50",
   "modelProvidedSurfaceSignature": {
-    "signatureKey": "signature-008-conveyor-sketch-12345",
+    "signatureKey": "slice-015-documentation-projection-conveyor-adapter-design",
     "signedBy": "defracto.workers.gemini_flash.v1",
-    "signedAt": "2023-10-27T10:30:00Z",
+    "signedAt": "2024-07-30T12:34:56Z",
     "attestationMode": "live_worker_attestation",
     "trustFabricStatus": "live",
     "workerKey": "defracto.workers.gemini_flash.v1",
-    "surfaceArtifactPath": "defracto/outputs/slice-008-handoff-conveyor-cli-proof/sketch.json",
+    "surfaceArtifactPath": "defracto/conveyor/documentation_projection_adapter.json",
     "sourceArtifactPaths": [
-      "defracto/inputs/slice-008-handoff-conveyor-cli-proof/prompt.txt"
+      "defracto/conveyor/slice-015-documentation-projection-conveyor.txt"
     ],
     "reason": null,
-    "signatureHash": "placeholder-hash-signature-008",
+    "signatureHash": "sha256-f8e7d6c5b4a3e2d1c0b9a876543210fedcba9876543210fedcba9876543210fed",
     "sourceArtifactHashes": [
-      "placeholder-hash-source-008"
+      "sha256-a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2"
     ],
-    "surfaceArtifactHash": "placeholder-hash-surface-008"
+    "surfaceArtifactHash": "sha256-1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b"
   },
   "modelHashComparison": {
-    "modelProvidedSurfaceArtifactHash": "placeholder-hash-surface-008",
-    "actualSurfaceArtifactHash": "sha256:7755c496acfb39b7342f4e782483b642264d5e717f868a56e45e8921a701c216",
+    "modelProvidedSurfaceArtifactHash": "sha256-1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b",
+    "actualSurfaceArtifactHash": "sha256:a4bb36a3fe7c38c22ae3bdacf533026ca22dd8666e5ee48bb6c0a432f2bd8fbe",
     "verificationStatus": "mismatched",
     "trustImpact": "model_attestation_preserved_but_not_final_proof"
   },

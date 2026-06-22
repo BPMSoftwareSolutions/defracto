@@ -1,0 +1,17 @@
+DOC TRUTH FLOW
+
+run manifests
+   |
+   v
+receipts and gates
+   |
+   v
+contracts/docs/*
+   |
+   v
+README.md / ROADMAP.md / reports/README.md / tools/README.md
+   |
+   v
+cold-start navigation
+
+If the doc surface cannot be traced to authority, it is drift.

@@ -7,11 +7,11 @@
   "sourceLineage": {
     "semanticOperationGraph": "contracts/semantic-operation-graphs/docs/project-run-docs.sog.v1.json",
     "projectionManifests": [
-      "contracts/doc-projections/readme.projection.v1.json",
-      "contracts/doc-projections/run-index.projection.v1.json",
-      "contracts/doc-projections/run-report.projection.v1.json",
-      "contracts/doc-projections/runme.projection.v1.json",
-      "contracts/doc-projections/visual-proof.projection.v1.json"
+      "contracts/docs/readme.projection.v1.json",
+      "contracts/docs/run-index.projection.v1.json",
+      "contracts/docs/run-report.projection.v1.json",
+      "contracts/docs/runme.projection.v1.json",
+      "contracts/docs/visual-proof.projection.v1.json"
     ]
   },
   "semanticBody": {
@@ -35,7 +35,7 @@
       "operation": "docs.project.readme.v1",
       "payload": {
         "projection": {
-          "$inline": "contracts/doc-projections/readme.projection.v1.json"
+          "$inline": "contracts/docs/readme.projection.v1.json"
         }
       }
     },
@@ -45,7 +45,7 @@
       "operation": "docs.project.run_index.v1",
       "payload": {
         "projection": {
-          "$inline": "contracts/doc-projections/run-index.projection.v1.json"
+          "$inline": "contracts/docs/run-index.projection.v1.json"
         }
       }
     },
@@ -55,7 +55,7 @@
       "operation": "docs.project.run_report.v1",
       "payload": {
         "projection": {
-          "$inline": "contracts/doc-projections/run-report.projection.v1.json"
+          "$inline": "contracts/docs/run-report.projection.v1.json"
         }
       }
     },
@@ -65,7 +65,7 @@
       "operation": "docs.project.runme.v1",
       "payload": {
         "projection": {
-          "$inline": "contracts/doc-projections/runme.projection.v1.json"
+          "$inline": "contracts/docs/runme.projection.v1.json"
         }
       }
     },
@@ -75,7 +75,7 @@
       "operation": "docs.project.visual_proof.v1",
       "payload": {
         "projection": {
-          "$inline": "contracts/doc-projections/visual-proof.projection.v1.json"
+          "$inline": "contracts/docs/visual-proof.projection.v1.json"
         }
       }
     },
@@ -105,11 +105,11 @@
             "sourceSej": "contracts/sej/project-run-docs.sej.v1.json",
             "semanticOperationGraph": "contracts/semantic-operation-graphs/docs/project-run-docs.sog.v1.json",
             "projectionManifests": [
-              "contracts/doc-projections/readme.projection.v1.json",
-              "contracts/doc-projections/run-index.projection.v1.json",
-              "contracts/doc-projections/run-report.projection.v1.json",
-              "contracts/doc-projections/runme.projection.v1.json",
-              "contracts/doc-projections/visual-proof.projection.v1.json"
+              "contracts/docs/readme.projection.v1.json",
+              "contracts/docs/run-index.projection.v1.json",
+              "contracts/docs/run-report.projection.v1.json",
+              "contracts/docs/runme.projection.v1.json",
+              "contracts/docs/visual-proof.projection.v1.json"
             ],
             "completionPosture": "Docs are projections of conveyor state, not manual operational artifacts."
           }

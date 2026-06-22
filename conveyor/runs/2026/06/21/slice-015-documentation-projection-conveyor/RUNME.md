@@ -15,11 +15,11 @@ This slice declares the next maturity turn: operational docs become projections 
 
 - `contracts/sej/project-run-docs.sej.v1.json`
 - `contracts/semantic-operation-graphs/docs/project-run-docs.sog.v1.json`
-- `contracts/doc-projections/readme.projection.v1.json`
-- `contracts/doc-projections/run-index.projection.v1.json`
-- `contracts/doc-projections/run-report.projection.v1.json`
-- `contracts/doc-projections/runme.projection.v1.json`
-- `contracts/doc-projections/visual-proof.projection.v1.json`
+- `contracts/docs/readme.projection.v1.json`
+- `contracts/docs/run-index.projection.v1.json`
+- `contracts/docs/run-report.projection.v1.json`
+- `contracts/docs/runme.projection.v1.json`
+- `contracts/docs/visual-proof.projection.v1.json`
 - `conveyor/gates/generated-doc-drift.gate.v1.json`
 
 ## Completion posture
