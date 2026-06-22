@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "defracto.supersession-receipt.v1",
+  "receiptKey": "defracto.receipt.ndd-cli.bootstrap-delegate-superseded.v1",
+  "status": "passed",
+  "supersededPattern": "generated CLI facade delegates into ../../../bin/ndd.cjs",
+  "activeReplacement": "contracts/sej/ndd-cli.execute.sej.v1.json plus contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json",
+  "reason": "Generated CLI facade must be doorway only. Conveyor-run orchestration must be declared in SEJ/SOG.",
+  "forbiddenFutureUse": [
+    "bootstrap delegate as conveyor brain",
+    "manual JS orchestration in CLI facade",
+    "DTO shaping in CLI"
+  ]
+}

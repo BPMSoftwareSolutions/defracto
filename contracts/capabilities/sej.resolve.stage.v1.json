@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "sej.resolve.stage.v1",
+  "capabilityStatus": "required",
+  "category": "conveyor.cli.orchestration",
+  "purpose": "Resolve a declared SEJ stage using resolver CLI/API.",
+  "portableAcross": [
+    "node"
+  ],
+  "mustDo": [
+    "accept stage id and SEJ path",
+    "invoke declared resolver operation",
+    "return structured result",
+    "preserve blocker passthrough"
+  ],
+  "mustNotDo": [
+    "invent SEJ path",
+    "fall back to compiled bridge",
+    "shape DTO locally"
+  ],
+  "failureCodes": [
+    "sej_resolve_stage_v1_missing",
+    "sej_resolve_stage_v1_blocked",
+    "sej_resolve_stage_v1_failed"
+  ],
+  "completionPosture": "Required for ndd conveyor run to be executable from semantic authority rather than bootstrap code."
+}

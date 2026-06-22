@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "loc.sej-conformance-fixture.v1",
+  "fixtureId": "ndd-cli-conveyor-run-graph",
+  "contract": {
+    "contractKey": "defracto.conformance.ndd-cli-conveyor-run-graph.v1",
+    "steps": [
+      {
+        "id": "executeCli",
+        "type": "resolver",
+        "operation": "semantic.operation_graph.execute.v1",
+        "payload": {
+          "graphRef": {
+            "$inline": "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json"
+          },
+          "context": {
+            "argv": [
+              "conveyor",
+              "run",
+              "--slice",
+              "slice-012-lane-worker-mature-materialization"
+            ],
+            "payload": {}
+          }
+        }
+      }
+    ],
+    "return": {
+      "type": "step",
+      "ref": "$steps.executeCli"
+    }
+  },
+  "input": {}
+}

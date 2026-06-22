@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-013-ndd-cli-conveyor-run-execution-authority.v1",
+  "runKind": "cli-semantic-body-hardening",
+  "sliceKey": "slice-013-ndd-cli-conveyor-run-execution-authority",
+  "objective": "Upgrade NDD CLI from doorway role authority to executable conveyor-run manifest orchestration authority.",
+  "expectedCommandsAfterMaterialization": [
+    "node generated/cli/node/ndd.cjs conveyor run --slice slice-012-lane-worker-mature-materialization",
+    "node generated/cli/node/ndd.cjs conveyor run --manifest conveyor/runs/2026/06/21/slice-012-lane-worker-mature-materialization/run.manifest.v1.json"
+  ],
+  "expectedOutputs": [
+    "generated/cli/node/ndd.cjs",
+    "evidence/cli/ndd-cli.node-projection.receipt.v1.json",
+    "evidence/conveyor/slice-012-lane-worker-mature-materialization.receipt.v1.json"
+  ],
+  "blockedIf": [
+    "generated CLI requires ../../../bin/ndd.cjs",
+    "CLI SOG lacks conveyor run stages",
+    "manifest stages are invented in JS",
+    "resolver capabilities missing",
+    "run receipt missing"
+  ],
+  "completionPosture": "Passes when generated CLI executes manifest-declared conveyor run without bootstrap delegation."
+}

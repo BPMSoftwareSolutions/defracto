@@ -1,11 +1,32 @@
 {
-  "schemaVersion": "loc.sej-contract.v1",
+  "schemaVersion": "defracto.sej-contract.v1",
   "contractKey": "defracto.sej.conform-lane-workers-node-facade.v1",
-  "contractStatus": "resolver-compatible",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.lane-workers.conform-node-facade",
+  "sourceLineage": {
+    "materializationSej": "contracts/sej/materialize-lane-workers-node.sej.v1.json",
+    "projectionManifest": "contracts/projections/lane-workers.node-projection-manifest.v1.json",
+    "executeSej": "contracts/sej/lane-workers.execute.sej.v1.json",
+    "semanticOperationGraph": "contracts/semantic-operation-graphs/workers/lane-workers.execute.sog.v1.json",
+    "facadeComposition": "contracts/facade-compositions/workers/lane-workers.node-resolver-doorway.composition.v1.json"
+  },
   "constants": {
     "facadePath": "generated/workers/node/lane-worker.cjs",
     "conformanceReceiptPath": "evidence/workers/lane-worker.conformance.receipt.v1.json",
-    "expectedArtifactHash": "sha256:0201959b0367c8b0ad759d2ed6484fbc332876ad908c54bed5cbc4128eb54160"
+    "expectedArtifactHash": "sha256:df847af9471946f891f346e2dac2bf84c0595cdaf67e63bfe6b7dc0656323ca8",
+    "supersededExpectedArtifactHash": "sha256:0201959b0367c8b0ad759d2ed6484fbc332876ad908c54bed5cbc4128eb54160"
+  },
+  "bodyDisposition": {
+    "bodyKind": "generated_thin_resolver_facade_conformance",
+    "hostLanguageBodyAllowed": false,
+    "compiledBridgeAllowed": false,
+    "forbiddenClaims": [
+      "compiled bridge active",
+      "inline host body active",
+      "DTO shaping in generated facade",
+      "old compiled bridge hash is still expected"
+    ]
   },
   "steps": [
     {
@@ -36,16 +57,22 @@
             "targetArtifactPath": "$constants.facadePath",
             "targetArtifactHash": "$steps.computeFacadeHash.hash",
             "expectedArtifactHash": "$constants.expectedArtifactHash",
+            "supersededExpectedArtifactHash": "$constants.supersededExpectedArtifactHash",
+            "requiredEquality": "targetArtifactHash == expectedArtifactHash",
+            "materializationPath": "facade.compose.v1 -> artifact.materialize.v1 contentRef -> hash.compute.v1 -> evidence.emit.v1",
+            "sourceSej": "contracts/sej/materialize-lane-workers-node.sej.v1.json",
+            "executeSej": "contracts/sej/lane-workers.execute.sej.v1.json",
+            "semanticOperationGraph": "contracts/semantic-operation-graphs/workers/lane-workers.execute.sog.v1.json",
+            "facadeComposition": "contracts/facade-compositions/workers/lane-workers.node-resolver-doorway.composition.v1.json",
             "checks": [
-              "generated header declared in materialization SEJ",
-              "sourceSEJ anchor declared in materialization SEJ",
-              "projectionManifest anchor declared in materialization SEJ",
-              "executeSEJ anchor declared in materialization SEJ",
-              "semanticOperationGraph anchor declared in materialization SEJ",
-              "facade delegates to resolver",
-              "facade contains no product truth"
+              "generated file exists",
+              "generated file hash matches semantic materialization hash",
+              "generated file uses resolver doorway export",
+              "generated file contains no DTO shaping",
+              "generated file is not compiled bridge output",
+              "generated file is disposable projection"
             ],
-            "completionPosture": "Conformance passes only as a resolver-compatible hash and declared-anchor confirmation. Full static text scanning can be added when the resolver has text-match primitives."
+            "completionPosture": "Conformance passes when the materialized lane-worker facade hash matches the semantic materialized facade hash."
           }
         }
       }

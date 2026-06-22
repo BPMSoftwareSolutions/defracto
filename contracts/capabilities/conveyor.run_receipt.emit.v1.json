@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "conveyor.run_receipt.emit.v1",
+  "capabilityStatus": "required",
+  "category": "conveyor.cli.orchestration",
+  "purpose": "Emit run-level conveyor receipt from declared stage results.",
+  "portableAcross": [
+    "node"
+  ],
+  "mustDo": [
+    "project run receipt from stage outputs",
+    "include manifest key and stage results",
+    "include artifact hashes",
+    "include blockers",
+    "write evidence receipt"
+  ],
+  "mustNotDo": [
+    "invent pass status",
+    "drop blockers",
+    "omit materialized artifact hashes"
+  ],
+  "failureCodes": [
+    "conveyor_run_receipt_emit_v1_missing",
+    "conveyor_run_receipt_emit_v1_blocked",
+    "conveyor_run_receipt_emit_v1_failed"
+  ],
+  "completionPosture": "Required for ndd conveyor run to be executable from semantic authority rather than bootstrap code."
+}

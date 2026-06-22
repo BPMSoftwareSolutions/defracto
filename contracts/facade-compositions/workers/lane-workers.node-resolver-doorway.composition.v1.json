@@ -29,7 +29,11 @@
     },
     {
       "anchorKey": "source-sej",
-      "text": "sourceSEJ: contracts/sej/materialize-lane-workers-node.semantic.sej.v1.json"
+      "text": "sourceSEJ: contracts/sej/materialize-lane-workers-node.sej.v1.json"
+    },
+    {
+      "anchorKey": "semantic-source-sej",
+      "text": "semanticSourceSEJ: contracts/sej/materialize-lane-workers-node.semantic.sej.v1.json"
     },
     {
       "anchorKey": "projection-manifest",

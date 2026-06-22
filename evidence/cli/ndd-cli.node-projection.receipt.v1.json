@@ -1,10 +1,1 @@
-{
-  "schemaVersion": "defracto.ndd-cli.node-projection.receipt.v1",
-  "receiptKey": "defracto.ndd-cli.node-projection.receipt.v1",
-  "status": "pending",
-  "projectionTarget": "generated/cli/node/ndd.cjs",
-  "projectionKind": "thin_generated_facade",
-  "verificationStatus": "pending_projection_receipt",
-  "reason": "The CLI facade remains a bootstrap mechanism until a resolver-backed projection receipt is materialized.",
-  "sourceTruth": "declared_json_contract"
-}
+{"artifactHash":"sha256:b311972b2a5384b4acf0a0647348cffa0e10c36d464388ea9735d87387ccddf1","completionPosture":"Generated CLI facade is a disposable resolver doorway. Conveyor run behavior is in SEJ/SOG.","contentSource":"facade.compose.v1 -> artifact.contentRef","executeSej":"contracts/sej/ndd-cli.execute.sej.v1.json","expectedArtifactHash":"sha256:9fab97ecaafae253960660f5583be85a3939facdf970ba961c2db637f7990d5c","facadeComposition":"contracts/facade-compositions/cli/ndd-cli.node-resolver-doorway.composition.v1.json","forbiddenResponsibilities":["conveyor brain","DTO shaping","stage policy invention","compiled bridge fallback","bootstrap delegate"],"projectedPath":"generated/cli/node/ndd.cjs","receiptKey":"defracto.receipt.ndd-cli.node-projection.v1","schemaVersion":"defracto.ndd-cli.node-projection.receipt.v1","semanticOperationGraph":"contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json","sourceSej":"contracts/sej/materialize-ndd-cli-node.sej.v1.json","status":"passed"}

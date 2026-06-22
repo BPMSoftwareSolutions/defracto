@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "loc.sej-conformance-expected-result.v1",
+  "fixtureId": "ndd-cli-conveyor-run-graph",
+  "status": "passed",
+  "result": {
+    "runKey": "defracto.run.slice-012-lane-worker-mature-materialization.v1",
+    "sliceKey": "slice-012-lane-worker-mature-materialization",
+    "status": "passed"
+  }
+}

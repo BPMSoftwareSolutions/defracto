@@ -14,6 +14,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@bpmsoftwaresolutions/sej-resolver-node": "^0.1.7"
+    "@bpmsoftwaresolutions/sej-resolver-node": "^0.1.8"
   }
 }

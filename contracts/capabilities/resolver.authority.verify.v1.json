@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "resolver.authority.verify.v1",
+  "capabilityStatus": "required",
+  "category": "conveyor.cli.orchestration",
+  "purpose": "Verify resolver authority pack and required resolver package/capability posture.",
+  "portableAcross": [
+    "node"
+  ],
+  "mustDo": [
+    "verify resolver authority exists",
+    "verify required resolver version if declared",
+    "verify required capabilities",
+    "fail closed on missing authority"
+  ],
+  "mustNotDo": [
+    "silently continue without authority",
+    "install packages",
+    "mutate resolver repo"
+  ],
+  "failureCodes": [
+    "resolver_authority_verify_v1_missing",
+    "resolver_authority_verify_v1_blocked",
+    "resolver_authority_verify_v1_failed"
+  ],
+  "completionPosture": "Required for ndd conveyor run to be executable from semantic authority rather than bootstrap code."
+}

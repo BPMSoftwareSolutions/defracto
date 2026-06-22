@@ -1,17 +1,18 @@
 {
   "schemaVersion": "defracto.download-readme.v1",
-  "title": "DTO Shape + Lineage Body Mechanics Pack",
-  "summary": "RF-002/RF-003 package for DTO shape parity, projection parity, and downstream-use audit to prevent double-dipping and DTO drift.",
-  "primaryHandoffs": [
-    "handoff/RF-002-dto-shape-projection-parity.handoff.v1.json",
-    "handoff/RF-003-dto-lineage-downstream-use-audit.handoff.v1.json"
+  "title": "NDD CLI Conveyor Run Execution Authority Pack",
+  "summary": "Upgrades CLI from broad doorway role authority to actual `ndd conveyor run` manifest orchestration authority.",
+  "primaryFiles": [
+    "contracts/sej/ndd-cli.execute.sej.v1.json",
+    "contracts/sej/materialize-ndd-cli-node.sej.v1.json",
+    "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json",
+    "contracts/facade-compositions/cli/ndd-cli.node-resolver-doorway.composition.v1.json"
   ],
-  "doctrine": [
-    "DTO contract is language-neutral shape truth.",
-    "Projection contract is language-neutral mapping truth.",
-    "Semantic operation graph must consume DTO/projection contracts explicitly.",
-    "Resolver applies projections and emits projection evidence.",
-    "Downstream audit blocks ornamental DTOs, projection bypass, local DTO stitching, and shape matches without lineage."
+  "hardLaw": [
+    "CLI facade is doorway only.",
+    "CLI must not delegate into ../../../bin/ndd.cjs as its brain.",
+    "Conveyor run behavior lives in semantic operation graph.",
+    "Manifest stages are declared, not invented in JS."
   ],
-  "completionPosture": "Ready for resolver/conveyor implementation and conformance validation."
+  "completionPosture": "After migration and resolver capability support, generated CLI can run a conveyor manifest from SEJ authority."
 }

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "evidence.receipt.verify.v1",
+  "capabilityStatus": "required",
+  "category": "conveyor.cli.orchestration",
+  "purpose": "Verify declared receipts and hashes produced by run stages.",
+  "portableAcross": [
+    "node"
+  ],
+  "mustDo": [
+    "load receipt",
+    "verify expected fields",
+    "verify declared hash equality",
+    "return structured verification result"
+  ],
+  "mustNotDo": [
+    "repair receipt",
+    "rewrite hash",
+    "ignore mismatch"
+  ],
+  "failureCodes": [
+    "evidence_receipt_verify_v1_missing",
+    "evidence_receipt_verify_v1_blocked",
+    "evidence_receipt_verify_v1_failed"
+  ],
+  "completionPosture": "Required for ndd conveyor run to be executable from semantic authority rather than bootstrap code."
+}

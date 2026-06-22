@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "generated.facade.smoke_execute.v1",
+  "capabilityStatus": "required",
+  "category": "conveyor.cli.orchestration",
+  "purpose": "Execute a declared generated facade smoke test with declared input only.",
+  "portableAcross": [
+    "node"
+  ],
+  "mustDo": [
+    "verify target generated facade path",
+    "execute declared command with declared stdin fixture",
+    "capture status/result",
+    "fail closed on execution error"
+  ],
+  "mustNotDo": [
+    "execute undeclared files",
+    "invent smoke input",
+    "ignore nonzero exit"
+  ],
+  "failureCodes": [
+    "generated_facade_smoke_execute_v1_missing",
+    "generated_facade_smoke_execute_v1_blocked",
+    "generated_facade_smoke_execute_v1_failed"
+  ],
+  "completionPosture": "Required for ndd conveyor run to be executable from semantic authority rather than bootstrap code."
+}

@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.ndd-cli.conveyor-run.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "accepted",
+  "commandKey": "defracto.ndd-cli.conveyor-run.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.ndd-cli.match-conveyor-run.v1",
+      "capabilityKey": "cli.argv.match.v1"
+    },
+    {
+      "actionKey": "defracto.ndd-cli.load-run-manifest.v1",
+      "capabilityKey": "conveyor.run_manifest.load.v1"
+    },
+    {
+      "actionKey": "defracto.ndd-cli.verify-resolver-authority.v1",
+      "capabilityKey": "resolver.authority.verify.v1"
+    },
+    {
+      "actionKey": "defracto.ndd-cli.resolve-materialization-sej.v1",
+      "capabilityKey": "sej.resolve.stage.v1"
+    },
+    {
+      "actionKey": "defracto.ndd-cli.resolve-conformance-sej.v1",
+      "capabilityKey": "sej.resolve.stage.v1"
+    },
+    {
+      "actionKey": "defracto.ndd-cli.execute-smoke-test.v1",
+      "capabilityKey": "generated.facade.smoke_execute.v1"
+    },
+    {
+      "actionKey": "defracto.ndd-cli.verify-receipts.v1",
+      "capabilityKey": "evidence.receipt.verify.v1"
+    },
+    {
+      "actionKey": "defracto.ndd-cli.emit-run-receipt.v1",
+      "capabilityKey": "conveyor.run_receipt.emit.v1"
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "matchConveyorRunCommand",
+        "capabilityKey": "cli.argv.match.v1",
+        "input": {
+          "argv": {
+            "$context": "argv"
+          },
+          "patterns": [
+            {
+              "commandKey": "defracto.ndd-cli.conveyor-run.v1",
+              "tokens": [
+                "conveyor",
+                "run"
+              ],
+              "options": [
+                {
+                  "name": "manifest",
+                  "required": false
+                },
+                {
+                  "name": "slice",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        },
+        "output": {
+          "path": "$graph.command"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "unsupported_cli_command"
+        }
+      },
+      {
+        "id": "loadRunManifest",
+        "capabilityKey": "conveyor.run_manifest.load.v1",
+        "input": {
+          "manifestPath": {
+            "$graph": "command.options.manifest"
+          },
+          "sliceKey": {
+            "$graph": "command.options.slice"
+          },
+          "defaultSearchRoot": "conveyor/runs"
+        },
+        "output": {
+          "path": "$graph.runManifest"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "run_manifest_missing"
+        }
+      },
+      {
+        "id": "verifyResolverAuthority",
+        "capabilityKey": "resolver.authority.verify.v1",
+        "input": {
+          "authorityRoot": "contracts/resolver-authority",
+          "requiredCapabilities": {
+            "$graph": "runManifest.requiredResolverCapabilities"
+          },
+          "requiredResolverPackage": "@bpmsoftwaresolutions/sej-resolver-node"
+        },
+        "output": {
+          "path": "$graph.resolverAuthority"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "resolver_authority_missing_or_invalid"
+        }
+      },
+      {
+        "id": "resolveMaterializationSej",
+        "capabilityKey": "sej.resolve.stage.v1",
+        "input": {
+          "stageKind": "materialization",
+          "sejPath": {
+            "$graph": "runManifest.stages.materialization.sej"
+          },
+          "expectedOutputs": {
+            "$graph": "runManifest.stages.materialization.expectedOutputs"
+          }
+        },
+        "output": {
+          "path": "$graph.materialization"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "materialization_stage_failed"
+        }
+      },
+      {
+        "id": "resolveConformanceSej",
+        "capabilityKey": "sej.resolve.stage.v1",
+        "input": {
+          "stageKind": "conformance",
+          "sejPath": {
+            "$graph": "runManifest.stages.conformance.sej"
+          },
+          "expectedOutputs": {
+            "$graph": "runManifest.stages.conformance.expectedOutputs"
+          }
+        },
+        "output": {
+          "path": "$graph.conformance"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "conformance_stage_failed"
+        }
+      },
+      {
+        "id": "executeGeneratedFacadeSmokeTest",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "input": {
+          "targetPath": {
+            "$graph": "runManifest.stages.smokeTest.targetPath"
+          },
+          "stdinFixture": {
+            "$graph": "runManifest.stages.smokeTest.stdinFixture"
+          },
+          "expectedStatus": {
+            "$graph": "runManifest.stages.smokeTest.expectedStatus"
+          },
+          "expectedContractKey": {
+            "$graph": "runManifest.stages.smokeTest.expectedContractKey"
+          }
+        },
+        "output": {
+          "path": "$graph.smokeTest"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "generated_facade_smoke_test_failed"
+        }
+      },
+      {
+        "id": "verifyReceiptsAndHashes",
+        "capabilityKey": "evidence.receipt.verify.v1",
+        "input": {
+          "receipts": {
+            "$graph": "runManifest.requiredReceipts"
+          },
+          "hashes": {
+            "$graph": "runManifest.requiredHashes"
+          }
+        },
+        "output": {
+          "path": "$graph.receiptVerification"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "receipt_or_hash_verification_failed"
+        }
+      },
+      {
+        "id": "emitRunReceipt",
+        "capabilityKey": "conveyor.run_receipt.emit.v1",
+        "input": {
+          "receiptPath": {
+            "$graph": "runManifest.runReceiptPath"
+          },
+          "runKey": {
+            "$graph": "runManifest.runKey"
+          },
+          "sliceKey": {
+            "$graph": "runManifest.sliceKey"
+          },
+          "stageResults": {
+            "materialization": {
+              "$graph": "materialization"
+            },
+            "conformance": {
+              "$graph": "conformance"
+            },
+            "smokeTest": {
+              "$graph": "smokeTest"
+            },
+            "receiptVerification": {
+              "$graph": "receiptVerification"
+            }
+          }
+        },
+        "output": {
+          "path": "$result"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "run_receipt_emit_failed"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "evidenceObligations": [
+    "cli_command_matched",
+    "run_manifest_loaded",
+    "resolver_authority_verified",
+    "materialization_sej_resolved",
+    "conformance_sej_resolved",
+    "generated_facade_smoke_test_passed",
+    "receipts_and_hashes_verified",
+    "run_receipt_emitted"
+  ],
+  "forbiddenClaims": [
+    "bootstrap ndd.cjs owns conveyor run",
+    "generated CLI facade owns conveyor brain",
+    "DTO shaping in CLI",
+    "manifest stage invention",
+    "compiled bridge fallback"
+  ],
+  "completionPosture": "ndd conveyor run is executable only when these declared stages are resolved and receipted."
+}

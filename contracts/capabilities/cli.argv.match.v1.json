@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "cli.argv.match.v1",
+  "capabilityStatus": "required",
+  "category": "conveyor.cli.orchestration",
+  "purpose": "Parse CLI argv against declared command patterns without owning command behavior.",
+  "portableAcross": [
+    "node"
+  ],
+  "mustDo": [
+    "read argv from invocation",
+    "match declared subcommand pattern",
+    "extract named options",
+    "fail closed on unsupported command"
+  ],
+  "mustNotDo": [
+    "invent command behavior",
+    "hardcode product policy",
+    "execute stages"
+  ],
+  "failureCodes": [
+    "cli_argv_match_v1_missing",
+    "cli_argv_match_v1_blocked",
+    "cli_argv_match_v1_failed"
+  ],
+  "completionPosture": "Required for ndd conveyor run to be executable from semantic authority rather than bootstrap code."
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-012b-lane-worker-conformance-hash-cleanup.v1",
+  "runKind": "conformance-cleanup-run",
+  "sliceKey": "slice-012b-lane-worker-conformance-hash-cleanup",
+  "objective": "Update stale lane-worker conformance expected hash from compiled bridge output to mature semantic materialized output.",
+  "inputs": [
+    "generated/workers/node/lane-worker.cjs",
+    "contracts/sej/conform-lane-workers-node-facade.sej.v1.json",
+    "evidence/workers/lane-worker.node-projection.receipt.v1.json"
+  ],
+  "outputs": [
+    "contracts/sej/conform-lane-workers-node-facade.sej.v1.json",
+    "evidence/workers/lane-worker.conformance-hash-supersession.receipt.v1.json",
+    "evidence/workers/lane-worker.conformance.receipt.v1.json"
+  ],
+  "expectedHash": "sha256:b0e05e3f92010a9844faa9bb500302cf96cb1737fdeade17470620659554e52d",
+  "supersededHash": "sha256:0201959b0367c8b0ad759d2ed6484fbc332876ad908c54bed5cbc4128eb54160",
+  "commands": [
+    "node node_modules/@bpmsoftwaresolutions/sej-resolver-node/src/cli.cjs resolve --sej contracts/sej/conform-lane-workers-node-facade.sej.v1.json"
+  ],
+  "completionPosture": "Passes when conformance receipt records the mature semantic materialized facade hash as expected and actual."
+}

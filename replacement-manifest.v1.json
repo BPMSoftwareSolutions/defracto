@@ -1,23 +1,25 @@
 {
-  "schemaVersion": "defracto.dto-body-mechanics-package-manifest.v1",
-  "manifestKey": "defracto.package.dto-shape-lineage-body-mechanics.v1",
-  "status": "ready-for-resolver-and-conveyor",
-  "packageFamilies": [
-    "dto contracts",
-    "dto projection contracts",
-    "DTO capabilities",
-    "DTO schemas",
-    "DTO conformance fixtures",
-    "DTO lineage policy",
-    "DTO downstream use gate",
-    "RF-002 handoff",
-    "RF-003 handoff",
-    "slice-011 run envelope"
+  "schemaVersion": "defracto.replacement-manifest.v1",
+  "manifestKey": "defracto.package.ndd-cli-conveyor-run-execution-authority.v1",
+  "status": "ready-for-repo",
+  "replaces": [
+    "contracts/sej/ndd-cli.execute.sej.v1.json",
+    "contracts/sej/materialize-ndd-cli-node.sej.v1.json",
+    "contracts/facade-compositions/cli/ndd-cli.node-resolver-doorway.composition.v1.json",
+    "contracts/semantic-operation-graphs/cli/ndd-cli.execute.sog.v1.json"
   ],
-  "acceptanceRequires": [
-    "RF-002 fixtures pass across Node, Python, and C#.",
-    "RF-003 double-dip audit fixture blocks consistently.",
-    "Receipts include DTO projection evidence handles.",
-    "Generated surfaces contain no local DTO stitching."
+  "adds": [
+    "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json",
+    "contracts/capabilities/*.json",
+    "contracts/conformance/corpus/ndd-cli-conveyor-run-graph.conformance-fixture.v1.json",
+    "contracts/conformance/expectations/ndd-cli-conveyor-run-graph.expected-result.v1.json",
+    "evidence/cli/ndd-cli.bootstrap-delegate-superseded.receipt.v1.json",
+    "conveyor/runs/2026/06/21/slice-013-ndd-cli-conveyor-run-execution-authority/run.manifest.v1.json",
+    "conveyor/runs/2026/06/21/slice-013-ndd-cli-conveyor-run-execution-authority/RUNME.md"
+  ],
+  "expectedGeneratedFacade": "generated/cli/node/ndd.cjs",
+  "expectedCliCommands": [
+    "node generated/cli/node/ndd.cjs conveyor run --slice slice-012-lane-worker-mature-materialization",
+    "node generated/cli/node/ndd.cjs conveyor run --manifest conveyor/runs/2026/06/21/slice-012-lane-worker-mature-materialization/run.manifest.v1.json"
   ]
 }

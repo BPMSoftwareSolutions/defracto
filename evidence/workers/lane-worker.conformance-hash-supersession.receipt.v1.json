@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.hash-supersession-receipt.v1",
+  "receiptKey": "defracto.receipt.lane-worker.conformance-hash-supersession.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-21T00:00:00-04:00",
+  "targetConformanceSej": "contracts/sej/conform-lane-workers-node-facade.sej.v1.json",
+  "oldExpectedHash": "sha256:0201959b0367c8b0ad759d2ed6484fbc332876ad908c54bed5cbc4128eb54160",
+  "newExpectedHash": "sha256:b0e05e3f92010a9844faa9bb500302cf96cb1737fdeade17470620659554e52d",
+  "reason": "Resolver 0.1.7 materialized the mature semantic doorway path. The old expected hash belongs to the obsolete compiled bridge.",
+  "proofSummary": {
+    "resolverVersion": "@bpmsoftwaresolutions/sej-resolver-node@0.1.7",
+    "doorwayExportVerified": true,
+    "semanticMaterializationSucceeded": true,
+    "generatedFacadeExecuted": true,
+    "generatedFacadeStatus": "passed",
+    "generatedFacadeContractKey": "defracto.sej.lane-workers.execute.v1"
+  },
+  "forbiddenFutureUse": [
+    "old compiled bridge hash as expected hash",
+    "inline host body materialization path",
+    "compiled bridge as active materialization source"
+  ],
+  "completionPosture": "The conformance expected hash now tracks the mature semantic materialized facade."
+}

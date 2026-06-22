@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "conveyor.run_manifest.load.v1",
+  "capabilityStatus": "required",
+  "category": "conveyor.cli.orchestration",
+  "purpose": "Load a conveyor run manifest by path or slice key.",
+  "portableAcross": [
+    "node"
+  ],
+  "mustDo": [
+    "resolve manifest path",
+    "load JSON manifest",
+    "validate required fields",
+    "return manifest object"
+  ],
+  "mustNotDo": [
+    "invent missing manifest",
+    "scan unbounded repo paths",
+    "choose next slice without declaration"
+  ],
+  "failureCodes": [
+    "conveyor_run_manifest_load_v1_missing",
+    "conveyor_run_manifest_load_v1_blocked",
+    "conveyor_run_manifest_load_v1_failed"
+  ],
+  "completionPosture": "Required for ndd conveyor run to be executable from semantic authority rather than bootstrap code."
+}

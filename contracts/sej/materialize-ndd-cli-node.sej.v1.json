@@ -2,38 +2,122 @@
   "schemaVersion": "defracto.sej-contract.v1",
   "contractKey": "defracto.sej.materialize-ndd-cli-node.v1",
   "contractKind": "semantic-executable-json",
-  "toolKey": "defracto.cli.ndd",
-  "boundedInputs": [
-    "nddCliNodeProjectionManifest"
-  ],
-  "boundedOutputs": [
-    "generatedNodeFacade"
-  ],
-  "requiredOperations": [
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.ndd-cli.materialize-node",
+  "sourceLineage": {
+    "executeSej": "contracts/sej/ndd-cli.execute.sej.v1.json",
+    "semanticOperationGraph": "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json",
+    "facadeComposition": "contracts/facade-compositions/cli/ndd-cli.node-resolver-doorway.composition.v1.json"
+  },
+  "bodyDisposition": {
+    "bodyKind": "facade_composition_graph",
+    "hostLanguageBodyAllowed": false,
+    "compiledBridgeAllowed": false,
+    "bootstrapDelegateAllowed": false,
+    "promotionValidSource": true,
+    "forbiddenBodyForms": [
+      "require('../../../bin/ndd.cjs')",
+      "inline_js_blob",
+      "dto_stitching",
+      "local_conveyor_brain"
+    ]
+  },
+  "steps": [
     {
-      "operationKey": "resolve.contract.v1",
-      "purpose": "Resolve the Node projection manifest.",
-      "requirementState": "required",
-      "missingCapabilityBehavior": "blocked"
+      "id": "composeCliFacade",
+      "type": "resolver",
+      "operation": "facade.compose.v1",
+      "payload": {
+        "composition": {
+          "$inline": "contracts/facade-compositions/cli/ndd-cli.node-resolver-doorway.composition.v1.json"
+        }
+      }
     },
     {
-      "operationKey": "artifact.materialize.v1",
-      "purpose": "Write the generated Node facade.",
-      "requirementState": "required",
-      "missingCapabilityBehavior": "blocked"
+      "id": "ensureCliGeneratedDirectory",
+      "type": "resolver",
+      "operation": "filesystem.ensure_directory.v1",
+      "payload": {
+        "path": "generated/cli/node",
+        "authority": {
+          "scope": "generated_surface_write_only"
+        }
+      }
     },
     {
-      "operationKey": "hash.compute.v1",
-      "purpose": "Compute the facade hash.",
-      "requirementState": "required",
-      "missingCapabilityBehavior": "blocked"
+      "id": "ensureCliEvidenceDirectory",
+      "type": "resolver",
+      "operation": "filesystem.ensure_directory.v1",
+      "payload": {
+        "path": "evidence/cli",
+        "authority": {
+          "scope": "evidence_write_only"
+        }
+      }
     },
     {
-      "operationKey": "evidence.emit.v1",
-      "purpose": "Emit the projection receipt.",
-      "requirementState": "required",
-      "missingCapabilityBehavior": "blocked"
+      "id": "materializeCliFacade",
+      "type": "resolver",
+      "operation": "artifact.materialize.v1",
+      "payload": {
+        "authority": {
+          "scope": "generated_surface_write_only"
+        },
+        "artifact": {
+          "path": "generated/cli/node/ndd.cjs",
+          "format": "text",
+          "contentRef": "$steps.composeCliFacade.renderedLines",
+          "joinWith": "\n",
+          "newline": "lf"
+        }
+      }
+    },
+    {
+      "id": "hashCliFacade",
+      "type": "resolver",
+      "operation": "hash.compute.v1",
+      "payload": {
+        "algorithm": "sha256",
+        "path": "generated/cli/node/ndd.cjs"
+      }
+    },
+    {
+      "id": "emitCliProjectionReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "evidence_write_only"
+        },
+        "receipt": {
+          "path": "evidence/cli/ndd-cli.node-projection.receipt.v1.json",
+          "content": {
+            "schemaVersion": "defracto.ndd-cli.node-projection.receipt.v1",
+            "receiptKey": "defracto.receipt.ndd-cli.node-projection.v1",
+            "status": "passed",
+            "sourceSej": "contracts/sej/materialize-ndd-cli-node.sej.v1.json",
+            "executeSej": "contracts/sej/ndd-cli.execute.sej.v1.json",
+            "semanticOperationGraph": "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json",
+            "facadeComposition": "contracts/facade-compositions/cli/ndd-cli.node-resolver-doorway.composition.v1.json",
+            "projectedPath": "generated/cli/node/ndd.cjs",
+            "artifactHash": "$steps.hashCliFacade.hash",
+            "expectedArtifactHash": "$steps.composeCliFacade.contentHash",
+            "contentSource": "facade.compose.v1 -> artifact.contentRef",
+            "forbiddenResponsibilities": [
+              "conveyor brain",
+              "DTO shaping",
+              "stage policy invention",
+              "compiled bridge fallback",
+              "bootstrap delegate"
+            ],
+            "completionPosture": "Generated CLI facade is a disposable resolver doorway. Conveyor run behavior is in SEJ/SOG."
+          }
+        }
+      }
     }
   ],
-  "failurePosture": "fail-closed"
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitCliProjectionReceipt"
+  }
 }
