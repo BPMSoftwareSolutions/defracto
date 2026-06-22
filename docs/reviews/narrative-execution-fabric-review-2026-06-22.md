@@ -327,6 +327,116 @@ For this to work safely, the conveyor needs a document-intake frontend:
 
 The important rule: business documents are high-value source material, but they are often aspirational, ambiguous, and incomplete. The conveyor should compile them into products only through reviewable intermediate artifacts, not by treating every slide bullet as implementation truth.
 
+## Projection Surface Abstraction
+
+The conveyor should treat projection as a first-class compiler phase. A description, strategy, ASCII sketch, source document, or canonical spec should compile into a semantic projection model first, then fan out into selected render surfaces.
+
+The abstraction is:
+
+```text
+source meaning
+-> semantic projection model
+-> projection manifest
+-> render adapter
+-> surface artifact
+-> evidence receipt
+-> equivalence / drift gate
+```
+
+The repo already has the beginning of this:
+
+- `contracts/schemas/visual-projection-model.schema.v1.json` defines visual concepts, surfaces, regions, nodes, edges, containers, lanes, layout rules, semantic bindings, render adapters, equivalence rules, and forbidden claims.
+- `contracts/schemas/visual-render-adapter.schema.v1.json` defines adapter families and output artifact kinds.
+- `contracts/policies/visual-projection-determinism.policy.v1.json` says adapters must consume the model, apply deterministic rules, emit declared artifact formats, fail closed on missing semantics or geometry, and emit evidence.
+- `contracts/docs/documentation-surface.catalog.v1.json` catalogs doc projection surfaces.
+- ASCII sketches and target sketches already exist as early projection surfaces.
+
+The missing piece is a generalized projection registry that lets the conveyor pick target surfaces by intent, audience, channel, and evidence requirement.
+
+Target projection families:
+
+- Static visual: ASCII, SVG, PNG, PDF figure, infographic image.
+- Interactive web: HTML/CSS, React/Vue/Svelte component, embeddable web widget.
+- Product UI: wireframe, design spec, app screen, dashboard, workflow console.
+- Document: Markdown, Google Docs, Word DOCX, PDF, report packet.
+- Presentation: PowerPoint, Google Slides, executive briefing.
+- Motion: animated SVG, CSS animation, Lottie, MP4, explainer video storyboard.
+- Publishing: website article, blog post, LinkedIn post, newsletter, press release.
+- Distribution: website publish, LinkedIn publish package, YouTube upload package, email campaign package.
+- Runtime: generated app, API, job, automation, data pipeline, CRM workflow.
+
+The semantic projection model should own meaning; adapters should own only rendering mechanics.
+
+Examples:
+
+```text
+ASCII sketch
+-> visual projection model
+-> SVG adapter
+-> infographic.svg
+-> SVG render receipt
+```
+
+```text
+business strategy deck
+-> strategy ontology
+-> product roadmap model
+-> dashboard UI adapter
+-> runnable growth cockpit
+-> conformance and release receipts
+```
+
+```text
+canonical spec
+-> article projection model
+-> website article adapter
+-> CMS-ready HTML/Markdown
+-> publish receipt
+```
+
+```text
+story + canonical spec + target sketch
+-> motion projection model
+-> storyboard adapter
+-> video script + scene list + assets
+-> YouTube package receipt
+```
+
+The projection registry should answer:
+
+- Which surfaces are requested?
+- Which surfaces are allowed for this source authority?
+- Which adapter family owns each surface?
+- What evidence is required?
+- What equivalence rules apply?
+- What publish channels are allowed?
+- What surfaces are generated, draft-only, review-only, or release-capable?
+
+For social and website publishing, the conveyor should separate content generation from external publication:
+
+```text
+article/post/video package generated
+-> internal evidence and review
+-> publish authority check
+-> channel adapter
+-> external publish receipt
+```
+
+That distinction matters because LinkedIn, YouTube, CMS, email, and website publishing create external-state effects. Those should require stronger authorization than local projection.
+
+To make this powerful, add:
+
+1. `contracts/projection-registry/projection-surface.catalog.v1.json`
+2. Render adapter contracts for `ascii`, `svg`, `html-css`, `docx`, `pdf`, `pptx`, `article`, `linkedin-post`, `youtube-package`, and `website-page`.
+3. Projection capability bindings for each adapter family.
+4. A shared artifact receipt schema with `sourceModelHash`, `adapterKey`, `targetPath`, `artifactHash`, `surfaceKind`, and `publishStatus`.
+5. Equivalence gates for layout, semantic bindings, accessibility, brand rules, and target-channel constraints.
+6. A sample ASCII-to-SVG-to-HTML projection slice.
+7. A sample strategy-to-infographic projection slice.
+8. A publish-safe channel adapter pattern where external posting is blocked unless explicit release authority exists.
+
+The end-state is a projection switchboard: one governed meaning model, many selectable outputs.
+
 ## Refactoring Other Codebases
 
 Yes, this architecture can become a governed refactoring system for other codebases, but it needs additional intake and equivalence lanes.
@@ -420,6 +530,7 @@ Scale requirements:
 8. Add a `source/legacy-code` pilot slice with one tiny imported codebase and an equivalence gate.
 9. Add a voice-to-value pilot slice with transcript receipt, unified CLI command contract, and one tiny implemented solution.
 10. Add a document-to-product pilot slice using a PPTX strategy deck as source, with extraction receipt, strategy ontology, product candidates, and one generated runnable app.
+11. Add a projection-registry pilot with ASCII-to-SVG, SVG-to-HTML, DOCX/PDF, and website article adapters.
 
 ## Verification Performed
 
@@ -431,6 +542,7 @@ Scale requirements:
 - Audited required run-manifest receipts and passed receipt hashes for simple projected artifact paths.
 - Audited the voice-to-value pipeline, source voice-notes bucket, capture-source lane, CLI handoff command map, and CLI input schemas.
 - Inspected the Roll-Rite growth roadmap PPTX as a concrete document-to-product source sample: 47 slides, with text extracted from the PPTX package without modifying the original file.
+- Audited visual projection model, visual render adapter, visual determinism policy, UI sketch projection manifest, and documentation surface catalog.
 
 ## Bottom Line
 
