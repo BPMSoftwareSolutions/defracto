@@ -1,0 +1,1 @@
+{"schemaVersion":"defracto.gemini-invocation-receipt.v1","status":"blocked","blocker":"gemini_response_missing","httpStatus":503,"worker":"defracto.workers.gemini_flash.v1","invocationCapability":"worker.gemini_flash.invoke.v1","rawResponseHash":"sha256:01f5c7d4e4d8ec06c8098777e731b3d552ba518feb02b681f6c569edcd9c6f6d","secretMaterialWritten":false}

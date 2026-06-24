@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vendor Evidence Readiness SDK - Review Package</title>
+<style>body{margin:0;background:#f5f7fb;color:#17202a;font-family:Arial,sans-serif}main{max-width:1120px;margin:0 auto;padding:32px}.hero{background:#fff;border:1px solid #d8dee9;padding:28px;margin-bottom:16px}.title{font-size:34px;font-weight:800;margin:0}.subtitle{color:#4b5563;font-size:16px}.badge{display:inline-block;padding:6px 10px;border-radius:6px;font-weight:700}.blocked{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}.passed{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{background:#fff;border:1px solid #d8dee9;padding:20px}.panel h2{font-size:19px;margin:0 0 12px}.check{display:flex;justify-content:space-between;border-bottom:1px solid #eef1f5;padding:9px 0}.ok{color:#166534;font-weight:700}.bad{color:#991b1b;font-weight:700}.flow{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:center}.flow div{background:#eef2f7;border:1px solid #cbd5e1;text-align:center;padding:12px;font-weight:700}.arrow{background:transparent!important;border:0!important;color:#64748b}.wide{grid-column:1/-1}code{background:#eef2f7;padding:2px 4px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #d8dee9;padding:8px;text-align:left;vertical-align:top}th{background:#eef2f7}@media(max-width:780px){.grid{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.arrow{display:none}}</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<p class="badge blocked">Blocked - Missing Required Evidence</p>
+<h1 class="title">Vendor Evidence Readiness SDK</h1>
+<p class="subtitle">AI Development Team Delivery Report for Acme Cloud Services</p>
+</section>
+<section class="panel wide">
+<h2>User Story</h2>
+<p>As a procurement reviewer, I want a vendor evidence readiness checker, so that I can see whether a vendor packet has the required documents and unsupported claims before sending it to security review.</p>
+</section>
+<section class="panel wide">
+<h2>AI Development Team Flow</h2>
+<div class="flow"><div>Product Owner Story</div><div class="arrow">-&gt;</div><div>AI Business Analyst</div><div class="arrow">-&gt;</div><div>Build Setup</div><div class="arrow">-&gt;</div><div>Review Package</div></div>
+</section>
+<div class="grid">
+<section class="panel"><h2>Evidence Checklist</h2><div class="check"><span>W-9</span><span class="ok">present</span></div><div class="check"><span>SOC 2 Type II Report</span><span class="bad">missing</span></div><div class="check"><span>Cyber Insurance Certificate</span><span class="ok">present</span></div><div class="check"><span>MSA</span><span class="bad">missing</span></div></section>
+<section class="panel"><h2>Unsupported Claims</h2><p><span class="bad">SOC 2 compliant</span> - no SOC 2 Type II Report found.</p><p><strong>Next action:</strong> Vendor must provide missing required evidence before security review.</p></section>
+<section class="panel"><h2>What Got Built</h2><p>A generated SDK proof surface that checks a vendor packet fixture for required evidence and unsupported claims.</p><p><strong>Durable product truth:</strong> not claimed by the generated checker; accepted for product-owner review.</p></section>
+<section class="panel"><h2>Tests</h2><p><span class="badge passed">Usage smoke passed</span></p><p>The generated checker correctly blocked the incomplete vendor packet.</p></section>
+</div>
+<section class="panel wide">
+<h2>Proof</h2>
+<table><thead><tr><th>Evidence</th><th>Path</th><th>Hash</th></tr></thead><tbody>
+<tr><td>Live Gemini BA receipt</td><td><code>
+conveyor/runs/2026/06/24/vendor-evidence-readiness-sdk/receipts/cognitive-ba.gemini-invocation.receipt.v1.json
+</code></td><td><code>
+sha256:4aa25c240f3c98c3715cd3b15417d3f538607c5d91b981fac483f0447777a5d5
+</code></td></tr>
+<tr><td>BA hardening receipt</td><td><code>
+conveyor/runs/2026/06/24/vendor-evidence-readiness-sdk/receipts/business-analysis-hardening.receipt.v1.json
+</code></td><td><code>
+sha256:eb2cda7d769e7dd4dad444de69900ddf593bc898f7dd8c06ddfad3f579508506
+</code></td></tr>
+<tr><td>Usage smoke receipt</td><td><code>
+conveyor/runs/2026/06/24/vendor-evidence-readiness-sdk/receipts/vendor-evidence-readiness.usage-smoke.receipt.v1.json
+</code></td><td><code>
+sha256:0339193c701106d419cc832a97a1d59e224fba0c627ff006c3262188fb6a4ce6
+</code></td></tr>
+</tbody></table>
+</section>
+</main>
+</body>
+</html>

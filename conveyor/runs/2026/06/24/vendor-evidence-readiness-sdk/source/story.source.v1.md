@@ -1,0 +1,1 @@
+As a procurement reviewer, I want a vendor evidence readiness checker, so that I can see whether a vendor packet has the required documents and unsupported claims before sending it to security review.
