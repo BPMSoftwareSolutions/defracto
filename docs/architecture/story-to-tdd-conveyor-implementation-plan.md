@@ -65,6 +65,8 @@ Do not make Gemini Flash, the generated CLI, or generated code own product truth
 
 Gemini may propose candidate artifacts. The resolver and conveyor gates decide whether those artifacts can become accepted source, story, canonical spec, test projection, implementation projection, or evidence.
 
+No runtime code, test code, adapter code, CLI code, or implementation code should be hand-authored in this repo. Code enters the repo only as a generated projection from declared semantic authority, with source lineage, projection manifests, hashes, receipts, and conformance evidence.
+
 The new story-to-TDD conveyor should be a governed compiler front end:
 
 ```text
@@ -82,12 +84,17 @@ Add these command patterns to the CLI authority:
 ```text
 ndd story plan --text <operatorText> --slice <sliceKey>
 ndd story plan --source <sourcePath> --slice <sliceKey>
+ndd story test --text <operatorText> --slice <sliceKey>
+ndd story test --source <sourcePath> --slice <sliceKey>
+ndd story test --slice <sliceKey>
 ndd story implement --text <operatorText> --slice <sliceKey>
 ndd story implement --source <sourcePath> --slice <sliceKey>
 ndd story status --slice <sliceKey>
 ```
 
 `story plan` should stop after source, story packet, acceptance criteria, canonical spec, semantic graph, projection manifests, and run plan artifacts exist.
+
+`story test` should stop after test intent, generated test projection, generated test receipt, and red-test execution evidence. It must not materialize implementation artifacts.
 
 `story implement` should continue into generated tests, red test execution, implementation materialization, green test execution, conformance, and evidence review.
 
@@ -174,7 +181,7 @@ Create an implementation projection plan from canonical spec plus red-test evide
 
 9. `08-implementation-materialization`
 
-Materialize implementation through resolver-controlled projection or a bounded worker lane. The lane must not edit outside the declared target paths.
+Materialize implementation only as a generated projection from declared semantic authority. A worker lane may propose candidate implementation content, but accepted implementation artifacts must be materialized through declared target paths, projection manifests, hashes, and receipts. The lane must not hand-author code or edit outside the declared target paths.
 
 10. `09-green-test`
 
@@ -213,7 +220,7 @@ The story-to-TDD flow needs these additional repo-local semantic capabilities or
 - `test.node.run.v1`
 - `test.result.normalize.v1`
 - `test.red_green.evaluate.v1`
-- `patch.apply_bounded.v1` or a generated implementation materializer that can only write declared targets
+- `generated.implementation.materialize.v1` or a bounded generated patch materializer that can only write declared targets from accepted semantic authority
 - `trace.criteria_to_test.verify.v1`
 - `trace.criteria_to_implementation.verify.v1`
 
@@ -231,7 +238,7 @@ Goal: make the CLI command surface coherent before adding new behavior.
 
 Changes:
 
-- Add `story plan` and `story implement` to `contracts/schemas/ndd-cli.command-input.schema.v1.json`.
+- Add `story plan`, `story test`, and `story implement` to `contracts/schemas/ndd-cli.command-input.schema.v1.json`.
 - Add `contracts/cli/ndd-story-implement.command.v1.json`.
 - Extend the concrete CLI SOG with story command patterns or create a dedicated story CLI SOG and route to it from `ndd-cli.execute.sej.v1.json`.
 - Add command invocation receipt expectations.
@@ -278,16 +285,17 @@ Completion: green cannot be accepted unless matching red evidence exists first.
 
 ### Slice E: Bounded Implementation Materialization
 
-Goal: implement only what the canonical spec and tests authorize.
+Goal: generate only what the canonical spec and tests authorize.
 
 Changes:
 
 - Add implementation plan schema.
 - Add implementation projection manifest.
 - Add bounded target path policy.
-- Use Gemini worker lane to propose implementation changes, but only materialize through declared target paths and receipts.
+- Add a no-hand-authored-code gate for implementation artifacts.
+- Use Gemini worker lane to propose implementation candidates, but only materialize accepted implementation projections through declared target paths and receipts.
 
-Completion: implementation files are produced or patched only within declared scope and tied to criteria/test evidence.
+Completion: implementation files are generated only within declared scope and tied to criteria/test evidence.
 
 ### Slice F: Full Story-To-TDD Run Manifest
 
@@ -361,6 +369,7 @@ The first release is successful when:
 - Generated tests map to criteria.
 - Red test receipt proves the implementation was not already passing.
 - Implementation materialization is bounded to declared target paths.
+- No hand-authored code is introduced; tests and implementation files are generated projections with receipts.
 - Green test receipt proves the same tests pass.
 - Conformance receipt verifies criteria-to-test-to-implementation coverage.
 - Missing Gemini credentials, missing resolver capabilities, untestable criteria, failed tests, and unreceipted mutations all block closed.
@@ -369,6 +378,7 @@ The first release is successful when:
 
 - The Gemini Flash invocation boundary is not explicit enough yet. Define `worker.gemini_flash.invoke.v1` in this repo so the worker invocation is loud, traceable, and receipted without implying resolver repo changes.
 - Generated implementation could become a hidden source of truth if target boundaries are not enforced. Require target path manifests and patch receipts.
+- Hand-authored code could accidentally enter during early experimentation. Add an explicit no-hand-authored-code gate before generated tests or generated implementation artifacts are accepted.
 - Acceptance criteria may be too vague for tests. Block on vague criteria instead of generating weak tests.
 - Existing command authority is split between command map, command schema, and two CLI SOGs. Reconcile this first.
 - Repo-level `npm test` currently fails by design. Add a governed test script only after generated test projection has a receipt-backed path.
