@@ -1,14 +1,12 @@
 # Slice 029: Story Slug Generated Test Red Receipt
 
-Status: blocked
+Status: passed
 
 ## Outcome
 
-Slice 029 attempted to advance from test intent authority to generated test materialization and red-test evidence.
+Slice 029 materialized the generated Node test projection from declared semantic authority, then ran it before implementation existed and captured the expected red receipt.
 
-The slice blocked before generating a `.test.js` file because the current materialization SEJ is declaration-only and resolves with zero executable stages.
-
-## Attempted Invocation
+## Materialization Invocation
 
 ```text
 node node_modules/@bpmsoftwaresolutions/sej-resolver-node/src/cli.cjs resolve --contract contracts/sej/materialize-story-slug-generated-test.sej.v1.json
@@ -18,24 +16,54 @@ Observed resolver result:
 
 ```text
 status: passed
-stageCount: 0
-executedStageIds: []
+stageCount: 6
+executedStageIds:
+  - projectGeneratedTestSource
+  - ensureGeneratedTestDirectory
+  - ensureTddEvidenceDirectory
+  - materializeGeneratedTest
+  - hashGeneratedTest
+  - emitGeneratedTestReceipt
 ```
 
-## Why This Blocks
-
-Resolver syntax acceptance is not materialization evidence.
-
-The generated test target remains absent:
+Generated test artifact:
 
 ```text
 tests/generated/user-stories/story-slug.generated.test.js
 ```
 
-The red receipt remains absent:
+Generated test hash:
 
 ```text
-evidence/tdd/story-slug.red-test.receipt.v1.json
+sha256:246299c26d138d78257f747c2554ba87687b511421bc2f0f27a49e6e0d2c6a7a
+```
+
+Materialization receipt:
+
+```text
+evidence/tdd/story-slug.generated-test.materialization.receipt.v1.json
+```
+
+## Red Test Invocation
+
+```text
+node --test tests/generated/user-stories/story-slug.generated.test.js
+```
+
+Observed result:
+
+```text
+exitCode: 1
+tests: 4
+pass: 0
+fail: 4
+failureCode: MODULE_NOT_FOUND
+```
+
+The failure reason matches the expected red posture:
+
+```text
+missing generated implementation module
 ```
 
 The implementation target remains absent:
@@ -44,23 +72,26 @@ The implementation target remains absent:
 generated/implementations/user-stories/story-slug.cjs
 ```
 
-## Receipt
-
-Blocked materialization evidence:
+## Red Receipt
 
 ```text
-evidence/tdd/story-slug.generated-test.materialization.receipt.v1.json
+evidence/tdd/story-slug.red-test.receipt.v1.json
 ```
 
-Blocker:
+The red receipt records:
 
-```text
-generated_test_materialization_stage_missing
-```
+- exact command
+- exit code
+- generated test artifact hash
+- stdout hash
+- stderr hash
+- failed test names
+- covered criteria
+- missing implementation artifact path
 
 ## Trace Tightening Completed
 
-Before attempting Slice 029, the acceptance criteria authority was tightened so each criterion now has:
+Before materialization, the acceptance criteria authority was tightened so each criterion has:
 
 - `criteriaKey`
 - source trace
@@ -70,7 +101,7 @@ Before attempting Slice 029, the acceptance criteria authority was tightened so 
 - exact expected result
 - failure/blocker shape when applicable
 
-The empty input case now uses the exact blocker:
+The empty input case uses the exact blocker:
 
 ```json
 {
@@ -81,27 +112,24 @@ The empty input case now uses the exact blocker:
 
 ## Boundary
 
-No hand-authored test code was introduced.
+No hand-authored test file was introduced.
 
-No generated test file was created.
-
-No red test was run.
+The generated test file appeared only after the resolver materialization SEJ ran.
 
 No implementation file was created.
 
+No green test was run.
+
 No resolver repository changes are required.
+
+## Visual Evidence
+
+```text
+conveyor/runs/2026/06/24/slice-029-story-slug-generated-test-red-receipt/sketches/story-slug-red-test.ascii
+```
 
 ## Completion Posture
 
-Slice 029 remains blocked until generated test materialization is represented as an executable semantic stage that can produce:
+Slice 029 passes because the generated test projection exists with a matching materialization receipt, and the first red run fails for the expected missing implementation module.
 
-```text
-tests/generated/user-stories/story-slug.generated.test.js
-evidence/tdd/story-slug.generated-test.materialization.receipt.v1.json
-```
-
-Only after those exist with a hash-bound receipt should the red test run and emit:
-
-```text
-evidence/tdd/story-slug.red-test.receipt.v1.json
-```
+Slice 030 should generate the implementation projection, rerun the same generated test artifact, and emit green evidence.

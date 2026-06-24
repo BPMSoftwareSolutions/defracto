@@ -1,0 +1,27 @@
+Story Slug Red Test
+
+source story
+  |
+  v
+acceptance criteria
+  |
+  v
+test intent
+  |
+  v
+node test projection manifest
+  |
+  v
+resolver materialization SEJ
+  |
+  v
+generated test artifact
+  |
+  v
+node --test
+  |
+  v
+RED: missing generated implementation module
+
+Implementation target remains absent:
+generated/implementations/user-stories/story-slug.cjs

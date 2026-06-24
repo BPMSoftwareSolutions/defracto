@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "defracto.test-execution-receipt.v1",
+  "receiptKey": "defracto.receipt.story-slug.red-test.slice-029.v1",
+  "status": "failed",
+  "testPhase": "red",
+  "command": [
+    "node",
+    "--test",
+    "tests/generated/user-stories/story-slug.generated.test.js"
+  ],
+  "targetArtifactPath": "tests/generated/user-stories/story-slug.generated.test.js",
+  "targetArtifactHash": "sha256:246299c26d138d78257f747c2554ba87687b511421bc2f0f27a49e6e0d2c6a7a",
+  "implementationArtifactPath": "generated/implementations/user-stories/story-slug.cjs",
+  "criteriaKeys": [
+    "story-slug.lowercase-ascii",
+    "story-slug.whitespace-to-hyphen",
+    "story-slug.remove-punctuation",
+    "story-slug.collapse-hyphens",
+    "story-slug.empty-input-blocked"
+  ],
+  "startedAt": "2026-06-24T00:00:00-04:00",
+  "completedAt": "2026-06-24T00:00:00-04:00",
+  "exitCode": 1,
+  "result": {
+    "expectedRed": true,
+    "expectedFailureReason": "missing implementation module",
+    "failureCode": "MODULE_NOT_FOUND",
+    "testSummary": {
+      "tests": 4,
+      "pass": 0,
+      "fail": 4,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "failedTestNames": [
+      "story-slug.test.lowercase-and-whitespace covers lowercase ASCII and whitespace replacement",
+      "story-slug.test.remove-punctuation covers unsupported punctuation removal",
+      "story-slug.test.collapse-hyphens covers repeated hyphen collapse",
+      "story-slug.test.empty-input-blocked covers exact empty input blocker"
+    ],
+    "implementationArtifactExists": false
+  },
+  "stdoutHash": "sha256:0d25a75855015e1af666df2c99be3773d7ecc3ae94f335a58f47769ebd34ff72",
+  "stderrHash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "blockedReasons": []
+}
