@@ -55,7 +55,7 @@ The main gaps:
 - `package.json` still has a placeholder `npm test` script.
 - The CLI command schema does not yet include `story implement`, `story plan`, `story test`, or equivalent story-driven TDD commands.
 - The runner can execute declared stage manifests, but there is no stage manifest for story-to-TDD.
-- The live Gemini path is visible as dispatch/response artifacts, but there is no resolver-native provider invocation primitive in the local resolver package.
+- The live Gemini path is visible as dispatch/response artifacts, but this repo does not yet define a first-class semantic operation such as `worker.gemini_flash.invoke.v1` for story-to-TDD lanes.
 - Acceptance criteria are present as a field in story packets, but there is no stricter acceptance-criteria schema, test-intent schema, or acceptance-to-test trace schema.
 - There is no explicit red/green receipt family yet.
 
@@ -188,9 +188,13 @@ Verify story-to-canonical-to-test-to-implementation traceability. Verify generat
 
 Produce a human-readable run summary, claim-to-evidence graph update, and release posture.
 
-## Resolver Capability Needs
+## Repo-Local Semantic Capability Needs
 
-Current local resolver support is enough for:
+The resolver boundary should stay intact. This plan does not require changing the resolver repository or turning the resolver into a Gemini SDK, test runner, patch engine, or vendor integration layer.
+
+The work belongs in this repo: define the semantic operation names, contracts, worker profiles, dispatch packets, response shapes, receipts, gates, and run manifests that the existing resolver can resolve as data-driven semantic language.
+
+Current resolver support is enough for:
 
 - semantic operation graph execution
 - artifact materialization
@@ -202,9 +206,9 @@ Current local resolver support is enough for:
 - receipt verification
 - run receipt emission
 
-The story-to-TDD flow needs these additional capabilities or bounded worker-lane equivalents:
+The story-to-TDD flow needs these additional repo-local semantic capabilities or bounded worker-lane equivalents:
 
-- `worker.gemini_flash.invoke.v1` or an explicit non-resolver lane runner for provider calls
+- `worker.gemini_flash.invoke.v1` as a loud, explicit semantic operation for invoking the Gemini Flash worker through declared dispatch/response/evidence contracts
 - `json.schema.validate.v1`
 - `test.node.run.v1`
 - `test.result.normalize.v1`
@@ -213,10 +217,11 @@ The story-to-TDD flow needs these additional capabilities or bounded worker-lane
 - `trace.criteria_to_test.verify.v1`
 - `trace.criteria_to_implementation.verify.v1`
 
-Bootstrap recommendation: do not add all of these to resolver first. Start with a two-tier path:
+Bootstrap recommendation: add these as repo-local semantic authority first. Do not cross the resolver repo boundary unless a later review proves the current resolver cannot resolve the declared language shape.
 
-- Resolver-native stages for materialization, hashing, smoke execution, receipts, and trace checks.
-- Explicit Gemini worker dispatch lanes for authoring candidate story/spec/test/implementation artifacts until provider invocation becomes a resolver primitive.
+- Resolver-mediated stages for materialization, hashing, smoke execution, receipts, and trace checks.
+- Explicit Gemini Flash worker dispatch lanes for authoring candidate story/spec/test/implementation artifacts through `worker.gemini_flash.invoke.v1`.
+- Clear receipts proving the Gemini Flash worker was invoked, what it received, what it returned, and whether the response was accepted, blocked, or only captured as candidate evidence.
 
 ## Implementation Slices
 
@@ -255,7 +260,7 @@ Changes:
 - Add test intent schema and projection manifest.
 - Add a materialization SEJ that creates a `node:test` file under `tests/generated/user-stories/`.
 - Add generated test materialization receipt.
-- Add `test.node.run.v1` as a required capability, or run the first test execution through a declared shell command receipt until the resolver primitive exists.
+- Add `test.node.run.v1` as a repo-local semantic capability, or run the first test execution through a declared command receipt until the semantic operation is fully governed.
 
 Completion: generated tests exist, are hash-receipted, and fail before implementation for the expected reason.
 
@@ -362,7 +367,7 @@ The first release is successful when:
 
 ## Open Risks
 
-- Provider invocation is not resolver-native yet. Keep it explicit as a worker lane until a `worker.gemini_flash.invoke.v1` capability exists.
+- The Gemini Flash invocation boundary is not explicit enough yet. Define `worker.gemini_flash.invoke.v1` in this repo so the worker invocation is loud, traceable, and receipted without implying resolver repo changes.
 - Generated implementation could become a hidden source of truth if target boundaries are not enforced. Require target path manifests and patch receipts.
 - Acceptance criteria may be too vague for tests. Block on vague criteria instead of generating weak tests.
 - Existing command authority is split between command map, command schema, and two CLI SOGs. Reconcile this first.
