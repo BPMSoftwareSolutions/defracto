@@ -14,6 +14,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@bpmsoftwaresolutions/sej-resolver-node": "0.1.9"
+    "@bpmsoftwaresolutions/sej-resolver-node": "file:evidence/release/artifacts/bpmsoftwaresolutions-sej-resolver-node-0.1.11.tgz"
   }
 }
