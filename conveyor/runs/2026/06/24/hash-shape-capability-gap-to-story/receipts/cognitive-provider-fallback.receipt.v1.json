@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "defracto.provider-fallback.receipt.v1",
+  "receiptKey": "defracto.receipt.hash-shape-capability-gap-to-story.provider-fallback.slice-065.v1",
+  "status": "passed",
+  "primaryProvider": "gemini_flash",
+  "primaryFailureReceipt": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/receipts/cognitive-provider-gemini-failure.receipt.v1.json",
+  "primaryFailureHash": "sha256:5b3e0725cc139b2190bce013e4b8a3eaf348453276f402f119084eef8d2b24fb",
+  "fallbackProvider": "openai",
+  "fallbackDispatchReceipt": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/receipts/cognitive-provider-openai-dispatch.receipt.v1.json",
+  "fallbackResponseReceipt": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/receipts/cognitive-provider-openai-response.receipt.v1.json",
+  "fallbackInvocationReceipt": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/receipts/cognitive-provider-openai-invocation.receipt.v1.json",
+  "fallbackGrantsAuthority": false
+}

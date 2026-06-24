@@ -1,0 +1,139 @@
+{
+  "id": "resp_0c21740cdbd9dfc7006a3c2b44383c81a3815bd4db13534836",
+  "object": "response",
+  "created_at": 1782328132,
+  "status": "completed",
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1782328140,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "model": "gpt-4.1-mini-2025-04-14",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0c21740cdbd9dfc7006a3c2b45f03c81a3a2affde2f8139eee",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"schemaVersion\":\"1.0\",\"responseKey\":\"defracto.response.hash-shape-capability-gap-to-story.openai.strategy.slice-065.v1\",\"status\":\"candidate\",\"providerKey\":\"openai\",\"workerKey\":\"defracto.workers.openai.story_to_tdd.v1\",\"model\":\"gpt-4.1-mini\",\"dispatchKey\":\"defracto.dispatch.hash-shape-capability-gap-to-story.openai.strategy.slice-065.v1\",\"sourceHash\":\"sha256:9e80f7728374c5afaed495ded14b11475c635a63cdef90d83c7da9df81eef294\",\"sliceKey\":\"slice-065\",\"strategyArtifacts\":{\"candidateStrategy\":\"Compose the hash.shape.validate.v1 semantic capability using existing SEJ language operations that can parse and verify string patterns, specifically validating the sha256:<64 lowercase hex> format. Detect missing generic string processing operations during composition and emit language capability gap notices if necessary. Restrict resolver evolution requests to small, universal operations without introducing hash-specific product logic. Ensure the strategy supports capability-gap receipt processing and enables the storytelling/business analysis lane to propose candidate stories that can be hardened and bootstrapped into nested semantic-capability runs.\",\"strategyPlan\":\"1. Analyze existing SEJ language primitives for string pattern matching and validation capabilities.\\n2. Attempt construction of hash.shape.validate.v1 to check 'sha256:' prefix and 64-character lowercase hex string.\\n3. During composition, identify any missing generic language operations required for full validation and emit capability gap alerts.\\n4. If necessary, propose minimal universal language operations to support capability evolution requests.\\n5. Finalize the semantic capability definition avoiding any embedded hash-specific product logic.\\n6. Use the candidate semantic capability to author a story that addresses the capability gap receipt.\\n7. Support story hardening through nested semantic-capability runs to bootstrap and validate the capability in the runtime environment.\",\"artifactManifest\":[\"conveyor/runs/2026/06/24/hash-shape-validate-semantic-capability/run.manifest.v1.json\",\"contracts/test-intents/hash.shape.validate.test-intent.v1.json\",\"contracts/semantic-operation-graphs/core/hash.shape.validate.sog.v1.json\",\"contracts/capabilities/hash.shape.validate.capability-bindings.v1.json\"]},\"ambiguities\":[],\"forbiddenClaims\":[\"host-language product body\",\"resolver product primitive\",\"node_modules patch\",\"durable hash behavior truth\",\"nearby capability substitution\"],\"acceptanceRequired\":true}"
+        }
+      ],
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "in_memory",
+  "reasoning": {
+    "context": null,
+    "effort": null,
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "hash_shape_gap_story_strategy_response",
+      "schema": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "schemaVersion",
+          "responseKey",
+          "status",
+          "providerKey",
+          "workerKey",
+          "model",
+          "dispatchKey",
+          "sourceHash",
+          "sliceKey",
+          "strategyArtifacts",
+          "ambiguities",
+          "forbiddenClaims",
+          "acceptanceRequired"
+        ],
+        "properties": {
+          "schemaVersion": {
+            "type": "string"
+          },
+          "responseKey": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "providerKey": {
+            "type": "string"
+          },
+          "workerKey": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          },
+          "dispatchKey": {
+            "type": "string"
+          },
+          "sourceHash": {
+            "type": "string"
+          },
+          "sliceKey": {
+            "type": "string"
+          },
+          "strategyArtifacts": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "ambiguities": {
+            "type": "array",
+            "items": {}
+          },
+          "forbiddenClaims": {
+            "type": "array",
+            "items": {}
+          },
+          "acceptanceRequired": {
+            "type": "boolean"
+          }
+        }
+      },
+      "strict": false
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 1.0,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 824,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 510,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1334
+  },
+  "user": null,
+  "metadata": {}
+}

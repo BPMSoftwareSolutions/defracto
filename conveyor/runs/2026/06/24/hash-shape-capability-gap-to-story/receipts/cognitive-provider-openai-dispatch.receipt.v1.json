@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "defracto.provider-dispatch.receipt.v1",
+  "receiptKey": "defracto.receipt.hash-shape-capability-gap-to-story.openai-dispatch.slice-065.v1",
+  "status": "passed",
+  "providerKey": "openai",
+  "fallbackFrom": "gemini_flash",
+  "primaryFailureReceipt": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/receipts/cognitive-provider-gemini-failure.receipt.v1.json",
+  "dispatch": {
+    "path": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/artifacts/hash-shape-capability-gap-to-story.openai-dispatch.v1.json",
+    "hash": "sha256:a7bbbb8bc12476d605cd652d9dbf3d4d6851ddc2d39b01a1e52a5476a6ff8bf3"
+  },
+  "request": {
+    "path": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/artifacts/hash-shape-capability-gap-to-story.openai-request.body.v1.json",
+    "hash": "sha256:140fea61b96f23e5fe7132363c9018b34ae1046f30e401ca5302eeaf8add9aec"
+  },
+  "secretMaterialAllowedInEvidence": false
+}

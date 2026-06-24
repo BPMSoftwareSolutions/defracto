@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.provider-failure.receipt.v1",
+  "receiptKey": "defracto.receipt.hash-shape-capability-gap-to-story.gemini-failure.slice-065.v1",
+  "status": "blocked",
+  "providerKey": "gemini_flash",
+  "blocker": "gemini_http_503",
+  "failure": {
+    "code": "gemini_http_503",
+    "message": "Service Unavailable",
+    "rawPath": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/artifacts/hash-shape-capability-gap-to-story.gemini-response.raw.v1.json",
+    "rawHash": "sha256:614310b7ffde08687f09edd975cdfca42f5355df8776efaf0e5ecaf10a783157"
+  },
+  "dispatch": {
+    "path": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/artifacts/hash-shape-capability-gap-to-story.gemini-dispatch.v1.json",
+    "hash": "sha256:a8118eeafc087d460e418b56bf56a14c0749dbae5db94b09102ba8807a9b205b"
+  },
+  "request": {
+    "path": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/artifacts/hash-shape-capability-gap-to-story.gemini-request.body.v1.json",
+    "hash": "sha256:00c9519040f7e4575eb1338481e8406ff9439fb82bff5e585f31c61b6345debe"
+  },
+  "fallbackAllowed": true,
+  "fallbackProvider": "openai",
+  "secretMaterialAllowedInEvidence": false
+}

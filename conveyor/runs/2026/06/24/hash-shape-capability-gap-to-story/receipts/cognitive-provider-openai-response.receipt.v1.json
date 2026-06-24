@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "defracto.provider-response.receipt.v1",
+  "receiptKey": "defracto.receipt.hash-shape-capability-gap-to-story.openai-response.slice-065.v1",
+  "status": "passed",
+  "providerKey": "openai",
+  "response": {
+    "path": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/artifacts/hash-shape-capability-gap-to-story.openai-response.v1.json",
+    "hash": "sha256:27662ee0f8c89a7fe6e6310a347eed12b5ae4c4a2392ad72714193562fe9a918"
+  },
+  "rawResponse": {
+    "path": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/artifacts/hash-shape-capability-gap-to-story.openai-response.raw.v1.json",
+    "hash": "sha256:86f5c357c85a868cecc8049de39f871cdf4ee1fcf3753778323c62bc44202e26"
+  },
+  "candidate": {
+    "path": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/artifacts/hash-shape-capability-gap-to-story.openai-candidate.v1.json",
+    "hash": "sha256:27662ee0f8c89a7fe6e6310a347eed12b5ae4c4a2392ad72714193562fe9a918"
+  },
+  "candidateAuthorityStatus": "candidate_only"
+}

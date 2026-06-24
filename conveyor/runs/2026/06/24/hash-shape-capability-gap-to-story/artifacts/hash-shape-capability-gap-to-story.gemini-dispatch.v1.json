@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "defracto.cognitive-provider-dispatch.v1",
+  "dispatchKey": "defracto.dispatch.hash-shape-capability-gap-to-story.gemini.strategy.slice-065.v1",
+  "runKey": "hash-shape-capability-gap-to-story",
+  "sliceKey": "hash-shape-capability-gap-to-story",
+  "laneMode": "semantic_strategy_compile",
+  "providerKey": "gemini_flash",
+  "workerKey": "defracto.workers.gemini_flash.story_to_tdd.v1",
+  "model": "gemini-2.5-flash",
+  "sourceArtifact": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/source/story.source.v1.md",
+  "sourceHash": "sha256:627ec2b6cb9c9c098cd93b2043700aff6b758a9d012ceedcc51671d7133566fa",
+  "capabilityGapReceipt": {
+    "path": "evidence/sdk/receipt-hash-validator.capability-gap.receipt.v1.json",
+    "hash": "sha256:9e80f7728374c5afaed495ded14b11475c635a63cdef90d83c7da9df81eef294"
+  },
+  "candidateOnly": true,
+  "secretMaterialAllowedInEvidence": false,
+  "requiredEnvVarName": "LOC_GEMINI_API_KEY",
+  "outputPath": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/artifacts/hash-shape-capability-gap-to-story.gemini-candidate.v1.json",
+  "receiptPath": "conveyor/runs/2026/06/24/hash-shape-capability-gap-to-story/receipts/cognitive-provider-gemini-invocation.receipt.v1.json"
+}
