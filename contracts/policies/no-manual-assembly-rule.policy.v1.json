@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "defracto.policy.v1",
+  "policyKey": "defracto.policies.no-manual-assembly-rule.v1",
+  "userFacingName": "No Manual Assembly Rule",
+  "policyStatement": "If the conveyor did not build it and receipt it, it does not count.",
+  "appliesTo": [
+    "build setup artifacts",
+    "test results",
+    "review packages",
+    "acceptance decisions",
+    "durable authority projection"
+  ],
+  "requiredEvidence": [
+    "source story artifact",
+    "run manifest",
+    "handoff packet",
+    "materialized artifact path",
+    "artifact hash",
+    "receipt"
+  ],
+  "blockedIf": [
+    "artifact_outside_work_plan",
+    "artifact_missing_receipt",
+    "manual_run_manifest_created",
+    "unreceipted_review_package",
+    "agent_stitched_run_output"
+  ],
+  "completionPosture": "The platform agent may coordinate and review, but run outputs must be produced by the conveyor and proved by receipts."
+}

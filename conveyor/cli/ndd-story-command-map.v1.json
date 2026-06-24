@@ -13,6 +13,15 @@
       ]
     },
     {
+      "command": "ndd story plan --text <operatorText> --slice <sliceKey> --run-date <yyyy/mm/dd>",
+      "contractPath": "contracts/cli/ndd-story-implement.command.v1.json",
+      "inputSchemaPath": "contracts/schemas/user-story-intake.schema.v1.json",
+      "requiredGatePaths": [
+        "contracts/gates/conveyor-entrypoint-required.gate.v1.json",
+        "contracts/gates/no-manual-assembly-rule.gate.v1.json"
+      ]
+    },
+    {
       "command": "ndd story plan --source <sourcePath> --slice <sliceKey>",
       "contractPath": "contracts/cli/ndd-story-implement.command.v1.json",
       "inputSchemaPath": "contracts/schemas/user-story-intake.schema.v1.json",
@@ -41,9 +50,25 @@
         "contracts/gates/red-test-required.gate.v1.json",
         "contracts/gates/green-test-required.gate.v1.json"
       ]
+    },
+    {
+      "command": "ndd story implement --slice <sliceKey> --target-kind build-setup",
+      "contractPath": "contracts/cli/ndd-story-implement.command.v1.json",
+      "inputSchemaPath": "contracts/schemas/build-setup.schema.v1.json",
+      "requiredGatePaths": [
+        "contracts/gates/conveyor-entrypoint-required.gate.v1.json",
+        "contracts/gates/no-manual-assembly-rule.gate.v1.json"
+      ]
     }
   ],
   "requiredSemanticCapabilities": [
+    "run.envelope.paths.project.v1",
+    "path.join.v1",
+    "conveyor.run_manifest.load.v1",
+    "artifact.materialize.v1",
+    "hash.compute.v1",
+    "evidence.emit.v1",
+    "project.value.v1",
     "worker.gemini_flash.invoke.v1",
     "generated.implementation.materialize.v1",
     "test.node.run.v1",

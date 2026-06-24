@@ -16,7 +16,7 @@
     {
       "actionKey": "defracto.ndd-story-implement.select-target-graph.semantic-action.v1",
       "capabilityKey": "project.value.v1",
-      "intent": "Select explicit target-kind graph or manifest-declared lane."
+      "intent": "Select explicit target-kind graph, including Build Setup, or manifest-declared lane."
     },
     {
       "actionKey": "defracto.ndd-story-implement.execute-selected-graph.semantic-action.v1",
@@ -77,7 +77,7 @@
       {
         "id": "selectStoryImplementTargetGraph",
         "capabilityKey": "project.value.v1",
-        "intent": "Select semantic strategy, SDK capability forge, explicit visual proof, or manifest-declared lane from parsed command options.",
+        "intent": "Select semantic strategy, SDK capability forge, Build Setup, explicit visual proof, or manifest-declared lane from parsed command options.",
         "input": {
           "fields": {
             "routeKey": {
@@ -115,15 +115,30 @@
                         "$graph": "command.options.target-kind"
                       },
                       {
-                        "literal": "visual-proof"
+                        "literal": "build-setup"
                       }
                     ]
                   },
                   "then": {
-                    "literal": "visual_proof_materialization"
+                    "literal": "build_setup"
                   },
                   "else": {
-                    "literal": "manifest_declared_lane"
+                    "when": {
+                      "equals": [
+                        {
+                          "$graph": "command.options.target-kind"
+                        },
+                        {
+                          "literal": "visual-proof"
+                        }
+                      ]
+                    },
+                    "then": {
+                      "literal": "visual_proof_materialization"
+                    },
+                    "else": {
+                      "literal": "manifest_declared_lane"
+                    }
                   }
                 }
               }
@@ -167,18 +182,35 @@
                         "$graph": "command.options.target-kind"
                       },
                       {
-                        "literal": "visual-proof"
+                        "literal": "build-setup"
                       }
                     ]
                   },
                   "then": {
                     "literal": {
-                      "$inline": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+                      "$inline": "contracts/semantic-operation-graphs/build/build-setup.execute.sog.v1.json"
                     }
                   },
                   "else": {
-                    "literal": {
-                      "$inline": "contracts/semantic-operation-graphs/cli/ndd-story-implement-manifest-lane.execute.sog.v1.json"
+                    "when": {
+                      "equals": [
+                        {
+                          "$graph": "command.options.target-kind"
+                        },
+                        {
+                          "literal": "visual-proof"
+                        }
+                      ]
+                    },
+                    "then": {
+                      "literal": {
+                        "$inline": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+                      }
+                    },
+                    "else": {
+                      "literal": {
+                        "$inline": "contracts/semantic-operation-graphs/cli/ndd-story-implement-manifest-lane.execute.sog.v1.json"
+                      }
                     }
                   }
                 }
@@ -228,7 +260,8 @@
     "story_implement_target_graph_selected",
     "manifest_backed_story_implement_loads_run_manifest_when_target_kind_is_absent",
     "story_implement_does_not_default_to_visual_proof_materializer",
-    "selected_story_implement_graph_executed_or_blocks_closed"
+    "selected_story_implement_graph_executed_or_blocks_closed",
+    "build_setup_route_delegates_to_build_setup_sog"
   ],
   "forbiddenClaims": [
     "generated CLI facade owns story implement behavior",
@@ -238,5 +271,5 @@
     "sdk capability forge creates host-language product body",
     "provider candidate grants authority without hardening"
   ],
-  "completionPosture": "ndd story implement delegates to an explicit target-kind graph or to the manifest-declared lane. Missing or unsupported manifest lanes block closed."
+  "completionPosture": "ndd story implement delegates to an explicit target-kind graph, including the product-facing Build Setup lane, or to the manifest-declared lane. Missing or unsupported manifest lanes block closed."
 }

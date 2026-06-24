@@ -1,0 +1,1 @@
+As a Defracto product owner, I want a Build Setup template that turns a user story into Business Analysis, Work Plan, Build, Test, Review Package, and Acceptance evidence through the CLI, so that I can review a clean conveyor-run proof without manual assembly.

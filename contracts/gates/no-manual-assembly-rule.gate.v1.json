@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.no-manual-assembly-rule.v1",
+  "userFacingName": "No Manual Assembly Rule",
+  "purpose": "Block review or acceptance when important artifacts appear without conveyor receipts.",
+  "policy": "contracts/policies/no-manual-assembly-rule.policy.v1.json",
+  "requiredInputs": [
+    "runManifest",
+    "sourceStory",
+    "buildSetup",
+    "testResults",
+    "reviewPackage",
+    "receipts"
+  ],
+  "blockerCodes": [
+    "artifact_outside_work_plan",
+    "artifact_missing_receipt",
+    "manual_run_manifest_created",
+    "unreceipted_review_package",
+    "agent_stitched_run_output"
+  ],
+  "completionPosture": "A Review Package may be accepted only when the conveyor-produced artifacts are listed, hashed, and receipted."
+}

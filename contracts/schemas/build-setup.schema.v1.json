@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Build Setup",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schemaVersion",
+    "status",
+    "userStory",
+    "businessAnalysis",
+    "workPlan",
+    "build",
+    "test",
+    "reviewPackage",
+    "acceptance",
+    "nextStepOwner"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "defracto.build-setup.v1"
+    },
+    "status": {
+      "enum": [
+        "ready_for_conveyor_run",
+        "accepted_for_review",
+        "blocked"
+      ]
+    },
+    "userStory": {
+      "type": "object"
+    },
+    "businessAnalysis": {
+      "type": "object"
+    },
+    "workPlan": {
+      "type": "object"
+    },
+    "build": {
+      "type": "object"
+    },
+    "test": {
+      "type": "object"
+    },
+    "reviewPackage": {
+      "type": "object"
+    },
+    "acceptance": {
+      "type": "object"
+    },
+    "missingToolRequest": {
+      "type": "object"
+    },
+    "nextStepOwner": {
+      "type": "string"
+    }
+  }
+}

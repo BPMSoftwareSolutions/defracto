@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Review Package",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schemaVersion",
+    "status",
+    "questions",
+    "evidence",
+    "nextStepOwner"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "defracto.review-package.v1"
+    },
+    "status": {
+      "enum": [
+        "accepted_for_review",
+        "blocked"
+      ]
+    },
+    "questions": {
+      "type": "object",
+      "required": [
+        "whatDidYouBuild",
+        "whyDidYouBuildIt",
+        "howDoIUseIt",
+        "didItPass",
+        "whatEvidenceProvesIt",
+        "whatIsStillBlocked"
+      ]
+    },
+    "evidence": {
+      "type": "object"
+    },
+    "acceptanceDecision": {
+      "type": "object"
+    },
+    "nextStepOwner": {
+      "type": "string"
+    }
+  }
+}

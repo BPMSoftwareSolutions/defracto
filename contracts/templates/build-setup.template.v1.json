@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "defracto.build-setup-template.v1",
+  "templateKey": "defracto.templates.build-setup.v1",
+  "userFacingName": "Build Setup",
+  "purpose": "Provide the plain-language delivery template for turning a user story into a conveyor run and review package.",
+  "pipeline": [
+    "User Story",
+    "Business Analysis",
+    "Build Setup",
+    "Conveyor Run",
+    "Test Results",
+    "Review Package",
+    "Acceptance Decision"
+  ],
+  "requiredQuestions": [
+    "What did you build?",
+    "Why did you build it?",
+    "How do I use it?",
+    "Did it pass?",
+    "What evidence proves it?",
+    "What is still blocked?"
+  ],
+  "requiredSections": [
+    "User Story",
+    "Business Analysis",
+    "Work Plan",
+    "Build",
+    "Test",
+    "Review Package",
+    "Acceptance",
+    "Missing Tool Request",
+    "Evidence",
+    "Next Step Owner"
+  ],
+  "noManualAssemblyRule": "If the conveyor did not build it and receipt it, it does not count.",
+  "completionPosture": "Build Setup is the approved plan for how the conveyor will build, test, and prove a story. Review Package is the final user-facing result."
+}

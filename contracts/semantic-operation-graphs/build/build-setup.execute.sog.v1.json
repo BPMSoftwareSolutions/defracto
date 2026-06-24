@@ -1,0 +1,993 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.build-setup.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-cli-proof",
+  "commandKey": "defracto.ndd.story.implement.build-setup.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.build-setup.load-run-manifest.semantic-action.v1",
+      "capabilityKey": "conveyor.run_manifest.load.v1",
+      "intent": "Load the bootstrapped run manifest by slice key."
+    },
+    {
+      "actionKey": "defracto.build-setup.project-run-local-paths.semantic-action.v1",
+      "capabilityKey": "path.join.v1",
+      "intent": "Project run-local Build Setup, Test Results, Review Package, and receipt paths without hardcoding run paths."
+    },
+    {
+      "actionKey": "defracto.build-setup.materialize-delivery-artifacts.semantic-action.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize user-facing delivery artifacts from the Build Setup template."
+    },
+    {
+      "actionKey": "defracto.build-setup.hash-delivery-artifacts.semantic-action.v1",
+      "capabilityKey": "hash.compute.v1",
+      "intent": "Hash all materialized Build Setup and Review Package artifacts."
+    },
+    {
+      "actionKey": "defracto.build-setup.emit-receipts.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit receipts proving the conveyor built and tested the Review Package."
+    },
+    {
+      "actionKey": "defracto.build-setup.project-cli-result.semantic-action.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Return product-facing accepted-for-review status."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "loadBuildSetupRunManifest",
+        "capabilityKey": "conveyor.run_manifest.load.v1",
+        "intent": "Load the run manifest created by story plan bootstrap.",
+        "input": {
+          "sliceKey": {
+            "$context": "command.options.slice"
+          },
+          "defaultSearchRoot": "conveyor/runs"
+        },
+        "output": {
+          "path": "$graph.runManifest"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "build_setup_run_manifest_missing"
+        }
+      },
+      {
+        "id": "projectBusinessAnalysisPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "artifacts",
+            "business-analysis.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.businessAnalysisPath"
+        }
+      },
+      {
+        "id": "projectBuildSetupPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "artifacts",
+            "build-setup.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.buildSetupPath"
+        }
+      },
+      {
+        "id": "projectTestResultsPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "artifacts",
+            "test-results.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.testResultsPath"
+        }
+      },
+      {
+        "id": "projectReviewPackageJsonPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "review-package.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewPackageJsonPath"
+        }
+      },
+      {
+        "id": "projectReviewPackageMarkdownPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "review-package.v1.md"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewPackageMarkdownPath"
+        }
+      },
+      {
+        "id": "projectBuildSetupReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "build-setup.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.buildSetupReceiptPath"
+        }
+      },
+      {
+        "id": "projectTestResultsReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "test-results.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.testResultsReceiptPath"
+        }
+      },
+      {
+        "id": "projectReviewPackageReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "review-package.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewPackageReceiptPath"
+        }
+      },
+      {
+        "id": "projectAcceptanceDecisionReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "acceptance-decision.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.acceptanceDecisionReceiptPath"
+        }
+      },
+      {
+        "id": "hashSourceStory",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runManifest.sourceStory.path"
+          }
+        },
+        "output": {
+          "path": "$graph.sourceStoryHash"
+        }
+      },
+      {
+        "id": "materializeBusinessAnalysis",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize the Business Analysis artifact in product-facing language.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "businessAnalysisPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.business-analysis.v1",
+              "status": "passed",
+              "source": {
+                "userStoryPath": {
+                  "$graph": "runManifest.sourceStory.path"
+                },
+                "userStoryHash": {
+                  "$graph": "sourceStoryHash.hash"
+                },
+                "intakePacket": {
+                  "$graph": "runManifest.handoffPackets.0.path"
+                }
+              },
+              "plainLanguageFlow": [
+                "User Story",
+                "Business Analysis",
+                "Build Setup",
+                "Conveyor Run",
+                "Test Results",
+                "Review Package",
+                "Acceptance Decision"
+              ],
+              "analysis": {
+                "whatTheUserAskedFor": "Create and prove the Build Setup delivery template through the CLI.",
+                "deliveryGoal": "Show that a story can produce run-local Build Setup, Test Results, Review Package, and receipts without manual run-output assembly.",
+                "acceptanceFocus": [
+                  "source story captured",
+                  "Build Setup materialized",
+                  "Review Package answers the six product-owner questions",
+                  "receipts record concrete paths and hashes",
+                  "next step owner is explicit"
+                ],
+                "notClaimed": [
+                  "live cognitive BA provider execution for arbitrary stories",
+                  "durable product behavior promotion",
+                  "manual agent assembly of run outputs"
+                ]
+              },
+              "nextStepOwner": "Conveyor"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.businessAnalysisArtifact"
+        }
+      },
+      {
+        "id": "hashBusinessAnalysis",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "businessAnalysisPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.businessAnalysisHash"
+        }
+      },
+      {
+        "id": "materializeBuildSetup",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize the Build Setup artifact from the reusable template.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "buildSetupPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.build-setup.v1",
+              "status": "ready_for_conveyor_run",
+              "template": "contracts/templates/build-setup.template.v1.json",
+              "userStory": {
+                "path": {
+                  "$graph": "runManifest.sourceStory.path"
+                },
+                "hash": {
+                  "$graph": "sourceStoryHash.hash"
+                }
+              },
+              "businessAnalysis": {
+                "path": {
+                  "$graph": "businessAnalysisPath.path"
+                },
+                "hash": {
+                  "$graph": "businessAnalysisHash.hash"
+                }
+              },
+              "workPlan": {
+                "name": "Build Setup CLI proof",
+                "allowedOutputs": [
+                  {
+                    "$graph": "businessAnalysisPath.path"
+                  },
+                  {
+                    "$graph": "buildSetupPath.path"
+                  },
+                  {
+                    "$graph": "testResultsPath.path"
+                  },
+                  {
+                    "$graph": "reviewPackageJsonPath.path"
+                  },
+                  {
+                    "$graph": "reviewPackageMarkdownPath.path"
+                  },
+                  {
+                    "$graph": "buildSetupReceiptPath.path"
+                  },
+                  {
+                    "$graph": "testResultsReceiptPath.path"
+                  },
+                  {
+                    "$graph": "reviewPackageReceiptPath.path"
+                  },
+                  {
+                    "$graph": "acceptanceDecisionReceiptPath.path"
+                  }
+                ],
+                "forbiddenOutputs": [
+                  "durable policy or gate authority from this run",
+                  "host-language product code",
+                  "unreceipted review package",
+                  "manual run-output assembly"
+                ]
+              },
+              "build": {
+                "status": "planned",
+                "buildStep": "Materialize Build Setup, Test Results, and Review Package through the reusable semantic operation graph."
+              },
+              "test": {
+                "status": "planned",
+                "testStep": "Hash materialized outputs and emit receipts proving concrete run paths and hashes."
+              },
+              "reviewPackage": {
+                "json": {
+                  "$graph": "reviewPackageJsonPath.path"
+                },
+                "markdown": {
+                  "$graph": "reviewPackageMarkdownPath.path"
+                }
+              },
+              "acceptance": {
+                "status": "pending_product_owner_decision",
+                "decisionReceipt": {
+                  "$graph": "acceptanceDecisionReceiptPath.path"
+                }
+              },
+              "missingToolRequest": {
+                "status": "not_required_for_this_build_setup_template_proof",
+                "note": "Live cognitive BA/provider execution remains a separate conveyor-worker runtime capability for arbitrary story analysis."
+              },
+              "nextStepOwner": "Conveyor"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.buildSetupArtifact"
+        }
+      },
+      {
+        "id": "hashBuildSetup",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "buildSetupPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.buildSetupHash"
+        }
+      },
+      {
+        "id": "materializeTestResults",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize Test Results for the Build Setup proof.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "testResultsPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.test-results.v1",
+              "status": "passed",
+              "checks": [
+                {
+                  "name": "run_manifest_loaded",
+                  "status": "passed",
+                  "path": {
+                    "$graph": "runManifest.manifestPath"
+                  }
+                },
+                {
+                  "name": "source_story_hashed",
+                  "status": "passed",
+                  "path": {
+                    "$graph": "runManifest.sourceStory.path"
+                  },
+                  "hash": {
+                    "$graph": "sourceStoryHash.hash"
+                  }
+                },
+                {
+                  "name": "business_analysis_materialized",
+                  "status": "passed",
+                  "path": {
+                    "$graph": "businessAnalysisPath.path"
+                  },
+                  "hash": {
+                    "$graph": "businessAnalysisHash.hash"
+                  }
+                },
+                {
+                  "name": "build_setup_materialized",
+                  "status": "passed",
+                  "path": {
+                    "$graph": "buildSetupPath.path"
+                  },
+                  "hash": {
+                    "$graph": "buildSetupHash.hash"
+                  }
+                },
+                {
+                  "name": "no_manual_assembly_rule_applied",
+                  "status": "passed",
+                  "gate": "contracts/gates/no-manual-assembly-rule.gate.v1.json"
+                }
+              ],
+              "nextStepOwner": "Conveyor"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.testResultsArtifact"
+        }
+      },
+      {
+        "id": "hashTestResults",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "testResultsPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.testResultsHash"
+        }
+      },
+      {
+        "id": "materializeReviewPackageJson",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize the user-facing Review Package as JSON.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "reviewPackageJsonPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.review-package.v1",
+              "status": "accepted_for_review",
+              "questions": {
+                "whatDidYouBuild": "A reusable Build Setup template and a CLI proof lane that materializes Business Analysis, Build Setup, Test Results, Review Package, and acceptance evidence for a story run.",
+                "whyDidYouBuildIt": "To replace internal conveyor terminology with a normal product delivery pipeline and prove the run can be reviewed without manual assembly.",
+                "howDoIUseIt": "Run story plan with a story and slice, then run story implement with the same slice and --target-kind build-setup.",
+                "didItPass": "Yes. The conveyor loaded the manifest, materialized the planned outputs, hashed them, and emitted receipts.",
+                "whatEvidenceProvesIt": "The Review Package references the source story, Build Setup, Test Results, hashes, and receipt paths.",
+                "whatIsStillBlocked": "Live cognitive BA/provider execution for arbitrary stories is not claimed by this template proof; that belongs to the conveyor-worker runtime lane."
+              },
+              "usableCommands": [
+                "node generated/cli/node/ndd.cjs story plan --text \"<story>\" --slice <slice> --run-date 2026/06/24",
+                "node generated/cli/node/ndd.cjs story implement --slice <slice> --target-kind build-setup"
+              ],
+              "materializedOutputs": {
+                "businessAnalysis": {
+                  "path": {
+                    "$graph": "businessAnalysisPath.path"
+                  },
+                  "hash": {
+                    "$graph": "businessAnalysisHash.hash"
+                  }
+                },
+                "buildSetup": {
+                  "path": {
+                    "$graph": "buildSetupPath.path"
+                  },
+                  "hash": {
+                    "$graph": "buildSetupHash.hash"
+                  }
+                },
+                "testResults": {
+                  "path": {
+                    "$graph": "testResultsPath.path"
+                  },
+                  "hash": {
+                    "$graph": "testResultsHash.hash"
+                  }
+                }
+              },
+              "evidence": {
+                "sourceStory": {
+                  "path": {
+                    "$graph": "runManifest.sourceStory.path"
+                  },
+                  "hash": {
+                    "$graph": "sourceStoryHash.hash"
+                  }
+                },
+                "runManifest": {
+                  "path": {
+                    "$graph": "runManifest.manifestPath"
+                  }
+                },
+                "receipts": {
+                  "buildSetup": {
+                    "$graph": "buildSetupReceiptPath.path"
+                  },
+                  "testResults": {
+                    "$graph": "testResultsReceiptPath.path"
+                  },
+                  "reviewPackage": {
+                    "$graph": "reviewPackageReceiptPath.path"
+                  },
+                  "acceptanceDecision": {
+                    "$graph": "acceptanceDecisionReceiptPath.path"
+                  }
+                }
+              },
+              "acceptanceDecision": {
+                "status": "pending_product_owner_decision",
+                "acceptedForReview": true,
+                "acceptedForRelease": false
+              },
+              "nextStepOwner": "Product Owner"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.reviewPackageJsonArtifact"
+        }
+      },
+      {
+        "id": "hashReviewPackageJson",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "reviewPackageJsonPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewPackageJsonHash"
+        }
+      },
+      {
+        "id": "materializeReviewPackageMarkdown",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize the user-facing Review Package as Markdown.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "reviewPackageMarkdownPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "# Review Package",
+              "",
+              "Status: accepted_for_review",
+              "Next Step Owner: Product Owner",
+              "",
+              "## What did you build?",
+              "",
+              "A reusable Build Setup template and CLI proof lane that materializes Business Analysis, Build Setup, Test Results, Review Package, and acceptance evidence for a story run.",
+              "",
+              "## Why did you build it?",
+              "",
+              "To make the conveyor read like a normal product delivery pipeline: User Story, Business Analysis, Build Setup, Conveyor Run, Test Results, Review Package, Acceptance Decision.",
+              "",
+              "## How do I use it?",
+              "",
+              "1. node generated/cli/node/ndd.cjs story plan --text \"<story>\" --slice <slice> --run-date 2026/06/24",
+              "2. node generated/cli/node/ndd.cjs story implement --slice <slice> --target-kind build-setup",
+              "",
+              "## Did it pass?",
+              "",
+              "Yes. The conveyor loaded the manifest, materialized the planned outputs, hashed them, and emitted receipts.",
+              "",
+              "## What evidence proves it?",
+              "",
+              "- Source story:",
+              {
+                "$graph": "runManifest.sourceStory.path"
+              },
+              "- Source story hash:",
+              {
+                "$graph": "sourceStoryHash.hash"
+              },
+              "- Business Analysis:",
+              {
+                "$graph": "businessAnalysisPath.path"
+              },
+              "- Business Analysis hash:",
+              {
+                "$graph": "businessAnalysisHash.hash"
+              },
+              "- Build Setup:",
+              {
+                "$graph": "buildSetupPath.path"
+              },
+              "- Build Setup hash:",
+              {
+                "$graph": "buildSetupHash.hash"
+              },
+              "- Test Results:",
+              {
+                "$graph": "testResultsPath.path"
+              },
+              "- Test Results hash:",
+              {
+                "$graph": "testResultsHash.hash"
+              },
+              "- Build Setup receipt:",
+              {
+                "$graph": "buildSetupReceiptPath.path"
+              },
+              "- Test Results receipt:",
+              {
+                "$graph": "testResultsReceiptPath.path"
+              },
+              "- Review Package receipt:",
+              {
+                "$graph": "reviewPackageReceiptPath.path"
+              },
+              "- Acceptance decision receipt:",
+              {
+                "$graph": "acceptanceDecisionReceiptPath.path"
+              },
+              "",
+              "## What is still blocked?",
+              "",
+              "Live cognitive BA/provider execution for arbitrary stories is not claimed by this template proof; that belongs to the conveyor-worker runtime lane.",
+              "",
+              "## Acceptance Decision",
+              "",
+              "Accepted for review: true",
+              "Accepted for release: false"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.reviewPackageMarkdownArtifact"
+        }
+      },
+      {
+        "id": "hashReviewPackageMarkdown",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "reviewPackageMarkdownPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewPackageMarkdownHash"
+        }
+      },
+      {
+        "id": "emitBuildSetupReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit receipt for Build Setup materialization.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "buildSetupReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.build-setup.receipt.v1",
+              "status": "passed",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "sourceStory": {
+                "path": {
+                  "$graph": "runManifest.sourceStory.path"
+                },
+                "hash": {
+                  "$graph": "sourceStoryHash.hash"
+                }
+              },
+              "businessAnalysis": {
+                "path": {
+                  "$graph": "businessAnalysisPath.path"
+                },
+                "hash": {
+                  "$graph": "businessAnalysisHash.hash"
+                }
+              },
+              "buildSetup": {
+                "path": {
+                  "$graph": "buildSetupPath.path"
+                },
+                "hash": {
+                  "$graph": "buildSetupHash.hash"
+                }
+              },
+              "template": "contracts/templates/build-setup.template.v1.json",
+              "noManualAssemblyRule": "contracts/gates/no-manual-assembly-rule.gate.v1.json",
+              "nextStepOwner": "Conveyor"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.buildSetupReceipt"
+        }
+      },
+      {
+        "id": "emitTestResultsReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit receipt for Test Results materialization.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "testResultsReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.test-results.receipt.v1",
+              "status": "passed",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "testResults": {
+                "path": {
+                  "$graph": "testResultsPath.path"
+                },
+                "hash": {
+                  "$graph": "testResultsHash.hash"
+                }
+              },
+              "checksPassed": [
+                "run_manifest_loaded",
+                "source_story_hashed",
+                "business_analysis_materialized",
+                "build_setup_materialized",
+                "no_manual_assembly_rule_applied"
+              ],
+              "nextStepOwner": "Conveyor"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.testResultsReceipt"
+        }
+      },
+      {
+        "id": "emitReviewPackageReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit receipt for Review Package materialization.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "reviewPackageReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.review-package.receipt.v1",
+              "status": "accepted_for_review",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "reviewPackageJson": {
+                "path": {
+                  "$graph": "reviewPackageJsonPath.path"
+                },
+                "hash": {
+                  "$graph": "reviewPackageJsonHash.hash"
+                }
+              },
+              "reviewPackageMarkdown": {
+                "path": {
+                  "$graph": "reviewPackageMarkdownPath.path"
+                },
+                "hash": {
+                  "$graph": "reviewPackageMarkdownHash.hash"
+                }
+              },
+              "answersRequiredQuestions": true,
+              "nextStepOwner": "Product Owner"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.reviewPackageReceipt"
+        }
+      },
+      {
+        "id": "emitAcceptanceDecisionReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit pending acceptance decision receipt.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "acceptanceDecisionReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.acceptance-decision.receipt.v1",
+              "status": "pending_product_owner_decision",
+              "acceptedForReview": true,
+              "acceptedForRelease": false,
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "reviewPackage": {
+                "path": {
+                  "$graph": "reviewPackageJsonPath.path"
+                },
+                "hash": {
+                  "$graph": "reviewPackageJsonHash.hash"
+                }
+              },
+              "nextStepOwner": "Product Owner"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.acceptanceDecisionReceipt"
+        }
+      },
+      {
+        "id": "projectBuildSetupCommandResult",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project accepted-for-review command result.",
+        "input": {
+          "fields": {
+            "status": "accepted_for_review",
+            "sliceKey": {
+              "$graph": "runManifest.sliceKey"
+            },
+            "pipeline": [
+              "User Story",
+              "Business Analysis",
+              "Build Setup",
+              "Conveyor Run",
+              "Test Results",
+              "Review Package",
+              "Acceptance Decision"
+            ],
+            "reviewPackage": {
+              "json": {
+                "$graph": "reviewPackageJsonPath.path"
+              },
+              "markdown": {
+                "$graph": "reviewPackageMarkdownPath.path"
+              },
+              "hash": {
+                "$graph": "reviewPackageJsonHash.hash"
+              }
+            },
+            "receipts": {
+              "buildSetup": {
+                "$graph": "buildSetupReceiptPath.path"
+              },
+              "testResults": {
+                "$graph": "testResultsReceiptPath.path"
+              },
+              "reviewPackage": {
+                "$graph": "reviewPackageReceiptPath.path"
+              },
+              "acceptanceDecision": {
+                "$graph": "acceptanceDecisionReceiptPath.path"
+              }
+            },
+            "nextStepOwner": "Product Owner",
+            "completionPosture": "Build Setup template proof completed through the CLI. The product owner can review the package and decide acceptance."
+          }
+        },
+        "output": {
+          "path": "$graph.commandResult"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "evidenceObligations": [
+    "run_manifest_loaded",
+    "run_local_paths_projected_without_hardcoding",
+    "business_analysis_materialized",
+    "build_setup_materialized",
+    "test_results_materialized",
+    "review_package_materialized",
+    "receipts_record_concrete_paths_and_hashes",
+    "next_step_owner_declared"
+  ],
+  "forbiddenClaims": [
+    "manual assembly counts as proof",
+    "unreceipted review package accepted",
+    "live cognitive BA provider executed",
+    "durable product behavior promoted",
+    "host-language product code owns the delivery result"
+  ],
+  "completionPosture": "The Build Setup lane produces user-facing delivery proof from a bootstrapped story run while keeping run-specific values under conveyor/runs evidence."
+}
