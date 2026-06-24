@@ -210,11 +210,20 @@
               "laneMode": "story_run_bootstrap",
               "stages": {
                 "storyImplement": {
-                  "stageKind": "manifest_declared_story_implement_lane",
-                  "laneMode": "story_run_bootstrap",
-                  "status": "blocked-pending-declared-lane",
-                  "blocker": "story_implement_lane_not_declared",
-                  "completionPosture": "Bootstrap declares that story implement must load this manifest and block until a downstream conveyor lane is declared. It does not default to visual-proof materialization."
+                  "stageKind": "platform_agent_authority_routing",
+                  "laneMode": "semantic_strategy_compile",
+                  "targetKind": "semantic-strategy",
+                  "status": "blocked-pending-cognitive-strategy-authority",
+                  "blocker": "platform_agent_authority_routing_strategy_not_promoted",
+                  "requiredProviderParticipation": true,
+                  "requiredAuthority": [
+                    "cognitive_strategy_candidate",
+                    "strategy_hardening_receipt",
+                    "semantic_strategy_plan",
+                    "strategy_artifact_manifest"
+                  ],
+                  "durableAuthorityCreated": false,
+                  "completionPosture": "Bootstrap declares the platform-agent authority-routing story implement lane identity, but does not create its policy, gate, SEJ, SOG, schema, or strategy authority. Story implement must remain blocked until cognitive strategy authority is promoted by the conveyor."
                 }
               },
               "runEnvelopeRoot": {

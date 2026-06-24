@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "defracto.manifest-declared-lane.receipt.v1",
+  "receiptKey": "defracto.receipt.platform-agent-authority-routing.lane-declaration.slice-061.v1",
+  "sliceKey": "slice-061-platform-agent-authority-routing-lane-declaration",
+  "status": "blocked",
+  "blocker": "platform_agent_authority_routing_strategy_not_promoted",
+  "priorBlocker": "story_implement_lane_not_declared",
+  "route": "ndd story implement --slice platform-agent-authority-routing",
+  "runManifest": {
+    "path": "conveyor/runs/2026/06/24/platform-agent-authority-routing/run.manifest.v1.json",
+    "hash": "sha256:76477cd676068407722d1c7395b743122c9c24596d9ed1fd7a0f4997912bffbc"
+  },
+  "bootstrapSog": {
+    "path": "contracts/semantic-operation-graphs/cli/ndd-story-plan-bootstrap.execute.sog.v1.json",
+    "hash": "sha256:48a61c4fcb2ffa3b7c8a24f042e6beff0bb3239acc1f84bb06083f6fc1f0a93b"
+  },
+  "manifestLaneSog": {
+    "path": "contracts/semantic-operation-graphs/cli/ndd-story-implement-manifest-lane.execute.sog.v1.json",
+    "hash": "sha256:1662e6d97a3bdcfb19ee430e293fad884a987a335e2c096151009e99e6dce0d6"
+  },
+  "bootstrapReceipt": {
+    "path": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/story-run-bootstrap.receipt.v1.json",
+    "hash": "sha256:a26a5927bfe5b0c050918845dc9ec77875871e2cd2d1230a47393737ef92f97a"
+  },
+  "declaredStage": {
+    "stageKind": "platform_agent_authority_routing",
+    "laneMode": "semantic_strategy_compile",
+    "targetKind": "semantic-strategy",
+    "status": "blocked-pending-cognitive-strategy-authority",
+    "requiredProviderParticipation": true,
+    "requiredAuthority": [
+      "cognitive_strategy_candidate",
+      "strategy_hardening_receipt",
+      "semantic_strategy_plan",
+      "strategy_artifact_manifest"
+    ]
+  },
+  "guardrails": {
+    "durableAuthorityCreated": false,
+    "policyGateSogSchemaAuthorityCreated": false,
+    "generatedCliHostPatched": false,
+    "visualProofDefaultFallbackSelected": false,
+    "providerCandidateGrantsAuthority": false
+  },
+  "completionPosture": "The run manifest now declares the platform-agent authority-routing lane identity, but story implement remains blocked until cognitive strategy authority is promoted by the conveyor."
+}

@@ -80,7 +80,7 @@
               "$graph": "runManifest.stages.storyImplement.blocker"
             },
             "error": {
-              "literal": "Story implement loaded the run manifest, but the manifest-declared story implement lane is not executable yet."
+              "literal": "Story implement loaded the run manifest and returned the manifest-declared story implement lane blocker."
             },
             "result": {
               "literal": null
@@ -102,6 +102,18 @@
             },
             "declaredStageStatus": {
               "$graph": "runManifest.stages.storyImplement.status"
+            },
+            "declaredStageKind": {
+              "$graph": "runManifest.stages.storyImplement.stageKind"
+            },
+            "declaredTargetKind": {
+              "$graph": "runManifest.stages.storyImplement.targetKind"
+            },
+            "requiredProviderParticipation": {
+              "$graph": "runManifest.stages.storyImplement.requiredProviderParticipation"
+            },
+            "requiredAuthority": {
+              "$graph": "runManifest.stages.storyImplement.requiredAuthority"
             },
             "completionPosture": {
               "$graph": "runManifest.stages.storyImplement.completionPosture"
