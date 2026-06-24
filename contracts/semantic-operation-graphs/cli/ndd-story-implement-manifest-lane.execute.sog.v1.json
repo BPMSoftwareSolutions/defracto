@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.ndd-story-implement.manifest-declared-lane.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-resolver",
+  "commandKey": "defracto.ndd.story.implement.manifest-declared-lane.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.ndd-story-implement.manifest.match-command.v1",
+      "capabilityKey": "cli.argv.match.v1",
+      "intent": "Match manifest-backed story implement command."
+    },
+    {
+      "actionKey": "defracto.ndd-story-implement.manifest.load.v1",
+      "capabilityKey": "conveyor.run_manifest.load.v1",
+      "intent": "Load the bootstrapped run manifest by slice key."
+    },
+    {
+      "actionKey": "defracto.ndd-story-implement.manifest.project-lane-status.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Return the manifest-declared story implement lane status without defaulting to visual proof."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "matchManifestBackedStoryImplementCommand",
+        "capabilityKey": "cli.argv.match.v1",
+        "input": {
+          "argv": {
+            "$context": "argv"
+          },
+          "patterns": [
+            {
+              "commandKey": "defracto.ndd.story.implement.manifest-declared-lane.v1",
+              "tokens": [
+                "story",
+                "implement"
+              ],
+              "options": [
+                {
+                  "name": "slice",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        "output": {
+          "path": "$graph.command"
+        }
+      },
+      {
+        "id": "loadStoryRunManifest",
+        "capabilityKey": "conveyor.run_manifest.load.v1",
+        "input": {
+          "sliceKey": {
+            "$graph": "command.options.slice"
+          },
+          "defaultSearchRoot": {
+            "literal": "conveyor/runs"
+          }
+        },
+        "output": {
+          "path": "$graph.runManifest"
+        }
+      },
+      {
+        "id": "projectManifestDeclaredLaneStatus",
+        "capabilityKey": "project.value.v1",
+        "input": {
+          "fields": {
+            "status": {
+              "literal": "blocked"
+            },
+            "blocker": {
+              "$graph": "runManifest.stages.storyImplement.blocker"
+            },
+            "error": {
+              "literal": "Story implement loaded the run manifest, but the manifest-declared story implement lane is not executable yet."
+            },
+            "result": {
+              "literal": null
+            },
+            "evidence": {
+              "literal": {
+                "failClosed": true,
+                "code": "manifest_declared_lane_not_executable"
+              }
+            },
+            "manifestPath": {
+              "$graph": "runManifest.manifestPath"
+            },
+            "sliceKey": {
+              "$graph": "runManifest.sliceKey"
+            },
+            "laneMode": {
+              "$graph": "runManifest.laneMode"
+            },
+            "declaredStageStatus": {
+              "$graph": "runManifest.stages.storyImplement.status"
+            },
+            "completionPosture": {
+              "$graph": "runManifest.stages.storyImplement.completionPosture"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.manifestLaneStatus"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "evidenceObligations": [
+    "story_implement_manifest_route_loads_run_manifest",
+    "manifest_declared_lane_status_returned",
+    "visual_proof_materializer_not_selected_by_default"
+  ],
+  "forbiddenClaims": [
+    "manifest route creates durable authority",
+    "manifest route defaults to visual proof",
+    "manifest route invents undeclared downstream lane"
+  ],
+  "completionPosture": "This SOG loads the bootstrapped run manifest and blocks on the manifest-declared story implement lane until a downstream conveyor lane is declared."
+}

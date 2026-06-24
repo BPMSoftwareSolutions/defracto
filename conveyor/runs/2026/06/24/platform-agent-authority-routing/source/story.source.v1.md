@@ -1,0 +1,1 @@
+As a Defracto platform operator, I want platform-agent-created durable authority to be invalid unless it is backed by conveyor source, manifest, handoff packet, and receipt, so that agents coordinate through the conveyor instead of manually authoring semantic authority.

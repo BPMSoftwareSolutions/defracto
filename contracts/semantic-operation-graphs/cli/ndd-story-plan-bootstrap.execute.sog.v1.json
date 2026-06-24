@@ -63,6 +63,10 @@
                 {
                   "name": "slice",
                   "required": true
+                },
+                {
+                  "name": "run-date",
+                  "required": false
                 }
               ]
             }
@@ -81,13 +85,13 @@
             "$graph": "command.options.slice"
           },
           "runDate": {
-            "$context": "runDate"
+            "$graph": "command.options.run-date"
           },
           "runRoot": {
-            "$context": "runRoot"
+            "literal": "conveyor/runs"
           },
           "allowedRoot": {
-            "$context": "allowedRoot"
+            "literal": "conveyor/runs"
           }
         },
         "output": {
@@ -204,6 +208,15 @@
                 "$graph": "command.options.slice"
               },
               "laneMode": "story_run_bootstrap",
+              "stages": {
+                "storyImplement": {
+                  "stageKind": "manifest_declared_story_implement_lane",
+                  "laneMode": "story_run_bootstrap",
+                  "status": "blocked-pending-declared-lane",
+                  "blocker": "story_implement_lane_not_declared",
+                  "completionPosture": "Bootstrap declares that story implement must load this manifest and block until a downstream conveyor lane is declared. It does not default to visual-proof materialization."
+                }
+              },
               "runEnvelopeRoot": {
                 "$graph": "runEnvelopePaths.paths.runEnvelopeRoot"
               },

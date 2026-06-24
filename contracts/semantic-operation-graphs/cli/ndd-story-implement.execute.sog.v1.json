@@ -3,7 +3,7 @@
   "objectKind": "sej_code_body",
   "objectKey": "defracto.ndd-story-implement.execute.sog.v1",
   "sourceTruth": "sej_semantic_body",
-  "status": "ready-for-semantic-strategy-route",
+  "status": "ready-for-manifest-aware-dispatch",
   "commandKey": "defracto.ndd.story.implement.v1",
   "bodyKind": "semantic_operation_graph",
   "hostLanguageBodyAllowed": false,
@@ -16,12 +16,12 @@
     {
       "actionKey": "defracto.ndd-story-implement.select-target-graph.semantic-action.v1",
       "capabilityKey": "project.value.v1",
-      "intent": "Select visual proof or semantic strategy implementation graph from target-kind."
+      "intent": "Select explicit target-kind graph or manifest-declared lane."
     },
     {
-      "actionKey": "defracto.ndd-story-implement.execute-visual-proof.semantic-action.v1",
+      "actionKey": "defracto.ndd-story-implement.execute-selected-graph.semantic-action.v1",
       "capabilityKey": "semantic.operation_graph.execute.v1",
-      "intent": "Delegate story implement execution to the declared semantic graph selected by target-kind."
+      "intent": "Delegate story implement execution to the declared semantic graph selected by target-kind or manifest."
     }
   ],
   "graph": {
@@ -29,7 +29,7 @@
       {
         "id": "matchStoryImplementCommand",
         "capabilityKey": "cli.argv.match.v1",
-        "intent": "Match ndd story implement --text or --source with a required slice key.",
+        "intent": "Match ndd story implement with a required slice key.",
         "input": {
           "argv": {
             "$context": "argv"
@@ -77,115 +77,17 @@
       {
         "id": "selectStoryImplementTargetGraph",
         "capabilityKey": "project.value.v1",
-        "intent": "Select semantic strategy, SDK capability forge, or visual proof materialization graph from target-kind.",
+        "intent": "Select semantic strategy, SDK capability forge, explicit visual proof, or manifest-declared lane from parsed command options.",
         "input": {
           "fields": {
             "routeKey": {
               "when": {
-                "anyOf": [
+                "equals": [
                   {
-                    "allOf": [
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.2",
-                            "default": ""
-                          },
-                          {
-                            "literal": "--target-kind"
-                          }
-                        ]
-                      },
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.3",
-                            "default": ""
-                          },
-                          {
-                            "literal": "semantic-strategy"
-                          }
-                        ]
-                      }
-                    ]
+                    "$graph": "command.options.target-kind"
                   },
                   {
-                    "allOf": [
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.4",
-                            "default": ""
-                          },
-                          {
-                            "literal": "--target-kind"
-                          }
-                        ]
-                      },
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.5",
-                            "default": ""
-                          },
-                          {
-                            "literal": "semantic-strategy"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "allOf": [
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.6",
-                            "default": ""
-                          },
-                          {
-                            "literal": "--target-kind"
-                          }
-                        ]
-                      },
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.7",
-                            "default": ""
-                          },
-                          {
-                            "literal": "semantic-strategy"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "allOf": [
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.8",
-                            "default": ""
-                          },
-                          {
-                            "literal": "--target-kind"
-                          }
-                        ]
-                      },
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.9",
-                            "default": ""
-                          },
-                          {
-                            "literal": "semantic-strategy"
-                          }
-                        ]
-                      }
-                    ]
+                    "literal": "semantic-strategy"
                   }
                 ]
               },
@@ -194,110 +96,12 @@
               },
               "else": {
                 "when": {
-                  "anyOf": [
+                  "equals": [
                     {
-                      "allOf": [
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.2",
-                              "default": ""
-                            },
-                            {
-                              "literal": "--target-kind"
-                            }
-                          ]
-                        },
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.3",
-                              "default": ""
-                            },
-                            {
-                              "literal": "sdk-capability"
-                            }
-                          ]
-                        }
-                      ]
+                      "$graph": "command.options.target-kind"
                     },
                     {
-                      "allOf": [
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.4",
-                              "default": ""
-                            },
-                            {
-                              "literal": "--target-kind"
-                            }
-                          ]
-                        },
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.5",
-                              "default": ""
-                            },
-                            {
-                              "literal": "sdk-capability"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "allOf": [
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.6",
-                              "default": ""
-                            },
-                            {
-                              "literal": "--target-kind"
-                            }
-                          ]
-                        },
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.7",
-                              "default": ""
-                            },
-                            {
-                              "literal": "sdk-capability"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "allOf": [
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.8",
-                              "default": ""
-                            },
-                            {
-                              "literal": "--target-kind"
-                            }
-                          ]
-                        },
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.9",
-                              "default": ""
-                            },
-                            {
-                              "literal": "sdk-capability"
-                            }
-                          ]
-                        }
-                      ]
+                      "literal": "sdk-capability"
                     }
                   ]
                 },
@@ -305,116 +109,33 @@
                   "literal": "sdk_capability_forge"
                 },
                 "else": {
-                  "literal": "visual_proof_materialization"
+                  "when": {
+                    "equals": [
+                      {
+                        "$graph": "command.options.target-kind"
+                      },
+                      {
+                        "literal": "visual-proof"
+                      }
+                    ]
+                  },
+                  "then": {
+                    "literal": "visual_proof_materialization"
+                  },
+                  "else": {
+                    "literal": "manifest_declared_lane"
+                  }
                 }
               }
             },
             "graphRef": {
               "when": {
-                "anyOf": [
+                "equals": [
                   {
-                    "allOf": [
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.2",
-                            "default": ""
-                          },
-                          {
-                            "literal": "--target-kind"
-                          }
-                        ]
-                      },
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.3",
-                            "default": ""
-                          },
-                          {
-                            "literal": "semantic-strategy"
-                          }
-                        ]
-                      }
-                    ]
+                    "$graph": "command.options.target-kind"
                   },
                   {
-                    "allOf": [
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.4",
-                            "default": ""
-                          },
-                          {
-                            "literal": "--target-kind"
-                          }
-                        ]
-                      },
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.5",
-                            "default": ""
-                          },
-                          {
-                            "literal": "semantic-strategy"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "allOf": [
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.6",
-                            "default": ""
-                          },
-                          {
-                            "literal": "--target-kind"
-                          }
-                        ]
-                      },
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.7",
-                            "default": ""
-                          },
-                          {
-                            "literal": "semantic-strategy"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "allOf": [
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.8",
-                            "default": ""
-                          },
-                          {
-                            "literal": "--target-kind"
-                          }
-                        ]
-                      },
-                      {
-                        "equals": [
-                          {
-                            "$from": "argv.9",
-                            "default": ""
-                          },
-                          {
-                            "literal": "semantic-strategy"
-                          }
-                        ]
-                      }
-                    ]
+                    "literal": "semantic-strategy"
                   }
                 ]
               },
@@ -425,110 +146,12 @@
               },
               "else": {
                 "when": {
-                  "anyOf": [
+                  "equals": [
                     {
-                      "allOf": [
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.2",
-                              "default": ""
-                            },
-                            {
-                              "literal": "--target-kind"
-                            }
-                          ]
-                        },
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.3",
-                              "default": ""
-                            },
-                            {
-                              "literal": "sdk-capability"
-                            }
-                          ]
-                        }
-                      ]
+                      "$graph": "command.options.target-kind"
                     },
                     {
-                      "allOf": [
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.4",
-                              "default": ""
-                            },
-                            {
-                              "literal": "--target-kind"
-                            }
-                          ]
-                        },
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.5",
-                              "default": ""
-                            },
-                            {
-                              "literal": "sdk-capability"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "allOf": [
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.6",
-                              "default": ""
-                            },
-                            {
-                              "literal": "--target-kind"
-                            }
-                          ]
-                        },
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.7",
-                              "default": ""
-                            },
-                            {
-                              "literal": "sdk-capability"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "allOf": [
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.8",
-                              "default": ""
-                            },
-                            {
-                              "literal": "--target-kind"
-                            }
-                          ]
-                        },
-                        {
-                          "equals": [
-                            {
-                              "$from": "argv.9",
-                              "default": ""
-                            },
-                            {
-                              "literal": "sdk-capability"
-                            }
-                          ]
-                        }
-                      ]
+                      "literal": "sdk-capability"
                     }
                   ]
                 },
@@ -538,8 +161,25 @@
                   }
                 },
                 "else": {
-                  "literal": {
-                    "$inline": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+                  "when": {
+                    "equals": [
+                      {
+                        "$graph": "command.options.target-kind"
+                      },
+                      {
+                        "literal": "visual-proof"
+                      }
+                    ]
+                  },
+                  "then": {
+                    "literal": {
+                      "$inline": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+                    }
+                  },
+                  "else": {
+                    "literal": {
+                      "$inline": "contracts/semantic-operation-graphs/cli/ndd-story-implement-manifest-lane.execute.sog.v1.json"
+                    }
                   }
                 }
               }
@@ -564,6 +204,9 @@
             },
             "command": {
               "$graph": "command"
+            },
+            "targetRoute": {
+              "$graph": "targetRoute"
             }
           }
         },
@@ -583,17 +226,17 @@
   "evidenceObligations": [
     "story_implement_command_matched",
     "story_implement_target_graph_selected",
-    "selected_story_implement_graph_executed",
-    "stage_handoff_packets_materialized",
-    "ascii_and_html_surfaces_materialized_from_same_model_or_semantic_strategy_plan_or_sdk_capability_materialized"
+    "manifest_backed_story_implement_loads_run_manifest_when_target_kind_is_absent",
+    "story_implement_does_not_default_to_visual_proof_materializer",
+    "selected_story_implement_graph_executed_or_blocks_closed"
   ],
   "forbiddenClaims": [
     "generated CLI facade owns story implement behavior",
     "story implement command bypasses semantic operation graph",
+    "story implement default route is visual proof materialization",
     "semantic strategy compile creates durable product truth",
     "sdk capability forge creates host-language product body",
-    "ASCII and HTML materialized from different visual models",
     "provider candidate grants authority without hardening"
   ],
-  "completionPosture": "ndd story implement delegates to the selected semantic graph and returns visual proof materialization, semantic strategy compile, or SDK capability forge result."
+  "completionPosture": "ndd story implement delegates to an explicit target-kind graph or to the manifest-declared lane. Missing or unsupported manifest lanes block closed."
 }
