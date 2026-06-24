@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.materialize-semantic-strategy-plan.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.semantic-strategy.materialize-plan",
+  "sourceLineage": {
+    "semanticStrategyPlanSchema": "contracts/schemas/semantic-strategy-plan.schema.v1.json",
+    "strategyArtifactManifestSchema": "contracts/schemas/strategy-artifact-manifest.schema.v1.json",
+    "semanticStrategyHardeningGate": "contracts/gates/semantic-strategy-hardening-required.gate.v1.json",
+    "strategyArtifactProjectionBoundedGate": "contracts/gates/strategy-artifact-projection-bounded.gate.v1.json",
+    "authorityPolicy": "contracts/policies/agents-propose-strategy-conveyor-projects-authority.policy.v1.json",
+    "semanticOperationGraph": "contracts/semantic-operation-graphs/strategy/semantic-strategy-plan-materialize.sog.v1.json"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/strategy/semantic-strategy-plan-materialize.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "boundedInputs": [
+    "operator story text",
+    "target-kind semantic-strategy",
+    "slice key",
+    "existing live cognitive provider receipts",
+    "visual proof materializer contract cluster"
+  ],
+  "boundedOutputs": [
+    "semantic-strategy-candidate.v1.json",
+    "semantic-strategy-plan.v1.json",
+    "strategy-artifact-manifest.v1.json",
+    "strategy handoff packets",
+    "provider, hardening, projection, and materialization receipts"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "evidence.receipt.verify.v1",
+      "purpose": "Verify provider participation evidence before strategy hardening.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "purpose": "Project candidate strategy, promoted strategy plan, artifact manifest, and command result.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "purpose": "Materialize strategy authority, manifest, handoff packets, and report.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "purpose": "Hash strategy artifacts and handoff packets.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "Emit strategy hardening and projection receipts.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "failurePosture": "Missing provider evidence, strategy hardening, bounded manifest, or materialization receipt blocks semantic strategy authority.",
+  "completionPosture": "This SEJ materializes a semantic strategy plan that authorizes visual proof materializer artifacts without claiming durable product truth."
+}

@@ -38,6 +38,11 @@
       "enum": [
         "story_intake",
         "cognitive_candidate",
+        "strategy_candidate",
+        "strategy_hardening",
+        "strategy_artifact_manifest",
+        "contract_projection",
+        "sog_execution_boundary",
         "promoted_authority",
         "test_intent",
         "test_projection",

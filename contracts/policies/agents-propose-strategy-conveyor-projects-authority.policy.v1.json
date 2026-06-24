@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "defracto.policy.v1",
+  "policyKey": "defracto.policies.agents_propose_strategy_conveyor_projects_authority.v1",
+  "policyTitle": "Agents Propose Strategy, Conveyor Projects Authority",
+  "policyStatus": "accepted",
+  "purpose": "Define the semantic strategy compile lane so AI workers propose strategy, the conveyor hardens it, and only bounded manifests authorize JSON artifact clusters.",
+  "law": "Agents do not author JSON sprawl. Agents propose strategy. The conveyor hardens strategy. The strategy projects JSON authority. Receipts prove every file.",
+  "laneMode": "semantic_strategy_compile",
+  "createsProductTruth": false,
+  "authorizesArtifactProjection": true,
+  "requiresSogPromotionForBehavior": true,
+  "requires": [
+    "operator story is captured",
+    "strategy candidate is captured before promotion",
+    "strategy hardening receipt exists before promoted strategy authority",
+    "strategy artifact manifest lists every generated JSON and output path",
+    "target roots are declared before projection",
+    "SOG ownership remains separate from strategy authority",
+    "materialization and promotion receipts prove execution separately"
+  ],
+  "forbids": [
+    "unlisted generated JSON artifacts",
+    "strategy authority claiming durable product truth",
+    "provider candidate granting authority without hardening",
+    "artifact projection outside declared target roots",
+    "treating a strategy plan as resolver execution evidence",
+    "treating generated proof surfaces as durable behavior"
+  ],
+  "traceQuestions": [
+    "Which story required this?",
+    "Which strategy authorized it?",
+    "Which artifact manifest projected it?",
+    "Which receipt proves it?",
+    "Which SOG owns behavior?"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Semantic strategy is a control object for governed expansion; behavior truth still belongs to SOG execution and promotion evidence."
+}

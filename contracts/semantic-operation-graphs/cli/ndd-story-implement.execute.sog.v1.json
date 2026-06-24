@@ -3,7 +3,7 @@
   "objectKind": "sej_code_body",
   "objectKey": "defracto.ndd-story-implement.execute.sog.v1",
   "sourceTruth": "sej_semantic_body",
-  "status": "ready-for-live-visual-proof-packet",
+  "status": "ready-for-semantic-strategy-route",
   "commandKey": "defracto.ndd.story.implement.v1",
   "bodyKind": "semantic_operation_graph",
   "hostLanguageBodyAllowed": false,
@@ -14,9 +14,14 @@
       "intent": "Match ndd story implement command boundary."
     },
     {
+      "actionKey": "defracto.ndd-story-implement.select-target-graph.semantic-action.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Select visual proof or semantic strategy implementation graph from target-kind."
+    },
+    {
       "actionKey": "defracto.ndd-story-implement.execute-visual-proof.semantic-action.v1",
       "capabilityKey": "semantic.operation_graph.execute.v1",
-      "intent": "Delegate live visual proof packet materialization to the declared projection SOG."
+      "intent": "Delegate story implement execution to the declared semantic graph selected by target-kind."
     }
   ],
   "graph": {
@@ -46,6 +51,10 @@
                   "required": false
                 },
                 {
+                  "name": "target-kind",
+                  "required": false
+                },
+                {
                   "name": "slice",
                   "required": true
                 }
@@ -62,12 +71,132 @@
         }
       },
       {
-        "id": "executeVisualProofMaterialization",
+        "id": "selectStoryImplementTargetGraph",
+        "capabilityKey": "project.value.v1",
+        "intent": "Select semantic strategy graph when --target-kind semantic-strategy is present; otherwise keep the live visual proof materialization path.",
+        "input": {
+          "fields": {
+            "routeKey": {
+              "when": {
+                "anyOf": [
+                  {
+                    "allOf": [
+                      {
+                        "equals": [
+                          "$context.argv.2",
+                          {
+                            "literal": "--target-kind"
+                          }
+                        ]
+                      },
+                      {
+                        "equals": [
+                          "$context.argv.3",
+                          {
+                            "literal": "semantic-strategy"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "equals": [
+                          "$context.argv.4",
+                          {
+                            "literal": "--target-kind"
+                          }
+                        ]
+                      },
+                      {
+                        "equals": [
+                          "$context.argv.5",
+                          {
+                            "literal": "semantic-strategy"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "then": {
+                "literal": "semantic_strategy_compile"
+              },
+              "else": {
+                "literal": "visual_proof_materialization"
+              }
+            },
+            "graphRef": {
+              "when": {
+                "anyOf": [
+                  {
+                    "allOf": [
+                      {
+                        "equals": [
+                          "$context.argv.2",
+                          {
+                            "literal": "--target-kind"
+                          }
+                        ]
+                      },
+                      {
+                        "equals": [
+                          "$context.argv.3",
+                          {
+                            "literal": "semantic-strategy"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "equals": [
+                          "$context.argv.4",
+                          {
+                            "literal": "--target-kind"
+                          }
+                        ]
+                      },
+                      {
+                        "equals": [
+                          "$context.argv.5",
+                          {
+                            "literal": "semantic-strategy"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "then": {
+                "literal": {
+                  "$inline": "contracts/semantic-operation-graphs/strategy/semantic-strategy-plan-materialize.sog.v1.json"
+                }
+              },
+              "else": {
+                "literal": {
+                  "$inline": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+                }
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.targetRoute"
+        }
+      },
+      {
+        "id": "executeSelectedStoryImplementGraph",
         "capabilityKey": "semantic.operation_graph.execute.v1",
-        "intent": "Execute the live visual proof materialization graph.",
+        "intent": "Execute the selected story implement semantic graph.",
         "input": {
           "graphRef": {
-            "$inline": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+            "$graph": "targetRoute.graphRef"
           },
           "context": {
             "argv": {
@@ -79,11 +208,11 @@
           }
         },
         "output": {
-          "path": "$graph.visualProof"
+          "path": "$graph.storyImplementResult"
         },
         "failure": {
           "status": "blocked",
-          "blocker": "visual_proof_materialization_failed"
+          "blocker": "story_implement_semantic_graph_failed"
         }
       }
     ],
@@ -93,15 +222,17 @@
   },
   "evidenceObligations": [
     "story_implement_command_matched",
-    "visual_proof_materialization_graph_executed",
+    "story_implement_target_graph_selected",
+    "selected_story_implement_graph_executed",
     "stage_handoff_packets_materialized",
-    "ascii_and_html_surfaces_materialized_from_same_model"
+    "ascii_and_html_surfaces_materialized_from_same_model_or_semantic_strategy_plan_materialized"
   ],
   "forbiddenClaims": [
     "generated CLI facade owns story implement behavior",
     "story implement command bypasses semantic operation graph",
+    "semantic strategy compile creates durable product truth",
     "ASCII and HTML materialized from different visual models",
     "provider candidate grants authority without hardening"
   ],
-  "completionPosture": "ndd story implement delegates to semantic materialization and returns the visual proof packet result."
+  "completionPosture": "ndd story implement delegates to the selected semantic graph and returns either visual proof materialization or semantic strategy compile result."
 }

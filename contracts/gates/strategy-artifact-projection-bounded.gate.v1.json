@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.strategy_artifact_projection_bounded.v1",
+  "gateTitle": "Strategy Artifact Projection Bounded",
+  "gateStatus": "accepted",
+  "purpose": "Block strategy-projected artifact clusters when outputs escape the declared manifest, target roots, or receipt chain.",
+  "appliesToLaneModes": [
+    "semantic_strategy_compile"
+  ],
+  "passConditions": [
+    "strategy artifact manifest exists",
+    "every projected artifact path is listed in the manifest",
+    "every listed artifact stays under a declared target root",
+    "contract, SEJ, SOG, receipt, and proof outputs are separated by artifact kind",
+    "projection receipt binds manifest hash and strategy plan hash",
+    "strategy plan does not claim SOG execution or durable behavior promotion"
+  ],
+  "blockConditions": [
+    "strategy_artifact_manifest_missing",
+    "artifact_outside_declared_target_roots",
+    "artifact_missing_from_manifest",
+    "contract_projection_receipt_missing",
+    "strategy_plan_claims_behavior_truth",
+    "unbounded_json_sprawl_detected"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Semantic strategy may project artifact clusters only through a bounded manifest and receipts."
+}

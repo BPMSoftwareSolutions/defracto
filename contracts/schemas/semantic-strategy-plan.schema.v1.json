@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.semantic-strategy-plan.schema.v1",
+  "title": "Semantic Strategy Plan",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "strategyKey",
+    "strategyKind",
+    "laneMode",
+    "sourceStory",
+    "strategyIntent",
+    "sourceLineage",
+    "authorityPosture",
+    "artifactProjection",
+    "traceQuestions",
+    "hardeningFindings",
+    "promotionBar",
+    "forbiddenClaims",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.semantic-strategy-plan.v1"
+    },
+    "strategyKey": {
+      "type": "string",
+      "minLength": 1
+    },
+    "strategyKind": {
+      "type": "string",
+      "minLength": 1
+    },
+    "laneMode": {
+      "type": "string",
+      "const": "semantic_strategy_compile"
+    },
+    "sourceStory": {
+      "$ref": "#/$defs/sourceStory"
+    },
+    "strategyIntent": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceLineage": {
+      "type": "object",
+      "required": [
+        "providerEvidence",
+        "canonicalInputs",
+        "priorProofSurface"
+      ],
+      "properties": {
+        "providerEvidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/pathRef"
+          }
+        },
+        "canonicalInputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/pathRef"
+          }
+        },
+        "priorProofSurface": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pathRef"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "authorityPosture": {
+      "type": "object",
+      "required": [
+        "createsProductTruth",
+        "authorizesArtifactProjection",
+        "requiresSogPromotionForBehavior",
+        "providerCandidateGrantsAuthority",
+        "strategyPlanBlessesBehavior"
+      ],
+      "properties": {
+        "createsProductTruth": {
+          "type": "boolean",
+          "const": false
+        },
+        "authorizesArtifactProjection": {
+          "type": "boolean",
+          "const": true
+        },
+        "requiresSogPromotionForBehavior": {
+          "type": "boolean",
+          "const": true
+        },
+        "providerCandidateGrantsAuthority": {
+          "type": "boolean",
+          "const": false
+        },
+        "strategyPlanBlessesBehavior": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "artifactProjection": {
+      "type": "object",
+      "required": [
+        "manifestRef",
+        "declaredTargetRoots",
+        "requiredArtifactKeys"
+      ],
+      "properties": {
+        "manifestRef": {
+          "$ref": "#/$defs/pathRef"
+        },
+        "declaredTargetRoots": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "requiredArtifactKeys": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "traceQuestions": {
+      "type": "object",
+      "required": [
+        "whichStoryRequiredThis",
+        "whichStrategyAuthorizedIt",
+        "whichArtifactManifestProjectedIt",
+        "whichReceiptProvesIt",
+        "whichSogOwnsBehavior"
+      ],
+      "properties": {
+        "whichStoryRequiredThis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "whichStrategyAuthorizedIt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "whichArtifactManifestProjectedIt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "whichReceiptProvesIt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "whichSogOwnsBehavior": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "hardeningFindings": {
+      "type": "object",
+      "required": [
+        "status",
+        "blockers",
+        "acceptedClaims"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "passed",
+            "blocked"
+          ]
+        },
+        "blockers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "acceptedClaims": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "promotionBar": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "completionPosture": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "sourceStory": {
+      "type": "object",
+      "required": [
+        "sourceKind",
+        "sliceKey",
+        "text"
+      ],
+      "properties": {
+        "sourceKind": {
+          "type": "string",
+          "enum": [
+            "operator_cli_text",
+            "source_file"
+          ]
+        },
+        "sliceKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "pathRef": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

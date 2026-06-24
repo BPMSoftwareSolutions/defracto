@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.strategy-artifact-manifest.schema.v1",
+  "title": "Strategy Artifact Manifest",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "manifestKey",
+    "strategyKey",
+    "strategyPlan",
+    "declaredTargetRoots",
+    "artifacts",
+    "boundedOutputs",
+    "forbiddenOutputs",
+    "evidence",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.strategy-artifact-manifest.v1"
+    },
+    "manifestKey": {
+      "type": "string",
+      "minLength": 1
+    },
+    "strategyKey": {
+      "type": "string",
+      "minLength": 1
+    },
+    "strategyPlan": {
+      "$ref": "#/$defs/pathRef"
+    },
+    "declaredTargetRoots": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/artifact"
+      }
+    },
+    "boundedOutputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/pathRef"
+      }
+    },
+    "forbiddenOutputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "strategyHardeningReceipt",
+        "contractProjectionReceipt",
+        "materializationReceipt",
+        "providerInvocationReceipt"
+      ],
+      "properties": {
+        "strategyHardeningReceipt": {
+          "$ref": "#/$defs/pathRef"
+        },
+        "contractProjectionReceipt": {
+          "$ref": "#/$defs/pathRef"
+        },
+        "materializationReceipt": {
+          "$ref": "#/$defs/pathRef"
+        },
+        "providerInvocationReceipt": {
+          "$ref": "#/$defs/pathRef"
+        }
+      },
+      "additionalProperties": false
+    },
+    "completionPosture": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "pathRef": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact": {
+      "type": "object",
+      "required": [
+        "artifactKey",
+        "artifactKind",
+        "targetPath",
+        "purpose",
+        "sourceAuthority",
+        "projectionStatus",
+        "mustTraceToStrategyPlan"
+      ],
+      "properties": {
+        "artifactKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifactKind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "targetPath": {
+          "$ref": "#/$defs/pathRef"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceAuthority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "projectionStatus": {
+          "type": "string",
+          "enum": [
+            "declared_contract",
+            "strategy_projected",
+            "resolver_materialized",
+            "prior_proof_surface"
+          ]
+        },
+        "mustTraceToStrategyPlan": {
+          "type": "boolean",
+          "const": true
+        },
+        "receipts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pathRef"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

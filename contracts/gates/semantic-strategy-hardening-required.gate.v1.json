@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.semantic_strategy_hardening_required.v1",
+  "gateTitle": "Semantic Strategy Hardening Required",
+  "gateStatus": "accepted",
+  "purpose": "Block semantic strategy compile runs unless a candidate strategy is inspected and promoted through explicit authority posture, trace, and projection-boundary checks.",
+  "appliesToLaneModes": [
+    "semantic_strategy_compile"
+  ],
+  "passConditions": [
+    "strategy candidate is captured before promotion",
+    "provider evidence is receipted before candidate hardening",
+    "laneMode is semantic_strategy_compile",
+    "createsProductTruth is false",
+    "authorizesArtifactProjection is true",
+    "requiresSogPromotionForBehavior is true",
+    "strategy plan answers story, strategy, manifest, receipt, and SOG ownership trace questions",
+    "hardening receipt records accepted claims and blockers"
+  ],
+  "blockConditions": [
+    "strategy_candidate_missing",
+    "provider_evidence_missing",
+    "strategy_authority_claims_product_truth",
+    "strategy_trace_question_unanswered",
+    "strategy_hardening_receipt_missing",
+    "strategy_blurs_artifact_authority_with_behavior_truth"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Agents may propose strategy, but only a hardened semantic strategy plan may authorize artifact projection."
+}
