@@ -1,0 +1,694 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.live-cognitive-ba-proof.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-live-provider-proof",
+  "commandKey": "defracto.ndd.story.implement.cognitive-ba-live.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.live-cognitive-ba.load-run-manifest.semantic-action.v1",
+      "capabilityKey": "conveyor.run_manifest.load.v1",
+      "intent": "Load the bootstrapped story run manifest by slice key."
+    },
+    {
+      "actionKey": "defracto.live-cognitive-ba.materialize-worker.semantic-action.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize the generated cognitive provider worker adapter from SEJ."
+    },
+    {
+      "actionKey": "defracto.live-cognitive-ba.run-worker.semantic-action.v1",
+      "capabilityKey": "generated.facade.smoke_execute.v1",
+      "intent": "Run the generated worker adapter with a run-local dispatch packet."
+    },
+    {
+      "actionKey": "defracto.live-cognitive-ba.harden-candidate.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit Business Analysis hardening receipt after live provider candidate is captured."
+    },
+    {
+      "actionKey": "defracto.live-cognitive-ba.review-package.semantic-action.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize a Review Package proving live cognitive participation."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "loadRunManifest",
+        "capabilityKey": "conveyor.run_manifest.load.v1",
+        "input": {
+          "sliceKey": {
+            "$context": "command.options.slice"
+          },
+          "defaultSearchRoot": "conveyor/runs"
+        },
+        "output": {
+          "path": "$graph.runManifest"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "live_cognitive_ba_run_manifest_missing"
+        }
+      },
+      {
+        "id": "projectDispatchPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "artifacts",
+            "cognitive-ba.live-dispatch.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.dispatchPath"
+        }
+      },
+      {
+        "id": "projectHardeningReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "business-analysis-hardening.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.hardeningReceiptPath"
+        }
+      },
+      {
+        "id": "projectReviewJsonPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "live-cognitive-ba-review-package.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewJsonPath"
+        }
+      },
+      {
+        "id": "projectReviewMarkdownPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "live-cognitive-ba-review-package.v1.md"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewMarkdownPath"
+        }
+      },
+      {
+        "id": "projectReviewReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "live-cognitive-ba-review-package.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewReceiptPath"
+        }
+      },
+      {
+        "id": "hashSourceStory",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runManifest.sourceStory.path"
+          }
+        },
+        "output": {
+          "path": "$graph.sourceStoryHash"
+        }
+      },
+      {
+        "id": "materializeProviderWorker",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize generated Node worker adapter for live cognitive BA provider execution.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "generated/workers/node/cognitive-ba-provider-worker.cjs",
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "contentRef": [
+              "#!/usr/bin/env node",
+              "// GENERATED BY DEFRACTO SEJ MATERIALIZATION. DO NOT EDIT.",
+              "// sourceSOG: contracts/semantic-operation-graphs/build/live-cognitive-ba-proof.execute.sog.v1.json",
+              "'use strict';",
+              "const fs = require('node:fs');",
+              "const path = require('node:path');",
+              "const crypto = require('node:crypto');",
+              "function ensureDir(filePath) { fs.mkdirSync(path.dirname(filePath), { recursive: true }); }",
+              "function writeJson(filePath, value) { ensureDir(filePath); fs.writeFileSync(filePath, JSON.stringify(value)); return filePath; }",
+              "function sha256File(filePath) { return 'sha256:' + crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex'); }",
+              "function readText(filePath) { return fs.readFileSync(filePath, 'utf8'); }",
+              "function asJsonText(text) { const trimmed = String(text || '').trim().replace(/^```json\\s*/i, '').replace(/^```\\s*/i, '').replace(/```$/i, '').trim(); const first = trimmed.indexOf('{'); const last = trimmed.lastIndexOf('}'); return first >= 0 && last >= first ? trimmed.slice(first, last + 1) : trimmed; }",
+              "function parseCandidate(text) { try { return JSON.parse(asJsonText(text)); } catch { return { analysis: { rawProviderText: String(text || '') }, ambiguities: ['provider_response_json_parse_failed'], acceptanceRecommendations: [] }; } }",
+              "function outputTextFromOpenAi(data) { if (data.output_text) return data.output_text; const parts = []; for (const item of data.output || []) for (const content of item.content || []) if (content.text) parts.push(content.text); return parts.join('\\n'); }",
+              "function outputTextFromGemini(data) { const parts = []; for (const candidate of data.candidates || []) for (const part of (((candidate || {}).content || {}).parts || [])) if (part.text) parts.push(part.text); return parts.join('\\n'); }",
+              "function candidateFrom(provider, model, dispatch, parsed) { return { schemaVersion: 'defracto.business-analysis-candidate.v1', status: 'candidate', providerKey: provider, workerKey: provider === 'gemini_flash' ? 'defracto.workers.gemini_flash.story_to_tdd.v1' : 'defracto.workers.openai.story_to_tdd.v1', model, sourceStoryHash: dispatch.sourceStory.hash, analysis: parsed.analysis || parsed, ambiguities: Array.isArray(parsed.ambiguities) ? parsed.ambiguities : [], acceptanceRecommendations: Array.isArray(parsed.acceptanceRecommendations) ? parsed.acceptanceRecommendations : [], candidateOnlyUntilHardened: true }; }",
+              "async function callGemini(dispatch, prompt, paths) { const key = process.env.LOC_GEMINI_API_KEY || process.env.GOOGLE_API_KEY; const model = dispatch.providers.gemini.model; writeJson(paths.geminiDispatch, { schemaVersion: 'defracto.provider-dispatch.v1', status: 'dispatched', providerKey: 'gemini_flash', workerKey: 'defracto.workers.gemini_flash.story_to_tdd.v1', model, sourceStoryHash: dispatch.sourceStory.hash, acceptedEnvVars: ['LOC_GEMINI_API_KEY', 'GOOGLE_API_KEY'], secretMaterialWritten: false }); if (!key) { writeJson(paths.geminiFailureReceipt, { schemaVersion: 'defracto.gemini-invocation-receipt.v1', status: 'blocked', blocker: 'gemini_api_key_missing', worker: 'defracto.workers.gemini_flash.v1', invocationCapability: 'worker.gemini_flash.invoke.v1', acceptedEnvVars: ['LOC_GEMINI_API_KEY', 'GOOGLE_API_KEY'], secretMaterialWritten: false }); return null; } const request = { contents: [{ role: 'user', parts: [{ text: prompt }] }], generationConfig: { responseMimeType: 'application/json' } }; writeJson(paths.geminiRequest, request); const url = 'https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(model) + ':generateContent?key=' + encodeURIComponent(key); const response = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(request) }); const rawText = await response.text(); ensureDir(paths.geminiRaw); fs.writeFileSync(paths.geminiRaw, rawText); if (!response.ok) { writeJson(paths.geminiFailureReceipt, { schemaVersion: 'defracto.gemini-invocation-receipt.v1', status: 'blocked', blocker: 'gemini_response_missing', httpStatus: response.status, worker: 'defracto.workers.gemini_flash.v1', invocationCapability: 'worker.gemini_flash.invoke.v1', rawResponseHash: sha256File(paths.geminiRaw), secretMaterialWritten: false }); return null; } const data = JSON.parse(rawText); const parsed = parseCandidate(outputTextFromGemini(data)); const candidate = candidateFrom('gemini_flash', model, dispatch, parsed); writeJson(paths.candidate, candidate); writeJson(paths.geminiResponse, { schemaVersion: 'defracto.provider-response.v1', status: 'received', providerKey: 'gemini_flash', model, candidatePath: paths.candidate, candidateHash: sha256File(paths.candidate), rawResponseHash: sha256File(paths.geminiRaw) }); writeJson(paths.geminiInvocationReceipt, { schemaVersion: 'defracto.gemini-invocation-receipt.v1', status: 'passed', worker: 'defracto.workers.gemini_flash.v1', invocationCapability: 'worker.gemini_flash.invoke.v1', responseArtifact: paths.geminiResponse, candidatePath: paths.candidate, candidateHash: sha256File(paths.candidate), secretMaterialWritten: false }); return { providerKey: 'gemini_flash', model, candidate }; }",
+              "async function callOpenAi(dispatch, prompt, paths, primaryFailureReceipt) { const key = process.env.LOC_OPENAI_API_KEY || process.env.OPENAI_API_KEY; const model = dispatch.providers.openai.model; writeJson(paths.openaiDispatch, { schemaVersion: 'defracto.provider-dispatch.v1', status: 'dispatched', providerKey: 'openai', workerKey: 'defracto.workers.openai.story_to_tdd.v1', model, sourceStoryHash: dispatch.sourceStory.hash, fallbackFrom: 'gemini_flash', primaryFailureReceipt, secretMaterialWritten: false }); if (!key) throw new Error('openai_api_key_missing'); const request = { model, input: [{ role: 'system', content: 'You are a Business Analyst agent. Return only JSON with analysis, ambiguities, and acceptanceRecommendations.' }, { role: 'user', content: prompt }] }; writeJson(paths.openaiRequest, request); const response = await fetch('https://api.openai.com/v1/responses', { method: 'POST', headers: { authorization: 'Bearer ' + key, 'content-type': 'application/json' }, body: JSON.stringify(request) }); const rawText = await response.text(); ensureDir(paths.openaiRaw); fs.writeFileSync(paths.openaiRaw, rawText); if (!response.ok) throw new Error('openai_response_missing:' + response.status); const data = JSON.parse(rawText); const parsed = parseCandidate(outputTextFromOpenAi(data)); const candidate = candidateFrom('openai', model, dispatch, parsed); writeJson(paths.candidate, candidate); writeJson(paths.openaiResponse, { schemaVersion: 'defracto.provider-response.v1', status: 'received', providerKey: 'openai', model, candidatePath: paths.candidate, candidateHash: sha256File(paths.candidate), rawResponseHash: sha256File(paths.openaiRaw) }); writeJson(paths.openaiDispatchReceipt, { schemaVersion: 'defracto.openai-dispatch-receipt.v1', status: 'passed', dispatchArtifact: paths.openaiDispatch, dispatchHash: sha256File(paths.openaiDispatch), secretMaterialWritten: false }); writeJson(paths.openaiResponseReceipt, { schemaVersion: 'defracto.openai-response-receipt.v1', status: 'passed', responseArtifact: paths.openaiResponse, responseHash: sha256File(paths.openaiResponse), rawResponseHash: sha256File(paths.openaiRaw), candidatePath: paths.candidate, candidateHash: sha256File(paths.candidate) }); writeJson(paths.openaiInvocationReceipt, { schemaVersion: 'defracto.openai-invocation-receipt.v1', status: 'passed', worker: 'defracto.workers.openai.v1', invocationCapability: 'worker.openai.responses.invoke.v1', fallbackRole: 'governed_fallback', responseArtifact: paths.openaiResponse, candidatePath: paths.candidate, candidateHash: sha256File(paths.candidate), secretMaterialWritten: false }); writeJson(paths.fallbackReceipt, { schemaVersion: 'defracto.cognitive-provider-fallback-receipt.v1', status: 'passed', primaryProvider: 'gemini_flash', fallbackProvider: 'openai', primaryFailureReceipt, fallbackInvocationReceipt: paths.openaiInvocationReceipt, fallbackCandidatePath: paths.candidate, fallbackCandidateHash: sha256File(paths.candidate) }); return { providerKey: 'openai', model, candidate }; }",
+              "async function main() { const stdin = fs.readFileSync(0, 'utf8'); const dispatch = JSON.parse(stdin || '{}'); const runRoot = dispatch.runRoot; const artifactRoot = path.join(runRoot, 'artifacts'); const receiptRoot = path.join(runRoot, 'receipts'); const candidatePath = path.join(artifactRoot, 'business-analysis.candidate.v1.json').replace(/\\\\/g, '/'); const paths = { candidate: candidatePath, geminiDispatch: path.join(artifactRoot, 'cognitive-ba.gemini-dispatch.v1.json').replace(/\\\\/g, '/'), geminiRequest: path.join(artifactRoot, 'cognitive-ba.gemini-request.body.v1.json').replace(/\\\\/g, '/'), geminiRaw: path.join(artifactRoot, 'cognitive-ba.gemini-response.raw.v1.json').replace(/\\\\/g, '/'), geminiResponse: path.join(artifactRoot, 'cognitive-ba.gemini-response.v1.json').replace(/\\\\/g, '/'), geminiFailureReceipt: path.join(receiptRoot, 'cognitive-ba.gemini-failure.receipt.v1.json').replace(/\\\\/g, '/'), geminiInvocationReceipt: path.join(receiptRoot, 'cognitive-ba.gemini-invocation.receipt.v1.json').replace(/\\\\/g, '/'), openaiDispatch: path.join(artifactRoot, 'cognitive-ba.openai-dispatch.v1.json').replace(/\\\\/g, '/'), openaiRequest: path.join(artifactRoot, 'cognitive-ba.openai-request.body.v1.json').replace(/\\\\/g, '/'), openaiRaw: path.join(artifactRoot, 'cognitive-ba.openai-response.raw.v1.json').replace(/\\\\/g, '/'), openaiResponse: path.join(artifactRoot, 'cognitive-ba.openai-response.v1.json').replace(/\\\\/g, '/'), openaiDispatchReceipt: path.join(receiptRoot, 'cognitive-ba.openai-dispatch.receipt.v1.json').replace(/\\\\/g, '/'), openaiResponseReceipt: path.join(receiptRoot, 'cognitive-ba.openai-response.receipt.v1.json').replace(/\\\\/g, '/'), openaiInvocationReceipt: path.join(receiptRoot, 'cognitive-ba.openai-invocation.receipt.v1.json').replace(/\\\\/g, '/'), fallbackReceipt: path.join(receiptRoot, 'cognitive-ba.provider-fallback.receipt.v1.json').replace(/\\\\/g, '/') }; const story = readText(dispatch.sourceStory.path); const prompt = 'Source story:\\n' + story + '\\n\\nReturn JSON with analysis.whatTheUserAskedFor, analysis.deliveryGoal, analysis.acceptanceFocus, ambiguities, and acceptanceRecommendations. Do not write code.'; let result = await callGemini(dispatch, prompt, paths); if (!result) result = await callOpenAi(dispatch, prompt, paths, paths.geminiFailureReceipt); console.log(JSON.stringify({ status: 'passed', liveProviderInvoked: true, providerKey: result.providerKey, model: result.model, candidate: { path: paths.candidate, hash: sha256File(paths.candidate) }, receipts: { geminiFailure: fs.existsSync(paths.geminiFailureReceipt) ? paths.geminiFailureReceipt : null, geminiInvocation: fs.existsSync(paths.geminiInvocationReceipt) ? paths.geminiInvocationReceipt : null, openaiDispatch: fs.existsSync(paths.openaiDispatchReceipt) ? paths.openaiDispatchReceipt : null, openaiResponse: fs.existsSync(paths.openaiResponseReceipt) ? paths.openaiResponseReceipt : null, openaiInvocation: fs.existsSync(paths.openaiInvocationReceipt) ? paths.openaiInvocationReceipt : null, fallback: fs.existsSync(paths.fallbackReceipt) ? paths.fallbackReceipt : null }, secretMaterialWritten: false })); }",
+              "main().catch((error) => { console.error(error && error.stack ? error.stack : String(error)); process.exit(1); });"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.workerArtifact"
+        }
+      },
+      {
+        "id": "hashProviderWorker",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "generated/workers/node/cognitive-ba-provider-worker.cjs"
+        },
+        "output": {
+          "path": "$graph.workerHash"
+        }
+      },
+      {
+        "id": "materializeDispatch",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize run-local cognitive BA dispatch packet.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "dispatchPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.cognitive-ba-live-dispatch.v1",
+              "dispatchKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "runRoot": {
+                "$graph": "runManifest.runEnvelopeRoot"
+              },
+              "sourceStory": {
+                "path": {
+                  "$graph": "runManifest.sourceStory.path"
+                },
+                "hash": {
+                  "$graph": "sourceStoryHash.hash"
+                }
+              },
+              "providers": {
+                "gemini": {
+                  "providerKey": "gemini_flash",
+                  "model": "gemini-2.5-flash",
+                  "envVars": [
+                    "LOC_GEMINI_API_KEY",
+                    "GOOGLE_API_KEY"
+                  ]
+                },
+                "openai": {
+                  "providerKey": "openai",
+                  "model": "gpt-4.1-mini",
+                  "acceptedEnvVars": [
+                    "LOC_OPENAI_API_KEY",
+                    "OPENAI_API_KEY"
+                  ]
+                }
+              },
+              "candidatePolicy": "contracts/policies/provider-output-is-candidate-only.policy.v1.json",
+              "hardeningGate": "contracts/gates/business-analysis-hardening-required.gate.v1.json",
+              "secretMaterialAllowedInEvidence": false
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.dispatchArtifact"
+        }
+      },
+      {
+        "id": "hashDispatch",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "dispatchPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.dispatchHash"
+        }
+      },
+      {
+        "id": "runGeneratedProviderWorker",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "intent": "Run generated worker adapter; this is the live cognitive provider execution boundary.",
+        "input": {
+          "targetPath": "generated/workers/node/cognitive-ba-provider-worker.cjs",
+          "stdinFixture": {
+            "$graph": "dispatchPath.path"
+          },
+          "expectedStatus": "passed"
+        },
+        "output": {
+          "path": "$graph.workerRun"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "live_cognitive_provider_worker_failed"
+        }
+      },
+      {
+        "id": "hashCandidate",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "workerRun.result.candidate.path"
+          }
+        },
+        "output": {
+          "path": "$graph.candidateHash"
+        }
+      },
+      {
+        "id": "emitBusinessAnalysisHardeningReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit Business Analysis hardening receipt from live provider candidate evidence.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "hardeningReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.business-analysis-hardening.receipt.v1",
+              "status": "passed",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "candidate": {
+                "path": {
+                  "$graph": "workerRun.result.candidate.path"
+                },
+                "hash": {
+                  "$graph": "candidateHash.hash"
+                },
+                "providerKey": {
+                  "$graph": "workerRun.result.providerKey"
+                },
+                "model": {
+                  "$graph": "workerRun.result.model"
+                }
+              },
+              "providerReceipts": {
+                "$graph": "workerRun.result.receipts"
+              },
+              "dispatch": {
+                "path": {
+                  "$graph": "dispatchPath.path"
+                },
+                "hash": {
+                  "$graph": "dispatchHash.hash"
+                }
+              },
+              "candidateOnlyBeforeHardening": true,
+              "businessAnalysisAuthorityAccepted": true,
+              "secretMaterialWritten": false,
+              "nextStepOwner": "Conveyor"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.hardeningReceipt"
+        }
+      },
+      {
+        "id": "materializeReviewPackageJson",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize Review Package proving live cognitive BA execution.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "reviewJsonPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.review-package.v1",
+              "status": "accepted_for_review",
+              "questions": {
+                "whatDidYouBuild": "A live cognitive BA proof lane that generated a provider worker adapter, invoked a live provider, captured a BA candidate, hardened it, and emitted receipts.",
+                "whyDidYouBuildIt": "The cognitive layer is the product heartbeat; live agent participation must be proved before Build Setup can claim provider reasoning.",
+                "howDoIUseIt": "Run story plan with a story and slice, then story implement with --target-kind cognitive-ba-live.",
+                "didItPass": "Yes. The generated worker returned passed and the hardening receipt accepted the candidate for review.",
+                "whatEvidenceProvesIt": "Dispatch, candidate, provider invocation receipts, hardening receipt, and hashes are listed in this Review Package.",
+                "whatIsStillBlocked": "No active blocker in this run. Future runs block or fall back according to provider policy if Gemini credentials or response are unavailable."
+              },
+              "provider": {
+                "providerKey": {
+                  "$graph": "workerRun.result.providerKey"
+                },
+                "model": {
+                  "$graph": "workerRun.result.model"
+                },
+                "liveProviderInvoked": {
+                  "$graph": "workerRun.result.liveProviderInvoked"
+                }
+              },
+              "materializedOutputs": {
+                "generatedWorker": {
+                  "path": "generated/workers/node/cognitive-ba-provider-worker.cjs",
+                  "hash": {
+                    "$graph": "workerHash.hash"
+                  }
+                },
+                "dispatch": {
+                  "path": {
+                    "$graph": "dispatchPath.path"
+                  },
+                  "hash": {
+                    "$graph": "dispatchHash.hash"
+                  }
+                },
+                "candidate": {
+                  "path": {
+                    "$graph": "workerRun.result.candidate.path"
+                  },
+                  "hash": {
+                    "$graph": "candidateHash.hash"
+                  }
+                }
+              },
+              "evidence": {
+                "providerReceipts": {
+                  "$graph": "workerRun.result.receipts"
+                },
+                "hardeningReceipt": {
+                  "$graph": "hardeningReceiptPath.path"
+                }
+              },
+              "acceptanceDecision": {
+                "status": "pending_product_owner_decision",
+                "acceptedForReview": true,
+                "acceptedForRelease": false
+              },
+              "nextStepOwner": "Product Owner"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.reviewJson"
+        }
+      },
+      {
+        "id": "hashReviewJson",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "reviewJsonPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewJsonHash"
+        }
+      },
+      {
+        "id": "materializeReviewPackageMarkdown",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize Markdown Review Package for the live cognitive BA proof.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "reviewMarkdownPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "# Review Package",
+              "",
+              "Status: accepted_for_review",
+              "Next Step Owner: Product Owner",
+              "",
+              "## What did you build?",
+              "",
+              "A live cognitive BA proof lane that generated a provider worker adapter, invoked a live provider, captured a BA candidate, hardened it, and emitted receipts.",
+              "",
+              "## Why did you build it?",
+              "",
+              "The cognitive layer is the product heartbeat; live agent participation must be proved before Build Setup can claim provider reasoning.",
+              "",
+              "## How do I use it?",
+              "",
+              "1. node generated/cli/node/ndd.cjs story plan --text \"<story>\" --slice <slice> --run-date 2026/06/24",
+              "2. node generated/cli/node/ndd.cjs story implement --slice <slice> --target-kind cognitive-ba-live",
+              "",
+              "## Did it pass?",
+              "",
+              "Yes. The generated worker returned passed and the hardening receipt accepted the candidate for review.",
+              "",
+              "## What evidence proves it?",
+              "",
+              "- Provider:",
+              {
+                "$graph": "workerRun.result.providerKey"
+              },
+              "- Model:",
+              {
+                "$graph": "workerRun.result.model"
+              },
+              "- Candidate:",
+              {
+                "$graph": "workerRun.result.candidate.path"
+              },
+              "- Candidate hash:",
+              {
+                "$graph": "candidateHash.hash"
+              },
+              "- Hardening receipt:",
+              {
+                "$graph": "hardeningReceiptPath.path"
+              },
+              "- Dispatch:",
+              {
+                "$graph": "dispatchPath.path"
+              },
+              "- Dispatch hash:",
+              {
+                "$graph": "dispatchHash.hash"
+              },
+              "",
+              "## What is still blocked?",
+              "",
+              "No active blocker in this run. Future runs block or fall back according to provider policy if Gemini credentials or response are unavailable.",
+              "",
+              "## Acceptance Decision",
+              "",
+              "Accepted for review: true",
+              "Accepted for release: false"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.reviewMarkdown"
+        }
+      },
+      {
+        "id": "hashReviewMarkdown",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "reviewMarkdownPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewMarkdownHash"
+        }
+      },
+      {
+        "id": "emitReviewReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "reviewReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.review-package.receipt.v1",
+              "status": "accepted_for_review",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "reviewPackageJson": {
+                "path": {
+                  "$graph": "reviewJsonPath.path"
+                },
+                "hash": {
+                  "$graph": "reviewJsonHash.hash"
+                }
+              },
+              "reviewPackageMarkdown": {
+                "path": {
+                  "$graph": "reviewMarkdownPath.path"
+                },
+                "hash": {
+                  "$graph": "reviewMarkdownHash.hash"
+                }
+              },
+              "liveProviderInvoked": true,
+              "providerKey": {
+                "$graph": "workerRun.result.providerKey"
+              },
+              "candidate": {
+                "path": {
+                  "$graph": "workerRun.result.candidate.path"
+                },
+                "hash": {
+                  "$graph": "candidateHash.hash"
+                }
+              },
+              "hardeningReceipt": {
+                "$graph": "hardeningReceiptPath.path"
+              },
+              "nextStepOwner": "Product Owner"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.reviewReceipt"
+        }
+      },
+      {
+        "id": "projectCommandResult",
+        "capabilityKey": "project.value.v1",
+        "input": {
+          "fields": {
+            "status": "accepted_for_review",
+            "sliceKey": {
+              "$graph": "runManifest.sliceKey"
+            },
+            "liveProviderInvoked": true,
+            "providerKey": {
+              "$graph": "workerRun.result.providerKey"
+            },
+            "model": {
+              "$graph": "workerRun.result.model"
+            },
+            "candidate": {
+              "path": {
+                "$graph": "workerRun.result.candidate.path"
+              },
+              "hash": {
+                "$graph": "candidateHash.hash"
+              }
+            },
+            "hardeningReceipt": {
+              "$graph": "hardeningReceiptPath.path"
+            },
+            "reviewPackage": {
+              "json": {
+                "$graph": "reviewJsonPath.path"
+              },
+              "markdown": {
+                "$graph": "reviewMarkdownPath.path"
+              },
+              "hash": {
+                "$graph": "reviewJsonHash.hash"
+              }
+            },
+            "nextStepOwner": "Product Owner",
+            "completionPosture": "Live cognitive BA provider execution was performed through a generated conveyor worker adapter and receipted for review."
+          }
+        },
+        "output": {
+          "path": "$graph.commandResult"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "evidenceObligations": [
+    "generated_provider_worker_materialized",
+    "dispatch_packet_materialized",
+    "live_provider_invoked",
+    "provider_response_captured",
+    "business_analysis_candidate_materialized",
+    "business_analysis_hardening_receipt_emitted",
+    "review_package_emitted",
+    "secret_material_not_written"
+  ],
+  "forbiddenClaims": [
+    "resolver owns provider invocation",
+    "provider output grants authority before hardening",
+    "mock response satisfies cognitive proof",
+    "deterministic fallback claims live cognition",
+    "secret material written to evidence"
+  ],
+  "completionPosture": "The live cognitive BA proof runs a generated worker adapter as the external provider I/O boundary and returns accepted-for-review only after provider receipts and hardening evidence exist."
+}

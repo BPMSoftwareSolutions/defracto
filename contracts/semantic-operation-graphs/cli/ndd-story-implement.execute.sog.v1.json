@@ -143,15 +143,30 @@
                             "$graph": "command.options.target-kind"
                           },
                           {
-                            "literal": "visual-proof"
+                            "literal": "cognitive-ba-live"
                           }
                         ]
                       },
                       "then": {
-                        "literal": "visual_proof_materialization"
+                        "literal": "cognitive_ba_live_proof"
                       },
                       "else": {
-                        "literal": "manifest_declared_lane"
+                        "when": {
+                          "equals": [
+                            {
+                              "$graph": "command.options.target-kind"
+                            },
+                            {
+                              "literal": "visual-proof"
+                            }
+                          ]
+                        },
+                        "then": {
+                          "literal": "visual_proof_materialization"
+                        },
+                        "else": {
+                          "literal": "manifest_declared_lane"
+                        }
                       }
                     }
                   }
@@ -229,18 +244,35 @@
                             "$graph": "command.options.target-kind"
                           },
                           {
-                            "literal": "visual-proof"
+                            "literal": "cognitive-ba-live"
                           }
                         ]
                       },
                       "then": {
                         "literal": {
-                          "$inline": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+                          "$inline": "contracts/semantic-operation-graphs/build/live-cognitive-ba-proof.execute.sog.v1.json"
                         }
                       },
                       "else": {
-                        "literal": {
-                          "$inline": "contracts/semantic-operation-graphs/cli/ndd-story-implement-manifest-lane.execute.sog.v1.json"
+                        "when": {
+                          "equals": [
+                            {
+                              "$graph": "command.options.target-kind"
+                            },
+                            {
+                              "literal": "visual-proof"
+                            }
+                          ]
+                        },
+                        "then": {
+                          "literal": {
+                            "$inline": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+                          }
+                        },
+                        "else": {
+                          "literal": {
+                            "$inline": "contracts/semantic-operation-graphs/cli/ndd-story-implement-manifest-lane.execute.sog.v1.json"
+                          }
                         }
                       }
                     }

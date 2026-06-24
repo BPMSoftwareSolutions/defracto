@@ -1,0 +1,1 @@
+As a Defracto platform operator, I want live cognitive BA execution in the Build Setup flow, so that every implementation can prove real agent participation before Review Package acceptance.
