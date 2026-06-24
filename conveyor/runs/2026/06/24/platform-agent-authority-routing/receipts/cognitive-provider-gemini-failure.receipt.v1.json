@@ -1,0 +1,22 @@
+{
+    "schemaVersion":  "defracto.cognitive-provider-primary-failure.receipt.v1",
+    "receiptKey":  "defracto.receipt.platform-agent-authority-routing.gemini-failure.slice-064.v1",
+    "status":  "blocked",
+    "providerKey":  "gemini_flash",
+    "workerKey":  "defracto.workers.gemini_flash.story_to_tdd.v1",
+    "failureCode":  "primary_provider_503",
+    "failureMessage":  "Gemini Flash provider returned HTTP 503 during cognitive strategy lane execution.",
+    "dispatchPacket":  {
+                           "path":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/platform-agent-authority-routing.gemini-dispatch.v1.json",
+                           "status":  "passed",
+                           "hash":  "sha256:1b7d3b932b9657608b4df295582b4e4a98a8406eb9da46bbc8484eaeb734a123"
+                       },
+    "requestPacket":  {
+                          "path":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/platform-agent-authority-routing.gemini-request.body.v1.json",
+                          "status":  "passed",
+                          "hash":  "sha256:0e1a18584a91252168b7a2156c6da092a58d0d5c18e6d7dd1dc11d9fb375cb96"
+                      },
+    "fallbackEligible":  true,
+    "secretMaterialAllowedInEvidence":  false,
+    "completionPosture":  "Primary Gemini provider was attempted first and failed with 503; governed fallback may proceed without provider substitution."
+}

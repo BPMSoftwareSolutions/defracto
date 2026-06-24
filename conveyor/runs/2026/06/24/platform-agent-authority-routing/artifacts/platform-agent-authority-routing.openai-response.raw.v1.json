@@ -1,0 +1,152 @@
+{
+    "id":  "resp_0d09578c8ac6f7a7006a3c27f116688191bbef74dce91e7c6b",
+    "object":  "response",
+    "created_at":  1782327281,
+    "status":  "completed",
+    "background":  false,
+    "billing":  {
+                    "payer":  "developer"
+                },
+    "completed_at":  1782327297,
+    "error":  null,
+    "frequency_penalty":  0.0,
+    "incomplete_details":  null,
+    "instructions":  null,
+    "max_output_tokens":  4096,
+    "max_tool_calls":  null,
+    "model":  "gpt-4.1-mini-2025-04-14",
+    "moderation":  null,
+    "output":  [
+                   {
+                       "id":  "msg_0d09578c8ac6f7a7006a3c27f2b5808191845ada73ba3c96a3",
+                       "type":  "message",
+                       "status":  "completed",
+                       "content":  [
+                                       {
+                                           "type":  "output_text",
+                                           "annotations":  [
+
+                                                           ],
+                                           "logprobs":  [
+
+                                                        ],
+                                           "text":  "{\"schemaVersion\":\"defracto.cognitive-provider-strategy-response.v1\",\"responseKey\":\"defracto.response.platform-agent-authority-routing.openai.strategy.slice-064.v1\",\"status\":\"candidate\",\"providerKey\":\"openai\",\"workerKey\":\"defracto.workers.openai.story_to_tdd.v1\",\"model\":\"gpt-4.1-mini\",\"dispatchKey\":\"defracto.dispatch.platform-agent-authority-routing.openai.strategy.slice-064.v1\",\"sourceHash\":\"sha256:210eff50a2a9d4ebbd543eb09928c2556b528a0775639bd6454ad07df38ff71c\",\"sliceKey\":\"platform-agent-authority-routing\",\"strategyArtifacts\":{\"candidateStrategy\":{\"schemaVersion\":\"defracto.semantic-strategy-candidate.v1\",\"candidateKey\":\"defracto.strategy-candidate.platform-agent-authority-routing.v1\",\"candidateStatus\":\"candidate_only\",\"laneMode\":\"semantic_strategy_compile\",\"sourceStory\":\"As a Defracto platform operator, I want platform-agent-created durable authority to be invalid unless it is backed by conveyor source, manifest, handoff packet, and receipt, so that agents coordinate through the conveyor instead of manually authoring semantic authority.\",\"proposedStrategy\":\"This strategy enforces that any platform-agent-created durable authority must be invalid unless it is fully backed by the conveyor\u0027s source artifacts, manifest, handoff packet, and receipt. By requiring these conveyor-backed elements, the strategy ensures that agents coordinate authority creation through the conveyor system rather than manual or ad hoc semantic authority authoring. This preserves integrity, traceability, and coordination across agents and platform components.\",\"providerEvidence\":{\"primaryProvider\":\"defracto.workers.gemini_flash.v1\",\"fallbackProvider\":\"defracto.workers.openai.v1\",\"primaryFailureReceipt\":\"conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-gemini-failure.receipt.v1.json\",\"candidateOnlyUntilHardened\":true},\"proposedGuardrails\":{\"authorizesArtifactProjection\":true,\"createsProductTruth\":false,\"requiresSogPromotionForBehavior\":true,\"unlistedArtifactsForbidden\":true}},\"strategyPlan\":{\"schemaVersion\":\"defracto.semantic-strategy-plan.v1\",\"strategyKey\":\"defracto.strategies.platform-agent-authority-routing.v1\",\"strategyKind\":\"platform-agent-authority-routing\",\"laneMode\":\"semantic_strategy_compile\",\"strategyIntent\":\"authorize the artifact cluster that enforces platform-agent authority creation through conveyor-backed source, manifest, handoff packet, and receipt\",\"sourceStory\":{\"sliceKey\":\"platform-agent-authority-routing\",\"sourceKind\":\"operator_cli_text\",\"text\":\"As a Defracto platform operator, I want platform-agent-created durable authority to be invalid unless it is backed by conveyor source, manifest, handoff packet, and receipt, so that agents coordinate through the conveyor instead of manually authoring semantic authority.\"},\"authorityPosture\":{\"createsProductTruth\":false,\"authorizesArtifactProjection\":true,\"providerCandidateGrantsAuthority\":false,\"requiresSogPromotionForBehavior\":true,\"strategyPlanBlessesBehavior\":false},\"hardeningFindings\":{\"status\":\"passed\",\"blockers\":[],\"acceptedClaims\":[],\"promotionBar\":null,\"forbiddenClaims\":[],\"sourceLineage\":null,\"artifactProjection\":null,\"traceQuestions\":null,\"completionPosture\":null}},\"artifactManifest\":{\"schemaVersion\":\"defracto.strategy-artifact-manifest.v1\",\"manifestKey\":\"defracto.strategy-artifact-manifest.platform-agent-authority-routing.v1\",\"strategyKey\":\"defracto.strategies.platform-agent-authority-routing.v1\",\"strategyPlan\":\"conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/semantic-strategy-plan.v1.json\",\"declaredTargetRoots\":[\"contracts/policies\",\"contracts/gates\",\"contracts/semantic-operation-graphs\",\"contracts/schemas\",\"conveyor/runs/2026/06/24/platform-agent-authority-routing\",\"conveyor/runs/2026/06/24/reports\"],\"boundedOutputs\":[\"strategy artifacts\",\"handoff packets\",\"receipts\",\"report\",\"future contract targets\"],\"artifacts\":[{\"artifactKey\":\"contracts/policies/platform-agent-authority-creation-must-use-conveyor.policy.v1.json\",\"artifactKind\":\"policy\",\"targetPath\":\"contracts/policies/platform-agent-authority-creation-must-use-conveyor.policy.v1.json\",\"purpose\":\"Enforce that platform-agent authority creation must be backed by conveyor artifacts\",\"sourceAuthority\":\"defracto.strategies.platform-agent-authority-routing.v1\",\"projectionStatus\":\"projected\",\"mustTraceToStrategyPlan\":true,\"receipts\":[]},{\"artifactKey\":\"contracts/gates/platform-agent-manual-authority-authoring-blocked.gate.v1.json\",\"artifactKind\":\"gate\",\"targetPath\":\"contracts/gates/platform-agent-manual-authority-authoring-blocked.gate.v1.json\",\"purpose\":\"Block manual authoring of platform-agent authority outside conveyor\",\"sourceAuthority\":\"defracto.strategies.platform-agent-authority-routing.v1\",\"projectionStatus\":\"projected\",\"mustTraceToStrategyPlan\":true,\"receipts\":[]},{\"artifactKey\":\"contracts/semantic-operation-graphs/agents/storyteller-capability-gap-to-story.sog.v1.json\",\"artifactKind\":\"semantic_operation_graph\",\"targetPath\":\"contracts/semantic-operation-graphs/agents/storyteller-capability-gap-to-story.sog.v1.json\",\"purpose\":\"Semantic operation graph for agent coordination on authority creation\",\"sourceAuthority\":\"defracto.strategies.platform-agent-authority-routing.v1\",\"projectionStatus\":\"projected\",\"mustTraceToStrategyPlan\":true,\"receipts\":[]},{\"artifactKey\":\"contracts/schemas/platform-agent-authority-source.schema.v1.json\",\"artifactKind\":\"schema\",\"targetPath\":\"contracts/schemas/platform-agent-authority-source.schema.v1.json\",\"purpose\":\"Schema defining conveyor-backed platform-agent authority source\",\"sourceAuthority\":\"defracto.strategies.platform-agent-authority-routing.v1\",\"projectionStatus\":\"projected\",\"mustTraceToStrategyPlan\":true,\"receipts\":[]}],\"forbiddenOutputs\":[\"generated runtime code\",\"resolver repository changes\",\"unlisted contract JSON\",\"durable product truth claims\",\"host-language behavior bodies\"]}},\"ambiguities\":[],\"forbiddenClaims\":[],\"acceptanceRequired\":true}"
+                                       }
+                                   ],
+                       "role":  "assistant"
+                   }
+               ],
+    "parallel_tool_calls":  true,
+    "presence_penalty":  0.0,
+    "previous_response_id":  null,
+    "prompt_cache_key":  null,
+    "prompt_cache_retention":  "in_memory",
+    "reasoning":  {
+                      "context":  null,
+                      "effort":  null,
+                      "summary":  null
+                  },
+    "safety_identifier":  null,
+    "service_tier":  "default",
+    "store":  true,
+    "temperature":  0.2,
+    "text":  {
+                 "format":  {
+                                "type":  "json_schema",
+                                "description":  null,
+                                "name":  "platform_agent_authority_routing_strategy_response",
+                                "schema":  {
+                                               "type":  "object",
+                                               "additionalProperties":  true,
+                                               "required":  [
+                                                                "schemaVersion",
+                                                                "responseKey",
+                                                                "status",
+                                                                "providerKey",
+                                                                "workerKey",
+                                                                "model",
+                                                                "dispatchKey",
+                                                                "sourceHash",
+                                                                "sliceKey",
+                                                                "strategyArtifacts",
+                                                                "ambiguities",
+                                                                "forbiddenClaims",
+                                                                "acceptanceRequired"
+                                                            ],
+                                               "properties":  {
+                                                                  "schemaVersion":  {
+                                                                                        "type":  "string"
+                                                                                    },
+                                                                  "responseKey":  {
+                                                                                      "type":  "string"
+                                                                                  },
+                                                                  "status":  {
+                                                                                 "type":  "string"
+                                                                             },
+                                                                  "providerKey":  {
+                                                                                      "type":  "string"
+                                                                                  },
+                                                                  "workerKey":  {
+                                                                                    "type":  "string"
+                                                                                },
+                                                                  "model":  {
+                                                                                "type":  "string"
+                                                                            },
+                                                                  "dispatchKey":  {
+                                                                                      "type":  "string"
+                                                                                  },
+                                                                  "sourceHash":  {
+                                                                                     "type":  "string"
+                                                                                 },
+                                                                  "sliceKey":  {
+                                                                                   "type":  "string"
+                                                                               },
+                                                                  "strategyArtifacts":  {
+                                                                                            "type":  "object",
+                                                                                            "additionalProperties":  true
+                                                                                        },
+                                                                  "ambiguities":  {
+                                                                                      "items":  {
+                                                                                                    "type":  "object",
+                                                                                                    "additionalProperties":  true
+                                                                                                },
+                                                                                      "type":  "array"
+                                                                                  },
+                                                                  "forbiddenClaims":  {
+                                                                                          "items":  {
+                                                                                                        "type":  "string"
+                                                                                                    },
+                                                                                          "type":  "array"
+                                                                                      },
+                                                                  "acceptanceRequired":  {
+                                                                                             "type":  "boolean"
+                                                                                         }
+                                                              }
+                                           },
+                                "strict":  false
+                            },
+                 "verbosity":  "medium"
+             },
+    "tool_choice":  "auto",
+    "tools":  [
+
+              ],
+    "top_logprobs":  0,
+    "top_p":  1.0,
+    "truncation":  "disabled",
+    "usage":  {
+                  "input_tokens":  1260,
+                  "input_tokens_details":  {
+                                               "cached_tokens":  0
+                                           },
+                  "output_tokens":  1279,
+                  "output_tokens_details":  {
+                                                "reasoning_tokens":  0
+                                            },
+                  "total_tokens":  2539
+              },
+    "user":  null,
+    "metadata":  {
+
+                 }
+}

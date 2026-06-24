@@ -1,0 +1,19 @@
+{
+    "schemaVersion":  "defracto.cognitive-provider-dispatch.receipt.v1",
+    "receiptKey":  "defracto.receipt.platform-agent-authority-routing.openai-dispatch.slice-064.v1",
+    "status":  "passed",
+    "providerKey":  "openai",
+    "workerKey":  "defracto.workers.openai.story_to_tdd.v1",
+    "dispatchPacket":  {
+                           "path":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/platform-agent-authority-routing.openai-dispatch.v1.json",
+                           "status":  "passed",
+                           "hash":  "sha256:99e52d7226e8ca3b94e775a876f877cb0379bfa1647dbd12b14d95b6a8dd3209"
+                       },
+    "requestPacket":  {
+                          "path":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/platform-agent-authority-routing.openai-request.body.v1.json",
+                          "status":  "passed",
+                          "hash":  "sha256:c8fc2e73ee35e4dece0c6444990a7cd305a8b99cc78bee81805de28c221aa4e5"
+                      },
+    "primaryFailureReceipt":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-gemini-failure.receipt.v1.json",
+    "secretMaterialAllowedInEvidence":  false
+}

@@ -19,9 +19,9 @@
       "intent": "Load the bootstrapped run manifest by slice key."
     },
     {
-      "actionKey": "defracto.ndd-story-implement.manifest.project-lane-status.v1",
-      "capabilityKey": "project.value.v1",
-      "intent": "Return the manifest-declared story implement lane status without defaulting to visual proof."
+      "actionKey": "defracto.ndd-story-implement.manifest.execute-declared-lane.v1",
+      "capabilityKey": "semantic.operation_graph.execute.v1",
+      "intent": "Execute the story implement semantic graph declared by the loaded run manifest."
     }
   ],
   "graph": {
@@ -69,59 +69,35 @@
         }
       },
       {
-        "id": "projectManifestDeclaredLaneStatus",
-        "capabilityKey": "project.value.v1",
+        "id": "executeManifestDeclaredStoryImplementLane",
+        "capabilityKey": "semantic.operation_graph.execute.v1",
         "input": {
-          "fields": {
-            "status": {
-              "literal": "blocked"
+          "graphRef": {
+            "$graph": "runManifest.stages.storyImplement.graphRef"
+          },
+          "context": {
+            "argv": {
+              "$context": "argv"
             },
-            "blocker": {
-              "$graph": "runManifest.stages.storyImplement.blocker"
+            "command": {
+              "$graph": "command"
             },
-            "error": {
-              "literal": "Story implement loaded the run manifest and returned the manifest-declared story implement lane blocker."
+            "runManifest": {
+              "$graph": "runManifest"
             },
-            "result": {
-              "literal": null
-            },
-            "evidence": {
+            "targetRoute": {
               "literal": {
-                "failClosed": true,
-                "code": "manifest_declared_lane_not_executable"
+                "routeKey": "manifest_declared_lane"
               }
-            },
-            "manifestPath": {
-              "$graph": "runManifest.manifestPath"
-            },
-            "sliceKey": {
-              "$graph": "runManifest.sliceKey"
-            },
-            "laneMode": {
-              "$graph": "runManifest.laneMode"
-            },
-            "declaredStageStatus": {
-              "$graph": "runManifest.stages.storyImplement.status"
-            },
-            "declaredStageKind": {
-              "$graph": "runManifest.stages.storyImplement.stageKind"
-            },
-            "declaredTargetKind": {
-              "$graph": "runManifest.stages.storyImplement.targetKind"
-            },
-            "requiredProviderParticipation": {
-              "$graph": "runManifest.stages.storyImplement.requiredProviderParticipation"
-            },
-            "requiredAuthority": {
-              "$graph": "runManifest.stages.storyImplement.requiredAuthority"
-            },
-            "completionPosture": {
-              "$graph": "runManifest.stages.storyImplement.completionPosture"
             }
           }
         },
         "output": {
-          "path": "$graph.manifestLaneStatus"
+          "path": "$graph.manifestLaneResult"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "manifest_declared_lane_execution_failed"
         }
       }
     ],
@@ -131,7 +107,8 @@
   },
   "evidenceObligations": [
     "story_implement_manifest_route_loads_run_manifest",
-    "manifest_declared_lane_status_returned",
+    "manifest_declared_lane_graph_ref_loaded",
+    "manifest_declared_lane_executed_or_blocks_closed",
     "visual_proof_materializer_not_selected_by_default"
   ],
   "forbiddenClaims": [
@@ -139,5 +116,5 @@
     "manifest route defaults to visual proof",
     "manifest route invents undeclared downstream lane"
   ],
-  "completionPosture": "This SOG loads the bootstrapped run manifest and blocks on the manifest-declared story implement lane until a downstream conveyor lane is declared."
+  "completionPosture": "This SOG loads the bootstrapped run manifest and delegates to the semantic graph declared by the manifest; missing or failing declared lanes block closed."
 }

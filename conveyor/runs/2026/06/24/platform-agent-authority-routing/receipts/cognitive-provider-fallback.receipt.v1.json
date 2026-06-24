@@ -1,0 +1,15 @@
+{
+    "schemaVersion":  "defracto.cognitive-provider-fallback-receipt.v1",
+    "receiptKey":  "defracto.receipt.platform-agent-authority-routing.provider-fallback.slice-064.v1",
+    "status":  "passed",
+    "primaryProvider":  "gemini_flash",
+    "primaryFailureCode":  "primary_provider_503",
+    "primaryFailureReceipt":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-gemini-failure.receipt.v1.json",
+    "fallbackProvider":  "openai",
+    "fallbackAuthorized":  true,
+    "fallbackAttempted":  true,
+    "fallbackDispatchReceipt":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-dispatch.receipt.v1.json",
+    "fallbackResponseReceipt":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-response.receipt.v1.json",
+    "fallbackInvocationReceipt":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-invocation.receipt.v1.json",
+    "providerCandidateAuthorityPromotedByInvocation":  false
+}

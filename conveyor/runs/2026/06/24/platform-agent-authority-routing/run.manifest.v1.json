@@ -1,1 +1,544 @@
-{"completionPosture":"Bootstrap manifest records run evidence only and does not authorize policy, gate, SEJ, SOG, schema, or SDK authority.","durableAuthorityCreated":false,"handoffPackets":[{"authorityStatus":"source_captured","hash":"sha256:a8724c265bf9c8653f8496ce4623bf3d571003e47d35b97fb79c1ef759b47e0a","packetKind":"story_intake","path":"conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/01-story-intake.packet.v1.json"}],"laneMode":"story_run_bootstrap","runEnvelopeRoot":"conveyor/runs/2026/06/24/platform-agent-authority-routing","runKey":"platform-agent-authority-routing","schemaVersion":"defracto.story-run-bootstrap-manifest.v1","sliceKey":"platform-agent-authority-routing","sourceStory":{"hash":"sha256:210eff50a2a9d4ebbd543eb09928c2556b528a0775639bd6454ad07df38ff71c","path":"conveyor/runs/2026/06/24/platform-agent-authority-routing/source/story.source.v1.md"},"stages":{"storyImplement":{"blocker":"cognitive_worker_lane_not_executable","completionPosture":"Bootstrap declares the platform-agent authority-routing story implement lane identity, but does not create its policy, gate, SEJ, SOG, schema, worker adapter, or strategy authority. Story implement must remain blocked until the conveyor worker lane can invoke the cognitive provider and emit receipts.","durableAuthorityCreated":false,"laneMode":"semantic_strategy_compile","requiredAuthority":["cognitive_strategy_candidate","provider_invocation_receipt","strategy_hardening_receipt","semantic_strategy_plan","strategy_artifact_manifest"],"requiredProviderParticipation":true,"stageKind":"platform_agent_authority_routing","status":"blocked-pending-cognitive-worker-lane-execution","targetKind":"semantic-strategy"}}}
+{
+  "schemaVersion": "defracto.semantic-strategy-run-manifest.v1",
+  "runKey": "platform-agent-authority-routing",
+  "sliceKey": "platform-agent-authority-routing",
+  "manifestPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/run.manifest.v1.json",
+  "runRoot": "conveyor/runs/2026/06/24/platform-agent-authority-routing",
+  "createdAt": "2026-06-24T00:00:00-04:00",
+  "laneMode": "semantic_strategy_compile",
+  "targetKind": "semantic-strategy",
+  "strategyKey": "defracto.strategies.platform-agent-authority-routing.v1",
+  "strategyKind": "platform-agent-authority-routing",
+  "behaviorOwnerSog": "contracts/semantic-operation-graphs/agents/storyteller-capability-gap-to-story.sog.v1.json",
+  "bootstrap": {
+    "schemaVersion": "defracto.story-run-bootstrap-manifest.v1",
+    "sourceStory": {
+      "hash": "sha256:210eff50a2a9d4ebbd543eb09928c2556b528a0775639bd6454ad07df38ff71c",
+      "path": "conveyor/runs/2026/06/24/platform-agent-authority-routing/source/story.source.v1.md"
+    },
+    "bootstrapPacket": {
+      "authorityStatus": "source_captured",
+      "hash": "sha256:a8724c265bf9c8653f8496ce4623bf3d571003e47d35b97fb79c1ef759b47e0a",
+      "packetKind": "story_intake",
+      "path": "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/01-story-intake.packet.v1.json"
+    },
+    "bootstrapReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/story-run-bootstrap.receipt.v1.json",
+    "durableAuthorityCreated": false
+  },
+  "provider": {
+    "providerKey": "openai",
+    "worker": "defracto.workers.openai.v1",
+    "model": "gpt-4.1-mini",
+    "fallbackFrom": "defracto.workers.gemini_flash.v1"
+  },
+  "providerEvidence": {
+    "dispatchReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-dispatch.receipt.v1.json",
+    "responseReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-response.receipt.v1.json",
+    "invocationReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-invocation.receipt.v1.json"
+  },
+  "providerReceiptRefs": [
+    "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-gemini-failure.receipt.v1.json",
+    "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-dispatch.receipt.v1.json",
+    "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-response.receipt.v1.json",
+    "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-invocation.receipt.v1.json",
+    "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-fallback.receipt.v1.json"
+  ],
+  "priorProofSurface": {
+    "materializationReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-invocation.receipt.v1.json",
+    "status": "provider_invocation_as_prior_cognitive_evidence"
+  },
+  "paths": {
+    "runManifest": "conveyor/runs/2026/06/24/platform-agent-authority-routing/run.manifest.v1.json",
+    "candidateStrategy": "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/semantic-strategy-candidate.v1.json",
+    "strategyPlan": "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/semantic-strategy-plan.v1.json",
+    "artifactManifest": "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/strategy-artifact-manifest.v1.json",
+    "packet01": "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/01-strategy-story-intake.packet.v1.json",
+    "packet02": "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/02-cognitive-strategy-candidate.packet.v1.json",
+    "packet03": "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/03-strategy-hardening.packet.v1.json",
+    "packet04": "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/04-contract-projection.packet.v1.json",
+    "packet05": "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/05-sog-execution-boundary.packet.v1.json",
+    "packetIndex": "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/handoff-packet.index.v1.json",
+    "providerInvocationReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/provider-invocation.receipt.v1.json",
+    "strategyHardeningReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/strategy-hardening.receipt.v1.json",
+    "contractProjectionReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/contract-projection.receipt.v1.json",
+    "materializationReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json",
+    "report": "conveyor/runs/2026/06/24/reports/slice-064-platform-agent-authority-routing-cognitive-provider-fallback-strategy-compile.latest.md"
+  },
+  "receiptKeys": {
+    "providerInvocation": "defracto.receipt.platform-agent-authority-routing.provider-invocation.v1",
+    "strategyHardening": "defracto.receipt.platform-agent-authority-routing.strategy-hardening.v1",
+    "contractProjection": "defracto.receipt.platform-agent-authority-routing.contract-projection.v1",
+    "materialization": "defracto.receipt.platform-agent-authority-routing.materialization.v1"
+  },
+  "packetKeys": {
+    "storyIntake": "defracto.handoff.platform-agent-authority-routing.01-story-intake.v1",
+    "strategyCandidate": "defracto.handoff.platform-agent-authority-routing.02-cognitive-strategy-candidate.v1",
+    "strategyHardening": "defracto.handoff.platform-agent-authority-routing.03-strategy-hardening.v1",
+    "contractProjection": "defracto.handoff.platform-agent-authority-routing.04-contract-projection.v1",
+    "sogExecutionBoundary": "defracto.handoff.platform-agent-authority-routing.05-sog-execution-boundary.v1"
+  },
+  "indexKey": "defracto.handoff-index.platform-agent-authority-routing.v1",
+  "packetGuardrails": {
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false,
+    "generatedCodeMayBeDurableTruth": false,
+    "sogPromotionRequired": true,
+    "hostLanguageBodyAllowed": false,
+    "forbiddenHostFallback": true,
+    "providerFallbackAllowed": true,
+    "providerFallbackMustBeReceipted": true
+  },
+  "report": {
+    "title": "# Slice 064 - platform-agent authority routing cognitive provider fallback strategy compile",
+    "guardrail": "Provider fallback supplies a receipted candidate only. The strategy plan authorizes artifact projection, not durable product truth; future policy/gate/SOG targets remain projected until their own conveyor materialization and promotion lanes run."
+  },
+  "strategyArtifacts": {
+    "candidateStrategy": {
+      "schemaVersion": "defracto.semantic-strategy-candidate.v1",
+      "candidateKey": "defracto.strategy-candidate.platform-agent-authority-routing.v1",
+      "candidateStatus": "candidate_only",
+      "laneMode": "semantic_strategy_compile",
+      "sourceStory": "As a Defracto platform operator, I want platform-agent-created durable authority to be invalid unless it is backed by conveyor source, manifest, handoff packet, and receipt, so that agents coordinate through the conveyor instead of manually authoring semantic authority.",
+      "proposedStrategy": "This strategy enforces that any platform-agent-created durable authority must be invalid unless it is fully backed by the conveyor's source artifacts, manifest, handoff packet, and receipt. By requiring these conveyor-backed elements, the strategy ensures that agents coordinate authority creation through the conveyor system rather than manual or ad hoc semantic authority authoring. This preserves integrity, traceability, and coordination across agents and platform components.",
+      "providerEvidence": {
+        "primaryProvider": "defracto.workers.gemini_flash.v1",
+        "fallbackProvider": "defracto.workers.openai.v1",
+        "primaryFailureReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-gemini-failure.receipt.v1.json",
+        "candidateOnlyUntilHardened": true,
+        "dispatchReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-dispatch.receipt.v1.json",
+        "responseReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-response.receipt.v1.json",
+        "invocationReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-invocation.receipt.v1.json",
+        "fallbackReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-fallback.receipt.v1.json"
+      },
+      "proposedGuardrails": {
+        "authorizesArtifactProjection": true,
+        "createsProductTruth": false,
+        "requiresSogPromotionForBehavior": true,
+        "unlistedArtifactsForbidden": true
+      }
+    },
+    "strategyPlan": {
+      "schemaVersion": "defracto.semantic-strategy-plan.v1",
+      "strategyKey": "defracto.strategies.platform-agent-authority-routing.v1",
+      "strategyKind": "platform-agent-authority-routing",
+      "laneMode": "semantic_strategy_compile",
+      "strategyIntent": "authorize the artifact cluster that enforces platform-agent authority creation through conveyor-backed source, manifest, handoff packet, and receipt",
+      "sourceStory": {
+        "sliceKey": "platform-agent-authority-routing",
+        "sourceKind": "operator_cli_text",
+        "text": "As a Defracto platform operator, I want platform-agent-created durable authority to be invalid unless it is backed by conveyor source, manifest, handoff packet, and receipt, so that agents coordinate through the conveyor instead of manually authoring semantic authority."
+      },
+      "authorityPosture": {
+        "createsProductTruth": false,
+        "authorizesArtifactProjection": true,
+        "providerCandidateGrantsAuthority": false,
+        "requiresSogPromotionForBehavior": true,
+        "strategyPlanBlessesBehavior": false
+      },
+      "hardeningFindings": {
+        "status": "passed",
+        "blockers": [],
+        "acceptedClaims": [
+          "platform agents may coordinate, inspect, report, suggest, review, and monitor",
+          "durable authority created by a platform agent is invalid unless backed by conveyor source, manifest, handoff packet, and receipt",
+          "provider output remains candidate-only until hardening",
+          "strategy authority authorizes artifact projection but does not bless behavior",
+          "future policy, gate, SOG, and schema targets remain projected until materialized by their own conveyor lane"
+        ]
+      },
+      "artifactProjection": {
+        "declaredTargetRoots": [
+          "contracts/policies",
+          "contracts/gates",
+          "contracts/semantic-operation-graphs",
+          "contracts/schemas",
+          "conveyor/runs/2026/06/24/platform-agent-authority-routing",
+          "conveyor/runs/2026/06/24/reports"
+        ],
+        "manifestRef": "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/strategy-artifact-manifest.v1.json",
+        "requiredArtifactKeys": [
+          "contracts/policies/platform-agent-authority-creation-must-use-conveyor.policy.v1.json",
+          "contracts/gates/platform-agent-manual-authority-authoring-blocked.gate.v1.json",
+          "contracts/semantic-operation-graphs/agents/storyteller-capability-gap-to-story.sog.v1.json",
+          "contracts/schemas/platform-agent-authority-source.schema.v1.json"
+        ]
+      },
+      "promotionBar": [
+        "provider evidence exists before candidate hardening",
+        "Gemini failure is receipted before OpenAI fallback is accepted",
+        "OpenAI fallback candidate is receipt-bound and candidate-only",
+        "strategy plan is promoted only after guardrails pass",
+        "artifact manifest bounds every projected JSON path",
+        "strategy authority does not create durable product truth"
+      ],
+      "forbiddenClaims": [
+        "platform agent may manually author durable authority without conveyor evidence",
+        "provider candidate grants authority by itself",
+        "strategy plan is durable product truth",
+        "unlisted JSON artifacts are authorized",
+        "resolver owns provider invocation or governance meaning"
+      ],
+      "sourceLineage": {
+        "sourceStory": {
+          "hash": "sha256:210eff50a2a9d4ebbd543eb09928c2556b528a0775639bd6454ad07df38ff71c",
+          "path": "conveyor/runs/2026/06/24/platform-agent-authority-routing/source/story.source.v1.md"
+        },
+        "bootstrapReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/story-run-bootstrap.receipt.v1.json",
+        "providerEvidence": [
+          "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-gemini-failure.receipt.v1.json",
+          "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-dispatch.receipt.v1.json",
+          "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-response.receipt.v1.json",
+          "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-invocation.receipt.v1.json",
+          "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-fallback.receipt.v1.json"
+        ],
+        "providerCandidate": "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/platform-agent-authority-routing.openai-candidate.v1.json"
+      },
+      "traceQuestions": {
+        "whichStoryRequiredThis": "The operator story captured by the conveyor-owned story/run bootstrap.",
+        "whichStrategyAuthorizedIt": "defracto.strategies.platform-agent-authority-routing.v1",
+        "whichArtifactManifestProjectedIt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/strategy-artifact-manifest.v1.json",
+        "whichReceiptProvesIt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json",
+        "whichSogOwnsBehavior": "Future authority-routing behavior remains blocked until its own SOG lane executes and promotes it."
+      },
+      "completionPosture": "The strategy plan authorizes the platform-agent authority-routing artifact cluster while durable product truth remains blocked until downstream SOG execution and promotion evidence."
+    },
+    "artifactManifest": {
+      "schemaVersion": "defracto.strategy-artifact-manifest.v1",
+      "manifestKey": "defracto.strategy-artifact-manifest.platform-agent-authority-routing.v1",
+      "strategyKey": "defracto.strategies.platform-agent-authority-routing.v1",
+      "strategyPlan": "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/semantic-strategy-plan.v1.json",
+      "declaredTargetRoots": [
+        "contracts/policies",
+        "contracts/gates",
+        "contracts/semantic-operation-graphs",
+        "contracts/schemas",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing",
+        "conveyor/runs/2026/06/24/reports"
+      ],
+      "boundedOutputs": [
+        "contracts/policies/platform-agent-authority-creation-must-use-conveyor.policy.v1.json",
+        "contracts/gates/platform-agent-manual-authority-authoring-blocked.gate.v1.json",
+        "contracts/semantic-operation-graphs/agents/storyteller-capability-gap-to-story.sog.v1.json",
+        "contracts/schemas/platform-agent-authority-source.schema.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/semantic-strategy-candidate.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/semantic-strategy-plan.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/strategy-artifact-manifest.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/01-strategy-story-intake.packet.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/02-cognitive-strategy-candidate.packet.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/03-strategy-hardening.packet.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/04-contract-projection.packet.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/05-sog-execution-boundary.packet.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/handoff-packet.index.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/provider-invocation.receipt.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/strategy-hardening.receipt.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/contract-projection.receipt.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json",
+        "conveyor/runs/2026/06/24/reports/slice-064-platform-agent-authority-routing-cognitive-provider-fallback-strategy-compile.latest.md",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/run.manifest.v1.json"
+      ],
+      "artifacts": [
+        {
+          "artifactKey": "contracts/policies/platform-agent-authority-creation-must-use-conveyor.policy.v1.json",
+          "artifactKind": "policy",
+          "targetPath": "contracts/policies/platform-agent-authority-creation-must-use-conveyor.policy.v1.json",
+          "purpose": "Enforce that platform-agent authority creation must be backed by conveyor artifacts",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "projected",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/contract-projection.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "contracts/gates/platform-agent-manual-authority-authoring-blocked.gate.v1.json",
+          "artifactKind": "gate",
+          "targetPath": "contracts/gates/platform-agent-manual-authority-authoring-blocked.gate.v1.json",
+          "purpose": "Block manual authoring of platform-agent authority outside conveyor",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "projected",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/contract-projection.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "contracts/semantic-operation-graphs/agents/storyteller-capability-gap-to-story.sog.v1.json",
+          "artifactKind": "semantic_operation_graph",
+          "targetPath": "contracts/semantic-operation-graphs/agents/storyteller-capability-gap-to-story.sog.v1.json",
+          "purpose": "Semantic operation graph for agent coordination on authority creation",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "projected",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/contract-projection.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "contracts/schemas/platform-agent-authority-source.schema.v1.json",
+          "artifactKind": "schema",
+          "targetPath": "contracts/schemas/platform-agent-authority-source.schema.v1.json",
+          "purpose": "Schema defining conveyor-backed platform-agent authority source",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "projected",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/contract-projection.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "semantic-strategy-candidate",
+          "artifactKind": "generated_json",
+          "targetPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/semantic-strategy-candidate.v1.json",
+          "purpose": "Candidate strategy captured before hardening.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "strategy_projected",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/provider-invocation.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "semantic-strategy-plan",
+          "artifactKind": "generated_json",
+          "targetPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/semantic-strategy-plan.v1.json",
+          "purpose": "Promoted semantic strategy authority for platform-agent authority routing.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "strategy_projected",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/strategy-hardening.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "strategy-artifact-manifest",
+          "artifactKind": "generated_json",
+          "targetPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/strategy-artifact-manifest.v1.json",
+          "purpose": "Bound every artifact path authorized by the strategy plan.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "strategy_projected",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/contract-projection.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "strategy-handoff-packet-01",
+          "artifactKind": "handoff_packet",
+          "targetPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/01-strategy-story-intake.packet.v1.json",
+          "purpose": "Story intake handoff packet for the strategy lane.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "resolver_materialized",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "strategy-handoff-packet-02",
+          "artifactKind": "handoff_packet",
+          "targetPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/02-cognitive-strategy-candidate.packet.v1.json",
+          "purpose": "Cognitive candidate handoff packet for the strategy lane.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "resolver_materialized",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "strategy-handoff-packet-03",
+          "artifactKind": "handoff_packet",
+          "targetPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/03-strategy-hardening.packet.v1.json",
+          "purpose": "Strategy hardening handoff packet.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "resolver_materialized",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "strategy-handoff-packet-04",
+          "artifactKind": "handoff_packet",
+          "targetPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/04-contract-projection.packet.v1.json",
+          "purpose": "Contract projection handoff packet.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "resolver_materialized",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "strategy-handoff-packet-05",
+          "artifactKind": "handoff_packet",
+          "targetPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/05-sog-execution-boundary.packet.v1.json",
+          "purpose": "SOG execution boundary handoff packet.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "resolver_materialized",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "strategy-handoff-packet-index",
+          "artifactKind": "generated_json",
+          "targetPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/handoff-packet.index.v1.json",
+          "purpose": "Index strategy stage handoff packets.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "resolver_materialized",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "provider-invocation-receipt",
+          "artifactKind": "receipt",
+          "targetPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/provider-invocation.receipt.v1.json",
+          "purpose": "Bind semantic strategy compile to live provider receipts.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "resolver_materialized",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/provider-invocation.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "strategy-hardening-receipt",
+          "artifactKind": "receipt",
+          "targetPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/strategy-hardening.receipt.v1.json",
+          "purpose": "Prove candidate hardening into strategy authority.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "resolver_materialized",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/strategy-hardening.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "contract-projection-receipt",
+          "artifactKind": "receipt",
+          "targetPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/contract-projection.receipt.v1.json",
+          "purpose": "Prove artifact projection remained bounded.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "resolver_materialized",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/contract-projection.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "materialization-receipt",
+          "artifactKind": "receipt",
+          "targetPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json",
+          "purpose": "Prove strategy materialization through the reusable SOG.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "resolver_materialized",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "strategy-slice-report",
+          "artifactKind": "report",
+          "targetPath": "conveyor/runs/2026/06/24/reports/slice-064-platform-agent-authority-routing-cognitive-provider-fallback-strategy-compile.latest.md",
+          "purpose": "Summarize the semantic strategy compile proof.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "resolver_materialized",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json"
+          ]
+        },
+        {
+          "artifactKey": "strategy-run-manifest",
+          "artifactKind": "run_manifest",
+          "targetPath": "conveyor/runs/2026/06/24/platform-agent-authority-routing/run.manifest.v1.json",
+          "purpose": "Supply concrete run values to the reusable strategy materializer SOG.",
+          "sourceAuthority": "defracto.strategies.platform-agent-authority-routing.v1",
+          "projectionStatus": "run_evidence",
+          "mustTraceToStrategyPlan": true,
+          "receipts": [
+            "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json"
+          ]
+        }
+      ],
+      "forbiddenOutputs": [
+        "generated runtime code",
+        "resolver repository changes",
+        "unlisted contract JSON",
+        "durable product truth claims",
+        "host-language behavior bodies"
+      ],
+      "evidence": {
+        "providerInvocationReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/provider-invocation.receipt.v1.json",
+        "strategyHardeningReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/strategy-hardening.receipt.v1.json",
+        "contractProjectionReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/contract-projection.receipt.v1.json",
+        "materializationReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json",
+        "primaryProviderFailureReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-gemini-failure.receipt.v1.json",
+        "fallbackInvocationReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-invocation.receipt.v1.json"
+      },
+      "completionPosture": "Every strategy-authorized artifact path is listed in this manifest. Future durable contract targets remain projected; this run materializes only run-local strategy evidence, receipts, packets, and report."
+    }
+  },
+  "commandResultArtifacts": {
+    "strategyCandidate": "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/semantic-strategy-candidate.v1.json",
+    "strategyPlan": "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/semantic-strategy-plan.v1.json",
+    "artifactManifest": "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/strategy-artifact-manifest.v1.json",
+    "handoffPacketIndex": "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/handoff-packet.index.v1.json",
+    "materializationReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json",
+    "report": "conveyor/runs/2026/06/24/reports/slice-064-platform-agent-authority-routing-cognitive-provider-fallback-strategy-compile.latest.md",
+    "runManifest": "conveyor/runs/2026/06/24/platform-agent-authority-routing/run.manifest.v1.json",
+    "providerInvocationReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/provider-invocation.receipt.v1.json",
+    "fallbackInvocationReceipt": "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-openai-invocation.receipt.v1.json"
+  },
+  "stages": {
+    "storyImplement": {
+      "stageKind": "platform_agent_authority_routing",
+      "laneMode": "semantic_strategy_compile",
+      "targetKind": "semantic-strategy",
+      "status": "ready-for-semantic-strategy-materialization",
+      "blocker": null,
+      "graphRef": {
+        "$inline": "contracts/semantic-operation-graphs/strategy/semantic-strategy-plan-materialize.sog.v1.json"
+      },
+      "requiredAuthority": [
+        "cognitive_strategy_candidate",
+        "provider_invocation_receipt",
+        "strategy_hardening_receipt",
+        "semantic_strategy_plan",
+        "strategy_artifact_manifest"
+      ],
+      "requiredProviderParticipation": true,
+      "durableAuthorityCreated": false,
+      "completionPosture": "The platform-agent authority-routing lane is ready to materialize semantic strategy authority from receipted provider fallback evidence."
+    },
+    "strategyMaterialization": {
+      "stageKind": "semantic_strategy_materialization",
+      "sej": "contracts/sej/materialize-semantic-strategy-plan.sej.v1.json",
+      "sog": "contracts/semantic-operation-graphs/strategy/semantic-strategy-plan-materialize.sog.v1.json",
+      "expectedOutputs": [
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/semantic-strategy-candidate.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/semantic-strategy-plan.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/strategy-artifact-manifest.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/handoff-packets/handoff-packet.index.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/provider-invocation.receipt.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/strategy-hardening.receipt.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/contract-projection.receipt.v1.json",
+        "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/materialization.receipt.v1.json",
+        "conveyor/runs/2026/06/24/reports/slice-064-platform-agent-authority-routing-cognitive-provider-fallback-strategy-compile.latest.md"
+      ]
+    }
+  },
+  "guardrail": {
+    "gate": "contracts/gates/strategy-artifact-projection-bounded.gate.v1.json",
+    "durableAuthorityCreatedByManifest": false,
+    "futureContractTargetsMaterializedByThisRun": false,
+    "concreteEvidenceAllowedUnderRunRoot": true
+  },
+  "completionPosture": "This manifest supplies concrete run values to the reusable semantic strategy materializer and keeps future durable authority targets as projected artifacts only."
+}

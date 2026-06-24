@@ -1,0 +1,59 @@
+{
+    "schemaVersion":  "defracto.openai-invocation-receipt.v1",
+    "receiptKey":  "defracto.receipt.platform-agent-authority-routing.openai-invocation.slice-064.v1",
+    "status":  "passed",
+    "worker":  "defracto.workers.openai.v1",
+    "invocationCapability":  "worker.openai.responses.invoke.v1",
+    "providerKey":  "openai",
+    "modelRequested":  "gpt-4.1-mini",
+    "modelReturned":  "gpt-4.1-mini-2025-04-14",
+    "laneMode":  "semantic_strategy_compile",
+    "commandKey":  "defracto.ndd.story.implement.v1",
+    "sourceHash":  "sha256:210eff50a2a9d4ebbd543eb09928c2556b528a0775639bd6454ad07df38ff71c",
+    "sliceKey":  "platform-agent-authority-routing",
+    "credentialEnvVarNameUsed":  "OPENAI_API_KEY",
+    "secretMaterialAllowedInEvidence":  false,
+    "primaryFailureReceipt":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-gemini-failure.receipt.v1.json",
+    "dispatchPacket":  {
+                           "path":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/platform-agent-authority-routing.openai-dispatch.v1.json",
+                           "status":  "passed",
+                           "hash":  "sha256:99e52d7226e8ca3b94e775a876f877cb0379bfa1647dbd12b14d95b6a8dd3209"
+                       },
+    "requestPacket":  {
+                          "path":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/platform-agent-authority-routing.openai-request.body.v1.json",
+                          "status":  "passed",
+                          "hash":  "sha256:c8fc2e73ee35e4dece0c6444990a7cd305a8b99cc78bee81805de28c221aa4e5"
+                      },
+    "responsePacket":  {
+                           "path":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/platform-agent-authority-routing.openai-response.v1.json",
+                           "status":  "passed",
+                           "hash":  "sha256:6246ca0d132efcc7c95b58e95c9b7b9485a19e5ba3bc59138ae3148f11649aeb"
+                       },
+    "fallbackReceipt":  {
+                            "path":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/receipts/cognitive-provider-fallback.receipt.v1.json",
+                            "status":  "passed",
+                            "hash":  "sha256:c865c76531ce54d8efb0a15a4df089ad25d39fbb164e213bf861a537ac66e751"
+                        },
+    "freshness":  {
+                      "status":  "passed",
+                      "primaryFailureReceiptBound":  true,
+                      "sourceHashMatches":  true,
+                      "sliceKeyMatches":  true
+                  },
+    "gateResults":  {
+                        "liveProviderExecuted":  true,
+                        "providerCandidateAuthorityPromotedByInvocation":  false,
+                        "candidateOnlyUntilAccepted":  true,
+                        "silentSubstitutionDetected":  false,
+                        "mockResponseUsed":  false,
+                        "deterministicFallbackAttempted":  false
+                    },
+    "candidate":  {
+                      "path":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/platform-agent-authority-routing.openai-candidate.v1.json",
+                      "authorityPromotedByInvocation":  false,
+                      "hash":  "sha256:6246ca0d132efcc7c95b58e95c9b7b9485a19e5ba3bc59138ae3148f11649aeb"
+                  },
+    "blockedReasons":  [
+
+                       ]
+}

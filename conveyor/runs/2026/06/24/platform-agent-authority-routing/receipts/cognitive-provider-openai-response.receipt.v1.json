@@ -1,0 +1,24 @@
+{
+    "schemaVersion":  "defracto.cognitive-provider-response.receipt.v1",
+    "receiptKey":  "defracto.receipt.platform-agent-authority-routing.openai-response.slice-064.v1",
+    "status":  "passed",
+    "providerKey":  "openai",
+    "workerKey":  "defracto.workers.openai.story_to_tdd.v1",
+    "responsePacket":  {
+                           "path":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/platform-agent-authority-routing.openai-response.v1.json",
+                           "status":  "passed",
+                           "hash":  "sha256:6246ca0d132efcc7c95b58e95c9b7b9485a19e5ba3bc59138ae3148f11649aeb"
+                       },
+    "rawResponsePacket":  {
+                              "path":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/platform-agent-authority-routing.openai-response.raw.v1.json",
+                              "status":  "passed",
+                              "hash":  "sha256:857a669090b983337b1977f08a0d65d4dca181abe8dd3385a3ba259d058f1937"
+                          },
+    "candidate":  {
+                      "path":  "conveyor/runs/2026/06/24/platform-agent-authority-routing/artifacts/platform-agent-authority-routing.openai-candidate.v1.json",
+                      "authorityPromotedByInvocation":  false,
+                      "hash":  "sha256:6246ca0d132efcc7c95b58e95c9b7b9485a19e5ba3bc59138ae3148f11649aeb"
+                  },
+    "candidateOnlyUntilAccepted":  true,
+    "secretMaterialAllowedInEvidence":  false
+}
