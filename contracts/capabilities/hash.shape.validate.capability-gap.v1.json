@@ -1,1 +1,27 @@
-{"blocker":"missing_semantic_capability","durableProductTruthAccepted":false,"forbiddenWorkarounds":["nearby primitive substitution","host-language product body","node_modules patch","temp builder","durable product truth without SOG execution"],"gapKey":"defracto.capability-gap.hash.shape.validate.slice-057.v1","nearbyCapabilityRejected":"evidence.receipt.verify.v1","nearbyCapabilityRejectionReason":"evidence.receipt.verify.v1 verifies declared receipt/artifact hash equality; it does not validate sha256:<64 lowercase hex> string shape.","nextConveyorStory":"stories/generated/capability-gaps/hash.shape.validate.story.md","requiredCapability":"hash.shape.validate.v1","schemaVersion":"defracto.semantic-capability-gap.v1","semanticFirstOrder":["find existing semantic definitions","compose from existing SEJ language operations","define missing generic SEJ language operations","request resolver evolution only for tiny universal language mechanics"],"status":"blocked"}
+{
+  "schemaVersion": "defracto.semantic-capability-gap.v1",
+  "gapKey": "defracto.capability-gap.hash.shape.validate.slice-057.v1",
+  "status": "blocked",
+  "blocker": "missing_sej_language_operation",
+  "requiredCapability": "hash.shape.validate.v1",
+  "capabilityStatus": "composed-pending-generic-language-operation",
+  "requiredOperation": "string.matches_pattern.v1",
+  "nearbyCapabilityRejected": "evidence.receipt.verify.v1",
+  "nearbyCapabilityRejectionReason": "evidence.receipt.verify.v1 verifies declared receipt/artifact hash equality; it does not validate sha256:<64 lowercase hex> string shape.",
+  "semanticFirstOrder": [
+    "find existing semantic definitions",
+    "compose from existing SEJ language operations",
+    "define missing generic SEJ language operations",
+    "request resolver evolution only for tiny universal language mechanics"
+  ],
+  "forbiddenWorkarounds": [
+    "nearby primitive substitution",
+    "host-language product body",
+    "node_modules patch",
+    "temp builder",
+    "durable product truth without SOG execution"
+  ],
+  "durableProductTruthAccepted": false,
+  "nextResolverEvolutionRequest": "string.matches_pattern.v1",
+  "nextConveyorStory": "stories/generated/capability-gaps/hash.shape.validate.story.md"
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "defracto.sdk-capability-resume.receipt.v1",
+  "receiptKey": "defracto.receipt.sdk-receipt-hash-validator.resume.slice-066.v1",
+  "status": "blocked",
+  "blocker": "missing_sej_language_operation",
+  "sliceKey": "sdk-receipt-hash-validator",
+  "requiredCapability": "hash.shape.validate.v1",
+  "capabilityStatus": "composed-pending-generic-language-operation",
+  "requiredOperation": "string.matches_pattern.v1",
+  "sdkPromotionStatus": "blocked",
+  "durableProductTruthAccepted": false,
+  "productProofPacket": "evidence/product-proof/receipt-hash-validator.product-proof-packet.v1.json",
+  "completionPosture": "The SDK validator resumed past missing semantic capability. It is now blocked only by the missing generic SEJ language operation required to execute the composed capability."
+}

@@ -1,1 +1,45 @@
-{"capabilityKey":"hash.shape.validate.v1","capabilityStatus":"missing-executable-semantic-composition","category":"semantic.language.hash-shape-validation","completionPosture":"This capability is declared as semantic authority intent, but executable promotion is blocked until generic SEJ language operations or an equivalent semantic composition exist.","durableProductTruthAccepted":false,"purpose":"Validate sha256:<64 lowercase hex> strings without embedding receipt product logic in the resolver.","requiredGenericLanguageOperations":["string.starts_with.v1","string.length.v1","string.strip_prefix.v1","string.every_char_in_set.v1","predicate.all_of.v1"],"resolverProductPrimitiveRequested":false,"schemaVersion":"loc.semantic-capability.v1","semanticDefinition":{"expectedBlockedResult":{"blocker":"malformed_receipt_hash","status":"blocked"},"expectedPassedResult":{"status":"passed"},"requiredShape":"sha256:<64 lowercase hex>"}}
+{
+  "schemaVersion": "loc.semantic-capability.v1",
+  "capabilityKey": "hash.shape.validate.v1",
+  "capabilityStatus": "composed-pending-generic-language-operation",
+  "category": "semantic.language.hash-shape-validation",
+  "purpose": "Validate sha256:<64 lowercase hex> strings without embedding receipt product logic in the resolver.",
+  "semanticDefinition": {
+    "requiredShape": "sha256:<64 lowercase hex>",
+    "pattern": "^sha256:[a-f0-9]{64}$",
+    "expectedPassedResult": {
+      "status": "passed"
+    },
+    "expectedBlockedResult": {
+      "status": "blocked",
+      "blocker": "malformed_receipt_hash"
+    }
+  },
+  "semanticComposition": {
+    "compositionKind": "generic_string_predicate",
+    "requiredGenericLanguageOperation": "string.matches_pattern.v1",
+    "operationInput": {
+      "valueSource": "context.hash",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "fullMatchRequired": true,
+      "caseSensitive": true
+    },
+    "resultMapping": {
+      "matchedTrue": {
+        "status": "passed"
+      },
+      "matchedFalse": {
+        "status": "blocked",
+        "blocker": "malformed_receipt_hash"
+      }
+    }
+  },
+  "requiredGenericLanguageOperations": [
+    "string.matches_pattern.v1"
+  ],
+  "resolverProductPrimitiveRequested": false,
+  "durableProductTruthAccepted": false,
+  "promotionBlocker": "missing_sej_language_operation",
+  "requiredOperation": "string.matches_pattern.v1",
+  "completionPosture": "The semantic capability is composed, but durable product truth remains blocked until the generic string.matches_pattern.v1 SEJ language operation is supported and conformance evidence exists."
+}

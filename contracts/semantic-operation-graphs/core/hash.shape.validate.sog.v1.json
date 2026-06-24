@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKey": "defracto.hash.shape.validate.sog.v1",
+  "objectKind": "sej_code_body",
+  "bodyKind": "semantic_operation_graph",
+  "commandKey": "defracto.hash.shape.validate.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "blocked-pending-generic-language-operation",
+  "promotionStatus": "blocked",
+  "durableProductTruthAccepted": false,
+  "hostLanguageBodyAllowed": false,
+  "forbiddenHostFallback": true,
+  "resolverProductPrimitiveRequested": false,
+  "requiredOperation": "string.matches_pattern.v1",
+  "blockedReason": "missing_sej_language_operation",
+  "semanticActions": [
+    {
+      "actionKey": "defracto.hash.shape.validate.semantic-action.v1",
+      "capabilityKey": "hash.shape.validate.v1",
+      "intent": "Validate that a receipt hash string exactly matches sha256:<64 lowercase hex>."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "matchSha256LowercaseHexShape",
+        "capabilityKey": "string.matches_pattern.v1",
+        "intent": "Evaluate the candidate hash string against the reusable sha256 lowercase hex pattern.",
+        "input": {
+          "value": {
+            "$context": "hash"
+          },
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "fullMatchRequired": true,
+          "caseSensitive": true
+        },
+        "output": {
+          "path": "$graph.hashShapeMatch",
+          "expectedShape": {
+            "status": "passed",
+            "matched": true
+          }
+        }
+      },
+      {
+        "id": "projectHashShapeResult",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project the semantic result for the hash shape validation capability.",
+        "input": {
+          "when": {
+            "equals": [
+              {
+                "$graph": "hashShapeMatch.matched"
+              },
+              {
+                "literal": true
+              }
+            ]
+          },
+          "then": {
+            "literal": {
+              "status": "passed"
+            }
+          },
+          "else": {
+            "literal": {
+              "status": "blocked",
+              "blocker": "malformed_receipt_hash"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.hashShapeResult",
+          "schema": "contracts/schemas/receipt-hash-result.schema.v1.json"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "completionPosture": "This SOG defines hash.shape.validate.v1 as semantic capability composition. It does not claim durable product truth until string.matches_pattern.v1 is supported and SOG execution/parity receipts pass."
+}

@@ -1,1 +1,43 @@
-{"completionPosture":"This SEJ shell preserves the semantic execution boundary and blocks until exact hash-shape validation can execute semantically.","contractKey":"defracto.sej.receipt-hash.validate.execute.v1","contractKind":"semantic-executable-json","contractStatus":"blocked-pending-required-semantic-capability","executionPosture":{"durableTruthAcceptedByThisSej":false,"executionMode":"blocked_pending_semantic_capability","forbiddenHostFallback":true,"generatedImplementationUsedAsExecutionTruth":false},"failurePosture":"Missing hash.shape.validate.v1 blocks receipt-hash SDK promotion.","requiredOperations":[{"missingCapabilityBehavior":"blocked","operationKey":"hash.shape.validate.v1","purpose":"Validate sha256:<64 lowercase hex> string shape.","requirementState":"missing"}],"schemaVersion":"defracto.sej-contract.v1","semanticBody":{"bodyKind":"semantic_operation_graph","bodyRef":"contracts/semantic-operation-graphs/evidence/receipt-hash.validate.sog.v1.json","hostLanguageBodyAllowed":false},"sourceLineage":{"capabilityGap":"contracts/capabilities/hash.shape.validate.capability-gap.v1.json","inputSchema":"contracts/schemas/receipt-hash-input.schema.v1.json","requiredCapability":"contracts/capabilities/hash.shape.validate.capability.v1.json","resultSchema":"contracts/schemas/receipt-hash-result.schema.v1.json","semanticOperationGraph":"contracts/semantic-operation-graphs/evidence/receipt-hash.validate.sog.v1.json"},"toolKey":"defracto.evidence.receipt-hash.validate"}
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.receipt-hash.validate.execute.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "blocked-pending-generic-language-operation",
+  "toolKey": "defracto.evidence.receipt-hash.validate",
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/evidence/receipt-hash.validate.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "requiredOperations": [
+    {
+      "operationKey": "hash.shape.validate.v1",
+      "purpose": "Validate sha256:<64 lowercase hex> string shape.",
+      "requirementState": "semantic-capability-composed",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "string.matches_pattern.v1",
+      "purpose": "Provide the generic SEJ string predicate used by hash.shape.validate.v1.",
+      "requirementState": "missing-sej-language-operation",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "executionPosture": {
+    "executionMode": "blocked_pending_generic_language_operation",
+    "durableTruthAcceptedByThisSej": false,
+    "generatedImplementationUsedAsExecutionTruth": false,
+    "forbiddenHostFallback": true
+  },
+  "failurePosture": "hash.shape.validate.v1 is semantically composed, but receipt-hash SDK promotion remains blocked until string.matches_pattern.v1 executes through the resolver language.",
+  "sourceLineage": {
+    "inputSchema": "contracts/schemas/receipt-hash-input.schema.v1.json",
+    "resultSchema": "contracts/schemas/receipt-hash-result.schema.v1.json",
+    "requiredCapability": "contracts/capabilities/hash.shape.validate.capability.v1.json",
+    "capabilityBindings": "contracts/capabilities/hash.shape.validate.capability-bindings.v1.json",
+    "capabilityGap": "contracts/capabilities/hash.shape.validate.capability-gap.v1.json",
+    "semanticOperationGraph": "contracts/semantic-operation-graphs/evidence/receipt-hash.validate.sog.v1.json",
+    "hashShapeSemanticOperationGraph": "contracts/semantic-operation-graphs/core/hash.shape.validate.sog.v1.json"
+  },
+  "completionPosture": "This SEJ shell preserves the semantic execution boundary and blocks until the generic string.matches_pattern.v1 language operation is available."
+}

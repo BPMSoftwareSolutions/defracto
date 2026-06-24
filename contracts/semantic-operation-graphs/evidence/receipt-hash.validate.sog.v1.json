@@ -1,1 +1,53 @@
-{"blockedReason":"missing_semantic_capability","bodyKind":"semantic_operation_graph","commandKey":"defracto.evidence.receipt_hash.validate.v1","completionPosture":"Receipt hash validator SOG is declared but not promoted because exact hash shape validation is missing as executable semantic capability.","durableProductTruthAccepted":false,"graph":{"return":{"step":"validateHashShape"},"steps":[{"capabilityKey":"hash.shape.validate.v1","failure":{"blocker":"malformed_receipt_hash","status":"blocked"},"id":"validateHashShape","input":{"hashValueSource":"context.hash","requiredShape":"sha256:<64 lowercase hex>"},"intent":"Validate sha256:<64 lowercase hex> string shape.","output":{"schema":"contracts/schemas/receipt-hash-result.schema.v1.json"}}]},"hostLanguageBodyAllowed":false,"nearbyCapabilityRejected":"evidence.receipt.verify.v1","objectKey":"defracto.evidence.receipt-hash.validate.sog.v1","objectKind":"sej_code_body","promotionStatus":"blocked","requiredCapability":"hash.shape.validate.v1","schemaVersion":"loc.semantic-operation-graph.v1","semanticActions":[{"actionKey":"defracto.hash.shape.validate.semantic-action.v1","capabilityKey":"hash.shape.validate.v1","intent":"Validate receipt hash string shape exactly."}],"sourceTruth":"sej_semantic_body","status":"blocked-pending-required-semantic-capability"}
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKey": "defracto.evidence.receipt-hash.validate.sog.v1",
+  "objectKind": "sej_code_body",
+  "bodyKind": "semantic_operation_graph",
+  "commandKey": "defracto.evidence.receipt_hash.validate.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-sog-execution",
+  "promotionStatus": "ready-for-proof",
+  "durableProductTruthAccepted": false,
+  "hostLanguageBodyAllowed": false,
+  "nearbyCapabilityRejected": "evidence.receipt.verify.v1",
+  "requiredCapability": "hash.shape.validate.v1",
+  "requiredOperation": "string.matches_pattern.v1",
+  "semanticActions": [
+    {
+      "actionKey": "defracto.hash.shape.validate.semantic-action.v1",
+      "capabilityKey": "hash.shape.validate.v1",
+      "intent": "Validate receipt hash string shape exactly."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "validateHashShape",
+        "capabilityKey": "semantic.operation_graph.execute.v1",
+        "intent": "Validate sha256:<64 lowercase hex> string shape through the composed hash.shape.validate.v1 SOG.",
+        "input": {
+          "graphRef": {
+            "$inline": "contracts/semantic-operation-graphs/core/hash.shape.validate.sog.v1.json"
+          },
+          "context": {
+            "hash": {
+              "$context": "hash"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.hashShapeResult",
+          "schema": "contracts/schemas/receipt-hash-result.schema.v1.json"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "malformed_receipt_hash"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "completionPosture": "Receipt hash validator SOG executes the composed hash.shape.validate.v1 graph. Durable product truth is accepted only after usage/product-proof receipts pass."
+}

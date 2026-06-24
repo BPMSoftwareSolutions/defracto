@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Product Proof Packet",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schemaVersion",
+    "status",
+    "requestedOutcome",
+    "proof",
+    "acceptedUse"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "defracto.product-proof-packet.v1"
+    },
+    "status": {
+      "enum": [
+        "accepted_for_use",
+        "accepted_for_local_use_release_blocked",
+        "blocked_not_accepted_for_use"
+      ]
+    },
+    "requestedOutcome": {
+      "type": "string"
+    },
+    "usableCommands": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "materializedOutputs": {
+      "type": "array"
+    },
+    "proof": {
+      "type": "object"
+    },
+    "acceptedUse": {
+      "type": "object"
+    },
+    "blocked": {
+      "type": "object"
+    }
+  }
+}

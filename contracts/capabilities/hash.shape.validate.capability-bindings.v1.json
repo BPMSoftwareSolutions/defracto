@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "loc.capability-binding.v1",
+  "bindingKey": "defracto.hash.shape.validate.capability-bindings.v1",
+  "semanticOperationGraphRef": "contracts/semantic-operation-graphs/core/hash.shape.validate.sog.v1.json",
+  "bindingStatus": "blocked-pending-generic-language-operation",
+  "bindings": [
+    {
+      "capabilityKey": "string.matches_pattern.v1",
+      "primitiveKey": null,
+      "status": "unsupported_missing_sej_language_operation",
+      "ifMissing": "blocked",
+      "operationLayer": "generic_sej_language_mechanic",
+      "productBehavior": false
+    },
+    {
+      "capabilityKey": "result.project_hash_shape_validation.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "expressible_after_pattern_match_result",
+      "ifMissing": "blocked"
+    }
+  ],
+  "forbiddenHostFallback": true,
+  "resolverProductPrimitiveRequested": false,
+  "durableProductTruthAccepted": false,
+  "completionPosture": "hash.shape.validate.v1 is semantically composed, but it cannot execute or promote until string.matches_pattern.v1 is available as a tiny generic SEJ language operation."
+}

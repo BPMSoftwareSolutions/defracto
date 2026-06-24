@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "loc.sej-conformance-fixture.v1",
+  "fixtureId": "receipt-hash-validator-valid-usage",
+  "contract": {
+    "contractKey": "defracto.receipt-hash-validator.valid-usage.v1",
+    "steps": [
+      {
+        "id": "execute",
+        "type": "resolver",
+        "operation": "semantic.operation_graph.execute.v1",
+        "payload": {
+          "graphRef": {
+            "$inline": "contracts/semantic-operation-graphs/evidence/receipt-hash.validate.sog.v1.json"
+          },
+          "context": {
+            "hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+          }
+        }
+      }
+    ],
+    "return": {
+      "type": "step",
+      "ref": "$steps.execute"
+    }
+  },
+  "input": {}
+}

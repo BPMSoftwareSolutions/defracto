@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "defracto.test-intent.v1",
+  "testIntentKey": "defracto.hash.shape.validate.test-intent.v1",
+  "targetSemanticCapability": "hash.shape.validate.v1",
+  "targetSemanticOperationGraph": "contracts/semantic-operation-graphs/core/hash.shape.validate.sog.v1.json",
+  "targetRunner": "semantic-operation-graph",
+  "testCases": [
+    {
+      "testCaseKey": "hash-shape.valid-lowercase-sha256",
+      "scenario": "A sha256 hash with the required prefix and 64 lowercase hex characters passes.",
+      "input": {
+        "hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+      },
+      "expected": {
+        "status": "passed"
+      },
+      "criteriaKeys": [
+        "hash-shape.requires-sha256-prefix",
+        "hash-shape.requires-64-lowercase-hex"
+      ],
+      "status": "ready-for-sog-execution-after-language-support"
+    },
+    {
+      "testCaseKey": "hash-shape.uppercase-blocked",
+      "scenario": "Uppercase hex characters are blocked because the accepted receipt hash shape is lowercase only.",
+      "input": {
+        "hash": "sha256:0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF"
+      },
+      "expected": {
+        "status": "blocked",
+        "blocker": "malformed_receipt_hash"
+      },
+      "criteriaKeys": [
+        "hash-shape.requires-64-lowercase-hex"
+      ],
+      "status": "ready-for-sog-execution-after-language-support"
+    },
+    {
+      "testCaseKey": "hash-shape.missing-prefix-blocked",
+      "scenario": "A 64 character lowercase hex string without the sha256 prefix is blocked.",
+      "input": {
+        "hash": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+      },
+      "expected": {
+        "status": "blocked",
+        "blocker": "malformed_receipt_hash"
+      },
+      "criteriaKeys": [
+        "hash-shape.requires-sha256-prefix"
+      ],
+      "status": "ready-for-sog-execution-after-language-support"
+    },
+    {
+      "testCaseKey": "hash-shape.short-suffix-blocked",
+      "scenario": "A sha256 hash with fewer than 64 suffix characters is blocked.",
+      "input": {
+        "hash": "sha256:0123456789abcdef"
+      },
+      "expected": {
+        "status": "blocked",
+        "blocker": "malformed_receipt_hash"
+      },
+      "criteriaKeys": [
+        "hash-shape.requires-64-lowercase-hex"
+      ],
+      "status": "ready-for-sog-execution-after-language-support"
+    }
+  ],
+  "coverage": {
+    "criteriaKeysCovered": [
+      "hash-shape.requires-sha256-prefix",
+      "hash-shape.requires-64-lowercase-hex",
+      "hash-shape.blocks-malformed-hashes",
+      "hash-shape.no-host-language-product-logic"
+    ],
+    "allCriteriaCovered": true
+  },
+  "forbiddenClaims": [
+    "hash.shape.validate.v1 has durable product truth",
+    "receipt hash validation is implemented as host-language product code",
+    "evidence.receipt.verify.v1 is equivalent to hash shape validation"
+  ],
+  "status": "accepted-for-sog-execution-after-language-support"
+}
