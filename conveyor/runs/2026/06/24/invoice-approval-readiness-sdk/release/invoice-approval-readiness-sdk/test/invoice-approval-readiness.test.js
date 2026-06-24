@@ -1,0 +1,11 @@
+'use strict';
+const assert = require('node:assert/strict');
+const { evaluateInvoiceApprovalReadiness } = require('../src/index.js');
+const valid = require('../examples/valid-invoice-packet.json');
+const missingPo = require('../examples/missing-po-invoice-packet.json');
+assert.equal(evaluateInvoiceApprovalReadiness(valid).status, 'passed');
+const blocked = evaluateInvoiceApprovalReadiness(missingPo);
+assert.equal(blocked.status, 'blocked');
+assert.ok(blocked.blockers.some((item) => item.code === 'missing_purchase_order'));
+assert.ok(blocked.blockers.some((item) => item.code === 'missing_manager_approval'));
+console.log('invoice approval readiness tests passed');

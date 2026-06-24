@@ -109,6 +109,16 @@
         "contracts/gates/no-manual-assembly-rule.gate.v1.json",
         "contracts/gates/business-analysis-hardening-required.gate.v1.json"
       ]
+    },
+    {
+      "command": "ndd story implement --slice <sliceKey> --target-kind invoice-approval-readiness-sdk",
+      "contractPath": "contracts/cli/ndd-story-implement.command.v1.json",
+      "inputSchemaPath": "contracts/schemas/review-package.schema.v1.json",
+      "requiredGatePaths": [
+        "contracts/gates/conveyor-entrypoint-required.gate.v1.json",
+        "contracts/gates/no-manual-assembly-rule.gate.v1.json",
+        "contracts/gates/business-analysis-hardening-required.gate.v1.json"
+      ]
     }
   ],
   "requiredSemanticCapabilities": [

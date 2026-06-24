@@ -1,0 +1,1 @@
+As an accounts payable manager, I want an invoice approval readiness checker, so that invoices missing purchase order, receipt, or approval evidence cannot be submitted for payment.

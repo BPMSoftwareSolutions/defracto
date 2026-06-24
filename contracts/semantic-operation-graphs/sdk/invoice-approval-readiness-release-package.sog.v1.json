@@ -1,0 +1,1787 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.invoice-approval-readiness-release-package.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-cli-proof",
+  "commandKey": "defracto.ndd.story.implement.invoice-approval-readiness-sdk.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.invoice-approval.load-run.v1",
+      "capabilityKey": "conveyor.run_manifest.load.v1",
+      "intent": "Load the CLI-created run manifest for the product release candidate."
+    },
+    {
+      "actionKey": "defracto.invoice-approval.materialize-sdk-package.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize the SDK package candidate, docs, examples, marketplace page, and review package."
+    },
+    {
+      "actionKey": "defracto.invoice-approval.execute-smoke-tests.v1",
+      "capabilityKey": "generated.facade.smoke_execute.v1",
+      "intent": "Run valid and blocked invoice packet usage smoke tests through the declared CLI surface."
+    },
+    {
+      "actionKey": "defracto.invoice-approval.emit-release-receipts.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit build, test, and release receipts for product-owner release review."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "loadRunManifest",
+        "capabilityKey": "conveyor.run_manifest.load.v1",
+        "input": {
+          "sliceKey": {
+            "$context": "command.options.slice"
+          },
+          "defaultSearchRoot": "conveyor/runs"
+        },
+        "output": {
+          "path": "$graph.runManifest"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "invoice_approval_run_manifest_missing"
+        }
+      },
+      {
+        "id": "projectPackageRoot",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "release",
+            "invoice-approval-readiness-sdk"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.packageRoot"
+        }
+      },
+      {
+        "id": "projectPackageJsonPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "package.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.packageJsonPath"
+        }
+      },
+      {
+        "id": "projectReadmePath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "README.md"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.readmePath"
+        }
+      },
+      {
+        "id": "projectQuickstartPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "docs",
+            "quickstart.md"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.quickstartPath"
+        }
+      },
+      {
+        "id": "projectApiReferencePath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "docs",
+            "api-reference.md"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.apiReferencePath"
+        }
+      },
+      {
+        "id": "projectExamplesDocPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "docs",
+            "examples.md"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.examplesDocPath"
+        }
+      },
+      {
+        "id": "projectIndexPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "src",
+            "index.js"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.indexPath"
+        }
+      },
+      {
+        "id": "projectCliPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "src",
+            "cli.cjs"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.cliPath"
+        }
+      },
+      {
+        "id": "projectTestPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "test",
+            "invoice-approval-readiness.test.js"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.testPath"
+        }
+      },
+      {
+        "id": "projectValidExamplePath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "examples",
+            "valid-invoice-packet.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.validExamplePath"
+        }
+      },
+      {
+        "id": "projectMissingPoExamplePath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "examples",
+            "missing-po-invoice-packet.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.missingPoExamplePath"
+        }
+      },
+      {
+        "id": "projectMissingApprovalExamplePath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "examples",
+            "missing-approval-invoice-packet.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.missingApprovalExamplePath"
+        }
+      },
+      {
+        "id": "projectProductPagePath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "marketplace",
+            "product-page.html"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.productPagePath"
+        }
+      },
+      {
+        "id": "projectProductCardPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "marketplace",
+            "product-card.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.productCardPath"
+        }
+      },
+      {
+        "id": "projectListingCopyPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "marketplace",
+            "listing-copy.md"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.listingCopyPath"
+        }
+      },
+      {
+        "id": "projectReleaseManifestPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "packageRoot.path"
+            },
+            "dist",
+            "invoice-approval-readiness-sdk.release-manifest.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.releaseManifestPath"
+        }
+      },
+      {
+        "id": "projectReviewHtmlPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "invoice-approval-readiness.release-review-package.html"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewHtmlPath"
+        }
+      },
+      {
+        "id": "projectReviewJsonPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "invoice-approval-readiness.release-review-package.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewJsonPath"
+        }
+      },
+      {
+        "id": "projectInfographicPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "invoice-approval-readiness.delivery-infographic.svg"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.infographicPath"
+        }
+      },
+      {
+        "id": "projectBuildReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "invoice-approval-readiness.build.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.buildReceiptPath"
+        }
+      },
+      {
+        "id": "projectTestReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "invoice-approval-readiness.test.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.testReceiptPath"
+        }
+      },
+      {
+        "id": "projectReleaseReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "invoice-approval-readiness.release.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.releaseReceiptPath"
+        }
+      },
+      {
+        "id": "projectGeminiReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "cognitive-ba.gemini-invocation.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.geminiReceiptPath"
+        }
+      },
+      {
+        "id": "projectHardeningReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "business-analysis-hardening.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.hardeningReceiptPath"
+        }
+      },
+      {
+        "id": "hashSourceStory",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runManifest.sourceStory.path"
+          }
+        },
+        "output": {
+          "path": "$graph.sourceStoryHash"
+        }
+      },
+      {
+        "id": "hashGeminiReceipt",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "geminiReceiptPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.geminiReceiptHash"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "invoice_approval_live_ba_receipt_missing"
+        }
+      },
+      {
+        "id": "hashHardeningReceipt",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "hardeningReceiptPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.hardeningReceiptHash"
+        }
+      },
+      {
+        "id": "materializePackageJson",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "packageJsonPath.path"
+            },
+            "format": "json",
+            "content": {
+              "name": "@bpm-ai-solutions/invoice-approval-readiness-sdk",
+              "version": "0.1.0-review.0",
+              "description": "Checks whether invoice packets have purchase order, receiving, and approval evidence before payment.",
+              "main": "src/index.js",
+              "bin": {
+                "invoice-approval-readiness": "src/cli.cjs"
+              },
+              "type": "commonjs",
+              "license": "UNLICENSED",
+              "private": true,
+              "scripts": {
+                "test": "node test/invoice-approval-readiness.test.js"
+              },
+              "keywords": [
+                "invoice",
+                "approval",
+                "accounts-payable",
+                "readiness",
+                "evidence"
+              ]
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.packageJsonArtifact"
+        }
+      },
+      {
+        "id": "materializeIndexJs",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "indexPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "'use strict';",
+              "",
+              "function blocker(code, message) {",
+              "  return { code, message };",
+              "}",
+              "",
+              "function evaluateInvoiceApprovalReadiness(packet) {",
+              "  const input = packet || {};",
+              "  const blockers = [];",
+              "  if (!input.invoiceNumber || !input.vendor || typeof input.amount !== 'number') {",
+              "    blockers.push(blocker('missing_invoice_core_fields', 'Invoice number, vendor, and numeric amount are required.'));",
+              "  }",
+              "  if (!input.purchaseOrder) {",
+              "    blockers.push(blocker('missing_purchase_order', 'Invoice cannot proceed because no purchase order was provided.'));",
+              "  }",
+              "  if (!input.receivingEvidence || input.receivingEvidence.received !== true) {",
+              "    blockers.push(blocker('missing_receiving_evidence', 'Invoice requires receiving evidence before payment.'));",
+              "  }",
+              "  if (!input.approval || !input.approval.approvedBy) {",
+              "    blockers.push(blocker('missing_manager_approval', 'Invoice requires manager approval before payment.'));",
+              "  }",
+              "  if (input.purchaseOrder && typeof input.purchaseOrder.amount === 'number' && typeof input.amount === 'number') {",
+              "    const tolerance = typeof input.purchaseOrder.tolerancePercent === 'number' ? input.purchaseOrder.tolerancePercent : 0.05;",
+              "    const allowedDelta = Math.abs(input.purchaseOrder.amount) * tolerance;",
+              "    const delta = Math.abs(input.amount - input.purchaseOrder.amount);",
+              "    if (delta > allowedDelta) {",
+              "      blockers.push(blocker('amount_outside_po_tolerance', 'Invoice amount is outside the purchase order tolerance.'));",
+              "    }",
+              "  }",
+              "  const status = blockers.length ? 'blocked' : 'passed';",
+              "  return {",
+              "    schemaVersion: 'defracto.invoice-approval-readiness.result.v1',",
+              "    status,",
+              "    invoiceNumber: input.invoiceNumber || null,",
+              "    vendor: input.vendor || null,",
+              "    amount: typeof input.amount === 'number' ? input.amount : null,",
+              "    blockers,",
+              "    nextAction: status === 'passed' ? 'Invoice packet is ready for payment approval workflow.' : 'Attach purchase order, receiving evidence, and manager approval before payment.',",
+              "    proofSurfaceOnly: true",
+              "    };",
+              "}",
+              "",
+              "module.exports = { evaluateInvoiceApprovalReadiness };"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.indexArtifact"
+        }
+      },
+      {
+        "id": "materializeCli",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "cliPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "#!/usr/bin/env node",
+              "'use strict';",
+              "const fs = require('node:fs');",
+              "const { evaluateInvoiceApprovalReadiness } = require('./index.js');",
+              "const input = JSON.parse(fs.readFileSync(0, 'utf8') || '{}');",
+              "process.stdout.write(JSON.stringify(evaluateInvoiceApprovalReadiness(input)));"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.cliArtifact"
+        }
+      },
+      {
+        "id": "materializeValidExample",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "validExamplePath.path"
+            },
+            "format": "json",
+            "content": {
+              "invoiceNumber": "INV-1041",
+              "vendor": "Northwind Office Supplies",
+              "amount": 4800,
+              "purchaseOrder": {
+                "poNumber": "PO-7781",
+                "amount": 4800,
+                "tolerancePercent": 0.05
+              },
+              "receivingEvidence": {
+                "received": true,
+                "receivedBy": "A. Patel"
+              },
+              "approval": {
+                "approvedBy": "M. Chen"
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.validExampleArtifact"
+        }
+      },
+      {
+        "id": "materializeMissingPoExample",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "missingPoExamplePath.path"
+            },
+            "format": "json",
+            "content": {
+              "invoiceNumber": "INV-1042",
+              "vendor": "Northwind Office Supplies",
+              "amount": 4850,
+              "purchaseOrder": null,
+              "receivingEvidence": {
+                "received": true,
+                "receivedBy": "A. Patel"
+              },
+              "approval": null
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.missingPoExampleArtifact"
+        }
+      },
+      {
+        "id": "materializeMissingApprovalExample",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "missingApprovalExamplePath.path"
+            },
+            "format": "json",
+            "content": {
+              "invoiceNumber": "INV-1043",
+              "vendor": "Northwind Office Supplies",
+              "amount": 4800,
+              "purchaseOrder": {
+                "poNumber": "PO-7781",
+                "amount": 4800,
+                "tolerancePercent": 0.05
+              },
+              "receivingEvidence": {
+                "received": true,
+                "receivedBy": "A. Patel"
+              },
+              "approval": null
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.missingApprovalExampleArtifact"
+        }
+      },
+      {
+        "id": "materializeReadme",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "readmePath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "# Invoice Approval Readiness SDK",
+              "",
+              "Checks whether invoice packets include purchase order, receiving, and manager approval evidence before payment submission.",
+              "",
+              "## Install",
+              "",
+              "This package is a release-review candidate materialized by the conveyor. Archive publication is blocked until a governed package archive step exists.",
+              "",
+              "## Usage",
+              "",
+              "```js",
+              "const { evaluateInvoiceApprovalReadiness } = require('./src');",
+              "const result = evaluateInvoiceApprovalReadiness(invoicePacket);",
+              "```",
+              "",
+              "## Status",
+              "",
+              "Accepted for release review. Not published to a package registry."
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.readmeArtifact"
+        }
+      },
+      {
+        "id": "materializeQuickstart",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "quickstartPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "# Quickstart",
+              "",
+              "Run the CLI against an invoice packet:",
+              "",
+              "```bash",
+              "node src/cli.cjs < examples/missing-po-invoice-packet.json",
+              "```",
+              "",
+              "Expected status for the missing PO example: `blocked`."
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.quickstartArtifact"
+        }
+      },
+      {
+        "id": "materializeApiReference",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "apiReferencePath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "# API Reference",
+              "",
+              "## evaluateInvoiceApprovalReadiness(packet)",
+              "",
+              "Returns a result with `status`, `blockers`, and `nextAction`.",
+              "",
+              "### Supported blockers",
+              "",
+              "- `missing_invoice_core_fields`",
+              "- `missing_purchase_order`",
+              "- `missing_receiving_evidence`",
+              "- `missing_manager_approval`",
+              "- `amount_outside_po_tolerance`"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.apiReferenceArtifact"
+        }
+      },
+      {
+        "id": "materializeExamplesDoc",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "examplesDocPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "# Examples",
+              "",
+              "- `examples/valid-invoice-packet.json` should pass.",
+              "- `examples/missing-po-invoice-packet.json` should block with missing purchase order and manager approval.",
+              "- `examples/missing-approval-invoice-packet.json` should block with missing manager approval."
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.examplesDocArtifact"
+        }
+      },
+      {
+        "id": "materializeNodeTest",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "testPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "'use strict';",
+              "const assert = require('node:assert/strict');",
+              "const { evaluateInvoiceApprovalReadiness } = require('../src/index.js');",
+              "const valid = require('../examples/valid-invoice-packet.json');",
+              "const missingPo = require('../examples/missing-po-invoice-packet.json');",
+              "assert.equal(evaluateInvoiceApprovalReadiness(valid).status, 'passed');",
+              "const blocked = evaluateInvoiceApprovalReadiness(missingPo);",
+              "assert.equal(blocked.status, 'blocked');",
+              "assert.ok(blocked.blockers.some((item) => item.code === 'missing_purchase_order'));",
+              "assert.ok(blocked.blockers.some((item) => item.code === 'missing_manager_approval'));",
+              "console.log('invoice approval readiness tests passed');"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.nodeTestArtifact"
+        }
+      },
+      {
+        "id": "hashPackageJson",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "packageJsonPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.packageJsonHash"
+        }
+      },
+      {
+        "id": "hashIndex",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "indexPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.indexHash"
+        }
+      },
+      {
+        "id": "hashCli",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "cliPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.cliHash"
+        }
+      },
+      {
+        "id": "hashTest",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "testPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.testHash"
+        }
+      },
+      {
+        "id": "hashValidExample",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "validExamplePath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.validExampleHash"
+        }
+      },
+      {
+        "id": "hashMissingPoExample",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "missingPoExamplePath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.missingPoExampleHash"
+        }
+      },
+      {
+        "id": "hashReadme",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "readmePath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.readmeHash"
+        }
+      },
+      {
+        "id": "executeValidSmoke",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "input": {
+          "targetPath": {
+            "$graph": "cliPath.path"
+          },
+          "stdinFixture": {
+            "$graph": "validExamplePath.path"
+          },
+          "expectedStatus": "passed"
+        },
+        "output": {
+          "path": "$graph.validSmoke"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "invoice_approval_valid_smoke_failed"
+        }
+      },
+      {
+        "id": "executeBlockedSmoke",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "input": {
+          "targetPath": {
+            "$graph": "cliPath.path"
+          },
+          "stdinFixture": {
+            "$graph": "missingPoExamplePath.path"
+          },
+          "expectedStatus": "blocked"
+        },
+        "output": {
+          "path": "$graph.blockedSmoke"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "invoice_approval_blocked_smoke_failed"
+        }
+      },
+      {
+        "id": "emitTestReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "testReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.invoice-approval-readiness.test.receipt.v1",
+              "status": "passed",
+              "validCase": {
+                "fixture": {
+                  "path": {
+                    "$graph": "validExamplePath.path"
+                  },
+                  "hash": {
+                    "$graph": "validExampleHash.hash"
+                  }
+                },
+                "actualStatus": {
+                  "$graph": "validSmoke.result.status"
+                }
+              },
+              "blockedCase": {
+                "fixture": {
+                  "path": {
+                    "$graph": "missingPoExamplePath.path"
+                  },
+                  "hash": {
+                    "$graph": "missingPoExampleHash.hash"
+                  }
+                },
+                "actualStatus": {
+                  "$graph": "blockedSmoke.result.status"
+                },
+                "blockers": {
+                  "$graph": "blockedSmoke.result.blockers"
+                }
+              },
+              "testArtifact": {
+                "path": {
+                  "$graph": "testPath.path"
+                },
+                "hash": {
+                  "$graph": "testHash.hash"
+                },
+                "executionStatus": "covered_by_smoke_execute_v1"
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.testReceipt"
+        }
+      },
+      {
+        "id": "hashTestReceipt",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "testReceiptPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.testReceiptHash"
+        }
+      },
+      {
+        "id": "emitBuildReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "buildReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.invoice-approval-readiness.build.receipt.v1",
+              "status": "passed",
+              "productName": "Invoice Approval Readiness SDK",
+              "packageRoot": {
+                "$graph": "packageRoot.path"
+              },
+              "packageJson": {
+                "path": {
+                  "$graph": "packageJsonPath.path"
+                },
+                "hash": {
+                  "$graph": "packageJsonHash.hash"
+                }
+              },
+              "apiSurface": {
+                "index": {
+                  "path": {
+                    "$graph": "indexPath.path"
+                  },
+                  "hash": {
+                    "$graph": "indexHash.hash"
+                  }
+                },
+                "cli": {
+                  "path": {
+                    "$graph": "cliPath.path"
+                  },
+                  "hash": {
+                    "$graph": "cliHash.hash"
+                  }
+                }
+              },
+              "docs": [
+                {
+                  "path": {
+                    "$graph": "readmePath.path"
+                  },
+                  "hash": {
+                    "$graph": "readmeHash.hash"
+                  }
+                }
+              ],
+              "archiveStatus": "blocked_missing_governed_package_archive_step",
+              "nextStepOwner": "Release Pipeline"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.buildReceipt"
+        }
+      },
+      {
+        "id": "hashBuildReceipt",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "buildReceiptPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.buildReceiptHash"
+        }
+      },
+      {
+        "id": "materializeProductCard",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "productCardPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "bpm-ai-solutions.marketplace-product-card.v1",
+              "productName": "Invoice Approval Readiness SDK",
+              "tagline": "Block invoice payment when purchase order, receiving, or approval evidence is missing.",
+              "targetUser": "Accounts payable managers",
+              "status": "accepted_for_release_review",
+              "availability": "private-review",
+              "supportContact": "BPM AI Solutions",
+              "reviewPackage": {
+                "$graph": "reviewHtmlPath.path"
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.productCardArtifact"
+        }
+      },
+      {
+        "id": "materializeListingCopy",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "listingCopyPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "# Invoice Approval Readiness SDK",
+              "",
+              "A lightweight accounts-payable readiness checker that blocks invoice payment when required purchase order, receiving, or manager approval evidence is missing.",
+              "",
+              "## Best for",
+              "",
+              "- Accounts payable teams",
+              "- Controller review queues",
+              "- Internal payment controls",
+              "",
+              "## Current availability",
+              "",
+              "Private release review. Package archive publication is pending a governed archive step."
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.listingCopyArtifact"
+        }
+      },
+      {
+        "id": "materializeProductPage",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "productPagePath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "<!doctype html>",
+              "<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Invoice Approval Readiness SDK</title>",
+              "<style>body{font-family:Arial,sans-serif;margin:0;background:#f6f8fb;color:#17202a}main{max-width:980px;margin:0 auto;padding:36px}.hero,.panel{background:#fff;border:1px solid #d8dee9;padding:24px;margin:16px 0}.badge{display:inline-block;background:#dcfce7;color:#166534;border:1px solid #bbf7d0;padding:6px 10px;border-radius:6px;font-weight:700}h1{font-size:36px;margin:12px 0 8px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:780px){.grid{grid-template-columns:1fr}}</style></head>",
+              "<body><main><section class=\"hero\"><span class=\"badge\">Private release review</span><h1>Invoice Approval Readiness SDK</h1><p>Block invoice payment when purchase order, receiving, or manager approval evidence is missing.</p></section>",
+              "<div class=\"grid\"><section class=\"panel\"><h2>Target user</h2><p>Accounts payable managers and controller teams.</p></section><section class=\"panel\"><h2>Business value</h2><p>Catch incomplete invoice packets before payment submission.</p></section></div>",
+              "<section class=\"panel\"><h2>Checks</h2><ul><li>Invoice core fields</li><li>Purchase order evidence</li><li>Receiving evidence</li><li>Manager approval</li><li>PO amount tolerance</li></ul></section>",
+              "<section class=\"panel\"><h2>Release posture</h2><p>Accepted for release review. Package archive publication is blocked until a governed archive step exists.</p></section>",
+              "</main></body></html>"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.productPageArtifact"
+        }
+      },
+      {
+        "id": "hashProductCard",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "productCardPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.productCardHash"
+        }
+      },
+      {
+        "id": "hashProductPage",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "productPagePath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.productPageHash"
+        }
+      },
+      {
+        "id": "materializeReleaseManifest",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "releaseManifestPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.release-package-manifest.v1",
+              "status": "accepted_for_release_review",
+              "productName": "Invoice Approval Readiness SDK",
+              "packageRoot": {
+                "$graph": "packageRoot.path"
+              },
+              "packageJson": {
+                "path": {
+                  "$graph": "packageJsonPath.path"
+                },
+                "hash": {
+                  "$graph": "packageJsonHash.hash"
+                }
+              },
+              "api": {
+                "path": {
+                  "$graph": "indexPath.path"
+                },
+                "hash": {
+                  "$graph": "indexHash.hash"
+                }
+              },
+              "tests": {
+                "receipt": {
+                  "$graph": "testReceiptPath.path"
+                },
+                "receiptHash": {
+                  "$graph": "testReceiptHash.hash"
+                }
+              },
+              "marketplace": {
+                "productPage": {
+                  "path": {
+                    "$graph": "productPagePath.path"
+                  },
+                  "hash": {
+                    "$graph": "productPageHash.hash"
+                  }
+                },
+                "productCard": {
+                  "path": {
+                    "$graph": "productCardPath.path"
+                  },
+                  "hash": {
+                    "$graph": "productCardHash.hash"
+                  }
+                }
+              },
+              "archive": {
+                "status": "blocked_missing_governed_package_archive_step",
+                "requestedArtifact": "dist/invoice-approval-readiness-sdk.tgz",
+                "nextStepOwner": "Release Pipeline"
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.releaseManifestArtifact"
+        }
+      },
+      {
+        "id": "hashReleaseManifest",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "releaseManifestPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.releaseManifestHash"
+        }
+      },
+      {
+        "id": "materializeInfographic",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "infographicPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1200\" height=\"520\" viewBox=\"0 0 1200 520\" role=\"img\" aria-label=\"Invoice Approval Readiness SDK release flow\">",
+              "<rect width=\"1200\" height=\"520\" fill=\"#f7f8fb\"/>",
+              "<text x=\"48\" y=\"58\" font-family=\"Arial\" font-size=\"31\" font-weight=\"700\" fill=\"#17202a\">Invoice Approval Readiness SDK</text>",
+              "<text x=\"48\" y=\"92\" font-family=\"Arial\" font-size=\"16\" fill=\"#4b5563\">AI Product Studio release-review package</text>",
+              "<g font-family=\"Arial\" font-size=\"14\" font-weight=\"700\" fill=\"#17202a\">",
+              "<rect x=\"50\" y=\"145\" width=\"155\" height=\"72\" rx=\"8\" fill=\"#fff\" stroke=\"#cbd5e1\"/><text x=\"86\" y=\"178\">Story</text><text x=\"72\" y=\"199\">AP Manager</text>",
+              "<rect x=\"245\" y=\"145\" width=\"155\" height=\"72\" rx=\"8\" fill=\"#fff\" stroke=\"#cbd5e1\"/><text x=\"288\" y=\"178\">Live BA</text><text x=\"277\" y=\"199\">Gemini</text>",
+              "<rect x=\"440\" y=\"145\" width=\"155\" height=\"72\" rx=\"8\" fill=\"#fff\" stroke=\"#cbd5e1\"/><text x=\"487\" y=\"178\">SDK</text><text x=\"478\" y=\"199\">Package</text>",
+              "<rect x=\"635\" y=\"145\" width=\"155\" height=\"72\" rx=\"8\" fill=\"#fff\" stroke=\"#cbd5e1\"/><text x=\"678\" y=\"178\">Smoke</text><text x=\"686\" y=\"199\">Tests</text>",
+              "<rect x=\"830\" y=\"145\" width=\"155\" height=\"72\" rx=\"8\" fill=\"#fff\" stroke=\"#cbd5e1\"/><text x=\"866\" y=\"178\">Market</text><text x=\"865\" y=\"199\">Listing</text>",
+              "<rect x=\"1025\" y=\"145\" width=\"125\" height=\"72\" rx=\"8\" fill=\"#fff\" stroke=\"#cbd5e1\"/><text x=\"1055\" y=\"178\">Release</text><text x=\"1060\" y=\"199\">Review</text>",
+              "</g>",
+              "<g stroke=\"#64748b\" stroke-width=\"3\" marker-end=\"url(#arrow)\"><defs><marker id=\"arrow\" markerWidth=\"10\" markerHeight=\"10\" refX=\"8\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L0,6 L9,3 z\" fill=\"#64748b\"/></marker></defs><line x1=\"205\" y1=\"181\" x2=\"243\" y2=\"181\"/><line x1=\"400\" y1=\"181\" x2=\"438\" y2=\"181\"/><line x1=\"595\" y1=\"181\" x2=\"633\" y2=\"181\"/><line x1=\"790\" y1=\"181\" x2=\"828\" y2=\"181\"/><line x1=\"985\" y1=\"181\" x2=\"1023\" y2=\"181\"/></g>",
+              "<rect x=\"50\" y=\"290\" width=\"1100\" height=\"150\" rx=\"10\" fill=\"#fff\" stroke=\"#cbd5e1\"/>",
+              "<text x=\"78\" y=\"330\" font-family=\"Arial\" font-size=\"22\" font-weight=\"700\" fill=\"#166534\">Valid packet: passed</text>",
+              "<text x=\"78\" y=\"370\" font-family=\"Arial\" font-size=\"20\" font-weight=\"700\" fill=\"#991b1b\">Missing PO packet: blocked</text>",
+              "<text x=\"78\" y=\"408\" font-family=\"Arial\" font-size=\"16\" fill=\"#4b5563\">Release review complete; archive publication is waiting for a governed package archive step.</text>",
+              "</svg>"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.infographicArtifact"
+        }
+      },
+      {
+        "id": "hashInfographic",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "infographicPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.infographicHash"
+        }
+      },
+      {
+        "id": "materializeReviewJson",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "reviewJsonPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.release-review-package.v1",
+              "status": "accepted_for_release_review",
+              "productName": "Invoice Approval Readiness SDK",
+              "requestedOutcome": "Create an invoice approval readiness checker for accounts payable managers.",
+              "developerCanUse": true,
+              "buyerCanUnderstand": true,
+              "marketplaceCanList": true,
+              "packageCanArchive": false,
+              "archiveBlocker": "missing_governed_package_archive_step",
+              "proof": {
+                "liveBA": {
+                  "path": {
+                    "$graph": "geminiReceiptPath.path"
+                  },
+                  "hash": {
+                    "$graph": "geminiReceiptHash.hash"
+                  }
+                },
+                "build": {
+                  "path": {
+                    "$graph": "buildReceiptPath.path"
+                  },
+                  "hash": {
+                    "$graph": "buildReceiptHash.hash"
+                  }
+                },
+                "test": {
+                  "path": {
+                    "$graph": "testReceiptPath.path"
+                  },
+                  "hash": {
+                    "$graph": "testReceiptHash.hash"
+                  }
+                },
+                "releaseManifest": {
+                  "path": {
+                    "$graph": "releaseManifestPath.path"
+                  },
+                  "hash": {
+                    "$graph": "releaseManifestHash.hash"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.reviewJsonArtifact"
+        }
+      },
+      {
+        "id": "hashReviewJson",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "reviewJsonPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewJsonHash"
+        }
+      },
+      {
+        "id": "materializeReviewHtml",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "reviewHtmlPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "<!doctype html>",
+              "<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Invoice Approval Readiness SDK - Release Review</title>",
+              "<style>body{margin:0;background:#f5f7fb;color:#17202a;font-family:Arial,sans-serif}main{max-width:1120px;margin:0 auto;padding:32px}.hero,.panel{background:#fff;border:1px solid #d8dee9;padding:24px;margin:16px 0}.badge{display:inline-block;padding:6px 10px;border-radius:6px;border:1px solid #bbf7d0;background:#dcfce7;color:#166534;font-weight:700}.warn{background:#fef3c7;color:#92400e;border-color:#fde68a}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}table{width:100%;border-collapse:collapse}td,th{border:1px solid #d8dee9;padding:10px;text-align:left;vertical-align:top}th{background:#eef2f7}code{background:#eef2f7;padding:2px 4px}@media(max-width:780px){.grid{grid-template-columns:1fr}}</style></head>",
+              "<body><main><section class=\"hero\"><span class=\"badge\">Accepted for release review</span><h1>Invoice Approval Readiness SDK</h1><p>Checks whether invoice packets have purchase order, receiving, and approval evidence before payment.</p></section>",
+              "<div class=\"grid\"><section class=\"panel\"><h2>What was built?</h2><p>SDK package candidate, CLI, API docs, quickstart, examples, tests, marketplace product page, product card, release manifest, and receipts.</p></section><section class=\"panel\"><h2>Release blocker</h2><p><span class=\"badge warn\">Archive pending</span></p><p>A governed package archive step is still needed before a `.tgz` package can be claimed.</p></section></div>",
+              "<section class=\"panel\"><h2>Demo behavior</h2><table><thead><tr><th>Fixture</th><th>Expected</th><th>Actual</th></tr></thead><tbody><tr><td>valid invoice packet</td><td>passed</td><td>passed</td></tr><tr><td>missing PO invoice packet</td><td>blocked</td><td>blocked</td></tr></tbody></table></section>",
+              "<section class=\"panel\"><h2>Proof</h2><table><tbody><tr><td>Live Gemini BA receipt</td><td><code>",
+              {
+                "$graph": "geminiReceiptPath.path"
+              },
+              "</code></td><td><code>",
+              {
+                "$graph": "geminiReceiptHash.hash"
+              },
+              "</code></td></tr><tr><td>Build receipt</td><td><code>",
+              {
+                "$graph": "buildReceiptPath.path"
+              },
+              "</code></td><td><code>",
+              {
+                "$graph": "buildReceiptHash.hash"
+              },
+              "</code></td></tr><tr><td>Test receipt</td><td><code>",
+              {
+                "$graph": "testReceiptPath.path"
+              },
+              "</code></td><td><code>",
+              {
+                "$graph": "testReceiptHash.hash"
+              },
+              "</code></td></tr><tr><td>Release manifest</td><td><code>",
+              {
+                "$graph": "releaseManifestPath.path"
+              },
+              "</code></td><td><code>",
+              {
+                "$graph": "releaseManifestHash.hash"
+              },
+              "</code></td></tr></tbody></table></section>",
+              "</main></body></html>"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.reviewHtmlArtifact"
+        }
+      },
+      {
+        "id": "hashReviewHtml",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "reviewHtmlPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewHtmlHash"
+        }
+      },
+      {
+        "id": "emitReleaseReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "releaseReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.invoice-approval-readiness.release.receipt.v1",
+              "status": "accepted_for_release_review",
+              "productName": "Invoice Approval Readiness SDK",
+              "packageRoot": {
+                "$graph": "packageRoot.path"
+              },
+              "buildReceipt": {
+                "path": {
+                  "$graph": "buildReceiptPath.path"
+                },
+                "hash": {
+                  "$graph": "buildReceiptHash.hash"
+                }
+              },
+              "testReceipt": {
+                "path": {
+                  "$graph": "testReceiptPath.path"
+                },
+                "hash": {
+                  "$graph": "testReceiptHash.hash"
+                }
+              },
+              "releaseManifest": {
+                "path": {
+                  "$graph": "releaseManifestPath.path"
+                },
+                "hash": {
+                  "$graph": "releaseManifestHash.hash"
+                }
+              },
+              "reviewPackage": {
+                "path": {
+                  "$graph": "reviewHtmlPath.path"
+                },
+                "hash": {
+                  "$graph": "reviewHtmlHash.hash"
+                }
+              },
+              "marketplace": {
+                "productPage": {
+                  "path": {
+                    "$graph": "productPagePath.path"
+                  },
+                  "hash": {
+                    "$graph": "productPageHash.hash"
+                  }
+                },
+                "productCard": {
+                  "path": {
+                    "$graph": "productCardPath.path"
+                  },
+                  "hash": {
+                    "$graph": "productCardHash.hash"
+                  }
+                }
+              },
+              "packageArchive": {
+                "status": "blocked_missing_governed_package_archive_step",
+                "nextStepOwner": "Release Pipeline"
+              },
+              "completionPosture": "The conveyor produced a release-grade SDK package candidate and marketplace-ready review surfaces; archive publication remains blocked until package archive support exists."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.releaseReceipt"
+        }
+      },
+      {
+        "id": "projectResult",
+        "capabilityKey": "project.value.v1",
+        "input": {
+          "fields": {
+            "status": {
+              "literal": "accepted_for_release_review"
+            },
+            "productName": {
+              "literal": "Invoice Approval Readiness SDK"
+            },
+            "packageRoot": {
+              "$graph": "packageRoot.path"
+            },
+            "releaseReviewPackage": {
+              "path": {
+                "$graph": "reviewHtmlPath.path"
+              },
+              "hash": {
+                "$graph": "reviewHtmlHash.hash"
+              }
+            },
+            "marketplaceProductPage": {
+              "path": {
+                "$graph": "productPagePath.path"
+              },
+              "hash": {
+                "$graph": "productPageHash.hash"
+              }
+            },
+            "releaseReceipt": {
+              "$graph": "releaseReceiptPath.path"
+            },
+            "archiveStatus": {
+              "literal": "blocked_missing_governed_package_archive_step"
+            },
+            "nextStepOwner": {
+              "literal": "Product Owner"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.result"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "completionPosture": "The story implement CLI can produce an invoice approval release-review SDK package candidate, execute usage smoke tests, and emit marketplace/release evidence without platform-agent product assembly."
+}

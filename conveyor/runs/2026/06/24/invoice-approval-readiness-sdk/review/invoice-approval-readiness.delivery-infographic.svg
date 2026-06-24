@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Invoice Approval Readiness SDK release flow">
+<rect width="1200" height="520" fill="#f7f8fb"/>
+<text x="48" y="58" font-family="Arial" font-size="31" font-weight="700" fill="#17202a">Invoice Approval Readiness SDK</text>
+<text x="48" y="92" font-family="Arial" font-size="16" fill="#4b5563">AI Product Studio release-review package</text>
+<g font-family="Arial" font-size="14" font-weight="700" fill="#17202a">
+<rect x="50" y="145" width="155" height="72" rx="8" fill="#fff" stroke="#cbd5e1"/><text x="86" y="178">Story</text><text x="72" y="199">AP Manager</text>
+<rect x="245" y="145" width="155" height="72" rx="8" fill="#fff" stroke="#cbd5e1"/><text x="288" y="178">Live BA</text><text x="277" y="199">Gemini</text>
+<rect x="440" y="145" width="155" height="72" rx="8" fill="#fff" stroke="#cbd5e1"/><text x="487" y="178">SDK</text><text x="478" y="199">Package</text>
+<rect x="635" y="145" width="155" height="72" rx="8" fill="#fff" stroke="#cbd5e1"/><text x="678" y="178">Smoke</text><text x="686" y="199">Tests</text>
+<rect x="830" y="145" width="155" height="72" rx="8" fill="#fff" stroke="#cbd5e1"/><text x="866" y="178">Market</text><text x="865" y="199">Listing</text>
+<rect x="1025" y="145" width="125" height="72" rx="8" fill="#fff" stroke="#cbd5e1"/><text x="1055" y="178">Release</text><text x="1060" y="199">Review</text>
+</g>
+<g stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"/></marker></defs><line x1="205" y1="181" x2="243" y2="181"/><line x1="400" y1="181" x2="438" y2="181"/><line x1="595" y1="181" x2="633" y2="181"/><line x1="790" y1="181" x2="828" y2="181"/><line x1="985" y1="181" x2="1023" y2="181"/></g>
+<rect x="50" y="290" width="1100" height="150" rx="10" fill="#fff" stroke="#cbd5e1"/>
+<text x="78" y="330" font-family="Arial" font-size="22" font-weight="700" fill="#166534">Valid packet: passed</text>
+<text x="78" y="370" font-family="Arial" font-size="20" font-weight="700" fill="#991b1b">Missing PO packet: blocked</text>
+<text x="78" y="408" font-family="Arial" font-size="16" fill="#4b5563">Release review complete; archive publication is waiting for a governed package archive step.</text>
+</svg>
