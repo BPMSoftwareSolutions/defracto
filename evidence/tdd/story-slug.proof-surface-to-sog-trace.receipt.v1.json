@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "defracto.proof-surface-to-sog-trace-receipt.v1",
+  "receiptKey": "defracto.receipt.story-slug.proof-surface-to-sog-trace.slice-032.v1",
+  "status": "passed",
+  "storyKey": "stories/user-stories/story-slug.story.v1.json",
+  "traceSource": {
+    "canonicalSpec": "specs/canonical/user-stories/story-slug.canonical-spec.v1.json",
+    "testIntent": "contracts/test-intents/story-slug.test-intent.v1.json",
+    "acceptanceCriteria": "contracts/acceptance-criteria/story-slug.acceptance-criteria.v1.json"
+  },
+  "proofSurfaceEvidence": {
+    "generatedImplementationPath": "generated/implementations/user-stories/story-slug.cjs",
+    "generatedImplementationHash": "sha256:d9fdcb9780fecee2b4049ab8620911cceec90d70d22b961c505fd891599992b8",
+    "redGreenConformanceReceipt": "evidence/tdd/story-slug.red-green-conformance.receipt.v1.json",
+    "redGreenConformanceReceiptHash": "sha256:8336f409f115b04a53e3109281afc57d86b95552885790c909364c9b737321c4",
+    "role": "proof_evidence_only_not_source_truth"
+  },
+  "sogSeed": {
+    "semanticAction": "contracts/semantic-actions/story-slug.generate.v1.json",
+    "semanticActionHash": "sha256:42ccc7df194fcaf967ceabfb85ab9abd97c5994b014901910d1d775246d0d8a5",
+    "semanticOperationGraph": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+    "semanticOperationGraphHash": "sha256:70f369227c427823050e4a0f6ac0da92a8c124f621fced7db5c9f7a605b14b12",
+    "capabilityBindings": "contracts/capabilities/story-slug.capability-bindings.v1.json",
+    "capabilityBindingsHash": "sha256:4ad6bc2bc3c53f63fdf5227a2e3957b784f33c72adfc79e6359ab96dcb49536a",
+    "resultSchema": "contracts/schemas/story-slug-result.schema.v1.json",
+    "resultSchemaHash": "sha256:98bbe178980314a7fef114c7542248159e15b68d4207a60a66f4123eabf4ff2b"
+  },
+  "guardrails": {
+    "sogDerivedFromCanonicalBehavior": true,
+    "sogDerivedFromTestIntent": true,
+    "generatedImplementationReferencedOnlyAsEvidence": true,
+    "generatedImplementationUsedAsSourceTruth": false,
+    "hostLanguageBodyAllowed": false,
+    "hostLanguageBodyCopiedIntoSog": false,
+    "durableProductTruthAccepted": false
+  },
+  "canonicalPathCoverage": [
+    "$.storySlug.input.title",
+    "$.storySlug.output.slugKey",
+    "$.storySlug.rules.lowercaseAscii",
+    "$.storySlug.rules.whitespaceToHyphen",
+    "$.storySlug.rules.removeUnsupportedPunctuation",
+    "$.storySlug.rules.collapseRepeatedHyphens",
+    "$.storySlug.failures.emptyInput"
+  ],
+  "completionPosture": "The proof surface has been traced to a SOG seed candidate without treating generated CJS as semantic source truth."
+}

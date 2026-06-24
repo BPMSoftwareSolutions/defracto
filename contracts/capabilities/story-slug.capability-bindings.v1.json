@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "loc.capability-binding.v1",
+  "bindingKey": "defracto.user-stories.story-slug.capability-bindings.v1",
+  "bindingStatus": "blocked-pending-capability-coverage",
+  "semanticOperationGraphRef": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+  "bindings": [
+    {
+      "capabilityKey": "input.require_non_empty_string.v1",
+      "primitiveKey": null,
+      "status": "unsupported_missing_capability",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "string.trim.v1",
+      "primitiveKey": null,
+      "status": "unsupported_missing_capability",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "string.lowercase_ascii.v1",
+      "primitiveKey": null,
+      "status": "unsupported_missing_capability",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "string.replace_whitespace_with_hyphen.v1",
+      "primitiveKey": null,
+      "status": "unsupported_missing_capability",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "string.remove_unsupported_slug_chars.v1",
+      "primitiveKey": null,
+      "status": "unsupported_missing_capability",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "string.collapse_repeated_hyphens.v1",
+      "primitiveKey": null,
+      "status": "unsupported_missing_capability",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "string.trim_hyphen_edges.v1",
+      "primitiveKey": null,
+      "status": "unsupported_missing_capability",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "result.project.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "macro_or_capability_gap_candidate",
+      "ifMissing": "blocked"
+    }
+  ],
+  "forbiddenHostFallback": true,
+  "completionPosture": "Story-slug SOG seed is blocked until all capability keys have supported resolver bindings; generated CJS may not be used as fallback."
+}

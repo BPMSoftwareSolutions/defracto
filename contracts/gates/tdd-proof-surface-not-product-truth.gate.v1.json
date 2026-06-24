@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.tdd_proof_surface_not_product_truth.v1",
+  "gateTitle": "TDD Proof Surface Not Product Truth",
+  "gateStatus": "accepted",
+  "purpose": "Allow generated TDD proof surfaces to be reviewed while blocking any claim that the generated implementation is durable product behavior.",
+  "passConditions": [
+    "red receipt exists",
+    "green receipt exists",
+    "red-green cycle receipt exists",
+    "generated implementation materialization receipt exists",
+    "implementation projection manifest classifies artifact as proof_surface_only",
+    "implementation projection manifest sets notPromotionValidAsDurableProductBehavior to true",
+    "red-green cycle receipt sets mustPromoteThrough to semantic_operation_graph"
+  ],
+  "blockConditions": [
+    "generated implementation claims durable product behavior",
+    "proof surface lacks materialization receipt",
+    "green receipt exists without red receipt",
+    "generated implementation hash does not match materialization receipt",
+    "promotionStatus is not proof_surface_only",
+    "notPromotionValidAsDurableProductBehavior is false or missing"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Generated implementation is accepted only as a reviewable TDD proof surface; product truth remains blocked."
+}

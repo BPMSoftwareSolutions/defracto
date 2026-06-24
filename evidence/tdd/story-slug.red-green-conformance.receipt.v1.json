@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "defracto.red-green-conformance-receipt.v1",
+  "receiptKey": "defracto.receipt.story-slug.red-green-conformance.slice-031.v1",
+  "status": "passed",
+  "storyKey": "stories/user-stories/story-slug.story.v1.json",
+  "redGreenCycleReceipt": {
+    "path": "evidence/tdd/story-slug.red-green-cycle.receipt.v1.json",
+    "hash": "sha256:9892bffd51d242ed0ea5d7e3e93fd2e3a5a118ef12deb85bc0093afd0c962353",
+    "status": "passed"
+  },
+  "redReceipt": {
+    "path": "evidence/tdd/story-slug.red-test.receipt.v1.json",
+    "hash": "sha256:851b47dc550767eb9b4ff002e59ce33b0237f7906504a258d7cd39e66be145f2",
+    "exitCode": 1,
+    "failureCode": "MODULE_NOT_FOUND",
+    "implementationArtifactExistedDuringRed": false
+  },
+  "greenReceipt": {
+    "path": "evidence/tdd/story-slug.green-test.receipt.v1.json",
+    "hash": "sha256:06fc050058b22b2e96180cf495216755917fd64185ae302c009a8704a682d203",
+    "exitCode": 0,
+    "tests": 4,
+    "pass": 4,
+    "fail": 0
+  },
+  "generatedTestArtifact": {
+    "path": "tests/generated/user-stories/story-slug.generated.test.js",
+    "hash": "sha256:246299c26d138d78257f747c2554ba87687b511421bc2f0f27a49e6e0d2c6a7a",
+    "sameHashInRedReceipt": true,
+    "sameHashInGreenReceipt": true
+  },
+  "generatedImplementationArtifact": {
+    "path": "generated/implementations/user-stories/story-slug.cjs",
+    "hash": "sha256:d9fdcb9780fecee2b4049ab8620911cceec90d70d22b961c505fd891599992b8",
+    "materializationReceipt": "evidence/tdd/story-slug.generated-implementation.materialization.receipt.v1.json",
+    "materializationReceiptHash": "sha256:0441d7d8bc63c1b0cdee6127828d6e3d201fe5a4f44e669c2d1edf009c754347",
+    "hashMatchesMaterializationReceipt": true,
+    "implementationProjectionManifest": "contracts/projections/story-slug.implementation-projection-manifest.v1.json",
+    "implementationProjectionManifestHash": "sha256:4d4b48cdc4472d467f1c707972075f3324d642a52054d0c038bf0d50ceb57c8d"
+  },
+  "gateResults": {
+    "redReceiptExists": true,
+    "greenReceiptExists": true,
+    "redOccurredBeforeGreen": true,
+    "sameGeneratedTestHashForRedAndGreen": true,
+    "generatedImplementationHashMatchesMaterializationReceipt": true,
+    "implementationClassifiedAsProofSurfaceOnly": true,
+    "notPromotionValidAsDurableProductBehavior": true,
+    "mustPromoteThroughSemanticOperationGraph": true,
+    "promotionToDurableProductTruthBlockedUntilSogExists": true
+  },
+  "promotionPosture": {
+    "sourceTruth": "canonical_spec_and_test_intent",
+    "projectionKind": "generated_tdd_proof_surface",
+    "promotionStatus": "proof_surface_only",
+    "notPromotionValidAsDurableProductBehavior": true,
+    "mustPromoteThrough": "semantic_operation_graph",
+    "durableProductTruthStatus": "blocked_until_sog_exists"
+  },
+  "blockedReasons": [],
+  "completionPosture": "Red-green conformance is accepted for review of the generated proof surface only; product promotion remains blocked until SOG evidence exists."
+}

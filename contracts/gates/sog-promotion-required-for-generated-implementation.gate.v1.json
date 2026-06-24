@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.sog_promotion_required_for_generated_implementation.v1",
+  "gateTitle": "SOG Promotion Required For Generated Implementation",
+  "gateStatus": "accepted",
+  "purpose": "Block promotion of generated implementation artifacts to durable product truth until equivalent behavior is represented and evidenced as a Semantic Operation Graph.",
+  "passConditions": [
+    "generated implementation is classified as proof_surface_only",
+    "red-green conformance receipt exists",
+    "SOG promotion posture receipt exists",
+    "promotionStatus remains blocked_until_sog_exists",
+    "mustPromoteThrough is semantic_operation_graph"
+  ],
+  "blockConditions": [
+    "durable product truth is claimed before SOG exists",
+    "generated implementation is promoted directly from green receipt",
+    "SOG equivalence receipt is missing",
+    "semantic operation graph path is missing",
+    "promotionStatus is accepted without SOG parity evidence"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Green proof is reviewable, but durable promotion is blocked until SOG parity evidence exists."
+}

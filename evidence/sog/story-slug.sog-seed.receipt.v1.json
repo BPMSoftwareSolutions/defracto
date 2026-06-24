@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "defracto.sog-seed-receipt.v1",
+  "receiptKey": "defracto.receipt.story-slug.sog-seed.slice-032.v1",
+  "status": "blocked",
+  "blockedReason": "capability_coverage_missing",
+  "storyKey": "stories/user-stories/story-slug.story.v1.json",
+  "semanticOperationGraph": {
+    "path": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+    "hash": "sha256:70f369227c427823050e4a0f6ac0da92a8c124f621fced7db5c9f7a605b14b12",
+    "status": "seed-blocked-pending-capability-coverage",
+    "hostLanguageBodyAllowed": false
+  },
+  "semanticAction": {
+    "path": "contracts/semantic-actions/story-slug.generate.v1.json",
+    "hash": "sha256:42ccc7df194fcaf967ceabfb85ab9abd97c5994b014901910d1d775246d0d8a5"
+  },
+  "capabilityBindings": {
+    "path": "contracts/capabilities/story-slug.capability-bindings.v1.json",
+    "hash": "sha256:4ad6bc2bc3c53f63fdf5227a2e3957b784f33c72adfc79e6359ab96dcb49536a",
+    "bindingStatus": "blocked-pending-capability-coverage"
+  },
+  "stepCoverage": [
+    {
+      "stepId": "require-title",
+      "capabilityKey": "input.require_non_empty_string.v1",
+      "bindingStatus": "unsupported_missing_capability",
+      "ifMissing": "blocked"
+    },
+    {
+      "stepId": "trim-title",
+      "capabilityKey": "string.trim.v1",
+      "bindingStatus": "unsupported_missing_capability",
+      "ifMissing": "blocked"
+    },
+    {
+      "stepId": "lowercase-ascii",
+      "capabilityKey": "string.lowercase_ascii.v1",
+      "bindingStatus": "unsupported_missing_capability",
+      "ifMissing": "blocked"
+    },
+    {
+      "stepId": "whitespace-to-hyphen",
+      "capabilityKey": "string.replace_whitespace_with_hyphen.v1",
+      "bindingStatus": "unsupported_missing_capability",
+      "ifMissing": "blocked"
+    },
+    {
+      "stepId": "remove-unsupported-slug-chars",
+      "capabilityKey": "string.remove_unsupported_slug_chars.v1",
+      "bindingStatus": "unsupported_missing_capability",
+      "ifMissing": "blocked"
+    },
+    {
+      "stepId": "collapse-repeated-hyphens",
+      "capabilityKey": "string.collapse_repeated_hyphens.v1",
+      "bindingStatus": "unsupported_missing_capability",
+      "ifMissing": "blocked"
+    },
+    {
+      "stepId": "trim-hyphen-edges",
+      "capabilityKey": "string.trim_hyphen_edges.v1",
+      "bindingStatus": "unsupported_missing_capability",
+      "ifMissing": "blocked"
+    },
+    {
+      "stepId": "project-result",
+      "capabilityKey": "result.project.v1",
+      "bindingStatus": "macro_or_capability_gap_candidate",
+      "ifMissing": "blocked"
+    }
+  ],
+  "promotionDecision": {
+    "sogSeedCreated": true,
+    "capabilityCoverageComplete": false,
+    "resolverExecutionProven": false,
+    "sogParityReceiptExists": false,
+    "durableProductTruthAccepted": false,
+    "promotionStatus": "blocked_until_capability_coverage_and_sog_execution"
+  },
+  "requiredNextEvidence": [
+    "capability coverage receipt",
+    "SOG resolver execution receipt",
+    "SOG parity receipt against story-slug generated test intent"
+  ],
+  "completionPosture": "SOG seed exists, but durable promotion remains blocked until capability coverage, resolver execution, and parity evidence pass."
+}

@@ -1,0 +1,229 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.user-stories.story-slug.generate.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "seed-blocked-pending-capability-coverage",
+  "commandKey": "defracto.user-stories.story-slug.generate.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.user-stories.story-slug.generate.semantic-action.v1",
+      "capabilityKey": "story-slug.generate.v1",
+      "intent": "Generate a governed story slug result from canonical behavior."
+    },
+    {
+      "actionKey": "defracto.user-stories.story-slug.require-title.semantic-action.v1",
+      "capabilityKey": "input.require_non_empty_string.v1",
+      "intent": "Require title input to be a non-empty string after trimming."
+    },
+    {
+      "actionKey": "defracto.user-stories.story-slug.trim.semantic-action.v1",
+      "capabilityKey": "string.trim.v1",
+      "intent": "Trim surrounding whitespace from the title."
+    },
+    {
+      "actionKey": "defracto.user-stories.story-slug.lowercase-ascii.semantic-action.v1",
+      "capabilityKey": "string.lowercase_ascii.v1",
+      "intent": "Lowercase ASCII letters."
+    },
+    {
+      "actionKey": "defracto.user-stories.story-slug.whitespace-to-hyphen.semantic-action.v1",
+      "capabilityKey": "string.replace_whitespace_with_hyphen.v1",
+      "intent": "Replace whitespace runs with hyphens."
+    },
+    {
+      "actionKey": "defracto.user-stories.story-slug.remove-unsupported-chars.semantic-action.v1",
+      "capabilityKey": "string.remove_unsupported_slug_chars.v1",
+      "intent": "Remove unsupported slug punctuation."
+    },
+    {
+      "actionKey": "defracto.user-stories.story-slug.collapse-hyphens.semantic-action.v1",
+      "capabilityKey": "string.collapse_repeated_hyphens.v1",
+      "intent": "Collapse repeated hyphens."
+    },
+    {
+      "actionKey": "defracto.user-stories.story-slug.trim-hyphen-edges.semantic-action.v1",
+      "capabilityKey": "string.trim_hyphen_edges.v1",
+      "intent": "Trim hyphen edges from the slug."
+    },
+    {
+      "actionKey": "defracto.user-stories.story-slug.project-result.semantic-action.v1",
+      "capabilityKey": "result.project.v1",
+      "intent": "Project passed or blocked story-slug result."
+    }
+  ],
+  "graph": {
+    "sourceLineage": {
+      "canonicalSpec": "specs/canonical/user-stories/story-slug.canonical-spec.v1.json",
+      "testIntent": "contracts/test-intents/story-slug.test-intent.v1.json",
+      "acceptanceCriteria": "contracts/acceptance-criteria/story-slug.acceptance-criteria.v1.json",
+      "proofSurfaceImplementation": {
+        "path": "generated/implementations/user-stories/story-slug.cjs",
+        "hash": "sha256:d9fdcb9780fecee2b4049ab8620911cceec90d70d22b961c505fd891599992b8",
+        "role": "evidence_only_not_source_truth"
+      }
+    },
+    "steps": [
+      {
+        "id": "require-title",
+        "capabilityKey": "input.require_non_empty_string.v1",
+        "intent": "Block when title is missing, non-string, or empty after trim.",
+        "input": {
+          "value": {
+            "$context": "title"
+          },
+          "blocker": "empty_slug_input"
+        },
+        "output": {
+          "path": "$graph.require_title"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "empty_slug_input"
+        }
+      },
+      {
+        "id": "trim-title",
+        "capabilityKey": "string.trim.v1",
+        "intent": "Trim surrounding whitespace from the title.",
+        "input": {
+          "value": {
+            "$graph": "require_title.value"
+          }
+        },
+        "output": {
+          "path": "$graph.trim_title"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "story_slug_trim_failed"
+        }
+      },
+      {
+        "id": "lowercase-ascii",
+        "capabilityKey": "string.lowercase_ascii.v1",
+        "intent": "Lowercase ASCII letters.",
+        "input": {
+          "value": {
+            "$graph": "trim_title.value"
+          }
+        },
+        "output": {
+          "path": "$graph.lowercase_ascii"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "story_slug_lowercase_ascii_failed"
+        }
+      },
+      {
+        "id": "whitespace-to-hyphen",
+        "capabilityKey": "string.replace_whitespace_with_hyphen.v1",
+        "intent": "Replace whitespace runs with hyphens.",
+        "input": {
+          "value": {
+            "$graph": "lowercase_ascii.value"
+          }
+        },
+        "output": {
+          "path": "$graph.whitespace_to_hyphen"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "story_slug_whitespace_to_hyphen_failed"
+        }
+      },
+      {
+        "id": "remove-unsupported-slug-chars",
+        "capabilityKey": "string.remove_unsupported_slug_chars.v1",
+        "intent": "Remove unsupported slug punctuation and preserve ASCII letters, digits, and hyphens.",
+        "input": {
+          "value": {
+            "$graph": "whitespace_to_hyphen.value"
+          },
+          "allowed": "ascii_letters_digits_hyphen"
+        },
+        "output": {
+          "path": "$graph.remove_unsupported_slug_chars"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "story_slug_remove_unsupported_chars_failed"
+        }
+      },
+      {
+        "id": "collapse-repeated-hyphens",
+        "capabilityKey": "string.collapse_repeated_hyphens.v1",
+        "intent": "Collapse repeated hyphens to a single hyphen.",
+        "input": {
+          "value": {
+            "$graph": "remove_unsupported_slug_chars.value"
+          }
+        },
+        "output": {
+          "path": "$graph.collapse_repeated_hyphens"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "story_slug_collapse_hyphens_failed"
+        }
+      },
+      {
+        "id": "trim-hyphen-edges",
+        "capabilityKey": "string.trim_hyphen_edges.v1",
+        "intent": "Trim leading and trailing hyphens.",
+        "input": {
+          "value": {
+            "$graph": "collapse_repeated_hyphens.value"
+          }
+        },
+        "output": {
+          "path": "$graph.trim_hyphen_edges"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "story_slug_trim_hyphen_edges_failed"
+        }
+      },
+      {
+        "id": "project-result",
+        "capabilityKey": "result.project.v1",
+        "intent": "Project a passed slug result or the exact empty input blocker.",
+        "input": {
+          "schema": "contracts/schemas/story-slug-result.schema.v1.json",
+          "slugKey": {
+            "$graph": "trim_hyphen_edges.value"
+          },
+          "emptyBlocker": "empty_slug_input"
+        },
+        "output": {
+          "path": "$graph.project_result"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "story_slug_project_result_failed"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "project_result"
+    }
+  },
+  "evidenceObligations": [
+    "semantic_actions_resolved",
+    "capabilities_bound",
+    "unsupported_capabilities_block_closed",
+    "graph_steps_executed_before_promotion",
+    "sog_parity_receipt_emitted_before_durable_truth"
+  ],
+  "forbiddenClaims": [
+    "generated implementation is source truth",
+    "host-language body copied into semantic graph",
+    "durable product truth",
+    "promotion without capability coverage",
+    "promotion without resolver execution",
+    "promotion without SOG parity evidence"
+  ]
+}

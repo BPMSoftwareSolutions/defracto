@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "loc.semantic-action.v1",
+  "objectKind": "semantic_action",
+  "actionKey": "defracto.user-stories.story-slug.generate.semantic-action.v1",
+  "capabilityKey": "story-slug.generate.v1",
+  "intent": "Generate a governed story slug result from a title according to canonical story-slug behavior.",
+  "stableSignature": {
+    "algorithm": "sha256",
+    "fields": [
+      "actionKey",
+      "capabilityKey",
+      "input",
+      "output",
+      "failure"
+    ],
+    "value": "computed-by-resolver-or-registry"
+  },
+  "input": {
+    "title": "$context.title",
+    "canonicalSpec": "specs/canonical/user-stories/story-slug.canonical-spec.v1.json",
+    "testIntent": "contracts/test-intents/story-slug.test-intent.v1.json"
+  },
+  "output": {
+    "path": "$graph.project_result",
+    "schema": "contracts/schemas/story-slug-result.schema.v1.json"
+  },
+  "failure": {
+    "onMissingInput": "blocked",
+    "blocker": "empty_slug_input"
+  }
+}

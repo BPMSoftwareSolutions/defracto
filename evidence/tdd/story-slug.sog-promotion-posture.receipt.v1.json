@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "defracto.sog-promotion-posture-receipt.v1",
+  "receiptKey": "defracto.receipt.story-slug.sog-promotion-posture.slice-031.v1",
+  "status": "blocked",
+  "storyKey": "stories/user-stories/story-slug.story.v1.json",
+  "generatedImplementationArtifact": {
+    "path": "generated/implementations/user-stories/story-slug.cjs",
+    "hash": "sha256:d9fdcb9780fecee2b4049ab8620911cceec90d70d22b961c505fd891599992b8",
+    "classification": "generated_tdd_proof_surface"
+  },
+  "redGreenConformanceReceipt": {
+    "path": "evidence/tdd/story-slug.red-green-conformance.receipt.v1.json",
+    "status": "passed"
+  },
+  "requiredPromotionGate": "contracts/gates/sog-promotion-required-for-generated-implementation.gate.v1.json",
+  "requiredSogArtifacts": [
+    "specs/sog/user-stories/story-slug.semantic-operation-graph.v1.json",
+    "evidence/tdd/story-slug.sog-parity.receipt.v1.json"
+  ],
+  "observedSogArtifacts": [],
+  "promotionDecision": {
+    "promotionRequested": false,
+    "durableProductTruthAccepted": false,
+    "promotionStatus": "blocked_until_sog_exists",
+    "blockedReason": "semantic_operation_graph_missing",
+    "mustPromoteThrough": "semantic_operation_graph"
+  },
+  "allowedCurrentUse": [
+    "review generated proof surface",
+    "inspect red-green evidence",
+    "derive future SOG candidate"
+  ],
+  "forbiddenCurrentUse": [
+    "claim durable product truth",
+    "ship generated implementation as product behavior",
+    "skip SOG parity evidence",
+    "promote green receipt directly to canonical runtime behavior"
+  ],
+  "completionPosture": "Promotion is intentionally blocked until story-slug behavior is represented as a Semantic Operation Graph and parity evidence exists."
+}

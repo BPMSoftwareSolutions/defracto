@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.red-green-conformance-receipt.v1",
+  "title": "Red Green Conformance Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptKey",
+    "status",
+    "storyKey",
+    "redGreenCycleReceipt",
+    "redReceipt",
+    "greenReceipt",
+    "generatedTestArtifact",
+    "generatedImplementationArtifact",
+    "gateResults",
+    "promotionPosture",
+    "blockedReasons",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.red-green-conformance-receipt.v1"
+    },
+    "receiptKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "failed",
+        "blocked"
+      ]
+    },
+    "storyKey": {
+      "type": "string"
+    },
+    "redGreenCycleReceipt": {
+      "type": "object"
+    },
+    "redReceipt": {
+      "type": "object"
+    },
+    "greenReceipt": {
+      "type": "object"
+    },
+    "generatedTestArtifact": {
+      "type": "object"
+    },
+    "generatedImplementationArtifact": {
+      "type": "object"
+    },
+    "gateResults": {
+      "type": "object"
+    },
+    "promotionPosture": {
+      "type": "object"
+    },
+    "blockedReasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
