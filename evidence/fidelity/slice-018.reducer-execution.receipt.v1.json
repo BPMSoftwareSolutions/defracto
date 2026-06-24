@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "defracto.fidelity-reducer-execution.receipt.v1",
+  "receiptKey": "defracto.receipt.fidelity.reducer.execution.slice-018.v1",
+  "status": "blocked",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "commandKey": "defracto.conveyor.fidelity.achievement.compute.v1",
+  "attemptedInvocations": [
+    "node node_modules/@bpmsoftwaresolutions/sej-resolver-node/src/cli.cjs resolve --contract .tmp/fidelity-achievement-computation.fixture.json",
+    "node node_modules/@bpmsoftwaresolutions/sej-resolver-node/src/cli.cjs resolve --contract contracts/sej/fidelity-achievement-computation.execute.sej.v1.json"
+  ],
+  "blocker": "contract_missing",
+  "error": "A SEJ contract object is required.",
+  "verificationStatus": "resolver_fail_closed",
+  "completionPosture": "The live reducer attempt failed before graph stage execution."
+}

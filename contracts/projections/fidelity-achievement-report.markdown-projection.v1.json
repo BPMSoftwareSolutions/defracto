@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "defracto.doc-projection.v1",
+  "projectionKey": "defracto.fidelity-achievement-report.markdown-projection.v1",
+  "projectionKind": "markdown_projection",
+  "projectionStatus": "accepted-for-target-shape",
+  "targetPath": "conveyor/runs/2026/06/22/reports/fidelity-achievement-report.slice-017.md",
+  "sourceLineage": {
+    "runManifest": "conveyor/runs/2026/06/22/slice-017-resolver-backed-fidelity-reducer/run.manifest.v1.json",
+    "receipts": [
+      "evidence/fidelity/slice-017.reducer-execution.receipt.v1.json",
+      "evidence/fidelity/slice-017.fidelity-gate.receipt.v1.json"
+    ],
+    "computedReport": "evidence/fidelity/slice-017.computed-achievement-report.v1.json"
+  },
+  "generatedResponsibilities": [
+    "summarize the computed fidelity achievement",
+    "show the claimed level and achieved level",
+    "list required receipts and gate results",
+    "show the next required level and missing evidence"
+  ],
+  "forbiddenResponsibilities": [
+    "inventing achieved level",
+    "hiding missing evidence",
+    "claiming Level 4 without proof",
+    "manual narrative drift"
+  ],
+  "completionPosture": "Markdown fidelity projection reflects computed conveyor state, not manual recollection."
+}

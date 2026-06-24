@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "defracto.visual.binding.receipt.v1",
+  "receiptKey": "defracto.visual.binding.claim-to-evidence-graph.html-svg.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "htmlPath": "projections/html/claim-to-evidence-graph.html",
+  "svgPath": "projections/svg/claim-to-evidence-graph.svg",
+  "bindingMode": "embedded object reference",
+  "bindingStatus": "preserved",
+  "nodeCount": 9,
+  "edgeCount": 8,
+  "verificationStatus": "html_svg_binding_confirmed",
+  "completionPosture": "The HTML review shell binds to the verified SVG proof graph without changing its node or edge set."
+}

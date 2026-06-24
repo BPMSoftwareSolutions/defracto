@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "defracto.fidelity-achievement-computation.reducer.v1",
+  "reducerKey": "defracto.reducer.fidelity-achievement.v1",
+  "reducerStatus": "accepted",
+  "purpose": "Define the evidence reduction rule that computes achieved fidelity level from receipts and gate posture.",
+  "computationRule": "The achieved level is the highest level whose required evidence set is fully satisfied and whose required gates are all passed; if any required receipt or gate is blocked, the highest satisfied level is reduced to the last fully satisfied level.",
+  "levelEvidenceRequirements": [
+    {
+      "level": 0,
+      "mustSatisfy": [
+        "source authority exists"
+      ]
+    },
+    {
+      "level": 1,
+      "mustSatisfy": [
+        "canonical authority exists"
+      ]
+    },
+    {
+      "level": 2,
+      "mustSatisfy": [
+        "projection surfaces exist",
+        "projection receipts exist"
+      ]
+    },
+    {
+      "level": 3,
+      "mustSatisfy": [
+        "projection freshness gate passes",
+        "receipt-required gate passes",
+        "drift or freshness evidence exists"
+      ]
+    },
+    {
+      "level": 4,
+      "mustSatisfy": [
+        "user-facing polish evidence exists",
+        "accessibility evidence exists",
+        "publish-safe channel evidence exists",
+        "surface equivalence evidence exists"
+      ]
+    },
+    {
+      "level": 5,
+      "mustSatisfy": [
+        "voice/document/refactor ingress evidence exists",
+        "repair or evolution evidence exists",
+        "equivalence proof for changed implementation exists"
+      ]
+    }
+  ],
+  "completionPosture": "The reducer is the source of truth for how an achieved fidelity level is computed from evidence."
+}

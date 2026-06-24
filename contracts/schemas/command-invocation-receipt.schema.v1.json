@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.command-invocation-receipt.v1",
+  "title": "Command Invocation Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptKey",
+    "status",
+    "commandKey",
+    "entrypoint",
+    "argv",
+    "input",
+    "runEnvelope",
+    "checks",
+    "blockedReasons"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.command-invocation-receipt.v1"
+    },
+    "receiptKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["passed", "blocked", "failed"]
+    },
+    "commandKey": {
+      "type": "string"
+    },
+    "entrypoint": {
+      "type": "string",
+      "const": "ndd"
+    },
+    "argv": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "input": {
+      "type": "object",
+      "required": ["kind", "path", "hash"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["text", "source_file"]
+        },
+        "path": {
+          "type": "string"
+        },
+        "hash": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "runEnvelope": {
+      "type": "object",
+      "required": ["path", "manifestPath"],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "manifestPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "dispatchPath": {
+      "type": "string"
+    },
+    "responsePath": {
+      "type": "string"
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockedReasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "exitCode": {
+      "type": "integer"
+    },
+    "stdout": {
+      "type": "string"
+    },
+    "stderr": {
+      "type": "string"
+    },
+    "artifactHashes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": false
+}

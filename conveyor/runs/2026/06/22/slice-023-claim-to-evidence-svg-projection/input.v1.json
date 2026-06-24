@@ -1,0 +1,10 @@
+{
+  "visualModel": "projections/visual-models/claim-to-evidence-graph.visual-model.v1.json",
+  "targetSketch": "projections/target-sketches/claim-to-evidence-graph.target.v1.json",
+  "asciiProjection": "contracts/projections/claim-to-evidence-graph.ascii-projection.v1.json",
+  "svgProjection": "contracts/projections/claim-to-evidence-graph.svg-projection.v1.json",
+  "surfacePath": "projections/svg/claim-to-evidence-graph.svg",
+  "receipts": [
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.edge-verification.receipt.v1.json"
+  ]
+}

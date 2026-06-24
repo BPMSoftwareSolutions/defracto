@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "defracto.release-gate-review.v1",
+  "reviewKey": "defracto.review.projection-freshness.docs-vs-cli.v1",
+  "status": "blocked",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "requiredReceipts": [
+    "evidence/docs/generated-docs.receipt.v1.json",
+    "evidence/docs/generated-doc-drift.receipt.v1.json",
+    "evidence/cli/ndd-cli.node-projection.receipt.v1.json",
+    "evidence/cli/ndd-cli.conformance.receipt.v1.json"
+  ],
+  "requiredGates": [
+    "conveyor/gates/projection-freshness.gate.v1.json",
+    "conveyor/gates/generated-doc-drift.gate.v1.json",
+    "conveyor/gates/receipt-required.gate.v1.json"
+  ],
+  "findings": [
+    {
+      "target": "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+      "gate": "conveyor/gates/projection-freshness.gate.v1.json",
+      "surfaceStatus": "current",
+      "receiptStatus": "passed",
+      "decision": "allowed",
+      "notes": "Docs projection remains current and is backed by passed docs receipts."
+    },
+    {
+      "target": "generated/cli/node/ndd.cjs",
+      "gate": "conveyor/gates/projection-freshness.gate.v1.json",
+      "surfaceStatus": "stale",
+      "receiptStatus": "passed",
+      "decision": "blocked",
+      "notes": "The registry marks the CLI node projection as stale because the recorded hash no longer matches current bytes."
+    },
+    {
+      "target": "evidence/cli/ndd-cli.conformance.receipt.v1.json",
+      "gate": "conveyor/gates/receipt-required.gate.v1.json",
+      "surfaceStatus": "blocked",
+      "receiptStatus": "blocked",
+      "decision": "blocked",
+      "notes": "The conformance receipt is still a placeholder and cannot authorize promotion."
+    }
+  ],
+  "decision": "release_blocked"
+}

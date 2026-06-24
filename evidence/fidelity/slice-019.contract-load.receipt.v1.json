@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "defracto.fidelity-contract-load.receipt.v1",
+  "receiptKey": "defracto.receipt.fidelity.contract-load.slice-019.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "contractPath": "contracts/sej/fidelity-achievement-computation.resolver-compatible.sej.v1.json",
+  "inputPath": "conveyor/runs/2026/06/22/slice-019-fidelity-contract-shape-alignment/input.v1.json",
+  "observedBoundary": "graph execution reached evaluateEvidenceMatrix",
+  "verificationStatus": "resolver_contract_accepted",
+  "completionPosture": "The resolver accepted the contract envelope and began graph execution."
+}

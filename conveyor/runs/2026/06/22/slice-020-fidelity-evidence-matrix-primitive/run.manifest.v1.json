@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-020-fidelity-evidence-matrix-primitive.v1",
+  "sliceKey": "slice-020-fidelity-evidence-matrix-primitive",
+  "commandKey": "defracto.conveyor.fidelity.achievement.compute.v1",
+  "objective": "Bind the fidelity evidence matrix primitive and prove the resolver advances beyond evaluateEvidenceMatrix.",
+  "attemptedInvocation": [
+    "node node_modules/@bpmsoftwaresolutions/sej-resolver-node/src/cli.cjs resolve --contract contracts/sej/fidelity-achievement-computation.slice-020.sej.v1.json --input conveyor/runs/2026/06/22/slice-020-fidelity-evidence-matrix-primitive/input.v1.json"
+  ],
+  "observedStatus": "blocked",
+  "blocker": "graph_step_failed",
+  "observedFinding": "Unsupported primitive operation: fidelity.achieved_level.reduce.v1",
+  "runPosture": "fail-closed",
+  "completionPosture": "Slice 020 proves primitive closure and then records the next blocked reducer step honestly."
+}

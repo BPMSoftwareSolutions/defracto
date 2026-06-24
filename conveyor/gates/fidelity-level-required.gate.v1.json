@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.fidelity_level_required.v1",
+  "gateTitle": "Fidelity Level Required",
+  "gateStatus": "accepted",
+  "purpose": "Block promotion when the achieved fidelity level is below the claimed or required level.",
+  "passConditions": [
+    "fidelity achievement report exists",
+    "claimed level is explicit",
+    "achieved level is explicit",
+    "required receipts are listed",
+    "gate results are listed",
+    "decision is not contradictory"
+  ],
+  "blockConditions": [
+    "missing fidelity achievement report",
+    "missing achieved level",
+    "claimed level exceeds achieved level",
+    "required receipts are incomplete",
+    "required gate results are blocked"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Fidelity Level Required passes only when the achievement report can prove the claimed maturity level is actually reached."
+}

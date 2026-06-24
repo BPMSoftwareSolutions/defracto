@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-016-fidelity-achievement-computation.v1",
+  "runKind": "conveyor-run",
+  "sliceKey": "slice-016-fidelity-achievement-computation",
+  "operatorRole": "platform agent",
+  "objective": "Compute fidelity maturity from receipts, gates, and registry evidence so achieved level is derived rather than asserted.",
+  "commandKey": "defracto.ndd-cli.conveyor-run.v1",
+  "requiredResolverCapabilities": [
+    "conveyor.run_manifest.load.v1",
+    "resolver.authority.verify.v1",
+    "sej.resolve.stage.v1",
+    "evidence.receipt.verify.v1",
+    "conveyor.run_receipt.emit.v1",
+    "semantic.operation_graph.execute.v1"
+  ],
+  "stages": {
+    "analysis": {
+      "sej": "contracts/fidelity/fidelity-achievement-computation.reducer.v1.json",
+      "expectedOutputs": [
+        "evidence/fidelity/computed.slice-016-achievement-report.v1.json",
+        "conveyor/runs/2026/06/22/reports/fidelity-achievement-report.slice-016.md",
+        "projections/ascii/slice-016-fidelity-achievement.ascii"
+      ]
+    },
+    "gateReview": {
+      "sej": "contracts/gates/fidelity-achievement-computed.gate.v1.json",
+      "expectedOutputs": [
+        "evidence/fidelity/computed.slice-016-achievement-report.v1.json"
+      ]
+    }
+  },
+  "requiredReceipts": [
+    "evidence/docs/generated-docs.receipt.v1.json",
+    "evidence/docs/generated-doc-drift.receipt.v1.json",
+    "evidence/conveyor/slice-015-documentation-projection-conveyor.receipt.v1.json"
+  ],
+  "requiredGates": [
+    "conveyor/gates/fidelity-achievement-computed.gate.v1.json",
+    "conveyor/gates/fidelity-level-required.gate.v1.json"
+  ],
+  "runReceiptPath": "evidence/conveyor/slice-016-fidelity-achievement-computation.receipt.v1.json",
+  "blockedIfMissing": [
+    "computed fidelity report",
+    "evidence receipts",
+    "computed achievement gate",
+    "fidelity level gate"
+  ],
+  "releaseBlockedUntilAllReceiptsExist": true,
+  "completionPosture": "Passes when the achieved fidelity level is computed from evidence rather than asserted by hand."
+}

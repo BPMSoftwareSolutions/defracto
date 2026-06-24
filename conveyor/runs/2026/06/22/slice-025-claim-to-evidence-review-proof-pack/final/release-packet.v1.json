@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "defracto.release-packet.v1",
+  "runKey": "defracto.run.slice-025-claim-to-evidence-review-proof-pack.v1",
+  "sliceKey": "slice-025-claim-to-evidence-review-proof-pack",
+  "status": "passed",
+  "blocker": null,
+  "releaseDisposition": "drive-review-ready",
+  "summary": "The claim-to-evidence review shell is accessible enough, polished enough, and safe enough for Google Drive review.",
+  "evidence": [
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.accessibility.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.publish-safe.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.surface-polish.receipt.v1.json",
+    "conveyor/runs/2026/06/22/slice-025-claim-to-evidence-review-proof-pack/final/run-summary.md"
+  ],
+  "completionPosture": "This proof pack authorizes Drive review publication, not Level 4 external maturity."
+}

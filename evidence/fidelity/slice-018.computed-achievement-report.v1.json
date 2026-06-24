@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "defracto.fidelity-computed-achievement-report.v1",
+  "reportKey": "defracto.fidelity.computed.slice-018.v1",
+  "sliceKey": "slice-018-live-fidelity-reducer-execution",
+  "scope": {
+    "scopeKind": "slice",
+    "scopeKey": "slice-018-live-fidelity-reducer-execution",
+    "artifactRoots": [
+      "conveyor/runs/2026/06/22/slice-018-live-fidelity-reducer-execution",
+      "evidence/fidelity",
+      "contracts/sej"
+    ]
+  },
+  "claimedLevel": {
+    "level": 3,
+    "name": "Governed Fidelity"
+  },
+  "achievedLevel": {
+    "level": 2,
+    "name": "Disposable Projection"
+  },
+  "computation": {
+    "reducerKey": "defracto.fidelity-achievement-computation.reducer.v1",
+    "computedAt": "2026-06-22T00:00:00-04:00",
+    "derivedFrom": [
+      "contracts/sej/fidelity-achievement-computation.execute.sej.v1.json",
+      "contracts/semantic-operation-graphs/fidelity/fidelity-achievement-computation.execute.sog.v1.json"
+    ],
+    "levelMatrix": [
+      {
+        "level": 0,
+        "evidence": [
+          "story packet exists"
+        ],
+        "satisfied": true
+      },
+      {
+        "level": 1,
+        "evidence": [
+          "canonical spec exists"
+        ],
+        "satisfied": true
+      },
+      {
+        "level": 2,
+        "evidence": [
+          "computed report projection exists"
+        ],
+        "satisfied": true
+      },
+      {
+        "level": 3,
+        "evidence": [
+          "resolver execution failed before live graph execution"
+        ],
+        "satisfied": false,
+        "notes": "Live execution blocker prevents governed fidelity proof."
+      }
+    ],
+    "ruleSummary": "The live execution attempt failed closed at contract acceptance, so the achieved level remains Level 2.",
+    "computedLevelSource": "computed-from-evidence"
+  },
+  "sourceAuthority": [
+    "stories/fidelity/fidelity-achievement-computation.story.v1.json"
+  ],
+  "canonicalAuthority": [
+    "specs/canonical/fidelity/fidelity-achievement-computation.canonical-spec.v1.json"
+  ],
+  "semanticAuthority": [
+    "contracts/sej/fidelity-achievement-computation.execute.sej.v1.json",
+    "contracts/semantic-operation-graphs/fidelity/fidelity-achievement-computation.execute.sog.v1.json"
+  ],
+  "projectionSurfaces": [
+    "contracts/projections/fidelity-achievement-report.markdown-projection.v1.json",
+    "contracts/projections/fidelity-achievement-report.ascii-projection.v1.json"
+  ],
+  "requiredReceipts": [
+    "evidence/fidelity/slice-018.reducer-execution.receipt.v1.json"
+  ],
+  "observedReceipts": [
+    {
+      "receiptPath": "evidence/fidelity/slice-018.reducer-execution.receipt.v1.json",
+      "status": "blocked",
+      "note": "Resolver rejected the contract before stage execution."
+    }
+  ],
+  "requiredGates": [
+    "contracts/gates/fidelity-level-required.gate.v1.json",
+    "contracts/gates/fidelity-achievement-computed.gate.v1.json"
+  ],
+  "gateResults": [
+    {
+      "gatePath": "contracts/gates/fidelity-achievement-computed.gate.v1.json",
+      "status": "blocked",
+      "finding": "contract_missing"
+    }
+  ],
+  "blockingFindings": [
+    {
+      "code": "contract_missing",
+      "message": "A SEJ contract object is required."
+    }
+  ],
+  "decision": {
+    "status": "blocked",
+    "reason": "Live resolver execution did not start because the fidelity SEJ was rejected as contract_missing."
+  },
+  "nextRequiredLevel": {
+    "level": 3,
+    "missingEvidence": [
+      "resolver-accepted fidelity SEJ contract shape",
+      "live reducer execution receipt",
+      "computed report emitted from the resolver path",
+      "computed gate receipt"
+    ]
+  }
+}

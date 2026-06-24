@@ -1,0 +1,18 @@
+{
+  "maturityLevels": {
+    "schemaVersion": "defracto.fidelity-maturity-levels.v1",
+    "levels": [
+      { "level": 0, "name": "Narrative Intent" },
+      { "level": 1, "name": "Governed Canonicalization" },
+      { "level": 2, "name": "Disposable Projection" },
+      { "level": 3, "name": "Governed Fidelity" },
+      { "level": 4, "name": "User-Facing Experience" },
+      { "level": 5, "name": "Compiler-Grade Evolution" }
+    ]
+  },
+  "reducer": {
+    "schemaVersion": "defracto.fidelity-achievement-computation.reducer.v1",
+    "reducerKey": "defracto.fidelity.achievement.reduce.v1",
+    "description": "Reducer placeholder for live execution alignment."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "defracto.release-packet.v1",
+  "runKey": "defracto.run.slice-019-fidelity-contract-shape-alignment.v1",
+  "sliceKey": "slice-019-fidelity-contract-shape-alignment",
+  "status": "blocked",
+  "blocker": "graph_step_failed",
+  "releaseDisposition": "not-ready",
+  "summary": "The aligned fidelity contract reached graph execution and failed closed on a missing primitive capability.",
+  "evidence": [
+    "conveyor/runs/2026/06/22/slice-019-fidelity-contract-shape-alignment/run.manifest.v1.json",
+    "conveyor/runs/2026/06/22/slice-019-fidelity-contract-shape-alignment/final/run-summary.md",
+    "evidence/fidelity/slice-019.contract-load.receipt.v1.json",
+    "evidence/fidelity/slice-019.reducer-execution.receipt.v1.json"
+  ],
+  "completionPosture": "Slice 019 is retained as a truthful alignment proof."
+}

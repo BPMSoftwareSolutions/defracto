@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "loc.capability-binding.v1",
+  "bindingKey": "defracto.fidelity-achievement-computation.capability-bindings.v1",
+  "bindingStatus": "ready-for-resolver-handshake",
+  "semanticOperationGraphRef": "contracts/semantic-operation-graphs/fidelity/fidelity-achievement-computation.execute.sog.v1.json",
+  "bindings": [
+    {
+      "capabilityKey": "json.read.v1",
+      "primitiveKey": "resolve.contract.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "fidelity.evidence_matrix.evaluate.v1",
+      "primitiveKey": "evaluate.predicate.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "fidelity.achieved_level.reduce.v1",
+      "primitiveKey": "fidelity.achieved_level.reduce.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "fidelity.next_level.compute.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "fidelity.missing_evidence.project.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "project.value.v1",
+      "primitiveKey": "project.value.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "artifact.materialize.v1",
+      "primitiveKey": "artifact.materialize.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "evidence.emit.v1",
+      "primitiveKey": "evidence.emit.v1",
+      "status": "supported",
+      "ifMissing": "blocked"
+    }
+  ],
+  "forbiddenHostFallback": true,
+  "completionPosture": "Fidelity reducer binds to resolver primitives only; host-language fallback is blocked."
+}

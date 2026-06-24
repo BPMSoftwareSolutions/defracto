@@ -1,0 +1,42 @@
+{
+  "operationRequirementVersion": "defracto.fidelity-achievement-computation.operation-requirements.v1",
+  "characterKey": "defracto.fidelity-achievement-computation",
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "status": "required",
+      "ifMissing": "blocked"
+    }
+  ],
+  "forbiddenResponsibilities": [
+    "manual achieved-level authorship",
+    "invented receipts",
+    "silent promotion"
+  ],
+  "completionPosture": "Fidelity achievement computation only advances when the declared operations exist and the evidence is sufficient."
+}

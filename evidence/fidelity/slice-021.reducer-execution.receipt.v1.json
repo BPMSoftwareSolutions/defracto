@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "defracto.fidelity-reducer-execution.receipt.v1",
+  "receiptKey": "defracto.receipt.fidelity.reducer.execution.slice-021.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "primitiveKey": "fidelity.achieved_level.reduce.v1",
+  "claimedLevel": {
+    "level": 3,
+    "name": "Governed Fidelity"
+  },
+  "achievedLevel": {
+    "level": 3,
+    "name": "Governed Fidelity"
+  },
+  "firstBlockedLevel": {
+    "level": 4,
+    "name": "User-Facing Experience"
+  },
+  "claimStatus": "satisfied",
+  "highestContiguousSatisfiedLevel": 3,
+  "verificationStatus": "resolver_primitive_confirmed",
+  "completionPosture": "The achieved-level reducer is live and deterministically collapses the evaluated matrix to Level 3."
+}

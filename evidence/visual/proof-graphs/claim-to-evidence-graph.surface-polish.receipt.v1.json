@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "defracto.visual.surface-polish.receipt.v1",
+  "receiptKey": "defracto.visual.surface-polish.claim-to-evidence-graph.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "surfacePath": "projections/html/claim-to-evidence-graph.html",
+  "checks": [
+    "clear title and subtitle",
+    "restrained layout bands",
+    "readable summary block",
+    "evidence summary is easy to scan",
+    "graph embedded as the primary visual",
+    "no decorative bokeh or unused chrome",
+    "colors remain subdued and consistent"
+  ],
+  "verificationStatus": "static_surface_review_passed",
+  "completionPosture": "The HTML review shell is polished enough for internal review without pretending to be the final Level 4 experience surface."
+}

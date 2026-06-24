@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "defracto.doc-projection.v1",
+  "projectionKey": "defracto.claim-to-evidence-graph.html-projection.v1",
+  "projectionKind": "html_projection",
+  "projectionStatus": "accepted-for-target-shape",
+  "targetPath": "projections/html/claim-to-evidence-graph.html",
+  "sourceLineage": {
+    "visualModel": "projections/visual-models/claim-to-evidence-graph.visual-model.v1.json",
+    "targetSketch": "projections/target-sketches/claim-to-evidence-graph.target.v1.json",
+    "svgProjection": "contracts/projections/claim-to-evidence-graph.svg-projection.v1.json",
+    "receipts": [
+      "evidence/visual/proof-graphs/claim-to-evidence-graph.edge-verification.receipt.v1.json",
+      "evidence/visual/proof-graphs/claim-to-evidence-graph.svg-projection.receipt.v1.json",
+      "evidence/visual/proof-graphs/claim-to-evidence-graph.visual-equivalence.receipt.v1.json"
+    ]
+  },
+  "generatedResponsibilities": [
+    "wrap the verified SVG in a review-friendly HTML surface",
+    "summarize the claim, evidence, and boundary",
+    "preserve the proof graph meaning without adding new trust claims"
+  ],
+  "forbiddenResponsibilities": [
+    "changing graph semantics",
+    "inventing new evidence",
+    "claiming Level 4 maturity",
+    "reframing the trust boundary"
+  ],
+  "equivalenceRules": [
+    "HTML must preserve the verified SVG graph unchanged.",
+    "HTML summary must match the computed report and receipts.",
+    "HTML may frame the proof graph but may not add new trust claims.",
+    "HTML must keep the same node count, edge count, and blocked boundary."
+  ],
+  "completionPosture": "HTML review surfaces are governed projections and do not themselves imply Level 4 maturity."
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-025-claim-to-evidence-review-proof-pack.v1",
+  "sliceKey": "slice-025-claim-to-evidence-review-proof-pack",
+  "commandKey": "defracto.visual.review-proof.claim-to-evidence-graph.v1",
+  "objective": "Verify accessibility, publish-safety, and surface polish for the claim-to-evidence HTML review shell without claiming Level 4 maturity.",
+  "attemptedInvocation": [
+    "static review of projections/html/claim-to-evidence-graph.html"
+  ],
+  "observedStatus": "passed",
+  "blocker": null,
+  "runPosture": "fail-closed",
+  "completionPosture": "The review shell is safe for Drive publication, but still below Level 4 experience maturity."
+}

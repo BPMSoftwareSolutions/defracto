@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "defracto.fidelity-contract-shape-diff.v1",
+  "diffKey": "defracto.fidelity.contract-shape-diff.slice-019.v1",
+  "sliceKey": "slice-019-fidelity-contract-shape-alignment",
+  "before": {
+    "blocker": "contract_missing",
+    "boundary": "before graph execution"
+  },
+  "after": {
+    "blocker": "graph_step_failed",
+    "boundary": "at evaluateEvidenceMatrix"
+  },
+  "alignmentOutcome": "contract shape is now accepted far enough for the graph to begin executing.",
+  "remainingGap": "unsupported primitive operation fidelity.evidence_matrix.evaluate.v1"
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "defracto.fidelity-gate.receipt.v1",
+  "receiptKey": "defracto.receipt.fidelity.gate.slice-019.v1",
+  "status": "blocked",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "gatePath": "contracts/gates/fidelity-achievement-computed.gate.v1.json",
+  "blocker": "graph_step_failed",
+  "finding": "The resolver accepted the fidelity contract but stopped at unsupported primitive fidelity.evidence_matrix.evaluate.v1.",
+  "completionPosture": "The gate stays blocked until the evidence matrix evaluator exists."
+}

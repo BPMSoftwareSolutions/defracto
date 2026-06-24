@@ -1,0 +1,10 @@
+{
+  "htmlPath": "projections/html/claim-to-evidence-graph.html",
+  "cssPath": "projections/css/claim-to-evidence-graph.css",
+  "svgPath": "projections/svg/claim-to-evidence-graph.svg",
+  "receipts": [
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.edge-verification.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.svg-projection.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.visual-equivalence.receipt.v1.json"
+  ]
+}

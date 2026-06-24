@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "defracto.fidelity-computed-achievement-report.v1",
+  "reportKey": "defracto.fidelity.computed.slice-019.v1",
+  "sliceKey": "slice-019-fidelity-contract-shape-alignment",
+  "scope": {
+    "scopeKind": "slice",
+    "scopeKey": "slice-019-fidelity-contract-shape-alignment",
+    "artifactRoots": [
+      "contracts/sej",
+      "contracts/semantic-operation-graphs/fidelity",
+      "conveyor/runs/2026/06/22/slice-019-fidelity-contract-shape-alignment",
+      "evidence/fidelity"
+    ]
+  },
+  "claimedLevel": {
+    "level": 3,
+    "name": "Governed Fidelity"
+  },
+  "achievedLevel": {
+    "level": 2,
+    "name": "Disposable Projection"
+  },
+  "computation": {
+    "reducerKey": "defracto.fidelity-achievement-computation.reducer.v1",
+    "computedAt": "2026-06-22T00:00:00-04:00",
+    "derivedFrom": [
+      "contracts/sej/fidelity-achievement-computation.resolver-compatible.sej.v1.json",
+      "contracts/semantic-operation-graphs/fidelity/fidelity-achievement-computation.execute.sog.v1.json",
+      "conveyor/runs/2026/06/22/slice-019-fidelity-contract-shape-alignment/input.v1.json"
+    ],
+    "levelMatrix": [
+      {
+        "level": 0,
+        "evidence": [
+          "story packet exists"
+        ],
+        "satisfied": true
+      },
+      {
+        "level": 1,
+        "evidence": [
+          "canonical spec exists"
+        ],
+        "satisfied": true
+      },
+      {
+        "level": 2,
+        "evidence": [
+          "resolver-compatible contract loads"
+        ],
+        "satisfied": true
+      },
+      {
+        "level": 3,
+        "evidence": [
+          "graph execution reaches evaluateEvidenceMatrix",
+          "primitive fidelity.evidence_matrix.evaluate.v1 is missing"
+        ],
+        "satisfied": false,
+        "notes": "Live execution now fails on a specific capability gap instead of contract shape."
+      }
+    ],
+    "ruleSummary": "Alignment succeeded; the remaining blocker is capability coverage in the resolver primitive catalog.",
+    "computedLevelSource": "computed-from-evidence"
+  },
+  "sourceAuthority": [
+    "stories/fidelity/fidelity-achievement-computation.story.v1.json"
+  ],
+  "canonicalAuthority": [
+    "specs/canonical/fidelity/fidelity-achievement-computation.canonical-spec.v1.json"
+  ],
+  "semanticAuthority": [
+    "contracts/sej/fidelity-achievement-computation.resolver-compatible.sej.v1.json",
+    "contracts/semantic-operation-graphs/fidelity/fidelity-achievement-computation.execute.sog.v1.json"
+  ],
+  "projectionSurfaces": [
+    "contracts/projections/fidelity-achievement-report.markdown-projection.v1.json",
+    "contracts/projections/fidelity-achievement-report.ascii-projection.v1.json"
+  ],
+  "requiredReceipts": [
+    "evidence/fidelity/slice-019.contract-load.receipt.v1.json",
+    "evidence/fidelity/slice-019.reducer-execution.receipt.v1.json",
+    "evidence/fidelity/slice-019.fidelity-gate.receipt.v1.json"
+  ],
+  "observedReceipts": [
+    {
+      "receiptPath": "evidence/fidelity/slice-019.contract-load.receipt.v1.json",
+      "status": "passed",
+      "note": "Contract accepted and graph execution began."
+    },
+    {
+      "receiptPath": "evidence/fidelity/slice-019.reducer-execution.receipt.v1.json",
+      "status": "blocked",
+      "note": "Graph stopped at evaluateEvidenceMatrix."
+    }
+  ],
+  "requiredGates": [
+    "contracts/gates/fidelity-level-required.gate.v1.json",
+    "contracts/gates/fidelity-achievement-computed.gate.v1.json"
+  ],
+  "gateResults": [
+    {
+      "gatePath": "contracts/gates/fidelity-achievement-computed.gate.v1.json",
+      "status": "blocked",
+      "finding": "graph_step_failed"
+    }
+  ],
+  "blockingFindings": [
+    {
+      "code": "graph_step_failed",
+      "message": "Unsupported primitive operation: fidelity.evidence_matrix.evaluate.v1"
+    }
+  ],
+  "decision": {
+    "status": "blocked",
+    "reason": "The fidelity contract now loads and the graph begins execution, but the evidence matrix evaluator primitive is missing."
+  },
+  "nextRequiredLevel": {
+    "level": 3,
+    "missingEvidence": [
+      "fidelity.evidence_matrix.evaluate.v1 primitive implementation",
+      "fidelity.achieved_level.reduce.v1 primitive verification",
+      "fidelity.next_level.compute.v1 primitive verification",
+      "fidelity.missing_evidence.project.v1 primitive verification"
+    ]
+  }
+}

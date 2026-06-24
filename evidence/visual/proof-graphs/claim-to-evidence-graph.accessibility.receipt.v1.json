@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "defracto.visual.accessibility.receipt.v1",
+  "receiptKey": "defracto.visual.accessibility.claim-to-evidence-graph.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "surfacePath": "projections/html/claim-to-evidence-graph.html",
+  "svgPath": "projections/svg/claim-to-evidence-graph.svg",
+  "checks": [
+    "document title present",
+    "main landmark present",
+    "section headings present",
+    "embedded SVG has title and desc",
+    "embedded SVG has aria-labelledby",
+    "metadata summary is text-based and readable",
+    "table structure is semantic",
+    "no empty image-only trust claims"
+  ],
+  "verificationStatus": "static_accessibility_review_passed",
+  "completionPosture": "The HTML review shell is accessible enough for governed review, while still below Level 4 maturity."
+}

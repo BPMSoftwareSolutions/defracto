@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "defracto.visual-projection-model.v1",
+  "modelKey": "defracto.visual-projection-model.claim-to-evidence-graph.v1",
+  "title": "Claim To Evidence Graph",
+  "purpose": "Declare the trust-lineage graph that shows why a fidelity claim is believable.",
+  "nodes": [
+    { "nodeKey": "claim", "label": "Claim" },
+    { "nodeKey": "source-authority", "label": "Source Authority" },
+    { "nodeKey": "semantic-authority", "label": "Semantic Authority" },
+    { "nodeKey": "resolver-execution", "label": "Resolver Execution" },
+    { "nodeKey": "computed-artifact", "label": "Computed Artifact" },
+    { "nodeKey": "receipts", "label": "Receipts" },
+    { "nodeKey": "gate", "label": "Gate" },
+    { "nodeKey": "achieved-level", "label": "Achieved Fidelity Level" },
+    { "nodeKey": "next-blocker", "label": "Next Blocked Proof" }
+  ],
+  "edges": [
+    { "from": "claim", "to": "source-authority" },
+    { "from": "source-authority", "to": "semantic-authority" },
+    { "from": "semantic-authority", "to": "resolver-execution" },
+    { "from": "resolver-execution", "to": "computed-artifact" },
+    { "from": "computed-artifact", "to": "receipts" },
+    { "from": "receipts", "to": "gate" },
+    { "from": "gate", "to": "achieved-level" },
+    { "from": "achieved-level", "to": "next-blocker" }
+  ],
+  "rendering": {
+    "type": "lane-ascii",
+    "laneOrder": [
+      "claim",
+      "source-authority",
+      "semantic-authority",
+      "resolver-execution",
+      "computed-artifact",
+      "receipts",
+      "gate",
+      "achieved-level",
+      "next-blocker"
+    ]
+  }
+}

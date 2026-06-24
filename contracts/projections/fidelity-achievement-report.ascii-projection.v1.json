@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "defracto.doc-projection.v1",
+  "projectionKey": "defracto.fidelity-achievement-report.ascii-projection.v1",
+  "projectionKind": "ascii_projection",
+  "projectionStatus": "accepted-for-target-shape",
+  "targetPath": "projections/ascii/slice-017-fidelity-achievement.ascii",
+  "sourceLineage": {
+    "runManifest": "conveyor/runs/2026/06/22/slice-017-resolver-backed-fidelity-reducer/run.manifest.v1.json",
+    "receipts": [
+      "evidence/fidelity/slice-017.reducer-execution.receipt.v1.json",
+      "evidence/fidelity/slice-017.fidelity-gate.receipt.v1.json"
+    ],
+    "computedReport": "evidence/fidelity/slice-017.computed-achievement-report.v1.json"
+  },
+  "generatedResponsibilities": [
+    "render the computed maturity ladder card",
+    "show achieved and next level",
+    "show missing evidence for the next level"
+  ],
+  "forbiddenResponsibilities": [
+    "inventing evidence",
+    "promoting beyond the computed level",
+    "freeform visual claims"
+  ],
+  "completionPosture": "ASCII fidelity projection reflects computed conveyor state, not freeform illustration."
+}

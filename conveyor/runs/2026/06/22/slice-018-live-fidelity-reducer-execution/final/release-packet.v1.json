@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "defracto.release-packet.v1",
+  "runKey": "defracto.run.slice-018-live-fidelity-reducer-execution.v1",
+  "sliceKey": "slice-018-live-fidelity-reducer-execution",
+  "status": "blocked",
+  "blocker": "contract_missing",
+  "releaseDisposition": "not-ready",
+  "summary": "The live fidelity reducer attempt failed closed before stage execution could begin.",
+  "evidence": [
+    "conveyor/runs/2026/06/22/slice-018-live-fidelity-reducer-execution/run.manifest.v1.json",
+    "conveyor/runs/2026/06/22/slice-018-live-fidelity-reducer-execution/final/run-summary.md"
+  ],
+  "completionPosture": "Blocked runs are retained as proof of the next alignment gap."
+}

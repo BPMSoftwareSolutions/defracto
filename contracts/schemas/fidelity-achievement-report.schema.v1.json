@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.fidelity-achievement-report.v1",
+  "title": "Fidelity Achievement Report",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "reportKey",
+    "sliceKey",
+    "scope",
+    "claimedLevel",
+    "achievedLevel",
+    "sourceAuthority",
+    "canonicalAuthority",
+    "semanticAuthority",
+    "projectionSurfaces",
+    "requiredReceipts",
+    "observedReceipts",
+    "requiredGates",
+    "gateResults",
+    "decision",
+    "nextRequiredLevel"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.fidelity-achievement-report.v1"
+    },
+    "reportKey": {
+      "type": "string"
+    },
+    "sliceKey": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "object",
+      "required": ["scopeKind", "scopeKey", "artifactRoots"],
+      "properties": {
+        "scopeKind": {
+          "type": "string",
+          "enum": ["slice", "character", "projection", "release", "repo"]
+        },
+        "scopeKey": {
+          "type": "string"
+        },
+        "artifactRoots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "claimedLevel": {
+      "type": "object",
+      "required": ["level", "name"],
+      "properties": {
+        "level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "achievedLevel": {
+      "type": "object",
+      "required": ["level", "name"],
+      "properties": {
+        "level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sourceAuthority": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "canonicalAuthority": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "semanticAuthority": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "projectionSurfaces": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredReceipts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "observedReceipts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["receiptPath", "status"],
+        "properties": {
+          "receiptPath": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["passed", "blocked", "missing", "stale", "superseded"]
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "requiredGates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "gateResults": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["gatePath", "status"],
+        "properties": {
+          "gatePath": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["passed", "blocked", "failed"]
+          },
+          "finding": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "blockingFindings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "decision": {
+      "type": "object",
+      "required": ["status", "reason"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["passed", "blocked", "failed"]
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "nextRequiredLevel": {
+      "type": "object",
+      "required": ["level", "missingEvidence"],
+      "properties": {
+        "level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "missingEvidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

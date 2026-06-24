@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="980" viewBox="0 0 1400 980" role="img" aria-labelledby="title desc">
+  <title id="title">Claim To Evidence Graph</title>
+  <desc id="desc">A governed proof graph showing the chain from claim to source authority, semantic authority, resolver execution, computed artifact, receipts, gate, achieved level, and next blocked proof.</desc>
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .lane { fill: #f6f8fb; stroke: #d3dbe6; stroke-width: 1; }
+      .lane-title { font: 700 18px Arial, sans-serif; fill: #243042; letter-spacing: 0; }
+      .node { fill: #ffffff; stroke: #28384a; stroke-width: 2; rx: 8; ry: 8; }
+      .node-title { font: 700 18px Arial, sans-serif; fill: #16212e; }
+      .node-detail { font: 14px Arial, sans-serif; fill: #4a5b6d; }
+      .edge { stroke: #3f566d; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .edge-label { font: 13px Arial, sans-serif; fill: #5d6d7e; }
+      .pill-pass { fill: #e8f6ec; stroke: #2f8f57; stroke-width: 1.5; rx: 12; ry: 12; }
+      .pill-block { fill: #fdecec; stroke: #b54747; stroke-width: 1.5; rx: 12; ry: 12; }
+      .pill-text { font: 700 13px Arial, sans-serif; fill: #223042; }
+      .small { font: 12px Arial, sans-serif; fill: #5c6a79; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3f566d"></path>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1400" height="980" />
+
+  <rect class="lane" x="40" y="30" width="1320" height="130" />
+  <text class="lane-title" x="60" y="62">CLAIM LANE</text>
+  <rect class="node" x="380" y="48" width="260" height="92" />
+  <text class="node-title" x="410" y="86">Claim</text>
+  <text class="node-detail" x="410" y="111">Achieved Level 3</text>
+  <rect class="pill-pass" x="525" y="76" width="92" height="24" />
+  <text class="pill-text" x="548" y="93">passed</text>
+
+  <rect class="lane" x="40" y="176" width="1320" height="150" />
+  <text class="lane-title" x="60" y="208">AUTHORITY LANE</text>
+  <rect class="node" x="250" y="194" width="280" height="92" />
+  <text class="node-title" x="280" y="232">Source Authority</text>
+  <text class="node-detail" x="280" y="257">fidelity ladder doc</text>
+  <rect class="node" x="650" y="194" width="330" height="92" />
+  <text class="node-title" x="680" y="232">Semantic Authority</text>
+  <text class="node-detail" x="680" y="257">SOG / SEJ / capability bindings</text>
+
+  <rect class="lane" x="40" y="340" width="1320" height="170" />
+  <text class="lane-title" x="60" y="372">EXECUTION LANE</text>
+  <rect class="node" x="220" y="360" width="300" height="92" />
+  <text class="node-title" x="250" y="398">Resolver Execution</text>
+  <text class="node-detail" x="250" y="423">slice 021 run</text>
+  <rect class="node" x="640" y="360" width="360" height="92" />
+  <text class="node-title" x="670" y="398">Computed Artifact</text>
+  <text class="node-detail" x="670" y="423">computed achievement report</text>
+  <rect class="pill-pass" x="980" y="391" width="92" height="24" />
+  <text class="pill-text" x="1003" y="408">passed</text>
+
+  <rect class="lane" x="40" y="526" width="1320" height="170" />
+  <text class="lane-title" x="60" y="558">EVIDENCE LANE</text>
+  <rect class="node" x="220" y="546" width="300" height="92" />
+  <text class="node-title" x="250" y="584">Receipts</text>
+  <text class="node-detail" x="250" y="609">contract-load / reducer / gate</text>
+  <rect class="node" x="640" y="546" width="260" height="92" />
+  <text class="node-title" x="670" y="584">Gate</text>
+  <text class="node-detail" x="670" y="609">passed for Level 3</text>
+  <rect class="pill-pass" x="825" y="577" width="92" height="24" />
+  <text class="pill-text" x="848" y="594">passed</text>
+
+  <rect class="lane" x="40" y="712" width="1320" height="210" />
+  <text class="lane-title" x="60" y="744">BOUNDARY LANE</text>
+  <rect class="node" x="190" y="730" width="320" height="92" />
+  <text class="node-title" x="220" y="768">Achieved Fidelity Level</text>
+  <text class="node-detail" x="220" y="793">Level 3 - Governed Fidelity</text>
+  <rect class="node" x="620" y="730" width="360" height="92" />
+  <text class="node-title" x="650" y="768">Next Blocked Proof</text>
+  <text class="node-detail" x="650" y="793">Level 4: polish / accessibility / publish safety / equivalence</text>
+  <rect class="pill-block" x="950" y="761" width="92" height="24" />
+  <text class="pill-text" x="972" y="778">blocked</text>
+
+  <path class="edge" d="M 640 94 L 730 94 L 730 240 L 650 240" />
+  <path class="edge" d="M 530 240 L 590 240 L 590 240" />
+  <path class="edge" d="M 980 240 L 980 240 L 980 406" />
+  <path class="edge" d="M 520 406 L 640 406" />
+  <path class="edge" d="M 1000 452 L 1000 592 L 640 592" />
+  <path class="edge" d="M 520 592 L 640 592" />
+  <path class="edge" d="M 900 592 L 900 776 L 510 776" />
+  <path class="edge" d="M 510 776 L 620 776" />
+
+  <text class="small" x="60" y="950">Proof surface: SVG projection of the edge-verified claim-to-evidence graph. No edge without evidence.</text>
+</svg>

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "defracto.fidelity-gate-receipt.v1",
+  "receiptKey": "defracto.receipt.fidelity.gate.slice-017.v1",
+  "status": "passed",
+  "computedAt": "2026-06-22T00:00:00-04:00",
+  "gatePath": "conveyor/gates/fidelity-achievement-computed.gate.v1.json",
+  "decision": "passed",
+  "derivedAchievedLevel": {
+    "level": 3,
+    "name": "Governed Fidelity"
+  },
+  "nextRequiredLevel": {
+    "level": 4,
+    "name": "User-Facing Experience"
+  },
+  "completionPosture": "The fidelity gate confirms the computed achievement report is derived from observed evidence and reducer rules."
+}

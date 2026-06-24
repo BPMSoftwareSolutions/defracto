@@ -6,104 +6,140 @@
   "receipts": [
     {
       "receiptKey": "defracto.receipt.ndd-cli.node-projection.v1",
+      "nodeKey": "projection.cli.node",
       "artifactPath": "evidence/cli/ndd-cli.node-projection.receipt.v1.json",
       "surfacePath": "generated/cli/node/ndd.cjs",
+      "gatePath": "conveyor/gates/projection-freshness.gate.v1.json",
       "receiptStatus": "stale",
       "maturityBucket": "drifted",
       "reason": "Receipt is passed, but the recorded hash no longer matches current file bytes."
     },
     {
       "receiptKey": "defracto.receipt.ndd-cli.bin-projection.v1",
+      "nodeKey": "projection.cli.bootstrap",
       "artifactPath": "evidence/cli/ndd-cli.bin-projection.receipt.v1.json",
       "surfacePath": "bin/ndd.cjs",
+      "gatePath": "conveyor/gates/generated-surface-only.gate.v1.json",
       "receiptStatus": "passed",
       "maturityBucket": "current",
       "reason": "Bootstrap path is still tracked, but the generated CLI doorway is the preferred projection."
     },
     {
       "receiptKey": "defracto.receipt.conveyor-runner.node-projection.v1",
+      "nodeKey": "projection.runner.node",
       "artifactPath": "evidence/runner/conveyor-runner.node-projection.receipt.v1.json",
       "surfacePath": "generated/runner/node/conveyor-runner.cjs",
+      "gatePath": "conveyor/gates/projection-freshness.gate.v1.json",
       "receiptStatus": "passed",
       "maturityBucket": "current",
       "reason": "Runner doorway is materialized and receipted."
     },
     {
       "receiptKey": "defracto.receipt.conveyor-runner.conformance.v1",
+      "nodeKey": "receipt.runner.conformance",
       "artifactPath": "evidence/runner/conveyor-runner.conformance.receipt.v1.json",
       "surfacePath": "generated/runner/node/conveyor-runner.cjs",
-      "receiptStatus": "passed",
-      "maturityBucket": "current",
-      "reason": "Conformance confirms the runner projection is still aligned with its SEJ."
+      "gatePath": "conveyor/gates/receipt-required.gate.v1.json",
+      "receiptStatus": "blocked",
+      "maturityBucket": "blocked",
+      "reason": "The tracked evidence surface is a blocked placeholder and does not yet prove execution."
+    },
+    {
+      "receiptKey": "defracto.receipt.ndd-cli.conformance.v1",
+      "nodeKey": "receipt.cli.conformance",
+      "artifactPath": "evidence/cli/ndd-cli.conformance.receipt.v1.json",
+      "surfacePath": "generated/cli/node/ndd.cjs",
+      "gatePath": "conveyor/gates/receipt-required.gate.v1.json",
+      "receiptStatus": "blocked",
+      "maturityBucket": "blocked",
+      "reason": "The tracked CLI conformance receipt is still a placeholder surface."
     },
     {
       "receiptKey": "defracto.receipt.evidence-inspector.node-projection.v1",
+      "nodeKey": "projection.inspector.node",
       "artifactPath": "evidence/inspector/evidence-inspector.node-projection.receipt.v1.json",
       "surfacePath": "generated/inspector/node/evidence-inspector.cjs",
+      "gatePath": "conveyor/gates/projection-freshness.gate.v1.json",
       "receiptStatus": "passed",
       "maturityBucket": "current",
       "reason": "Inspector doorway is materialized."
     },
     {
       "receiptKey": "defracto.receipt.shipper.node-projection.v1",
+      "nodeKey": "projection.shipper.node",
       "artifactPath": "evidence/shipper/shipper.node-projection.receipt.v1.json",
       "surfacePath": "generated/shipper/node/shipper.cjs",
+      "gatePath": "conveyor/gates/projection-freshness.gate.v1.json",
       "receiptStatus": "passed",
       "maturityBucket": "current",
       "reason": "Shipper doorway is materialized."
     },
     {
       "receiptKey": "defracto.receipt.telemetry-observer.node-projection.v1",
+      "nodeKey": "projection.telemetry.node",
       "artifactPath": "evidence/telemetry/telemetry-observer.node-projection.receipt.v1.json",
       "surfacePath": "generated/telemetry/node/telemetry-observer.cjs",
+      "gatePath": "conveyor/gates/projection-freshness.gate.v1.json",
       "receiptStatus": "passed",
       "maturityBucket": "current",
       "reason": "Telemetry doorway is materialized."
     },
     {
       "receiptKey": "defracto.receipt.docs.generated.v1",
+      "nodeKey": "projection.docs.report",
       "artifactPath": "evidence/docs/generated-docs.receipt.v1.json",
       "surfacePath": "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+      "gatePath": "conveyor/gates/generated-doc-drift.gate.v1.json",
       "receiptStatus": "passed",
       "maturityBucket": "current",
       "reason": "Docs projection outputs are cataloged and receipted."
     },
     {
       "receiptKey": "defracto.receipt.docs.generated-doc-drift.v1",
+      "nodeKey": "receipt.docs.drift",
       "artifactPath": "evidence/docs/generated-doc-drift.receipt.v1.json",
       "surfacePath": "conveyor/runs/2026/06/21/README.md",
+      "gatePath": "conveyor/gates/generated-doc-drift.gate.v1.json",
       "receiptStatus": "passed",
       "maturityBucket": "current",
       "reason": "Docs drift gate confirms a projected doc surface is reproducible."
     },
     {
       "receiptKey": "defracto.receipt.repair-pilot.proposal.v1",
+      "nodeKey": "proposal.repair.slice-015",
       "artifactPath": ".tmp/proofs/evidence/repair-proposal.slice-015-report.receipt.v1.json",
       "surfacePath": ".tmp/proofs/output/repair-proposal.slice-015-report.v1.json",
+      "gatePath": "conveyor/gates/receipt-required.gate.v1.json",
       "receiptStatus": "passed",
       "maturityBucket": "pilot",
       "reason": "Closed-loop repair proposal pilot is approved and receipted."
     },
     {
       "receiptKey": "defracto.receipt.repair-pilot.rematerialize.v1",
+      "nodeKey": "projection.repair.slice-015-report",
       "artifactPath": ".tmp/proofs/evidence/repair-rematerialize.slice-015-report.receipt.v1.json",
       "surfacePath": "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+      "gatePath": "conveyor/gates/generated-doc-drift.gate.v1.json",
       "receiptStatus": "passed",
       "maturityBucket": "pilot",
       "reason": "Repair proposal successfully rematerialized a repaired report."
     },
     {
       "receiptKey": "defracto.receipt.ndd-cli.bootstrap-delegate-superseded.v1",
+      "nodeKey": "supersession.cli.bootstrap",
       "artifactPath": "evidence/cli/ndd-cli.bootstrap-delegate-superseded.receipt.v1.json",
       "surfacePath": "bin/ndd.cjs",
+      "gatePath": "conveyor/gates/lineage-required.gate.v1.json",
       "receiptStatus": "passed",
       "maturityBucket": "superseded",
       "reason": "Legacy bootstrap delegate is explicitly superseded by SEJ/SOG authority."
     },
     {
       "receiptKey": "defracto.receipt.lane-worker.conformance-hash-supersession.v1",
+      "nodeKey": "supersession.worker.lane",
       "artifactPath": "evidence/workers/lane-worker.conformance-hash-supersession.receipt.v1.json",
       "surfacePath": "generated/workers/node/lane-worker.cjs",
+      "gatePath": "conveyor/gates/lineage-required.gate.v1.json",
       "receiptStatus": "passed",
       "maturityBucket": "superseded",
       "reason": "Hash supersession clarifies the lane-worker lineage change."

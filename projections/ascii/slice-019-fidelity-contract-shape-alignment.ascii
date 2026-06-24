@@ -1,0 +1,21 @@
++------------------------------------------------------------------+
+|      SLICE 019: FIDELITY CONTRACT SHAPE ALIGNMENT                |
++------------------------------------------------------------------+
+| Previous live attempt                                             |
+|   slice-018 -> BLOCKED before graph execution                     |
+|   blocker   -> contract_missing                                   |
++------------------------------------------------------------------+
+| Alignment target                                                  |
+|   resolver-compatible contract shape + input bridge               |
++------------------------------------------------------------------+
+| Execution ladder                                                  |
+|   [1] contract loads        -> PASSED                             |
+|   [2] graph step reached    -> PASSED                             |
+|   [3] reducer executes      -> BLOCKED                            |
+|   [4] computed report emits -> BLOCKED                            |
+|   [5] gate receipt emits    -> BLOCKED                            |
++------------------------------------------------------------------+
+| Honest rule                                                       |
+|   Do not claim live reducer execution until the computed report   |
+|   proves it came from the contract and graph, not from narration. |
++------------------------------------------------------------------+

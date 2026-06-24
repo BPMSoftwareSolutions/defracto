@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.conveyor_entrypoint_required.v1",
+  "gateTitle": "Conveyor Entrypoint Required",
+  "gateStatus": "accepted",
+  "purpose": "Block runs that claim conveyor-produced status without a command invocation receipt proving the canonical prompt-to-conveyor entrypoint was used.",
+  "passConditions": [
+    "canonical command contract exists",
+    "command invocation receipt exists",
+    "entrypoint matched ndd",
+    "exact argv matched the declared prompt-to-conveyor command",
+    "input hash captured",
+    "run envelope created",
+    "dispatch artifact emitted",
+    "response artifact emitted",
+    "output receipts emitted",
+    "exit code recorded"
+  ],
+  "blockConditions": [
+    "conveyor entrypoint not established",
+    "manual artifact path bypass",
+    "command invocation receipt missing",
+    "argv does not match declared canonical command",
+    "no run envelope or dispatch proof",
+    "claimed conveyor-produced status without invocation proof"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Conveyor Entrypoint Required passes only when the canonical prompt-to-conveyor invocation is proven end to end by receipt evidence."
+}

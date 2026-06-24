@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "defracto.doc-projection.v1",
+  "projectionKey": "defracto.claim-to-evidence-graph.css-projection.v1",
+  "projectionKind": "css_projection",
+  "projectionStatus": "accepted-for-target-shape",
+  "targetPath": "projections/css/claim-to-evidence-graph.css",
+  "sourceLineage": {
+    "htmlProjection": "contracts/projections/claim-to-evidence-graph.html-projection.v1.json",
+    "svgProjection": "contracts/projections/claim-to-evidence-graph.svg-projection.v1.json",
+    "receipts": [
+      "evidence/visual/proof-graphs/claim-to-evidence-graph.edge-verification.receipt.v1.json",
+      "evidence/visual/proof-graphs/claim-to-evidence-graph.svg-projection.receipt.v1.json"
+    ]
+  },
+  "generatedResponsibilities": [
+    "style the review shell clearly and readably",
+    "support the embedded SVG without altering its trust meaning",
+    "keep the layout restrained and deterministic"
+  ],
+  "forbiddenResponsibilities": [
+    "decorative emphasis that changes trust interpretation",
+    "layout drift that hides the graph",
+    "status color meanings that contradict receipts"
+  ],
+  "equivalenceRules": [
+    "CSS must not change the proof graph content.",
+    "CSS may improve readability only.",
+    "CSS colors for passed and blocked states must align with the SVG and review summary.",
+    "CSS must not introduce a new visual metaphor."
+  ],
+  "completionPosture": "CSS is a styling projection, not a claim surface."
+}

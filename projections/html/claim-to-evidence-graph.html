@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claim To Evidence Graph</title>
+  <link rel="stylesheet" href="../css/claim-to-evidence-graph.css">
+</head>
+<body>
+  <main class="page" aria-label="Claim to evidence review surface">
+    <section class="panel hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Governed Review Surface</p>
+        <h1 id="page-title">Claim To Evidence Graph</h1>
+        <p class="lede">
+          This surface shows how the Level 3 fidelity claim is supported by source authority, semantic execution,
+          receipts, visual projections, and blocker posture.
+        </p>
+      </div>
+      <aside class="hero-meta" aria-label="Fidelity posture summary">
+        <div class="status-stack">
+          <span class="status-pill passed">Level 3 achieved</span>
+          <span class="status-pill blocked">Level 4 blocked</span>
+        </div>
+        <p class="boundary-callout">
+          This surface is review-ready, hash-bound, and receipt-backed. It is not yet a Level 4 user-facing experience.
+        </p>
+      </aside>
+    </section>
+
+    <section class="metric-grid" aria-label="Proof metrics">
+      <article class="metric-card panel">
+        <span class="metric-label">Graph nodes</span>
+        <strong>9</strong>
+      </article>
+      <article class="metric-card panel">
+        <span class="metric-label">Graph edges</span>
+        <strong>8</strong>
+      </article>
+      <article class="metric-card panel">
+        <span class="metric-label">Trust posture</span>
+        <strong>Verified</strong>
+      </article>
+      <article class="metric-card panel">
+        <span class="metric-label">Next maturity gate</span>
+        <strong>Level 4</strong>
+      </article>
+    </section>
+
+    <section class="panel fidelity" aria-labelledby="fidelity-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Posture</p>
+          <h2 id="fidelity-title">Fidelity Posture</h2>
+        </div>
+        <span class="status-pill blocked">Not Level 4</span>
+      </div>
+      <div class="fidelity-grid">
+        <div class="fidelity-item">
+          <span class="label">Achieved</span>
+          <strong>Level 3</strong>
+        </div>
+        <div class="fidelity-item">
+          <span class="label">Blocked</span>
+          <strong>Level 4</strong>
+        </div>
+        <div class="fidelity-item wide">
+          <span class="label">Boundary</span>
+          <strong>This surface is review-ready, hash-bound, and receipt-backed. It is not yet a Level 4 user-facing experience.</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel graph-panel" aria-labelledby="graph-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Proof Surface</p>
+          <h2 id="graph-title">Trust Lineage Graph</h2>
+          <p class="section-copy">
+            A governed trust surface showing the claim, authorities, resolver execution, receipts, and blocker posture.
+          </p>
+        </div>
+        <span class="status-pill neutral">SVG projection</span>
+      </div>
+      <object class="graph-frame" data="../svg/claim-to-evidence-graph.svg" type="image/svg+xml" aria-label="Claim to evidence proof graph">
+        <p class="fallback">
+          The SVG proof graph is available at
+          <a href="../svg/claim-to-evidence-graph.svg">projections/svg/claim-to-evidence-graph.svg</a>.
+        </p>
+      </object>
+    </section>
+
+    <section class="split">
+      <section class="panel receipts" aria-labelledby="receipts-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Receipts</p>
+            <h2 id="receipts-title">Proof Pack / Receipt List</h2>
+          </div>
+          <span class="status-pill passed">Evidence-backed</span>
+        </div>
+        <table class="receipt-table">
+          <tbody>
+            <tr>
+              <td>Edge verification receipt</td>
+              <td><span class="status-pill passed">Passed</span></td>
+            </tr>
+            <tr>
+              <td>SVG projection receipt</td>
+              <td><span class="status-pill passed">Passed</span></td>
+            </tr>
+            <tr>
+              <td>Visual equivalence receipt</td>
+              <td><span class="status-pill passed">Passed</span></td>
+            </tr>
+            <tr>
+              <td>Accessibility review proof pack</td>
+              <td><span class="status-pill neutral">Review-ready</span></td>
+            </tr>
+            <tr>
+              <td>Publish-safe review proof pack</td>
+              <td><span class="status-pill neutral">Review-ready</span></td>
+            </tr>
+            <tr>
+              <td>Level 4 maturity gate</td>
+              <td><span class="status-pill blocked">Blocked</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="panel boundary" aria-labelledby="boundary-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Boundary</p>
+            <h2 id="boundary-title">Why this is not Level 4 yet</h2>
+          </div>
+          <span class="status-pill blocked">Boundary held</span>
+        </div>
+        <p class="boundary-body">
+          This review surface is governed, receipted, and visually equivalent to the verified proof graph. It remains below
+          Level 4 until the conveyor emits stronger user-facing experience evidence.
+        </p>
+        <div class="missing">
+          <h3>Missing Level 4 proof</h3>
+          <ul>
+            <li>Surface-specific accessibility acceptance</li>
+            <li>Publish-ready approval posture</li>
+            <li>Stronger interaction readiness proof</li>
+            <li>User-facing equivalence review</li>
+          </ul>
+        </div>
+      </section>
+    </section>
+
+    <footer class="footer">
+      Generated review surface. Source truth remains in the governed contracts, receipts, visual models, and projection manifests.
+    </footer>
+  </main>
+</body>
+</html>

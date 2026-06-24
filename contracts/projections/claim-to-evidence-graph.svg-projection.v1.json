@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "defracto.doc-projection.v1",
+  "projectionKey": "defracto.claim-to-evidence-graph.svg-projection.v1",
+  "projectionKind": "svg_projection",
+  "projectionStatus": "accepted-for-target-shape",
+  "targetPath": "projections/svg/claim-to-evidence-graph.svg",
+  "sourceLineage": {
+    "visualModel": "projections/visual-models/claim-to-evidence-graph.visual-model.v1.json",
+    "targetSketch": "projections/target-sketches/claim-to-evidence-graph.target.v1.json",
+    "asciiProjection": "contracts/projections/claim-to-evidence-graph.ascii-projection.v1.json",
+    "receipts": [
+      "evidence/visual/proof-graphs/claim-to-evidence-graph.edge-verification.receipt.v1.json"
+    ]
+  },
+  "generatedResponsibilities": [
+    "render the claim-to-evidence proof graph as SVG",
+    "preserve all verified nodes and edges",
+    "preserve trust boundaries and status labels"
+  ],
+  "forbiddenResponsibilities": [
+    "inventing trust claims",
+    "inventing edges",
+    "inventing missing evidence",
+    "changing the achieved fidelity level"
+  ],
+  "equivalenceRules": [
+    "SVG node set must equal the verified visual-model node set.",
+    "SVG edge set must equal the verified visual-model edge set.",
+    "SVG labels must not introduce meaning absent from the computed report or receipts.",
+    "SVG status markers must reflect the computed fidelity posture only."
+  ],
+  "completionPosture": "SVG proof surfaces are governed visual projections and remain subordinate to the verified ASCII trust surface."
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "defracto.fidelity-maturity-levels.v1",
+  "catalogKey": "defracto.catalog.fidelity.high-maturity.v1",
+  "catalogStatus": "accepted",
+  "purpose": "Define the maturity ladder used to measure fidelity of conveyor runs and user-facing projections.",
+  "levels": [
+    {
+      "level": 0,
+      "name": "Narrative Intent",
+      "proves": "preserved intent exists",
+      "insufficientByItself": "no canonical authority yet"
+    },
+    {
+      "level": 1,
+      "name": "Governed Canonicalization",
+      "proves": "intent became story/spec authority",
+      "insufficientByItself": "no disposable projection yet"
+    },
+    {
+      "level": 2,
+      "name": "Disposable Projection",
+      "proves": "outputs derive from authority",
+      "insufficientByItself": "fidelity or drift may not be fully proven"
+    },
+    {
+      "level": 3,
+      "name": "Governed Fidelity",
+      "proves": "freshness, receipts, gates, and equivalence exist",
+      "insufficientByItself": "not necessarily polished for users"
+    },
+    {
+      "level": 4,
+      "name": "User-Facing Experience",
+      "proves": "surface is publish/review/user safe",
+      "insufficientByItself": "not necessarily compiler-grade evolution"
+    },
+    {
+      "level": 5,
+      "name": "Compiler-Grade Evolution",
+      "proves": "system can refactor, regenerate, and evolve with evidence",
+      "insufficientByItself": "highest maturity; not default"
+    }
+  ],
+  "completionPosture": "The catalog is the shared vocabulary for claiming and proving fidelity maturity."
+}

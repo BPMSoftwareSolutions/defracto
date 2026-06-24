@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "defracto.release-packet.v1",
+  "runKey": "defracto.run.slice-023-claim-to-evidence-svg-projection.v1",
+  "sliceKey": "slice-023-claim-to-evidence-svg-projection",
+  "status": "passed",
+  "blocker": null,
+  "releaseDisposition": "not-ready-for-level-4",
+  "summary": "The claim-to-evidence graph is projected into SVG and remains governed by receipts and equivalence checks.",
+  "evidence": [
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.svg-projection.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.visual-equivalence.receipt.v1.json",
+    "conveyor/runs/2026/06/22/slice-023-claim-to-evidence-svg-projection/final/run-summary.md",
+    "projections/svg/claim-to-evidence-graph.svg"
+  ],
+  "completionPosture": "SVG projection is complete, but HTML/CSS proof and accessibility proof still sit ahead."
+}

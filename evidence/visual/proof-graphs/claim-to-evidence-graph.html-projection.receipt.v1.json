@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "defracto.visual-projection-receipt.v1",
+  "surfaceKey": "claim-to-evidence-graph",
+  "projectionKind": "html-review-surface",
+  "status": "passed",
+  "decision": "passed",
+  "sourceAuthority": [
+    "projections/visual-models/claim-to-evidence-graph.visual-model.v1.json",
+    "projections/target-sketches/claim-to-evidence-graph.target.v1.json",
+    "contracts/projections/claim-to-evidence-graph.ascii-projection.v1.json",
+    "contracts/projections/claim-to-evidence-graph.svg-projection.v1.json",
+    "projections/ascii/claim-to-evidence-graph.ascii",
+    "projections/svg/claim-to-evidence-graph.svg",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.edge-verification.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.svg-projection.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.visual-equivalence.receipt.v1.json"
+  ],
+  "generatedArtifacts": [
+    {
+      "artifactKind": "html",
+      "path": "projections/html/claim-to-evidence-graph.html",
+      "hash": "sha256:9cd1faed8df006b51c14d4b6fbffe85f439fb44486a3be0b09392a97ef6dd54d"
+    },
+    {
+      "artifactKind": "css",
+      "path": "projections/css/claim-to-evidence-graph.css",
+      "hash": "sha256:c8653ee0822d7c09f8d0de63f1f612d2ecf6a5da683623e9ec594a09c15795b1"
+    },
+    {
+      "artifactKind": "svg",
+      "path": "projections/svg/claim-to-evidence-graph.svg",
+      "hash": "sha256:3719bd3624aa5e3bcce6e05ed5aef2ddfa806f1b5bea06b4067ef451f02b98b5"
+    }
+  ],
+  "checks": [
+    "html file links to the companion CSS file",
+    "existing SVG proof graph is embedded as a projection surface",
+    "graph meaning remains unchanged",
+    "no new nodes or edges are introduced",
+    "surface presents Level 3 achieved and Level 4 blocked honestly"
+  ],
+  "blockedReasons": [],
+  "maturityBoundary": "review_surface_not_level_4",
+  "htmlArtifactPath": "projections/html/claim-to-evidence-graph.html",
+  "cssArtifactPath": "projections/css/claim-to-evidence-graph.css",
+  "svgSourcePath": "projections/svg/claim-to-evidence-graph.svg",
+  "visualModelPath": "projections/visual-models/claim-to-evidence-graph.visual-model.v1.json",
+  "projectionContractPath": "contracts/projections/claim-to-evidence-graph.svg-projection.v1.json",
+  "receiptPaths": [
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.edge-verification.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.svg-projection.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.visual-equivalence.receipt.v1.json"
+  ],
+  "decisionSummary": "Passed as a governed HTML review surface. Not Level 4."
+}

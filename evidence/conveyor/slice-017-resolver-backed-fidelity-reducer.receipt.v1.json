@@ -1,0 +1,102 @@
+{
+  "blockers": [],
+  "runKey": "defracto.run.slice-017-resolver-backed-fidelity-reducer.v1",
+  "schemaVersion": "loc.conveyor-run-receipt.v1",
+  "sliceKey": "slice-017-resolver-backed-fidelity-reducer",
+  "stageResults": {
+    "analysis": {
+      "expectedOutputs": [
+        "evidence/fidelity/slice-017.computed-achievement-report.v1.json",
+        "conveyor/runs/2026/06/22/reports/fidelity-achievement-report.slice-017.md",
+        "projections/ascii/slice-017-fidelity-achievement.ascii",
+        "evidence/fidelity/slice-017.reducer-execution.receipt.v1.json"
+      ],
+      "result": {
+        "blocker": null,
+        "error": null,
+        "evidence": {
+          "contractKey": "defracto.sej.fidelity-achievement-computation.execute.v1",
+          "executedStageIds": [
+            "loadMaturityLevels",
+            "loadReducer",
+            "evaluateEvidenceMatrix",
+            "reduceAchievedLevel",
+            "computeNextLevel",
+            "projectComputedReport",
+            "emitEvidence"
+          ],
+          "stageCount": 7
+        },
+        "findings": [],
+        "result": {
+          "$result": true
+        },
+        "status": "passed"
+      },
+      "sejPath": "contracts/sej/fidelity-achievement-computation.execute.sej.v1.json",
+      "stageKind": "analysis",
+      "status": "passed"
+    },
+    "gateReview": {
+      "expectedOutputs": [
+        "evidence/fidelity/slice-017.fidelity-gate.receipt.v1.json"
+      ],
+      "result": {
+        "blocker": null,
+        "error": null,
+        "evidence": {
+          "contractKey": "defracto.gates.fidelity_achievement_computed.v1",
+          "executedStageIds": [
+            "validateComputedReport",
+            "confirmDerivedAchievement"
+          ],
+          "stageCount": 2
+        },
+        "findings": [],
+        "result": {
+          "decision": "passed"
+        },
+        "status": "passed"
+      },
+      "sejPath": "contracts/gates/fidelity-achievement-computed.gate.v1.json",
+      "stageKind": "gateReview",
+      "status": "passed"
+    }
+  },
+  "receiptVerification": {
+    "hashes": [],
+    "receipts": [
+      "evidence/fidelity/slice-017.reducer-execution.receipt.v1.json",
+      "evidence/fidelity/slice-017.computed-achievement-report.v1.json",
+      "evidence/fidelity/slice-017.fidelity-gate.receipt.v1.json"
+    ],
+    "status": "passed"
+  },
+  "smokeTest": {
+    "result": {
+      "blocker": null,
+      "error": null,
+      "evidence": {
+        "contractKey": "defracto.sej.fidelity-achievement-computation.execute.v1",
+        "executedStageIds": [
+          "loadMaturityLevels",
+          "loadReducer",
+          "evaluateEvidenceMatrix",
+          "reduceAchievedLevel",
+          "computeNextLevel",
+          "projectComputedReport",
+          "emitEvidence"
+        ],
+        "stageCount": 7
+      },
+      "findings": [],
+      "result": {
+        "$result": true
+      },
+      "status": "passed"
+    },
+    "status": "passed",
+    "targetPath": "projections/ascii/slice-017-fidelity-achievement.ascii"
+  },
+  "status": "passed"
+}

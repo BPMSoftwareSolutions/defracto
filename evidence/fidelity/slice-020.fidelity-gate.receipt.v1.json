@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "defracto.fidelity-gate.receipt.v1",
+  "receiptKey": "defracto.receipt.fidelity.gate.slice-020.v1",
+  "status": "blocked",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "gatePath": "contracts/gates/fidelity-achievement-computed.gate.v1.json",
+  "blocker": "graph_step_failed",
+  "finding": "The evidence matrix primitive passed, but the reducer primitive is still missing.",
+  "completionPosture": "The gate remains blocked until the reducer primitive exists."
+}

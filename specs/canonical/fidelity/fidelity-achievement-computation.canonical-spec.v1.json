@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.fidelity-achievement-computation.canonical-spec.v1",
+  "derivedFromStory": "defracto.fidelity-achievement-computation.story.v1",
+  "purpose": "Define the authoritative computation boundaries for fidelity achievement reporting.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.fidelity.claimedLevel",
+      "storyPath": "$.story.iWant",
+      "statement": "A slice may claim a target maturity level."
+    },
+    {
+      "canonicalPath": "$.fidelity.achievedLevel",
+      "storyPath": "$.acceptanceCriteria[0]",
+      "statement": "The achieved level must be computed from observed evidence."
+    },
+    {
+      "canonicalPath": "$.fidelity.nextRequiredLevel",
+      "storyPath": "$.acceptanceCriteria[1]",
+      "statement": "The next missing level is projected from the computed result."
+    },
+    {
+      "canonicalPath": "$.fidelity.receipts",
+      "storyPath": "$.acceptanceCriteria[2]",
+      "statement": "Outputs must remain receipt-backed."
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "fidelity.no-manual-achieved-level",
+      "statement": "Achieved level must not be authored by hand when evidence exists."
+    },
+    {
+      "ruleKey": "fidelity.fail-closed-on-missing-evidence",
+      "statement": "Missing evidence or missing receipts block promotion."
+    }
+  ],
+  "status": "accepted-for-target-shape"
+}

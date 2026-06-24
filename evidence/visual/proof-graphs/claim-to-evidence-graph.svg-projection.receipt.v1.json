@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "defracto.visual.projection.receipt.v1",
+  "receiptKey": "defracto.visual.projection.claim-to-evidence-graph.svg.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "projectionContract": "contracts/projections/claim-to-evidence-graph.svg-projection.v1.json",
+  "sourceVisualModel": "projections/visual-models/claim-to-evidence-graph.visual-model.v1.json",
+  "targetSketch": "projections/target-sketches/claim-to-evidence-graph.target.v1.json",
+  "surfacePath": "projections/svg/claim-to-evidence-graph.svg",
+  "artifactHash": "sha256:3719bd3624aa5e3bcce6e05ed5aef2ddfa806f1b5bea06b4067ef451f02b98b5",
+  "nodeCount": 9,
+  "edgeCount": 8,
+  "verificationStatus": "svg_surface_bound",
+  "completionPosture": "The SVG surface preserves the governed claim-to-evidence graph and is receipted against the projection contract."
+}

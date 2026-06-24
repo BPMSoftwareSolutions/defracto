@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "defracto.fidelity-contract-load.receipt.v1",
+  "receiptKey": "defracto.receipt.fidelity.contract-load.slice-021.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "contractPath": "contracts/sej/fidelity-achievement-computation.slice-021.sej.v1.json",
+  "inputPath": "conveyor/runs/2026/06/22/slice-021-fidelity-achieved-level-reducer/input.v1.json",
+  "observedBoundary": "graph execution reached computeNextLevel",
+  "verificationStatus": "resolver_contract_accepted",
+  "completionPosture": "The resolver accepted the slice 021 contract and advanced past achieved-level reduction."
+}

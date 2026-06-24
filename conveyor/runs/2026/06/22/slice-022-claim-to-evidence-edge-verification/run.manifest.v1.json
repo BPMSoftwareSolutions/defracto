@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-022-claim-to-evidence-edge-verification.v1",
+  "sliceKey": "slice-022-claim-to-evidence-edge-verification",
+  "commandKey": "defracto.visual.edge-verification.claim-to-evidence-graph.v1",
+  "objective": "Verify the claim-to-evidence proof graph against real artifacts, receipts, and computed report fields.",
+  "attemptedInvocation": [
+    "governed visual proof verification over projections/visual-models/claim-to-evidence-graph.visual-model.v1.json"
+  ],
+  "observedStatus": "passed",
+  "blocker": null,
+  "runPosture": "fail-closed",
+  "completionPosture": "The proof graph is edge-verified only when every node and edge is bound to real evidence."
+}

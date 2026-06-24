@@ -1,0 +1,23 @@
++----------------------------------------------------------------+
+|       SLICE 020: FIDELITY EVIDENCE MATRIX PRIMITIVE           |
++----------------------------------------------------------------+
+| Previous blocker                                               |
+|   slice-019 -> graph_step_failed                               |
+|   step      -> evaluateEvidenceMatrix                         |
+|   missing   -> fidelity.evidence_matrix.evaluate.v1           |
++----------------------------------------------------------------+
+| New target                                                     |
+|   bind/implement fidelity.evidence_matrix.evaluate.v1         |
++----------------------------------------------------------------+
+| Probe result                                                   |
+|   L0 Narrative Intent           -> satisfied                  |
+|   L1 Governed Canonicalization  -> satisfied                  |
+|   L2 Disposable Projection      -> satisfied                  |
+|   L3 Governed Fidelity          -> satisfied                  |
+|   L4 User-Facing Experience     -> blocked                    |
+|   L5 Compiler-Grade Evolution   -> blocked/not reached        |
++----------------------------------------------------------------+
+| Full contract result                                           |
+|   graph advanced to reduceAchievedLevel                        |
+|   next blocker -> fidelity.achieved_level.reduce.v1           |
++----------------------------------------------------------------+

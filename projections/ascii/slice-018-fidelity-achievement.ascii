@@ -1,0 +1,11 @@
++-------------------------------------------------------------+
+| FIDELITY ACHIEVEMENT: slice-018                             |
++----------------------+--------------------------------------+
+| Claimed Level         | Level 3 - Governed Fidelity          |
+| Achieved Level        | Level 2 - Disposable Projection      |
+| Decision              | BLOCKED before live execution        |
++----------------------+--------------------------------------+
+| Blocker                                                     |
+| contract_missing                                             |
+| A SEJ contract object is required.                          |
++-------------------------------------------------------------+

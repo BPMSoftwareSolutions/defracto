@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-026-canonical-prompt-to-html-review-surface.v1",
+  "sliceKey": "slice-026-canonical-prompt-to-html-review-surface",
+  "commandKey": "defracto.ndd-cli.conveyor-run.v1",
+  "objective": "Prove the canonical prompt-to-conveyor entrypoint for the claim-to-evidence HTML/CSS review surface and leave receipts for the invocation path.",
+  "attemptedInvocation": [
+    "ndd handoff run --source conveyor/runs/2026/06/22/slice-026-canonical-prompt-to-html-review-surface/input/operator-prompt.md --slice slice-026-canonical-prompt-to-html-review-surface"
+  ],
+  "observedStatus": "blocked",
+  "blocker": "generated_facade_smoke_test_failed",
+  "runPosture": "fail-closed",
+  "completionPosture": "The canonical prompt-to-conveyor entrypoint is valid only when the manifest shape is accepted and the smoke-test target is a real executable facade for the declared surface.",
+  "generatedArtifacts": [
+    "contracts/cli/ndd-handoff-run.prompt-to-conveyor.command.v1.json",
+    "contracts/gates/conveyor-entrypoint-required.gate.v1.json",
+    "contracts/schemas/command-invocation-receipt.schema.v1.json",
+    "conveyor/runs/2026/06/22/slice-026-canonical-prompt-to-html-review-surface/input/operator-prompt.md"
+  ],
+  "sourceAuthority": [
+    "contracts/cli/ndd-handoff-run.prompt-to-conveyor.command.v1.json",
+    "contracts/gates/conveyor-entrypoint-required.gate.v1.json",
+    "contracts/schemas/command-invocation-receipt.schema.v1.json"
+  ],
+  "requiredResolverCapabilities": [
+    "conveyor.run_manifest.load.v1",
+    "resolver.authority.verify.v1",
+    "sej.resolve.stage.v1",
+    "evidence.receipt.verify.v1",
+    "conveyor.run_receipt.emit.v1"
+  ],
+  "stages": {
+    "materialization": {
+      "sej": "contracts/sej/project-run-docs.sej.v1.json",
+      "expectedOutputs": [
+        "projections/html/claim-to-evidence-graph.html",
+        "projections/css/claim-to-evidence-graph.css",
+        "evidence/visual/proof-graphs/claim-to-evidence-graph.html-projection.receipt.v1.json",
+        "evidence/visual/proof-graphs/claim-to-evidence-graph.css-projection.receipt.v1.json",
+        "evidence/visual/proof-graphs/claim-to-evidence-graph.html-review-surface.receipt.v1.json"
+      ]
+    },
+    "conformance": {
+      "sej": "contracts/sej/project-run-docs.sej.v1.json",
+      "expectedOutputs": [
+        "evidence/conveyor/slice-026.command-invocation.receipt.v1.json"
+      ]
+    },
+    "smokeTest": {
+      "targetPath": "projections/html/claim-to-evidence-graph.html",
+      "stdinFixture": "conveyor/runs/2026/06/22/slice-026-canonical-prompt-to-html-review-surface/input/operator-prompt.md",
+      "expectedStatus": "passed",
+      "expectedContractKey": "defracto.claim-to-evidence-graph.html-projection.v1"
+    }
+  },
+  "requiredReceipts": [
+    "evidence/conveyor/slice-026.command-invocation.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.html-projection.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.css-projection.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.html-review-surface.receipt.v1.json"
+  ],
+  "requiredHashes": [
+    {
+      "path": "projections/html/claim-to-evidence-graph.html",
+      "expectedHash": "sha256:9cd1faed8df006b51c14d4b6fbffe85f439fb44486a3be0b09392a97ef6dd54d"
+    },
+    {
+      "path": "projections/css/claim-to-evidence-graph.css",
+      "expectedHash": "sha256:c8653ee0822d7c09f8d0de63f1f612d2ecf6a5da683623e9ec594a09c15795b1"
+    }
+  ],
+  "receiptPaths": [
+    "evidence/conveyor/slice-026.command-invocation.receipt.v1.json"
+  ],
+  "runReceiptPath": "evidence/conveyor/slice-026.command-invocation.receipt.v1.json"
+}

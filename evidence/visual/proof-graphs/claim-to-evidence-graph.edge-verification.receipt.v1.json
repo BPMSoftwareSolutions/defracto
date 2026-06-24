@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "defracto.visual.edge-verification.receipt.v1",
+  "receiptKey": "defracto.visual.edge-verification.claim-to-evidence-graph.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "visualModel": "projections/visual-models/claim-to-evidence-graph.visual-model.v1.json",
+  "targetSketch": "projections/target-sketches/claim-to-evidence-graph.target.v1.json",
+  "projectionContract": "contracts/projections/claim-to-evidence-graph.ascii-projection.v1.json",
+  "surfacePath": "projections/ascii/claim-to-evidence-graph.ascii",
+  "sourceAuthority": [
+    "docs/architecture/high-fidelity-maturity-ladder.md",
+    "contracts/fidelity/high-fidelity-maturity-levels.v1.json"
+  ],
+  "semanticAuthority": [
+    "contracts/semantic-operation-graphs/fidelity/fidelity-achievement-computation.execute.sog.v1.json",
+    "contracts/sej/fidelity-achievement-computation.slice-021.sej.v1.json"
+  ],
+  "computedEvidence": [
+    "evidence/fidelity/slice-021.computed-achievement-report.v1.json",
+    "evidence/fidelity/slice-021.reducer-execution.receipt.v1.json",
+    "evidence/fidelity/slice-021.fidelity-gate.receipt.v1.json"
+  ],
+  "verifiedNodes": [
+    { "nodeKey": "claim", "artifactRef": "evidence/fidelity/slice-021.computed-achievement-report.v1.json#claimedLevel" },
+    { "nodeKey": "source-authority", "artifactRef": "docs/architecture/high-fidelity-maturity-ladder.md" },
+    { "nodeKey": "semantic-authority", "artifactRef": "contracts/semantic-operation-graphs/fidelity/fidelity-achievement-computation.execute.sog.v1.json" },
+    { "nodeKey": "resolver-execution", "artifactRef": "evidence/fidelity/slice-021.reducer-execution.receipt.v1.json" },
+    { "nodeKey": "computed-artifact", "artifactRef": "evidence/fidelity/slice-021.computed-achievement-report.v1.json" },
+    { "nodeKey": "receipts", "artifactRef": "evidence/fidelity/slice-021.fidelity-gate.receipt.v1.json" },
+    { "nodeKey": "gate", "artifactRef": "conveyor/gates/fidelity-level-required.gate.v1.json" },
+    { "nodeKey": "achieved-level", "artifactRef": "evidence/fidelity/slice-021.computed-achievement-report.v1.json#achievedLevel" },
+    { "nodeKey": "next-blocker", "artifactRef": "evidence/fidelity/slice-021.computed-achievement-report.v1.json#nextRequiredLevel" }
+  ],
+  "verifiedEdges": [
+    {
+      "from": "claim",
+      "to": "source-authority",
+      "evidenceRef": "evidence/fidelity/slice-021.computed-achievement-report.v1.json",
+      "relation": "claim sourced from ladder authority"
+    },
+    {
+      "from": "source-authority",
+      "to": "semantic-authority",
+      "evidenceRef": "contracts/sej/fidelity-achievement-computation.slice-021.sej.v1.json",
+      "relation": "story/spec authority lowered to semantic authority"
+    },
+    {
+      "from": "semantic-authority",
+      "to": "resolver-execution",
+      "evidenceRef": "evidence/fidelity/slice-021.reducer-execution.receipt.v1.json",
+      "relation": "semantic graph executed in resolver"
+    },
+    {
+      "from": "resolver-execution",
+      "to": "computed-artifact",
+      "evidenceRef": "evidence/fidelity/slice-021.computed-achievement-report.v1.json",
+      "relation": "execution produced computed report"
+    },
+    {
+      "from": "computed-artifact",
+      "to": "receipts",
+      "evidenceRef": "evidence/fidelity/slice-021.fidelity-gate.receipt.v1.json",
+      "relation": "computed report is bound to receipts"
+    },
+    {
+      "from": "receipts",
+      "to": "gate",
+      "evidenceRef": "conveyor/gates/fidelity-level-required.gate.v1.json",
+      "relation": "gate posture verified by receipts"
+    },
+    {
+      "from": "gate",
+      "to": "achieved-level",
+      "evidenceRef": "evidence/fidelity/slice-021.reducer-execution.receipt.v1.json",
+      "relation": "gate supports achieved Level 3"
+    },
+    {
+      "from": "achieved-level",
+      "to": "next-blocker",
+      "evidenceRef": "evidence/fidelity/slice-021.computed-achievement-report.v1.json",
+      "relation": "next blocker is Level 4 proof"
+    }
+  ],
+  "orphanNodeCount": 0,
+  "orphanEdgeCount": 0,
+  "edgePolicy": "no-edge-without-evidence",
+  "verificationStatus": "resolver_and_artifact_bound",
+  "completionPosture": "The claim-to-evidence graph is edge-verified against real artifacts and receipts."
+}

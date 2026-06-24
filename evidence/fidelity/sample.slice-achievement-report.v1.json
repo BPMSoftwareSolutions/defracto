@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "defracto.fidelity-achievement-report.v1",
+  "reportKey": "defracto.fidelity.sample.slice-015.v1",
+  "sliceKey": "slice-015-documentation-projection-conveyor",
+  "scope": {
+    "scopeKind": "slice",
+    "scopeKey": "defracto.run.slice-015-documentation-projection-conveyor.v1",
+    "artifactRoots": [
+      "conveyor/runs/2026/06/21/reports",
+      "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor",
+      "generated/docs/node",
+      "evidence/docs"
+    ]
+  },
+  "claimedLevel": {
+    "level": 3,
+    "name": "Governed Fidelity"
+  },
+  "achievedLevel": {
+    "level": 3,
+    "name": "Governed Fidelity"
+  },
+  "sourceAuthority": [
+    "contracts/docs/documentation-surface.catalog.v1.json",
+    "contracts/semantic-operation-graphs/docs/project-run-docs.sog.v1.json",
+    "contracts/sej/project-run-docs.sej.v1.json"
+  ],
+  "canonicalAuthority": [
+    "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/run.manifest.v1.json"
+  ],
+  "semanticAuthority": [
+    "contracts/registry/artifact-graph.index.v1.json",
+    "contracts/registry/receipt-registry.v1.json"
+  ],
+  "projectionSurfaces": [
+    "README.md",
+    "conveyor/runs/2026/06/21/README.md",
+    "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+    "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/RUNME.md",
+    "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/sketches/doc-truth-flow.ascii"
+  ],
+  "requiredReceipts": [
+    "evidence/docs/generated-docs.receipt.v1.json",
+    "evidence/docs/generated-doc-drift.receipt.v1.json",
+    "evidence/conveyor/slice-015-documentation-projection-conveyor.receipt.v1.json"
+  ],
+  "observedReceipts": [
+    {
+      "receiptPath": "evidence/docs/generated-docs.receipt.v1.json",
+      "status": "passed",
+      "note": "Docs surfaces were materialized from declared authority."
+    },
+    {
+      "receiptPath": "evidence/docs/generated-doc-drift.receipt.v1.json",
+      "status": "passed",
+      "note": "Docs drift gate passed for the run."
+    },
+    {
+      "receiptPath": "evidence/conveyor/slice-015-documentation-projection-conveyor.receipt.v1.json",
+      "status": "passed",
+      "note": "The run receipt is present and passed."
+    }
+  ],
+  "requiredGates": [
+    "conveyor/gates/generated-doc-drift.gate.v1.json",
+    "conveyor/gates/projection-freshness.gate.v1.json",
+    "conveyor/gates/receipt-required.gate.v1.json"
+  ],
+  "gateResults": [
+    {
+      "gatePath": "conveyor/gates/generated-doc-drift.gate.v1.json",
+      "status": "passed",
+      "finding": "Docs outputs are reproducible from manifest authority."
+    },
+    {
+      "gatePath": "conveyor/gates/projection-freshness.gate.v1.json",
+      "status": "passed",
+      "finding": "Docs projection is current in the registry."
+    },
+    {
+      "gatePath": "conveyor/gates/receipt-required.gate.v1.json",
+      "status": "passed",
+      "finding": "Required receipts are present."
+    }
+  ],
+  "blockingFindings": [],
+  "decision": {
+    "status": "passed",
+    "reason": "The slice achieved governed fidelity for docs projection surfaces."
+  },
+  "nextRequiredLevel": {
+    "level": 4,
+    "missingEvidence": [
+      "surface-specific user-facing polish checks",
+      "accessibility proof",
+      "publish-safe channel constraints",
+      "equivalence proof for polished presentation surfaces"
+    ]
+  }
+}

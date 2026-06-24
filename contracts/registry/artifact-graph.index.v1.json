@@ -30,6 +30,12 @@
       "status": "stale"
     },
     {
+      "nodeKey": "receipt.cli.conformance",
+      "nodeKind": "receipt",
+      "artifactPath": "evidence/cli/ndd-cli.conformance.receipt.v1.json",
+      "status": "blocked"
+    },
+    {
       "nodeKey": "projection.cli.bootstrap",
       "nodeKind": "generated-surface",
       "artifactPath": "bin/ndd.cjs",
@@ -59,7 +65,7 @@
       "nodeKey": "receipt.runner.conformance",
       "nodeKind": "receipt",
       "artifactPath": "evidence/runner/conveyor-runner.conformance.receipt.v1.json",
-      "status": "current"
+      "status": "blocked"
     },
     {
       "nodeKey": "source.docs.projection",
@@ -140,7 +146,7 @@
     {
       "edgeKey": "cli-node-projection-to-receipt",
       "fromNodeKey": "projection.cli.node",
-      "toNodeKey": "receipt.runner.conformance",
+      "toNodeKey": "receipt.cli.conformance",
       "relation": "verified-by"
     },
     {

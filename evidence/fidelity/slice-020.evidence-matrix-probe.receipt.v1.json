@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "defracto.fidelity-evidence-matrix-probe.receipt.v1",
+  "receiptKey": "defracto.receipt.fidelity.evidence-matrix-probe.slice-020.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "primitiveKey": "fidelity.evidence_matrix.evaluate.v1",
+  "contractKey": "defracto.sej.fidelity-evidence-matrix-probe.v1",
+  "highestSatisfiedLevel": 3,
+  "firstBlockedLevel": 4,
+  "levelSummary": [
+    { "level": 0, "satisfied": true },
+    { "level": 1, "satisfied": true },
+    { "level": 2, "satisfied": true },
+    { "level": 3, "satisfied": true },
+    { "level": 4, "satisfied": false },
+    { "level": 5, "satisfied": false }
+  ],
+  "verificationStatus": "resolver_primitive_confirmed",
+  "completionPosture": "The fidelity evidence matrix primitive is deterministic and returns a bounded ladder result."
+}

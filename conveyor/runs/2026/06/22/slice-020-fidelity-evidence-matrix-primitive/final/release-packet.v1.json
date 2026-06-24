@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "defracto.release-packet.v1",
+  "runKey": "defracto.run.slice-020-fidelity-evidence-matrix-primitive.v1",
+  "sliceKey": "slice-020-fidelity-evidence-matrix-primitive",
+  "status": "blocked",
+  "blocker": "graph_step_failed",
+  "releaseDisposition": "not-ready",
+  "summary": "The fidelity evidence matrix primitive is live; the reducer primitive remains missing.",
+  "evidence": [
+    "conveyor/runs/2026/06/22/slice-020-fidelity-evidence-matrix-primitive/run.manifest.v1.json",
+    "conveyor/runs/2026/06/22/slice-020-fidelity-evidence-matrix-primitive/final/run-summary.md",
+    "evidence/fidelity/slice-020.evidence-matrix-probe.receipt.v1.json",
+    "evidence/fidelity/slice-020.reducer-execution.receipt.v1.json"
+  ],
+  "completionPosture": "Slice 020 is retained as the first live evidence-matrix primitive proof."
+}

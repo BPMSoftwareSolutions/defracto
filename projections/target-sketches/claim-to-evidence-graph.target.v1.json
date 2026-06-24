@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "defracto.target-sketch.v1",
+  "targetStatus": "accepted",
+  "surfaceKind": "ascii",
+  "authority": "visualProjectionModel",
+  "layoutMode": "deterministic",
+  "targetKey": "defracto.target.claim_to_evidence_graph.v1",
+  "targetTitle": "Claim To Evidence Graph Target",
+  "forbiddenClaims": [
+    "freehand proof",
+    "renderer-owned truth",
+    "unreceipted trust edges"
+  ],
+  "nodes": [
+    { "nodeKey": "claim", "label": "Claim" },
+    { "nodeKey": "source-authority", "label": "Source Authority" },
+    { "nodeKey": "semantic-authority", "label": "Semantic Authority" },
+    { "nodeKey": "resolver-execution", "label": "Resolver Execution" },
+    { "nodeKey": "computed-artifact", "label": "Computed Artifact" },
+    { "nodeKey": "receipts", "label": "Receipts" },
+    { "nodeKey": "gate", "label": "Gate" },
+    { "nodeKey": "achieved-level", "label": "Achieved Fidelity Level" },
+    { "nodeKey": "next-blocker", "label": "Next Blocked Proof" }
+  ],
+  "edges": [
+    { "from": "claim", "to": "source-authority" },
+    { "from": "source-authority", "to": "semantic-authority" },
+    { "from": "semantic-authority", "to": "resolver-execution" },
+    { "from": "resolver-execution", "to": "computed-artifact" },
+    { "from": "computed-artifact", "to": "receipts" },
+    { "from": "receipts", "to": "gate" },
+    { "from": "gate", "to": "achieved-level" },
+    { "from": "achieved-level", "to": "next-blocker" }
+  ],
+  "semanticBindings": [
+    "docs/architecture/high-fidelity-maturity-ladder.md",
+    "evidence/fidelity/slice-021.computed-achievement-report.v1.json",
+    "evidence/fidelity/slice-021.reducer-execution.receipt.v1.json",
+    "evidence/fidelity/slice-021.fidelity-gate.receipt.v1.json"
+  ],
+  "equivalenceRules": [
+    "The claim lane must match the computed achievement report.",
+    "The execution lane must match the reducer receipt.",
+    "The evidence lane must include the receipts that bound the claim.",
+    "The boundary lane must show the next blocked primitive or proof family."
+  ],
+  "completionPosture": "The proof graph is a trust surface for a fidelity claim; it is not a decorative diagram."
+}

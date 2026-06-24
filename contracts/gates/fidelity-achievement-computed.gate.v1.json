@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.fidelity_achievement_computed.v1",
+  "gateTitle": "Fidelity Achievement Computed",
+  "gateStatus": "accepted",
+  "purpose": "Block fidelity claims that are not computed from observed evidence and gate posture.",
+  "passConditions": [
+    "computed fidelity achievement report exists",
+    "reducer key is declared",
+    "level matrix is declared",
+    "achieved level is derived from evidence",
+    "decision matches the evidence posture"
+  ],
+  "blockConditions": [
+    "missing computed report",
+    "achieved level authored without computation",
+    "level matrix missing",
+    "manual override present",
+    "decision contradicts evidence posture"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Fidelity Achievement Computed passes only when the achieved level is traceable to observed evidence and reducer rules."
+}

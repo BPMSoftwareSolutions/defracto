@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "defracto.release-packet.v1",
+  "runKey": "defracto.run.slice-021-fidelity-achieved-level-reducer.v1",
+  "sliceKey": "slice-021-fidelity-achieved-level-reducer",
+  "status": "blocked",
+  "blocker": "graph_step_failed",
+  "releaseDisposition": "not-ready",
+  "summary": "The achieved-level reducer is live; next-level computation remains missing.",
+  "evidence": [
+    "conveyor/runs/2026/06/22/slice-021-fidelity-achieved-level-reducer/run.manifest.v1.json",
+    "conveyor/runs/2026/06/22/slice-021-fidelity-achieved-level-reducer/final/run-summary.md",
+    "evidence/fidelity/slice-021.contract-load.receipt.v1.json",
+    "evidence/fidelity/slice-021.reducer-execution.receipt.v1.json",
+    "evidence/fidelity/slice-021.fidelity-gate.receipt.v1.json",
+    "evidence/fidelity/slice-021.computed-achievement-report.v1.json"
+  ],
+  "completionPosture": "Slice 021 is retained as the first live achieved-level reducer proof."
+}

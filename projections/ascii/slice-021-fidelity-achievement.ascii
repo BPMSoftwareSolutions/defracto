@@ -1,0 +1,27 @@
++----------------------------------------------------------------+
+|       SLICE 021: FIDELITY ACHIEVED LEVEL REDUCER               |
++----------------------------------------------------------------+
+| Previous blocker                                                |
+|   slice-020 -> graph_step_failed                                |
+|   step      -> reduceAchievedLevel                              |
+|   missing   -> fidelity.achieved_level.reduce.v1                |
++----------------------------------------------------------------+
+| New target                                                      |
+|   bind/implement fidelity.achieved_level.reduce.v1              |
++----------------------------------------------------------------+
+| Reduction result                                                |
+|   L0 satisfied                                                  |
+|   L1 satisfied                                                  |
+|   L2 satisfied                                                  |
+|   L3 satisfied                                                  |
+|   L4 blocked                                                    |
+|   L5 blocked                                                    |
++----------------------------------------------------------------+
+| Output                                                          |
+|   achievedLevel      -> L3 Governed Fidelity                    |
+|   firstBlockedLevel  -> L4 User-Facing Experience               |
+|   claimStatus        -> satisfied                               |
++----------------------------------------------------------------+
+| Current blocker                                                 |
+|   fidelity.next_level.compute.v1                                |
++----------------------------------------------------------------+

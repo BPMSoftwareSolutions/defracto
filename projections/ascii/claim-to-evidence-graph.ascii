@@ -1,0 +1,21 @@
++--------------------------------------------------------------------------------+
+|                      CLAIM TO EVIDENCE GRAPH                                   |
++--------------------------------------------------------------------------------+
+| CLAIM LANE                                                                     |
+|   Claimed Level 3  --->  Achieved Level 3  --->  Next Blocked: Level 4        |
++--------------------------------------------------------------------------------+
+| AUTHORITY LANE                                                                 |
+|   fidelity ladder doc  --->  maturity levels  --->  reducer contract          |
+|   semantic graph        --->  capability bindings                             |
++--------------------------------------------------------------------------------+
+| EXECUTION LANE                                                                 |
+|   resolver load  --->  evidence matrix  --->  achieved-level reduction        |
+|   next-level compute blocked at fidelity.next_level.compute.v1                 |
++--------------------------------------------------------------------------------+
+| EVIDENCE LANE                                                                  |
+|   contract-load receipt  --->  reducer receipt  --->  computed report         |
+|   gate receipt           --->  run summary / release packet                   |
++--------------------------------------------------------------------------------+
+| BOUNDARY LANE                                                                  |
+|   Level 4 proof missing: polish, accessibility, publish safety, equivalence   |
++--------------------------------------------------------------------------------+

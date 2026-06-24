@@ -594,6 +594,34 @@ The model can scale if the artifact graph becomes first-class.
 
 The first registry slices for that now exist in `contracts/registry/artifact-graph.index.v1.json` and `contracts/registry/receipt-registry.v1.json`. They do not solve the whole scale problem yet, but they give the conveyor a truthful place to query lineage and receipt maturity instead of forcing readers to reconstruct it by hand.
 
+The new `conveyor/gates/projection-freshness.gate.v1.json` gate is the first concrete policy that can ask the registry whether a selected surface is still current before release or promotion.
+
+The receipt registry should be queried by node key, not just by surface path, because repair pilots can momentarily point at the same surface with different maturity posture.
+
+The docs run manifest now requires `conveyor/gates/projection-freshness.gate.v1.json` alongside the docs drift gate, so freshness is part of the declared run obligations instead of just an ad hoc check.
+
+A dedicated fidelity ladder now lives at [docs/architecture/high-fidelity-maturity-ladder.md](</C:/Users/Sidney Jones/OneDrive - bpmsoftwaresolutions.com/Documents/narrative-execution-fabric/docs/architecture/high-fidelity-maturity-ladder.md>).
+
+That ladder now has a receipt family behind it: `contracts/schemas/fidelity-achievement-report.schema.v1.json`, `contracts/fidelity/high-fidelity-maturity-levels.v1.json`, `contracts/gates/fidelity-level-required.gate.v1.json`, and the sample report at `conveyor/runs/2026/06/22/reports/fidelity-achievement-report.sample.md`.
+
+The first resolver-backed compute slice now exists too: `contracts/sej/fidelity-achievement-computation.execute.sej.v1.json`, `contracts/semantic-operation-graphs/fidelity/fidelity-achievement-computation.execute.sog.v1.json`, `evidence/fidelity/slice-017.computed-achievement-report.v1.json`, and `conveyor/runs/2026/06/22/reports/fidelity-achievement-report.slice-017.md`.
+
+The live execution follow-up is now recorded as slice 018, and it currently blocks closed on `contract_missing` before graph execution can begin. That blocker is preserved in `conveyor/runs/2026/06/22/slice-018-live-fidelity-reducer-execution/` along with the blocked receipt and report surfaces, so the next alignment step is now explicit rather than implied.
+
+Slice 019 moved the failure boundary forward again: the fidelity contract now loads and reaches `evaluateEvidenceMatrix`, and the blocker is now the missing primitive `fidelity.evidence_matrix.evaluate.v1` instead of contract shape. The aligned run, receipts, and proof surfaces live under `conveyor/runs/2026/06/22/slice-019-fidelity-contract-shape-alignment/` and `evidence/fidelity/`.
+
+Slice 020 then closed that primitive gap. The fidelity evidence matrix primitive is now live and deterministic, the probe reports highest satisfied level 3 with first blocked level 4, and the full contract now blocks at `reduceAchievedLevel` because `fidelity.achieved_level.reduce.v1` was still missing. The slice 020 probe, run summary, and proof surfaces live under `conveyor/runs/2026/06/22/slice-020-fidelity-evidence-matrix-primitive/` and `evidence/fidelity/`.
+
+Slice 021 closes the achieved-level reducer. The reducer now deterministically collapses the evaluated matrix to Level 3 with claim status `satisfied`, while the full resolver run advances past `reduceAchievedLevel` and blocks at `computeNextLevel` because `fidelity.next_level.compute.v1` is now the missing primitive. The slice 021 receipts and proof surfaces live under `conveyor/runs/2026/06/22/slice-021-fidelity-achieved-level-reducer/` and `evidence/fidelity/`.
+
+The next visual step is the claim-to-evidence proof graph. The ladder shows the achieved level; the proof graph shows why the achieved level is trustworthy by tracing claim, source authority, semantic authority, resolver execution, computed artifact, receipts, gates, and the next blocked proof family.
+
+Slice 022 then edge-verified that proof graph. Every node in the graph now maps to a real artifact or computed field, every edge maps to a declared relationship with evidence, and the graph reports zero orphan nodes and zero orphan edges. That moves the visual layer from explanation into governed trust surface territory.
+
+Slice 023 projects that same verified trust graph into SVG. The SVG surface keeps the same nine nodes and eight edges as the ASCII proof graph, is hash-receipted, and has a visual-equivalence receipt confirming that it did not invent new trust language. It is richer than ASCII, but it is still not Level 4 until HTML/CSS, accessibility, and publish-safety proof exist.
+
+Slice 024 wraps that verified SVG in a governed HTML/CSS review surface. The HTML shell frames the trust graph with a title, evidence summary, node and edge counts, receipt list, and blocked-boundary note, while the CSS keeps the layout restrained and readable. The review shell is receipted and bound to the SVG, but it still does not claim Level 4 maturity because accessibility and publish-safe proof have not been added yet.
+
 What scales well:
 
 - Bounded responsibilities per conveyor character.

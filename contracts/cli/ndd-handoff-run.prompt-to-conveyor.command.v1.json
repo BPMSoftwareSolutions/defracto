@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "defracto.cli-command-contract.v1",
+  "cliKey": "defracto.cli.ndd-handoff.v1",
+  "commandKey": "defracto.ndd.handoff.run.prompt_to_conveyor.v1",
+  "entrypoint": "ndd",
+  "commandName": "ndd handoff run",
+  "status": "accepted",
+  "sourceTruth": "declared_json_contract",
+  "purpose": "Declare the canonical prompt-to-conveyor entrypoint for governed narrative input.",
+  "argvPatterns": [
+    "ndd handoff run --text <operatorText> --slice <sliceKey>",
+    "ndd handoff run --source <sourcePath> --slice <sliceKey>"
+  ],
+  "ownedResponsibilities": [
+    "capture operator narrative",
+    "hash the input",
+    "create the run envelope",
+    "create dispatch artifacts",
+    "invoke the conveyor through resolver authority",
+    "materialize declared outputs",
+    "emit receipts",
+    "emit the run ledger",
+    "fail closed when required authority is missing"
+  ],
+  "forbiddenResponsibilities": [
+    "hand-authored artifact bypass",
+    "silent Drive publishing",
+    "claiming Level 4 without receipts",
+    "claiming conveyor output without command invocation proof",
+    "inventing projection surfaces outside declared targets"
+  ],
+  "inputKinds": [
+    "operatorText",
+    "sourcePath"
+  ],
+  "requiredArtifacts": [
+    "run manifest",
+    "command invocation receipt",
+    "dispatch artifact",
+    "response artifact",
+    "output artifact receipts",
+    "run ledger"
+  ],
+  "requiredEvidence": [
+    "command key",
+    "exact argv",
+    "input text or source path",
+    "input hash",
+    "slice key",
+    "run envelope path",
+    "dispatch path and hash",
+    "worker or resolver invocation result",
+    "produced artifact paths and hashes",
+    "receipt paths and hashes",
+    "exit code"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "The command is authoritative only when the canonical prompt-to-conveyor entrypoint is invoked and receipt-backed provenance exists for the produced artifacts."
+}

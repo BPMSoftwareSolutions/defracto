@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-018-live-fidelity-reducer-execution.v1",
+  "sliceKey": "slice-018-live-fidelity-reducer-execution",
+  "commandKey": "defracto.conveyor.fidelity.achievement.compute.v1",
+  "objective": "Execute the fidelity achievement reducer through the resolver and verify the computed result path.",
+  "attemptedInvocation": [
+    "node node_modules/@bpmsoftwaresolutions/sej-resolver-node/src/cli.cjs resolve --contract .tmp/fidelity-achievement-computation.fixture.json",
+    "node node_modules/@bpmsoftwaresolutions/sej-resolver-node/src/cli.cjs resolve --contract contracts/sej/fidelity-achievement-computation.execute.sej.v1.json"
+  ],
+  "observedStatus": "blocked",
+  "blocker": "contract_missing",
+  "observedFinding": "A SEJ contract object is required.",
+  "runPosture": "fail-closed",
+  "completionPosture": "Slice 018 records the live resolver attempt and preserves the blocker without inventing success."
+}

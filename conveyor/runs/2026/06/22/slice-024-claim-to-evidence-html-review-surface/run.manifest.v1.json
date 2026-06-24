@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-024-claim-to-evidence-html-review-surface.v1",
+  "sliceKey": "slice-024-claim-to-evidence-html-review-surface",
+  "commandKey": "defracto.visual.projection.claim-to-evidence-graph.html.v1",
+  "objective": "Wrap the verified SVG proof graph in a governed HTML/CSS review surface without changing the proof graph meaning.",
+  "attemptedInvocation": [
+    "governed HTML/CSS review shell over projections/svg/claim-to-evidence-graph.svg",
+    "bind HTML and CSS projection receipts to the verified proof graph"
+  ],
+  "observedStatus": "passed",
+  "blocker": null,
+  "runPosture": "fail-closed",
+  "completionPosture": "The HTML review shell is valid only when it preserves the verified SVG graph unchanged.",
+  "generatedArtifacts": [
+    "projections/html/claim-to-evidence-graph.html",
+    "projections/css/claim-to-evidence-graph.css",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.html-projection.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.css-projection.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.html-review-surface.receipt.v1.json"
+  ],
+  "sourceAuthority": [
+    "projections/visual-models/claim-to-evidence-graph.visual-model.v1.json",
+    "projections/target-sketches/claim-to-evidence-graph.target.v1.json",
+    "contracts/projections/claim-to-evidence-graph.ascii-projection.v1.json",
+    "contracts/projections/claim-to-evidence-graph.svg-projection.v1.json",
+    "projections/ascii/claim-to-evidence-graph.ascii",
+    "projections/svg/claim-to-evidence-graph.svg",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.edge-verification.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.svg-projection.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.visual-equivalence.receipt.v1.json"
+  ],
+  "receiptPaths": [
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.html-projection.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.css-projection.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.html-review-surface.receipt.v1.json"
+  ]
+}

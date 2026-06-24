@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "defracto.fidelity-gate.receipt.v1",
+  "receiptKey": "defracto.receipt.fidelity.gate.slice-021.v1",
+  "status": "blocked",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "gatePath": "contracts/gates/fidelity-level-required.gate.v1.json",
+  "blocker": "graph_step_failed",
+  "finding": "The achieved-level reducer passed, but the run blocks at missing next-level computation.",
+  "observedBoundary": "graph execution reached computeNextLevel",
+  "completionPosture": "The fidelity ladder is now reducible to Level 3; the next missing primitive is next-level computation."
+}

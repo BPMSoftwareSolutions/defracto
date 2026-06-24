@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "defracto.fidelity-gate.receipt.v1",
+  "receiptKey": "defracto.receipt.fidelity.gate.slice-018.v1",
+  "status": "blocked",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "gatePath": "contracts/gates/fidelity-achievement-computed.gate.v1.json",
+  "blocker": "contract_missing",
+  "finding": "Resolver rejected the fidelity SEJ before live execution could compute the achieved level.",
+  "completionPosture": "Gate blocks promotion until live resolver execution exists."
+}

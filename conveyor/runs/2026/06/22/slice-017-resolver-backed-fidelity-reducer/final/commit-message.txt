@@ -1,0 +1,1 @@
+Add resolver-backed fidelity reducer and computed achievement reporting

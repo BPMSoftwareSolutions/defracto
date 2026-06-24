@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.fidelity-achievement-computation.story.v1",
+  "storyTitle": "Fidelity Achievement Computation",
+  "derivedFrom": {
+    "sourceKey": "defracto.source.fidelity-achievement-computation.v1",
+    "sourcePath": "docs/architecture/high-fidelity-maturity-ladder.md",
+    "sourceHash": "sha256:deferred-until-materialization"
+  },
+  "actor": {
+    "role": "Fidelity reducer",
+    "goal": "to compute achieved maturity from observed receipts without manual override"
+  },
+  "story": {
+    "asA": "Fidelity reducer",
+    "iWant": "to compute achieved maturity from observed receipts without manual override",
+    "soThat": "the conveyor can report honest maturity and next proof gaps"
+  },
+  "acceptanceCriteria": [
+    {
+      "criterionKey": "fidelity.reducer-computes-achieved-level",
+      "statement": "Achieved level is derived from observed evidence, not handwritten."
+    },
+    {
+      "criterionKey": "fidelity.reducer-projects-next-gap",
+      "statement": "The next missing proof is projected when the current level is satisfied."
+    },
+    {
+      "criterionKey": "fidelity.reducer-receipt-backed",
+      "statement": "Every output surface is backed by a receipt."
+    }
+  ],
+  "forbiddenClaims": [
+    "achieved level is manual",
+    "evidence is invented",
+    "next level is claimed without proof"
+  ],
+  "status": "accepted-for-target-shape"
+}

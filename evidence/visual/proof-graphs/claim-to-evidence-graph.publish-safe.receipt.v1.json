@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "defracto.visual.publish-safe.receipt.v1",
+  "receiptKey": "defracto.visual.publish-safe.claim-to-evidence-graph.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "surfacePath": "projections/html/claim-to-evidence-graph.html",
+  "publishScope": "google-drive-review",
+  "allowedChannels": [
+    "google-drive"
+  ],
+  "disallowedChannels": [
+    "external social posting",
+    "public website publish",
+    "youtube",
+    "linkedin"
+  ],
+  "checks": [
+    "surface frames verified SVG without changing graph semantics",
+    "no new trust claims introduced",
+    "boundary remains below Level 4",
+    "content is suitable for internal Drive review"
+  ],
+  "verificationStatus": "drive_review_publish_safe",
+  "completionPosture": "This surface is safe to publish to Google Drive for review, but not yet safe for external public channels."
+}

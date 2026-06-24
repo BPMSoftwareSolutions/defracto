@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "defracto.visual-equivalence.receipt.v1",
+  "receiptKey": "defracto.visual.equivalence.claim-to-evidence-graph.v1",
+  "status": "passed",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "asciiSurfacePath": "projections/ascii/claim-to-evidence-graph.ascii",
+  "svgSurfacePath": "projections/svg/claim-to-evidence-graph.svg",
+  "nodeCount": 9,
+  "edgeCount": 8,
+  "nodeEquivalence": "passed",
+  "edgeEquivalence": "passed",
+  "labelEquivalence": "passed",
+  "statusMarkerEquivalence": "passed",
+  "orphanNodeCount": 0,
+  "orphanEdgeCount": 0,
+  "verificationStatus": "ascii_svg_equivalence_confirmed",
+  "completionPosture": "The SVG projection preserves the ASCII proof graph's trust structure without inventing new meaning."
+}

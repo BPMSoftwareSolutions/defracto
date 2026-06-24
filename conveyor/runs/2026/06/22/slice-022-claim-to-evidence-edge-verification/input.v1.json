@@ -1,0 +1,12 @@
+{
+  "visualModel": "projections/visual-models/claim-to-evidence-graph.visual-model.v1.json",
+  "targetSketch": "projections/target-sketches/claim-to-evidence-graph.target.v1.json",
+  "projectionContract": "contracts/projections/claim-to-evidence-graph.ascii-projection.v1.json",
+  "surfacePath": "projections/ascii/claim-to-evidence-graph.ascii",
+  "computedReport": "evidence/fidelity/slice-021.computed-achievement-report.v1.json",
+  "receipts": [
+    "evidence/fidelity/slice-021.reducer-execution.receipt.v1.json",
+    "evidence/fidelity/slice-021.fidelity-gate.receipt.v1.json",
+    "evidence/fidelity/slice-021.contract-load.receipt.v1.json"
+  ]
+}

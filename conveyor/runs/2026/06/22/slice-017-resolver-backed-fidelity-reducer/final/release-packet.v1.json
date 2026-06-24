@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "defracto.release-packet.v1",
+  "releaseKey": "defracto.release.slice-017-resolver-backed-fidelity-reducer.v1",
+  "status": "passed",
+  "runKey": "defracto.run.slice-017-resolver-backed-fidelity-reducer.v1",
+  "requiredReceipts": [
+    "evidence/fidelity/slice-017.reducer-execution.receipt.v1.json",
+    "evidence/fidelity/slice-017.computed-achievement-report.v1.json",
+    "evidence/fidelity/slice-017.fidelity-gate.receipt.v1.json"
+  ],
+  "finalArtifacts": [
+    "conveyor/runs/2026/06/22/reports/fidelity-achievement-report.slice-017.md",
+    "projections/ascii/slice-017-fidelity-achievement.ascii",
+    "conveyor/runs/2026/06/22/slice-017-resolver-backed-fidelity-reducer/final/run-summary.md"
+  ],
+  "blockedReasons": [],
+  "commitMessagePath": "conveyor/runs/2026/06/22/slice-017-resolver-backed-fidelity-reducer/final/commit-message.txt",
+  "shipReceiptPath": "evidence/fidelity/slice-017.fidelity-gate.receipt.v1.json"
+}

@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "loc.capability-catalog.v1",
+  "catalogKey": "defracto.fidelity.semantic-body-capability-catalog.v1",
+  "catalogStatus": "draft-ready-for-resolver-handshake",
+  "capabilities": [
+    {
+      "capabilityKey": "json.read.v1",
+      "primitiveKey": "resolve.contract.v1",
+      "category": "macro.json.read",
+      "effect": "filesystem.read",
+      "portable": false,
+      "status": "adapter_or_macro_candidate",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "fidelity.evidence_matrix.evaluate.v1",
+      "primitiveKey": "fidelity.evidence_matrix.evaluate.v1",
+      "category": "macro.fidelity.evidence_matrix",
+      "effect": "none",
+      "portable": true,
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "fidelity.achieved_level.reduce.v1",
+      "primitiveKey": "fidelity.achieved_level.reduce.v1",
+      "category": "primitive.fidelity.level_reduce",
+      "effect": "none",
+      "portable": true,
+      "status": "supported",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "fidelity.next_level.compute.v1",
+      "primitiveKey": "project.value.v1",
+      "category": "macro.fidelity.next_level",
+      "effect": "none",
+      "portable": true,
+      "status": "macro_candidate",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "fidelity.missing_evidence.project.v1",
+      "primitiveKey": "project.value.v1",
+      "category": "macro.fidelity.missing_evidence",
+      "effect": "none",
+      "portable": true,
+      "status": "macro_candidate",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "project.value.v1",
+      "primitiveKey": "project.value.v1",
+      "category": "pure.projection",
+      "effect": "none",
+      "portable": true,
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "artifact.materialize.v1",
+      "primitiveKey": "artifact.materialize.v1",
+      "category": "effect.filesystem",
+      "effect": "filesystem.write",
+      "portable": false,
+      "authority": {
+        "required": true,
+        "allowedScopes": [
+          "generated_surface_write_only",
+          "evidence_write_only",
+          "tmp_workspace_only"
+        ]
+      },
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "evidence.emit.v1",
+      "primitiveKey": "evidence.emit.v1",
+      "category": "effect.evidence",
+      "effect": "filesystem.write",
+      "portable": false,
+      "authority": {
+        "required": true,
+        "allowedScopes": [
+          "evidence_write_only",
+          "tmp_workspace_only"
+        ]
+      },
+      "ifMissing": "blocked"
+    }
+  ],
+  "completionPosture": "Any unresolved fidelity capability blocks; it may not become host-language code."
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "defracto.fidelity-reducer-execution-receipt.v1",
+  "receiptKey": "defracto.receipt.fidelity.reducer.execution.slice-017.v1",
+  "status": "passed",
+  "computedAt": "2026-06-22T00:00:00-04:00",
+  "commandKey": "defracto.fidelity.achievement.compute.v1",
+  "reducerKey": "defracto.reducer.fidelity-achievement.v1",
+  "derivedAchievedLevel": {
+    "level": 3,
+    "name": "Governed Fidelity"
+  },
+  "nextRequiredLevel": {
+    "level": 4,
+    "name": "User-Facing Experience"
+  },
+  "evidenceMatrixSummary": {
+    "level0": "satisfied",
+    "level1": "satisfied",
+    "level2": "satisfied",
+    "level3": "satisfied",
+    "level4": "unsatisfied",
+    "level5": "unsatisfied"
+  },
+  "completionPosture": "The reducer execution receipt says the achieved level was computed from observed evidence and not authored by hand."
+}

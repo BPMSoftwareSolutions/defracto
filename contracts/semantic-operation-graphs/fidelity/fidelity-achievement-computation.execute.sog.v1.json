@@ -1,0 +1,175 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.fidelity.achievement_computation.execute.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "accepted",
+  "commandKey": "defracto.fidelity.achievement.compute.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.fidelity.load-maturity-levels.v1",
+      "capabilityKey": "json.read.v1"
+    },
+    {
+      "actionKey": "defracto.fidelity.load-reducer.v1",
+      "capabilityKey": "json.read.v1"
+    },
+    {
+      "actionKey": "defracto.fidelity.evaluate-evidence-matrix.v1",
+      "capabilityKey": "fidelity.evidence_matrix.evaluate.v1"
+    },
+    {
+      "actionKey": "defracto.fidelity.reduce-achieved-level.v1",
+      "capabilityKey": "fidelity.achieved_level.reduce.v1"
+    },
+    {
+      "actionKey": "defracto.fidelity.compute-next-level.v1",
+      "capabilityKey": "fidelity.next_level.compute.v1"
+    },
+    {
+      "actionKey": "defracto.fidelity.project-computed-report.v1",
+      "capabilityKey": "project.value.v1"
+    },
+    {
+      "actionKey": "defracto.fidelity.emit-reducer-receipt.v1",
+      "capabilityKey": "evidence.emit.v1"
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "loadMaturityLevels",
+        "capabilityKey": "resolve.contract.v1",
+        "intent": "Load the maturity ladder contract.",
+        "input": {
+          "contract": {
+            "$context": "maturityLevels"
+          }
+        },
+        "output": {
+          "path": "$graph.maturityLevels"
+        }
+      },
+      {
+        "id": "loadReducer",
+        "capabilityKey": "resolve.contract.v1",
+        "intent": "Load the fidelity reducer contract.",
+        "input": {
+          "contract": {
+            "$context": "reducer"
+          }
+        },
+        "output": {
+          "path": "$graph.reducer"
+        }
+      },
+      {
+        "id": "evaluateEvidenceMatrix",
+        "capabilityKey": "fidelity.evidence_matrix.evaluate.v1",
+        "intent": "Evaluate level evidence against the maturity ladder.",
+        "input": {
+          "maturityLevels": "$graph.maturityLevels",
+          "evidenceMatrix": "$context.evidenceMatrix"
+        },
+        "output": {
+          "path": "$graph.evidenceEvaluation"
+        }
+      },
+      {
+        "id": "reduceAchievedLevel",
+        "capabilityKey": "fidelity.achieved_level.reduce.v1",
+        "intent": "Derive the achieved level from observed evidence.",
+        "input": {
+          "claimedLevel": "$context.claimedLevel",
+          "evidenceEvaluation": "$graph.evidenceEvaluation"
+        },
+        "output": {
+          "path": "$graph.achievedLevel"
+        }
+      },
+      {
+        "id": "computeNextLevel",
+        "capabilityKey": "fidelity.next_level.compute.v1",
+        "intent": "Compute the next missing maturity level.",
+        "input": {
+          "achievedLevel": "$graph.achievedLevel",
+          "maturityLevels": "$graph.maturityLevels"
+        },
+        "output": {
+          "path": "$graph.nextLevel"
+        }
+      },
+      {
+        "id": "projectComputedReport",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project the computed report from derived evidence.",
+        "input": {
+          "fields": {
+            "schemaVersion": {
+              "literal": "defracto.fidelity-computed-achievement-report.v1"
+            },
+            "reportKey": {
+              "literal": "defracto.fidelity.computed.slice-017.v1"
+            },
+            "sliceKey": {
+              "literal": "slice-017-resolver-backed-fidelity-reducer"
+            },
+            "claimedLevel": "$context.claimedLevel",
+            "achievedLevel": "$graph.achievedLevel",
+            "nextRequiredLevel": "$graph.nextLevel",
+            "evidenceMatrix": "$graph.evidenceEvaluation",
+            "decision": {
+              "status": "passed",
+              "reason": "Achieved level was derived from observed evidence matrix."
+            }
+          }
+        },
+        "output": {
+          "path": "$result"
+        }
+      },
+      {
+        "id": "emitEvidence",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit the reducer execution receipt.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "schemaVersion": "defracto.fidelity-reducer-execution-receipt.v1",
+            "receiptKey": "defracto.receipt.fidelity.reducer.execution.v1",
+            "status": "passed",
+            "commandKey": "defracto.fidelity.achievement.compute.v1",
+            "derivedAchievedLevel": "$graph.achievedLevel",
+            "nextRequiredLevel": "$graph.nextLevel"
+          }
+        },
+        "output": {
+          "path": "$evidence.reducerReceipt"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "evidenceObligations": [
+    "load_maturity_levels",
+    "load_reducer",
+    "evaluate_evidence_matrix",
+    "reduce_achieved_level",
+    "compute_next_level",
+    "project_computed_report",
+    "emit_evidence"
+  ],
+  "forbiddenClaims": [
+    "achieved level authored without computation",
+    "manual override of achieved level",
+    "report without observed evidence",
+    "projection without reducer result"
+  ],
+  "completionPosture": "The resolver computes the achieved level from evidence and emits the receipt; the host does not author the result."
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-023-claim-to-evidence-svg-projection.v1",
+  "sliceKey": "slice-023-claim-to-evidence-svg-projection",
+  "commandKey": "defracto.visual.projection.claim-to-evidence-graph.svg.v1",
+  "objective": "Project the edge-verified claim-to-evidence graph into governed SVG without inventing new trust.",
+  "attemptedInvocation": [
+    "governed visual projection from claim-to-evidence graph visual model to SVG surface"
+  ],
+  "observedStatus": "passed",
+  "blocker": null,
+  "runPosture": "fail-closed",
+  "completionPosture": "SVG is valid only when it preserves the verified node and edge set from the trust graph."
+}

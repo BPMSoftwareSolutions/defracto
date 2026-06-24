@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-021-fidelity-achieved-level-reducer.v1",
+  "sliceKey": "slice-021-fidelity-achieved-level-reducer",
+  "commandKey": "defracto.conveyor.fidelity.achievement.compute.v1",
+  "objective": "Bind the fidelity achieved-level reducer and prove the resolver advances beyond reduceAchievedLevel.",
+  "attemptedInvocation": [
+    "node node_modules/@bpmsoftwaresolutions/sej-resolver-node/src/cli.cjs resolve --contract contracts/sej/fidelity-achievement-computation.slice-021.sej.v1.json --input conveyor/runs/2026/06/22/slice-021-fidelity-achieved-level-reducer/input.v1.json"
+  ],
+  "observedStatus": "blocked",
+  "blocker": "graph_step_failed",
+  "observedFinding": "Unsupported primitive operation: fidelity.next_level.compute.v1",
+  "runPosture": "fail-closed",
+  "completionPosture": "Slice 021 proves achieved-level reduction and records the next blocked step honestly."
+}

@@ -47,6 +47,11 @@
     "evidence/docs/generated-docs.receipt.v1.json",
     "evidence/docs/generated-doc-drift.receipt.v1.json"
   ],
+  "requiredGates": [
+    "conveyor/gates/generated-doc-drift.gate.v1.json",
+    "conveyor/gates/projection-freshness.gate.v1.json",
+    "conveyor/gates/receipt-required.gate.v1.json"
+  ],
   "requiredHashes": [
     {
       "path": "README.md"
@@ -67,6 +72,13 @@
       "path": "generated/docs/node/project-run.cjs"
     }
   ],
+  "blockedIfMissing": [
+    "docs projection drift gate",
+    "docs projection freshness gate",
+    "docs projection receipt",
+    "docs projection hash"
+  ],
+  "releaseBlockedUntilAllReceiptsExist": true,
   "runReceiptPath": "evidence/conveyor/slice-015-documentation-projection-conveyor.receipt.v1.json",
   "completionPosture": "Passes when docs are treated as projections, receipts are emitted, and the generated surface remains reproducible from declared authority."
 }

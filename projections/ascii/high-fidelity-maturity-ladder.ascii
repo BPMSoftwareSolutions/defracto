@@ -1,0 +1,23 @@
++---------------------------------------------------------------+
+|                 HIGH-FIDELITY MATURITY LADDER                 |
++---------------------------------------------------------------+
+| L5 | COMPILER-GRADE EVOLUTION                                 |
+|    | refactor / regenerate / evolve with equivalence proof     |
++----+----------------------------------------------------------+
+| L4 | USER-FACING EXPERIENCE                                   |
+|    | publish-safe, accessible, surface-specific proof          |
++----+----------------------------------------------------------+
+| L3 | GOVERNED FIDELITY                                        |
+|    | freshness, receipts, gates, drift/equivalence checks      |
++----+----------------------------------------------------------+
+| L2 | DISPOSABLE PROJECTION                                    |
+|    | generated surfaces derive from declared authority         |
++----+----------------------------------------------------------+
+| L1 | GOVERNED CANONICALIZATION                                |
+|    | narrative hardened into story/spec/semantic authority     |
++----+----------------------------------------------------------+
+| L0 | NARRATIVE INTENT                                         |
+|    | source intent preserved and hashable                      |
++---------------------------------------------------------------+
+
+Every claimed level requires a receipted achievement report.

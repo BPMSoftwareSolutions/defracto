@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "defracto.fidelity-reducer-execution.receipt.v1",
+  "receiptKey": "defracto.receipt.fidelity.reducer.execution.slice-019.v1",
+  "status": "blocked",
+  "checkedAt": "2026-06-22T00:00:00-04:00",
+  "commandKey": "defracto.conveyor.fidelity.achievement.compute.v1",
+  "blockedAtStep": "evaluateEvidenceMatrix",
+  "blocker": "graph_step_failed",
+  "error": "Unsupported primitive operation: fidelity.evidence_matrix.evaluate.v1",
+  "verificationStatus": "resolver_fail_closed",
+  "completionPosture": "The aligned contract reached graph execution and failed on a missing primitive."
+}

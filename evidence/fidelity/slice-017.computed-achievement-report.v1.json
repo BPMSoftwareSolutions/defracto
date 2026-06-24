@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "defracto.fidelity-computed-achievement-report.v1",
+  "reportKey": "defracto.fidelity.computed.slice-017.v1",
+  "sliceKey": "slice-017-resolver-backed-fidelity-reducer",
+  "scope": {
+    "scopeKind": "slice",
+    "scopeKey": "defracto.run.slice-017-resolver-backed-fidelity-reducer.v1",
+    "artifactRoots": [
+      "contracts/fidelity",
+      "contracts/gates",
+      "contracts/schemas",
+      "contracts/projections",
+      "evidence/fidelity",
+      "conveyor/runs/2026/06/22/reports",
+      "projections/ascii"
+    ]
+  },
+  "claimedLevel": {
+    "level": 3,
+    "name": "Governed Fidelity"
+  },
+  "achievedLevel": {
+    "level": 3,
+    "name": "Governed Fidelity"
+  },
+  "computation": {
+    "reducerKey": "defracto.reducer.fidelity-achievement.v1",
+    "computedAt": "2026-06-22T00:00:00-04:00",
+    "derivedFrom": [
+      "contracts/fidelity/high-fidelity-maturity-levels.v1.json",
+      "contracts/fidelity/fidelity-achievement-computation.reducer.v1.json",
+      "contracts/sej/fidelity-achievement-computation.execute.sej.v1.json",
+      "contracts/semantic-operation-graphs/fidelity/fidelity-achievement-computation.execute.sog.v1.json",
+      "contracts/gates/fidelity-achievement-computed.gate.v1.json",
+      "contracts/gates/fidelity-level-required.gate.v1.json",
+      "contracts/projections/fidelity-achievement-report.markdown-projection.v1.json",
+      "contracts/projections/fidelity-achievement-report.ascii-projection.v1.json",
+      "evidence/fidelity/computed.slice-016-achievement-report.v1.json"
+    ],
+    "levelMatrix": [
+      {
+        "level": 0,
+        "evidence": [
+          "source authority exists"
+        ],
+        "satisfied": true,
+        "notes": "Narrative and source authority are preserved."
+      },
+      {
+        "level": 1,
+        "evidence": [
+          "canonical authority exists"
+        ],
+        "satisfied": true,
+        "notes": "Story/spec/SEJ authority exists."
+      },
+      {
+        "level": 2,
+        "evidence": [
+          "projection surfaces exist",
+          "projection receipts exist"
+        ],
+        "satisfied": true,
+        "notes": "Docs surfaces are materialized and receipted."
+      },
+      {
+        "level": 3,
+        "evidence": [
+          "projection freshness gate passes",
+          "receipt-required gate passes",
+          "drift or freshness evidence exists"
+        ],
+        "satisfied": true,
+        "notes": "Reducer and gate posture confirm governed fidelity."
+      },
+      {
+        "level": 4,
+        "evidence": [
+          "user-facing polish evidence exists",
+          "accessibility evidence exists",
+          "publish-safe channel evidence exists",
+          "surface equivalence evidence exists"
+        ],
+        "satisfied": false,
+        "notes": "Not yet present for this slice."
+      },
+      {
+        "level": 5,
+        "evidence": [
+          "voice/document/refactor ingress evidence exists",
+          "repair or evolution evidence exists",
+          "equivalence proof for changed implementation exists"
+        ],
+        "satisfied": false,
+        "notes": "Not yet present for this slice."
+      }
+    ],
+    "ruleSummary": "Achieved level is the highest fully satisfied level; Level 3 is the last satisfied level for this slice.",
+    "computedLevelSource": "computed-from-evidence"
+  },
+  "sourceAuthority": [
+    "contracts/docs/documentation-surface.catalog.v1.json",
+    "contracts/semantic-operation-graphs/docs/project-run-docs.sog.v1.json",
+    "contracts/sej/project-run-docs.sej.v1.json"
+  ],
+  "canonicalAuthority": [
+    "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/run.manifest.v1.json"
+  ],
+  "semanticAuthority": [
+    "contracts/registry/artifact-graph.index.v1.json",
+    "contracts/registry/receipt-registry.v1.json",
+    "contracts/fidelity/fidelity-achievement-computation.reducer.v1.json"
+  ],
+  "projectionSurfaces": [
+    "README.md",
+    "conveyor/runs/2026/06/21/README.md",
+    "conveyor/runs/2026/06/21/reports/slice-015-documentation-projection-conveyor.latest.md",
+    "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/RUNME.md",
+    "conveyor/runs/2026/06/21/slice-015-documentation-projection-conveyor/sketches/doc-truth-flow.ascii"
+  ],
+  "requiredReceipts": [
+    "evidence/docs/generated-docs.receipt.v1.json",
+    "evidence/docs/generated-doc-drift.receipt.v1.json",
+    "evidence/conveyor/slice-015-documentation-projection-conveyor.receipt.v1.json"
+  ],
+  "observedReceipts": [
+    {
+      "receiptPath": "evidence/docs/generated-docs.receipt.v1.json",
+      "status": "passed",
+      "note": "Docs surfaces were materialized from declared authority."
+    },
+    {
+      "receiptPath": "evidence/docs/generated-doc-drift.receipt.v1.json",
+      "status": "passed",
+      "note": "Docs drift gate passed for the run."
+    },
+    {
+      "receiptPath": "evidence/conveyor/slice-015-documentation-projection-conveyor.receipt.v1.json",
+      "status": "passed",
+      "note": "The run receipt is present and passed."
+    }
+  ],
+  "requiredGates": [
+    "conveyor/gates/generated-doc-drift.gate.v1.json",
+    "conveyor/gates/projection-freshness.gate.v1.json",
+    "conveyor/gates/receipt-required.gate.v1.json",
+    "conveyor/gates/fidelity-achievement-computed.gate.v1.json"
+  ],
+  "gateResults": [
+    {
+      "gatePath": "conveyor/gates/generated-doc-drift.gate.v1.json",
+      "status": "passed",
+      "finding": "Docs outputs are reproducible from manifest authority."
+    },
+    {
+      "gatePath": "conveyor/gates/projection-freshness.gate.v1.json",
+      "status": "passed",
+      "finding": "Docs projection is current in the registry."
+    },
+    {
+      "gatePath": "conveyor/gates/receipt-required.gate.v1.json",
+      "status": "passed",
+      "finding": "Required receipts are present."
+    },
+    {
+      "gatePath": "conveyor/gates/fidelity-achievement-computed.gate.v1.json",
+      "status": "passed",
+      "finding": "Achieved level is derived from evidence and reducer rules."
+    }
+  ],
+  "blockingFindings": [],
+  "decision": {
+    "status": "passed",
+    "reason": "The slice achieved governed fidelity and the achieved level was computed from observed evidence."
+  },
+  "nextRequiredLevel": {
+    "level": 4,
+    "missingEvidence": [
+      "surface-specific user-facing polish checks",
+      "accessibility proof",
+      "publish-safe channel constraints",
+      "equivalence proof for polished presentation surfaces"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "defracto.release-packet.v1",
+  "runKey": "defracto.run.slice-024-claim-to-evidence-html-review-surface.v1",
+  "sliceKey": "slice-024-claim-to-evidence-html-review-surface",
+  "status": "passed",
+  "blocker": null,
+  "releaseDisposition": "not-ready-for-level-4",
+  "summary": "The claim-to-evidence SVG proof graph is wrapped in a governed HTML/CSS review surface.",
+  "evidence": [
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.html-projection.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.css-projection.receipt.v1.json",
+    "evidence/visual/proof-graphs/claim-to-evidence-graph.html-svg-binding.receipt.v1.json",
+    "conveyor/runs/2026/06/22/slice-024-claim-to-evidence-html-review-surface/final/run-summary.md",
+    "projections/html/claim-to-evidence-graph.html",
+    "projections/css/claim-to-evidence-graph.css"
+  ],
+  "completionPosture": "HTML/CSS review surface is complete, but accessibility and publish-safe proof still sit ahead."
+}

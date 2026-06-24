@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-019-fidelity-contract-shape-alignment.v1",
+  "sliceKey": "slice-019-fidelity-contract-shape-alignment",
+  "commandKey": "defracto.conveyor.fidelity.achievement.compute.v1",
+  "objective": "Align the fidelity SEJ with resolver-accepted contract shape and prove contract loading before reducer execution.",
+  "attemptedInvocation": [
+    "node node_modules/@bpmsoftwaresolutions/sej-resolver-node/src/cli.cjs resolve --contract contracts/sej/fidelity-achievement-computation.resolver-compatible.sej.v1.json --input conveyor/runs/2026/06/22/slice-019-fidelity-contract-shape-alignment/input.v1.json"
+  ],
+  "observedStatus": "blocked",
+  "blocker": "graph_step_failed",
+  "observedFinding": "Unsupported primitive operation: fidelity.evidence_matrix.evaluate.v1",
+  "runPosture": "fail-closed",
+  "completionPosture": "Slice 019 proves the contract-shape alignment path before live fidelity reducer execution."
+}

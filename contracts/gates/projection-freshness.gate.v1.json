@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.projection_freshness.v1",
+  "gateTitle": "Projection Freshness",
+  "gateStatus": "accepted",
+  "purpose": "Block projected surfaces when the registry marks them stale, blocked, missing, or superseded.",
+  "passConditions": [
+    "artifact graph entry exists",
+    "receipt registry entry exists",
+    "surface status is current",
+    "receipt status is passed",
+    "no supersession conflict is active"
+  ],
+  "blockConditions": [
+    "missing registry entry",
+    "stale projection surface",
+    "blocked receipt",
+    "superseded surface still presented as current",
+    "manual edit of a projected surface"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Projection Freshness passes only when the registry says the selected surface is current and the associated receipt chain is healthy."
+}

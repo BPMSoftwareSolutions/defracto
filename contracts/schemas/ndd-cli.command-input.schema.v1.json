@@ -18,6 +18,8 @@
       "type": "string",
       "enum": [
         "ndd handoff run",
+        "ndd handoff run --text",
+        "ndd handoff run --source",
         "ndd handoff status",
         "ndd handoff continue",
         "ndd handoff review",

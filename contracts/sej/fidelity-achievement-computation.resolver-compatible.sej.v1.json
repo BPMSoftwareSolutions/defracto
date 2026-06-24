@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.fidelity-achievement-computation.resolver-compatible.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.fidelity.achievement.compute",
+  "purpose": "Compute fidelity achievement from observed evidence and emit computed receipts.",
+  "sourceLineage": {
+    "storyKey": "stories/fidelity/fidelity-achievement-computation.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/fidelity/fidelity-achievement-computation.canonical-spec.v1.json",
+    "executableProjectionContractKey": "contracts/projections/fidelity-achievement-report.markdown-projection.v1.json",
+    "bodyDispositionKey": "defracto.body.fidelity-achievement-computation.generated-semantic-body"
+  },
+  "findingTaxonomyKey": "defracto.finding-taxonomy.v1",
+  "operationRequirementsKey": "contracts/operations/fidelity-achievement-computation.operation-requirements.v1.json",
+  "boundedInputs": [
+    "defracto.fidelity-achievement-computation.command-input.v1"
+  ],
+  "boundedOutputs": [
+    "defracto.fidelity-achievement-computation.command-result.v1"
+  ],
+  "allowedFindingKeys": [
+    "missing_receipt",
+    "missing_capability",
+    "invalid_response",
+    "hash_mismatch",
+    "release_blocked"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "purpose": "Load declared contracts and graph references.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "resolve.value.v1",
+      "purpose": "Resolve declared references from the execution context.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evaluate.predicate.v1",
+      "purpose": "Evaluate observed evidence against the maturity ladder.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "purpose": "Project the computed fidelity report.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "purpose": "Materialize computed report surfaces.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "Emit execution receipts and proof artifacts.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "failurePosture": "fail-closed",
+  "bodyDisposition": {
+    "bodyKind": "fidelity_achievement_computation_graph",
+    "hostLanguageBodyAllowed": false,
+    "compiledBridgeAllowed": false,
+    "bootstrapDelegateAllowed": false,
+    "forbiddenBodyForms": [
+      "inline_js_blob",
+      "dto_stitching",
+      "local_conveyor_brain"
+    ]
+  },
+  "steps": [
+    {
+      "id": "executeFidelityAchievementComputation",
+      "type": "resolver",
+      "operation": "semantic.operation_graph.execute.v1",
+      "payload": {
+        "graphRef": {
+          "$inline": "contracts/semantic-operation-graphs/fidelity/fidelity-achievement-computation.execute.sog.v1.json"
+        },
+        "context": {
+          "sliceKey": "slice-019-fidelity-contract-shape-alignment",
+          "maturityLevels": {
+            "$input": "maturityLevels"
+          },
+          "reducer": {
+            "$input": "reducer"
+          },
+          "claimedLevel": {
+            "level": 3,
+            "name": "Governed Fidelity"
+          },
+          "evidenceMatrix": {
+            "sourceAuthority": true,
+            "canonicalAuthority": true,
+            "projectionSurfaces": true,
+            "projectionReceipts": true,
+            "freshnessGate": true,
+            "receiptGate": true,
+            "polishEvidence": false,
+            "accessibilityEvidence": false,
+            "publishSafeEvidence": false,
+            "equivalenceEvidence": false
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.executeFidelityAchievementComputation"
+  },
+  "completionPosture": "Resolver-compatible fidelity achievement computation is declared and executable only through the resolver."
+}
