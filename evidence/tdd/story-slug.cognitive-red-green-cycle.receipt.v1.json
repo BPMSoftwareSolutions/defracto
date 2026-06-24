@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "defracto.red-green-cycle-receipt.v1",
+  "receiptKey": "defracto.receipt.story-slug.cognitive-red-green-cycle.slice-047.v1",
+  "status": "passed",
+  "storyKey": "defracto.user-stories.story-slug.v1",
+  "laneMode": "cognitive_compile",
+  "redReceipt": {
+    "path": "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json",
+    "hash": "sha256:fa72a7e84307c5198b7c2bdeb307b4470c8a3e9466ce4604002432ea42973a80",
+    "testArtifactHash": "sha256:cc56c2aea3d030818fc64509e21624e21506f29b0da1a21c62307c7ca932a5c8",
+    "implementationArtifactExistedDuringRed": false
+  },
+  "greenReceipt": {
+    "path": "evidence/tdd/story-slug.cognitive-green-test.receipt.v1.json",
+    "hash": "sha256:71b7abadc56047346beb73c47e1e74f27c54d5db292e2fc9935423f37c3daf4f",
+    "testArtifactHash": "sha256:cc56c2aea3d030818fc64509e21624e21506f29b0da1a21c62307c7ca932a5c8",
+    "implementationArtifactHash": "sha256:d81f3758b7ea16b7522c9a64efcd31eb766ca525966c5e25db534417d6a7e416"
+  },
+  "implementationMaterializationReceipt": {
+    "path": "evidence/tdd/story-slug.cognitive-generated-implementation.materialization.receipt.v1.json",
+    "hash": "sha256:dc379e5de38ae6b3ceaba5ba0f38dd47274dc416ec6ad8878b5bc301ff5181ee"
+  },
+  "primaryProviderFailureReceipt": {
+    "path": "evidence/workers/story-to-tdd.implementation.gemini-invocation.receipt.v1.json",
+    "hash": "sha256:5e10936f2127ecc8d509291400b9766a01a030f1f89d078141d62ed462dccd4a",
+    "failureCode": "primary_provider_503"
+  },
+  "providerFallbackReceipt": {
+    "path": "evidence/workers/story-to-tdd.provider-fallback.receipt.v1.json",
+    "hash": "sha256:50a3a8810ebbb45e0d54d72a46de74de6077fa1334ad0cef9a7a876974204723",
+    "fallbackProvider": "openai"
+  },
+  "openaiInvocationReceipt": {
+    "path": "evidence/workers/story-to-tdd.openai-invocation.receipt.v1.json",
+    "hash": "sha256:7ad8ecd5545e94ca2b3f2fb9aec2d3dcce38e0275cf21958ba94c623d8ec11e7"
+  },
+  "openaiHardeningReceipt": {
+    "path": "evidence/workers/story-to-tdd.openai-implementation-hardening.receipt.v1.json",
+    "hash": "sha256:9620d390c35275c76c7641fa2f3ed8f8b7351f8c7fee1908f21f35627162d8c4"
+  },
+  "assertions": {
+    "redReceiptExistsBeforeGreen": true,
+    "redFailedBeforeImplementation": true,
+    "implementationMaterializedAfterRed": true,
+    "sameGeneratedTestHashUsedForRedAndGreen": true,
+    "providerFallbackAuthorized": true,
+    "implementationAuthorityPromotedByHardening": true,
+    "greenPassed": true,
+    "generatedImplementationProofSurfaceOnly": true,
+    "durableProductTruthAccepted": false,
+    "sogPromotionRequired": true
+  },
+  "blockedReasons": []
+}

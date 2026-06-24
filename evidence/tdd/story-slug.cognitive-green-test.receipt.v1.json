@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "defracto.test-execution-receipt.v1",
+  "receiptKey": "defracto.receipt.story-slug.cognitive-green-test.slice-047.v1",
+  "status": "passed",
+  "testPhase": "green",
+  "command": [
+    "node",
+    "--test",
+    "tests/generated/user-stories/story-slug.cognitive.generated.test.js"
+  ],
+  "targetArtifactPath": "tests/generated/user-stories/story-slug.cognitive.generated.test.js",
+  "targetArtifactHash": "sha256:cc56c2aea3d030818fc64509e21624e21506f29b0da1a21c62307c7ca932a5c8",
+  "implementationArtifactPath": "generated/implementations/user-stories/story-slug.cognitive.cjs",
+  "implementationArtifactHash": "sha256:d81f3758b7ea16b7522c9a64efcd31eb766ca525966c5e25db534417d6a7e416",
+  "criteriaKeys": [
+    "story-slug.lowercase-ascii",
+    "story-slug.whitespace-to-hyphen",
+    "story-slug.remove-punctuation",
+    "story-slug.collapse-hyphens",
+    "story-slug.empty-input-blocked"
+  ],
+  "startedAt": "2026-06-24T00:00:00-04:00",
+  "completedAt": "2026-06-24T00:00:00-04:00",
+  "exitCode": 0,
+  "result": {
+    "expectedGreen": true,
+    "implementationArtifactExists": true,
+    "sameGeneratedTestHashAsRed": true,
+    "redReceiptExistsBeforeGreen": true,
+    "passedTestNames": [
+      "story-slug.cognitive.test.lowercase-and-whitespace maps accepted lowercase and whitespace criteria",
+      "story-slug.cognitive.test.remove-punctuation maps accepted punctuation criterion",
+      "story-slug.cognitive.test.collapse-hyphens maps accepted repeated hyphen criterion",
+      "story-slug.cognitive.test.empty-input-blocked maps exact blocked result shape"
+    ],
+    "failedTestNames": [],
+    "testSummary": {
+      "tests": 4,
+      "suites": 0,
+      "pass": 4,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  },
+  "stdoutHash": "sha256:55040278628cd4ff0fad388ec5b29c113b2fdedaec5ca5892f5fac58791566c2",
+  "stderrHash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutPath": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/artifacts/story-slug.cognitive-green.stdout.txt",
+  "stderrPath": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/artifacts/story-slug.cognitive-green.stderr.txt",
+  "redReceipt": {
+    "path": "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json",
+    "hash": "sha256:fa72a7e84307c5198b7c2bdeb307b4470c8a3e9466ce4604002432ea42973a80"
+  },
+  "implementationMaterializationReceipt": {
+    "path": "evidence/tdd/story-slug.cognitive-generated-implementation.materialization.receipt.v1.json",
+    "hash": "sha256:dc379e5de38ae6b3ceaba5ba0f38dd47274dc416ec6ad8878b5bc301ff5181ee"
+  },
+  "providerFallbackReceipt": {
+    "path": "evidence/workers/story-to-tdd.provider-fallback.receipt.v1.json",
+    "hash": "sha256:50a3a8810ebbb45e0d54d72a46de74de6077fa1334ad0cef9a7a876974204723"
+  },
+  "openaiInvocationReceipt": {
+    "path": "evidence/workers/story-to-tdd.openai-invocation.receipt.v1.json",
+    "hash": "sha256:7ad8ecd5545e94ca2b3f2fb9aec2d3dcce38e0275cf21958ba94c623d8ec11e7"
+  },
+  "blockedReasons": []
+}

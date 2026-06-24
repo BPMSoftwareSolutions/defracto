@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.story-to-tdd-cognitive-provider-select.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "declared-ready-for-provider-selection",
+  "toolKey": "defracto.workers.story_to_tdd.provider_select",
+  "commandKey": "defracto.workers.story_to_tdd.provider_select.v1",
+  "sourceLineage": {
+    "primaryWorkerProfile": "conveyor/workers/gemini-flash.story-to-tdd.worker-profile.v1.json",
+    "fallbackWorkerProfile": "conveyor/workers/openai.story-to-tdd.worker-profile.v1.json",
+    "fallbackPolicy": "contracts/policies/cognitive-worker-provider-fallback.policy.v1.json",
+    "fallbackGate": "contracts/gates/cognitive-worker-fallback-authorized.gate.v1.json",
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/workers/story-to-tdd-cognitive-provider-select.sog.v1.json"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/workers/story-to-tdd-cognitive-provider-select.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "laneClassification": {
+    "laneMode": "cognitive_compile",
+    "aiWorkerRequired": true,
+    "providerSelectionRequired": true,
+    "primaryProvider": "gemini_flash",
+    "fallbackProvider": "openai",
+    "fallbackAllowed": true,
+    "fallbackRequiresReceipt": true,
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false
+  },
+  "boundedInputs": [
+    "cognitive command request",
+    "primary provider invocation receipt",
+    "provider fallback policy",
+    "fallback dispatch packet"
+  ],
+  "boundedOutputs": [
+    "provider selection receipt",
+    "fallback invocation receipts",
+    "provider-attributed candidate artifact"
+  ],
+  "forbiddenBodyForms": [
+    "silent_provider_substitution",
+    "deterministic_fallback",
+    "mock_ai_response",
+    "unreceipted_provider_output",
+    "provider_candidate_authority_without_gates"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Provider selection may choose OpenAI only as a receipted fallback after primary provider failure evidence."
+}

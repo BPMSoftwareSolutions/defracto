@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "defracto.provider-candidate-hardening-receipt.v1",
+  "receiptKey": "defracto.receipt.story-to-tdd.openai-implementation-hardening.slice-046.v1",
+  "status": "passed",
+  "providerKey": "openai",
+  "laneMode": "cognitive_compile",
+  "commandKey": "defracto.ndd.story.implement.v1",
+  "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+  "sliceKey": "slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture",
+  "candidate": {
+    "path": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/candidates/story-slug.cognitive-implementation.openai-candidate.v1.json",
+    "hash": "sha256:b687a1cd90d6e193779ecc5cc2899075d048e6d5d6aa4db393cdcb11e59c59e9"
+  },
+  "invocationReceipt": {
+    "path": "evidence/workers/story-to-tdd.openai-invocation.receipt.v1.json",
+    "hash": "sha256:7ad8ecd5545e94ca2b3f2fb9aec2d3dcce38e0275cf21958ba94c623d8ec11e7"
+  },
+  "previousProviderAttempts": [
+    {
+      "providerKey": "openai",
+      "attemptNumber": 1,
+      "result": "not-promoted-response-shape-invalid"
+    }
+  ],
+  "gateResults": {
+    "providerIdentityValid": true,
+    "dispatchBound": true,
+    "sourceHashBound": true,
+    "sliceKeyBound": true,
+    "targetPathBounded": true,
+    "criteriaCoverageExact": true,
+    "expectedResultShapeExact": true,
+    "noExtraCriteria": true,
+    "noTestMutation": true,
+    "proofSurfaceOnly": true,
+    "durableProductTruthAccepted": false,
+    "candidateStatusAcceptedAsCandidateOnly": true
+  },
+  "implementationAuthorityPromoted": true,
+  "blockedReasons": [],
+  "normalizations": [
+    {
+      "field": "candidateImplementationProposal.status",
+      "originalValue": "candidate",
+      "effectiveValue": "candidate-only",
+      "basis": "Provider response is top-level status=candidate and invocation/fallback receipts state candidateOnlyUntilAccepted; hardening normalizes candidate wording without granting authority."
+    }
+  ]
+}

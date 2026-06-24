@@ -1,0 +1,261 @@
+{
+  "model": "gpt-4.1-mini",
+  "input": [
+    {
+      "role": "system",
+      "content": "You are a governed cognitive provider in the Defracto Story-to-TDD conveyor. Return only structured JSON that matches the requested schema. You are OpenAI fallback after a live Gemini Flash implementation attempt failed with 503. Your output is candidate-only and cannot grant authority."
+    },
+    {
+      "role": "user",
+      "content": "Return a candidate implementation proposal for the story-slug cognitive implementation lane.\nUse these exact identity values: schemaVersion defracto.openai-story-to-tdd-response.v1, status candidate, providerKey openai, workerKey defracto.workers.openai.story_to_tdd.v1, model gpt-4.1-mini, dispatchKey defracto.dispatch.story-to-tdd.implementation.openai-fallback.slice-046.v1, sourceHash sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9, sliceKey slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture.\nPrimary provider failure: Gemini Flash attempted first. Gemini invocation receipt: evidence/workers/story-to-tdd.implementation.gemini-invocation.receipt.v1.json. Gemini failure code: primary_provider_503.\nExisting proof: cognitive test intent contracts/test-intents/story-slug.cognitive-test-intent.v1.json; generated test tests/generated/user-stories/story-slug.cognitive.generated.test.js; generated test hash sha256:cc56c2aea3d030818fc64509e21624e21506f29b0da1a21c62307c7ca932a5c8; red receipt evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json; red receipt hash sha256:fa72a7e84307c5198b7c2bdeb307b4470c8a3e9466ce4604002432ea42973a80; implementation target absent during red.\nAccepted criteria exactly: story-slug.lowercase-ascii, story-slug.whitespace-to-hyphen, story-slug.remove-punctuation, story-slug.collapse-hyphens, story-slug.empty-input-blocked.\nRequired behavior: targetPath generated/implementations/user-stories/story-slug.cognitive.cjs; exportName generateStorySlug; sourceAuthority.testIntent contracts/test-intents/story-slug.cognitive-test-intent.v1.json; sourceAuthority.redReceipt evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json; sourceAuthority.provider openai; exactOutputShapes.passed.status passed; exactOutputShapes.passed.slugKeyPlaceholder <slug>; exactOutputShapes.blockedEmptyInput.status blocked; exactOutputShapes.blockedEmptyInput.blocker empty_slug_input; promotionPosture.projectionKind generated_tdd_proof_surface; promotionPosture.promotionStatus proof_surface_only; promotionPosture.notDurableProductTruth true; promotionPosture.mustPromoteThrough semantic_operation_graph.\nAlgorithm should describe: trim title; block empty input; lowercase ASCII; remove unsupported punctuation; replace whitespace with hyphens; collapse repeated hyphens; trim hyphen edges; block if result is empty; otherwise return passed slugKey.\nDo not write implementation source code. Do not claim authority. Do not claim durable product truth. Do not mutate tests. Do not add criteria. Use ambiguity status none only if no unresolved ambiguity remains."
+    }
+  ],
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "name": "story_to_tdd_implementation_fallback_v2",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schemaVersion",
+          "responseKey",
+          "status",
+          "providerKey",
+          "workerKey",
+          "model",
+          "dispatchKey",
+          "sourceHash",
+          "sliceKey",
+          "candidateImplementationProposal",
+          "ambiguities",
+          "assumptions",
+          "forbiddenClaims",
+          "acceptanceRequired"
+        ],
+        "properties": {
+          "schemaVersion": {
+            "type": "string"
+          },
+          "responseKey": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "providerKey": {
+            "type": "string"
+          },
+          "workerKey": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          },
+          "dispatchKey": {
+            "type": "string"
+          },
+          "sourceHash": {
+            "type": "string"
+          },
+          "sliceKey": {
+            "type": "string"
+          },
+          "candidateImplementationProposal": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "proposalKey",
+              "status",
+              "targetPath",
+              "exportName",
+              "sourceAuthority",
+              "criteriaKeysCovered",
+              "implementationAlgorithm",
+              "exactOutputShapes",
+              "scopeBoundaries",
+              "promotionPosture"
+            ],
+            "properties": {
+              "proposalKey": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "targetPath": {
+                "type": "string"
+              },
+              "exportName": {
+                "type": "string"
+              },
+              "sourceAuthority": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "storyAuthority",
+                  "testIntent",
+                  "redReceipt",
+                  "provider"
+                ],
+                "properties": {
+                  "storyAuthority": {
+                    "type": "string"
+                  },
+                  "testIntent": {
+                    "type": "string"
+                  },
+                  "redReceipt": {
+                    "type": "string"
+                  },
+                  "provider": {
+                    "type": "string"
+                  }
+                }
+              },
+              "criteriaKeysCovered": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "implementationAlgorithm": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "exactOutputShapes": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "passed",
+                  "blockedEmptyInput"
+                ],
+                "properties": {
+                  "passed": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "slugKeyPlaceholder"
+                    ],
+                    "properties": {
+                      "status": {
+                        "type": "string"
+                      },
+                      "slugKeyPlaceholder": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "blockedEmptyInput": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "blocker"
+                    ],
+                    "properties": {
+                      "status": {
+                        "type": "string"
+                      },
+                      "blocker": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "scopeBoundaries": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "allowedTargetOnly",
+                  "noTestMutation",
+                  "noDurableTruthClaim",
+                  "noExtraCriteria"
+                ],
+                "properties": {
+                  "allowedTargetOnly": {
+                    "type": "boolean"
+                  },
+                  "noTestMutation": {
+                    "type": "boolean"
+                  },
+                  "noDurableTruthClaim": {
+                    "type": "boolean"
+                  },
+                  "noExtraCriteria": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "promotionPosture": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "projectionKind",
+                  "promotionStatus",
+                  "notDurableProductTruth",
+                  "mustPromoteThrough"
+                ],
+                "properties": {
+                  "projectionKind": {
+                    "type": "string"
+                  },
+                  "promotionStatus": {
+                    "type": "string"
+                  },
+                  "notDurableProductTruth": {
+                    "type": "boolean"
+                  },
+                  "mustPromoteThrough": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "ambiguities": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "description"
+              ],
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "assumptions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "forbiddenClaims": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "acceptanceRequired": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  },
+  "temperature": 0.2,
+  "max_output_tokens": 2048
+}

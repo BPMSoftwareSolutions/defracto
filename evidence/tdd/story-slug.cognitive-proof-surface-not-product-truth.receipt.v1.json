@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "defracto.proof-surface-not-product-truth.receipt.v1",
+  "receiptKey": "defracto.receipt.story-slug.cognitive-proof-surface-not-product-truth.slice-048.v1",
+  "status": "passed",
+  "generatedImplementation": {
+    "path": "generated/implementations/user-stories/story-slug.cognitive.cjs",
+    "hash": "sha256:d81f3758b7ea16b7522c9a64efcd31eb766ca525966c5e25db534417d6a7e416"
+  },
+  "redGreenCycleReceipt": {
+    "path": "evidence/tdd/story-slug.cognitive-red-green-cycle.receipt.v1.json",
+    "hash": "sha256:61c0db3afdacddabcd7bb14d24349d67a5135a855a0c2c5532afaf6adc23393d"
+  },
+  "projectionKind": "generated_tdd_proof_surface",
+  "promotionStatus": "proof_surface_only",
+  "proofSurfaceAccepted": true,
+  "durableProductTruthAccepted": false,
+  "notPromotionValidAsDurableProductBehavior": true,
+  "mustPromoteThrough": "semantic_operation_graph",
+  "gateResults": {
+    "tddProofSurfaceAccepted": true,
+    "providerFallbackDidNotBypassGates": true,
+    "providerCandidateDidNotGrantAuthority": true,
+    "sogPromotionRequired": true
+  },
+  "blockedReasons": []
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "defracto.worker-profile.v1",
+  "workerKey": "defracto.workers.openai.story_to_tdd.v1",
+  "baseWorkerKey": "defracto.workers.openai.v1",
+  "workerKind": "openai-story-to-tdd-cognitive-provider",
+  "sourceTruth": "declared_json_contract",
+  "status": "declared-ready-for-governed-fallback",
+  "purpose": "Specialize OpenAI Responses API as a governed fallback cognitive worker for Story-to-TDD lanes while keeping all output candidate-only until governed gates accept it.",
+  "model": {
+    "provider": "openai_responses_api",
+    "defaultModel": "gpt-4.1-mini",
+    "responseFormat": "json_schema",
+    "temperature": 0.2,
+    "maxOutputTokens": 4096
+  },
+  "credentialPolicy": {
+    "canonicalEnvVarName": "LOC_OPENAI_API_KEY",
+    "acceptedEnvVarNames": [
+      "LOC_OPENAI_API_KEY",
+      "OPENAI_API_KEY"
+    ],
+    "operatorDeclaredWindowsEnvVar": "OPENAI_API_KEY",
+    "secretMaterialAllowedInContracts": false,
+    "secretMaterialAllowedInEvidence": false,
+    "missingCredentialBlocker": "openai_api_key_missing"
+  },
+  "laneClassification": {
+    "laneMode": "cognitive_compile",
+    "aiWorkerRequired": true,
+    "requiredWorker": "defracto.workers.openai.v1",
+    "requiredInvocationCapability": "worker.openai.responses.invoke.v1",
+    "fallbackRole": "governed_fallback",
+    "fallbackAllowedOnlyByPolicy": "contracts/policies/cognitive-worker-provider-fallback.policy.v1.json",
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false
+  },
+  "authorityPosture": {
+    "mayMutateProductSource": false,
+    "mayDecideMaturity": false,
+    "mayPromote": false,
+    "mayEmitCandidateArtifacts": true,
+    "mayEmitEvidence": true,
+    "candidateOutputRequiresAcceptanceGates": true
+  },
+  "cognitiveTasks": [
+    "story interpretation fallback",
+    "acceptance criteria candidate fallback",
+    "test intent candidate fallback",
+    "implementation proposal fallback",
+    "ambiguity analysis fallback"
+  ],
+  "outputPolicy": {
+    "requiredResponseShape": "conveyor/workers/openai.story-to-tdd.response-contract.v1.json",
+    "receiptShape": "defracto.openai-invocation-receipt.v1",
+    "mustReturnJson": true,
+    "candidateOnlyUntilAccepted": true,
+    "providerIdentityRequired": true
+  },
+  "forbiddenExecutionModes": [
+    "silent_provider_substitution",
+    "deterministic_fallback",
+    "mock_response",
+    "stale_response_reuse",
+    "unreceipted_provider_output"
+  ],
+  "completionPosture": "This worker profile declares OpenAI as a governed fallback provider. Its output is candidate evidence, not authority."
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "defracto.openai-response-receipt.v1",
+  "receiptKey": "defracto.receipt.story-to-tdd.openai-response.slice-046.v1",
+  "status": "passed",
+  "workerKey": "defracto.workers.openai.story_to_tdd.v1",
+  "providerKey": "openai",
+  "modelRequested": "gpt-4.1-mini",
+  "modelReturned": "gpt-4.1-mini-2025-04-14",
+  "providerResponseId": "resp_0fc387e5139e3059006a3bd0337e5c81a2b3ca891c60e5d1db",
+  "laneMode": "cognitive_compile",
+  "responsePacket": {
+    "path": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/artifacts/story-to-tdd.openai-response.v1.json",
+    "hash": "sha256:b687a1cd90d6e193779ecc5cc2899075d048e6d5d6aa4db393cdcb11e59c59e9"
+  },
+  "rawResponsePacket": {
+    "path": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/artifacts/story-to-tdd.openai-response.raw.v1.json",
+    "hash": "sha256:11432eeeb27fe925dfa0d6ae45b23612cff1adc4be2142d51d9995fd7e6b6384"
+  },
+  "candidatePacket": {
+    "path": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/candidates/story-slug.cognitive-implementation.openai-candidate.v1.json",
+    "hash": "sha256:b687a1cd90d6e193779ecc5cc2899075d048e6d5d6aa4db393cdcb11e59c59e9"
+  },
+  "candidateOnlyUntilAccepted": true,
+  "blockedReasons": []
+}

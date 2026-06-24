@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.cognitive_worker_fallback_authorized.v1",
+  "gateTitle": "Cognitive Worker Fallback Authorized",
+  "gateStatus": "accepted",
+  "purpose": "Authorize fallback from Gemini Flash to OpenAI only when primary failure evidence exists and OpenAI invocation is fully receipted.",
+  "appliesToCommands": [
+    "defracto.ndd.story.plan.v1",
+    "defracto.ndd.story.test.v1",
+    "defracto.ndd.story.implement.v1"
+  ],
+  "passConditions": [
+    "lane is classified as cognitive_compile",
+    "primary provider order declares Gemini Flash before OpenAI",
+    "primary Gemini invocation receipt exists",
+    "primary failure code is one of the policy-authorized fallback codes",
+    "OpenAI fallback worker profile exists",
+    "OpenAI dispatch receipt exists",
+    "OpenAI response receipt exists",
+    "OpenAI invocation receipt exists and passed",
+    "fallback receipt links primary failure and OpenAI invocation",
+    "fallback candidate remains candidate-only until hardening",
+    "silent provider substitution is false"
+  ],
+  "blockConditions": [
+    "primary_provider_unavailable",
+    "primary_provider_503",
+    "primary_provider_timeout",
+    "primary_provider_rate_limited",
+    "primary_provider_response_invalid",
+    "fallback_provider_not_configured",
+    "fallback_provider_api_key_missing",
+    "fallback_provider_dispatch_missing",
+    "fallback_provider_response_missing",
+    "fallback_provider_invocation_receipt_missing",
+    "fallback_provider_response_invalid",
+    "fallback_not_authorized",
+    "silent_provider_substitution_forbidden",
+    "openai_api_key_missing",
+    "openai_dispatch_missing",
+    "openai_response_missing",
+    "openai_invocation_receipt_missing",
+    "openai_response_invalid",
+    "provider_candidate_unaccepted"
+  ],
+  "authorityPosture": {
+    "fallbackGrantsAuthority": false,
+    "fallbackMayEmitCandidate": true,
+    "candidateRequiresGates": true,
+    "mayPromoteDurableTruth": false
+  },
+  "fallbackAllowed": true,
+  "mockAllowed": false,
+  "staleResponseAllowed": false,
+  "deterministicReplayAllowedForCreation": false,
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Fallback may continue the cognitive lane only when all provider attempts and decisions are visible in receipts."
+}

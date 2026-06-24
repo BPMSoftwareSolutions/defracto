@@ -1,0 +1,315 @@
+{
+  "id": "resp_0fc387e5139e3059006a3bd0337e5c81a2b3ca891c60e5d1db",
+  "object": "response",
+  "created_at": 1782304819,
+  "status": "completed",
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1782304833,
+  "error": null,
+  "frequency_penalty": 0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 2048,
+  "max_tool_calls": null,
+  "model": "gpt-4.1-mini-2025-04-14",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0fc387e5139e3059006a3bd0353c2081a2b6e2878e29c43fc2",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"schemaVersion\":\"defracto.openai-story-to-tdd-response.v1\",\"responseKey\":\"story-slug-candidate-implementation-046\",\"status\":\"candidate\",\"providerKey\":\"openai\",\"workerKey\":\"defracto.workers.openai.story_to_tdd.v1\",\"model\":\"gpt-4.1-mini\",\"dispatchKey\":\"defracto.dispatch.story-to-tdd.implementation.openai-fallback.slice-046.v1\",\"sourceHash\":\"sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9\",\"sliceKey\":\"slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture\",\"candidateImplementationProposal\":{\"proposalKey\":\"story-slug-candidate-implementation-046\",\"status\":\"candidate\",\"targetPath\":\"generated/implementations/user-stories/story-slug.cognitive.cjs\",\"exportName\":\"generateStorySlug\",\"sourceAuthority\":{\"storyAuthority\":\"contracts/test-intents/story-slug.cognitive-test-intent.v1.json\",\"testIntent\":\"contracts/test-intents/story-slug.cognitive-test-intent.v1.json\",\"redReceipt\":\"evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json\",\"provider\":\"openai\"},\"criteriaKeysCovered\":[\"story-slug.lowercase-ascii\",\"story-slug.whitespace-to-hyphen\",\"story-slug.remove-punctuation\",\"story-slug.collapse-hyphens\",\"story-slug.empty-input-blocked\"],\"implementationAlgorithm\":[\"Trim the input title string to remove leading and trailing whitespace.\",\"If the trimmed input is empty, block processing and return an empty input blocker error.\",\"Convert all characters in the input to lowercase ASCII, removing or replacing any non-ASCII characters as needed.\",\"Remove all unsupported punctuation characters from the input.\",\"Replace all whitespace characters (spaces, tabs, etc.) with single hyphens ('-').\",\"Collapse any sequences of multiple consecutive hyphens into a single hyphen.\",\"Trim any leading or trailing hyphens from the resulting string.\",\"If the resulting slug is empty after these transformations, block processing and return an empty input blocker error.\",\"Otherwise, return a passed status with the generated slug key placeholder.\"],\"exactOutputShapes\":{\"passed\":{\"status\":\"passed\",\"slugKeyPlaceholder\":\"<slug>\"},\"blockedEmptyInput\":{\"status\":\"blocked\",\"blocker\":\"empty_slug_input\"}},\"scopeBoundaries\":{\"allowedTargetOnly\":true,\"noTestMutation\":true,\"noDurableTruthClaim\":true,\"noExtraCriteria\":true},\"promotionPosture\":{\"projectionKind\":\"generated_tdd_proof_surface\",\"promotionStatus\":\"proof_surface_only\",\"notDurableProductTruth\":true,\"mustPromoteThrough\":\"semantic_operation_graph\"}},\"ambiguities\":[],\"assumptions\":[\"The input title is a string that may contain whitespace, punctuation, and mixed case characters.\",\"Unsupported punctuation characters are defined by the test intent and must be removed entirely.\",\"Empty input after trimming or after all transformations is considered invalid and must be blocked.\"],\"forbiddenClaims\":[\"No durable product truth is claimed.\",\"No test mutations are performed.\",\"No additional criteria beyond those specified are added.\"],\"acceptanceRequired\":true}"
+        }
+      ],
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "in_memory",
+  "reasoning": {
+    "context": null,
+    "effort": null,
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 0.2,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "story_to_tdd_implementation_fallback_v2",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schemaVersion",
+          "responseKey",
+          "status",
+          "providerKey",
+          "workerKey",
+          "model",
+          "dispatchKey",
+          "sourceHash",
+          "sliceKey",
+          "candidateImplementationProposal",
+          "ambiguities",
+          "assumptions",
+          "forbiddenClaims",
+          "acceptanceRequired"
+        ],
+        "properties": {
+          "schemaVersion": {
+            "type": "string"
+          },
+          "responseKey": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "providerKey": {
+            "type": "string"
+          },
+          "workerKey": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          },
+          "dispatchKey": {
+            "type": "string"
+          },
+          "sourceHash": {
+            "type": "string"
+          },
+          "sliceKey": {
+            "type": "string"
+          },
+          "candidateImplementationProposal": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "proposalKey",
+              "status",
+              "targetPath",
+              "exportName",
+              "sourceAuthority",
+              "criteriaKeysCovered",
+              "implementationAlgorithm",
+              "exactOutputShapes",
+              "scopeBoundaries",
+              "promotionPosture"
+            ],
+            "properties": {
+              "proposalKey": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "targetPath": {
+                "type": "string"
+              },
+              "exportName": {
+                "type": "string"
+              },
+              "sourceAuthority": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "storyAuthority",
+                  "testIntent",
+                  "redReceipt",
+                  "provider"
+                ],
+                "properties": {
+                  "storyAuthority": {
+                    "type": "string"
+                  },
+                  "testIntent": {
+                    "type": "string"
+                  },
+                  "redReceipt": {
+                    "type": "string"
+                  },
+                  "provider": {
+                    "type": "string"
+                  }
+                }
+              },
+              "criteriaKeysCovered": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "implementationAlgorithm": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "exactOutputShapes": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "passed",
+                  "blockedEmptyInput"
+                ],
+                "properties": {
+                  "passed": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "slugKeyPlaceholder"
+                    ],
+                    "properties": {
+                      "status": {
+                        "type": "string"
+                      },
+                      "slugKeyPlaceholder": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "blockedEmptyInput": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "blocker"
+                    ],
+                    "properties": {
+                      "status": {
+                        "type": "string"
+                      },
+                      "blocker": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "scopeBoundaries": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "allowedTargetOnly",
+                  "noTestMutation",
+                  "noDurableTruthClaim",
+                  "noExtraCriteria"
+                ],
+                "properties": {
+                  "allowedTargetOnly": {
+                    "type": "boolean"
+                  },
+                  "noTestMutation": {
+                    "type": "boolean"
+                  },
+                  "noDurableTruthClaim": {
+                    "type": "boolean"
+                  },
+                  "noExtraCriteria": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "promotionPosture": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "projectionKind",
+                  "promotionStatus",
+                  "notDurableProductTruth",
+                  "mustPromoteThrough"
+                ],
+                "properties": {
+                  "projectionKind": {
+                    "type": "string"
+                  },
+                  "promotionStatus": {
+                    "type": "string"
+                  },
+                  "notDurableProductTruth": {
+                    "type": "boolean"
+                  },
+                  "mustPromoteThrough": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "ambiguities": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "description"
+              ],
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "assumptions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "forbiddenClaims": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "acceptanceRequired": {
+            "type": "boolean"
+          }
+        }
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 1,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 1131,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 654,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1785
+  },
+  "user": null,
+  "metadata": {}
+}

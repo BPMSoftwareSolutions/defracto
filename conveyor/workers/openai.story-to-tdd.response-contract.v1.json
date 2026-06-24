@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "defracto.worker-response-contract.v1",
+  "responseContractKey": "defracto.workers.openai.story_to_tdd.response.v1",
+  "workerKey": "defracto.workers.openai.story_to_tdd.v1",
+  "baseWorkerKey": "defracto.workers.openai.v1",
+  "sourceTruth": "declared_json_contract",
+  "status": "declared-ready-for-governed-fallback",
+  "purpose": "Declare candidate-only OpenAI fallback output for cognitive Story-to-TDD compilation before governed acceptance gates.",
+  "requiredResponseFields": [
+    "schemaVersion",
+    "responseKey",
+    "status",
+    "providerKey",
+    "workerKey",
+    "model",
+    "dispatchKey",
+    "sourceHash",
+    "sliceKey",
+    "candidateImplementationProposal",
+    "ambiguities",
+    "assumptions",
+    "forbiddenClaims",
+    "acceptanceRequired"
+  ],
+  "candidateOutputPolicy": {
+    "candidateOnlyUntilAccepted": true,
+    "mayBecomeAuthorityWithoutGates": false,
+    "requiredAcceptanceGates": [
+      "cognitive-worker-fallback-authorized",
+      "acceptance-criteria-trace-required",
+      "no-hand-authored-code",
+      "tdd-proof-surface-not-product-truth"
+    ]
+  },
+  "freshnessPolicy": {
+    "mustMatchDispatchSourceHash": true,
+    "mustMatchDispatchSliceKey": true,
+    "mustReferencePrimaryFailureReceipt": true,
+    "staleResponseAllowed": false
+  },
+  "targetInvocationReceiptShape": "defracto.openai-invocation-receipt.v1",
+  "forbiddenClaims": [
+    "canonical truth before gates",
+    "implementation authority before gates",
+    "durable product truth",
+    "silent Gemini substitution",
+    "deterministic fallback success",
+    "mock response success"
+  ],
+  "blockerCodes": [
+    "openai_response_missing",
+    "openai_response_invalid",
+    "provider_candidate_unaccepted",
+    "silent_provider_substitution_forbidden"
+  ]
+}

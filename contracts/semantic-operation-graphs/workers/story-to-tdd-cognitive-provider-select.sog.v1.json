@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.workers.story-to-tdd-cognitive-provider-select.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "declared-ready-for-provider-selection",
+  "commandKey": "defracto.workers.story_to_tdd.provider_select.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.provider-select.verify-primary-attempt.semantic-action.v1",
+      "capabilityKey": "evidence.receipt.verify.v1",
+      "intent": "Verify Gemini was attempted first."
+    },
+    {
+      "actionKey": "defracto.provider-select.map-primary-failure.semantic-action.v1",
+      "capabilityKey": "policy.evaluate.v1",
+      "intent": "Map Gemini failure into an allowed fallback code."
+    },
+    {
+      "actionKey": "defracto.provider-select.authorize-fallback.semantic-action.v1",
+      "capabilityKey": "gate.evaluate.v1",
+      "intent": "Authorize OpenAI fallback through the cognitive fallback gate."
+    },
+    {
+      "actionKey": "defracto.provider-select.invoke-openai.semantic-action.v1",
+      "capabilityKey": "worker.openai.responses.invoke.v1",
+      "intent": "Invoke OpenAI fallback only after authorization."
+    },
+    {
+      "actionKey": "defracto.provider-select.emit-fallback-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit provider fallback receipt linking primary and fallback attempts."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "verify-primary-attempt",
+        "capabilityKey": "evidence.receipt.verify.v1",
+        "intent": "Verify Gemini primary invocation receipt exists.",
+        "input": {
+          "receiptPath": "evidence/workers/story-to-tdd.implementation.gemini-invocation.receipt.v1.json",
+          "requiredProvider": "gemini_flash"
+        },
+        "output": {
+          "path": "$graph.primary_attempt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "primary_provider_unavailable"
+        }
+      },
+      {
+        "id": "authorize-fallback",
+        "capabilityKey": "gate.evaluate.v1",
+        "intent": "Authorize OpenAI fallback.",
+        "input": {
+          "policy": "contracts/policies/cognitive-worker-provider-fallback.policy.v1.json",
+          "gate": "contracts/gates/cognitive-worker-fallback-authorized.gate.v1.json",
+          "primaryFailureCode": "primary_provider_503",
+          "fallbackProvider": "openai"
+        },
+        "output": {
+          "path": "$graph.fallback_authorized"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "fallback_not_authorized"
+        }
+      },
+      {
+        "id": "emit-provider-fallback-receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit provider fallback receipt.",
+        "input": {
+          "path": "evidence/workers/story-to-tdd.provider-fallback.receipt.v1.json"
+        },
+        "output": {
+          "path": "$graph.provider_fallback_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "fallback_provider_invocation_receipt_missing"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "provider_fallback_receipt"
+    }
+  },
+  "evidenceObligations": [
+    "primary_provider_attempt_preserved",
+    "fallback_authorization_recorded",
+    "fallback_provider_invocation_receipted",
+    "candidate_provider_identity_recorded",
+    "candidate_only_until_gates"
+  ],
+  "forbiddenClaims": [
+    "OpenAI was primary when Gemini was attempted first",
+    "fallback output grants authority",
+    "provider selection can be silent",
+    "deterministic replay can create cognitive authority"
+  ]
+}

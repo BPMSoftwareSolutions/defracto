@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.story-to-tdd-openai-invoke.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "declared-ready-for-governed-fallback",
+  "toolKey": "defracto.workers.openai.story_to_tdd",
+  "commandKey": "defracto.workers.openai.story_to_tdd.invoke.v1",
+  "sourceLineage": {
+    "workerProfile": "conveyor/workers/openai.story-to-tdd.worker-profile.v1.json",
+    "dispatchContract": "conveyor/workers/openai.story-to-tdd.dispatch-contract.v1.json",
+    "responseContract": "conveyor/workers/openai.story-to-tdd.response-contract.v1.json",
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/workers/story-to-tdd-openai-invoke.sog.v1.json",
+    "fallbackPolicy": "contracts/policies/cognitive-worker-provider-fallback.policy.v1.json",
+    "fallbackGate": "contracts/gates/cognitive-worker-fallback-authorized.gate.v1.json"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/workers/story-to-tdd-openai-invoke.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "laneClassification": {
+    "laneMode": "cognitive_compile",
+    "aiWorkerRequired": true,
+    "requiredWorker": "defracto.workers.openai.v1",
+    "requiredInvocationCapability": "worker.openai.responses.invoke.v1",
+    "fallbackRole": "governed_fallback",
+    "fallbackAllowedOnlyByPolicy": true,
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false
+  },
+  "boundedInputs": [
+    "primary provider failure receipt",
+    "operator story source artifact",
+    "source hash",
+    "slice key",
+    "cognitive task request",
+    "OpenAI dispatch packet"
+  ],
+  "boundedOutputs": [
+    "OpenAI response packet",
+    "OpenAI dispatch receipt",
+    "OpenAI response receipt",
+    "OpenAI invocation receipt"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "environment.require_secret.v1",
+      "purpose": "Require LOC_OPENAI_API_KEY or operator-declared OPENAI_API_KEY without writing secret material to evidence.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "worker.openai.responses.invoke.v1",
+      "purpose": "Invoke live OpenAI Responses API as governed fallback for cognitive Story-to-TDD compilation.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "json.schema.validate.v1",
+      "purpose": "Validate OpenAI response shape before downstream acceptance gates.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "Emit dispatch, response, and invocation receipts.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "blockerCodes": [
+    "openai_api_key_missing",
+    "openai_dispatch_missing",
+    "openai_response_missing",
+    "openai_invocation_receipt_missing",
+    "openai_response_invalid",
+    "fallback_not_authorized",
+    "silent_provider_substitution_forbidden"
+  ],
+  "forbiddenBodyForms": [
+    "mock_ai_response",
+    "deterministic_fallback",
+    "stale_response_reuse",
+    "unreceipted_provider_output",
+    "silent_provider_substitution",
+    "host_language_worker_body",
+    "product_source_mutation"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "This SEJ declares the OpenAI fallback invocation lane for cognitive Story-to-TDD work. It may not satisfy authority by itself."
+}

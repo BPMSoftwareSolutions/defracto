@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.ndd-story-implement.provider-select.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "declared-ready-for-provider-selection",
+  "commandKey": "defracto.ndd.story.implement.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.ndd-story-implement-provider-select.require-red.semantic-action.v1",
+      "capabilityKey": "evidence.receipt.verify.v1",
+      "intent": "Require cognitive red receipt before implementation projection."
+    },
+    {
+      "actionKey": "defracto.ndd-story-implement-provider-select.require-primary-failure.semantic-action.v1",
+      "capabilityKey": "evidence.receipt.verify.v1",
+      "intent": "Require Gemini primary implementation failure evidence."
+    },
+    {
+      "actionKey": "defracto.ndd-story-implement-provider-select.require-fallback.semantic-action.v1",
+      "capabilityKey": "evidence.receipt.verify.v1",
+      "intent": "Require OpenAI fallback invocation receipt."
+    },
+    {
+      "actionKey": "defracto.ndd-story-implement-provider-select.harden-candidate.semantic-action.v1",
+      "capabilityKey": "gate.evaluate.v1",
+      "intent": "Accept or block OpenAI implementation candidate through gates."
+    },
+    {
+      "actionKey": "defracto.ndd-story-implement-provider-select.emit-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit story implement provider-select receipt."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "require-red-receipt",
+        "capabilityKey": "evidence.receipt.verify.v1",
+        "intent": "Verify red receipt exists before implementation.",
+        "input": {
+          "receiptPath": "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json"
+        },
+        "output": {
+          "path": "$graph.red_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "green_without_red_forbidden"
+        }
+      },
+      {
+        "id": "require-openai-fallback",
+        "capabilityKey": "evidence.receipt.verify.v1",
+        "intent": "Verify OpenAI fallback receipt exists before projection.",
+        "input": {
+          "receiptPath": "evidence/workers/story-to-tdd.provider-fallback.receipt.v1.json"
+        },
+        "output": {
+          "path": "$graph.fallback_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "implementation_without_provider_receipt_forbidden"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "fallback_receipt"
+    }
+  },
+  "evidenceObligations": [
+    "red_receipt_exists_before_implementation",
+    "gemini_failure_receipt_verified",
+    "openai_fallback_receipt_verified",
+    "candidate_hardening_completed",
+    "generated_implementation_remains_proof_surface_only",
+    "sog_promotion_required"
+  ],
+  "forbiddenClaims": [
+    "implementation before red",
+    "implementation without provider receipt",
+    "green without red",
+    "fallback grants durable truth",
+    "SOG promotion skipped"
+  ]
+}

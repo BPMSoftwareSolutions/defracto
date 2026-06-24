@@ -1,0 +1,329 @@
+﻿{
+    "id":  "resp_0accc10ee31bd60b006a3bce6c4ba081a3a05818b55c463a53",
+    "object":  "response",
+    "created_at":  1782304364,
+    "status":  "completed",
+    "background":  false,
+    "billing":  {
+                    "payer":  "developer"
+                },
+    "completed_at":  1782304375,
+    "error":  null,
+    "frequency_penalty":  0.0,
+    "incomplete_details":  null,
+    "instructions":  null,
+    "max_output_tokens":  2048,
+    "max_tool_calls":  null,
+    "model":  "gpt-4.1-mini-2025-04-14",
+    "moderation":  null,
+    "output":  [
+                   {
+                       "id":  "msg_0accc10ee31bd60b006a3bce6dff8081a3874f366cdf7e3e6c",
+                       "type":  "message",
+                       "status":  "completed",
+                       "content":  [
+                                       {
+                                           "type":  "output_text",
+                                           "annotations":  [
+
+                                                           ],
+                                           "logprobs":  [
+
+                                                        ],
+                                           "text":  "{\"schemaVersion\":\"defracto.openai-story-to-tdd-response.v1\",\"responseKey\":\"story-slug-cognitive-implementation-proposal\",\"status\":\"candidate\",\"providerKey\":\"openai\",\"workerKey\":\"defracto.workers.openai.story_to_tdd.v1\",\"model\":\"gpt-4o-mini\",\"dispatchKey\":\"defracto.dispatch.story-to-tdd.implementation.openai-fallback.slice-046.v1\",\"sourceHash\":\"sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9\",\"sliceKey\":\"slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture\",\"candidateImplementationProposal\":{\"proposalKey\":\"openai-fallback-story-slug-cognitive-impl-v1\",\"status\":\"candidate-only\",\"targetPath\":\"generated/implementations/user-stories/story-slug.cognitive.cjs\",\"exportName\":\"generateStorySlug\",\"sourceAuthority\":{\"storyAuthority\":\"promoted story/canonical authority established by Slice 040\",\"testIntent\":\"contracts/test-intents/story-slug.cognitive-test-intent.v1.json\",\"redReceipt\":\"evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json\",\"provider\":\"openai\"},\"criteriaKeysCovered\":[\"story-slug.lowercase-ascii\",\"story-slug.whitespace-to-hyphen\",\"story-slug.remove-punctuation\",\"story-slug.collapse-hyphens\",\"story-slug.empty-input-blocked\"],\"implementationAlgorithm\":[\"Trim input title string\",\"If trimmed title is empty, return blocked with \u0027empty_slug_input\u0027\",\"Convert to lowercase ASCII\",\"Remove unsupported punctuation characters\",\"Replace all whitespace sequences with single hyphen\",\"Collapse multiple consecutive hyphens into one\",\"Trim leading and trailing hyphens\",\"If resulting slug is empty, return blocked with \u0027empty_slug_input\u0027\",\"Otherwise return passed status with slugKey set to the normalized slug\"],\"exactOutputShapes\":{\"passed\":\"{\\\"statu\",\"blockedEmptyInput\":\"{\\\"status\\\":\\\"blocked\" },\"scopeBoundaries\":{\"allowedTargetOnly\":true,\"noTestMutation\":true,\"noDurableTruthClaim\":true,\"noExtraCriteria\":true},\"promotionPosture\":{\"projectionKind\":\"generated_tdd_proof_surface\",\"promotionStatus\":\"proof_surface_only\",\"notDurableProductTruth\":true,\"mustPromoteThrough\":\"semantic_operation_graph\"}},\"ambiguities\":[{\"status\":\"none\",\"description\":\"All criteria and behaviors are explicitly specified in the story.\"}],\"assumptions\":[\"Input title is a string and may contain Unicode but only ASCII lowercase is allowed in output slug\",\"Unsupported punctuation includes all characters except ASCII letters, digits, whitespace, and hyphens\",\"Whitespace includes spaces, tabs, and other Unicode whitespace characters\",\"SlugKey must be ASCII lowercase with hyphens only\"],\"forbiddenClaims\":[\"No durable product truth claim\",\"No mutation of existing tests\",\"No addition of criteria beyond those specified\"],\"acceptanceRequired\":true}"
+                                       }
+                                   ],
+                       "role":  "assistant"
+                   }
+               ],
+    "parallel_tool_calls":  true,
+    "presence_penalty":  0.0,
+    "previous_response_id":  null,
+    "prompt_cache_key":  null,
+    "prompt_cache_retention":  "in_memory",
+    "reasoning":  {
+                      "context":  null,
+                      "effort":  null,
+                      "summary":  null
+                  },
+    "safety_identifier":  null,
+    "service_tier":  "default",
+    "store":  true,
+    "temperature":  0.2,
+    "text":  {
+                 "format":  {
+                                "type":  "json_schema",
+                                "description":  null,
+                                "name":  "story_to_tdd_implementation_fallback",
+                                "schema":  {
+                                               "type":  "object",
+                                               "additionalProperties":  false,
+                                               "required":  [
+                                                                "schemaVersion",
+                                                                "responseKey",
+                                                                "status",
+                                                                "providerKey",
+                                                                "workerKey",
+                                                                "model",
+                                                                "dispatchKey",
+                                                                "sourceHash",
+                                                                "sliceKey",
+                                                                "candidateImplementationProposal",
+                                                                "ambiguities",
+                                                                "assumptions",
+                                                                "forbiddenClaims",
+                                                                "acceptanceRequired"
+                                                            ],
+                                               "properties":  {
+                                                                  "schemaVersion":  {
+                                                                                        "const":  "defracto.openai-story-to-tdd-response.v1",
+                                                                                        "type":  "string"
+                                                                                    },
+                                                                  "responseKey":  {
+                                                                                      "type":  "string"
+                                                                                  },
+                                                                  "status":  {
+                                                                                 "type":  "string",
+                                                                                 "enum":  [
+                                                                                              "candidate"
+                                                                                          ]
+                                                                             },
+                                                                  "providerKey":  {
+                                                                                      "const":  "openai",
+                                                                                      "type":  "string"
+                                                                                  },
+                                                                  "workerKey":  {
+                                                                                    "const":  "defracto.workers.openai.story_to_tdd.v1",
+                                                                                    "type":  "string"
+                                                                                },
+                                                                  "model":  {
+                                                                                "type":  "string"
+                                                                            },
+                                                                  "dispatchKey":  {
+                                                                                      "const":  "defracto.dispatch.story-to-tdd.implementation.openai-fallback.slice-046.v1",
+                                                                                      "type":  "string"
+                                                                                  },
+                                                                  "sourceHash":  {
+                                                                                     "const":  "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+                                                                                     "type":  "string"
+                                                                                 },
+                                                                  "sliceKey":  {
+                                                                                   "const":  "slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture",
+                                                                                   "type":  "string"
+                                                                               },
+                                                                  "candidateImplementationProposal":  {
+                                                                                                          "type":  "object",
+                                                                                                          "additionalProperties":  false,
+                                                                                                          "required":  [
+                                                                                                                           "proposalKey",
+                                                                                                                           "status",
+                                                                                                                           "targetPath",
+                                                                                                                           "exportName",
+                                                                                                                           "sourceAuthority",
+                                                                                                                           "criteriaKeysCovered",
+                                                                                                                           "implementationAlgorithm",
+                                                                                                                           "exactOutputShapes",
+                                                                                                                           "scopeBoundaries",
+                                                                                                                           "promotionPosture"
+                                                                                                                       ],
+                                                                                                          "properties":  {
+                                                                                                                             "proposalKey":  {
+                                                                                                                                                 "type":  "string"
+                                                                                                                                             },
+                                                                                                                             "status":  {
+                                                                                                                                            "type":  "string",
+                                                                                                                                            "enum":  [
+                                                                                                                                                         "candidate-only"
+                                                                                                                                                     ]
+                                                                                                                                        },
+                                                                                                                             "targetPath":  {
+                                                                                                                                                "const":  "generated/implementations/user-stories/story-slug.cognitive.cjs",
+                                                                                                                                                "type":  "string"
+                                                                                                                                            },
+                                                                                                                             "exportName":  {
+                                                                                                                                                "const":  "generateStorySlug",
+                                                                                                                                                "type":  "string"
+                                                                                                                                            },
+                                                                                                                             "sourceAuthority":  {
+                                                                                                                                                     "type":  "object",
+                                                                                                                                                     "additionalProperties":  false,
+                                                                                                                                                     "required":  [
+                                                                                                                                                                      "storyAuthority",
+                                                                                                                                                                      "testIntent",
+                                                                                                                                                                      "redReceipt",
+                                                                                                                                                                      "provider"
+                                                                                                                                                                  ],
+                                                                                                                                                     "properties":  {
+                                                                                                                                                                        "storyAuthority":  {
+                                                                                                                                                                                               "type":  "string"
+                                                                                                                                                                                           },
+                                                                                                                                                                        "testIntent":  {
+                                                                                                                                                                                           "const":  "contracts/test-intents/story-slug.cognitive-test-intent.v1.json",
+                                                                                                                                                                                           "type":  "string"
+                                                                                                                                                                                       },
+                                                                                                                                                                        "redReceipt":  {
+                                                                                                                                                                                           "const":  "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json",
+                                                                                                                                                                                           "type":  "string"
+                                                                                                                                                                                       },
+                                                                                                                                                                        "provider":  {
+                                                                                                                                                                                         "const":  "openai",
+                                                                                                                                                                                         "type":  "string"
+                                                                                                                                                                                     }
+                                                                                                                                                                    }
+                                                                                                                                                 },
+                                                                                                                             "criteriaKeysCovered":  {
+                                                                                                                                                         "items":  {
+                                                                                                                                                                       "type":  "string"
+                                                                                                                                                                   },
+                                                                                                                                                         "type":  "array"
+                                                                                                                                                     },
+                                                                                                                             "implementationAlgorithm":  {
+                                                                                                                                                             "items":  {
+                                                                                                                                                                           "type":  "string"
+                                                                                                                                                                       },
+                                                                                                                                                             "type":  "array"
+                                                                                                                                                         },
+                                                                                                                             "exactOutputShapes":  {
+                                                                                                                                                       "type":  "object",
+                                                                                                                                                       "additionalProperties":  false,
+                                                                                                                                                       "required":  [
+                                                                                                                                                                        "passed",
+                                                                                                                                                                        "blockedEmptyInput"
+                                                                                                                                                                    ],
+                                                                                                                                                       "properties":  {
+                                                                                                                                                                          "passed":  {
+                                                                                                                                                                                         "const":  "{\"status\":\"passed\",\"slugKey\":\"\u003cslug\u003e\"}",
+                                                                                                                                                                                         "type":  "string"
+                                                                                                                                                                                     },
+                                                                                                                                                                          "blockedEmptyInput":  {
+                                                                                                                                                                                                    "const":  "{\"status\":\"blocked\",\"blocker\":\"empty_slug_input\"}",
+                                                                                                                                                                                                    "type":  "string"
+                                                                                                                                                                                                }
+                                                                                                                                                                      }
+                                                                                                                                                   },
+                                                                                                                             "scopeBoundaries":  {
+                                                                                                                                                     "type":  "object",
+                                                                                                                                                     "additionalProperties":  false,
+                                                                                                                                                     "required":  [
+                                                                                                                                                                      "allowedTargetOnly",
+                                                                                                                                                                      "noTestMutation",
+                                                                                                                                                                      "noDurableTruthClaim",
+                                                                                                                                                                      "noExtraCriteria"
+                                                                                                                                                                  ],
+                                                                                                                                                     "properties":  {
+                                                                                                                                                                        "allowedTargetOnly":  {
+                                                                                                                                                                                                  "const":  true,
+                                                                                                                                                                                                  "type":  "boolean"
+                                                                                                                                                                                              },
+                                                                                                                                                                        "noTestMutation":  {
+                                                                                                                                                                                               "const":  true,
+                                                                                                                                                                                               "type":  "boolean"
+                                                                                                                                                                                           },
+                                                                                                                                                                        "noDurableTruthClaim":  {
+                                                                                                                                                                                                    "const":  true,
+                                                                                                                                                                                                    "type":  "boolean"
+                                                                                                                                                                                                },
+                                                                                                                                                                        "noExtraCriteria":  {
+                                                                                                                                                                                                "const":  true,
+                                                                                                                                                                                                "type":  "boolean"
+                                                                                                                                                                                            }
+                                                                                                                                                                    }
+                                                                                                                                                 },
+                                                                                                                             "promotionPosture":  {
+                                                                                                                                                      "type":  "object",
+                                                                                                                                                      "additionalProperties":  false,
+                                                                                                                                                      "required":  [
+                                                                                                                                                                       "projectionKind",
+                                                                                                                                                                       "promotionStatus",
+                                                                                                                                                                       "notDurableProductTruth",
+                                                                                                                                                                       "mustPromoteThrough"
+                                                                                                                                                                   ],
+                                                                                                                                                      "properties":  {
+                                                                                                                                                                         "projectionKind":  {
+                                                                                                                                                                                                "const":  "generated_tdd_proof_surface",
+                                                                                                                                                                                                "type":  "string"
+                                                                                                                                                                                            },
+                                                                                                                                                                         "promotionStatus":  {
+                                                                                                                                                                                                 "const":  "proof_surface_only",
+                                                                                                                                                                                                 "type":  "string"
+                                                                                                                                                                                             },
+                                                                                                                                                                         "notDurableProductTruth":  {
+                                                                                                                                                                                                        "const":  true,
+                                                                                                                                                                                                        "type":  "boolean"
+                                                                                                                                                                                                    },
+                                                                                                                                                                         "mustPromoteThrough":  {
+                                                                                                                                                                                                    "const":  "semantic_operation_graph",
+                                                                                                                                                                                                    "type":  "string"
+                                                                                                                                                                                                }
+                                                                                                                                                                     }
+                                                                                                                                                  }
+                                                                                                                         }
+                                                                                                      },
+                                                                  "ambiguities":  {
+                                                                                      "type":  "array",
+                                                                                      "items":  {
+                                                                                                    "type":  "object",
+                                                                                                    "additionalProperties":  false,
+                                                                                                    "required":  [
+                                                                                                                     "status",
+                                                                                                                     "description"
+                                                                                                                 ],
+                                                                                                    "properties":  {
+                                                                                                                       "status":  {
+                                                                                                                                      "type":  "string",
+                                                                                                                                      "enum":  [
+                                                                                                                                                   "none",
+                                                                                                                                                   "open"
+                                                                                                                                               ]
+                                                                                                                                  },
+                                                                                                                       "description":  {
+                                                                                                                                           "type":  "string"
+                                                                                                                                       }
+                                                                                                                   }
+                                                                                                }
+                                                                                  },
+                                                                  "assumptions":  {
+                                                                                      "items":  {
+                                                                                                    "type":  "string"
+                                                                                                },
+                                                                                      "type":  "array"
+                                                                                  },
+                                                                  "forbiddenClaims":  {
+                                                                                          "items":  {
+                                                                                                        "type":  "string"
+                                                                                                    },
+                                                                                          "type":  "array"
+                                                                                      },
+                                                                  "acceptanceRequired":  {
+                                                                                             "const":  true,
+                                                                                             "type":  "boolean"
+                                                                                         }
+                                                              }
+                                           },
+                                "strict":  true
+                            },
+                 "verbosity":  "medium"
+             },
+    "tool_choice":  "auto",
+    "tools":  [
+
+              ],
+    "top_logprobs":  0,
+    "top_p":  1.0,
+    "truncation":  "disabled",
+    "usage":  {
+                  "input_tokens":  1191,
+                  "input_tokens_details":  {
+                                               "cached_tokens":  0
+                                           },
+                  "output_tokens":  613,
+                  "output_tokens_details":  {
+                                                "reasoning_tokens":  0
+                                            },
+                  "total_tokens":  1804
+              },
+    "user":  null,
+    "metadata":  {
+
+                 }
+}

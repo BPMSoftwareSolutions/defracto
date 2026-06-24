@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.workers.story-to-tdd-openai-invoke.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "declared-ready-for-governed-fallback",
+  "commandKey": "defracto.workers.openai.story_to_tdd.invoke.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.story-to-tdd-openai.require-api-key.semantic-action.v1",
+      "capabilityKey": "environment.require_secret.v1",
+      "intent": "Require an OpenAI provider key without exposing secret material."
+    },
+    {
+      "actionKey": "defracto.story-to-tdd-openai.require-primary-failure.semantic-action.v1",
+      "capabilityKey": "evidence.receipt.verify.v1",
+      "intent": "Verify primary Gemini failure evidence before fallback."
+    },
+    {
+      "actionKey": "defracto.story-to-tdd-openai.validate-dispatch.semantic-action.v1",
+      "capabilityKey": "object.require_fields.v1",
+      "intent": "Validate Story-to-TDD OpenAI dispatch fields."
+    },
+    {
+      "actionKey": "defracto.story-to-tdd-openai.invoke-provider.semantic-action.v1",
+      "capabilityKey": "worker.openai.responses.invoke.v1",
+      "intent": "Invoke live OpenAI Responses API for governed cognitive fallback."
+    },
+    {
+      "actionKey": "defracto.story-to-tdd-openai.validate-response.semantic-action.v1",
+      "capabilityKey": "json.schema.validate.v1",
+      "intent": "Validate OpenAI response contract."
+    },
+    {
+      "actionKey": "defracto.story-to-tdd-openai.emit-receipts.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit dispatch, response, and invocation receipts."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "require-api-key",
+        "capabilityKey": "environment.require_secret.v1",
+        "intent": "Require LOC_OPENAI_API_KEY or operator-declared OPENAI_API_KEY without exposing secret material.",
+        "input": {
+          "canonicalEnvVar": "LOC_OPENAI_API_KEY",
+          "acceptedEnvVars": [
+            "LOC_OPENAI_API_KEY",
+            "OPENAI_API_KEY"
+          ],
+          "secretMaterialAllowedInEvidence": false
+        },
+        "output": {
+          "path": "$graph.require_api_key"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "openai_api_key_missing"
+        }
+      },
+      {
+        "id": "require-primary-failure",
+        "capabilityKey": "evidence.receipt.verify.v1",
+        "intent": "Verify primary provider failed with an allowed fallback code.",
+        "input": {
+          "primaryInvocationReceipt": "evidence/workers/story-to-tdd.implementation.gemini-invocation.receipt.v1.json",
+          "allowedFailureCodes": [
+            "primary_provider_503"
+          ]
+        },
+        "output": {
+          "path": "$graph.primary_failure"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "fallback_not_authorized"
+        }
+      },
+      {
+        "id": "invoke-provider",
+        "capabilityKey": "worker.openai.responses.invoke.v1",
+        "intent": "Invoke live OpenAI fallback provider.",
+        "input": {
+          "workerProfile": "conveyor/workers/openai.story-to-tdd.worker-profile.v1.json",
+          "dispatchContract": "conveyor/workers/openai.story-to-tdd.dispatch-contract.v1.json",
+          "responseContract": "conveyor/workers/openai.story-to-tdd.response-contract.v1.json"
+        },
+        "output": {
+          "path": "$graph.invoke_provider"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "openai_response_missing"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "invoke_provider"
+    }
+  },
+  "evidenceObligations": [
+    "api_key_available_without_secret_leak",
+    "primary_failure_receipt_verified",
+    "dispatch_packet_valid",
+    "live_provider_invoked",
+    "response_contract_valid",
+    "dispatch_receipt_emitted",
+    "response_receipt_emitted",
+    "invocation_receipt_emitted"
+  ],
+  "forbiddenClaims": [
+    "OpenAI output is Gemini output",
+    "fallback grants authority",
+    "mock response can satisfy cognitive compile",
+    "stale response can satisfy cognitive compile",
+    "worker output is durable product truth"
+  ]
+}

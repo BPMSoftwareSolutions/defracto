@@ -1,0 +1,30 @@
+TAP version 13
+# Subtest: story-slug.cognitive.test.lowercase-and-whitespace maps accepted lowercase and whitespace criteria
+ok 1 - story-slug.cognitive.test.lowercase-and-whitespace maps accepted lowercase and whitespace criteria
+  ---
+  duration_ms: 3.2541
+  ...
+# Subtest: story-slug.cognitive.test.remove-punctuation maps accepted punctuation criterion
+ok 2 - story-slug.cognitive.test.remove-punctuation maps accepted punctuation criterion
+  ---
+  duration_ms: 0.2165
+  ...
+# Subtest: story-slug.cognitive.test.collapse-hyphens maps accepted repeated hyphen criterion
+ok 3 - story-slug.cognitive.test.collapse-hyphens maps accepted repeated hyphen criterion
+  ---
+  duration_ms: 0.1573
+  ...
+# Subtest: story-slug.cognitive.test.empty-input-blocked maps exact blocked result shape
+ok 4 - story-slug.cognitive.test.empty-input-blocked maps exact blocked result shape
+  ---
+  duration_ms: 0.1328
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 85.1505

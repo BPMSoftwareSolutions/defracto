@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "defracto.cognitive-provider-fallback-receipt.v1",
+  "receiptKey": "defracto.receipt.story-to-tdd.provider-fallback.slice-045.v1",
+  "status": "passed",
+  "laneMode": "cognitive_compile",
+  "commandKey": "defracto.ndd.story.implement.v1",
+  "sliceKey": "slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture",
+  "primaryProvider": "gemini_flash",
+  "primaryAttempted": true,
+  "primaryInvocationReceipt": "evidence/workers/story-to-tdd.implementation.gemini-invocation.receipt.v1.json",
+  "primaryInvocationReceiptHash": "sha256:5e10936f2127ecc8d509291400b9766a01a030f1f89d078141d62ed462dccd4a",
+  "primaryFailureCode": "primary_provider_503",
+  "fallbackProvider": "openai",
+  "fallbackAuthorized": true,
+  "fallbackAttempted": true,
+  "fallbackDispatchReceipt": "evidence/workers/story-to-tdd.openai-dispatch.receipt.v1.json",
+  "fallbackResponseReceipt": "evidence/workers/story-to-tdd.openai-response.receipt.v1.json",
+  "fallbackInvocationReceipt": "evidence/workers/story-to-tdd.openai-invocation.receipt.v1.json",
+  "fallbackInvocationReceiptHash": "sha256:7ad8ecd5545e94ca2b3f2fb9aec2d3dcce38e0275cf21958ba94c623d8ec11e7",
+  "candidate": {
+    "path": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/candidates/story-slug.cognitive-implementation.openai-candidate.v1.json",
+    "hash": "sha256:b687a1cd90d6e193779ecc5cc2899075d048e6d5d6aa4db393cdcb11e59c59e9",
+    "providerKey": "openai",
+    "modelRequested": "gpt-4.1-mini",
+    "modelReturned": "gpt-4.1-mini-2025-04-14",
+    "dispatchHash": "sha256:492ef278574866573347a590f4cac5722e49d5a261617a6cac018d0c42ab2f9c",
+    "responseHash": "sha256:b687a1cd90d6e193779ecc5cc2899075d048e6d5d6aa4db393cdcb11e59c59e9",
+    "invocationReceiptHash": "sha256:43e30e7339877510eda013958ebe7eb1202a23cc3e3a5809e26c48e25e153554"
+  },
+  "candidateAuthorityPromoted": false,
+  "hardeningReceipt": {
+    "path": "evidence/workers/story-to-tdd.openai-implementation-hardening.receipt.v1.json",
+    "hash": "sha256:9620d390c35275c76c7641fa2f3ed8f8b7351f8c7fee1908f21f35627162d8c4",
+    "status": "passed"
+  },
+  "silentSubstitutionDetected": false,
+  "blockedReasons": []
+}

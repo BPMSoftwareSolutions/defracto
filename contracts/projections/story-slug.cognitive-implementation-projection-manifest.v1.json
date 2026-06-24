@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "defracto.implementation-projection-manifest.v1",
+  "manifestKey": "defracto.user-stories.story-slug.cognitive-implementation-projection-manifest.v1",
+  "manifestKind": "projected-node-implementation",
+  "manifestStatus": "accepted-for-materialization",
+  "sourceTruth": "promoted_story_authority_test_intent_red_receipt_and_openai_fallback_candidate",
+  "projectionKind": "generated_tdd_proof_surface",
+  "promotionStatus": "proof_surface_only",
+  "notPromotionValidAsDurableProductBehavior": true,
+  "mustPromoteThrough": "semantic_operation_graph",
+  "derivedFromCanonicalSpec": "defracto.user-stories.story-slug.canonical-spec.v1",
+  "derivedFromTestIntent": "defracto.user-stories.story-slug.cognitive-test-intent.v1",
+  "derivedFromProviderCandidate": {
+    "providerKey": "openai",
+    "candidatePath": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/candidates/story-slug.cognitive-implementation.openai-candidate.v1.json",
+    "candidateHash": "sha256:b687a1cd90d6e193779ecc5cc2899075d048e6d5d6aa4db393cdcb11e59c59e9",
+    "invocationReceipt": "evidence/workers/story-to-tdd.openai-invocation.receipt.v1.json",
+    "hardeningReceipt": "evidence/workers/story-to-tdd.openai-implementation-hardening.receipt.v1.json",
+    "fallbackReceipt": "evidence/workers/story-to-tdd.provider-fallback.receipt.v1.json",
+    "candidateAuthorityGrantedByProvider": false,
+    "candidateAcceptedByHardening": true
+  },
+  "requiredPrimaryProviderFailure": {
+    "providerKey": "gemini_flash",
+    "invocationReceipt": "evidence/workers/story-to-tdd.implementation.gemini-invocation.receipt.v1.json",
+    "invocationReceiptHash": "sha256:5e10936f2127ecc8d509291400b9766a01a030f1f89d078141d62ed462dccd4a",
+    "failureCode": "primary_provider_503"
+  },
+  "requiredRedReceipt": {
+    "receiptPath": "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json",
+    "receiptHash": "sha256:fa72a7e84307c5198b7c2bdeb307b4470c8a3e9466ce4604002432ea42973a80",
+    "testArtifactPath": "tests/generated/user-stories/story-slug.cognitive.generated.test.js",
+    "testArtifactHash": "sha256:cc56c2aea3d030818fc64509e21624e21506f29b0da1a21c62307c7ca932a5c8",
+    "expectedFailureCode": "MODULE_NOT_FOUND",
+    "implementationArtifactExistedDuringRed": false
+  },
+  "projectedPath": "generated/implementations/user-stories/story-slug.cognitive.cjs",
+  "sourceLineage": {
+    "sourcePath": "source/user-stories/story-slug.source.v1.md",
+    "storyAuthorityPromotionReceipt": "evidence/cli/ndd-story-plan.authority-promotion.receipt.v2.json",
+    "testIntentKey": "contracts/test-intents/story-slug.cognitive-test-intent.v1.json",
+    "generatedTestReceipt": "evidence/tdd/story-slug.cognitive-generated-test.materialization.receipt.v1.json",
+    "redTestReceipt": "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json",
+    "providerFallbackReceipt": "evidence/workers/story-to-tdd.provider-fallback.receipt.v1.json",
+    "openaiInvocationReceipt": "evidence/workers/story-to-tdd.openai-invocation.receipt.v1.json",
+    "openaiHardeningReceipt": "evidence/workers/story-to-tdd.openai-implementation-hardening.receipt.v1.json"
+  },
+  "generatedImplementation": {
+    "status": "future",
+    "generationMode": "resolver-materialization",
+    "generationAuthority": "promoted-story-authority-cognitive-test-intent-red-receipt-and-accepted-openai-fallback-candidate",
+    "materializationSej": "contracts/sej/materialize-story-slug-cognitive-generated-implementation.sej.v1.json",
+    "receiptPath": "evidence/tdd/story-slug.cognitive-generated-implementation.materialization.receipt.v1.json"
+  },
+  "allowedResponsibilities": [
+    "project slug behavior named by canonical spec and cognitive test intent into a generated proof-surface implementation",
+    "satisfy the generated cognitive test artifact hash recorded in the red receipt",
+    "return exact blocked shape for empty input",
+    "remain subordinate to semantic operation graph promotion"
+  ],
+  "forbiddenResponsibilities": [
+    "hand-authored implementation code",
+    "durable product behavior claim",
+    "criteria invention",
+    "test mutation",
+    "green claim without red receipt",
+    "write outside declared implementation target",
+    "resolver repository change",
+    "provider output treated as authority without gates"
+  ],
+  "completionPosture": "This manifest authorizes a generated implementation proof surface only after Gemini primary failure, OpenAI fallback invocation, candidate hardening, and prior red evidence."
+}

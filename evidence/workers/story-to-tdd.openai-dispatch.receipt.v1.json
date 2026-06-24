@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "defracto.openai-dispatch-receipt.v1",
+  "receiptKey": "defracto.receipt.story-to-tdd.openai-dispatch.slice-046.v1",
+  "status": "passed",
+  "workerKey": "defracto.workers.openai.story_to_tdd.v1",
+  "laneMode": "cognitive_compile",
+  "commandKey": "defracto.ndd.story.implement.v1",
+  "sliceKey": "slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture",
+  "dispatchPacket": {
+    "path": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/artifacts/story-to-tdd.openai-dispatch.v1.json",
+    "hash": "sha256:492ef278574866573347a590f4cac5722e49d5a261617a6cac018d0c42ab2f9c"
+  },
+  "attemptNumber": 2,
+  "primaryProviderFailure": {
+    "providerKey": "gemini_flash",
+    "invocationReceipt": "evidence/workers/story-to-tdd.implementation.gemini-invocation.receipt.v1.json",
+    "invocationReceiptHash": "sha256:5e10936f2127ecc8d509291400b9766a01a030f1f89d078141d62ed462dccd4a",
+    "failureCode": "primary_provider_503",
+    "providerErrorClass": "503 Server Unavailable"
+  },
+  "priorFallbackAttempt": {
+    "attemptNumber": 1,
+    "rawResponsePath": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/artifacts/story-to-tdd.openai-response.attempt-1.raw.v1.json",
+    "promotionStatus": "not-promoted-response-shape-invalid"
+  },
+  "credentialEnvVarNameUsed": "OPENAI_API_KEY",
+  "secretMaterialAllowedInEvidence": false
+}

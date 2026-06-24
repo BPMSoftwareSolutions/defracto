@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "defracto.openai-dispatch.v1",
+  "dispatchKey": "defracto.dispatch.story-to-tdd.implementation.openai-fallback.slice-046.v1",
+  "attemptNumber": 2,
+  "runKey": "defracto.run.2026-06-24.slice-045-048",
+  "sliceKey": "slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture",
+  "laneKey": "defracto.lanes.story-to-tdd.implementation-fallback.v1",
+  "laneMode": "cognitive_compile",
+  "commandKey": "defracto.ndd.story.implement.v1",
+  "workerKey": "defracto.workers.openai.story_to_tdd.v1",
+  "workerProfilePath": "conveyor/workers/openai.story-to-tdd.worker-profile.v1.json",
+  "dispatchContractPath": "conveyor/workers/openai.story-to-tdd.dispatch-contract.v1.json",
+  "responseContractPath": "conveyor/workers/openai.story-to-tdd.response-contract.v1.json",
+  "primaryProviderFailure": {
+    "providerKey": "gemini_flash",
+    "invocationReceipt": "evidence/workers/story-to-tdd.implementation.gemini-invocation.receipt.v1.json",
+    "invocationReceiptHash": "sha256:5e10936f2127ecc8d509291400b9766a01a030f1f89d078141d62ed462dccd4a",
+    "failureCode": "primary_provider_503",
+    "providerErrorClass": "503 Server Unavailable"
+  },
+  "priorFallbackAttempt": {
+    "attemptNumber": 1,
+    "rawResponsePath": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/artifacts/story-to-tdd.openai-response.attempt-1.raw.v1.json",
+    "promotionStatus": "not-promoted-response-shape-invalid"
+  },
+  "sourceArtifact": "source/user-stories/story-slug.source.v1.md",
+  "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+  "requestedCognitiveTasks": [
+    "implementation proposal fallback"
+  ],
+  "candidateOutputTargets": [
+    "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/candidates/story-slug.cognitive-implementation.openai-candidate.v1.json"
+  ],
+  "boundedTargetPaths": [
+    "generated/implementations/user-stories/story-slug.cognitive.cjs"
+  ],
+  "allowedMutation": [
+    "candidate artifacts",
+    "evidence receipts",
+    "projection manifest after hardening",
+    "generated proof surface after resolver materialization"
+  ],
+  "forbiddenMutation": [
+    "product source",
+    "resolver repo",
+    "test mutation",
+    "durable truth claim",
+    "secret material"
+  ],
+  "acceptanceGates": [
+    "contracts/gates/cognitive-worker-fallback-authorized.gate.v1.json",
+    "contracts/gates/tdd-proof-surface-not-product-truth.gate.v1.json",
+    "contracts/gates/sog-promotion-required-for-generated-implementation.gate.v1.json"
+  ],
+  "credentialPolicy": {
+    "canonicalEnvVar": "LOC_OPENAI_API_KEY",
+    "acceptedEnvVarUsed": "OPENAI_API_KEY",
+    "secretMaterialAllowedInDispatch": false
+  },
+  "freshnessPolicy": {
+    "mustBindToSourceHash": true,
+    "mustBindToSliceKey": true,
+    "mustBindToPrimaryFailureReceipt": true,
+    "staleResponseAllowed": false
+  },
+  "redReceipt": {
+    "path": "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json",
+    "hash": "sha256:fa72a7e84307c5198b7c2bdeb307b4470c8a3e9466ce4604002432ea42973a80",
+    "testArtifactPath": "tests/generated/user-stories/story-slug.cognitive.generated.test.js",
+    "testArtifactHash": "sha256:cc56c2aea3d030818fc64509e21624e21506f29b0da1a21c62307c7ca932a5c8",
+    "implementationArtifactExistedDuringRed": false
+  },
+  "receiptPath": "evidence/workers/story-to-tdd.openai-invocation.receipt.v1.json"
+}

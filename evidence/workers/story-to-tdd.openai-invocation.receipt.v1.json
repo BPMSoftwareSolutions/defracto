@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "defracto.openai-invocation-receipt.v1",
+  "receiptKey": "defracto.receipt.story-to-tdd.implementation.openai-invocation.slice-046.v1",
+  "status": "passed",
+  "worker": "defracto.workers.openai.v1",
+  "invocationCapability": "worker.openai.responses.invoke.v1",
+  "providerKey": "openai",
+  "modelRequested": "gpt-4.1-mini",
+  "modelReturned": "gpt-4.1-mini-2025-04-14",
+  "laneMode": "cognitive_compile",
+  "commandKey": "defracto.ndd.story.implement.v1",
+  "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+  "sliceKey": "slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture",
+  "credentialEnvVarNameUsed": "OPENAI_API_KEY",
+  "secretMaterialAllowedInEvidence": false,
+  "dispatchPacket": {
+    "path": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/artifacts/story-to-tdd.openai-dispatch.v1.json",
+    "status": "passed",
+    "hash": "sha256:492ef278574866573347a590f4cac5722e49d5a261617a6cac018d0c42ab2f9c"
+  },
+  "requestPacket": {
+    "path": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/artifacts/story-to-tdd.openai-request.body.v1.json",
+    "status": "passed",
+    "hash": "sha256:9d8367c8b0088028f72327ab1b8c1899c0f532c22e82fb8e5624533fc82c74ac"
+  },
+  "responsePacket": {
+    "path": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/artifacts/story-to-tdd.openai-response.v1.json",
+    "status": "passed",
+    "hash": "sha256:b687a1cd90d6e193779ecc5cc2899075d048e6d5d6aa4db393cdcb11e59c59e9"
+  },
+  "freshness": {
+    "status": "passed",
+    "sourceHashMatches": true,
+    "sliceKeyMatches": true,
+    "primaryFailureReceiptBound": true
+  },
+  "gateResults": {
+    "liveProviderExecuted": true,
+    "mockResponseUsed": false,
+    "deterministicFallbackAttempted": false,
+    "silentSubstitutionDetected": false,
+    "candidateOnlyUntilAccepted": true,
+    "hardeningStatus": "passed",
+    "providerCandidateAuthorityPromotedByInvocation": false,
+    "providerCandidateAcceptedByHardening": true
+  },
+  "candidate": {
+    "path": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/candidates/story-slug.cognitive-implementation.openai-candidate.v1.json",
+    "hash": "sha256:b687a1cd90d6e193779ecc5cc2899075d048e6d5d6aa4db393cdcb11e59c59e9",
+    "authorityPromotedByInvocation": false
+  },
+  "previousProviderAttempts": [
+    {
+      "providerKey": "openai",
+      "attemptNumber": 1,
+      "result": "not-promoted-response-shape-invalid",
+      "rawResponsePath": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/artifacts/story-to-tdd.openai-response.attempt-1.raw.v1.json"
+    }
+  ],
+  "blockedReasons": []
+}

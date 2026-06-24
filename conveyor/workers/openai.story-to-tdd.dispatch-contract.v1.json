@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "defracto.worker-dispatch-contract.v1",
+  "dispatchContractKey": "defracto.workers.openai.story_to_tdd.dispatch.v1",
+  "workerKey": "defracto.workers.openai.story_to_tdd.v1",
+  "baseWorkerKey": "defracto.workers.openai.v1",
+  "sourceTruth": "declared_json_contract",
+  "status": "declared-ready-for-governed-fallback",
+  "purpose": "Declare the dispatch packet shape for live OpenAI fallback cognitive Story-to-TDD compilation.",
+  "dispatchRoute": "worker.openai.responses.invoke.v1",
+  "requiredPacketFields": [
+    "schemaVersion",
+    "dispatchKey",
+    "runKey",
+    "sliceKey",
+    "laneKey",
+    "laneMode",
+    "commandKey",
+    "workerKey",
+    "workerProfilePath",
+    "dispatchContractPath",
+    "responseContractPath",
+    "primaryProviderFailure",
+    "sourceArtifact",
+    "sourceHash",
+    "requestedCognitiveTasks",
+    "candidateOutputTargets",
+    "allowedMutation",
+    "forbiddenMutation",
+    "acceptanceGates",
+    "credentialPolicy",
+    "freshnessPolicy",
+    "receiptPath"
+  ],
+  "requiredLaneValues": {
+    "laneMode": "cognitive_compile",
+    "workerKey": "defracto.workers.openai.story_to_tdd.v1"
+  },
+  "credentialPolicy": {
+    "canonicalRequiredEnvVar": "LOC_OPENAI_API_KEY",
+    "acceptedEnvVarNames": [
+      "LOC_OPENAI_API_KEY",
+      "OPENAI_API_KEY"
+    ],
+    "missingCredentialBlocker": "openai_api_key_missing",
+    "secretMaterialAllowedInDispatch": false
+  },
+  "freshnessPolicy": {
+    "mustBindToSourceHash": true,
+    "mustBindToSliceKey": true,
+    "mustBindToPrimaryFailureReceipt": true,
+    "staleResponseAllowed": false,
+    "staleResponseBlocker": "fallback_provider_response_invalid"
+  },
+  "dispatchGuardrails": [
+    "contracts/gates/cognitive-worker-fallback-authorized.gate.v1.json",
+    "contracts/policies/cognitive-worker-provider-fallback.policy.v1.json",
+    "contracts/policies/gemini-candidate-is-not-authority.policy.v1.json"
+  ],
+  "forbiddenDispatchForms": [
+    "silent_provider_substitution",
+    "mock_ai_response",
+    "deterministic_fallback",
+    "stale_response_reuse",
+    "unreceipted_output",
+    "product_source_mutation"
+  ]
+}

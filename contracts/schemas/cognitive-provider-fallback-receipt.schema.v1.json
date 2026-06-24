@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.cognitive-provider-fallback-receipt.v1",
+  "title": "Cognitive Provider Fallback Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptKey",
+    "status",
+    "laneMode",
+    "commandKey",
+    "primaryProvider",
+    "primaryAttempted",
+    "primaryInvocationReceipt",
+    "primaryFailureCode",
+    "fallbackProvider",
+    "fallbackAuthorized",
+    "fallbackAttempted",
+    "fallbackInvocationReceipt",
+    "candidateAuthorityPromoted",
+    "silentSubstitutionDetected",
+    "blockedReasons"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.cognitive-provider-fallback-receipt.v1"
+    },
+    "receiptKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "failed",
+        "blocked"
+      ]
+    },
+    "laneMode": {
+      "type": "string",
+      "const": "cognitive_compile"
+    },
+    "commandKey": {
+      "type": "string"
+    },
+    "sliceKey": {
+      "type": "string"
+    },
+    "primaryProvider": {
+      "type": "string"
+    },
+    "primaryAttempted": {
+      "type": "boolean"
+    },
+    "primaryInvocationReceipt": {
+      "type": "string"
+    },
+    "primaryFailureCode": {
+      "type": "string",
+      "enum": [
+        "primary_provider_unavailable",
+        "primary_provider_503",
+        "primary_provider_timeout",
+        "primary_provider_rate_limited",
+        "primary_provider_response_invalid"
+      ]
+    },
+    "fallbackProvider": {
+      "type": "string"
+    },
+    "fallbackAuthorized": {
+      "type": "boolean"
+    },
+    "fallbackAttempted": {
+      "type": "boolean"
+    },
+    "fallbackInvocationReceipt": {
+      "type": "string"
+    },
+    "candidateAuthorityPromoted": {
+      "type": "boolean"
+    },
+    "silentSubstitutionDetected": {
+      "type": "boolean"
+    },
+    "blockedReasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

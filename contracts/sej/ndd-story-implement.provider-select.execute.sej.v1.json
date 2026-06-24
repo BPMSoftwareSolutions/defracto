@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.ndd-story-implement.provider-select.execute.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "declared-ready-for-provider-selection",
+  "toolKey": "defracto.conveyor.ndd-story-implement.provider-select",
+  "commandKey": "defracto.ndd.story.implement.v1",
+  "sourceLineage": {
+    "baseCommandSej": "contracts/sej/ndd-story-implement.execute.sej.v1.json",
+    "providerSelectSej": "contracts/sej/story-to-tdd-cognitive-provider-select.sej.v1.json",
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/cli/ndd-story-implement.provider-select.execute.sog.v1.json",
+    "requiredGate": "contracts/gates/cognitive-worker-fallback-authorized.gate.v1.json"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/cli/ndd-story-implement.provider-select.execute.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "laneClassification": {
+    "laneMode": "cognitive_compile",
+    "aiWorkerRequired": true,
+    "providerSelectionRequired": true,
+    "primaryProvider": "gemini_flash",
+    "fallbackProvider": "openai",
+    "fallbackAllowed": true,
+    "fallbackRequiresReceipt": true,
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false
+  },
+  "requiredReceipts": [
+    "evidence/cli/ndd-story-plan.authority-promotion.receipt.v2.json",
+    "evidence/workers/story-to-tdd.implementation.gemini-invocation.receipt.v1.json",
+    "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json",
+    "evidence/workers/story-to-tdd.provider-fallback.receipt.v1.json",
+    "evidence/workers/story-to-tdd.openai-invocation.receipt.v1.json"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "ndd story implement may resume through provider selection only after Gemini failure and OpenAI fallback are both receipted."
+}

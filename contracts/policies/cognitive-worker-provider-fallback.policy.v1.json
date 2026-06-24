@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "defracto.policy.v1",
+  "policyKey": "defracto.policies.cognitive_worker_provider_fallback.v1",
+  "policyTitle": "Cognitive Worker Provider Fallback",
+  "policyStatus": "accepted",
+  "purpose": "Authorize governed provider fallback for cognitive Story-to-TDD lanes when the declared primary provider is unavailable, while preserving provider identity, receipts, and candidate-only authority posture.",
+  "law": "Gemini failure does not stop the compiler; it triggers governed provider fallback. OpenAI fallback supplies a receipted candidate only. Gates still decide, receipts still prove, and SOG still promotes.",
+  "appliesToCommands": [
+    "defracto.ndd.story.plan.v1",
+    "defracto.ndd.story.test.v1",
+    "defracto.ndd.story.implement.v1"
+  ],
+  "providerOrder": [
+    {
+      "providerKey": "gemini_flash",
+      "workerKey": "defracto.workers.gemini_flash.story_to_tdd.v1",
+      "invocationCapability": "worker.gemini_flash.invoke.v1",
+      "role": "primary"
+    },
+    {
+      "providerKey": "openai",
+      "workerKey": "defracto.workers.openai.story_to_tdd.v1",
+      "invocationCapability": "worker.openai.responses.invoke.v1",
+      "role": "fallback"
+    }
+  ],
+  "fallbackAllowedForPrimaryFailureCodes": [
+    "primary_provider_unavailable",
+    "primary_provider_503",
+    "primary_provider_timeout",
+    "primary_provider_rate_limited",
+    "primary_provider_response_invalid"
+  ],
+  "requires": [
+    "primary provider invocation receipt exists before fallback",
+    "primary failure code is mapped to an allowed fallback reason",
+    "fallback provider is declared in policy before use",
+    "fallback dispatch packet is written before invocation",
+    "fallback response packet is written after invocation",
+    "fallback invocation receipt records provider identity",
+    "fallback candidate remains candidate-only until governed hardening",
+    "generated implementation cannot materialize before red receipt and accepted provider candidate",
+    "green cannot exist without prior red",
+    "durable product truth remains blocked until SOG capability coverage, execution, and parity evidence exist"
+  ],
+  "forbids": [
+    "silent provider substitution",
+    "claiming Gemini output when OpenAI produced the candidate",
+    "fallback without primary failure evidence",
+    "fallback without invocation receipt",
+    "provider candidate becoming authority without gates",
+    "deterministic replay creating cognitive authority",
+    "mock AI response in cognitive compile",
+    "green receipt without red receipt",
+    "durable truth claim without SOG"
+  ],
+  "credentialPolicy": {
+    "geminiCanonicalEnvVar": "LOC_GEMINI_API_KEY",
+    "openaiCanonicalEnvVar": "LOC_OPENAI_API_KEY",
+    "openaiAcceptedLocalEnvAliases": [
+      "LOC_OPENAI_API_KEY",
+      "OPENAI_API_KEY"
+    ],
+    "secretMaterialAllowedInContracts": false,
+    "secretMaterialAllowedInEvidence": false
+  },
+  "blockerCodes": [
+    "primary_provider_unavailable",
+    "primary_provider_503",
+    "primary_provider_timeout",
+    "primary_provider_rate_limited",
+    "primary_provider_response_invalid",
+    "fallback_provider_not_configured",
+    "fallback_provider_api_key_missing",
+    "fallback_provider_dispatch_missing",
+    "fallback_provider_response_missing",
+    "fallback_provider_invocation_receipt_missing",
+    "fallback_provider_response_invalid",
+    "fallback_not_authorized",
+    "silent_provider_substitution_forbidden",
+    "openai_api_key_missing",
+    "openai_dispatch_missing",
+    "openai_response_missing",
+    "openai_invocation_receipt_missing",
+    "openai_response_invalid",
+    "provider_candidate_unaccepted",
+    "green_without_red_forbidden",
+    "implementation_without_provider_receipt_forbidden",
+    "durable_truth_without_sog_forbidden"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Provider fallback is resilience, not authority. It may continue the cognitive lane only through declared provider selection, provider-attributed receipts, and the same acceptance gates."
+}

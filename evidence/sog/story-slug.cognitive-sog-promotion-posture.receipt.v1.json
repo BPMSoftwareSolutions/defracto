@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "defracto.sog-promotion-posture.receipt.v1",
+  "receiptKey": "defracto.receipt.story-slug.cognitive-sog-promotion-posture.slice-048.v1",
+  "status": "blocked",
+  "postureStatus": "blocked-pending-sog-promotion",
+  "generatedImplementation": {
+    "path": "generated/implementations/user-stories/story-slug.cognitive.cjs",
+    "hash": "sha256:d81f3758b7ea16b7522c9a64efcd31eb766ca525966c5e25db534417d6a7e416"
+  },
+  "redGreenCycleReceipt": {
+    "path": "evidence/tdd/story-slug.cognitive-red-green-cycle.receipt.v1.json",
+    "hash": "sha256:61c0db3afdacddabcd7bb14d24349d67a5135a855a0c2c5532afaf6adc23393d"
+  },
+  "proofSurfaceReceipt": {
+    "path": "evidence/tdd/story-slug.cognitive-proof-surface-not-product-truth.receipt.v1.json",
+    "hash": "sha256:a7fae0d0c78f33416e358f964c9d71474f6e7b2ebe3e566c99286df9408d29d0"
+  },
+  "durableProductTruthAccepted": false,
+  "promotionBlocked": true,
+  "requiredBeforeDurablePromotion": [
+    "SOG capability coverage classification",
+    "SOG execution",
+    "SOG parity evidence",
+    "SOG promotion receipt"
+  ],
+  "blockerCodes": [
+    "durable_truth_without_sog_forbidden"
+  ],
+  "completionPosture": "Cognitive red/green proof surface accepted; durable product truth remains blocked until SOG promotion evidence exists."
+}
