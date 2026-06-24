@@ -1,0 +1,196 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.ndd-story-plan.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "declared-blocked-until-gemini-invocation-evidence",
+  "commandKey": "defracto.ndd.story.plan.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.ndd-story-plan.match-command.semantic-action.v1",
+      "capabilityKey": "cli.argv.match.v1",
+      "intent": "Match ndd story plan command boundary."
+    },
+    {
+      "actionKey": "defracto.ndd-story-plan.load-run-manifest.semantic-action.v1",
+      "capabilityKey": "conveyor.run_manifest.load.v1",
+      "intent": "Load the story plan cognitive run manifest."
+    },
+    {
+      "actionKey": "defracto.ndd-story-plan.require-gemini-lane.semantic-action.v1",
+      "capabilityKey": "evidence.receipt.verify.v1",
+      "intent": "Require Gemini dispatch, response, and invocation receipts before candidate authority."
+    },
+    {
+      "actionKey": "defracto.ndd-story-plan.block-or-project-plan-result.semantic-action.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Project blocked story plan result until Gemini evidence exists."
+    },
+    {
+      "actionKey": "defracto.ndd-story-plan.emit-cli-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit story plan command receipt."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "match-story-plan-command",
+        "capabilityKey": "cli.argv.match.v1",
+        "intent": "Match ndd story plan command boundary.",
+        "input": {
+          "argv": {
+            "$context": "argv"
+          },
+          "patterns": [
+            {
+              "commandKey": "defracto.ndd.story.plan.v1",
+              "tokens": [
+                "story",
+                "plan"
+              ],
+              "options": [
+                {
+                  "name": "text",
+                  "required": false
+                },
+                {
+                  "name": "source",
+                  "required": false
+                },
+                {
+                  "name": "slice",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        "output": {
+          "path": "$graph.command"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "unsupported_story_plan_command"
+        }
+      },
+      {
+        "id": "load-story-plan-run-manifest",
+        "capabilityKey": "conveyor.run_manifest.load.v1",
+        "intent": "Load the story plan cognitive run manifest.",
+        "input": {
+          "manifestPath": "conveyor/runs/2026/06/24/slice-034-035-story-plan-gemini-lane-and-cognitive-manifest/run.manifest.v1.json",
+          "sliceKey": "slice-034-035-story-plan-gemini-lane-and-cognitive-manifest"
+        },
+        "output": {
+          "path": "$graph.run_manifest"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "story_plan_run_manifest_missing"
+        }
+      },
+      {
+        "id": "require-gemini-receipts",
+        "capabilityKey": "evidence.receipt.verify.v1",
+        "intent": "Require Gemini dispatch, response, and invocation receipts before candidate authority.",
+        "input": {
+          "gate": "contracts/gates/story-plan-gemini-receipt-required.gate.v1.json",
+          "requiredReceipts": [
+            "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
+            "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
+            "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json"
+          ],
+          "requiredInvocationStatus": "passed"
+        },
+        "output": {
+          "path": "$graph.gemini_receipts"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "gemini_invocation_receipt_missing"
+        }
+      },
+      {
+        "id": "project-story-plan-result",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project blocked story plan result until Gemini evidence exists.",
+        "input": {
+          "fields": {
+            "schemaVersion": {
+              "literal": "defracto.ndd-story-plan.command-result.v1"
+            },
+            "commandKey": {
+              "literal": "defracto.ndd.story.plan.v1"
+            },
+            "laneMode": {
+              "literal": "cognitive_compile"
+            },
+            "status": {
+              "literal": "blocked"
+            },
+            "blockedReasons": {
+              "literal": [
+                "gemini_response_missing",
+                "gemini_invocation_receipt_missing"
+              ]
+            },
+            "candidateAuthorityCreated": {
+              "literal": false
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.story_plan_result"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "story_plan_result_projection_failed"
+        }
+      },
+      {
+        "id": "emit-story-plan-cli-receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit story plan command receipt.",
+        "input": {
+          "path": "evidence/cli/ndd-story-plan.cognitive-manifest.receipt.v1.json",
+          "receipt": {
+            "schemaVersion": "defracto.ndd-story-plan.cognitive-manifest-receipt.v1",
+            "commandKey": "defracto.ndd.story.plan.v1",
+            "laneMode": "cognitive_compile",
+            "status": "blocked",
+            "requiredGeminiLane": "contracts/sej/story-to-tdd-gemini-invoke.sej.v1.json",
+            "requiredGate": "contracts/gates/story-plan-gemini-receipt-required.gate.v1.json",
+            "candidateAuthorityCreated": false
+          }
+        },
+        "output": {
+          "path": "$graph.emit_story_plan_cli_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "story_plan_cli_receipt_missing"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "emit_story_plan_cli_receipt"
+    }
+  },
+  "evidenceObligations": [
+    "story_plan_command_matched",
+    "story_plan_run_manifest_loaded",
+    "gemini_worker_lane_required",
+    "gemini_receipts_verified_before_candidate_authority",
+    "blocked_result_emitted_when_gemini_evidence_missing"
+  ],
+  "forbiddenClaims": [
+    "deterministic replay created story authority",
+    "candidate story authority without Gemini invocation receipt",
+    "mock Gemini response satisfied story plan",
+    "stale Gemini response satisfied story plan",
+    "CLI owns worker behavior"
+  ]
+}

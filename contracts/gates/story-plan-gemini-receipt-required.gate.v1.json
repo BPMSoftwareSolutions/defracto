@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.story_plan_gemini_receipt_required.v1",
+  "gateTitle": "Story Plan Gemini Receipt Required",
+  "gateStatus": "accepted",
+  "purpose": "Block `ndd story plan` candidate story authority until Gemini dispatch, response, and invocation receipts exist for the current cognitive compile run.",
+  "appliesToCommands": [
+    "defracto.ndd.story.plan.v1"
+  ],
+  "appliesToLaneModes": [
+    "cognitive_compile"
+  ],
+  "passConditions": [
+    "story plan command is classified as cognitive_compile",
+    "Gemini dispatch receipt exists",
+    "Gemini response receipt exists",
+    "Gemini invocation receipt exists",
+    "Gemini invocation receipt status is passed",
+    "Gemini response source hash matches story source hash",
+    "Gemini response slice key matches run slice key",
+    "Gemini response is accepted only through declared gates"
+  ],
+  "blockConditions": [
+    "gemini_dispatch_missing",
+    "gemini_response_missing",
+    "gemini_invocation_receipt_missing",
+    "gemini_response_stale",
+    "gemini_response_unaccepted",
+    "deterministic_fallback_attempted",
+    "mock_ai_response_forbidden"
+  ],
+  "fallbackAllowed": false,
+  "mockAllowed": false,
+  "staleResponseAllowed": false,
+  "deterministicReplayAllowedForCreation": false,
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Story planning cannot create story, criteria, or canonical spec authority unless the Gemini worker lane left valid receipts."
+}

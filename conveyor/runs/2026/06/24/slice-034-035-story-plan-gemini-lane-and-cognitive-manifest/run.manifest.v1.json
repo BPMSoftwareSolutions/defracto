@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-034-035-story-plan-gemini-lane-and-cognitive-manifest.v1",
+  "runKind": "story-plan-cognitive-compile-manifest",
+  "sliceKey": "slice-034-035-story-plan-gemini-lane-and-cognitive-manifest",
+  "objective": "Declare the Story-to-TDD Gemini worker lane and make ndd story plan depend on it before candidate story authority can be created.",
+  "command": {
+    "commandKey": "defracto.ndd.story.plan.v1",
+    "argvPatterns": [
+      "ndd story plan --text <operatorText> --slice <sliceKey>",
+      "ndd story plan --source <sourcePath> --slice <sliceKey>"
+    ],
+    "commandContract": "contracts/cli/ndd-story-plan.command.v1.json",
+    "executeSej": "contracts/sej/ndd-story-plan.execute.sej.v1.json"
+  },
+  "laneClassification": {
+    "laneMode": "cognitive_compile",
+    "aiWorkerRequired": true,
+    "requiredWorker": "defracto.workers.gemini_flash.v1",
+    "requiredInvocationCapability": "worker.gemini_flash.invoke.v1",
+    "fallbackAllowed": false,
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false
+  },
+  "requiredResolverCapabilities": [
+    "conveyor.run_manifest.load.v1",
+    "worker.gemini_flash.invoke.v1",
+    "evidence.receipt.verify.v1",
+    "evidence.emit.v1"
+  ],
+  "stages": {
+    "geminiWorkerLane": {
+      "stageKind": "cognitive_worker_invocation",
+      "required": true,
+      "sej": "contracts/sej/story-to-tdd-gemini-invoke.sej.v1.json",
+      "semanticOperationGraph": "contracts/semantic-operation-graphs/workers/story-to-tdd-gemini-invoke.sog.v1.json",
+      "workerProfile": "conveyor/workers/gemini-flash.story-to-tdd.worker-profile.v1.json",
+      "dispatchContract": "conveyor/workers/gemini-flash.story-to-tdd.dispatch-contract.v1.json",
+      "responseContract": "conveyor/workers/gemini-flash.story-to-tdd.response-contract.v1.json",
+      "expectedOutputs": [
+        "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
+        "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
+        "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json"
+      ],
+      "missingEvidenceBehavior": "blocked"
+    },
+    "geminiReceiptGate": {
+      "stageKind": "gate",
+      "required": true,
+      "gate": "contracts/gates/story-plan-gemini-receipt-required.gate.v1.json",
+      "requiredReceipts": [
+        "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
+        "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
+        "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json"
+      ],
+      "requiredInvocationStatus": "passed",
+      "missingEvidenceBehavior": "blocked"
+    },
+    "candidateAuthority": {
+      "stageKind": "candidate_authority_projection",
+      "required": false,
+      "enabledOnlyAfter": "geminiReceiptGate",
+      "candidateOutputs": [
+        "candidate story packet",
+        "candidate acceptance criteria",
+        "candidate canonical spec"
+      ],
+      "blockedUntilGeminiEvidence": true
+    }
+  },
+  "requiredReceipts": [
+    "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
+    "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
+    "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json"
+  ],
+  "requiredGates": [
+    "contracts/gates/gemini-invocation-required-for-cognitive-story-lane.gate.v1.json",
+    "contracts/gates/story-plan-gemini-receipt-required.gate.v1.json"
+  ],
+  "blockedIf": [
+    "gemini_api_key_missing",
+    "gemini_dispatch_missing",
+    "gemini_response_missing",
+    "gemini_invocation_receipt_missing",
+    "gemini_response_stale",
+    "gemini_response_unaccepted",
+    "deterministic_fallback_attempted",
+    "mock_ai_response_forbidden"
+  ],
+  "expectedCurrentPosture": {
+    "status": "blocked",
+    "reason": "live Gemini invocation evidence has not been produced in this slice",
+    "candidateStoryAuthorityCreated": false
+  },
+  "runReceiptPath": "evidence/cli/ndd-story-plan.cognitive-manifest.receipt.v1.json",
+  "completionPosture": "The manifest passes as a declaration only when ndd story plan is wired to the Gemini worker lane and candidate story authority remains blocked until live Gemini receipts pass."
+}
