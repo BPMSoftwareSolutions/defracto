@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "defracto.test-execution-receipt.v1",
+  "receiptKey": "defracto.fixture.red-green-validator.red.valid.v1",
+  "status": "red",
+  "storyKey": "003-red-green-validator",
+  "generatedTestHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "observedAt": "2026-06-24T10:00:00-04:00"
+}

@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.ndd-stress-run.execute.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.ndd-stress-run",
+  "commandKey": "defracto.ndd.stress.run.v1",
+  "sourceLineage": {
+    "commandContract": "contracts/cli/ndd-stress-run.command.v1.json",
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/cli/ndd-stress-run.execute.sog.v1.json",
+    "caseSchema": "contracts/schemas/story-stress-case.schema.v1.json",
+    "suiteSchema": "contracts/schemas/story-stress-suite.schema.v1.json",
+    "dashboardProjection": "contracts/projections/stress-lab-dashboard.markdown-projection.v1.json"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/cli/ndd-stress-run.execute.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "laneClassification": {
+    "laneMode": "catalog_projection",
+    "aiWorkerRequired": false,
+    "fallbackAllowed": false,
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false
+  },
+  "boundedInputs": [
+    "story stress suite manifest path",
+    "optional run date",
+    "optional output root"
+  ],
+  "boundedOutputs": [
+    "suite summary JSON",
+    "scenario result JSON receipts",
+    "suite run receipt",
+    "dashboard Markdown projection"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "stress_lab.suite_manifest.load.v1",
+      "purpose": "Load the declared suite manifest.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "stress_lab.case_manifest.validate.v1",
+      "purpose": "Validate case manifests and referenced source stories.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "stress_lab.dashboard.project.v1",
+      "purpose": "Materialize the dashboard only from emitted summary data.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "steps": [
+    {
+      "id": "executeStressRunGraph",
+      "type": "resolver",
+      "operation": "semantic.operation_graph.execute.v1",
+      "payload": {
+        "graphRef": {
+          "$inline": "contracts/semantic-operation-graphs/cli/ndd-stress-run.execute.sog.v1.json"
+        },
+        "context": {
+          "argv": {
+            "$context": "argv"
+          },
+          "payload": {
+            "$from": "$input"
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.executeStressRunGraph"
+  },
+  "failurePosture": "fail-closed",
+  "completionPosture": "The stress run command executes a governed catalog projection and blocks unsupported scenario modes rather than manufacturing authority."
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "defracto.story-stress-case.v1",
+  "caseKey": "003-red-green-validator",
+  "title": "Red/green test hash validator",
+  "mode": "evidence_gate",
+  "story": {
+    "asA": "release reviewer",
+    "iWant": "the conveyor to verify that green receipts reference the same generated test hash as the red receipt",
+    "soThat": "false red/green proof cannot ship"
+  },
+  "inputs": {
+    "sourceStoryPath": "stress-lab/story-cases/003-red-green-validator/source.story.md",
+    "fixtures": [
+      "stress-lab/story-cases/003-red-green-validator/fixtures/red.receipt.valid.json",
+      "stress-lab/story-cases/003-red-green-validator/fixtures/green.receipt.mismatch.json"
+    ]
+  },
+  "expectedOutcome": {
+    "outcomeClass": "passed",
+    "finalStatus": "passed",
+    "truthOwner": "semantic_operation_graph",
+    "truthOwnerLabel": "SOG",
+    "targetFidelityScore": 0.95,
+    "requiredArtifacts": [
+      "contracts/gates/red-green-same-test-hash-required.gate.v1.json",
+      "stress-lab/story-cases/003-red-green-validator/fixtures/red.receipt.valid.json",
+      "stress-lab/story-cases/003-red-green-validator/fixtures/green.receipt.mismatch.json",
+      "stress-lab/expected-outcomes/003-red-green-validator.expected-outcome.v1.json"
+    ],
+    "requiredReceipts": [
+      "red_green_gate_contract",
+      "negative_fixture_evaluated",
+      "red_before_green_required",
+      "evidence_receipt"
+    ],
+    "promotionPosture": "gate_contract_declared_for_sog_promotion",
+    "parityPosture": "red_green_hash_mismatch_fixture_detected",
+    "blockedReasons": []
+  },
+  "fidelityChecks": {
+    "mustUseLiveProvider": false,
+    "mustBlockUnsupportedClaims": true,
+    "mustRequireRedBeforeGreen": true,
+    "mustPromoteSog": true,
+    "mustNotPromoteGeneratedCode": true,
+    "mustDetectParityMismatch": true,
+    "mustUseDeclaredFallback": false,
+    "mustEmitReceipts": true
+  }
+}

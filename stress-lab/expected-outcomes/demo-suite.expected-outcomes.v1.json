@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "defracto.story-stress-expected-outcome-set.v1",
+  "suiteKey": "demo-suite",
+  "outcomeClassesCovered": [
+    "passed",
+    "fallback",
+    "honest_blocked"
+  ],
+  "parityPosturesCovered": [
+    "parity_passed",
+    "projection_trace_required",
+    "red_green_hash_mismatch_fixture_detected",
+    "fallback_output_accepted_after_gates",
+    "none_correctly_blocked"
+  ],
+  "completionPosture": "The demo suite proves the lab can represent passed, fallback, honest blocked, and parity-sensitive expected outcomes before full live cognitive execution is wired into the runner."
+}

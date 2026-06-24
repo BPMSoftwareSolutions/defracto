@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "defracto.cli-command-contract.v1",
+  "cliKey": "defracto.cli.ndd-stress-run.v1",
+  "commandKey": "defracto.ndd.stress.run.v1",
+  "entrypoint": "ndd",
+  "commandName": "ndd stress run",
+  "status": "draft-ready-for-slice-054-review",
+  "sourceTruth": "declared_json_contract",
+  "purpose": "Declare the stress lab runner command for resolving a story stress suite, validating scenario manifests, emitting scenario receipts, and projecting a suite dashboard.",
+  "argvPatterns": [
+    "ndd stress run --suite <suitePath>",
+    "ndd stress run --suite <suitePath> --run-date <yyyy-mm-dd>",
+    "ndd stress run --suite <suitePath> --output-root <outputRoot>"
+  ],
+  "laneClassification": {
+    "schemaVersion": "defracto.runner-lane-classification.v1",
+    "laneMode": "catalog_projection",
+    "aiWorkerRequired": false,
+    "fallbackAllowed": false,
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false,
+    "requiredEvidence": [
+      "stress suite manifest",
+      "stress case manifests",
+      "scenario result receipts",
+      "suite run receipt",
+      "dashboard projection"
+    ],
+    "blockerCodes": [
+      "suite_path_missing",
+      "suite_manifest_invalid",
+      "case_manifest_missing",
+      "case_manifest_invalid",
+      "unsupported_scenario_mode",
+      "scenario_source_story_missing",
+      "scenario_fixture_missing",
+      "dashboard_projection_failed"
+    ]
+  },
+  "boundedOutputs": [
+    "stress-lab run summary JSON",
+    "per-scenario result receipts",
+    "Markdown dashboard projected from summary JSON",
+    "suite-level run receipt"
+  ],
+  "forbiddenOutputs": [
+    "cognitive compile truth without live provider receipt",
+    "silent provider substitution",
+    "generated code promoted as durable truth",
+    "SOG promotion without declared parity posture"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "The stress runner may validate and project declared lab scenarios; it does not itself create cognitive authority."
+}

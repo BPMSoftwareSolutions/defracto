@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "defracto.story-stress-expected-outcome.v1",
+  "caseKey": "002-resume-tailor",
+  "expectedPosture": "passed",
+  "durableTruthOwner": "projection_with_receipts",
+  "requiredProofArc": [
+    "job requirement extraction",
+    "experience source matching",
+    "unsupported claims blocked",
+    "resume projection",
+    "claim-to-source trace"
+  ],
+  "completionPosture": "The resume projection may pass only when every generated claim traces to verified experience."
+}

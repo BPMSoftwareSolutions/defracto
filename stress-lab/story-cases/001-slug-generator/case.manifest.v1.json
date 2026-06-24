@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "defracto.story-stress-case.v1",
+  "caseKey": "001-slug-generator",
+  "title": "Generate slug from title",
+  "mode": "cognitive_compile",
+  "story": {
+    "asA": "Defracto operator",
+    "iWant": "a story title converted into a stable slug key",
+    "soThat": "generated artifacts can use deterministic, readable names"
+  },
+  "inputs": {
+    "sourceStoryPath": "stress-lab/story-cases/001-slug-generator/source.story.md",
+    "fixtures": []
+  },
+  "expectedOutcome": {
+    "outcomeClass": "passed",
+    "finalStatus": "passed",
+    "truthOwner": "semantic_operation_graph",
+    "truthOwnerLabel": "SOG",
+    "targetFidelityScore": 0.98,
+    "requiredArtifacts": [
+      "contracts/test-intents/story-slug.cognitive-test-intent.v1.json",
+      "tests/generated/user-stories/story-slug.cognitive.generated.test.js",
+      "generated/implementations/user-stories/story-slug.cognitive.cjs",
+      "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+      "stress-lab/expected-outcomes/001-slug-generator.expected-outcome.v1.json"
+    ],
+    "requiredReceipts": [
+      "gemini_invocation",
+      "test_intent_promotion",
+      "red_test",
+      "green_test",
+      "sog_parity",
+      "sog_promotion"
+    ],
+    "promotionPosture": "sog_promoted",
+    "parityPosture": "parity_passed",
+    "blockedReasons": []
+  },
+  "fidelityChecks": {
+    "mustUseLiveProvider": true,
+    "mustBlockUnsupportedClaims": true,
+    "mustRequireRedBeforeGreen": true,
+    "mustPromoteSog": true,
+    "mustNotPromoteGeneratedCode": true,
+    "mustDetectParityMismatch": false,
+    "mustUseDeclaredFallback": false,
+    "mustEmitReceipts": true
+  }
+}

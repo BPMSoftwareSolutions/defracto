@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.materialize-stress-lab-dashboard.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.projections.stress-lab-dashboard",
+  "sourceLineage": {
+    "projectionContract": "contracts/projections/stress-lab-dashboard.markdown-projection.v1.json",
+    "runnerCommand": "contracts/sej/ndd-stress-run.execute.sej.v1.json"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/cli/ndd-stress-run.execute.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "boundedInputs": [
+    "stress lab run summary JSON",
+    "scenario result receipts"
+  ],
+  "boundedOutputs": [
+    "dashboard.md"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "project.markdown.v1",
+      "purpose": "Render the stress lab dashboard from summary data.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "steps": [
+    {
+      "id": "executeStressDashboardProjectionGraph",
+      "type": "resolver",
+      "operation": "semantic.operation_graph.execute.v1",
+      "payload": {
+        "graphRef": {
+          "$inline": "contracts/semantic-operation-graphs/cli/ndd-stress-run.execute.sog.v1.json"
+        },
+        "context": {
+          "argv": [
+            "stress",
+            "run",
+            "--suite",
+            "stress-lab/demo-suite.v1.json"
+          ],
+          "projectionOnly": true
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.executeStressDashboardProjectionGraph"
+  },
+  "failurePosture": "fail-closed",
+  "completionPosture": "The dashboard materialization is valid only when projected from suite summary data."
+}

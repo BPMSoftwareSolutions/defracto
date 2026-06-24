@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "defracto.story-stress-expected-outcome.v1",
+  "caseKey": "001-slug-generator",
+  "expectedPosture": "passed",
+  "durableTruthOwner": "semantic_operation_graph",
+  "requiredProofArc": [
+    "cognitive interpretation",
+    "test intent",
+    "red receipt",
+    "green receipt",
+    "SOG execution",
+    "SOG parity",
+    "SOG promotion"
+  ],
+  "completionPosture": "Slug behavior is durable only after SOG promotion supersedes generated proof-surface code."
+}

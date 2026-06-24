@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "defracto.story-stress-expected-outcome.v1",
+  "caseKey": "003-red-green-validator",
+  "expectedPosture": "passed",
+  "durableTruthOwner": "semantic_operation_graph",
+  "requiredProofArc": [
+    "red/green gate contract",
+    "negative mismatch fixture",
+    "red-before-green ordering check",
+    "same generated test hash requirement",
+    "blocked false proof path"
+  ],
+  "completionPosture": "The validator passes when it can detect and block mismatched red/green test hashes."
+}

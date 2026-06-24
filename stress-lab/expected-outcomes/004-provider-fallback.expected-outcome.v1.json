@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "defracto.story-stress-expected-outcome.v1",
+  "caseKey": "004-provider-fallback",
+  "expectedPosture": "fallback",
+  "durableTruthOwner": "semantic_operation_graph",
+  "requiredProofArc": [
+    "primary provider attempted",
+    "primary provider failure receipted",
+    "fallback provider declared",
+    "fallback provider invoked",
+    "fallback candidate accepted only through gates"
+  ],
+  "completionPosture": "Fallback is valid only when provider substitution is declared, receipted, and accepted by gates."
+}

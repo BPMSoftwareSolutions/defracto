@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.story-stress-case.schema.v1",
+  "title": "Story Stress Case Manifest",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "caseKey",
+    "title",
+    "mode",
+    "story",
+    "inputs",
+    "expectedOutcome",
+    "fidelityChecks"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.story-stress-case.v1"
+    },
+    "caseKey": {
+      "type": "string",
+      "pattern": "^[0-9]{3}-[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "cognitive_compile",
+        "document_projection",
+        "evidence_gate",
+        "provider_fallback",
+        "honest_block",
+        "ui_projection",
+        "parity_mismatch"
+      ]
+    },
+    "story": {
+      "type": "object",
+      "required": [
+        "asA",
+        "iWant",
+        "soThat"
+      ],
+      "properties": {
+        "asA": {
+          "type": "string",
+          "minLength": 1
+        },
+        "iWant": {
+          "type": "string",
+          "minLength": 1
+        },
+        "soThat": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "inputs": {
+      "type": "object",
+      "required": [
+        "sourceStoryPath",
+        "fixtures"
+      ],
+      "properties": {
+        "sourceStoryPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fixtures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "expectedOutcome": {
+      "type": "object",
+      "required": [
+        "outcomeClass",
+        "finalStatus",
+        "truthOwner",
+        "truthOwnerLabel",
+        "targetFidelityScore",
+        "requiredArtifacts",
+        "requiredReceipts",
+        "promotionPosture",
+        "parityPosture",
+        "blockedReasons"
+      ],
+      "properties": {
+        "outcomeClass": {
+          "type": "string",
+          "enum": [
+            "passed",
+            "honest_blocked",
+            "fallback",
+            "mismatch"
+          ]
+        },
+        "finalStatus": {
+          "type": "string",
+          "enum": [
+            "passed",
+            "blocked",
+            "failed"
+          ]
+        },
+        "truthOwner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "truthOwnerLabel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "targetFidelityScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "requiredArtifacts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requiredReceipts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "promotionPosture": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parityPosture": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blockedReasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "fidelityChecks": {
+      "type": "object",
+      "required": [
+        "mustUseLiveProvider",
+        "mustBlockUnsupportedClaims",
+        "mustRequireRedBeforeGreen",
+        "mustPromoteSog",
+        "mustNotPromoteGeneratedCode",
+        "mustDetectParityMismatch",
+        "mustUseDeclaredFallback",
+        "mustEmitReceipts"
+      ],
+      "properties": {
+        "mustUseLiveProvider": {
+          "type": "boolean"
+        },
+        "mustBlockUnsupportedClaims": {
+          "type": "boolean"
+        },
+        "mustRequireRedBeforeGreen": {
+          "type": "boolean"
+        },
+        "mustPromoteSog": {
+          "type": "boolean"
+        },
+        "mustNotPromoteGeneratedCode": {
+          "type": "boolean"
+        },
+        "mustDetectParityMismatch": {
+          "type": "boolean"
+        },
+        "mustUseDeclaredFallback": {
+          "type": "boolean"
+        },
+        "mustEmitReceipts": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "defracto.story-stress-expected-outcome.v1",
+  "caseKey": "005-ambiguous-story",
+  "expectedPosture": "honest_blocked",
+  "durableTruthOwner": "none_correctly_blocked",
+  "requiredProofArc": [
+    "ambiguity detected",
+    "unsupported claims blocked",
+    "no resume projection emitted",
+    "no durable truth owner assigned"
+  ],
+  "completionPosture": "The scenario succeeds by blocking because the requested improvement is ambiguous and not claim-traceable."
+}

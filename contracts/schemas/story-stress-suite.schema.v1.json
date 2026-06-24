@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.story-stress-suite.schema.v1",
+  "title": "Story Stress Suite Manifest",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "suiteKey",
+    "title",
+    "caseManifestPaths",
+    "requiredOutcomeClasses",
+    "runDefaults",
+    "completionCriteria"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.story-stress-suite.v1"
+    },
+    "suiteKey": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "caseManifestPaths": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "requiredOutcomeClasses": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "passed",
+          "honest_blocked",
+          "fallback",
+          "mismatch"
+        ]
+      }
+    },
+    "runDefaults": {
+      "type": "object",
+      "required": [
+        "runnerMode",
+        "outputRoot",
+        "dashboardProjection"
+      ],
+      "properties": {
+        "runnerMode": {
+          "type": "string",
+          "const": "catalog_projection"
+        },
+        "outputRoot": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dashboardProjection": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "completionCriteria": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "additionalProperties": false
+}

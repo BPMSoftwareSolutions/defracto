@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "defracto.story-stress-suite.v1",
+  "suiteKey": "demo-suite",
+  "title": "Story-To-TDD Conveyor Demo Stress Suite",
+  "caseManifestPaths": [
+    "stress-lab/story-cases/001-slug-generator/case.manifest.v1.json",
+    "stress-lab/story-cases/002-resume-tailor/case.manifest.v1.json",
+    "stress-lab/story-cases/003-red-green-validator/case.manifest.v1.json",
+    "stress-lab/story-cases/004-provider-fallback/case.manifest.v1.json",
+    "stress-lab/story-cases/005-ambiguous-story/case.manifest.v1.json"
+  ],
+  "requiredOutcomeClasses": [
+    "passed",
+    "fallback",
+    "honest_blocked"
+  ],
+  "runDefaults": {
+    "runnerMode": "catalog_projection",
+    "outputRoot": "stress-lab/runs",
+    "dashboardProjection": "contracts/projections/stress-lab-dashboard.markdown-projection.v1.json"
+  },
+  "completionCriteria": [
+    "stress case manifests validate",
+    "demo suite references valid cases",
+    "expected outcomes include pass, honest block, fallback, and parity posture",
+    "dashboard summarizes scenario status, fidelity, truth owner, blockers, and receipts",
+    "catalog projection does not pretend to be live cognitive compile"
+  ]
+}

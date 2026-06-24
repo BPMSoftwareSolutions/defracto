@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "defracto.gate-contract.v1",
+  "gateKey": "defracto.gates.red-green-same-test-hash-required.v1",
+  "status": "draft-ready-for-stress-lab",
+  "purpose": "Require green receipts to reference the same generated test hash as the prior red receipt before red/green proof can be accepted.",
+  "requiredInputs": [
+    "red receipt with generatedTestHash",
+    "green receipt with generatedTestHash",
+    "red-before-green ordering evidence"
+  ],
+  "passCriteria": [
+    "red receipt status is failed or red",
+    "green receipt status is passed or green",
+    "red.generatedTestHash equals green.generatedTestHash",
+    "green observedAt is after red observedAt"
+  ],
+  "blockerCodes": [
+    "red_receipt_missing",
+    "green_receipt_missing",
+    "generated_test_hash_missing",
+    "red_green_test_hash_mismatch",
+    "green_before_red"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "False red/green proof is blocked when receipt hashes do not bind to the same generated test."
+}

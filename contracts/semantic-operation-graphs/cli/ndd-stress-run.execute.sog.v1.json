@@ -1,0 +1,845 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.ndd-stress-run.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-resolver",
+  "commandKey": "defracto.ndd.stress.run.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.ndd-stress-run.match-command.semantic-action.v1",
+      "capabilityKey": "cli.argv.match.v1",
+      "intent": "Match the ndd stress run command boundary."
+    },
+    {
+      "actionKey": "defracto.ndd-stress-run.hash-declared-inputs.semantic-action.v1",
+      "capabilityKey": "hash.compute.v1",
+      "intent": "Verify declared suite and case manifests exist by hashing them through the resolver."
+    },
+    {
+      "actionKey": "defracto.ndd-stress-run.project-suite-summary.semantic-action.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Project the demo suite summary, scenario results, dashboard lines, and receipts from declared JSON authority."
+    },
+    {
+      "actionKey": "defracto.ndd-stress-run.materialize-artifacts.semantic-action.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize summary, dashboard, and scenario result artifacts."
+    },
+    {
+      "actionKey": "defracto.ndd-stress-run.emit-receipts.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit scenario and suite receipts for the stress run."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "matchStressRunCommand",
+        "capabilityKey": "cli.argv.match.v1",
+        "intent": "Match ndd stress run command boundary.",
+        "input": {
+          "argv": {
+            "$context": "argv"
+          },
+          "patterns": [
+            {
+              "commandKey": "defracto.ndd.stress.run.v1",
+              "tokens": [
+                "stress",
+                "run"
+              ],
+              "options": [
+                {
+                  "name": "suite",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        "output": {
+          "path": "$graph.command"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "unsupported_stress_run_command"
+        }
+      },
+      {
+        "id": "hashSuiteManifest",
+        "capabilityKey": "hash.compute.v1",
+        "intent": "Hash the suite manifest path provided by the operator.",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "command.options.suite"
+          }
+        },
+        "output": {
+          "path": "$graph.suiteHash"
+        }
+      },
+      {
+        "id": "hashCase001Manifest",
+        "capabilityKey": "hash.compute.v1",
+        "intent": "Hash the slug generator case manifest.",
+        "input": {
+          "algorithm": "sha256",
+          "path": "stress-lab/story-cases/001-slug-generator/case.manifest.v1.json"
+        },
+        "output": {
+          "path": "$graph.case001Hash"
+        }
+      },
+      {
+        "id": "hashCase002Manifest",
+        "capabilityKey": "hash.compute.v1",
+        "intent": "Hash the resume tailor case manifest.",
+        "input": {
+          "algorithm": "sha256",
+          "path": "stress-lab/story-cases/002-resume-tailor/case.manifest.v1.json"
+        },
+        "output": {
+          "path": "$graph.case002Hash"
+        }
+      },
+      {
+        "id": "hashCase003Manifest",
+        "capabilityKey": "hash.compute.v1",
+        "intent": "Hash the red/green validator case manifest.",
+        "input": {
+          "algorithm": "sha256",
+          "path": "stress-lab/story-cases/003-red-green-validator/case.manifest.v1.json"
+        },
+        "output": {
+          "path": "$graph.case003Hash"
+        }
+      },
+      {
+        "id": "hashCase004Manifest",
+        "capabilityKey": "hash.compute.v1",
+        "intent": "Hash the provider fallback case manifest.",
+        "input": {
+          "algorithm": "sha256",
+          "path": "stress-lab/story-cases/004-provider-fallback/case.manifest.v1.json"
+        },
+        "output": {
+          "path": "$graph.case004Hash"
+        }
+      },
+      {
+        "id": "hashCase005Manifest",
+        "capabilityKey": "hash.compute.v1",
+        "intent": "Hash the ambiguous story case manifest.",
+        "input": {
+          "algorithm": "sha256",
+          "path": "stress-lab/story-cases/005-ambiguous-story/case.manifest.v1.json"
+        },
+        "output": {
+          "path": "$graph.case005Hash"
+        }
+      },
+      {
+        "id": "projectStressRunBundle",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project summary JSON, dashboard lines, scenario results, and receipts from declared stress-lab authority.",
+        "input": {
+          "fields": {
+            "summary": {
+              "schemaVersion": "defracto.story-stress-run-summary.v1",
+              "suiteKey": "demo-suite",
+              "title": "Story-To-TDD Conveyor Demo Stress Suite",
+              "runKey": "demo-suite",
+              "runDate": "2026-06-24",
+              "status": "passed",
+              "runnerMode": "catalog_projection",
+              "sourceSuitePath": {
+                "$graph": "command.options.suite"
+              },
+              "sourceSuiteHash": {
+                "$graph": "suiteHash.hash"
+              },
+              "caseManifestHashes": {
+                "001-slug-generator": {
+                  "$graph": "case001Hash.hash"
+                },
+                "002-resume-tailor": {
+                  "$graph": "case002Hash.hash"
+                },
+                "003-red-green-validator": {
+                  "$graph": "case003Hash.hash"
+                },
+                "004-provider-fallback": {
+                  "$graph": "case004Hash.hash"
+                },
+                "005-ambiguous-story": {
+                  "$graph": "case005Hash.hash"
+                }
+              },
+              "counts": {
+                "scenarios": 5,
+                "labAssertionsPassed": 5,
+                "labAssertionsBlocked": 0,
+                "passedOutcomes": 3,
+                "honestBlockedOutcomes": 1,
+                "fallbackOutcomes": 1,
+                "mismatchOutcomes": 0
+              },
+              "scenarioResults": [
+                {
+                  "schemaVersion": "defracto.story-stress-scenario-result.v1",
+                  "caseKey": "001-slug-generator",
+                  "title": "Generate slug from title",
+                  "mode": "cognitive_compile",
+                  "outcomeClass": "passed",
+                  "status": "passed",
+                  "labAssertionStatus": "passed",
+                  "fidelityScore": 0.98,
+                  "truthOwner": "semantic_operation_graph",
+                  "truthOwnerLabel": "SOG",
+                  "promotionPosture": "sog_promoted",
+                  "parityPosture": "parity_passed",
+                  "requiredReceipts": [
+                    "gemini_invocation",
+                    "test_intent_promotion",
+                    "red_test",
+                    "green_test",
+                    "sog_parity",
+                    "sog_promotion"
+                  ],
+                  "blockedReasons": [],
+                  "authorityBoundary": {
+                    "runnerMode": "catalog_projection",
+                    "liveCognitiveProviderInvokedByRunner": false,
+                    "expectedLiveProviderRequirementPreserved": true
+                  }
+                },
+                {
+                  "schemaVersion": "defracto.story-stress-scenario-result.v1",
+                  "caseKey": "002-resume-tailor",
+                  "title": "Generate tailored resume",
+                  "mode": "document_projection",
+                  "outcomeClass": "passed",
+                  "status": "passed",
+                  "labAssertionStatus": "passed",
+                  "fidelityScore": 0.91,
+                  "truthOwner": "projection_with_receipts",
+                  "truthOwnerLabel": "Projection + Receipts",
+                  "promotionPosture": "projection_receipted_no_unverified_claims",
+                  "parityPosture": "projection_trace_required",
+                  "requiredReceipts": [
+                    "job_requirement_extraction",
+                    "experience_claim_trace",
+                    "unsupported_claims_blocked",
+                    "resume_projection_receipt"
+                  ],
+                  "blockedReasons": [],
+                  "authorityBoundary": {
+                    "runnerMode": "catalog_projection",
+                    "liveCognitiveProviderInvokedByRunner": false,
+                    "expectedLiveProviderRequirementPreserved": true
+                  }
+                },
+                {
+                  "schemaVersion": "defracto.story-stress-scenario-result.v1",
+                  "caseKey": "003-red-green-validator",
+                  "title": "Red/green test hash validator",
+                  "mode": "evidence_gate",
+                  "outcomeClass": "passed",
+                  "status": "passed",
+                  "labAssertionStatus": "passed",
+                  "fidelityScore": 0.95,
+                  "truthOwner": "semantic_operation_graph",
+                  "truthOwnerLabel": "SOG",
+                  "promotionPosture": "gate_contract_declared_for_sog_promotion",
+                  "parityPosture": "red_green_hash_mismatch_fixture_detected",
+                  "requiredReceipts": [
+                    "red_green_gate_contract",
+                    "negative_fixture_evaluated",
+                    "red_before_green_required",
+                    "evidence_receipt"
+                  ],
+                  "blockedReasons": [],
+                  "authorityBoundary": {
+                    "runnerMode": "catalog_projection",
+                    "liveCognitiveProviderInvokedByRunner": false,
+                    "expectedLiveProviderRequirementPreserved": false
+                  }
+                },
+                {
+                  "schemaVersion": "defracto.story-stress-scenario-result.v1",
+                  "caseKey": "004-provider-fallback",
+                  "title": "Provider fallback story",
+                  "mode": "provider_fallback",
+                  "outcomeClass": "fallback",
+                  "status": "passed",
+                  "labAssertionStatus": "passed",
+                  "fidelityScore": 0.93,
+                  "truthOwner": "semantic_operation_graph",
+                  "truthOwnerLabel": "SOG",
+                  "promotionPosture": "fallback_candidate_gated_before_sog",
+                  "parityPosture": "fallback_output_accepted_after_gates",
+                  "requiredReceipts": [
+                    "primary_provider_failure",
+                    "declared_fallback_authorization",
+                    "fallback_provider_invocation",
+                    "candidate_gate_acceptance"
+                  ],
+                  "blockedReasons": [],
+                  "authorityBoundary": {
+                    "runnerMode": "catalog_projection",
+                    "liveCognitiveProviderInvokedByRunner": false,
+                    "expectedLiveProviderRequirementPreserved": true
+                  }
+                },
+                {
+                  "schemaVersion": "defracto.story-stress-scenario-result.v1",
+                  "caseKey": "005-ambiguous-story",
+                  "title": "Ambiguous story honest block",
+                  "mode": "honest_block",
+                  "outcomeClass": "honest_blocked",
+                  "status": "blocked",
+                  "labAssertionStatus": "passed",
+                  "fidelityScore": 1,
+                  "truthOwner": "none_correctly_blocked",
+                  "truthOwnerLabel": "None, correctly blocked",
+                  "promotionPosture": "blocked_no_promotion",
+                  "parityPosture": "none_correctly_blocked",
+                  "requiredReceipts": [
+                    "ambiguity_block_receipt",
+                    "unsupported_claims_blocked",
+                    "no_projection_without_trace"
+                  ],
+                  "blockedReasons": [
+                    "story_intent_ambiguous",
+                    "unsupported_claims_not_traceable"
+                  ],
+                  "authorityBoundary": {
+                    "runnerMode": "catalog_projection",
+                    "liveCognitiveProviderInvokedByRunner": false,
+                    "expectedLiveProviderRequirementPreserved": false
+                  }
+                }
+              ],
+              "authorityBoundary": {
+                "catalogProjectionOnly": true,
+                "liveCognitiveProviderInvokedByRunner": false,
+                "deterministicReplayPretendsCognitiveCompile": false,
+                "scenarioExpectedProviderRequirementsPreserved": true
+              },
+              "guardrails": {
+                "blockedOutcomesAreFirstClassProof": true,
+                "silentProviderSubstitutionAllowed": false,
+                "generatedCodeDurableTruthAllowed": false,
+                "unreceiptedArtifactsAllowed": false
+              },
+              "artifacts": {
+                "summary": "stress-lab/runs/2026-06-24/demo-suite/summary.json",
+                "dashboard": "stress-lab/runs/2026-06-24/demo-suite/dashboard.md",
+                "suiteReceipt": "stress-lab/runs/2026-06-24/demo-suite/suite.receipt.v1.json",
+                "scenarioResultsDir": "stress-lab/runs/2026-06-24/demo-suite/scenario-results"
+              }
+            },
+            "dashboardLines": [
+              "# Story-To-TDD Conveyor Stress Lab Dashboard",
+              "",
+              "## Run Summary",
+              "",
+              "- Suite: Story-To-TDD Conveyor Demo Stress Suite (demo-suite)",
+              "- Run key: demo-suite",
+              "- Run date: 2026-06-24",
+              "- Status: Passed",
+              "- Runner mode: catalog_projection",
+              "",
+              "## Scenario Scorecard",
+              "",
+              "| Scenario | Status | Lab Assertion | Fidelity | Truth Owner | Outcome |",
+              "| --- | --- | --- | ---: | --- | --- |",
+              "| Generate slug from title | Passed | Passed | 0.98 | SOG | passed |",
+              "| Generate tailored resume | Passed | Passed | 0.91 | Projection + Receipts | passed |",
+              "| Red/green test hash validator | Passed | Passed | 0.95 | SOG | passed |",
+              "| Provider fallback story | Passed | Passed | 0.93 | SOG | fallback |",
+              "| Ambiguous story honest block | Blocked | Passed | 1.00 | None, correctly blocked | honest_blocked |",
+              "",
+              "## Outcome Classes",
+              "",
+              "- Passed outcomes: 3",
+              "- Honest blocked outcomes: 1",
+              "- Fallback outcomes: 1",
+              "- Mismatch outcomes: 0",
+              "",
+              "## Guardrails",
+              "",
+              "- Catalog projection does not create cognitive authority.",
+              "- Expected live-provider requirements remain declared in the scenario manifests.",
+              "- Blocked scenarios count as passing lab assertions only when the expected outcome is honest_blocked.",
+              "- Generated proof surfaces are not durable truth unless SOG promotion posture is declared and later receipted by the conveyor.",
+              "",
+              "## Artifacts",
+              "",
+              "- Summary: stress-lab/runs/2026-06-24/demo-suite/summary.json",
+              "- Suite receipt: stress-lab/runs/2026-06-24/demo-suite/suite.receipt.v1.json",
+              "- Scenario results: stress-lab/runs/2026-06-24/demo-suite/scenario-results",
+              "- Dashboard: stress-lab/runs/2026-06-24/demo-suite/dashboard.md"
+            ],
+            "suiteReceipt": {
+              "schemaVersion": "defracto.story-stress-suite-receipt.v1",
+              "receiptKey": "defracto.receipt.story-stress.demo-suite.suite.v1",
+              "status": "passed",
+              "suiteKey": "demo-suite",
+              "runKey": "demo-suite",
+              "runDate": "2026-06-24",
+              "runnerMode": "catalog_projection",
+              "scenarioCount": 5,
+              "sourceSuitePath": {
+                "$graph": "command.options.suite"
+              },
+              "sourceSuiteHash": {
+                "$graph": "suiteHash.hash"
+              },
+              "authorityBoundary": {
+                "catalogProjectionOnly": true,
+                "liveCognitiveProviderInvokedByRunner": false,
+                "deterministicReplayPretendsCognitiveCompile": false
+              },
+              "completionPosture": "Suite receipt binds the resolver-materialized catalog projection run, scenario results, summary JSON, and dashboard projection."
+            },
+            "scenarioReceipts": {
+              "001-slug-generator": {
+                "schemaVersion": "defracto.story-stress-scenario-receipt.v1",
+                "receiptKey": "defracto.receipt.story-stress.demo-suite.001-slug-generator.v1",
+                "status": "passed",
+                "scenarioStatus": "passed",
+                "runKey": "demo-suite",
+                "runDate": "2026-06-24",
+                "caseKey": "001-slug-generator",
+                "mode": "cognitive_compile",
+                "outcomeClass": "passed",
+                "fidelityScore": 0.98,
+                "truthOwner": "semantic_operation_graph",
+                "requiredReceipts": [
+                  "gemini_invocation",
+                  "test_intent_promotion",
+                  "red_test",
+                  "green_test",
+                  "sog_parity",
+                  "sog_promotion"
+                ],
+                "authorityBoundary": {
+                  "catalogProjectionOnly": true,
+                  "liveCognitiveProviderInvokedByRunner": false
+                }
+              },
+              "002-resume-tailor": {
+                "schemaVersion": "defracto.story-stress-scenario-receipt.v1",
+                "receiptKey": "defracto.receipt.story-stress.demo-suite.002-resume-tailor.v1",
+                "status": "passed",
+                "scenarioStatus": "passed",
+                "runKey": "demo-suite",
+                "runDate": "2026-06-24",
+                "caseKey": "002-resume-tailor",
+                "mode": "document_projection",
+                "outcomeClass": "passed",
+                "fidelityScore": 0.91,
+                "truthOwner": "projection_with_receipts",
+                "requiredReceipts": [
+                  "job_requirement_extraction",
+                  "experience_claim_trace",
+                  "unsupported_claims_blocked",
+                  "resume_projection_receipt"
+                ],
+                "authorityBoundary": {
+                  "catalogProjectionOnly": true,
+                  "liveCognitiveProviderInvokedByRunner": false
+                }
+              },
+              "003-red-green-validator": {
+                "schemaVersion": "defracto.story-stress-scenario-receipt.v1",
+                "receiptKey": "defracto.receipt.story-stress.demo-suite.003-red-green-validator.v1",
+                "status": "passed",
+                "scenarioStatus": "passed",
+                "runKey": "demo-suite",
+                "runDate": "2026-06-24",
+                "caseKey": "003-red-green-validator",
+                "mode": "evidence_gate",
+                "outcomeClass": "passed",
+                "fidelityScore": 0.95,
+                "truthOwner": "semantic_operation_graph",
+                "requiredReceipts": [
+                  "red_green_gate_contract",
+                  "negative_fixture_evaluated",
+                  "red_before_green_required",
+                  "evidence_receipt"
+                ],
+                "authorityBoundary": {
+                  "catalogProjectionOnly": true,
+                  "liveCognitiveProviderInvokedByRunner": false
+                }
+              },
+              "004-provider-fallback": {
+                "schemaVersion": "defracto.story-stress-scenario-receipt.v1",
+                "receiptKey": "defracto.receipt.story-stress.demo-suite.004-provider-fallback.v1",
+                "status": "passed",
+                "scenarioStatus": "passed",
+                "runKey": "demo-suite",
+                "runDate": "2026-06-24",
+                "caseKey": "004-provider-fallback",
+                "mode": "provider_fallback",
+                "outcomeClass": "fallback",
+                "fidelityScore": 0.93,
+                "truthOwner": "semantic_operation_graph",
+                "requiredReceipts": [
+                  "primary_provider_failure",
+                  "declared_fallback_authorization",
+                  "fallback_provider_invocation",
+                  "candidate_gate_acceptance"
+                ],
+                "authorityBoundary": {
+                  "catalogProjectionOnly": true,
+                  "liveCognitiveProviderInvokedByRunner": false
+                }
+              },
+              "005-ambiguous-story": {
+                "schemaVersion": "defracto.story-stress-scenario-receipt.v1",
+                "receiptKey": "defracto.receipt.story-stress.demo-suite.005-ambiguous-story.v1",
+                "status": "passed",
+                "scenarioStatus": "blocked",
+                "runKey": "demo-suite",
+                "runDate": "2026-06-24",
+                "caseKey": "005-ambiguous-story",
+                "mode": "honest_block",
+                "outcomeClass": "honest_blocked",
+                "fidelityScore": 1,
+                "truthOwner": "none_correctly_blocked",
+                "requiredReceipts": [
+                  "ambiguity_block_receipt",
+                  "unsupported_claims_blocked",
+                  "no_projection_without_trace"
+                ],
+                "blockedReasons": [
+                  "story_intent_ambiguous",
+                  "unsupported_claims_not_traceable"
+                ],
+                "authorityBoundary": {
+                  "catalogProjectionOnly": true,
+                  "liveCognitiveProviderInvokedByRunner": false
+                }
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.bundle"
+        }
+      },
+      {
+        "id": "materializeSummary",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize the suite summary JSON from the projected bundle.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "stress-lab/runs/2026-06-24/demo-suite/summary.json",
+            "format": "json",
+            "content": {
+              "$graph": "bundle.summary"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.summaryArtifact"
+        }
+      },
+      {
+        "id": "materializeDashboard",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize the Markdown dashboard from projected dashboard lines.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "stress-lab/runs/2026-06-24/demo-suite/dashboard.md",
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "content": {
+              "$graph": "bundle.dashboardLines"
+            },
+            "joinWith": "\n",
+            "newline": "lf"
+          }
+        },
+        "output": {
+          "path": "$graph.dashboardArtifact"
+        }
+      },
+      {
+        "id": "materializeScenario001Result",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize slug generator scenario result.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "stress-lab/runs/2026-06-24/demo-suite/scenario-results/001-slug-generator/result.json",
+            "format": "json",
+            "content": {
+              "$graph": "bundle.summary.scenarioResults.0"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.scenario001ResultArtifact"
+        }
+      },
+      {
+        "id": "materializeScenario002Result",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize resume tailor scenario result.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "stress-lab/runs/2026-06-24/demo-suite/scenario-results/002-resume-tailor/result.json",
+            "format": "json",
+            "content": {
+              "$graph": "bundle.summary.scenarioResults.1"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.scenario002ResultArtifact"
+        }
+      },
+      {
+        "id": "materializeScenario003Result",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize red/green validator scenario result.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "stress-lab/runs/2026-06-24/demo-suite/scenario-results/003-red-green-validator/result.json",
+            "format": "json",
+            "content": {
+              "$graph": "bundle.summary.scenarioResults.2"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.scenario003ResultArtifact"
+        }
+      },
+      {
+        "id": "materializeScenario004Result",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize provider fallback scenario result.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "stress-lab/runs/2026-06-24/demo-suite/scenario-results/004-provider-fallback/result.json",
+            "format": "json",
+            "content": {
+              "$graph": "bundle.summary.scenarioResults.3"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.scenario004ResultArtifact"
+        }
+      },
+      {
+        "id": "materializeScenario005Result",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize ambiguous story scenario result.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "stress-lab/runs/2026-06-24/demo-suite/scenario-results/005-ambiguous-story/result.json",
+            "format": "json",
+            "content": {
+              "$graph": "bundle.summary.scenarioResults.4"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.scenario005ResultArtifact"
+        }
+      },
+      {
+        "id": "emitSuiteReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit suite-level stress run receipt.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": "stress-lab/runs/2026-06-24/demo-suite/suite.receipt.v1.json",
+            "content": {
+              "$graph": "bundle.suiteReceipt"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.suiteReceipt"
+        }
+      },
+      {
+        "id": "emitScenario001Receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit slug generator scenario receipt.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": "stress-lab/runs/2026-06-24/demo-suite/scenario-results/001-slug-generator/receipt.v1.json",
+            "content": {
+              "$graph": "bundle.scenarioReceipts.001-slug-generator"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.scenario001Receipt"
+        }
+      },
+      {
+        "id": "emitScenario002Receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit resume tailor scenario receipt.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": "stress-lab/runs/2026-06-24/demo-suite/scenario-results/002-resume-tailor/receipt.v1.json",
+            "content": {
+              "$graph": "bundle.scenarioReceipts.002-resume-tailor"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.scenario002Receipt"
+        }
+      },
+      {
+        "id": "emitScenario003Receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit red/green validator scenario receipt.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": "stress-lab/runs/2026-06-24/demo-suite/scenario-results/003-red-green-validator/receipt.v1.json",
+            "content": {
+              "$graph": "bundle.scenarioReceipts.003-red-green-validator"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.scenario003Receipt"
+        }
+      },
+      {
+        "id": "emitScenario004Receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit provider fallback scenario receipt.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": "stress-lab/runs/2026-06-24/demo-suite/scenario-results/004-provider-fallback/receipt.v1.json",
+            "content": {
+              "$graph": "bundle.scenarioReceipts.004-provider-fallback"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.scenario004Receipt"
+        }
+      },
+      {
+        "id": "emitScenario005Receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit ambiguous story scenario receipt.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": "stress-lab/runs/2026-06-24/demo-suite/scenario-results/005-ambiguous-story/receipt.v1.json",
+            "content": {
+              "$graph": "bundle.scenarioReceipts.005-ambiguous-story"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.scenario005Receipt"
+        }
+      },
+      {
+        "id": "projectCommandResult",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project the command result from materialized artifacts and receipts.",
+        "input": {
+          "fields": {
+            "schemaVersion": "defracto.ndd-stress-run.command-result.v1",
+            "status": "passed",
+            "runKey": "demo-suite",
+            "runPath": "stress-lab/runs/2026-06-24/demo-suite",
+            "summary": "5 scenarios projected through resolver-executed SEJ; 5 lab assertions passed.",
+            "artifacts": {
+              "summary": "stress-lab/runs/2026-06-24/demo-suite/summary.json",
+              "dashboard": "stress-lab/runs/2026-06-24/demo-suite/dashboard.md",
+              "suiteReceipt": "stress-lab/runs/2026-06-24/demo-suite/suite.receipt.v1.json",
+              "scenarioResultsDir": "stress-lab/runs/2026-06-24/demo-suite/scenario-results"
+            },
+            "blockers": []
+          }
+        },
+        "output": {
+          "path": "$graph.commandResult"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "evidenceObligations": [
+    "stress_run_command_matched",
+    "suite_manifest_hashed",
+    "case_manifests_hashed",
+    "summary_materialized",
+    "scenario_results_materialized",
+    "scenario_receipts_emitted",
+    "dashboard_projected",
+    "suite_receipt_emitted"
+  ],
+  "forbiddenClaims": [
+    "catalog projection is live cognitive compile",
+    "fallback ran without declared fallback receipt requirement",
+    "blocked outcome is a failed lab assertion when block was expected",
+    "generated code is durable truth",
+    "SOG promotion happened without parity posture",
+    "hand-authored host runner owns stress lab behavior"
+  ],
+  "completionPosture": "ndd stress run is resolver-executed SEJ that validates declared manifest presence, projects the demo suite, materializes artifacts, and emits receipts without host-language runner code."
+}

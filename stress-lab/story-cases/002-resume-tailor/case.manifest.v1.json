@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "defracto.story-stress-case.v1",
+  "caseKey": "002-resume-tailor",
+  "title": "Generate tailored resume",
+  "mode": "document_projection",
+  "story": {
+    "asA": "job seeker",
+    "iWant": "a tailored resume generated from a job description and verified experience log",
+    "soThat": "every bullet is relevant and traceable to real experience"
+  },
+  "inputs": {
+    "sourceStoryPath": "stress-lab/story-cases/002-resume-tailor/source.story.md",
+    "fixtures": []
+  },
+  "expectedOutcome": {
+    "outcomeClass": "passed",
+    "finalStatus": "passed",
+    "truthOwner": "projection_with_receipts",
+    "truthOwnerLabel": "Projection + Receipts",
+    "targetFidelityScore": 0.91,
+    "requiredArtifacts": [
+      "stress-lab/story-cases/002-resume-tailor/source.story.md",
+      "stress-lab/expected-outcomes/002-resume-tailor.expected-outcome.v1.json"
+    ],
+    "requiredReceipts": [
+      "job_requirement_extraction",
+      "experience_claim_trace",
+      "unsupported_claims_blocked",
+      "resume_projection_receipt"
+    ],
+    "promotionPosture": "projection_receipted_no_unverified_claims",
+    "parityPosture": "projection_trace_required",
+    "blockedReasons": []
+  },
+  "fidelityChecks": {
+    "mustUseLiveProvider": true,
+    "mustBlockUnsupportedClaims": true,
+    "mustRequireRedBeforeGreen": false,
+    "mustPromoteSog": false,
+    "mustNotPromoteGeneratedCode": true,
+    "mustDetectParityMismatch": false,
+    "mustUseDeclaredFallback": false,
+    "mustEmitReceipts": true
+  }
+}

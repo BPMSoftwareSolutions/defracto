@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "defracto.story-stress-case.v1",
+  "caseKey": "005-ambiguous-story",
+  "title": "Ambiguous story honest block",
+  "mode": "honest_block",
+  "story": {
+    "asA": "job seeker",
+    "iWant": "my resume to sound impressive",
+    "soThat": "hiring managers will like it"
+  },
+  "inputs": {
+    "sourceStoryPath": "stress-lab/story-cases/005-ambiguous-story/source.story.md",
+    "fixtures": []
+  },
+  "expectedOutcome": {
+    "outcomeClass": "honest_blocked",
+    "finalStatus": "blocked",
+    "truthOwner": "none_correctly_blocked",
+    "truthOwnerLabel": "None, correctly blocked",
+    "targetFidelityScore": 1,
+    "requiredArtifacts": [
+      "stress-lab/story-cases/005-ambiguous-story/source.story.md",
+      "stress-lab/expected-outcomes/005-ambiguous-story.expected-outcome.v1.json"
+    ],
+    "requiredReceipts": [
+      "ambiguity_block_receipt",
+      "unsupported_claims_blocked",
+      "no_projection_without_trace"
+    ],
+    "promotionPosture": "blocked_no_promotion",
+    "parityPosture": "none_correctly_blocked",
+    "blockedReasons": [
+      "story_intent_ambiguous",
+      "unsupported_claims_not_traceable"
+    ]
+  },
+  "fidelityChecks": {
+    "mustUseLiveProvider": false,
+    "mustBlockUnsupportedClaims": true,
+    "mustRequireRedBeforeGreen": false,
+    "mustPromoteSog": false,
+    "mustNotPromoteGeneratedCode": true,
+    "mustDetectParityMismatch": false,
+    "mustUseDeclaredFallback": false,
+    "mustEmitReceipts": true
+  }
+}

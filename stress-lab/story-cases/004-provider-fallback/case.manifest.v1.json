@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "defracto.story-stress-case.v1",
+  "caseKey": "004-provider-fallback",
+  "title": "Provider fallback story",
+  "mode": "provider_fallback",
+  "story": {
+    "asA": "conveyor operator",
+    "iWant": "a declared fallback provider to run when the primary cognitive provider fails",
+    "soThat": "reliability improves without silent provider substitution"
+  },
+  "inputs": {
+    "sourceStoryPath": "stress-lab/story-cases/004-provider-fallback/source.story.md",
+    "fixtures": []
+  },
+  "expectedOutcome": {
+    "outcomeClass": "fallback",
+    "finalStatus": "passed",
+    "truthOwner": "semantic_operation_graph",
+    "truthOwnerLabel": "SOG",
+    "targetFidelityScore": 0.93,
+    "requiredArtifacts": [
+      "evidence/workers/story-to-tdd.implementation.gemini-invocation.receipt.v1.json",
+      "evidence/workers/story-to-tdd.provider-fallback.receipt.v1.json",
+      "evidence/workers/story-to-tdd.openai-invocation.receipt.v1.json",
+      "stress-lab/expected-outcomes/004-provider-fallback.expected-outcome.v1.json"
+    ],
+    "requiredReceipts": [
+      "primary_provider_failure",
+      "declared_fallback_authorization",
+      "fallback_provider_invocation",
+      "candidate_gate_acceptance"
+    ],
+    "promotionPosture": "fallback_candidate_gated_before_sog",
+    "parityPosture": "fallback_output_accepted_after_gates",
+    "blockedReasons": []
+  },
+  "fidelityChecks": {
+    "mustUseLiveProvider": true,
+    "mustBlockUnsupportedClaims": true,
+    "mustRequireRedBeforeGreen": true,
+    "mustPromoteSog": true,
+    "mustNotPromoteGeneratedCode": true,
+    "mustDetectParityMismatch": false,
+    "mustUseDeclaredFallback": true,
+    "mustEmitReceipts": true
+  }
+}

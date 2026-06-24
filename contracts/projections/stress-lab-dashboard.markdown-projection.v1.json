@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "defracto.markdown-projection-contract.v1",
+  "projectionKey": "defracto.projection.stress-lab-dashboard.markdown.v1",
+  "status": "draft-ready-for-slice-055-review",
+  "sourceTruth": "stress-lab run summary JSON",
+  "targetSurface": "stress-lab/runs/<date>/<suite>/dashboard.md",
+  "purpose": "Project a human-readable dashboard from stress lab scenario receipts without hand-authored status claims.",
+  "requiredSections": [
+    "Run Summary",
+    "Scenario Scorecard",
+    "Outcome Classes",
+    "Guardrails",
+    "Artifacts"
+  ],
+  "requiredColumns": [
+    "Scenario",
+    "Status",
+    "Lab Assertion",
+    "Fidelity",
+    "Truth Owner",
+    "Outcome"
+  ],
+  "projectionRules": [
+    "Scenario rows must be sourced from summary.scenarioResults.",
+    "Blocked outcomes must display as successful lab assertions when expectedOutcome.outcomeClass is honest_blocked.",
+    "Fallback outcomes must expose fallback posture and may not imply silent provider substitution.",
+    "Dashboard status must be derived from suite status, not edited by hand.",
+    "Guardrails must state that catalog projection is not live cognitive compile evidence."
+  ],
+  "forbiddenClaims": [
+    "live provider invocation happened during catalog projection",
+    "SOG promotion completed when only expected posture was declared",
+    "blocked scenarios are failed lab cases when the expected outcome is honest_blocked"
+  ],
+  "completionPosture": "The dashboard is a projection from suite receipts and summary JSON."
+}
