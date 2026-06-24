@@ -1,0 +1,899 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.live-cognitive-ba-visual-proof.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-cli-proof",
+  "commandKey": "defracto.ndd.story.implement.cognitive-ba-visual-proof.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.live-cognitive-ba-visual-proof.load-run.v1",
+      "capabilityKey": "conveyor.run_manifest.load.v1",
+      "intent": "Load the run manifest for the live cognitive BA proof."
+    },
+    {
+      "actionKey": "defracto.live-cognitive-ba-visual-proof.hash-evidence.v1",
+      "capabilityKey": "hash.compute.v1",
+      "intent": "Hash the live provider, hardening, and review evidence before visual proof materialization."
+    },
+    {
+      "actionKey": "defracto.live-cognitive-ba-visual-proof.materialize-surfaces.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize run-local ASCII and HTML proof surfaces from the live BA evidence."
+    },
+    {
+      "actionKey": "defracto.live-cognitive-ba-visual-proof.emit-receipts.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit receipts proving the conveyor produced the visual proof package."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "loadRunManifest",
+        "capabilityKey": "conveyor.run_manifest.load.v1",
+        "intent": "Load the bootstrapped run manifest by slice key.",
+        "input": {
+          "sliceKey": {
+            "$context": "command.options.slice"
+          },
+          "defaultSearchRoot": "conveyor/runs"
+        },
+        "output": {
+          "path": "$graph.runManifest"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "visual_proof_run_manifest_missing"
+        }
+      },
+      {
+        "id": "projectModelPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "live-cognitive-ba-visual-model.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.modelPath"
+        }
+      },
+      {
+        "id": "projectAsciiPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "live-cognitive-ba-proof.ascii"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.asciiPath"
+        }
+      },
+      {
+        "id": "projectHtmlPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "live-cognitive-ba-proof.html"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.htmlPath"
+        }
+      },
+      {
+        "id": "projectSummaryPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "live-cognitive-ba-visual-proof.summary.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.summaryPath"
+        }
+      },
+      {
+        "id": "projectGeminiReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "cognitive-ba.gemini-invocation.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.geminiReceiptPath"
+        }
+      },
+      {
+        "id": "projectHardeningReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "business-analysis-hardening.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.hardeningReceiptPath"
+        }
+      },
+      {
+        "id": "projectReviewJsonPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "live-cognitive-ba-review-package.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewJsonPath"
+        }
+      },
+      {
+        "id": "projectReviewMarkdownPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "live-cognitive-ba-review-package.v1.md"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewMarkdownPath"
+        }
+      },
+      {
+        "id": "projectAsciiReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "live-cognitive-ba-ascii-proof.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.asciiReceiptPath"
+        }
+      },
+      {
+        "id": "projectHtmlReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "live-cognitive-ba-html-proof.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.htmlReceiptPath"
+        }
+      },
+      {
+        "id": "projectMaterializationReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "live-cognitive-ba-visual-proof.materialization.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.materializationReceiptPath"
+        }
+      },
+      {
+        "id": "hashSourceStory",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runManifest.sourceStory.path"
+          }
+        },
+        "output": {
+          "path": "$graph.sourceStoryHash"
+        }
+      },
+      {
+        "id": "hashGeminiReceipt",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "geminiReceiptPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.geminiReceiptHash"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "live_gemini_invocation_receipt_missing"
+        }
+      },
+      {
+        "id": "hashHardeningReceipt",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "hardeningReceiptPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.hardeningReceiptHash"
+        }
+      },
+      {
+        "id": "hashReviewJson",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "reviewJsonPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewJsonHash"
+        }
+      },
+      {
+        "id": "hashReviewMarkdown",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "reviewMarkdownPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewMarkdownHash"
+        }
+      },
+      {
+        "id": "materializeVisualModel",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize the run-local visual proof model from live BA evidence.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "modelPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.live-cognitive-ba-visual-model.v1",
+              "status": "promoted_for_review_projection",
+              "title": "Live Cognitive BA Execution Proof",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "runEnvelopeRoot": {
+                "$graph": "runManifest.runEnvelopeRoot"
+              },
+              "sourceStory": {
+                "path": {
+                  "$graph": "runManifest.sourceStory.path"
+                },
+                "hash": {
+                  "$graph": "sourceStoryHash.hash"
+                }
+              },
+              "provider": {
+                "providerKey": "gemini_flash",
+                "model": "gemini-2.5-flash",
+                "receipt": {
+                  "path": {
+                    "$graph": "geminiReceiptPath.path"
+                  },
+                  "hash": {
+                    "$graph": "geminiReceiptHash.hash"
+                  }
+                }
+              },
+              "authority": {
+                "businessAnalysisHardeningReceipt": {
+                  "path": {
+                    "$graph": "hardeningReceiptPath.path"
+                  },
+                  "hash": {
+                    "$graph": "hardeningReceiptHash.hash"
+                  }
+                },
+                "reviewPackageJson": {
+                  "path": {
+                    "$graph": "reviewJsonPath.path"
+                  },
+                  "hash": {
+                    "$graph": "reviewJsonHash.hash"
+                  }
+                },
+                "reviewPackageMarkdown": {
+                  "path": {
+                    "$graph": "reviewMarkdownPath.path"
+                  },
+                  "hash": {
+                    "$graph": "reviewMarkdownHash.hash"
+                  }
+                }
+              },
+              "nodes": [
+                "User Story",
+                "Live Gemini BA Agent",
+                "Candidate Output",
+                "Hardening Receipt",
+                "Review Package",
+                "HTML Proof"
+              ],
+              "edges": [
+                [
+                  "User Story",
+                  "Live Gemini BA Agent"
+                ],
+                [
+                  "Live Gemini BA Agent",
+                  "Candidate Output"
+                ],
+                [
+                  "Candidate Output",
+                  "Hardening Receipt"
+                ],
+                [
+                  "Hardening Receipt",
+                  "Review Package"
+                ],
+                [
+                  "Review Package",
+                  "HTML Proof"
+                ]
+              ]
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.visualModelArtifact"
+        }
+      },
+      {
+        "id": "hashVisualModel",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "modelPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.visualModelHash"
+        }
+      },
+      {
+        "id": "materializeAsciiProof",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize an ASCII proof sketch from the run-local visual model.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "asciiPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "Live Cognitive BA Execution Proof",
+              "",
+              "Slice: ",
+              {
+                "$graph": "runManifest.sliceKey"
+              },
+              "",
+              "User Story",
+              "   |",
+              "   v",
+              "Live Gemini BA Agent",
+              "   |  receipt: ",
+              {
+                "$graph": "geminiReceiptPath.path"
+              },
+              "   |  hash: ",
+              {
+                "$graph": "geminiReceiptHash.hash"
+              },
+              "   v",
+              "Business Analysis Candidate",
+              "   |",
+              "   v",
+              "Hardening Receipt",
+              "   |  hash: ",
+              {
+                "$graph": "hardeningReceiptHash.hash"
+              },
+              "   v",
+              "Review Package",
+              "   |",
+              "   v",
+              "HTML Visual Proof"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.asciiArtifact"
+        }
+      },
+      {
+        "id": "hashAsciiProof",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "asciiPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.asciiHash"
+        }
+      },
+      {
+        "id": "emitAsciiReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "asciiReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.live-cognitive-ba-ascii-proof.receipt.v1",
+              "status": "passed",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "sourceModel": {
+                "$graph": "modelPath.path"
+              },
+              "sourceModelHash": {
+                "$graph": "visualModelHash.hash"
+              },
+              "targetPath": {
+                "$graph": "asciiPath.path"
+              },
+              "artifactHash": {
+                "$graph": "asciiHash.hash"
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.asciiReceipt"
+        }
+      },
+      {
+        "id": "materializeHtmlProof",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize the uploadable HTML visual proof document.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "htmlPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "<!doctype html>",
+              "<html lang=\"en\">",
+              "<head>",
+              "  <meta charset=\"utf-8\">",
+              "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+              "  <title>Live Cognitive BA Execution Proof</title>",
+              "  <style>body{font-family:Arial,sans-serif;line-height:1.5;margin:0;color:#18212f;background:#f6f7fb}main{max-width:980px;margin:0 auto;padding:32px}section{background:#fff;border:1px solid #d9dee8;margin:16px 0;padding:20px}h1{font-size:28px;margin:0 0 8px}h2{font-size:18px;margin:0 0 10px}.status{display:inline-block;font-weight:700;color:#0f6b3f;background:#e7f6ee;border:1px solid #b9e2cb;padding:4px 8px}code{background:#eef1f6;padding:2px 4px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #d9dee8;padding:8px;text-align:left;vertical-align:top}th{background:#eef1f6}.flow{font-family:Consolas,monospace;white-space:pre-wrap;background:#111827;color:#eef2ff;padding:16px}</style>",
+              "</head>",
+              "<body>",
+              "<main>",
+              "  <h1>Live Cognitive BA Execution Proof</h1>",
+              "  <p><span class=\"status\">accepted for review</span></p>",
+              "  <section>",
+              "    <h2>What did the conveyor produce?</h2>",
+              "    <p>An uploadable visual proof document generated from the live cognitive BA run evidence.</p>",
+              "  </section>",
+              "  <section>",
+              "    <h2>Proof Flow</h2>",
+              "    <div class=\"flow\">User Story&#10;  -&gt; Live Gemini BA Agent&#10;  -&gt; Business Analysis Candidate&#10;  -&gt; Hardening Receipt&#10;  -&gt; Review Package&#10;  -&gt; HTML Visual Proof</div>",
+              "  </section>",
+              "  <section>",
+              "    <h2>Evidence</h2>",
+              "    <table><thead><tr><th>Item</th><th>Path</th><th>Hash</th></tr></thead><tbody>",
+              "      <tr><td>Source story</td><td><code>",
+              {
+                "$graph": "runManifest.sourceStory.path"
+              },
+              "</code></td><td><code>",
+              {
+                "$graph": "sourceStoryHash.hash"
+              },
+              "</code></td></tr>",
+              "      <tr><td>Gemini invocation receipt</td><td><code>",
+              {
+                "$graph": "geminiReceiptPath.path"
+              },
+              "</code></td><td><code>",
+              {
+                "$graph": "geminiReceiptHash.hash"
+              },
+              "</code></td></tr>",
+              "      <tr><td>Business Analysis hardening</td><td><code>",
+              {
+                "$graph": "hardeningReceiptPath.path"
+              },
+              "</code></td><td><code>",
+              {
+                "$graph": "hardeningReceiptHash.hash"
+              },
+              "</code></td></tr>",
+              "      <tr><td>Review Package JSON</td><td><code>",
+              {
+                "$graph": "reviewJsonPath.path"
+              },
+              "</code></td><td><code>",
+              {
+                "$graph": "reviewJsonHash.hash"
+              },
+              "</code></td></tr>",
+              "      <tr><td>Visual model</td><td><code>",
+              {
+                "$graph": "modelPath.path"
+              },
+              "</code></td><td><code>",
+              {
+                "$graph": "visualModelHash.hash"
+              },
+              "</code></td></tr>",
+              "    </tbody></table>",
+              "  </section>",
+              "  <section>",
+              "    <h2>Team Review</h2>",
+              "    <p>This document is the visual review surface. The durable evidence remains the receipted conveyor run under <code>",
+              {
+                "$graph": "runManifest.runEnvelopeRoot"
+              },
+              "</code>.</p>",
+              "  </section>",
+              "</main>",
+              "</body>",
+              "</html>"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.htmlArtifact"
+        }
+      },
+      {
+        "id": "hashHtmlProof",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "htmlPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.htmlHash"
+        }
+      },
+      {
+        "id": "emitHtmlReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "htmlReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.live-cognitive-ba-html-proof.receipt.v1",
+              "status": "passed",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "sourceModel": {
+                "$graph": "modelPath.path"
+              },
+              "sourceModelHash": {
+                "$graph": "visualModelHash.hash"
+              },
+              "targetPath": {
+                "$graph": "htmlPath.path"
+              },
+              "artifactHash": {
+                "$graph": "htmlHash.hash"
+              },
+              "sameSourceModelAsAscii": true
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.htmlReceipt"
+        }
+      },
+      {
+        "id": "materializeSummary",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "summaryPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.live-cognitive-ba-visual-proof-summary.v1",
+              "status": "accepted_for_review",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "html": {
+                "path": {
+                  "$graph": "htmlPath.path"
+                },
+                "hash": {
+                  "$graph": "htmlHash.hash"
+                }
+              },
+              "ascii": {
+                "path": {
+                  "$graph": "asciiPath.path"
+                },
+                "hash": {
+                  "$graph": "asciiHash.hash"
+                }
+              },
+              "model": {
+                "path": {
+                  "$graph": "modelPath.path"
+                },
+                "hash": {
+                  "$graph": "visualModelHash.hash"
+                }
+              },
+              "uploadRecommended": {
+                "$graph": "htmlPath.path"
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.summaryArtifact"
+        }
+      },
+      {
+        "id": "hashSummary",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "summaryPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.summaryHash"
+        }
+      },
+      {
+        "id": "emitMaterializationReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "materializationReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.live-cognitive-ba-visual-proof.materialization.receipt.v1",
+              "status": "passed",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "sourceRun": {
+                "$graph": "runManifest.runEnvelopeRoot"
+              },
+              "providerReceipt": {
+                "path": {
+                  "$graph": "geminiReceiptPath.path"
+                },
+                "hash": {
+                  "$graph": "geminiReceiptHash.hash"
+                }
+              },
+              "outputs": {
+                "html": {
+                  "path": {
+                    "$graph": "htmlPath.path"
+                  },
+                  "hash": {
+                    "$graph": "htmlHash.hash"
+                  },
+                  "receipt": {
+                    "$graph": "htmlReceiptPath.path"
+                  }
+                },
+                "ascii": {
+                  "path": {
+                    "$graph": "asciiPath.path"
+                  },
+                  "hash": {
+                    "$graph": "asciiHash.hash"
+                  },
+                  "receipt": {
+                    "$graph": "asciiReceiptPath.path"
+                  }
+                },
+                "summary": {
+                  "path": {
+                    "$graph": "summaryPath.path"
+                  },
+                  "hash": {
+                    "$graph": "summaryHash.hash"
+                  }
+                }
+              },
+              "completionPosture": "The conveyor materialized uploadable visual proof surfaces from the live cognitive BA evidence."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.materializationReceipt"
+        }
+      },
+      {
+        "id": "projectResult",
+        "capabilityKey": "project.value.v1",
+        "input": {
+          "fields": {
+            "status": {
+              "literal": "accepted_for_review"
+            },
+            "sliceKey": {
+              "$graph": "runManifest.sliceKey"
+            },
+            "htmlProof": {
+              "path": {
+                "$graph": "htmlPath.path"
+              },
+              "hash": {
+                "$graph": "htmlHash.hash"
+              },
+              "receipt": {
+                "$graph": "htmlReceiptPath.path"
+              }
+            },
+            "asciiProof": {
+              "path": {
+                "$graph": "asciiPath.path"
+              },
+              "hash": {
+                "$graph": "asciiHash.hash"
+              },
+              "receipt": {
+                "$graph": "asciiReceiptPath.path"
+              }
+            },
+            "materializationReceipt": {
+              "$graph": "materializationReceiptPath.path"
+            },
+            "uploadRecommended": {
+              "$graph": "htmlPath.path"
+            },
+            "nextStepOwner": {
+              "literal": "Platform Agent"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.result"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "completionPosture": "The CLI can ask the conveyor to produce uploadable HTML and ASCII proof surfaces from an existing live cognitive BA run without manual artifact assembly."
+}

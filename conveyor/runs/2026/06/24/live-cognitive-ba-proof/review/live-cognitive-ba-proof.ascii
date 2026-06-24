@@ -1,0 +1,25 @@
+Live Cognitive BA Execution Proof
+
+Slice: 
+live-cognitive-ba-proof
+
+User Story
+   |
+   v
+Live Gemini BA Agent
+   |  receipt: 
+conveyor/runs/2026/06/24/live-cognitive-ba-proof/receipts/cognitive-ba.gemini-invocation.receipt.v1.json
+   |  hash: 
+sha256:9992cdd3ccf7bebd3d7fa9b1cbc13b915b043a2faae135033279cbc2bb20cf3f
+   v
+Business Analysis Candidate
+   |
+   v
+Hardening Receipt
+   |  hash: 
+sha256:17a6700aa829bc27235c81e8e45e7835ee7e3475d61dba5c63c826302055c040
+   v
+Review Package
+   |
+   v
+HTML Visual Proof
