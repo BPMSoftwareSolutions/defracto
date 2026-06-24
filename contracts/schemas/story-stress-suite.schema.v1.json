@@ -55,7 +55,10 @@
       "properties": {
         "runnerMode": {
           "type": "string",
-          "const": "catalog_projection"
+          "enum": [
+            "live_cognitive_stress",
+            "catalog_projection"
+          ]
         },
         "outputRoot": {
           "type": "string",

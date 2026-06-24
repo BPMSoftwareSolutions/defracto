@@ -15,7 +15,7 @@
     "honest_blocked"
   ],
   "runDefaults": {
-    "runnerMode": "catalog_projection",
+    "runnerMode": "live_cognitive_stress",
     "outputRoot": "stress-lab/runs",
     "dashboardProjection": "contracts/projections/stress-lab-dashboard.markdown-projection.v1.json"
   },

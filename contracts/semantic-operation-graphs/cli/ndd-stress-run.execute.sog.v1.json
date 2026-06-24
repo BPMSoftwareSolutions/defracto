@@ -3,7 +3,7 @@
   "objectKind": "sej_code_body",
   "objectKey": "defracto.ndd-stress-run.execute.sog.v1",
   "sourceTruth": "sej_semantic_body",
-  "status": "ready-for-resolver",
+  "status": "ready-for-resolver-live-cognitive-gate",
   "commandKey": "defracto.ndd.stress.run.v1",
   "bodyKind": "semantic_operation_graph",
   "hostLanguageBodyAllowed": false,
@@ -14,9 +14,19 @@
       "intent": "Match the ndd stress run command boundary."
     },
     {
+      "actionKey": "defracto.ndd-stress-run.require-live-cognitive-capabilities.semantic-action.v1",
+      "capabilityKey": "resolver.authority.verify.v1",
+      "intent": "Require live cognitive provider primitives before the stress lab may claim cognitive conveyor execution."
+    },
+    {
+      "actionKey": "defracto.ndd-stress-run.execute-live-cognitive-probe.semantic-action.v1",
+      "capabilityKey": "semantic.operation_graph.execute.v1",
+      "intent": "Execute the live Story-to-TDD cognitive provider graph before dashboard projection."
+    },
+    {
       "actionKey": "defracto.ndd-stress-run.hash-declared-inputs.semantic-action.v1",
       "capabilityKey": "hash.compute.v1",
-      "intent": "Verify declared suite and case manifests exist by hashing them through the resolver."
+      "intent": "Verify declared suite and case manifests exist by hashing them through the resolver after live cognitive capabilities are available."
     },
     {
       "actionKey": "defracto.ndd-stress-run.project-suite-summary.semantic-action.v1",
@@ -66,6 +76,65 @@
         "failure": {
           "status": "blocked",
           "blocker": "unsupported_stress_run_command"
+        }
+      },
+      {
+        "id": "verifyLiveCognitiveCapabilities",
+        "capabilityKey": "resolver.authority.verify.v1",
+        "intent": "Block the stress run unless the resolver can require secrets, invoke live providers, validate responses, and verify freshness.",
+        "input": {
+          "authorityRoot": "contracts/resolver-authority",
+          "requiredResolverPackage": "@bpmsoftwaresolutions/sej-resolver-node",
+          "requiredCapabilities": [
+            "environment.require_secret.v1",
+            "object.require_fields.v1",
+            "worker.gemini_flash.invoke.v1",
+            "worker.openai.responses.invoke.v1",
+            "json.schema.validate.v1",
+            "evidence.freshness.verify.v1"
+          ]
+        },
+        "output": {
+          "path": "$graph.liveCognitiveCapabilities"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "live_cognitive_provider_capability_missing"
+        }
+      },
+      {
+        "id": "executeLiveCognitiveProbe",
+        "capabilityKey": "semantic.operation_graph.execute.v1",
+        "intent": "Invoke the live Story-to-TDD Gemini cognitive lane for the first demo scenario.",
+        "input": {
+          "graphRef": {
+            "$inline": "contracts/semantic-operation-graphs/workers/story-to-tdd-gemini-invoke.sog.v1.json"
+          },
+          "context": {
+            "dispatch": {
+              "schemaVersion": "defracto.story-to-tdd-gemini-dispatch.v1",
+              "dispatchKey": "defracto.dispatch.story-stress.demo-suite.001-slug-generator.v1",
+              "runKey": "demo-suite",
+              "sliceKey": "slice-054-ndd-stress-run-live-cognitive-gate",
+              "laneMode": "cognitive_compile",
+              "commandKey": "defracto.ndd.stress.run.v1",
+              "workerKey": "defracto.workers.gemini_flash.story_to_tdd.v1",
+              "sourceHash": "sha256:bfa50e1034bae73ad75442a663370724b0c26a383b497ba4e997e1f41f4eeaff",
+              "requestedCognitiveTasks": [
+                "interpret_story",
+                "derive_acceptance_criteria",
+                "propose_test_intent",
+                "declare_authority_posture"
+              ]
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.liveCognitiveProbe"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "live_cognitive_provider_invocation_missing"
         }
       },
       {
@@ -825,6 +894,7 @@
   },
   "evidenceObligations": [
     "stress_run_command_matched",
+    "live_cognitive_provider_capabilities_verified",
     "suite_manifest_hashed",
     "case_manifests_hashed",
     "summary_materialized",
@@ -841,5 +911,5 @@
     "SOG promotion happened without parity posture",
     "hand-authored host runner owns stress lab behavior"
   ],
-  "completionPosture": "ndd stress run is resolver-executed SEJ that validates declared manifest presence, projects the demo suite, materializes artifacts, and emits receipts without host-language runner code."
+  "completionPosture": "ndd stress run is a cognitive conveyor stress command. It must block until live provider primitives exist; catalog/dashboard projection cannot satisfy cognitive conveyor proof."
 }

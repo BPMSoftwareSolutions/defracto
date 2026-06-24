@@ -14,8 +14,10 @@
   ],
   "laneClassification": {
     "schemaVersion": "defracto.runner-lane-classification.v1",
-    "laneMode": "catalog_projection",
-    "aiWorkerRequired": false,
+    "laneMode": "live_cognitive_stress",
+    "aiWorkerRequired": true,
+    "requiredWorker": "defracto.workers.gemini_flash.v1",
+    "requiredInvocationCapability": "worker.gemini_flash.invoke.v1",
     "fallbackAllowed": false,
     "mockAllowed": false,
     "staleResponseAllowed": false,
@@ -23,6 +25,8 @@
     "requiredEvidence": [
       "stress suite manifest",
       "stress case manifests",
+      "live cognitive provider invocation receipt",
+      "fresh provider response receipt",
       "scenario result receipts",
       "suite run receipt",
       "dashboard projection"
@@ -35,11 +39,13 @@
       "unsupported_scenario_mode",
       "scenario_source_story_missing",
       "scenario_fixture_missing",
-      "dashboard_projection_failed"
+      "dashboard_projection_failed",
+      "live_cognitive_provider_capability_missing",
+      "live_cognitive_provider_invocation_missing"
     ]
   },
   "boundedOutputs": [
-    "stress-lab run summary JSON",
+    "stress-lab run summary JSON only after live cognitive invocation succeeds",
     "per-scenario result receipts",
     "Markdown dashboard projected from summary JSON",
     "suite-level run receipt"
@@ -51,5 +57,5 @@
     "SOG promotion without declared parity posture"
   ],
   "failurePosture": "fail-closed",
-  "completionPosture": "The stress runner may validate and project declared lab scenarios; it does not itself create cognitive authority."
+  "completionPosture": "The stress runner is valid only as a live cognitive conveyor stress run; catalog projection alone cannot satisfy this command."
 }
