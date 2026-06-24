@@ -1,0 +1,988 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.cognitive-ba-lane-authoring.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-cli-proof",
+  "commandKey": "defracto.ndd.story.implement.cognitive-ba-lane.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.cognitive-ba-lane-authoring.load-run-manifest.semantic-action.v1",
+      "capabilityKey": "conveyor.run_manifest.load.v1",
+      "intent": "Load the bootstrapped story run manifest by slice key."
+    },
+    {
+      "actionKey": "defracto.cognitive-ba-lane-authoring.materialize-contract-cluster.semantic-action.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize the reusable SEJ-native cognitive BA lane contract cluster."
+    },
+    {
+      "actionKey": "defracto.cognitive-ba-lane-authoring.hash-contract-cluster.semantic-action.v1",
+      "capabilityKey": "hash.compute.v1",
+      "intent": "Hash every conveyor-authored contract artifact."
+    },
+    {
+      "actionKey": "defracto.cognitive-ba-lane-authoring.emit-receipts.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit receipts proving the SEJ contract cluster was written by the conveyor."
+    },
+    {
+      "actionKey": "defracto.cognitive-ba-lane-authoring.review-package.semantic-action.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize a product-facing Review Package for the SEJ authoring proof."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "loadRunManifest",
+        "capabilityKey": "conveyor.run_manifest.load.v1",
+        "intent": "Load the run manifest created by story plan bootstrap.",
+        "input": {
+          "sliceKey": {
+            "$context": "command.options.slice"
+          },
+          "defaultSearchRoot": "conveyor/runs"
+        },
+        "output": {
+          "path": "$graph.runManifest"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "cognitive_ba_lane_run_manifest_missing"
+        }
+      },
+      {
+        "id": "projectArtifactManifestPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "artifacts",
+            "cognitive-ba-lane-artifact-manifest.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.artifactManifestPath"
+        }
+      },
+      {
+        "id": "projectMaterializationReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "cognitive-ba-lane-contract-materialization.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.materializationReceiptPath"
+        }
+      },
+      {
+        "id": "projectReviewJsonPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "cognitive-ba-lane-review-package.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewJsonPath"
+        }
+      },
+      {
+        "id": "projectReviewMarkdownPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "cognitive-ba-lane-review-package.v1.md"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewMarkdownPath"
+        }
+      },
+      {
+        "id": "projectReviewReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "cognitive-ba-lane-review-package.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewReceiptPath"
+        }
+      },
+      {
+        "id": "hashSourceStory",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runManifest.sourceStory.path"
+          }
+        },
+        "output": {
+          "path": "$graph.sourceStoryHash"
+        }
+      },
+      {
+        "id": "materializeProviderOutputPolicy",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize reusable policy authority for provider candidate posture.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "contracts/policies/provider-output-is-candidate-only.policy.v1.json",
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.policy.v1",
+              "policyKey": "defracto.policies.provider-output-is-candidate-only.v1",
+              "userFacingName": "Provider Output Is Candidate Only",
+              "policyStatement": "AI provider output may propose Business Analysis, but it does not become authority until a hardening gate accepts it.",
+              "appliesTo": [
+                "Gemini Flash cognitive BA output",
+                "OpenAI fallback cognitive BA output",
+                "Business Analysis candidate artifacts",
+                "Build Setup inputs derived from provider reasoning"
+              ],
+              "requiredEvidence": [
+                "dispatch packet",
+                "provider response packet",
+                "provider invocation receipt",
+                "candidate artifact hash",
+                "Business Analysis hardening receipt"
+              ],
+              "blockedIf": [
+                "provider_output_granted_authority_without_hardening",
+                "unreceipted_provider_output",
+                "mock_provider_output",
+                "stale_provider_response",
+                "deterministic_fallback_claimed_as_cognition"
+              ],
+              "completionPosture": "Provider output can inform Business Analysis only as candidate evidence until gates promote it."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.providerOutputPolicyArtifact"
+        }
+      },
+      {
+        "id": "materializeBusinessAnalysisCandidateSchema",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize reusable schema for Business Analysis candidates.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "contracts/schemas/business-analysis-candidate.schema.v1.json",
+            "format": "json",
+            "content": {
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "title": "Business Analysis Candidate",
+              "type": "object",
+              "additionalProperties": true,
+              "required": [
+                "schemaVersion",
+                "status",
+                "providerKey",
+                "workerKey",
+                "sourceStoryHash",
+                "analysis",
+                "candidateOnlyUntilHardened"
+              ],
+              "properties": {
+                "schemaVersion": {
+                  "const": "defracto.business-analysis-candidate.v1"
+                },
+                "status": {
+                  "enum": [
+                    "candidate",
+                    "rejected"
+                  ]
+                },
+                "providerKey": {
+                  "type": "string"
+                },
+                "workerKey": {
+                  "type": "string"
+                },
+                "model": {
+                  "type": "string"
+                },
+                "sourceStoryHash": {
+                  "type": "string"
+                },
+                "analysis": {
+                  "type": "object"
+                },
+                "ambiguities": {
+                  "type": "array"
+                },
+                "acceptanceRecommendations": {
+                  "type": "array"
+                },
+                "candidateOnlyUntilHardened": {
+                  "const": true
+                }
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.businessAnalysisCandidateSchemaArtifact"
+        }
+      },
+      {
+        "id": "materializeBusinessAnalysisHardeningGate",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize reusable gate for Business Analysis hardening.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "contracts/gates/business-analysis-hardening-required.gate.v1.json",
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.gate.v1",
+              "gateKey": "defracto.gates.business-analysis-hardening-required.v1",
+              "userFacingName": "Business Analysis Hardening Required",
+              "purpose": "Promote a provider Business Analysis candidate only after dispatch, response, invocation, freshness, and source trace evidence pass.",
+              "policy": "contracts/policies/provider-output-is-candidate-only.policy.v1.json",
+              "candidateSchema": "contracts/schemas/business-analysis-candidate.schema.v1.json",
+              "requiredInputs": [
+                "source story",
+                "provider dispatch packet",
+                "provider response packet",
+                "provider invocation receipt",
+                "candidate artifact",
+                "candidate hash"
+              ],
+              "blockerCodes": [
+                "business_analysis_candidate_missing",
+                "provider_invocation_receipt_missing",
+                "candidate_source_hash_mismatch",
+                "candidate_contains_unresolved_ambiguity",
+                "candidate_expands_story_without_authority",
+                "provider_output_granted_authority_without_hardening"
+              ],
+              "completionPosture": "Business Analysis authority may feed Build Setup only after this hardening gate passes."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.businessAnalysisHardeningGateArtifact"
+        }
+      },
+      {
+        "id": "materializeCognitiveBaSog",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize the reusable SEJ-native cognitive BA lane SOG shell.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "contracts/semantic-operation-graphs/workers/cognitive-ba-worker-lane.execute.sog.v1.json",
+            "format": "json",
+            "content": {
+              "schemaVersion": "loc.semantic-operation-graph.v1",
+              "objectKind": "sej_code_body",
+              "objectKey": "defracto.workers.cognitive-ba-worker-lane.execute.sog.v1",
+              "sourceTruth": "sej_semantic_body",
+              "status": "blocked-pending-conveyor-worker-runtime-binding",
+              "commandKey": "defracto.workers.cognitive_ba.execute.v1",
+              "bodyKind": "semantic_operation_graph",
+              "hostLanguageBodyAllowed": false,
+              "semanticActions": [
+                {
+                  "actionKey": "defracto.cognitive-ba.require-source-story.semantic-action.v1",
+                  "capabilityKey": "object.require_fields.v1",
+                  "intent": "Require source story and source hash for Business Analysis."
+                },
+                {
+                  "actionKey": "defracto.cognitive-ba.invoke-gemini.semantic-action.v1",
+                  "capabilityKey": "worker.gemini_flash.invoke.v1",
+                  "intent": "Attempt Gemini Flash as the primary Business Analysis worker."
+                },
+                {
+                  "actionKey": "defracto.cognitive-ba.invoke-openai-fallback.semantic-action.v1",
+                  "capabilityKey": "worker.openai.responses.invoke.v1",
+                  "intent": "Invoke OpenAI only as governed fallback when Gemini failure is receipted."
+                },
+                {
+                  "actionKey": "defracto.cognitive-ba.harden-candidate.semantic-action.v1",
+                  "capabilityKey": "gate.evaluate.v1",
+                  "intent": "Promote provider Business Analysis candidate only through hardening."
+                }
+              ],
+              "graph": {
+                "steps": [
+                  {
+                    "id": "projectWorkerRuntimeBlocker",
+                    "capabilityKey": "project.value.v1",
+                    "intent": "Block honestly until conveyor worker runtime binding exists.",
+                    "input": {
+                      "fields": {
+                        "status": "blocked",
+                        "blocker": "cognitive_worker_lane_not_executable",
+                        "requiredWorkerCapabilities": [
+                          "worker.gemini_flash.invoke.v1",
+                          "worker.openai.responses.invoke.v1"
+                        ],
+                        "candidateAuthorityPolicy": "contracts/policies/provider-output-is-candidate-only.policy.v1.json",
+                        "hardeningGate": "contracts/gates/business-analysis-hardening-required.gate.v1.json",
+                        "candidateSchema": "contracts/schemas/business-analysis-candidate.schema.v1.json",
+                        "nextStepOwner": "Conveyor Worker Runtime"
+                      }
+                    },
+                    "output": {
+                      "path": "commandResult"
+                    }
+                  }
+                ],
+                "return": {
+                  "status": "blocked",
+                  "blocker": "cognitive_worker_lane_not_executable",
+                  "nextStepOwner": "Conveyor Worker Runtime"
+                }
+              },
+              "evidenceObligations": [
+                "source_story_hash_bound_to_dispatch",
+                "primary_provider_attempt_receipted",
+                "fallback_authorized_only_after_primary_failure",
+                "provider_response_candidate_only",
+                "business_analysis_hardening_receipt_emitted"
+              ],
+              "forbiddenClaims": [
+                "provider output grants authority",
+                "deterministic fallback claims cognition",
+                "mock response satisfies Business Analysis",
+                "resolver owns provider invocation",
+                "host-language body owns Business Analysis"
+              ],
+              "completionPosture": "This generated SOG declares the SEJ-native cognitive BA lane and blocks until conveyor worker runtime binds provider invocation."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.cognitiveBaSogArtifact"
+        }
+      },
+      {
+        "id": "materializeCognitiveBaSej",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize the reusable SEJ contract that points to the cognitive BA lane SOG.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "contracts/sej/cognitive-ba-worker-lane.execute.sej.v1.json",
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.sej-contract.v1",
+              "contractKey": "defracto.sej.cognitive-ba-worker-lane.execute.v1",
+              "contractKind": "semantic-executable-json",
+              "contractStatus": "blocked-pending-conveyor-worker-runtime-binding",
+              "toolKey": "defracto.workers.cognitive_ba",
+              "sourceLineage": {
+                "semanticOperationGraph": "contracts/semantic-operation-graphs/workers/cognitive-ba-worker-lane.execute.sog.v1.json",
+                "candidateSchema": "contracts/schemas/business-analysis-candidate.schema.v1.json",
+                "candidatePolicy": "contracts/policies/provider-output-is-candidate-only.policy.v1.json",
+                "hardeningGate": "contracts/gates/business-analysis-hardening-required.gate.v1.json"
+              },
+              "semanticBody": {
+                "bodyKind": "semantic_operation_graph",
+                "bodyRef": "contracts/semantic-operation-graphs/workers/cognitive-ba-worker-lane.execute.sog.v1.json",
+                "hostLanguageBodyAllowed": false
+              },
+              "boundedInputs": [
+                "source story",
+                "source story hash",
+                "slice key",
+                "provider worker profiles",
+                "provider dispatch contracts"
+              ],
+              "boundedOutputs": [
+                "Business Analysis candidate",
+                "provider dispatch receipt",
+                "provider response receipt",
+                "provider invocation receipt",
+                "Business Analysis hardening receipt"
+              ],
+              "requiredWorkerCapabilities": [
+                "worker.gemini_flash.invoke.v1",
+                "worker.openai.responses.invoke.v1"
+              ],
+              "failurePosture": "Missing worker runtime binding blocks the lane before Business Analysis authority is created.",
+              "completionPosture": "This SEJ is reusable authority for the cognitive BA lane; provider I/O remains a conveyor worker boundary."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.cognitiveBaSejArtifact"
+        }
+      },
+      {
+        "id": "hashProviderOutputPolicy",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "contracts/policies/provider-output-is-candidate-only.policy.v1.json"
+        },
+        "output": {
+          "path": "$graph.providerOutputPolicyHash"
+        }
+      },
+      {
+        "id": "hashBusinessAnalysisCandidateSchema",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "contracts/schemas/business-analysis-candidate.schema.v1.json"
+        },
+        "output": {
+          "path": "$graph.businessAnalysisCandidateSchemaHash"
+        }
+      },
+      {
+        "id": "hashBusinessAnalysisHardeningGate",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "contracts/gates/business-analysis-hardening-required.gate.v1.json"
+        },
+        "output": {
+          "path": "$graph.businessAnalysisHardeningGateHash"
+        }
+      },
+      {
+        "id": "hashCognitiveBaSog",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "contracts/semantic-operation-graphs/workers/cognitive-ba-worker-lane.execute.sog.v1.json"
+        },
+        "output": {
+          "path": "$graph.cognitiveBaSogHash"
+        }
+      },
+      {
+        "id": "hashCognitiveBaSej",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "contracts/sej/cognitive-ba-worker-lane.execute.sej.v1.json"
+        },
+        "output": {
+          "path": "$graph.cognitiveBaSejHash"
+        }
+      },
+      {
+        "id": "materializeArtifactManifest",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize run-local manifest listing every generated contract artifact.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "artifactManifestPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.generated-contract-artifact-manifest.v1",
+              "status": "passed",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "sourceStory": {
+                "path": {
+                  "$graph": "runManifest.sourceStory.path"
+                },
+                "hash": {
+                  "$graph": "sourceStoryHash.hash"
+                }
+              },
+              "generatedContracts": [
+                {
+                  "path": "contracts/sej/cognitive-ba-worker-lane.execute.sej.v1.json",
+                  "hash": {
+                    "$graph": "cognitiveBaSejHash.hash"
+                  },
+                  "kind": "sej"
+                },
+                {
+                  "path": "contracts/semantic-operation-graphs/workers/cognitive-ba-worker-lane.execute.sog.v1.json",
+                  "hash": {
+                    "$graph": "cognitiveBaSogHash.hash"
+                  },
+                  "kind": "semantic_operation_graph"
+                },
+                {
+                  "path": "contracts/schemas/business-analysis-candidate.schema.v1.json",
+                  "hash": {
+                    "$graph": "businessAnalysisCandidateSchemaHash.hash"
+                  },
+                  "kind": "schema"
+                },
+                {
+                  "path": "contracts/gates/business-analysis-hardening-required.gate.v1.json",
+                  "hash": {
+                    "$graph": "businessAnalysisHardeningGateHash.hash"
+                  },
+                  "kind": "gate"
+                },
+                {
+                  "path": "contracts/policies/provider-output-is-candidate-only.policy.v1.json",
+                  "hash": {
+                    "$graph": "providerOutputPolicyHash.hash"
+                  },
+                  "kind": "policy"
+                }
+              ],
+              "noManualAssemblyRule": "contracts/gates/no-manual-assembly-rule.gate.v1.json",
+              "nextStepOwner": "Conveyor Worker Runtime"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.artifactManifest"
+        }
+      },
+      {
+        "id": "hashArtifactManifest",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "artifactManifestPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.artifactManifestHash"
+        }
+      },
+      {
+        "id": "emitMaterializationReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit receipt proving the contract cluster was materialized by the conveyor.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "materializationReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.cognitive-ba-lane-contract-materialization.receipt.v1",
+              "status": "passed",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "sourceStory": {
+                "path": {
+                  "$graph": "runManifest.sourceStory.path"
+                },
+                "hash": {
+                  "$graph": "sourceStoryHash.hash"
+                }
+              },
+              "artifactManifest": {
+                "path": {
+                  "$graph": "artifactManifestPath.path"
+                },
+                "hash": {
+                  "$graph": "artifactManifestHash.hash"
+                }
+              },
+              "generatedContracts": [
+                {
+                  "path": "contracts/sej/cognitive-ba-worker-lane.execute.sej.v1.json",
+                  "hash": {
+                    "$graph": "cognitiveBaSejHash.hash"
+                  }
+                },
+                {
+                  "path": "contracts/semantic-operation-graphs/workers/cognitive-ba-worker-lane.execute.sog.v1.json",
+                  "hash": {
+                    "$graph": "cognitiveBaSogHash.hash"
+                  }
+                },
+                {
+                  "path": "contracts/schemas/business-analysis-candidate.schema.v1.json",
+                  "hash": {
+                    "$graph": "businessAnalysisCandidateSchemaHash.hash"
+                  }
+                },
+                {
+                  "path": "contracts/gates/business-analysis-hardening-required.gate.v1.json",
+                  "hash": {
+                    "$graph": "businessAnalysisHardeningGateHash.hash"
+                  }
+                },
+                {
+                  "path": "contracts/policies/provider-output-is-candidate-only.policy.v1.json",
+                  "hash": {
+                    "$graph": "providerOutputPolicyHash.hash"
+                  }
+                }
+              ],
+              "contractAuthorityCreatedByConveyor": true,
+              "liveProviderInvoked": false,
+              "blockedRuntimeBoundary": "cognitive_worker_lane_not_executable",
+              "nextStepOwner": "Conveyor Worker Runtime"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.materializationReceipt"
+        }
+      },
+      {
+        "id": "materializeReviewPackageJson",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize JSON Review Package for the SEJ authoring proof.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "reviewJsonPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.review-package.v1",
+              "status": "accepted_for_review",
+              "questions": {
+                "whatDidYouBuild": "The conveyor wrote a reusable SEJ-native cognitive BA worker lane contract cluster.",
+                "whyDidYouBuildIt": "To prove SEJ can be authored by a conveyor run instead of hand-stitched by an agent.",
+                "howDoIUseIt": "Run story plan with a story and slice, then story implement with --target-kind cognitive-ba-lane.",
+                "didItPass": "Yes. The conveyor materialized the SEJ, SOG, schema, gate, policy, artifact manifest, and receipts.",
+                "whatEvidenceProvesIt": "The materialization receipt lists every generated contract path and hash.",
+                "whatIsStillBlocked": "The generated cognitive BA lane blocks until the conveyor worker runtime binds Gemini/OpenAI provider invocation."
+              },
+              "materializedOutputs": {
+                "sej": {
+                  "path": "contracts/sej/cognitive-ba-worker-lane.execute.sej.v1.json",
+                  "hash": {
+                    "$graph": "cognitiveBaSejHash.hash"
+                  }
+                },
+                "sog": {
+                  "path": "contracts/semantic-operation-graphs/workers/cognitive-ba-worker-lane.execute.sog.v1.json",
+                  "hash": {
+                    "$graph": "cognitiveBaSogHash.hash"
+                  }
+                },
+                "schema": {
+                  "path": "contracts/schemas/business-analysis-candidate.schema.v1.json",
+                  "hash": {
+                    "$graph": "businessAnalysisCandidateSchemaHash.hash"
+                  }
+                },
+                "gate": {
+                  "path": "contracts/gates/business-analysis-hardening-required.gate.v1.json",
+                  "hash": {
+                    "$graph": "businessAnalysisHardeningGateHash.hash"
+                  }
+                },
+                "policy": {
+                  "path": "contracts/policies/provider-output-is-candidate-only.policy.v1.json",
+                  "hash": {
+                    "$graph": "providerOutputPolicyHash.hash"
+                  }
+                }
+              },
+              "evidence": {
+                "sourceStory": {
+                  "path": {
+                    "$graph": "runManifest.sourceStory.path"
+                  },
+                  "hash": {
+                    "$graph": "sourceStoryHash.hash"
+                  }
+                },
+                "artifactManifest": {
+                  "path": {
+                    "$graph": "artifactManifestPath.path"
+                  },
+                  "hash": {
+                    "$graph": "artifactManifestHash.hash"
+                  }
+                },
+                "materializationReceipt": {
+                  "$graph": "materializationReceiptPath.path"
+                }
+              },
+              "acceptanceDecision": {
+                "status": "pending_product_owner_decision",
+                "acceptedForReview": true,
+                "acceptedForRelease": false
+              },
+              "nextStepOwner": "Conveyor Worker Runtime"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.reviewJson"
+        }
+      },
+      {
+        "id": "hashReviewJson",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "reviewJsonPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewJsonHash"
+        }
+      },
+      {
+        "id": "materializeReviewPackageMarkdown",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize Markdown Review Package for the SEJ authoring proof.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "reviewMarkdownPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "# Review Package",
+              "",
+              "Status: accepted_for_review",
+              "Next Step Owner: Conveyor Worker Runtime",
+              "",
+              "## What did you build?",
+              "",
+              "The conveyor wrote a reusable SEJ-native cognitive BA worker lane contract cluster.",
+              "",
+              "## Why did you build it?",
+              "",
+              "To prove SEJ can be authored by a conveyor run instead of hand-stitched by an agent.",
+              "",
+              "## How do I use it?",
+              "",
+              "1. node generated/cli/node/ndd.cjs story plan --text \"<story>\" --slice <slice> --run-date 2026/06/24",
+              "2. node generated/cli/node/ndd.cjs story implement --slice <slice> --target-kind cognitive-ba-lane",
+              "",
+              "## Did it pass?",
+              "",
+              "Yes. The conveyor materialized the SEJ, SOG, schema, gate, policy, artifact manifest, and receipts.",
+              "",
+              "## What evidence proves it?",
+              "",
+              "- Materialization receipt:",
+              {
+                "$graph": "materializationReceiptPath.path"
+              },
+              "- Artifact manifest:",
+              {
+                "$graph": "artifactManifestPath.path"
+              },
+              "- SEJ:",
+              "contracts/sej/cognitive-ba-worker-lane.execute.sej.v1.json",
+              "- SEJ hash:",
+              {
+                "$graph": "cognitiveBaSejHash.hash"
+              },
+              "- SOG:",
+              "contracts/semantic-operation-graphs/workers/cognitive-ba-worker-lane.execute.sog.v1.json",
+              "- SOG hash:",
+              {
+                "$graph": "cognitiveBaSogHash.hash"
+              },
+              "",
+              "## What is still blocked?",
+              "",
+              "The generated cognitive BA lane blocks until the conveyor worker runtime binds Gemini/OpenAI provider invocation.",
+              "",
+              "## Acceptance Decision",
+              "",
+              "Accepted for review: true",
+              "Accepted for release: false"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.reviewMarkdown"
+        }
+      },
+      {
+        "id": "hashReviewMarkdown",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "reviewMarkdownPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewMarkdownHash"
+        }
+      },
+      {
+        "id": "emitReviewReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit Review Package receipt.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "reviewReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.review-package.receipt.v1",
+              "status": "accepted_for_review",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "reviewPackageJson": {
+                "path": {
+                  "$graph": "reviewJsonPath.path"
+                },
+                "hash": {
+                  "$graph": "reviewJsonHash.hash"
+                }
+              },
+              "reviewPackageMarkdown": {
+                "path": {
+                  "$graph": "reviewMarkdownPath.path"
+                },
+                "hash": {
+                  "$graph": "reviewMarkdownHash.hash"
+                }
+              },
+              "materializationReceipt": {
+                "$graph": "materializationReceiptPath.path"
+              },
+              "nextStepOwner": "Conveyor Worker Runtime"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.reviewReceipt"
+        }
+      },
+      {
+        "id": "projectCommandResult",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project accepted-for-review command result.",
+        "input": {
+          "fields": {
+            "status": "accepted_for_review",
+            "sliceKey": {
+              "$graph": "runManifest.sliceKey"
+            },
+            "generatedContracts": {
+              "sej": "contracts/sej/cognitive-ba-worker-lane.execute.sej.v1.json",
+              "sog": "contracts/semantic-operation-graphs/workers/cognitive-ba-worker-lane.execute.sog.v1.json",
+              "schema": "contracts/schemas/business-analysis-candidate.schema.v1.json",
+              "gate": "contracts/gates/business-analysis-hardening-required.gate.v1.json",
+              "policy": "contracts/policies/provider-output-is-candidate-only.policy.v1.json"
+            },
+            "reviewPackage": {
+              "json": {
+                "$graph": "reviewJsonPath.path"
+              },
+              "markdown": {
+                "$graph": "reviewMarkdownPath.path"
+              },
+              "hash": {
+                "$graph": "reviewJsonHash.hash"
+              }
+            },
+            "materializationReceipt": {
+              "$graph": "materializationReceiptPath.path"
+            },
+            "nextStepOwner": "Conveyor Worker Runtime",
+            "completionPosture": "The conveyor wrote the SEJ-native cognitive BA lane contract cluster and left live provider invocation blocked at the worker-runtime boundary."
+          }
+        },
+        "output": {
+          "path": "$graph.commandResult"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "evidenceObligations": [
+    "source_story_loaded_from_bootstrap_manifest",
+    "reusable_sej_materialized_by_conveyor",
+    "reusable_sog_materialized_by_conveyor",
+    "business_analysis_candidate_schema_materialized",
+    "business_analysis_hardening_gate_materialized",
+    "provider_candidate_policy_materialized",
+    "generated_contracts_hashed",
+    "materialization_receipt_emitted",
+    "review_package_emitted"
+  ],
+  "forbiddenClaims": [
+    "agent hand-authored generated SEJ target",
+    "live provider was invoked by this proof",
+    "provider output grants Business Analysis authority",
+    "resolver owns provider invocation",
+    "generated lane creates product truth before worker runtime binding"
+  ],
+  "completionPosture": "This lane proves the conveyor can write reusable SEJ authority from a CLI story run while keeping provider invocation as a separate worker-runtime boundary."
+}

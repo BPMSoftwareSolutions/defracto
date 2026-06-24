@@ -1,0 +1,1 @@
+As a Defracto platform operator, I want the conveyor to create the SEJ-native cognitive BA worker lane, so that Build Setup can use live provider reasoning without manual assembly.
