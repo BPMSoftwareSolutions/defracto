@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.story_test_gemini_receipt_required.v1",
+  "gateTitle": "Story Test Gemini Receipt Required",
+  "gateStatus": "accepted",
+  "purpose": "Block `ndd story test` test-intent authority unless Gemini evidence and promoted story-plan authority exist.",
+  "appliesToCommands": [
+    "defracto.ndd.story.test.v1"
+  ],
+  "passConditions": [
+    "story test command is classified as cognitive_compile",
+    "Gemini invocation receipt exists and passed",
+    "story-plan authority promotion receipt exists and passed",
+    "test intent candidate traces to promoted story and criteria authority",
+    "generated test projection remains receipt-bound",
+    "red receipt is required before implementation"
+  ],
+  "blockConditions": [
+    "gemini_invocation_receipt_missing",
+    "candidate_authority_not_promoted",
+    "promoted_story_authority_missing",
+    "test_intent_authority_missing",
+    "deterministic_fallback_attempted",
+    "mock_ai_response_forbidden",
+    "red_test_receipt_missing"
+  ],
+  "fallbackAllowed": false,
+  "mockAllowed": false,
+  "staleResponseAllowed": false,
+  "deterministicReplayAllowedForCreation": false,
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Story test may not create new test intent authority from deterministic replay or unpromoted Gemini candidates."
+}

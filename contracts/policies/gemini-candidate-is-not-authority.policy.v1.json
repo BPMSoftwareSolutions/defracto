@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "defracto.policy.v1",
+  "policyKey": "defracto.policies.gemini_candidate_is_not_authority.v1",
+  "policyTitle": "Gemini Candidate Is Not Authority",
+  "policyStatus": "accepted",
+  "purpose": "Prevent live Gemini output from becoming story, criteria, test intent, implementation, or durable product authority without governed hardening.",
+  "law": "Gemini provides cognition. Gates grant authority.",
+  "candidateMay": [
+    "surface ambiguities",
+    "propose story packet shape",
+    "propose acceptance criteria",
+    "propose test intent",
+    "propose implementation behavior",
+    "emit candidate evidence"
+  ],
+  "candidateMayNot": [
+    "become canonical truth directly",
+    "create test intent authority directly",
+    "create implementation authority directly",
+    "override prior accepted criteria without review",
+    "claim durable product truth",
+    "bypass red before green",
+    "bypass SOG promotion"
+  ],
+  "requiresBeforePromotion": [
+    "Gemini invocation receipt",
+    "candidate hardening receipt",
+    "ambiguity disposition",
+    "source trace verification",
+    "expected result shape review",
+    "forbidden claim review"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Gemini output remains candidate evidence until a hardening receipt promotes specific authority."
+}

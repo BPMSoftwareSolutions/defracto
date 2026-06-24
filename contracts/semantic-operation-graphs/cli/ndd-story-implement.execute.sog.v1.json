@@ -1,0 +1,195 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.ndd-story-implement.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "declared-blocked-pending-promoted-story-authority",
+  "commandKey": "defracto.ndd.story.implement.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.ndd-story-implement.match-command.semantic-action.v1",
+      "capabilityKey": "cli.argv.match.v1",
+      "intent": "Match ndd story implement command boundary."
+    },
+    {
+      "actionKey": "defracto.ndd-story-implement.require-cognitive-evidence.semantic-action.v1",
+      "capabilityKey": "evidence.receipt.verify.v1",
+      "intent": "Require Gemini invocation and promoted story-plan authority."
+    },
+    {
+      "actionKey": "defracto.ndd-story-implement.require-red-green-boundary.semantic-action.v1",
+      "capabilityKey": "evidence.receipt.verify.v1",
+      "intent": "Require red before implementation and green after implementation."
+    },
+    {
+      "actionKey": "defracto.ndd-story-implement.require-proof-surface-posture.semantic-action.v1",
+      "capabilityKey": "evidence.receipt.verify.v1",
+      "intent": "Require generated implementation to remain proof surface only with SOG promotion blocked."
+    },
+    {
+      "actionKey": "defracto.ndd-story-implement.project-blocked-result.semantic-action.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Project blocked implementation result while authority is missing."
+    },
+    {
+      "actionKey": "defracto.ndd-story-implement.emit-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit story implement cognitive manifest receipt."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "match-story-implement-command",
+        "capabilityKey": "cli.argv.match.v1",
+        "intent": "Match ndd story implement command boundary.",
+        "input": {
+          "argv": {
+            "$context": "argv"
+          }
+        },
+        "output": {
+          "path": "$graph.command"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "unsupported_story_implement_command"
+        }
+      },
+      {
+        "id": "require-cognitive-evidence",
+        "capabilityKey": "evidence.receipt.verify.v1",
+        "intent": "Require Gemini invocation and promoted story-plan authority.",
+        "input": {
+          "gate": "contracts/gates/story-implement-gemini-receipt-required.gate.v1.json",
+          "requiredReceipts": [
+            "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json",
+            "evidence/cli/ndd-story-plan.authority-promotion.receipt.v1.json"
+          ],
+          "requiredPromotionStatus": "passed"
+        },
+        "output": {
+          "path": "$graph.cognitive_evidence"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "candidate_authority_not_promoted"
+        }
+      },
+      {
+        "id": "require-red-green-boundary",
+        "capabilityKey": "evidence.receipt.verify.v1",
+        "intent": "Require red before implementation and green after implementation.",
+        "input": {
+          "requiredReceipts": [
+            "evidence/tdd/story-slug.red-test.receipt.v1.json",
+            "evidence/tdd/story-slug.green-test.receipt.v1.json",
+            "evidence/tdd/story-slug.red-green-cycle.receipt.v1.json"
+          ],
+          "requiredGates": [
+            "contracts/gates/red-test-required.gate.v1.json",
+            "contracts/gates/green-test-required.gate.v1.json"
+          ]
+        },
+        "output": {
+          "path": "$graph.red_green_boundary"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "red_green_receipts_missing"
+        }
+      },
+      {
+        "id": "require-proof-surface-posture",
+        "capabilityKey": "evidence.receipt.verify.v1",
+        "intent": "Require generated implementation to remain proof surface only with SOG promotion blocked.",
+        "input": {
+          "requiredReceipts": [
+            "evidence/tdd/story-slug.red-green-conformance.receipt.v1.json",
+            "evidence/tdd/story-slug.sog-promotion-posture.receipt.v1.json"
+          ],
+          "requiredGates": [
+            "contracts/gates/tdd-proof-surface-not-product-truth.gate.v1.json",
+            "contracts/gates/sog-promotion-required-for-generated-implementation.gate.v1.json"
+          ]
+        },
+        "output": {
+          "path": "$graph.proof_surface_posture"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "sog_promotion_missing"
+        }
+      },
+      {
+        "id": "project-blocked-result",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project blocked implementation result while authority is missing.",
+        "input": {
+          "fields": {
+            "schemaVersion": {
+              "literal": "defracto.ndd-story-implement.command-result.v1"
+            },
+            "status": {
+              "literal": "blocked"
+            },
+            "blockedReasons": {
+              "literal": [
+                "candidate_authority_not_promoted",
+                "test_intent_authority_missing"
+              ]
+            },
+            "generatedImplementationPromotionStatus": {
+              "literal": "proof_surface_only"
+            },
+            "mustPromoteThrough": {
+              "literal": "semantic_operation_graph"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.blocked_result"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "story_implement_result_projection_failed"
+        }
+      },
+      {
+        "id": "emit-story-implement-receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit story implement cognitive manifest receipt.",
+        "input": {
+          "path": "evidence/cli/ndd-story-implement.cognitive-manifest.receipt.v1.json"
+        },
+        "output": {
+          "path": "$graph.emit_story_implement_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "story_implement_receipt_missing"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "emit_story_implement_receipt"
+    }
+  },
+  "evidenceObligations": [
+    "gemini_invocation_receipt_verified",
+    "promoted_story_authority_verified",
+    "test_intent_authority_verified",
+    "red_before_green_verified",
+    "implementation_proof_surface_only_verified",
+    "sog_promotion_required"
+  ],
+  "forbiddenClaims": [
+    "deterministic replay created implementation authority",
+    "implementation proposal without Gemini participation",
+    "green receipt without prior red receipt",
+    "generated implementation is durable product truth",
+    "SOG promotion skipped"
+  ]
+}

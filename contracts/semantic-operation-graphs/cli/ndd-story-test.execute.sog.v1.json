@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.ndd-story-test.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "declared-blocked-pending-promoted-story-authority",
+  "commandKey": "defracto.ndd.story.test.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.ndd-story-test.match-command.semantic-action.v1",
+      "capabilityKey": "cli.argv.match.v1",
+      "intent": "Match ndd story test command boundary."
+    },
+    {
+      "actionKey": "defracto.ndd-story-test.require-cognitive-evidence.semantic-action.v1",
+      "capabilityKey": "evidence.receipt.verify.v1",
+      "intent": "Require Gemini invocation and story-plan authority promotion receipts."
+    },
+    {
+      "actionKey": "defracto.ndd-story-test.require-test-projection-boundary.semantic-action.v1",
+      "capabilityKey": "evidence.receipt.verify.v1",
+      "intent": "Require generated test projection and red evidence before implementation."
+    },
+    {
+      "actionKey": "defracto.ndd-story-test.project-blocked-result.semantic-action.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Project blocked result while promoted authority is missing."
+    },
+    {
+      "actionKey": "defracto.ndd-story-test.emit-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit story test cognitive manifest receipt."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "match-story-test-command",
+        "capabilityKey": "cli.argv.match.v1",
+        "intent": "Match ndd story test command boundary.",
+        "input": {
+          "argv": {
+            "$context": "argv"
+          }
+        },
+        "output": {
+          "path": "$graph.command"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "unsupported_story_test_command"
+        }
+      },
+      {
+        "id": "require-cognitive-evidence",
+        "capabilityKey": "evidence.receipt.verify.v1",
+        "intent": "Require Gemini invocation and story-plan authority promotion receipts.",
+        "input": {
+          "gate": "contracts/gates/story-test-gemini-receipt-required.gate.v1.json",
+          "requiredReceipts": [
+            "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json",
+            "evidence/cli/ndd-story-plan.authority-promotion.receipt.v1.json"
+          ],
+          "requiredPromotionStatus": "passed"
+        },
+        "output": {
+          "path": "$graph.cognitive_evidence"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "candidate_authority_not_promoted"
+        }
+      },
+      {
+        "id": "require-test-projection-boundary",
+        "capabilityKey": "evidence.receipt.verify.v1",
+        "intent": "Require generated test projection and red evidence before implementation.",
+        "input": {
+          "requiredReceipts": [
+            "evidence/tdd/story-slug.generated-test.materialization.receipt.v1.json",
+            "evidence/tdd/story-slug.red-test.receipt.v1.json"
+          ],
+          "requiredGate": "contracts/gates/red-test-required.gate.v1.json"
+        },
+        "output": {
+          "path": "$graph.test_projection_boundary"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "red_test_receipt_missing"
+        }
+      },
+      {
+        "id": "project-blocked-result",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project blocked result while promoted authority is missing.",
+        "input": {
+          "fields": {
+            "schemaVersion": {
+              "literal": "defracto.ndd-story-test.command-result.v1"
+            },
+            "status": {
+              "literal": "blocked"
+            },
+            "blockedReasons": {
+              "literal": [
+                "candidate_authority_not_promoted",
+                "test_intent_authority_missing"
+              ]
+            },
+            "deterministicReplayAllowedForCreation": {
+              "literal": false
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.blocked_result"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "story_test_result_projection_failed"
+        }
+      },
+      {
+        "id": "emit-story-test-receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit story test cognitive manifest receipt.",
+        "input": {
+          "path": "evidence/cli/ndd-story-test.cognitive-manifest.receipt.v1.json"
+        },
+        "output": {
+          "path": "$graph.emit_story_test_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "story_test_receipt_missing"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "emit_story_test_receipt"
+    }
+  },
+  "evidenceObligations": [
+    "gemini_invocation_receipt_verified",
+    "promoted_story_authority_verified",
+    "test_intent_authority_traced",
+    "generated_test_projection_receipted",
+    "red_receipt_required"
+  ],
+  "forbiddenClaims": [
+    "deterministic replay created new test intent authority",
+    "unpromoted Gemini candidate became test intent authority",
+    "generated test projection exists without receipt",
+    "implementation can start without red receipt"
+  ]
+}

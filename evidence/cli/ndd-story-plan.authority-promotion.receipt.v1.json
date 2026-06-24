@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "defracto.story-plan-authority-promotion-receipt.v1",
+  "receiptKey": "defracto.receipt.ndd-story-plan.authority-promotion.slice-037.v1",
+  "status": "blocked",
+  "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+  "candidateHardeningReceipt": "evidence/workers/story-to-tdd.gemini-candidate-hardening.receipt.v1.json",
+  "candidateHardeningStatus": "blocked",
+  "promotedAuthority": {
+    "story": null,
+    "acceptanceCriteria": null,
+    "canonicalSpec": null,
+    "testIntent": null,
+    "implementationProposal": null
+  },
+  "existingFixtureAuthority": {
+    "classification": "fixture/replay/proof-surface seed",
+    "mayBeUsedForReplayVerification": true,
+    "mayBeTreatedAsLiveCandidatePromotion": false
+  },
+  "blockedReasons": [
+    "candidate_hardening_blocked",
+    "candidate_authority_not_promoted"
+  ],
+  "completionPosture": "No new story-plan authority is promoted from Gemini output in this slice; downstream cognitive manifests must require promoted authority before live execution."
+}

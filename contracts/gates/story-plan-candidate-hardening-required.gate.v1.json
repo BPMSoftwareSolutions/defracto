@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.story_plan_candidate_hardening_required.v1",
+  "gateTitle": "Story Plan Candidate Hardening Required",
+  "gateStatus": "accepted",
+  "purpose": "Block Gemini story-plan candidate promotion unless ambiguities, assumptions, source trace, expected result shapes, and forbidden claims are explicitly reviewed.",
+  "appliesToCommands": [
+    "defracto.ndd.story.plan.v1"
+  ],
+  "passConditions": [
+    "Gemini invocation receipt exists and passed",
+    "candidate artifacts trace to dispatch, response, and invocation hashes",
+    "all ambiguities are preserved with explicit disposition",
+    "unsupported punctuation behavior is accepted, rejected, or blocked explicitly",
+    "blocked return shape is accepted, rejected, or blocked explicitly",
+    "promoted authority contains no unreviewed Gemini claims",
+    "candidate-only flags are removed only after authority promotion receipt"
+  ],
+  "blockConditions": [
+    "candidate_source_trace_missing",
+    "candidate_ambiguity_unresolved",
+    "candidate_expected_result_shape_mismatch",
+    "candidate_forbidden_claim_unreviewed",
+    "candidate_test_intent_expands_criteria_without_authority",
+    "candidate_implementation_proposal_contains_host_language_code",
+    "candidate_promoted_without_hardening_receipt"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Gemini candidates are not authority until hardening receipts explicitly accept or block each ambiguity and promoted claim."
+}

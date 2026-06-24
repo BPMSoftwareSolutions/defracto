@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "defracto.run-manifest.v1",
+  "runKey": "defracto.run.slice-038-ndd-story-test-cognitive-manifest.v1",
+  "runKind": "story-test-cognitive-compile-manifest",
+  "sliceKey": "slice-037-039-story-plan-hardening-test-implement-cognitive-flow",
+  "objective": "Declare that ndd story test requires Gemini evidence and promoted story-plan authority before creating test intent authority.",
+  "commandKey": "defracto.ndd.story.test.v1",
+  "executeSej": "contracts/sej/ndd-story-test.execute.sej.v1.json",
+  "laneClassification": {
+    "laneMode": "cognitive_compile",
+    "aiWorkerRequired": true,
+    "requiredWorker": "defracto.workers.gemini_flash.v1",
+    "requiredInvocationCapability": "worker.gemini_flash.invoke.v1",
+    "fallbackAllowed": false,
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false
+  },
+  "requiredReceipts": [
+    "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json",
+    "evidence/cli/ndd-story-plan.authority-promotion.receipt.v1.json"
+  ],
+  "requiredGates": [
+    "contracts/gates/story-test-gemini-receipt-required.gate.v1.json",
+    "contracts/gates/red-test-required.gate.v1.json"
+  ],
+  "expectedCurrentPosture": {
+    "status": "blocked",
+    "reason": "story-plan candidate hardening is blocked and no promoted story-plan authority exists",
+    "testIntentAuthorityCreated": false
+  },
+  "completionPosture": "Story test cognitive manifest is declared, but live execution is blocked until promoted story-plan authority exists."
+}

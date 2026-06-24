@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.story-plan-candidate-hardening-receipt.v1",
+  "title": "Story Plan Candidate Hardening Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptKey",
+    "status",
+    "sourceHash",
+    "sliceKey",
+    "geminiEvidence",
+    "candidateArtifacts",
+    "ambiguityDisposition",
+    "authorityPromotion",
+    "blockedReasons",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.story-plan-candidate-hardening-receipt.v1"
+    },
+    "receiptKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "sourceHash": {
+      "type": "string"
+    },
+    "sliceKey": {
+      "type": "string"
+    },
+    "geminiEvidence": {
+      "type": "object"
+    },
+    "candidateArtifacts": {
+      "type": "object"
+    },
+    "ambiguityDisposition": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "authorityPromotion": {
+      "type": "object"
+    },
+    "blockedReasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

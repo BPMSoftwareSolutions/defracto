@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.ndd-story-test.execute.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "declared-blocked-pending-promoted-story-authority",
+  "toolKey": "defracto.conveyor.ndd-story-test",
+  "commandKey": "defracto.ndd.story.test.v1",
+  "sourceLineage": {
+    "commandContract": "contracts/cli/ndd-story-test.command.v1.json",
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/cli/ndd-story-test.execute.sog.v1.json",
+    "requiredGate": "contracts/gates/story-test-gemini-receipt-required.gate.v1.json"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/cli/ndd-story-test.execute.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "laneClassification": {
+    "laneMode": "cognitive_compile",
+    "aiWorkerRequired": true,
+    "requiredWorker": "defracto.workers.gemini_flash.v1",
+    "requiredInvocationCapability": "worker.gemini_flash.invoke.v1",
+    "fallbackAllowed": false,
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false
+  },
+  "failurePosture": "fail-closed",
+  "completionPosture": "ndd story test is blocked until Gemini-backed story-plan authority has been promoted and test intent authority can be generated through governed gates."
+}
