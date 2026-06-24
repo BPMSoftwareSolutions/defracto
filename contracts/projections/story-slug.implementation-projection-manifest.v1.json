@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "defracto.implementation-projection-manifest.v1",
+  "manifestKey": "defracto.user-stories.story-slug.implementation-projection-manifest.v1",
+  "manifestKind": "projected-node-implementation",
+  "manifestStatus": "draft-ready-for-slice-030-review",
+  "sourceTruth": "canonical_spec_and_test_intent",
+  "projectionKind": "generated_tdd_proof_surface",
+  "promotionStatus": "proof_surface_only",
+  "notPromotionValidAsDurableProductBehavior": true,
+  "mustPromoteThrough": "semantic_operation_graph",
+  "derivedFromCanonicalSpec": "defracto.user-stories.story-slug.canonical-spec.v1",
+  "derivedFromTestIntent": "defracto.user-stories.story-slug.test-intent.v1",
+  "requiredRedReceipt": {
+    "receiptPath": "evidence/tdd/story-slug.red-test.receipt.v1.json",
+    "testArtifactPath": "tests/generated/user-stories/story-slug.generated.test.js",
+    "testArtifactHash": "sha256:246299c26d138d78257f747c2554ba87687b511421bc2f0f27a49e6e0d2c6a7a",
+    "expectedFailureCode": "MODULE_NOT_FOUND",
+    "implementationArtifactExistedDuringRed": false
+  },
+  "projectedPath": "generated/implementations/user-stories/story-slug.cjs",
+  "sourceLineage": {
+    "sourcePath": "source/user-stories/story-slug.source.v1.md",
+    "storyKey": "stories/user-stories/story-slug.story.v1.json",
+    "acceptanceCriteriaKey": "contracts/acceptance-criteria/story-slug.acceptance-criteria.v1.json",
+    "canonicalSpecKey": "specs/canonical/user-stories/story-slug.canonical-spec.v1.json",
+    "testIntentKey": "contracts/test-intents/story-slug.test-intent.v1.json",
+    "generatedTestReceipt": "evidence/tdd/story-slug.generated-test.materialization.receipt.v1.json",
+    "redTestReceipt": "evidence/tdd/story-slug.red-test.receipt.v1.json"
+  },
+  "generatedImplementation": {
+    "status": "future",
+    "generationMode": "resolver-materialization",
+    "generationAuthority": "canonical-spec-test-intent-and-red-receipt",
+    "materializationSej": "contracts/sej/materialize-story-slug-generated-implementation.sej.v1.json",
+    "receiptPath": "evidence/tdd/story-slug.generated-implementation.materialization.receipt.v1.json"
+  },
+  "allowedResponsibilities": [
+    "project slug behavior named by canonical spec into a generated proof-surface implementation",
+    "satisfy the generated test artifact hash recorded in the red receipt",
+    "return exact blocked shape for empty input",
+    "remain subordinate to semantic operation graph promotion"
+  ],
+  "forbiddenResponsibilities": [
+    "hand-authored implementation code",
+    "durable product behavior claim",
+    "criteria invention",
+    "test mutation",
+    "green claim without red receipt",
+    "write outside declared implementation target",
+    "resolver repository change"
+  ],
+  "completionPosture": "This manifest authorizes a future generated implementation proof surface only; green evidence does not promote the implementation to durable product truth."
+}

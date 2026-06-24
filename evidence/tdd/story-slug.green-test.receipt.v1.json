@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "defracto.test-execution-receipt.v1",
+  "receiptKey": "defracto.receipt.story-slug.green-test.slice-030.v1",
+  "status": "passed",
+  "testPhase": "green",
+  "command": [
+    "node",
+    "--test",
+    "tests/generated/user-stories/story-slug.generated.test.js"
+  ],
+  "targetArtifactPath": "tests/generated/user-stories/story-slug.generated.test.js",
+  "targetArtifactHash": "sha256:246299c26d138d78257f747c2554ba87687b511421bc2f0f27a49e6e0d2c6a7a",
+  "implementationArtifactPath": "generated/implementations/user-stories/story-slug.cjs",
+  "implementationArtifactHash": "sha256:d9fdcb9780fecee2b4049ab8620911cceec90d70d22b961c505fd891599992b8",
+  "implementationMaterializationReceipt": "evidence/tdd/story-slug.generated-implementation.materialization.receipt.v1.json",
+  "criteriaKeys": [
+    "story-slug.lowercase-ascii",
+    "story-slug.whitespace-to-hyphen",
+    "story-slug.remove-punctuation",
+    "story-slug.collapse-hyphens",
+    "story-slug.empty-input-blocked"
+  ],
+  "startedAt": "2026-06-24T00:00:00-04:00",
+  "completedAt": "2026-06-24T00:00:00-04:00",
+  "exitCode": 0,
+  "result": {
+    "expectedGreen": true,
+    "testSummary": {
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "passedTestNames": [
+      "story-slug.test.lowercase-and-whitespace covers lowercase ASCII and whitespace replacement",
+      "story-slug.test.remove-punctuation covers unsupported punctuation removal",
+      "story-slug.test.collapse-hyphens covers repeated hyphen collapse",
+      "story-slug.test.empty-input-blocked covers exact empty input blocker"
+    ],
+    "implementationArtifactExists": true,
+    "sameGeneratedTestArtifactAsRed": true,
+    "redReceiptRequiredBeforeGreen": "evidence/tdd/story-slug.red-test.receipt.v1.json"
+  },
+  "stdoutHash": "sha256:4fa2eb8b2ae83f3afba04a31834b4187434ef9051e8bf2d19eddb3df5be7286f",
+  "stderrHash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "sourceTruth": "canonical_spec_and_test_intent",
+  "projectionKind": "generated_tdd_proof_surface",
+  "promotionStatus": "proof_surface_only",
+  "notPromotionValidAsDurableProductBehavior": true,
+  "mustPromoteThrough": "semantic_operation_graph",
+  "blockedReasons": []
+}

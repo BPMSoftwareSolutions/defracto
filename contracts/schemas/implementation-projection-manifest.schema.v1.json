@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.implementation-projection-manifest.v1",
+  "title": "Implementation Projection Manifest",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "manifestKey",
+    "manifestKind",
+    "manifestStatus",
+    "sourceTruth",
+    "projectionKind",
+    "promotionStatus",
+    "notPromotionValidAsDurableProductBehavior",
+    "mustPromoteThrough",
+    "derivedFromCanonicalSpec",
+    "derivedFromTestIntent",
+    "requiredRedReceipt",
+    "projectedPath",
+    "sourceLineage",
+    "generatedImplementation",
+    "allowedResponsibilities",
+    "forbiddenResponsibilities",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.implementation-projection-manifest.v1"
+    },
+    "manifestKey": {
+      "type": "string"
+    },
+    "manifestKind": {
+      "type": "string"
+    },
+    "manifestStatus": {
+      "type": "string"
+    },
+    "sourceTruth": {
+      "type": "string"
+    },
+    "projectionKind": {
+      "type": "string"
+    },
+    "promotionStatus": {
+      "type": "string"
+    },
+    "notPromotionValidAsDurableProductBehavior": {
+      "type": "boolean",
+      "const": true
+    },
+    "mustPromoteThrough": {
+      "type": "string"
+    },
+    "derivedFromCanonicalSpec": {
+      "type": "string"
+    },
+    "derivedFromTestIntent": {
+      "type": "string"
+    },
+    "requiredRedReceipt": {
+      "type": "object"
+    },
+    "projectedPath": {
+      "type": "string"
+    },
+    "sourceLineage": {
+      "type": "object"
+    },
+    "generatedImplementation": {
+      "type": "object"
+    },
+    "allowedResponsibilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenResponsibilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

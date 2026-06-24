@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "defracto.red-green-cycle-receipt.v1",
+  "receiptKey": "defracto.receipt.story-slug.red-green-cycle.slice-030.v1",
+  "status": "passed",
+  "storyKey": "stories/user-stories/story-slug.story.v1.json",
+  "canonicalSpec": "specs/canonical/user-stories/story-slug.canonical-spec.v1.json",
+  "testIntent": "contracts/test-intents/story-slug.test-intent.v1.json",
+  "testArtifact": {
+    "path": "tests/generated/user-stories/story-slug.generated.test.js",
+    "hash": "sha256:246299c26d138d78257f747c2554ba87687b511421bc2f0f27a49e6e0d2c6a7a",
+    "sameArtifactUsedForRedAndGreen": true
+  },
+  "red": {
+    "receiptPath": "evidence/tdd/story-slug.red-test.receipt.v1.json",
+    "receiptHash": "sha256:851b47dc550767eb9b4ff002e59ce33b0237f7906504a258d7cd39e66be145f2",
+    "exitCode": 1,
+    "failureCode": "MODULE_NOT_FOUND",
+    "implementationArtifactExistedDuringRed": false,
+    "completedBeforeImplementationMaterialization": true
+  },
+  "implementation": {
+    "projectionManifest": "contracts/projections/story-slug.implementation-projection-manifest.v1.json",
+    "materializationSej": "contracts/sej/materialize-story-slug-generated-implementation.sej.v1.json",
+    "materializationSejHash": "sha256:b63e9e07331fcb9ad0ff28709680b12e0aa35748565e0db1d02c56a456d6de40",
+    "materializationReceiptPath": "evidence/tdd/story-slug.generated-implementation.materialization.receipt.v1.json",
+    "materializationReceiptHash": "sha256:0441d7d8bc63c1b0cdee6127828d6e3d201fe5a4f44e669c2d1edf009c754347",
+    "artifactPath": "generated/implementations/user-stories/story-slug.cjs",
+    "artifactHash": "sha256:d9fdcb9780fecee2b4049ab8620911cceec90d70d22b961c505fd891599992b8",
+    "materializedAfterRed": true
+  },
+  "green": {
+    "receiptPath": "evidence/tdd/story-slug.green-test.receipt.v1.json",
+    "receiptHash": "sha256:06fc050058b22b2e96180cf495216755917fd64185ae302c009a8704a682d203",
+    "exitCode": 0,
+    "tests": 4,
+    "pass": 4,
+    "fail": 0,
+    "ranAfterImplementationMaterialization": true
+  },
+  "gates": {
+    "redReceiptExistsBeforeGreenReceipt": true,
+    "sameGeneratedTestArtifactHashFromSlice029": true,
+    "sameCommandUsedForRedAndGreen": true,
+    "implementationTargetMissingDuringRed": true,
+    "implementationMaterializationHappenedAfterRed": true,
+    "greenTestPassedAfterImplementationProjection": true,
+    "noHandAuthoredImplementationCodeObserved": true,
+    "resolverRepositoryChangeRequired": false
+  },
+  "command": [
+    "node",
+    "--test",
+    "tests/generated/user-stories/story-slug.generated.test.js"
+  ],
+  "sourceTruth": "canonical_spec_and_test_intent",
+  "projectionKind": "generated_tdd_proof_surface",
+  "promotionStatus": "proof_surface_only",
+  "notPromotionValidAsDurableProductBehavior": true,
+  "mustPromoteThrough": "semantic_operation_graph",
+  "completionPosture": "This receipt proves the generated test went red before the generated implementation proof surface went green; it does not promote the implementation to durable product behavior."
+}
