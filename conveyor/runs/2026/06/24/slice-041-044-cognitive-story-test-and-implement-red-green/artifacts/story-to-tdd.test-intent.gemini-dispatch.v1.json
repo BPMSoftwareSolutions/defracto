@@ -1,0 +1,39 @@
+﻿{
+    "schemaVersion":  "defracto.gemini-story-to-tdd-dispatch.v1",
+    "dispatchKey":  "defracto.dispatch.story-to-tdd.gemini.story-test.slice-041.v1",
+    "runKey":  "defracto.run.slice-041-044-cognitive-story-test-and-implement-red-green.v1",
+    "sliceKey":  "slice-041-044-cognitive-story-test-and-implement-red-green",
+    "laneKey":  "story-to-tdd.gemini.story-test",
+    "laneMode":  "cognitive_compile",
+    "commandKey":  "defracto.ndd.story.test.v1",
+    "workerKey":  "defracto.workers.gemini_flash.story_to_tdd.v1",
+    "sourceArtifact":  "source/user-stories/story-slug.source.v1.md",
+    "sourceHash":  "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+    "requestedCognitiveTasks":  [
+                                    "test intent generation",
+                                    "criteria coverage review",
+                                    "extra test quarantine review"
+                                ],
+    "acceptedCriteriaKeys":  [
+                                 "story-slug.lowercase-ascii",
+                                 "story-slug.whitespace-to-hyphen",
+                                 "story-slug.remove-punctuation",
+                                 "story-slug.collapse-hyphens",
+                                 "story-slug.empty-input-blocked",
+                                 "story-slug.no-hand-authored-code"
+                             ],
+    "candidateOutputTargets":  [
+                                   "conveyor\\runs\\2026\\06\\24\\slice-041-044-cognitive-story-test-and-implement-red-green\\candidates/story-slug.cognitive-test-intent.candidate.v1.json"
+                               ],
+    "forbiddenMutation":  [
+                              "product source mutation",
+                              "test file materialization",
+                              "implementation materialization",
+                              "durable product truth promotion"
+                          ],
+    "acceptanceGates":  [
+                            "contracts/gates/story-test-gemini-receipt-required.gate.v1.json",
+                            "contracts/gates/acceptance-criteria-trace-required.gate.v1.json"
+                        ],
+    "receiptPath":  "evidence/workers/story-to-tdd.test-intent.gemini-invocation.receipt.v1.json"
+}

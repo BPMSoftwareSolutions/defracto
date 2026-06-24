@@ -1,0 +1,75 @@
+﻿[
+    {
+        "testCaseKey":  "story-title-simple-case",
+        "criteriaKeys":  [
+                             "story-slug.lowercase-ascii",
+                             "story-slug.whitespace-to-hyphen"
+                         ],
+        "canonicalPaths":  [
+                               "story-slug.canonical.v1"
+                           ],
+        "input":  {
+                      "storyTitle":  "Story Title"
+                  },
+        "expected":  {
+                         "status":  "passed",
+                         "slugKey":  "story-title"
+                     },
+        "candidateOnly":  true
+    },
+    {
+        "testCaseKey":  "story-title-with-punctuation",
+        "criteriaKeys":  [
+                             "story-slug.lowercase-ascii",
+                             "story-slug.whitespace-to-hyphen",
+                             "story-slug.remove-punctuation"
+                         ],
+        "canonicalPaths":  [
+                               "story-slug.canonical.v1"
+                           ],
+        "input":  {
+                      "storyTitle":  "Story: Title!"
+                  },
+        "expected":  {
+                         "status":  "passed",
+                         "slugKey":  "story-title"
+                     },
+        "candidateOnly":  true
+    },
+    {
+        "testCaseKey":  "story-title-with-repeated-hyphens",
+        "criteriaKeys":  [
+                             "story-slug.lowercase-ascii",
+                             "story-slug.whitespace-to-hyphen",
+                             "story-slug.collapse-hyphens"
+                         ],
+        "canonicalPaths":  [
+                               "story-slug.canonical.v1"
+                           ],
+        "input":  {
+                      "storyTitle":  "Story -- Title"
+                  },
+        "expected":  {
+                         "status":  "passed",
+                         "slugKey":  "story-title"
+                     },
+        "candidateOnly":  true
+    },
+    {
+        "testCaseKey":  "story-title-whitespace-only-blocked",
+        "criteriaKeys":  [
+                             "story-slug.empty-input-blocked"
+                         ],
+        "canonicalPaths":  [
+                               "story-slug.canonical.v1"
+                           ],
+        "input":  {
+                      "storyTitle":  "   "
+                  },
+        "expected":  {
+                         "status":  "blocked",
+                         "blocker":  "empty_slug_input"
+                     },
+        "candidateOnly":  true
+    }
+]

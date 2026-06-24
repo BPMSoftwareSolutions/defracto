@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "defracto.ndd-story-implement-readiness-receipt.v1",
+  "receiptKey": "defracto.receipt.ndd-story-implement.readiness.slice-040.v1",
+  "status": "blocked-until-test-intent-and-red-evidence",
+  "authorityPromotionReceipt": "evidence/cli/ndd-story-plan.authority-promotion.receipt.v2.json",
+  "storyAuthorityAvailable": true,
+  "criteriaAuthorityAvailable": true,
+  "canonicalSpecAuthorityAvailable": true,
+  "testIntentAuthorityAvailable": false,
+  "redEvidenceAvailableForLiveCognitivePath": false,
+  "implementationAuthorityAvailable": false,
+  "durableProductTruthAccepted": false,
+  "requiredNextStep": "run ndd story test cognitive lane before story implement",
+  "completionPosture": "Story implement remains blocked until cognitive test intent authority and red evidence exist."
+}

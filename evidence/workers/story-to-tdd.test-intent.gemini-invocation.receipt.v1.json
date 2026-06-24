@@ -1,0 +1,45 @@
+﻿{
+    "schemaVersion":  "defracto.gemini-invocation-receipt.v1",
+    "receiptKey":  "defracto.receipt.story-to-tdd.test-intent.gemini-invocation.slice-041.v1",
+    "status":  "passed",
+    "worker":  "defracto.workers.gemini_flash.v1",
+    "invocationCapability":  "worker.gemini_flash.invoke.v1",
+    "laneMode":  "cognitive_compile",
+    "commandKey":  "defracto.ndd.story.test.v1",
+    "sourceHash":  "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+    "sliceKey":  "slice-041-044-cognitive-story-test-and-implement-red-green",
+    "dispatchPacket":  {
+                           "path":  "conveyor\\runs\\2026\\06\\24\\slice-041-044-cognitive-story-test-and-implement-red-green\\artifacts\\story-to-tdd.test-intent.gemini-dispatch.v1.json",
+                           "status":  "passed",
+                           "hash":  "sha256:ea276282a632c26246ed109033a697b3b70e6bd2766cabc6597728bece1eca8f"
+                       },
+    "responsePacket":  {
+                           "path":  "conveyor\\runs\\2026\\06\\24\\slice-041-044-cognitive-story-test-and-implement-red-green\\artifacts\\story-to-tdd.test-intent.gemini-response.v1.json",
+                           "missingFields":  [
+
+                                             ],
+                           "status":  "passed",
+                           "hash":  "sha256:583d97dbc8b27212736d6091f644ee2860b268591bdfaf57917cc32201f9e8e8"
+                       },
+    "freshness":  {
+                      "status":  "passed",
+                      "sourceHashMatches":  true,
+                      "sliceKeyMatches":  true
+                  },
+    "gateResults":  {
+                        "extraTestProposalsBlocked":  false,
+                        "candidateOnlyUntilAccepted":  true,
+                        "criteriaCoverageAccepted":  true,
+                        "freshnessAccepted":  true,
+                        "deterministicFallbackAttempted":  false,
+                        "responseShapeAccepted":  true,
+                        "liveProviderExecuted":  true,
+                        "mockResponseUsed":  false
+                    },
+    "blockedReasons":  [],
+    "hardeningNotes":  [
+                           "Raw candidate used candidateTestIntent as an array.",
+                           "Raw candidate used storyTitle input keys.",
+                           "Hardening normalized to accepted title input shape and exact canonical paths without adding criteria."
+                       ]
+}

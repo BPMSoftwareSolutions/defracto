@@ -1,0 +1,31 @@
+﻿{
+    "schemaVersion":  "defracto.gemini-invocation-receipt.v1",
+    "receiptKey":  "defracto.receipt.story-to-tdd.implementation.gemini-invocation.slice-043.v1",
+    "status":  "blocked",
+    "worker":  "defracto.workers.gemini_flash.v1",
+    "invocationCapability":  "worker.gemini_flash.invoke.v1",
+    "laneMode":  "cognitive_compile",
+    "commandKey":  "defracto.ndd.story.implement.v1",
+    "sourceHash":  "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+    "sliceKey":  "slice-041-044-cognitive-story-test-and-implement-red-green",
+    "dispatchPacket":  {
+                           "path":  "conveyor\\runs\\2026\\06\\24\\slice-041-044-cognitive-story-test-and-implement-red-green\\artifacts\\story-to-tdd.implementation.gemini-dispatch.v1.json",
+                           "status":  "passed",
+                           "hash":  "sha256:78e3150315c9ac9b0a95213508623228def96e80908e7fa45fc51f27449fb7f6"
+                       },
+    "responsePacket":  {
+                           "providerError":  "The remote server returned an error: (503) Server Unavailable.",
+                           "status":  "missing"
+                       },
+    "freshness":  {
+                      "status":  "not-evaluated"
+                  },
+    "gateResults":  {
+                        "deterministicFallbackAttempted":  false,
+                        "liveProviderExecuted":  false,
+                        "mockResponseUsed":  false
+                    },
+    "blockedReasons":  [
+                           "gemini_response_missing"
+                       ]
+}

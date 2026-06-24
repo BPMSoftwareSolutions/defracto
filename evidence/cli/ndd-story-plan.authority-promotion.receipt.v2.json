@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "defracto.story-plan-authority-promotion-receipt.v1",
+  "receiptKey": "defracto.receipt.ndd-story-plan.authority-promotion.slice-040.v2",
+  "status": "passed",
+  "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+  "candidateHardeningReceipt": "evidence/workers/story-to-tdd.gemini-candidate-hardening.receipt.v1.json",
+  "ambiguityResolutionReceipt": "evidence/workers/story-to-tdd.gemini-candidate-ambiguity-resolution.receipt.v1.json",
+  "geminiResponse": {
+    "path": "conveyor/runs/2026/06/24/slice-036-ndd-story-plan-live-gemini-proof/artifacts/story-to-tdd.gemini-response.v1.json",
+    "hash": "sha256:2642f2fbed46fc737545c2e4388f7981960935e77831f8445f44af5e8fb7f01d",
+    "role": "candidate evidence only"
+  },
+  "promotedAuthority": {
+    "story": "stories/user-stories/story-slug.story.v1.json",
+    "acceptanceCriteria": "contracts/acceptance-criteria/story-slug.acceptance-criteria.v1.json",
+    "canonicalSpec": "specs/canonical/user-stories/story-slug.canonical-spec.v1.json",
+    "testIntent": null,
+    "implementationProposal": null
+  },
+  "promotionScope": {
+    "storyAuthorityPromoted": true,
+    "criteriaAuthorityPromoted": true,
+    "canonicalSpecAuthorityPromoted": true,
+    "testIntentAuthorityPromoted": false,
+    "implementationAuthorityPromoted": false,
+    "extraGeminiTestsPromoted": false,
+    "geminiOnlyClaimsPromoted": false
+  },
+  "resolvedBlockers": [
+    "candidate_ambiguity_unresolved",
+    "candidate_expected_result_shape_mismatch",
+    "candidate_test_intent_expands_criteria_without_authority"
+  ],
+  "remainingBlockedScopes": [
+    "test intent promotion requires story test cognitive lane",
+    "implementation proposal promotion requires story implement cognitive lane",
+    "durable product truth requires SOG promotion"
+  ],
+  "completionPosture": "Story, criteria, and canonical spec authority are promoted by explicit ambiguity decisions. Test intent and implementation authority remain unpromoted."
+}

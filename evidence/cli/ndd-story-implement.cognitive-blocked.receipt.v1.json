@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "defracto.ndd-story-implement-cognitive-blocked-receipt.v1",
+  "receiptKey": "defracto.receipt.ndd-story-implement.cognitive-blocked.slice-043.v1",
+  "status": "blocked",
+  "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+  "sliceKey": "slice-041-044-cognitive-story-test-and-implement-red-green",
+  "implementationGeminiInvocation": {
+    "path": "evidence/workers/story-to-tdd.implementation.gemini-invocation.receipt.v1.json",
+    "hash": "sha256:5e10936f2127ecc8d509291400b9766a01a030f1f89d078141d62ed462dccd4a",
+    "status": "blocked",
+    "blockedReasons": [
+      "gemini_response_missing"
+    ]
+  },
+  "priorRed": {
+    "receiptPath": "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json",
+    "receiptHash": "sha256:fa72a7e84307c5198b7c2bdeb307b4470c8a3e9466ce4604002432ea42973a80",
+    "existsBeforeImplementation": true
+  },
+  "implementation": {
+    "authorityPromoted": false,
+    "artifactPath": "generated/implementations/user-stories/story-slug.cognitive.cjs",
+    "artifactExists": false,
+    "materializationReceiptExists": false
+  },
+  "green": {
+    "greenReceiptCreated": false,
+    "redGreenCycleReceiptCreated": false
+  },
+  "gateResults": {
+    "geminiRanForImplementationProposal": false,
+    "deterministicFallbackAttempted": false,
+    "mockResponseUsed": false,
+    "implementationMaterializedWithoutGemini": false,
+    "greenExistsWithoutRed": false,
+    "durableProductTruthAccepted": false,
+    "sogPromotionRequired": true
+  },
+  "blockedReasons": [
+    "gemini_response_missing"
+  ],
+  "completionPosture": "Story implement remains blocked because the live Gemini implementation proposal lane did not return a response; no implementation or green evidence was created."
+}

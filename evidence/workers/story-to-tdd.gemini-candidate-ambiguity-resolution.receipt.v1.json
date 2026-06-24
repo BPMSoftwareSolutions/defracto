@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "defracto.gemini-candidate-ambiguity-resolution-receipt.v1",
+  "receiptKey": "defracto.receipt.story-to-tdd.gemini-candidate-ambiguity-resolution.slice-040.v1",
+  "status": "passed",
+  "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+  "sliceKey": "slice-040-story-plan-candidate-ambiguity-resolution",
+  "policy": "contracts/policies/story-plan-ambiguity-resolution.policy.v1.json",
+  "inputs": {
+    "geminiResponse": {
+      "path": "conveyor/runs/2026/06/24/slice-036-ndd-story-plan-live-gemini-proof/artifacts/story-to-tdd.gemini-response.v1.json",
+      "hash": "sha256:2642f2fbed46fc737545c2e4388f7981960935e77831f8445f44af5e8fb7f01d"
+    },
+    "hardeningReceipt": {
+      "path": "evidence/workers/story-to-tdd.gemini-candidate-hardening.receipt.v1.json",
+      "status": "blocked"
+    },
+    "existingFixtureAuthority": [
+      "stories/user-stories/story-slug.story.v1.json",
+      "contracts/acceptance-criteria/story-slug.acceptance-criteria.v1.json",
+      "specs/canonical/user-stories/story-slug.canonical-spec.v1.json",
+      "contracts/test-intents/story-slug.test-intent.v1.json"
+    ]
+  },
+  "decisions": [
+    {
+      "ambiguityKey": "unsupported-punctuation-definition",
+      "candidateClaim": "only lowercase ASCII letters and hyphens are permitted",
+      "decision": "rejected_for_promotion",
+      "resolved": true,
+      "promotedAuthorityEffect": "Keep accepted criterion: unsupported punctuation is removed for covered story examples. Do not promote broader digit/non-ASCII exclusion."
+    },
+    {
+      "ambiguityKey": "blocked-return-type",
+      "candidateClaim": "blocked is represented by string literal",
+      "decision": "rejected_and_replaced_with_canonical_shape",
+      "resolved": true,
+      "promotedAuthorityEffect": {
+        "status": "blocked",
+        "blocker": "empty_slug_input"
+      }
+    },
+    {
+      "ambiguityKey": "test-intent-expansion",
+      "candidateClaim": "additional tests for digits, non-ASCII letters, symbols, and numeric-only titles",
+      "decision": "quarantined_as_proposals",
+      "resolved": true,
+      "promotedAuthorityEffect": "No extra tests become test intent authority without future acceptance criteria hardening."
+    }
+  ],
+  "remainingBlockers": [],
+  "completionPosture": "All Slice 037 hardening blockers are resolved by explicit policy decisions; only already-governed authority may be promoted."
+}

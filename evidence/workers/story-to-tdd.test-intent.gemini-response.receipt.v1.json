@@ -1,0 +1,17 @@
+﻿{
+    "schemaVersion":  "defracto.gemini-response-receipt.v1",
+    "receiptKey":  "defracto.receipt.story-to-tdd.test-intent.gemini-response.slice-041.v1",
+    "status":  "passed",
+    "workerKey":  "defracto.workers.gemini_flash.story_to_tdd.v1",
+    "laneMode":  "cognitive_compile",
+    "responseArtifact":  "conveyor\\runs\\2026\\06\\24\\slice-041-044-cognitive-story-test-and-implement-red-green\\artifacts\\story-to-tdd.test-intent.gemini-response.v1.json",
+    "responseHash":  "sha256:583d97dbc8b27212736d6091f644ee2860b268591bdfaf57917cc32201f9e8e8",
+    "candidateArtifact":  "conveyor\\runs\\2026\\06\\24\\slice-041-044-cognitive-story-test-and-implement-red-green\\candidates\\story-slug.cognitive-test-intent.candidate.v1.json",
+    "candidateHash":  "sha256:a3d6083ac0b5d50a983c32edef740d9a4d23d66fc6828afb8bddc62bfd83fbab",
+    "sourceHash":  "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+    "sliceKey":  "slice-041-044-cognitive-story-test-and-implement-red-green",
+    "candidateOnlyUntilAccepted":  true,
+    "hardeningRequired":  true,
+    "hardeningReason":  "Gemini returned candidateTestIntent as an array and used storyTitle input keys; hardening normalizes to promoted authority shape without adding criteria.",
+    "completedAt":  "2026-06-24T12:08:00.7683272Z"
+}

@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "defracto.test-intent.v1",
+  "testIntentKey": "defracto.user-stories.story-slug.cognitive-test-intent.v1",
+  "derivedFromCanonicalSpec": "defracto.user-stories.story-slug.canonical-spec.v1",
+  "derivedFromAcceptanceCriteria": "defracto.user-stories.story-slug.acceptance-criteria.v1",
+  "derivedFromGeminiInvocation": "evidence/workers/story-to-tdd.test-intent.gemini-invocation.receipt.v1.json",
+  "hardeningReceipt": "evidence/workers/story-to-tdd.test-intent-hardening.receipt.v1.json",
+  "targetRunner": "node:test",
+  "targetArtifactPath": "tests/generated/user-stories/story-slug.cognitive.generated.test.js",
+  "implementationArtifactPath": "generated/implementations/user-stories/story-slug.cognitive.cjs",
+  "testCases": [
+    {
+      "testCaseKey": "story-slug.cognitive.test.lowercase-and-whitespace",
+      "criteriaKeys": [
+        "story-slug.lowercase-ascii",
+        "story-slug.whitespace-to-hyphen"
+      ],
+      "canonicalPaths": [
+        "$.storySlug.rules.lowercaseAscii",
+        "$.storySlug.rules.whitespaceToHyphen"
+      ],
+      "input": {
+        "title": "Story Title"
+      },
+      "expected": {
+        "status": "passed",
+        "slugKey": "story-title"
+      },
+      "status": "accepted-for-projection"
+    },
+    {
+      "testCaseKey": "story-slug.cognitive.test.remove-punctuation",
+      "criteriaKeys": [
+        "story-slug.remove-punctuation"
+      ],
+      "canonicalPaths": [
+        "$.storySlug.rules.removeUnsupportedPunctuation"
+      ],
+      "input": {
+        "title": "Story: Title!"
+      },
+      "expected": {
+        "status": "passed",
+        "slugKey": "story-title"
+      },
+      "status": "accepted-for-projection"
+    },
+    {
+      "testCaseKey": "story-slug.cognitive.test.collapse-hyphens",
+      "criteriaKeys": [
+        "story-slug.collapse-hyphens"
+      ],
+      "canonicalPaths": [
+        "$.storySlug.rules.collapseRepeatedHyphens"
+      ],
+      "input": {
+        "title": "Story -- Title"
+      },
+      "expected": {
+        "status": "passed",
+        "slugKey": "story-title"
+      },
+      "status": "accepted-for-projection"
+    },
+    {
+      "testCaseKey": "story-slug.cognitive.test.empty-input-blocked",
+      "criteriaKeys": [
+        "story-slug.empty-input-blocked"
+      ],
+      "canonicalPaths": [
+        "$.storySlug.failures.emptyInput"
+      ],
+      "input": {
+        "title": "   "
+      },
+      "expected": {
+        "status": "blocked",
+        "blocker": "empty_slug_input"
+      },
+      "status": "accepted-for-projection"
+    }
+  ],
+  "coverage": {
+    "allPromotedTestsMapToAcceptedCriteria": true,
+    "extraGeminiTestsPromoted": false,
+    "criteriaKeysCovered": [
+      "story-slug.lowercase-ascii",
+      "story-slug.whitespace-to-hyphen",
+      "story-slug.remove-punctuation",
+      "story-slug.collapse-hyphens",
+      "story-slug.empty-input-blocked"
+    ]
+  },
+  "forbiddenClaims": [
+    "test source is hand-authored",
+    "extra Gemini tests became authority",
+    "implementation is authorized before red evidence",
+    "durable product truth"
+  ],
+  "status": "accepted-for-cognitive-test-projection"
+}

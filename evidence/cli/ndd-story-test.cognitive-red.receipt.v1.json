@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "defracto.ndd-story-test-cognitive-red-receipt.v1",
+  "receiptKey": "defracto.receipt.ndd-story-test.cognitive-red.slice-041-042.v1",
+  "status": "passed",
+  "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+  "sliceKey": "slice-041-044-cognitive-story-test-and-implement-red-green",
+  "storyAuthorityPromotion": "evidence/cli/ndd-story-plan.authority-promotion.receipt.v2.json",
+  "testIntentGeminiInvocation": {
+    "path": "evidence/workers/story-to-tdd.test-intent.gemini-invocation.receipt.v1.json",
+    "hash": "sha256:6490494f0fab88bbdce555d955165678765036b300b28aed5e83c5a286f335fa",
+    "status": "passed"
+  },
+  "testIntentHardening": {
+    "path": "evidence/workers/story-to-tdd.test-intent-hardening.receipt.v1.json",
+    "hash": "sha256:1e562c4b5f45be3f178c377c022a9e59351367278b7bdaacf96375572f288364",
+    "status": "passed"
+  },
+  "promotedTestIntent": {
+    "path": "contracts/test-intents/story-slug.cognitive-test-intent.v1.json",
+    "hash": "sha256:eb5cc763f7282ec5735f9f3c54c080c6a1929c1d2350face4ffecbfa9ab463ee",
+    "extraGeminiTestsPromoted": false
+  },
+  "generatedTest": {
+    "path": "tests/generated/user-stories/story-slug.cognitive.generated.test.js",
+    "hash": "sha256:cc56c2aea3d030818fc64509e21624e21506f29b0da1a21c62307c7ca932a5c8",
+    "materializationReceipt": "evidence/tdd/story-slug.cognitive-generated-test.materialization.receipt.v1.json",
+    "materializationReceiptHash": "sha256:db922fcf39c0c48f9d9f8d529f794ae9ce521c0fc4880e8a62b4eb7184a02f9d"
+  },
+  "red": {
+    "receiptPath": "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json",
+    "receiptHash": "sha256:fa72a7e84307c5198b7c2bdeb307b4470c8a3e9466ce4604002432ea42973a80",
+    "exitCode": 1,
+    "expectedFailureReason": "missing cognitive implementation module",
+    "implementationArtifactExistedBeforeRed": false
+  },
+  "gateResults": {
+    "geminiRanForTestIntent": true,
+    "allPromotedTestsMapToAcceptedCriteria": true,
+    "deterministicReplayCreatedTestIntentAuthority": false,
+    "generatedTestProjectionReceiptBound": true,
+    "redReceiptCreatedBeforeImplementation": true
+  },
+  "completionPosture": "Cognitive story test reached promoted test intent, generated test materialization, and red evidence before implementation."
+}

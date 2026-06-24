@@ -1,0 +1,100 @@
+﻿{
+    "schemaVersion":  "defracto.gemini-story-test-intent-response.v1",
+    "responseKey":  "defracto.response.story-to-tdd.gemini.story-test.slice-041.v1",
+    "status":  "candidate",
+    "workerKey":  "defracto.workers.gemini_flash.story_to_tdd.v1",
+    "dispatchKey":  "defracto.dispatch.story-to-tdd.gemini.story-test.slice-041.v1",
+    "sourceHash":  "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+    "sliceKey":  "slice-041-044-cognitive-story-test-and-implement-red-green",
+    "candidateTestIntent":  [
+                                {
+                                    "testCaseKey":  "story-title-simple-case",
+                                    "criteriaKeys":  [
+                                                         "story-slug.lowercase-ascii",
+                                                         "story-slug.whitespace-to-hyphen"
+                                                     ],
+                                    "canonicalPaths":  [
+                                                           "story-slug.canonical.v1"
+                                                       ],
+                                    "input":  {
+                                                  "storyTitle":  "Story Title"
+                                              },
+                                    "expected":  {
+                                                     "status":  "passed",
+                                                     "slugKey":  "story-title"
+                                                 },
+                                    "candidateOnly":  true
+                                },
+                                {
+                                    "testCaseKey":  "story-title-with-punctuation",
+                                    "criteriaKeys":  [
+                                                         "story-slug.lowercase-ascii",
+                                                         "story-slug.whitespace-to-hyphen",
+                                                         "story-slug.remove-punctuation"
+                                                     ],
+                                    "canonicalPaths":  [
+                                                           "story-slug.canonical.v1"
+                                                       ],
+                                    "input":  {
+                                                  "storyTitle":  "Story: Title!"
+                                              },
+                                    "expected":  {
+                                                     "status":  "passed",
+                                                     "slugKey":  "story-title"
+                                                 },
+                                    "candidateOnly":  true
+                                },
+                                {
+                                    "testCaseKey":  "story-title-with-repeated-hyphens",
+                                    "criteriaKeys":  [
+                                                         "story-slug.lowercase-ascii",
+                                                         "story-slug.whitespace-to-hyphen",
+                                                         "story-slug.collapse-hyphens"
+                                                     ],
+                                    "canonicalPaths":  [
+                                                           "story-slug.canonical.v1"
+                                                       ],
+                                    "input":  {
+                                                  "storyTitle":  "Story -- Title"
+                                              },
+                                    "expected":  {
+                                                     "status":  "passed",
+                                                     "slugKey":  "story-title"
+                                                 },
+                                    "candidateOnly":  true
+                                },
+                                {
+                                    "testCaseKey":  "story-title-whitespace-only-blocked",
+                                    "criteriaKeys":  [
+                                                         "story-slug.empty-input-blocked"
+                                                     ],
+                                    "canonicalPaths":  [
+                                                           "story-slug.canonical.v1"
+                                                       ],
+                                    "input":  {
+                                                  "storyTitle":  "   "
+                                              },
+                                    "expected":  {
+                                                     "status":  "blocked",
+                                                     "blocker":  "empty_slug_input"
+                                                 },
+                                    "candidateOnly":  true
+                                }
+                            ],
+    "criteriaCoverage":  [
+                             "story-slug.lowercase-ascii",
+                             "story-slug.whitespace-to-hyphen",
+                             "story-slug.remove-punctuation",
+                             "story-slug.collapse-hyphens",
+                             "story-slug.empty-input-blocked"
+                         ],
+    "extraTestProposals":  [
+
+                           ],
+    "forbiddenClaims":  [
+                            "deterministic fallback success",
+                            "mock response success",
+                            "durable product truth"
+                        ],
+    "acceptanceRequired":  true
+}

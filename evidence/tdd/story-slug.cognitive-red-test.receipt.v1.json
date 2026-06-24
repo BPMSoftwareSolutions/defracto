@@ -1,0 +1,49 @@
+﻿{
+    "schemaVersion":  "defracto.test-execution-receipt.v1",
+    "receiptKey":  "defracto.receipt.story-slug.cognitive-red-test.slice-042.v1",
+    "status":  "failed",
+    "testPhase":  "red",
+    "command":  [
+                    "node",
+                    "--test",
+                    "tests/generated/user-stories/story-slug.cognitive.generated.test.js"
+                ],
+    "targetArtifactPath":  "tests/generated/user-stories/story-slug.cognitive.generated.test.js",
+    "targetArtifactHash":  "sha256:cc56c2aea3d030818fc64509e21624e21506f29b0da1a21c62307c7ca932a5c8",
+    "implementationArtifactPath":  "generated/implementations/user-stories/story-slug.cognitive.cjs",
+    "criteriaKeys":  [
+                         "story-slug.lowercase-ascii",
+                         "story-slug.whitespace-to-hyphen",
+                         "story-slug.remove-punctuation",
+                         "story-slug.collapse-hyphens",
+                         "story-slug.empty-input-blocked"
+                     ],
+    "startedAt":  "2026-06-24T00:00:00-04:00",
+    "completedAt":  "2026-06-24T00:00:00-04:00",
+    "exitCode":  1,
+    "result":  {
+                   "expectedFailureReason":  "missing cognitive implementation module",
+                   "expectedRed":  true,
+                   "implementationArtifactExists":  false,
+                   "failedTestNames":  [
+                                           "story-slug.cognitive.test.lowercase-and-whitespace maps accepted lowercase and whitespace criteria",
+                                           "story-slug.cognitive.test.remove-punctuation maps accepted punctuation criterion",
+                                           "story-slug.cognitive.test.collapse-hyphens maps accepted repeated hyphen criterion",
+                                           "story-slug.cognitive.test.empty-input-blocked maps exact blocked result shape"
+                                       ],
+                   "failureCode":  "MODULE_NOT_FOUND",
+                   "testSummary":  {
+                                       "todo":  0,
+                                       "fail":  4,
+                                       "pass":  0,
+                                       "tests":  4,
+                                       "skipped":  0,
+                                       "cancelled":  0
+                                   }
+               },
+    "stdoutHash":  "sha256:be97f5f66eec69f733c77070a87cdac1fd7f42f6786bf499225ec1e7b2635c17",
+    "stderrHash":  "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "blockedReasons":  [
+
+                       ]
+}

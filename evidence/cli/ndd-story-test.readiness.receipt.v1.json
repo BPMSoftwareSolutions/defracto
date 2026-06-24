@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "defracto.ndd-story-test-readiness-receipt.v1",
+  "receiptKey": "defracto.receipt.ndd-story-test.readiness.slice-040.v1",
+  "status": "ready-for-test-intent-cognitive-lane",
+  "priorStatus": "blocked-by-missing-story-authority",
+  "authorityPromotionReceipt": "evidence/cli/ndd-story-plan.authority-promotion.receipt.v2.json",
+  "storyAuthorityAvailable": true,
+  "criteriaAuthorityAvailable": true,
+  "canonicalSpecAuthorityAvailable": true,
+  "testIntentAuthorityAvailable": false,
+  "requiredNextStep": "run ndd story test cognitive lane with Gemini evidence and promoted story authority",
+  "deterministicReplayAllowedForCreation": false,
+  "completionPosture": "Story test may now proceed to cognitive test-intent generation; it may not use deterministic replay to create new test authority."
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "defracto.test-projection-manifest.v1",
+  "manifestKey": "defracto.user-stories.story-slug.cognitive-node-test-projection-manifest.v1",
+  "manifestKind": "projected-node-test",
+  "manifestStatus": "accepted-for-materialization",
+  "derivedFromTestIntent": "defracto.user-stories.story-slug.cognitive-test-intent.v1",
+  "targetRunner": "node:test",
+  "projectedPath": "tests/generated/user-stories/story-slug.cognitive.generated.test.js",
+  "implementationTargetPath": "generated/implementations/user-stories/story-slug.cognitive.cjs",
+  "materializationSej": "contracts/sej/materialize-story-slug-cognitive-generated-test.sej.v1.json",
+  "criteriaKeys": [
+    "story-slug.lowercase-ascii",
+    "story-slug.whitespace-to-hyphen",
+    "story-slug.remove-punctuation",
+    "story-slug.collapse-hyphens",
+    "story-slug.empty-input-blocked"
+  ],
+  "forbiddenResponsibilities": [
+    "hand-authored test code",
+    "implementation materialization",
+    "extra criteria invention"
+  ],
+  "completionPosture": "Cognitive generated test may be materialized only from promoted cognitive test intent authority."
+}

@@ -1,0 +1,13 @@
+﻿{
+    "schemaVersion":  "defracto.gemini-dispatch-receipt.v1",
+    "receiptKey":  "defracto.receipt.story-to-tdd.test-intent.gemini-dispatch.slice-041.v1",
+    "status":  "passed",
+    "workerKey":  "defracto.workers.gemini_flash.story_to_tdd.v1",
+    "laneMode":  "cognitive_compile",
+    "dispatchArtifact":  "conveyor\\runs\\2026\\06\\24\\slice-041-044-cognitive-story-test-and-implement-red-green\\artifacts\\story-to-tdd.test-intent.gemini-dispatch.v1.json",
+    "dispatchHash":  "sha256:ea276282a632c26246ed109033a697b3b70e6bd2766cabc6597728bece1eca8f",
+    "sourceHash":  "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+    "sliceKey":  "slice-041-044-cognitive-story-test-and-implement-red-green",
+    "secretMaterialRecorded":  false,
+    "completedAt":  "2026-06-24T12:08:00.7683272Z"
+}

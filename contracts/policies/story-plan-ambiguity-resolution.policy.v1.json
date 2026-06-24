@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "defracto.policy.v1",
+  "policyKey": "defracto.policies.story_plan_ambiguity_resolution.v1",
+  "policyTitle": "Story Plan Ambiguity Resolution",
+  "policyStatus": "accepted",
+  "purpose": "Resolve story-plan candidate ambiguity before any Gemini candidate can become governed Story-to-TDD authority.",
+  "decisions": [
+    {
+      "decisionKey": "story-slug.unsupported-punctuation-scope.v1",
+      "ambiguityKey": "unsupported-punctuation-definition",
+      "decision": "For the story-slug cognitive path, promoted authority remains limited to the accepted criteria examples and canonical rule that unsupported punctuation is removed. Gemini's stricter claim that only lowercase ASCII letters and hyphens are permitted, excluding digits and all non-ASCII letters, is not promoted in this slice.",
+      "authorityEffect": "candidate assumption rejected for promotion",
+      "requiresFutureCriteriaForExpansion": true
+    },
+    {
+      "decisionKey": "story-slug.blocked-result-shape.v1",
+      "ambiguityKey": "blocked-return-type",
+      "decision": "The exact blocked result shape is { \"status\": \"blocked\", \"blocker\": \"empty_slug_input\" }.",
+      "authorityEffect": "object shape accepted; Gemini string literal rejected",
+      "requiresFutureCriteriaForExpansion": false
+    },
+    {
+      "decisionKey": "story-slug.extra-test-proposals.v1",
+      "ambiguityKey": "test-intent-expansion",
+      "decision": "Gemini may propose extra test cases, but extra criteria or expanded behavioral scope cannot become authority unless explicitly promoted through acceptance criteria hardening.",
+      "authorityEffect": "extra tests quarantined as proposals",
+      "requiresFutureCriteriaForExpansion": true
+    }
+  ],
+  "forbids": [
+    "promoting Gemini-only character set assumptions",
+    "promoting string blocked result shape",
+    "promoting extra test cases as criteria without acceptance hardening",
+    "overwriting fixture/replay proof authority without an authority promotion receipt"
+  ],
+  "completionPosture": "Ambiguity decisions may promote only the already-governed authority surface; Gemini expansions remain quarantined until separately accepted."
+}

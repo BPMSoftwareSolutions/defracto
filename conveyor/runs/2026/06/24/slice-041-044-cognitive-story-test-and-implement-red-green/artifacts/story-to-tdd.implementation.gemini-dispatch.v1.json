@@ -1,0 +1,29 @@
+﻿{
+    "schemaVersion":  "defracto.gemini-story-to-tdd-dispatch.v1",
+    "dispatchKey":  "defracto.dispatch.story-to-tdd.gemini.story-implement.slice-043.v1",
+    "runKey":  "defracto.run.slice-041-044-cognitive-story-test-and-implement-red-green.v1",
+    "sliceKey":  "slice-041-044-cognitive-story-test-and-implement-red-green",
+    "laneKey":  "story-to-tdd.gemini.story-implement",
+    "laneMode":  "cognitive_compile",
+    "commandKey":  "defracto.ndd.story.implement.v1",
+    "workerKey":  "defracto.workers.gemini_flash.story_to_tdd.v1",
+    "sourceArtifact":  "source/user-stories/story-slug.source.v1.md",
+    "sourceHash":  "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+    "testIntent":  "contracts/test-intents/story-slug.cognitive-test-intent.v1.json",
+    "redReceipt":  "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json",
+    "redReceiptHash":  "sha256:fa72a7e84307c5198b7c2bdeb307b4470c8a3e9466ce4604002432ea42973a80",
+    "generatedTestHash":  "sha256:cc56c2aea3d030818fc64509e21624e21506f29b0da1a21c62307c7ca932a5c8",
+    "requestedCognitiveTasks":  [
+                                    "implementation proposal",
+                                    "projection scope review",
+                                    "proof surface posture review"
+                                ],
+    "candidateOutputTargets":  [
+                                   "conveyor\\runs\\2026\\06\\24\\slice-041-044-cognitive-story-test-and-implement-red-green\\candidates/story-slug.cognitive-implementation-proposal.candidate.v1.json"
+                               ],
+    "forbiddenMutation":  [
+                              "product source mutation",
+                              "durable product truth promotion",
+                              "write outside generated/implementations/user-stories/story-slug.cognitive.cjs"
+                          ]
+}
