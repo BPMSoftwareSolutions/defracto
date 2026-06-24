@@ -5,11 +5,15 @@
   "contractStatus": "ready-for-resolver",
   "toolKey": "defracto.ndd-cli",
   "sourceLineage": {
-    "semanticOperationGraph": "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json"
+    "semanticOperationGraph": "contracts/semantic-operation-graphs/cli/ndd-cli.route-dispatch.execute.sog.v1.json",
+    "routeTargets": [
+      "contracts/semantic-operation-graphs/cli/ndd-stress-run.execute.sog.v1.json",
+      "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json"
+    ]
   },
   "semanticBody": {
     "bodyKind": "semantic_operation_graph",
-    "bodyRef": "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json",
+    "bodyRef": "contracts/semantic-operation-graphs/cli/ndd-cli.route-dispatch.execute.sog.v1.json",
     "hostLanguageBodyAllowed": false
   },
   "steps": [
@@ -19,7 +23,7 @@
       "operation": "semantic.operation_graph.execute.v1",
       "payload": {
         "graphRef": {
-          "$inline": "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json"
+          "$inline": "contracts/semantic-operation-graphs/cli/ndd-cli.route-dispatch.execute.sog.v1.json"
         },
         "context": {
           "argv": {

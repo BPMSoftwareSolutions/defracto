@@ -1,0 +1,376 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.ndd-cli.route-dispatch.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-resolver",
+  "commandKey": "defracto.ndd-cli.route-dispatch.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.ndd-cli.select-route-contract.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Select the declared route contract from argv without executing non-selected branches."
+    },
+    {
+      "actionKey": "defracto.ndd-cli.execute-selected-route.v1",
+      "capabilityKey": "resolve.contract.v1",
+      "intent": "Delegate to the selected route contract through the resolver."
+    },
+    {
+      "actionKey": "defracto.ndd-cli.project-selected-route-result.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Return the selected route result as the CLI result."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "selectRouteContract",
+        "capabilityKey": "project.value.v1",
+        "intent": "Select stress, conveyor, or fail-closed unsupported route contract.",
+        "input": {
+          "fields": {
+            "routeKey": {
+              "when": {
+                "allOf": [
+                  {
+                    "equals": [
+                      "$context.argv.0",
+                      {
+                        "literal": "stress"
+                      }
+                    ]
+                  },
+                  {
+                    "equals": [
+                      "$context.argv.1",
+                      {
+                        "literal": "run"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "then": {
+                "literal": "stress_run"
+              },
+              "else": {
+                "when": {
+                  "anyOf": [
+                    {
+                      "allOf": [
+                        {
+                          "equals": [
+                            "$context.argv.0",
+                            {
+                              "literal": "conveyor"
+                            }
+                          ]
+                        },
+                        {
+                          "equals": [
+                            "$context.argv.1",
+                            {
+                              "literal": "run"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "equals": [
+                            "$context.argv.0",
+                            {
+                              "literal": "handoff"
+                            }
+                          ]
+                        },
+                        {
+                          "equals": [
+                            "$context.argv.1",
+                            {
+                              "literal": "run"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "then": {
+                  "literal": "conveyor_run"
+                },
+                "else": {
+                  "literal": "unsupported"
+                }
+              }
+            },
+            "contract": {
+              "when": {
+                "allOf": [
+                  {
+                    "equals": [
+                      "$context.argv.0",
+                      {
+                        "literal": "stress"
+                      }
+                    ]
+                  },
+                  {
+                    "equals": [
+                      "$context.argv.1",
+                      {
+                        "literal": "run"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "then": {
+                "literal": {
+                  "schemaVersion": "defracto.sej-contract.v1",
+                  "contractKey": "defracto.sej.ndd-cli.route.stress-run.v1",
+                  "contractKind": "semantic-executable-json",
+                  "contractStatus": "ready-for-resolver",
+                  "toolKey": "defracto.ndd-cli",
+                  "semanticBody": {
+                    "bodyKind": "semantic_operation_graph",
+                    "bodyRef": "contracts/semantic-operation-graphs/cli/ndd-stress-run.execute.sog.v1.json",
+                    "hostLanguageBodyAllowed": false
+                  },
+                  "steps": [
+                    {
+                      "id": "executeStressRunGraph",
+                      "type": "resolver",
+                      "operation": "semantic.operation_graph.execute.v1",
+                      "payload": {
+                        "graphRef": {
+                          "$inline": "contracts/semantic-operation-graphs/cli/ndd-stress-run.execute.sog.v1.json"
+                        },
+                        "context": {
+                          "argv": "$input.argv",
+                          "payload": "$input"
+                        }
+                      }
+                    }
+                  ],
+                  "return": {
+                    "type": "step",
+                    "ref": "$steps.executeStressRunGraph"
+                  },
+                  "completionPosture": "The stress run route delegates to the declared stress-lab SEJ/SOG path through the resolver."
+                }
+              },
+              "else": {
+                "when": {
+                  "anyOf": [
+                    {
+                      "allOf": [
+                        {
+                          "equals": [
+                            "$context.argv.0",
+                            {
+                              "literal": "conveyor"
+                            }
+                          ]
+                        },
+                        {
+                          "equals": [
+                            "$context.argv.1",
+                            {
+                              "literal": "run"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "equals": [
+                            "$context.argv.0",
+                            {
+                              "literal": "handoff"
+                            }
+                          ]
+                        },
+                        {
+                          "equals": [
+                            "$context.argv.1",
+                            {
+                              "literal": "run"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "then": {
+                  "literal": {
+                    "schemaVersion": "defracto.sej-contract.v1",
+                    "contractKey": "defracto.sej.ndd-cli.route.conveyor-run.v1",
+                    "contractKind": "semantic-executable-json",
+                    "contractStatus": "ready-for-resolver",
+                    "toolKey": "defracto.ndd-cli",
+                    "semanticBody": {
+                      "bodyKind": "semantic_operation_graph",
+                      "bodyRef": "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json",
+                      "hostLanguageBodyAllowed": false
+                    },
+                    "steps": [
+                      {
+                        "id": "executeConveyorRunGraph",
+                        "type": "resolver",
+                        "operation": "semantic.operation_graph.execute.v1",
+                        "payload": {
+                          "graphRef": {
+                            "$inline": "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json"
+                          },
+                          "context": {
+                            "argv": "$input.argv",
+                            "payload": "$input"
+                          }
+                        }
+                      }
+                    ],
+                    "return": {
+                      "type": "step",
+                      "ref": "$steps.executeConveyorRunGraph"
+                    },
+                    "completionPosture": "Existing conveyor and handoff run routes continue to delegate to the declared conveyor-run graph."
+                  }
+                },
+                "else": {
+                  "literal": {
+                    "schemaVersion": "defracto.sej-contract.v1",
+                    "contractKey": "defracto.sej.ndd-cli.route.unsupported.v1",
+                    "contractKind": "semantic-executable-json",
+                    "contractStatus": "ready-for-resolver",
+                    "toolKey": "defracto.ndd-cli",
+                    "semanticBody": {
+                      "bodyKind": "semantic_operation_graph",
+                      "bodyRef": "inline.unsupported-command-blocker",
+                      "hostLanguageBodyAllowed": false
+                    },
+                    "steps": [
+                      {
+                        "id": "blockUnsupportedCommand",
+                        "type": "resolver",
+                        "operation": "semantic.operation_graph.execute.v1",
+                        "payload": {
+                          "graphRef": {
+                            "schemaVersion": "loc.semantic-operation-graph.v1",
+                            "objectKind": "sej_code_body",
+                            "objectKey": "defracto.ndd-cli.unsupported-command-blocker.sog.v1",
+                            "sourceTruth": "sej_semantic_body",
+                            "status": "ready-for-resolver",
+                            "commandKey": "defracto.ndd-cli.unsupported.v1",
+                            "bodyKind": "semantic_operation_graph",
+                            "hostLanguageBodyAllowed": false,
+                            "semanticActions": [
+                              {
+                                "actionKey": "defracto.ndd-cli.unsupported.block.v1",
+                                "capabilityKey": "cli.argv.match.v1",
+                                "intent": "Block unsupported CLI argv through the resolver matcher."
+                              }
+                            ],
+                            "graph": {
+                              "steps": [
+                                {
+                                  "id": "blockUnsupportedArgv",
+                                  "capabilityKey": "cli.argv.match.v1",
+                                  "input": {
+                                    "argv": {
+                                      "$context": "argv"
+                                    },
+                                    "patterns": []
+                                  },
+                                  "output": {
+                                    "path": "$graph.blocker"
+                                  }
+                                }
+                              ],
+                              "return": {
+                                "$result": true
+                              }
+                            }
+                          },
+                          "context": {
+                            "argv": "$input.argv"
+                          }
+                        }
+                      }
+                    ],
+                    "return": {
+                      "type": "step",
+                      "ref": "$steps.blockUnsupportedCommand"
+                    },
+                    "completionPosture": "Unsupported command routes block closed through the resolver CLI matcher."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.route"
+        }
+      },
+      {
+        "id": "executeSelectedRoute",
+        "capabilityKey": "resolve.contract.v1",
+        "intent": "Execute the selected route contract only.",
+        "input": {
+          "contract": {
+            "literal": {
+              "$graph": "route.contract"
+            }
+          },
+          "input": {
+            "argv": {
+              "$context": "argv"
+            }
+          },
+          "options": {
+            "literal": {}
+          }
+        },
+        "output": {
+          "path": "$graph.routeResult"
+        }
+      },
+      {
+        "id": "projectRouteResult",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project the selected route result as the top-level CLI result.",
+        "input": {
+          "$graph": "routeResult.result"
+        },
+        "output": {
+          "path": "$graph.commandResult"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "evidenceObligations": [
+    "route_contract_selected_from_argv",
+    "stress_run_delegates_to_stress_sej",
+    "conveyor_and_handoff_routes_delegate_to_conveyor_run_graph",
+    "unsupported_routes_block_closed"
+  ],
+  "forbiddenClaims": [
+    "host-language CLI routing",
+    "executing non-selected route branches",
+    "stress runner implemented outside SEJ",
+    "unsupported stress subcommand falls through silently"
+  ],
+  "completionPosture": "The top-level NDD CLI route dispatch graph delegates current command routes through resolver-selected JSON contracts."
+}
