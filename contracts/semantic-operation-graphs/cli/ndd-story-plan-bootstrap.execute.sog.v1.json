@@ -1,0 +1,348 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.ndd-story-plan-bootstrap.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "blocked-pending-run-envelope-path-projection",
+  "commandKey": "defracto.ndd.story.plan.bootstrap.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.ndd-story-plan-bootstrap.match-command.semantic-action.v1",
+      "capabilityKey": "cli.argv.match.v1",
+      "intent": "Match story plan bootstrap command."
+    },
+    {
+      "actionKey": "defracto.ndd-story-plan-bootstrap.project-run-envelope-paths.semantic-action.v1",
+      "capabilityKey": "run.envelope.paths.project.v1",
+      "intent": "Project bounded run envelope paths from slice and run root facts."
+    },
+    {
+      "actionKey": "defracto.ndd-story-plan-bootstrap.materialize-run-evidence.semantic-action.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize only run evidence artifacts after paths are projected."
+    },
+    {
+      "actionKey": "defracto.ndd-story-plan-bootstrap.hash-run-evidence.semantic-action.v1",
+      "capabilityKey": "hash.compute.v1",
+      "intent": "Hash bootstrap run evidence artifacts."
+    },
+    {
+      "actionKey": "defracto.ndd-story-plan-bootstrap.emit-bootstrap-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit story run bootstrap receipt."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "matchStoryPlanCommand",
+        "capabilityKey": "cli.argv.match.v1",
+        "intent": "Match ndd story plan --text or --source with a required slice key.",
+        "input": {
+          "argv": {
+            "$context": "argv"
+          },
+          "patterns": [
+            {
+              "commandKey": "defracto.ndd.story.plan.bootstrap.v1",
+              "tokens": [
+                "story",
+                "plan"
+              ],
+              "options": [
+                {
+                  "name": "text",
+                  "required": false
+                },
+                {
+                  "name": "source",
+                  "required": false
+                },
+                {
+                  "name": "slice",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        "output": {
+          "path": "$graph.command"
+        }
+      },
+      {
+        "id": "projectRunEnvelopePaths",
+        "capabilityKey": "run.envelope.paths.project.v1",
+        "intent": "Project safe run envelope paths without materializing files.",
+        "input": {
+          "sliceKey": {
+            "$graph": "command.options.slice"
+          },
+          "runDate": {
+            "$context": "runDate"
+          },
+          "runRoot": {
+            "$context": "runRoot"
+          },
+          "allowedRoot": {
+            "$context": "allowedRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.runEnvelopePaths"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "run_envelope_path_projection_missing"
+        }
+      },
+      {
+        "id": "materializeSourceStory",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize source story as run evidence only.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "runEnvelopePaths.paths.sourceStoryPath"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "content": [
+              {
+                "$graph": "command.options.text"
+              }
+            ],
+            "joinWith": ""
+          }
+        },
+        "output": {
+          "path": "$graph.sourceStoryArtifact"
+        }
+      },
+      {
+        "id": "materializeStoryIntakePacket",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize first handoff packet as run evidence only.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "runEnvelopePaths.paths.handoffPacketPath"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
+              "packetKind": "story_intake",
+              "stageSequenceIndex": 1,
+              "authorityStatus": "source_captured",
+              "sourceKind": "operator_cli_text",
+              "storyText": {
+                "$graph": "command.options.text"
+              },
+              "durableAuthorityCreated": false
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.storyIntakePacket"
+        }
+      },
+      {
+        "id": "hashSourceStory",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runEnvelopePaths.paths.sourceStoryPath"
+          }
+        },
+        "output": {
+          "path": "$graph.sourceStoryHash"
+        }
+      },
+      {
+        "id": "hashStoryIntakePacket",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runEnvelopePaths.paths.handoffPacketPath"
+          }
+        },
+        "output": {
+          "path": "$graph.storyIntakePacketHash"
+        }
+      },
+      {
+        "id": "materializeRunManifest",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize minimal run manifest as run evidence only.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "runEnvelopePaths.paths.runManifestPath"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.story-run-bootstrap-manifest.v1",
+              "runKey": {
+                "$graph": "command.options.slice"
+              },
+              "sliceKey": {
+                "$graph": "command.options.slice"
+              },
+              "laneMode": "story_run_bootstrap",
+              "runEnvelopeRoot": {
+                "$graph": "runEnvelopePaths.paths.runEnvelopeRoot"
+              },
+              "sourceStory": {
+                "path": {
+                  "$graph": "runEnvelopePaths.paths.sourceStoryPath"
+                },
+                "hash": {
+                  "$graph": "sourceStoryHash.hash"
+                }
+              },
+              "handoffPackets": [
+                {
+                  "path": {
+                    "$graph": "runEnvelopePaths.paths.handoffPacketPath"
+                  },
+                  "hash": {
+                    "$graph": "storyIntakePacketHash.hash"
+                  },
+                  "packetKind": "story_intake",
+                  "authorityStatus": "source_captured"
+                }
+              ],
+              "durableAuthorityCreated": false,
+              "completionPosture": "Bootstrap manifest records run evidence only and does not authorize policy, gate, SEJ, SOG, schema, or SDK authority."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.runManifestArtifact"
+        }
+      },
+      {
+        "id": "hashRunManifest",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runEnvelopePaths.paths.runManifestPath"
+          }
+        },
+        "output": {
+          "path": "$graph.runManifestHash"
+        }
+      },
+      {
+        "id": "emitBootstrapReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit bootstrap receipt as run evidence only.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "runEnvelopePaths.paths.bootstrapReceiptPath"
+            },
+            "content": {
+              "schemaVersion": "defracto.story-run-bootstrap.receipt.v1",
+              "status": "ready",
+              "sliceKey": {
+                "$graph": "command.options.slice"
+              },
+              "runManifest": {
+                "path": {
+                  "$graph": "runEnvelopePaths.paths.runManifestPath"
+                },
+                "hash": {
+                  "$graph": "runManifestHash.hash"
+                }
+              },
+              "sourceStory": {
+                "path": {
+                  "$graph": "runEnvelopePaths.paths.sourceStoryPath"
+                },
+                "hash": {
+                  "$graph": "sourceStoryHash.hash"
+                }
+              },
+              "storyIntakePacket": {
+                "path": {
+                  "$graph": "runEnvelopePaths.paths.handoffPacketPath"
+                },
+                "hash": {
+                  "$graph": "storyIntakePacketHash.hash"
+                }
+              },
+              "durableAuthorityCreated": false,
+              "forbiddenDurableAuthorityRoots": [
+                "contracts/policies",
+                "contracts/gates",
+                "contracts/sej",
+                "contracts/semantic-operation-graphs",
+                "contracts/schemas"
+              ]
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.bootstrapReceipt"
+        }
+      },
+      {
+        "id": "projectReadyResult",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project ready status and next command.",
+        "input": {
+          "fields": {
+            "status": "ready",
+            "sliceKey": {
+              "$graph": "command.options.slice"
+            },
+            "runManifest": {
+              "$graph": "runEnvelopePaths.paths.runManifestPath"
+            },
+            "nextCommand": "node generated/cli/node/ndd.cjs story implement --slice <slice>"
+          }
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "evidenceObligations": [
+    "run_envelope_paths_projected",
+    "source_story_materialized",
+    "story_intake_packet_materialized",
+    "run_manifest_materialized",
+    "bootstrap_receipt_emitted",
+    "durable_authority_not_created"
+  ],
+  "forbiddenClaims": [
+    "bootstrap creates policy authority",
+    "bootstrap creates gate authority",
+    "bootstrap creates SEJ authority",
+    "bootstrap creates SOG authority",
+    "bootstrap creates schema authority",
+    "bootstrap hardcodes concrete run paths"
+  ],
+  "completionPosture": "Story plan bootstrap can create only run evidence after the generic run envelope path projection operation exists."
+}

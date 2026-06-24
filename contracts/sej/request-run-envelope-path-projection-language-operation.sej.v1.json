@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.request-run-envelope-path-projection-language-operation.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.language-operation-request",
+  "sourceLineage": {
+    "capability": "contracts/capabilities/run.envelope.paths.project.v1.json",
+    "operationRequirements": "contracts/operations/run-envelope-path-projection.operation-requirements.v1.json",
+    "probe": "contracts/sej/run-envelope-path-projection.probe.sej.v1.json",
+    "bootstrapSog": "contracts/semantic-operation-graphs/cli/ndd-story-plan-bootstrap.execute.sog.v1.json"
+  },
+  "requiredOperations": [
+    {
+      "operationKey": "project.value.v1",
+      "purpose": "Project language operation request evidence.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "Emit language operation gap receipt.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "steps": [
+    {
+      "id": "projectLanguageOperationRequest",
+      "type": "resolver",
+      "operation": "project.value.v1",
+      "payload": {
+        "fields": {
+          "receiptContent": {
+            "schemaVersion": "defracto.sej-language-operation-gap.receipt.v1",
+            "receiptKey": "defracto.receipt.run-envelope-path-projection.language-operation-gap.slice-058a.v1",
+            "status": "blocked",
+            "blocker": "missing_sej_language_operation",
+            "requiredOperation": "run.envelope.paths.project.v1",
+            "operationLayer": "sej_language_conveyor_infrastructure",
+            "reason": "story plan bootstrap must derive bounded run artifact paths from slice/date without hardcoding run paths",
+            "createsFiles": false,
+            "createsDurableAuthority": false,
+            "resolverProductPrimitiveRequested": false,
+            "requestedUniversalMechanic": "bounded run envelope path projection",
+            "requiredInputs": [
+              "sliceKey",
+              "runDate",
+              "runRoot",
+              "allowedRoot"
+            ],
+            "projectedPaths": [
+              "runEnvelopeRoot",
+              "runManifestPath",
+              "sourceStoryPath",
+              "handoffPacketPath",
+              "bootstrapReceiptPath"
+            ],
+            "blockedCodes": [
+              "slice_key_missing",
+              "slice_key_invalid",
+              "run_date_missing",
+              "run_date_invalid",
+              "run_root_missing",
+              "allowed_root_missing",
+              "run_root_escape_attempted",
+              "path_projection_outside_allowed_root"
+            ],
+            "completionPosture": "Run paths are language infrastructure. Run artifacts are evidence. Durable authority must not hardcode concrete run paths."
+          }
+        }
+      }
+    },
+    {
+      "id": "emitLanguageOperationGapReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "evidence_write_only"
+        },
+        "receipt": {
+          "path": "evidence/conveyor/run-envelope-path-projection.language-operation-gap.receipt.v1.json",
+          "content": {
+            "$ref": "$steps.projectLanguageOperationRequest.receiptContent"
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitLanguageOperationGapReceipt"
+  }
+}

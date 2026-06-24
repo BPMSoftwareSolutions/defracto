@@ -1,0 +1,53 @@
+{
+  "operationRequirementVersion": "defracto.run-envelope-path-projection.operation-requirements.v1",
+  "operationKey": "run.envelope.paths.project.v1",
+  "operationLayer": "sej_language_conveyor_infrastructure",
+  "purpose": "Allow story/run bootstrap lanes to derive bounded run artifact paths from slice and run-root facts without hardcoded concrete run paths.",
+  "requiredInputs": [
+    {
+      "field": "sliceKey",
+      "requirement": "required lowercase slug path segment sequence",
+      "blockerIfMissing": "slice_key_missing",
+      "blockerIfInvalid": "slice_key_invalid"
+    },
+    {
+      "field": "runDate",
+      "requirement": "required yyyy/mm/dd path segment sequence",
+      "blockerIfMissing": "run_date_missing",
+      "blockerIfInvalid": "run_date_invalid"
+    },
+    {
+      "field": "runRoot",
+      "requirement": "required relative root path for conveyor runs",
+      "blockerIfMissing": "run_root_missing",
+      "blockerIfInvalid": "run_root_escape_attempted"
+    },
+    {
+      "field": "allowedRoot",
+      "requirement": "required relative root that every projected path must remain under",
+      "blockerIfMissing": "allowed_root_missing",
+      "blockerIfInvalid": "path_projection_outside_allowed_root"
+    }
+  ],
+  "projectedPaths": [
+    "runEnvelopeRoot",
+    "runManifestPath",
+    "sourceStoryPath",
+    "handoffPacketPath",
+    "bootstrapReceiptPath"
+  ],
+  "mustNotCreateFiles": true,
+  "mustNotCreateDurableAuthority": true,
+  "genericLanguageOnly": true,
+  "forbiddenResponsibilities": [
+    "story planning",
+    "cognitive interpretation",
+    "policy creation",
+    "gate creation",
+    "SOG creation",
+    "manifest materialization",
+    "receipt emission",
+    "product behavior"
+  ],
+  "completionPosture": "The operation is complete only when it can be invoked by SEJ/SOG as a bounded projection and fails closed on missing, invalid, absolute, or escaping path inputs."
+}

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "run.envelope.paths.project.v1",
+  "capabilityStatus": "requested",
+  "category": "conveyor.language.path_projection",
+  "purpose": "Project a safe, bounded conveyor run envelope path set from slice key, run date, run root, and allowed root.",
+  "portableAcross": [
+    "node"
+  ],
+  "mustDo": [
+    "require non-empty sliceKey",
+    "require runDate",
+    "require runRoot",
+    "require allowedRoot",
+    "validate sliceKey as lowercase slug segments",
+    "validate runDate as yyyy/mm/dd path segments",
+    "project only deterministic run envelope paths",
+    "normalize path separators to forward slashes",
+    "verify every projected path stays under allowedRoot",
+    "return paths without creating files"
+  ],
+  "mustNotDo": [
+    "create files",
+    "create directories",
+    "load manifests",
+    "invent story authority",
+    "create durable contract authority",
+    "allow absolute paths",
+    "allow path traversal",
+    "hardcode a slice key",
+    "hardcode a run date",
+    "accept product-specific behavior"
+  ],
+  "inputSchema": "contracts/schemas/run-envelope-path-projection-input.schema.v1.json",
+  "resultSchema": "contracts/schemas/run-envelope-path-projection-result.schema.v1.json",
+  "failureCodes": [
+    "slice_key_missing",
+    "slice_key_invalid",
+    "run_date_missing",
+    "run_date_invalid",
+    "run_root_missing",
+    "allowed_root_missing",
+    "run_root_escape_attempted",
+    "path_projection_outside_allowed_root"
+  ],
+  "completionPosture": "This is a tiny SEJ language/conveyor infrastructure operation. It projects bounded run paths only; existing materialization and evidence primitives create run artifacts later."
+}

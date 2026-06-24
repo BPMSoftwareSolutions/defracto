@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.run-envelope-path-projection-input.schema.v1",
+  "title": "Run Envelope Path Projection Input",
+  "type": "object",
+  "required": [
+    "sliceKey",
+    "runDate",
+    "runRoot",
+    "allowedRoot"
+  ],
+  "properties": {
+    "sliceKey": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "runDate": {
+      "type": "string",
+      "pattern": "^[0-9]{4}/[0-9]{2}/[0-9]{2}$"
+    },
+    "runRoot": {
+      "type": "string",
+      "minLength": 1
+    },
+    "allowedRoot": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

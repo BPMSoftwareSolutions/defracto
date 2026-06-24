@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.run-envelope-path-projection.probe.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "blocked-pending-language-operation",
+  "toolKey": "defracto.conveyor.run-envelope-path-projection.probe",
+  "sourceLineage": {
+    "capability": "contracts/capabilities/run.envelope.paths.project.v1.json",
+    "operationRequirements": "contracts/operations/run-envelope-path-projection.operation-requirements.v1.json",
+    "inputSchema": "contracts/schemas/run-envelope-path-projection-input.schema.v1.json",
+    "resultSchema": "contracts/schemas/run-envelope-path-projection-result.schema.v1.json"
+  },
+  "boundedInputs": [
+    "sliceKey",
+    "runDate",
+    "runRoot",
+    "allowedRoot"
+  ],
+  "boundedOutputs": [
+    "run envelope path projection"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "run.envelope.paths.project.v1",
+      "purpose": "Project bounded run envelope paths without creating files.",
+      "requirementState": "missing",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "steps": [
+    {
+      "id": "projectRunEnvelopePaths",
+      "type": "resolver",
+      "operation": "run.envelope.paths.project.v1",
+      "payload": {
+        "sliceKey": {
+          "$context": "sliceKey"
+        },
+        "runDate": {
+          "$context": "runDate"
+        },
+        "runRoot": {
+          "$context": "runRoot"
+        },
+        "allowedRoot": {
+          "$context": "allowedRoot"
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.projectRunEnvelopePaths"
+  },
+  "failurePosture": "Missing run.envelope.paths.project.v1 blocks story/run bootstrap instead of forcing platform agents to hardcode run manifests.",
+  "completionPosture": "This probe becomes executable only when the generic path projection operation is supported by the SEJ resolver surface."
+}

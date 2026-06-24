@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.run-envelope-path-projection-result.schema.v1",
+  "title": "Run Envelope Path Projection Result",
+  "type": "object",
+  "required": [
+    "status"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "blocked"
+      ]
+    },
+    "blocker": {
+      "type": "string",
+      "enum": [
+        "slice_key_missing",
+        "slice_key_invalid",
+        "run_date_missing",
+        "run_date_invalid",
+        "run_root_missing",
+        "allowed_root_missing",
+        "run_root_escape_attempted",
+        "path_projection_outside_allowed_root"
+      ]
+    },
+    "createsFiles": {
+      "type": "boolean",
+      "const": false
+    },
+    "paths": {
+      "type": "object",
+      "required": [
+        "runEnvelopeRoot",
+        "runManifestPath",
+        "sourceStoryPath",
+        "handoffPacketPath",
+        "bootstrapReceiptPath"
+      ],
+      "properties": {
+        "runEnvelopeRoot": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runManifestPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceStoryPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "handoffPacketPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bootstrapReceiptPath": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
