@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "defracto.conveyor-unblock-loop.receipt.v1",
+  "receiptKey": "defracto.receipt.platform-agent-authority-routing.loop.slice-062.v1",
+  "sliceKey": "slice-062-platform-agent-authority-routing-loop-provider-runtime-boundary",
+  "status": "blocked",
+  "loopStatus": "stopped-at-runtime-language-boundary",
+  "initialCommand": "node generated/cli/node/ndd.cjs story implement --slice platform-agent-authority-routing",
+  "initialBlocker": "platform_agent_authority_routing_strategy_not_promoted",
+  "explicitStrategyCommand": "node generated/cli/node/ndd.cjs story implement --slice platform-agent-authority-routing --target-kind semantic-strategy",
+  "explicitStrategyObservedBlocker": "graph_step_failed",
+  "resolverCapabilityProbe": {
+    "probeSej": "contracts/sej/cognitive-provider-runtime-support.probe.sej.v1.json",
+    "status": "blocked",
+    "blocker": "resolver_authority_missing_or_invalid",
+    "missingCapabilities": [
+      "environment.require_secret.v1",
+      "worker.gemini_flash.invoke.v1",
+      "worker.openai.responses.invoke.v1",
+      "object.require_fields.v1",
+      "json.schema.validate.v1",
+      "evidence.freshness.verify.v1",
+      "gate.evaluate.v1",
+      "policy.evaluate.v1"
+    ]
+  },
+  "credentialObservation": {
+    "locGeminiApiKeyPresent": true,
+    "locOpenaiApiKeyPresent": true,
+    "openaiApiKeyPresent": true,
+    "secretMaterialRecorded": false
+  },
+  "evolutionRequest": "contracts/resolver-authority/cognitive-provider-runtime-support.resolver-evolution-request.v1.json",
+  "resolverHandoffPackage": "C:/source/repos/bpm/internal/sej-runtime-resolver/SEJ-RUNTIME-RESOLVER-COGNITIVE-PROVIDER-PRIMITIVES-HANDOFF-PACKET.json",
+  "guardrails": {
+    "providerInvokedOutsideSej": false,
+    "mockProviderResponseCreated": false,
+    "staleProviderResponseAccepted": false,
+    "durableAuthorityCreated": false,
+    "generatedCliHostPatched": false,
+    "resolverNodeModulesPatched": false
+  },
+  "completionPosture": "The unblock loop advanced from manifest lane declaration to the exact missing runtime-language support for cognitive provider execution. The conveyor did not call providers outside SEJ or create strategy authority without provider receipts."
+}
