@@ -9,7 +9,9 @@
     "strategyArtifactManifestSchema": "contracts/schemas/strategy-artifact-manifest.schema.v1.json",
     "semanticStrategyHardeningGate": "contracts/gates/semantic-strategy-hardening-required.gate.v1.json",
     "strategyArtifactProjectionBoundedGate": "contracts/gates/strategy-artifact-projection-bounded.gate.v1.json",
+    "noRunBoundPathsGate": "contracts/gates/no-run-bound-paths-in-durable-authority.gate.v1.json",
     "authorityPolicy": "contracts/policies/agents-propose-strategy-conveyor-projects-authority.policy.v1.json",
+    "reusableContractsPolicy": "contracts/policies/contracts-are-reusable-runs-are-evidence.policy.v1.json",
     "semanticOperationGraph": "contracts/semantic-operation-graphs/strategy/semantic-strategy-plan-materialize.sog.v1.json"
   },
   "semanticBody": {
@@ -21,6 +23,7 @@
     "operator story text",
     "target-kind semantic-strategy",
     "slice key",
+    "run manifest",
     "existing live cognitive provider receipts",
     "visual proof materializer contract cluster"
   ],
@@ -32,6 +35,12 @@
     "provider, hardening, projection, and materialization receipts"
   ],
   "requiredOperations": [
+    {
+      "operationKey": "conveyor.run_manifest.load.v1",
+      "purpose": "Load concrete run values while keeping the durable SOG reusable.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
     {
       "operationKey": "evidence.receipt.verify.v1",
       "purpose": "Verify provider participation evidence before strategy hardening.",
@@ -63,6 +72,6 @@
       "missingCapabilityBehavior": "blocked"
     }
   ],
-  "failurePosture": "Missing provider evidence, strategy hardening, bounded manifest, or materialization receipt blocks semantic strategy authority.",
-  "completionPosture": "This SEJ materializes a semantic strategy plan that authorizes visual proof materializer artifacts without claiming durable product truth."
+  "failurePosture": "Missing run manifest, provider evidence, strategy hardening, bounded manifest, or materialization receipt blocks semantic strategy authority.",
+  "completionPosture": "This SEJ materializes a semantic strategy plan from manifest-supplied run values without claiming durable product truth."
 }

@@ -9,19 +9,19 @@
   "hostLanguageBodyAllowed": false,
   "semanticActions": [
     {
-      "actionKey": "defracto.semantic-strategy.verify-provider-evidence.v1",
-      "capabilityKey": "evidence.receipt.verify.v1",
-      "intent": "Verify cognitive provider evidence before strategy authority can be promoted."
+      "actionKey": "defracto.semantic-strategy.load-run-manifest.v1",
+      "capabilityKey": "conveyor.run_manifest.load.v1",
+      "intent": "Load the concrete run manifest that supplies instance paths and lineage."
     },
     {
-      "actionKey": "defracto.semantic-strategy.project-strategy-bundle.v1",
-      "capabilityKey": "project.value.v1",
-      "intent": "Project candidate strategy, promoted strategy plan, and bounded artifact manifest."
+      "actionKey": "defracto.semantic-strategy.verify-provider-evidence.v1",
+      "capabilityKey": "evidence.receipt.verify.v1",
+      "intent": "Verify cognitive provider evidence declared by the run manifest."
     },
     {
       "actionKey": "defracto.semantic-strategy.materialize-authority.v1",
       "capabilityKey": "artifact.materialize.v1",
-      "intent": "Materialize strategy authority, manifest, handoff packets, and report."
+      "intent": "Materialize strategy authority, manifest, handoff packets, and report from manifest-supplied values."
     },
     {
       "actionKey": "defracto.semantic-strategy.hash-artifacts.v1",
@@ -31,21 +31,37 @@
     {
       "actionKey": "defracto.semantic-strategy.emit-receipts.v1",
       "capabilityKey": "evidence.emit.v1",
-      "intent": "Emit strategy provider, hardening, projection, and materialization receipts."
+      "intent": "Emit provider, hardening, projection, and materialization receipts with concrete run paths and hashes."
     }
   ],
   "graph": {
     "steps": [
       {
+        "id": "loadStrategyRunManifest",
+        "capabilityKey": "conveyor.run_manifest.load.v1",
+        "intent": "Load the run manifest by the CLI slice key.",
+        "input": {
+          "sliceKey": {
+            "$context": "command.options.slice"
+          },
+          "defaultSearchRoot": "conveyor/runs"
+        },
+        "output": {
+          "path": "$graph.runManifest"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "semantic_strategy_run_manifest_missing"
+        }
+      },
+      {
         "id": "verifyCognitiveEvidence",
         "capabilityKey": "evidence.receipt.verify.v1",
         "intent": "Verify live cognitive evidence before strategy promotion.",
         "input": {
-          "receipts": [
-            "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
-            "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
-            "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json"
-          ],
+          "receipts": {
+            "$graph": "runManifest.providerReceiptRefs"
+          },
           "hashes": []
         },
         "output": {
@@ -57,572 +73,54 @@
         }
       },
       {
-        "id": "projectStrategyBundle",
-        "capabilityKey": "project.value.v1",
-        "intent": "Project the semantic strategy authority bundle from the operator story.",
+        "id": "hashRunManifest",
+        "capabilityKey": "hash.compute.v1",
+        "intent": "Hash the concrete run manifest supplying instance values.",
         "input": {
-          "fields": {
-            "candidateStrategy": {
-              "schemaVersion": {
-                "literal": "defracto.semantic-strategy-candidate.v1"
-              },
-              "candidateKey": {
-                "literal": "defracto.strategy-candidate.visual-proof-materializer.v1"
-              },
-              "candidateStatus": {
-                "literal": "candidate_only"
-              },
-              "laneMode": {
-                "literal": "semantic_strategy_compile"
-              },
-              "sourceStory": {
-                "$context": "command.options.text"
-              },
-              "providerEvidence": {
-                "literal": {
-                  "primaryProvider": "defracto.workers.gemini_flash.v1",
-                  "dispatchReceipt": "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
-                  "responseReceipt": "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
-                  "invocationReceipt": "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json",
-                  "candidateOnlyUntilHardened": true
-                }
-              },
-              "proposedStrategy": {
-                "literal": "Create a visual proof materializer strategy plan that authorizes schemas, projection manifests, SEJ/SOG execution, ASCII and HTML proof surfaces, and receipts from one promoted visual model."
-              },
-              "proposedGuardrails": {
-                "literal": {
-                  "createsProductTruth": false,
-                  "authorizesArtifactProjection": true,
-                  "requiresSogPromotionForBehavior": true,
-                  "unlistedArtifactsForbidden": true
-                }
-              }
-            },
-            "strategyPlan": {
-              "schemaVersion": {
-                "literal": "defracto.semantic-strategy-plan.v1"
-              },
-              "strategyKey": {
-                "literal": "defracto.strategies.visual-proof-materializer.v1"
-              },
-              "strategyKind": {
-                "literal": "visual-proof-materializer"
-              },
-              "laneMode": {
-                "literal": "semantic_strategy_compile"
-              },
-              "sourceStory": {
-                "sourceKind": {
-                  "literal": "operator_cli_text"
-                },
-                "sliceKey": {
-                  "$context": "command.options.slice"
-                },
-                "text": {
-                  "$context": "command.options.text"
-                }
-              },
-              "strategyIntent": {
-                "literal": "Authorize the visual proof materializer artifact cluster so one promoted visual model can project reviewable ASCII and HTML evidence through resolver-mediated JSON execution."
-              },
-              "sourceLineage": {
-                "providerEvidence": {
-                  "literal": [
-                    "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
-                    "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
-                    "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json"
-                  ]
-                },
-                "canonicalInputs": {
-                  "literal": [
-                    "contracts/schemas/visual-proof-model.schema.v1.json",
-                    "contracts/schemas/conveyor-stage-handoff-packet.schema.v1.json",
-                    "contracts/projections/visual-proof.ascii-projection.v1.json",
-                    "contracts/projections/visual-proof.html-projection.v1.json",
-                    "contracts/sej/materialize-visual-proof-surfaces.sej.v1.json",
-                    "contracts/semantic-operation-graphs/cli/ndd-story-implement.execute.sog.v1.json",
-                    "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
-                  ]
-                },
-                "priorProofSurface": {
-                  "literal": [
-                    "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
-                    "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.ascii",
-                    "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.html",
-                    "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/materialization.receipt.v1.json"
-                  ]
-                }
-              },
-              "authorityPosture": {
-                "literal": {
-                  "createsProductTruth": false,
-                  "authorizesArtifactProjection": true,
-                  "requiresSogPromotionForBehavior": true,
-                  "providerCandidateGrantsAuthority": false,
-                  "strategyPlanBlessesBehavior": false
-                }
-              },
-              "artifactProjection": {
-                "manifestRef": {
-                  "literal": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/strategy-artifact-manifest.v1.json"
-                },
-                "declaredTargetRoots": {
-                  "literal": [
-                    "contracts/schemas",
-                    "contracts/projections",
-                    "contracts/sej",
-                    "contracts/semantic-operation-graphs",
-                    "contracts/gates",
-                    "contracts/policies",
-                    "conveyor/runs/2026/06/24/live-visual-proof-packet",
-                    "conveyor/runs/2026/06/24/visual-proof-materializer-strategy",
-                    "conveyor/runs/2026/06/24/reports"
-                  ]
-                },
-                "requiredArtifactKeys": {
-                  "literal": [
-                    "semantic-strategy-plan-schema",
-                    "strategy-artifact-manifest-schema",
-                    "semantic-strategy-hardening-gate",
-                    "strategy-artifact-projection-bounded-gate",
-                    "strategy-authority-policy",
-                    "conveyor-stage-handoff-packet-schema",
-                    "story-implement-route-sog",
-                    "visual-proof-model-schema",
-                    "visual-proof-ascii-projection",
-                    "visual-proof-html-projection",
-                    "visual-proof-materialization-sej",
-                    "visual-proof-materialization-sog",
-                    "strategy-plan",
-                    "strategy-artifact-manifest",
-                    "strategy-handoff-packet-index"
-                  ]
-                }
-              },
-              "traceQuestions": {
-                "literal": {
-                  "whichStoryRequiredThis": "The operator CLI story for a visual proof materializer strategy.",
-                  "whichStrategyAuthorizedIt": "defracto.strategies.visual-proof-materializer.v1",
-                  "whichArtifactManifestProjectedIt": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/strategy-artifact-manifest.v1.json",
-                  "whichReceiptProvesIt": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/materialization.receipt.v1.json",
-                  "whichSogOwnsBehavior": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json for materialization proof; durable behavior still requires SOG promotion evidence."
-                }
-              },
-              "hardeningFindings": {
-                "literal": {
-                  "status": "passed",
-                  "blockers": [],
-                  "acceptedClaims": [
-                    "strategy authority may authorize artifact projection",
-                    "strategy authority does not create durable product truth",
-                    "visual proof materializer behavior remains owned by SOG execution and receipts",
-                    "every projected output must be listed in the artifact manifest"
-                  ]
-                }
-              },
-              "promotionBar": {
-                "literal": [
-                  "provider evidence exists before candidate hardening",
-                  "strategy plan is promoted only after guardrails pass",
-                  "artifact manifest bounds every generated JSON and output path",
-                  "strategy authority does not claim durable behavior",
-                  "SOG/materialization proof remains separate from strategy authority"
-                ]
-              },
-              "forbiddenClaims": {
-                "literal": [
-                  "strategy plan is durable product truth",
-                  "provider candidate grants authority by itself",
-                  "unlisted JSON artifacts are authorized",
-                  "ASCII/HTML materialization is proven without SOG receipts",
-                  "generated proof surface can bypass SOG promotion"
-                ]
-              },
-              "completionPosture": {
-                "literal": "The strategy plan authorizes the visual proof materializer artifact cluster while leaving behavior truth to resolver-mediated SOG execution and promotion evidence."
-              }
-            },
-            "artifactManifest": {
-              "schemaVersion": {
-                "literal": "defracto.strategy-artifact-manifest.v1"
-              },
-              "manifestKey": {
-                "literal": "defracto.strategy-artifact-manifest.visual-proof-materializer.v1"
-              },
-              "strategyKey": {
-                "literal": "defracto.strategies.visual-proof-materializer.v1"
-              },
-              "strategyPlan": {
-                "literal": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-plan.v1.json"
-              },
-              "declaredTargetRoots": {
-                "literal": [
-                  "contracts/schemas",
-                  "contracts/projections",
-                  "contracts/sej",
-                  "contracts/semantic-operation-graphs",
-                  "contracts/gates",
-                  "contracts/policies",
-                  "conveyor/runs/2026/06/24/live-visual-proof-packet",
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy",
-                  "conveyor/runs/2026/06/24/reports"
-                ]
-              },
-              "artifacts": {
-                "literal": [
-                  {
-                    "artifactKey": "semantic-strategy-plan-schema",
-                    "artifactKind": "schema",
-                    "targetPath": "contracts/schemas/semantic-strategy-plan.schema.v1.json",
-                    "purpose": "Define the promoted semantic strategy plan authority shape.",
-                    "sourceAuthority": "slice-056 strategy contract layer",
-                    "projectionStatus": "declared_contract",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/contract-projection.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "strategy-artifact-manifest-schema",
-                    "artifactKind": "schema",
-                    "targetPath": "contracts/schemas/strategy-artifact-manifest.schema.v1.json",
-                    "purpose": "Define the bounded artifact manifest for semantic strategy projection.",
-                    "sourceAuthority": "slice-056 strategy contract layer",
-                    "projectionStatus": "declared_contract",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/contract-projection.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "semantic-strategy-hardening-gate",
-                    "artifactKind": "gate",
-                    "targetPath": "contracts/gates/semantic-strategy-hardening-required.gate.v1.json",
-                    "purpose": "Require candidate strategy hardening before promotion.",
-                    "sourceAuthority": "slice-056 strategy contract layer",
-                    "projectionStatus": "declared_contract",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/strategy-hardening.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "strategy-artifact-projection-bounded-gate",
-                    "artifactKind": "gate",
-                    "targetPath": "contracts/gates/strategy-artifact-projection-bounded.gate.v1.json",
-                    "purpose": "Require every projected artifact path to stay inside the manifest.",
-                    "sourceAuthority": "slice-056 strategy contract layer",
-                    "projectionStatus": "declared_contract",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/contract-projection.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "strategy-authority-policy",
-                    "artifactKind": "policy",
-                    "targetPath": "contracts/policies/agents-propose-strategy-conveyor-projects-authority.policy.v1.json",
-                    "purpose": "Declare that agents propose strategy while the conveyor hardens and projects authority.",
-                    "sourceAuthority": "slice-056 strategy contract layer",
-                    "projectionStatus": "declared_contract",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/strategy-hardening.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "conveyor-stage-handoff-packet-schema",
-                    "artifactKind": "schema",
-                    "targetPath": "contracts/schemas/conveyor-stage-handoff-packet.schema.v1.json",
-                    "purpose": "Recognize semantic strategy packet kinds in governed handoff evidence.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "declared_contract",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/materialization.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "story-implement-route-sog",
-                    "artifactKind": "sog",
-                    "targetPath": "contracts/semantic-operation-graphs/cli/ndd-story-implement.execute.sog.v1.json",
-                    "purpose": "Route story implement semantic-strategy target kind to the strategy materialization graph.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "declared_contract",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/materialization.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "semantic-strategy-materialization-sej",
-                    "artifactKind": "sej",
-                    "targetPath": "contracts/sej/materialize-semantic-strategy-plan.sej.v1.json",
-                    "purpose": "Declare the resolver-mediated strategy materialization contract.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "declared_contract",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/materialization.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "semantic-strategy-materialization-sog",
-                    "artifactKind": "sog",
-                    "targetPath": "contracts/semantic-operation-graphs/strategy/semantic-strategy-plan-materialize.sog.v1.json",
-                    "purpose": "Materialize the strategy plan, artifact manifest, and proof receipts.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "declared_contract",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/materialization.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "visual-proof-model-schema",
-                    "artifactKind": "schema",
-                    "targetPath": "contracts/schemas/visual-proof-model.schema.v1.json",
-                    "purpose": "Define the visual proof model projected into ASCII and HTML evidence.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "prior_proof_surface",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/materialization.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "visual-proof-ascii-projection",
-                    "artifactKind": "projection_manifest",
-                    "targetPath": "contracts/projections/visual-proof.ascii-projection.v1.json",
-                    "purpose": "Authorize ASCII projection from the promoted visual proof model.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "prior_proof_surface",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/ascii-projection.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "visual-proof-html-projection",
-                    "artifactKind": "projection_manifest",
-                    "targetPath": "contracts/projections/visual-proof.html-projection.v1.json",
-                    "purpose": "Authorize HTML projection from the promoted visual proof model.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "prior_proof_surface",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/html-projection.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "visual-proof-materialization-sej",
-                    "artifactKind": "sej",
-                    "targetPath": "contracts/sej/materialize-visual-proof-surfaces.sej.v1.json",
-                    "purpose": "Declare visual proof surface materialization.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "prior_proof_surface",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/materialization.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "visual-proof-materialization-sog",
-                    "artifactKind": "sog",
-                    "targetPath": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json",
-                    "purpose": "Execute visual proof materialization through semantic operations.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "prior_proof_surface",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/materialization.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "visual-proof-model",
-                    "artifactKind": "generated_json",
-                    "targetPath": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
-                    "purpose": "Promoted model shared by ASCII and HTML projections.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "prior_proof_surface",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/materialization.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "visual-proof-ascii",
-                    "artifactKind": "generated_surface",
-                    "targetPath": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.ascii",
-                    "purpose": "ASCII proof surface materialized from the visual model.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "prior_proof_surface",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/ascii-projection.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "visual-proof-html",
-                    "artifactKind": "generated_surface",
-                    "targetPath": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.html",
-                    "purpose": "HTML proof surface materialized from the visual model.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "prior_proof_surface",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/html-projection.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "semantic-strategy-candidate",
-                    "artifactKind": "generated_json",
-                    "targetPath": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-candidate.v1.json",
-                    "purpose": "Candidate strategy captured before hardening.",
-                    "sourceAuthority": "provider candidate through defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "strategy_projected",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/provider-invocation.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "semantic-strategy-plan",
-                    "artifactKind": "generated_json",
-                    "targetPath": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-plan.v1.json",
-                    "purpose": "Promoted semantic strategy authority.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "strategy_projected",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/strategy-hardening.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "strategy-artifact-manifest",
-                    "artifactKind": "generated_json",
-                    "targetPath": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/strategy-artifact-manifest.v1.json",
-                    "purpose": "Bound every artifact path authorized by the strategy plan.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "strategy_projected",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/contract-projection.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "strategy-handoff-packet-index",
-                    "artifactKind": "generated_json",
-                    "targetPath": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/handoff-packet.index.v1.json",
-                    "purpose": "Index strategy stage handoff packets.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "resolver_materialized",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/materialization.receipt.v1.json"
-                    ]
-                  },
-                  {
-                    "artifactKey": "strategy-slice-report",
-                    "artifactKind": "report",
-                    "targetPath": "conveyor/runs/2026/06/24/reports/slice-056-semantic-strategy-plan-authorizes-visual-proof-materializer.latest.md",
-                    "purpose": "Summarize the semantic strategy compile proof.",
-                    "sourceAuthority": "defracto.strategies.visual-proof-materializer.v1",
-                    "projectionStatus": "resolver_materialized",
-                    "mustTraceToStrategyPlan": true,
-                    "receipts": [
-                      "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/materialization.receipt.v1.json"
-                    ]
-                  }
-                ]
-              },
-              "boundedOutputs": {
-                "literal": [
-                  "contracts/schemas/semantic-strategy-plan.schema.v1.json",
-                  "contracts/schemas/strategy-artifact-manifest.schema.v1.json",
-                  "contracts/gates/semantic-strategy-hardening-required.gate.v1.json",
-                  "contracts/gates/strategy-artifact-projection-bounded.gate.v1.json",
-                  "contracts/policies/agents-propose-strategy-conveyor-projects-authority.policy.v1.json",
-                  "contracts/schemas/conveyor-stage-handoff-packet.schema.v1.json",
-                  "contracts/sej/materialize-semantic-strategy-plan.sej.v1.json",
-                  "contracts/semantic-operation-graphs/cli/ndd-story-implement.execute.sog.v1.json",
-                  "contracts/semantic-operation-graphs/strategy/semantic-strategy-plan-materialize.sog.v1.json",
-                  "contracts/schemas/visual-proof-model.schema.v1.json",
-                  "contracts/projections/visual-proof.ascii-projection.v1.json",
-                  "contracts/projections/visual-proof.html-projection.v1.json",
-                  "contracts/sej/materialize-visual-proof-surfaces.sej.v1.json",
-                  "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json",
-                  "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
-                  "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.ascii",
-                  "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.html",
-                  "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/materialization.receipt.v1.json",
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-candidate.v1.json",
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-plan.v1.json",
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/strategy-artifact-manifest.v1.json",
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/01-story-intake.packet.v1.json",
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/02-cognitive-strategy-candidate.packet.v1.json",
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/03-strategy-hardening.packet.v1.json",
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/04-contract-projection.packet.v1.json",
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/05-sog-execution-boundary.packet.v1.json",
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/handoff-packet.index.v1.json",
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/provider-invocation.receipt.v1.json",
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/strategy-hardening.receipt.v1.json",
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/contract-projection.receipt.v1.json",
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/materialization.receipt.v1.json",
-                  "conveyor/runs/2026/06/24/reports/slice-056-semantic-strategy-plan-authorizes-visual-proof-materializer.latest.md"
-                ]
-              },
-              "forbiddenOutputs": {
-                "literal": [
-                  "generated runtime code",
-                  "resolver repository changes",
-                  "unlisted contract JSON",
-                  "durable product truth claims",
-                  "host-language behavior bodies"
-                ]
-              },
-              "evidence": {
-                "literal": {
-                  "strategyHardeningReceipt": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/strategy-hardening.receipt.v1.json",
-                  "contractProjectionReceipt": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/contract-projection.receipt.v1.json",
-                  "materializationReceipt": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/materialization.receipt.v1.json",
-                  "providerInvocationReceipt": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/provider-invocation.receipt.v1.json"
-                }
-              },
-              "completionPosture": {
-                "literal": "Every strategy-authorized visual proof materializer artifact path is listed in this manifest and bounded to declared target roots."
-              }
-            }
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runManifest.manifestPath"
           }
         },
         "output": {
-          "path": "$graph.strategyBundle"
+          "path": "$graph.runManifestHash"
         }
       },
       {
         "id": "emitProviderInvocationReceipt",
         "capabilityKey": "evidence.emit.v1",
-        "intent": "Emit run-local provider evidence binding the strategy compile to live Gemini receipts.",
+        "intent": "Emit run-local provider evidence binding the strategy compile to provider receipts.",
         "input": {
           "authority": {
             "scope": "evidence_write_only"
           },
           "receipt": {
-            "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/provider-invocation.receipt.v1.json",
+            "path": {
+              "$graph": "runManifest.paths.providerInvocationReceipt"
+            },
             "content": {
               "schemaVersion": "defracto.semantic-strategy-provider-invocation.receipt.v1",
-              "receiptKey": "defracto.receipt.visual-proof-materializer-strategy.provider-invocation.v1",
+              "receiptKey": {
+                "$graph": "runManifest.receiptKeys.providerInvocation"
+              },
               "status": "passed",
               "laneMode": "semantic_strategy_compile",
               "providerParticipationRequired": true,
-              "worker": "defracto.workers.gemini_flash.v1",
-              "sourceInvocationReceipt": "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json",
-              "sourceDispatchReceipt": "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
-              "sourceResponseReceipt": "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
+              "worker": {
+                "$graph": "runManifest.provider.worker"
+              },
+              "sourceInvocationReceipt": {
+                "$graph": "runManifest.providerEvidence.invocationReceipt"
+              },
+              "sourceDispatchReceipt": {
+                "$graph": "runManifest.providerEvidence.dispatchReceipt"
+              },
+              "sourceResponseReceipt": {
+                "$graph": "runManifest.providerEvidence.responseReceipt"
+              },
               "candidateAuthorityStatus": "candidate_only",
               "secretMaterialAllowedInEvidence": false,
-              "completionPosture": "The semantic strategy candidate is bound to existing live Gemini evidence; provider output is candidate-only until hardening."
+              "completionPosture": "The semantic strategy candidate is bound to receipted provider evidence; provider output is candidate-only until hardening."
             }
           }
         },
@@ -633,16 +131,18 @@
       {
         "id": "materializeCandidateStrategy",
         "capabilityKey": "artifact.materialize.v1",
-        "intent": "Materialize the strategy candidate.",
+        "intent": "Materialize the strategy candidate from the run manifest.",
         "input": {
           "authority": {
             "scope": "generated_surface_write_only"
           },
           "artifact": {
-            "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-candidate.v1.json",
+            "path": {
+              "$graph": "runManifest.paths.candidateStrategy"
+            },
             "format": "json",
             "content": {
-              "$graph": "strategyBundle.candidateStrategy"
+              "$graph": "runManifest.strategyArtifacts.candidateStrategy"
             }
           }
         },
@@ -653,16 +153,18 @@
       {
         "id": "materializeStrategyPlan",
         "capabilityKey": "artifact.materialize.v1",
-        "intent": "Materialize the promoted semantic strategy plan.",
+        "intent": "Materialize the promoted semantic strategy plan from the run manifest.",
         "input": {
           "authority": {
             "scope": "generated_surface_write_only"
           },
           "artifact": {
-            "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-plan.v1.json",
+            "path": {
+              "$graph": "runManifest.paths.strategyPlan"
+            },
             "format": "json",
             "content": {
-              "$graph": "strategyBundle.strategyPlan"
+              "$graph": "runManifest.strategyArtifacts.strategyPlan"
             }
           }
         },
@@ -673,16 +175,18 @@
       {
         "id": "materializeArtifactManifest",
         "capabilityKey": "artifact.materialize.v1",
-        "intent": "Materialize the strategy artifact manifest.",
+        "intent": "Materialize the strategy artifact manifest from the run manifest.",
         "input": {
           "authority": {
             "scope": "generated_surface_write_only"
           },
           "artifact": {
-            "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/strategy-artifact-manifest.v1.json",
+            "path": {
+              "$graph": "runManifest.paths.artifactManifest"
+            },
             "format": "json",
             "content": {
-              "$graph": "strategyBundle.artifactManifest"
+              "$graph": "runManifest.strategyArtifacts.artifactManifest"
             }
           }
         },
@@ -695,7 +199,9 @@
         "capabilityKey": "hash.compute.v1",
         "input": {
           "algorithm": "sha256",
-          "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-candidate.v1.json"
+          "path": {
+            "$graph": "runManifest.paths.candidateStrategy"
+          }
         },
         "output": {
           "path": "$graph.candidateStrategyHash"
@@ -706,7 +212,9 @@
         "capabilityKey": "hash.compute.v1",
         "input": {
           "algorithm": "sha256",
-          "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-plan.v1.json"
+          "path": {
+            "$graph": "runManifest.paths.strategyPlan"
+          }
         },
         "output": {
           "path": "$graph.strategyPlanHash"
@@ -717,7 +225,9 @@
         "capabilityKey": "hash.compute.v1",
         "input": {
           "algorithm": "sha256",
-          "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/strategy-artifact-manifest.v1.json"
+          "path": {
+            "$graph": "runManifest.paths.artifactManifest"
+          }
         },
         "output": {
           "path": "$graph.artifactManifestHash"
@@ -732,16 +242,24 @@
             "scope": "evidence_write_only"
           },
           "receipt": {
-            "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/strategy-hardening.receipt.v1.json",
+            "path": {
+              "$graph": "runManifest.paths.strategyHardeningReceipt"
+            },
             "content": {
               "schemaVersion": "defracto.semantic-strategy-hardening.receipt.v1",
-              "receiptKey": "defracto.receipt.visual-proof-materializer-strategy.strategy-hardening.v1",
+              "receiptKey": {
+                "$graph": "runManifest.receiptKeys.strategyHardening"
+              },
               "status": "passed",
-              "candidateStrategy": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-candidate.v1.json",
+              "candidateStrategy": {
+                "$graph": "runManifest.paths.candidateStrategy"
+              },
               "candidateStrategyHash": {
                 "$graph": "candidateStrategyHash.hash"
               },
-              "promotedStrategyPlan": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-plan.v1.json",
+              "promotedStrategyPlan": {
+                "$graph": "runManifest.paths.strategyPlan"
+              },
               "promotedStrategyPlanHash": {
                 "$graph": "strategyPlanHash.hash"
               },
@@ -768,16 +286,24 @@
             "scope": "evidence_write_only"
           },
           "receipt": {
-            "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/contract-projection.receipt.v1.json",
+            "path": {
+              "$graph": "runManifest.paths.contractProjectionReceipt"
+            },
             "content": {
               "schemaVersion": "defracto.strategy-artifact-projection.receipt.v1",
-              "receiptKey": "defracto.receipt.visual-proof-materializer-strategy.contract-projection.v1",
+              "receiptKey": {
+                "$graph": "runManifest.receiptKeys.contractProjection"
+              },
               "status": "passed",
-              "strategyPlan": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-plan.v1.json",
+              "strategyPlan": {
+                "$graph": "runManifest.paths.strategyPlan"
+              },
               "strategyPlanHash": {
                 "$graph": "strategyPlanHash.hash"
               },
-              "artifactManifest": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/strategy-artifact-manifest.v1.json",
+              "artifactManifest": {
+                "$graph": "runManifest.paths.artifactManifest"
+              },
               "artifactManifestHash": {
                 "$graph": "artifactManifestHash.hash"
               },
@@ -785,7 +311,7 @@
               "targetRootsBounded": true,
               "unlistedArtifactProjectionAllowed": false,
               "durableProductTruthAccepted": false,
-              "completionPosture": "The strategy manifest bounds the visual proof materializer artifact cluster; behavior truth remains outside strategy authority."
+              "completionPosture": "The strategy manifest bounds the artifact cluster; behavior truth remains outside strategy authority."
             }
           }
         },
@@ -802,13 +328,19 @@
             "scope": "generated_surface_write_only"
           },
           "artifact": {
-            "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/01-story-intake.packet.v1.json",
+            "path": {
+              "$graph": "runManifest.paths.packet01"
+            },
             "format": "json",
             "content": {
               "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
-              "packetKey": "defracto.handoff.visual-proof-materializer-strategy.01-story-intake.v1",
+              "packetKey": {
+                "$graph": "runManifest.packetKeys.storyIntake"
+              },
               "packetKind": "story_intake",
-              "runKey": "visual-proof-materializer-strategy",
+              "runKey": {
+                "$graph": "runManifest.runKey"
+              },
               "stageKey": "semantic-strategy.story-intake",
               "stageSequenceIndex": 1,
               "producedBy": {
@@ -817,7 +349,9 @@
               },
               "consumedBy": {
                 "actorKind": "ai_provider",
-                "actorKey": "defracto.workers.gemini_flash.v1"
+                "actorKey": {
+                  "$graph": "runManifest.provider.worker"
+                }
               },
               "authorityStatus": "source_captured",
               "artifactRefs": [
@@ -844,22 +378,18 @@
                   }
                 ],
                 "claimRefs": [
-                  "The operator asked for semantic strategy authority for the visual proof materializer."
+                  "The operator asked for semantic strategy authority."
                 ]
               },
               "claims": [
                 "Story intake was captured for semantic strategy compile."
               ],
               "guardrails": {
-                "mockAllowed": false,
-                "staleResponseAllowed": false,
-                "deterministicReplayAllowedForCreation": false,
-                "generatedCodeMayBeDurableTruth": false,
-                "sogPromotionRequired": true,
-                "hostLanguageBodyAllowed": false,
-                "forbiddenHostFallback": true
+                "$graph": "runManifest.packetGuardrails"
               },
-              "createdAt": "2026-06-24T00:00:00-04:00",
+              "createdAt": {
+                "$graph": "runManifest.createdAt"
+              },
               "completionPosture": "Story intake is available to the cognitive strategy candidate stage."
             }
           }
@@ -877,20 +407,32 @@
             "scope": "generated_surface_write_only"
           },
           "artifact": {
-            "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/02-cognitive-strategy-candidate.packet.v1.json",
+            "path": {
+              "$graph": "runManifest.paths.packet02"
+            },
             "format": "json",
             "content": {
               "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
-              "packetKey": "defracto.handoff.visual-proof-materializer-strategy.02-cognitive-strategy-candidate.v1",
+              "packetKey": {
+                "$graph": "runManifest.packetKeys.strategyCandidate"
+              },
               "packetKind": "strategy_candidate",
-              "runKey": "visual-proof-materializer-strategy",
+              "runKey": {
+                "$graph": "runManifest.runKey"
+              },
               "stageKey": "semantic-strategy.cognitive-candidate",
               "stageSequenceIndex": 2,
               "producedBy": {
                 "actorKind": "ai_provider",
-                "actorKey": "defracto.workers.gemini_flash.v1",
-                "providerKey": "gemini_flash",
-                "model": "gemini-flash"
+                "actorKey": {
+                  "$graph": "runManifest.provider.worker"
+                },
+                "providerKey": {
+                  "$graph": "runManifest.provider.providerKey"
+                },
+                "model": {
+                  "$graph": "runManifest.provider.model"
+                }
               },
               "consumedBy": {
                 "actorKind": "acceptance_gate",
@@ -900,7 +442,9 @@
               "artifactRefs": [
                 {
                   "role": "strategy_candidate",
-                  "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-candidate.v1.json",
+                  "path": {
+                    "$graph": "runManifest.paths.candidateStrategy"
+                  },
                   "hash": {
                     "$graph": "candidateStrategyHash.hash"
                   },
@@ -910,7 +454,9 @@
               "requiredReceipts": [
                 {
                   "receiptKind": "provider_invocation",
-                  "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/provider-invocation.receipt.v1.json",
+                  "path": {
+                    "$graph": "runManifest.paths.providerInvocationReceipt"
+                  },
                   "requiredStatus": "passed"
                 }
               ],
@@ -922,32 +468,32 @@
               ],
               "lineage": {
                 "previousPacketRefs": [
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/01-story-intake.packet.v1.json"
+                  {
+                    "$graph": "runManifest.paths.packet01"
+                  }
                 ],
                 "sourceRefs": [
                   {
-                    "role": "source_gemini_invocation_receipt",
-                    "path": "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json",
+                    "role": "source_provider_invocation_receipt",
+                    "path": {
+                      "$graph": "runManifest.providerEvidence.invocationReceipt"
+                    },
                     "status": "passed"
                   }
                 ],
                 "claimRefs": [
-                  "Gemini participation is evidence, not authority."
+                  "Provider participation is evidence, not authority."
                 ]
               },
               "claims": [
                 "The strategy candidate was captured and remains candidate-only."
               ],
               "guardrails": {
-                "mockAllowed": false,
-                "staleResponseAllowed": false,
-                "deterministicReplayAllowedForCreation": false,
-                "generatedCodeMayBeDurableTruth": false,
-                "sogPromotionRequired": true,
-                "hostLanguageBodyAllowed": false,
-                "forbiddenHostFallback": true
+                "$graph": "runManifest.packetGuardrails"
               },
-              "createdAt": "2026-06-24T00:00:00-04:00",
+              "createdAt": {
+                "$graph": "runManifest.createdAt"
+              },
               "completionPosture": "The cognitive strategy candidate is ready for hardening."
             }
           }
@@ -965,13 +511,19 @@
             "scope": "generated_surface_write_only"
           },
           "artifact": {
-            "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/03-strategy-hardening.packet.v1.json",
+            "path": {
+              "$graph": "runManifest.paths.packet03"
+            },
             "format": "json",
             "content": {
               "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
-              "packetKey": "defracto.handoff.visual-proof-materializer-strategy.03-strategy-hardening.v1",
+              "packetKey": {
+                "$graph": "runManifest.packetKeys.strategyHardening"
+              },
               "packetKind": "strategy_hardening",
-              "runKey": "visual-proof-materializer-strategy",
+              "runKey": {
+                "$graph": "runManifest.runKey"
+              },
               "stageKey": "semantic-strategy.hardening",
               "stageSequenceIndex": 3,
               "producedBy": {
@@ -986,7 +538,9 @@
               "artifactRefs": [
                 {
                   "role": "semantic_strategy_plan",
-                  "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-plan.v1.json",
+                  "path": {
+                    "$graph": "runManifest.paths.strategyPlan"
+                  },
                   "hash": {
                     "$graph": "strategyPlanHash.hash"
                   },
@@ -996,7 +550,9 @@
               "requiredReceipts": [
                 {
                   "receiptKind": "strategy_hardening",
-                  "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/strategy-hardening.receipt.v1.json",
+                  "path": {
+                    "$graph": "runManifest.paths.strategyHardeningReceipt"
+                  },
                   "requiredStatus": "passed"
                 }
               ],
@@ -1008,12 +564,16 @@
               ],
               "lineage": {
                 "previousPacketRefs": [
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/02-cognitive-strategy-candidate.packet.v1.json"
+                  {
+                    "$graph": "runManifest.paths.packet02"
+                  }
                 ],
                 "sourceRefs": [
                   {
                     "role": "strategy_candidate",
-                    "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-candidate.v1.json",
+                    "path": {
+                      "$graph": "runManifest.paths.candidateStrategy"
+                    },
                     "hash": {
                       "$graph": "candidateStrategyHash.hash"
                     },
@@ -1028,15 +588,11 @@
                 "Semantic strategy authority was promoted with product truth blocked."
               ],
               "guardrails": {
-                "mockAllowed": false,
-                "staleResponseAllowed": false,
-                "deterministicReplayAllowedForCreation": false,
-                "generatedCodeMayBeDurableTruth": false,
-                "sogPromotionRequired": true,
-                "hostLanguageBodyAllowed": false,
-                "forbiddenHostFallback": true
+                "$graph": "runManifest.packetGuardrails"
               },
-              "createdAt": "2026-06-24T00:00:00-04:00",
+              "createdAt": {
+                "$graph": "runManifest.createdAt"
+              },
               "completionPosture": "The promoted strategy plan can authorize bounded artifact projection."
             }
           }
@@ -1054,13 +610,19 @@
             "scope": "generated_surface_write_only"
           },
           "artifact": {
-            "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/04-contract-projection.packet.v1.json",
+            "path": {
+              "$graph": "runManifest.paths.packet04"
+            },
             "format": "json",
             "content": {
               "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
-              "packetKey": "defracto.handoff.visual-proof-materializer-strategy.04-contract-projection.v1",
+              "packetKey": {
+                "$graph": "runManifest.packetKeys.contractProjection"
+              },
               "packetKind": "contract_projection",
-              "runKey": "visual-proof-materializer-strategy",
+              "runKey": {
+                "$graph": "runManifest.runKey"
+              },
               "stageKey": "semantic-strategy.contract-projection",
               "stageSequenceIndex": 4,
               "producedBy": {
@@ -1069,13 +631,17 @@
               },
               "consumedBy": {
                 "actorKind": "resolver_materializer",
-                "actorKey": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+                "actorKey": {
+                  "$graph": "runManifest.behaviorOwnerSog"
+                }
               },
               "authorityStatus": "generated_projection",
               "artifactRefs": [
                 {
                   "role": "strategy_artifact_manifest",
-                  "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/strategy-artifact-manifest.v1.json",
+                  "path": {
+                    "$graph": "runManifest.paths.artifactManifest"
+                  },
                   "hash": {
                     "$graph": "artifactManifestHash.hash"
                   },
@@ -1085,7 +651,9 @@
               "requiredReceipts": [
                 {
                   "receiptKind": "contract_projection",
-                  "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/contract-projection.receipt.v1.json",
+                  "path": {
+                    "$graph": "runManifest.paths.contractProjectionReceipt"
+                  },
                   "requiredStatus": "passed"
                 }
               ],
@@ -1097,12 +665,16 @@
               ],
               "lineage": {
                 "previousPacketRefs": [
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/03-strategy-hardening.packet.v1.json"
+                  {
+                    "$graph": "runManifest.paths.packet03"
+                  }
                 ],
                 "sourceRefs": [
                   {
                     "role": "semantic_strategy_plan",
-                    "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-plan.v1.json",
+                    "path": {
+                      "$graph": "runManifest.paths.strategyPlan"
+                    },
                     "hash": {
                       "$graph": "strategyPlanHash.hash"
                     },
@@ -1117,15 +689,11 @@
                 "Artifact projection is bounded by a strategy manifest."
               ],
               "guardrails": {
-                "mockAllowed": false,
-                "staleResponseAllowed": false,
-                "deterministicReplayAllowedForCreation": false,
-                "generatedCodeMayBeDurableTruth": false,
-                "sogPromotionRequired": true,
-                "hostLanguageBodyAllowed": false,
-                "forbiddenHostFallback": true
+                "$graph": "runManifest.packetGuardrails"
               },
-              "createdAt": "2026-06-24T00:00:00-04:00",
+              "createdAt": {
+                "$graph": "runManifest.createdAt"
+              },
               "completionPosture": "The bounded manifest is ready for materialization and review."
             }
           }
@@ -1143,13 +711,19 @@
             "scope": "generated_surface_write_only"
           },
           "artifact": {
-            "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/05-sog-execution-boundary.packet.v1.json",
+            "path": {
+              "$graph": "runManifest.paths.packet05"
+            },
             "format": "json",
             "content": {
               "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
-              "packetKey": "defracto.handoff.visual-proof-materializer-strategy.05-sog-execution-boundary.v1",
+              "packetKey": {
+                "$graph": "runManifest.packetKeys.sogExecutionBoundary"
+              },
               "packetKind": "sog_execution_boundary",
-              "runKey": "visual-proof-materializer-strategy",
+              "runKey": {
+                "$graph": "runManifest.runKey"
+              },
               "stageKey": "semantic-strategy.sog-boundary",
               "stageSequenceIndex": 5,
               "producedBy": {
@@ -1163,8 +737,10 @@
               "authorityStatus": "generated_projection",
               "artifactRefs": [
                 {
-                  "role": "visual_proof_materialization_sog",
-                  "path": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json",
+                  "role": "behavior_owner_sog",
+                  "path": {
+                    "$graph": "runManifest.behaviorOwnerSog"
+                  },
                   "status": "behavior_owner_for_materialization_proof"
                 },
                 {
@@ -1175,30 +751,38 @@
               ],
               "requiredReceipts": [
                 {
-                  "receiptKind": "visual_proof_materialization",
-                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/materialization.receipt.v1.json",
+                  "receiptKind": "prior_materialization",
+                  "path": {
+                    "$graph": "runManifest.priorProofSurface.materializationReceipt"
+                  },
                   "requiredStatus": "passed"
                 },
                 {
                   "receiptKind": "strategy_materialization",
-                  "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/materialization.receipt.v1.json",
+                  "path": {
+                    "$graph": "runManifest.paths.materializationReceipt"
+                  },
                   "requiredStatus": "passed"
                 }
               ],
               "providerParticipationRequired": false,
               "deterministicVerificationRequired": true,
               "blockedIfMissing": [
-                "visual_proof_materialization_receipt_missing",
+                "prior_materialization_receipt_missing",
                 "strategy_materialization_receipt_missing"
               ],
               "lineage": {
                 "previousPacketRefs": [
-                  "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/04-contract-projection.packet.v1.json"
+                  {
+                    "$graph": "runManifest.paths.packet04"
+                  }
                 ],
                 "sourceRefs": [
                   {
                     "role": "strategy_artifact_manifest",
-                    "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/strategy-artifact-manifest.v1.json",
+                    "path": {
+                      "$graph": "runManifest.paths.artifactManifest"
+                    },
                     "hash": {
                       "$graph": "artifactManifestHash.hash"
                     },
@@ -1213,15 +797,11 @@
                 "SOG/materialization proof remains separate from strategy authority."
               ],
               "guardrails": {
-                "mockAllowed": false,
-                "staleResponseAllowed": false,
-                "deterministicReplayAllowedForCreation": false,
-                "generatedCodeMayBeDurableTruth": false,
-                "sogPromotionRequired": true,
-                "hostLanguageBodyAllowed": false,
-                "forbiddenHostFallback": true
+                "$graph": "runManifest.packetGuardrails"
               },
-              "createdAt": "2026-06-24T00:00:00-04:00",
+              "createdAt": {
+                "$graph": "runManifest.createdAt"
+              },
               "completionPosture": "Strategy authority is bounded; behavior truth still requires SOG execution and promotion evidence."
             }
           }
@@ -1235,7 +815,9 @@
         "capabilityKey": "hash.compute.v1",
         "input": {
           "algorithm": "sha256",
-          "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/01-story-intake.packet.v1.json"
+          "path": {
+            "$graph": "runManifest.paths.packet01"
+          }
         },
         "output": {
           "path": "$graph.packet01Hash"
@@ -1246,7 +828,9 @@
         "capabilityKey": "hash.compute.v1",
         "input": {
           "algorithm": "sha256",
-          "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/02-cognitive-strategy-candidate.packet.v1.json"
+          "path": {
+            "$graph": "runManifest.paths.packet02"
+          }
         },
         "output": {
           "path": "$graph.packet02Hash"
@@ -1257,7 +841,9 @@
         "capabilityKey": "hash.compute.v1",
         "input": {
           "algorithm": "sha256",
-          "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/03-strategy-hardening.packet.v1.json"
+          "path": {
+            "$graph": "runManifest.paths.packet03"
+          }
         },
         "output": {
           "path": "$graph.packet03Hash"
@@ -1268,7 +854,9 @@
         "capabilityKey": "hash.compute.v1",
         "input": {
           "algorithm": "sha256",
-          "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/04-contract-projection.packet.v1.json"
+          "path": {
+            "$graph": "runManifest.paths.packet04"
+          }
         },
         "output": {
           "path": "$graph.packet04Hash"
@@ -1279,7 +867,9 @@
         "capabilityKey": "hash.compute.v1",
         "input": {
           "algorithm": "sha256",
-          "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/05-sog-execution-boundary.packet.v1.json"
+          "path": {
+            "$graph": "runManifest.paths.packet05"
+          }
         },
         "output": {
           "path": "$graph.packet05Hash"
@@ -1294,19 +884,27 @@
             "scope": "generated_surface_write_only"
           },
           "artifact": {
-            "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/handoff-packet.index.v1.json",
+            "path": {
+              "$graph": "runManifest.paths.packetIndex"
+            },
             "format": "json",
             "content": {
               "schemaVersion": "defracto.conveyor-stage-handoff-packet-index.v1",
-              "indexKey": "defracto.handoff-index.visual-proof-materializer-strategy.v1",
-              "runKey": "visual-proof-materializer-strategy",
+              "indexKey": {
+                "$graph": "runManifest.indexKey"
+              },
+              "runKey": {
+                "$graph": "runManifest.runKey"
+              },
               "packetSchema": "contracts/schemas/conveyor-stage-handoff-packet.schema.v1.json",
               "status": "passed",
               "packetCount": 5,
               "packets": [
                 {
                   "stageSequenceIndex": 1,
-                  "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/01-story-intake.packet.v1.json",
+                  "path": {
+                    "$graph": "runManifest.paths.packet01"
+                  },
                   "hash": {
                     "$graph": "packet01Hash.hash"
                   },
@@ -1315,7 +913,9 @@
                 },
                 {
                   "stageSequenceIndex": 2,
-                  "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/02-cognitive-strategy-candidate.packet.v1.json",
+                  "path": {
+                    "$graph": "runManifest.paths.packet02"
+                  },
                   "hash": {
                     "$graph": "packet02Hash.hash"
                   },
@@ -1324,7 +924,9 @@
                 },
                 {
                   "stageSequenceIndex": 3,
-                  "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/03-strategy-hardening.packet.v1.json",
+                  "path": {
+                    "$graph": "runManifest.paths.packet03"
+                  },
                   "hash": {
                     "$graph": "packet03Hash.hash"
                   },
@@ -1333,7 +935,9 @@
                 },
                 {
                   "stageSequenceIndex": 4,
-                  "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/04-contract-projection.packet.v1.json",
+                  "path": {
+                    "$graph": "runManifest.paths.packet04"
+                  },
                   "hash": {
                     "$graph": "packet04Hash.hash"
                   },
@@ -1342,7 +946,9 @@
                 },
                 {
                   "stageSequenceIndex": 5,
-                  "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/05-sog-execution-boundary.packet.v1.json",
+                  "path": {
+                    "$graph": "runManifest.paths.packet05"
+                  },
                   "hash": {
                     "$graph": "packet05Hash.hash"
                   },
@@ -1363,7 +969,9 @@
         "capabilityKey": "hash.compute.v1",
         "input": {
           "algorithm": "sha256",
-          "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/handoff-packet.index.v1.json"
+          "path": {
+            "$graph": "runManifest.paths.packetIndex"
+          }
         },
         "output": {
           "path": "$graph.packetIndexHash"
@@ -1378,14 +986,18 @@
             "scope": "generated_surface_write_only"
           },
           "artifact": {
-            "path": "conveyor/runs/2026/06/24/reports/slice-056-semantic-strategy-plan-authorizes-visual-proof-materializer.latest.md",
+            "path": {
+              "$graph": "runManifest.paths.report"
+            },
             "format": "text",
             "anchor": {
               "enabled": false
             },
             "joinWith": "\n",
             "content": [
-              "# Slice 056 - semantic strategy plan authorizes visual proof materializer",
+              {
+                "$graph": "runManifest.report.title"
+              },
               "",
               "Status: passed",
               "Lane mode: semantic_strategy_compile",
@@ -1395,24 +1007,35 @@
               "",
               "## Strategy Authority",
               "",
-              "- Strategy plan: conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-plan.v1.json",
+              "- Strategy plan:",
+              {
+                "$graph": "runManifest.paths.strategyPlan"
+              },
               "- Strategy plan hash: ",
               {
                 "$graph": "strategyPlanHash.hash"
               },
-              "- Artifact manifest: conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/strategy-artifact-manifest.v1.json",
+              "- Artifact manifest:",
+              {
+                "$graph": "runManifest.paths.artifactManifest"
+              },
               "- Artifact manifest hash: ",
               {
                 "$graph": "artifactManifestHash.hash"
               },
               "",
-              "## Guardrail",
+              "## Reuse Guardrail",
               "",
-              "The strategy plan explains why the visual proof materializer artifact cluster exists. It does not claim durable product truth. Behavior remains owned by SOG execution and promotion evidence.",
+              {
+                "$graph": "runManifest.report.guardrail"
+              },
               "",
               "## Handoff Packets",
               "",
-              "- Packet index: conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/handoff-packet.index.v1.json",
+              "- Packet index:",
+              {
+                "$graph": "runManifest.paths.packetIndex"
+              },
               "- Packet index hash: ",
               {
                 "$graph": "packetIndexHash.hash"
@@ -1429,7 +1052,9 @@
         "capabilityKey": "hash.compute.v1",
         "input": {
           "algorithm": "sha256",
-          "path": "conveyor/runs/2026/06/24/reports/slice-056-semantic-strategy-plan-authorizes-visual-proof-materializer.latest.md"
+          "path": {
+            "$graph": "runManifest.paths.report"
+          }
         },
         "output": {
           "path": "$graph.sliceReportHash"
@@ -1444,33 +1069,53 @@
             "scope": "evidence_write_only"
           },
           "receipt": {
-            "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/materialization.receipt.v1.json",
+            "path": {
+              "$graph": "runManifest.paths.materializationReceipt"
+            },
             "content": {
               "schemaVersion": "defracto.semantic-strategy-materialization.receipt.v1",
-              "receiptKey": "defracto.receipt.visual-proof-materializer-strategy.materialization.v1",
+              "receiptKey": {
+                "$graph": "runManifest.receiptKeys.materialization"
+              },
               "status": "passed",
               "sourceSej": "contracts/sej/materialize-semantic-strategy-plan.sej.v1.json",
               "semanticOperationGraph": "contracts/semantic-operation-graphs/strategy/semantic-strategy-plan-materialize.sog.v1.json",
+              "runManifest": {
+                "path": {
+                  "$graph": "runManifest.manifestPath"
+                },
+                "hash": {
+                  "$graph": "runManifestHash.hash"
+                }
+              },
               "strategyPlan": {
-                "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-plan.v1.json",
+                "path": {
+                  "$graph": "runManifest.paths.strategyPlan"
+                },
                 "hash": {
                   "$graph": "strategyPlanHash.hash"
                 }
               },
               "artifactManifest": {
-                "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/strategy-artifact-manifest.v1.json",
+                "path": {
+                  "$graph": "runManifest.paths.artifactManifest"
+                },
                 "hash": {
                   "$graph": "artifactManifestHash.hash"
                 }
               },
               "handoffPacketIndex": {
-                "path": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/handoff-packet.index.v1.json",
+                "path": {
+                  "$graph": "runManifest.paths.packetIndex"
+                },
                 "hash": {
                   "$graph": "packetIndexHash.hash"
                 }
               },
               "report": {
-                "path": "conveyor/runs/2026/06/24/reports/slice-056-semantic-strategy-plan-authorizes-visual-proof-materializer.latest.md",
+                "path": {
+                  "$graph": "runManifest.paths.report"
+                },
                 "hash": {
                   "$graph": "sliceReportHash.hash"
                 }
@@ -1479,7 +1124,8 @@
               "createsProductTruth": false,
               "authorizesArtifactProjection": true,
               "requiresSogPromotionForBehavior": true,
-              "completionPosture": "The semantic strategy compile run materialized strategy authority, bounded manifest, handoff packets, and receipts without claiming durable product truth."
+              "durableSogRunBoundPathsAllowed": false,
+              "completionPosture": "The semantic strategy compile run materialized strategy authority, bounded manifest, handoff packets, and receipts from manifest-supplied concrete values."
             }
           }
         },
@@ -1493,30 +1139,24 @@
         "intent": "Project command result for semantic strategy compile.",
         "input": {
           "fields": {
-            "schemaVersion": {
-              "literal": "defracto.ndd-story-implement.semantic-strategy-result.v1"
-            },
-            "status": {
-              "literal": "passed"
-            },
+            "schemaVersion": "defracto.ndd-story-implement.semantic-strategy-result.v1",
+            "status": "passed",
             "runKey": {
-              "literal": "visual-proof-materializer-strategy"
+              "$graph": "runManifest.runKey"
             },
             "runPath": {
-              "literal": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy"
+              "$graph": "runManifest.runRoot"
             },
-            "laneMode": {
-              "literal": "semantic_strategy_compile"
+            "runManifest": {
+              "$graph": "runManifest.manifestPath"
             },
-            "createsProductTruth": {
-              "literal": false
+            "runManifestHash": {
+              "$graph": "runManifestHash.hash"
             },
-            "authorizesArtifactProjection": {
-              "literal": true
-            },
-            "requiresSogPromotionForBehavior": {
-              "literal": true
-            },
+            "laneMode": "semantic_strategy_compile",
+            "createsProductTruth": false,
+            "authorizesArtifactProjection": true,
+            "requiresSogPromotionForBehavior": true,
             "strategyPlanHash": {
               "$graph": "strategyPlanHash.hash"
             },
@@ -1527,18 +1167,9 @@
               "$graph": "packetIndexHash.hash"
             },
             "artifacts": {
-              "literal": {
-                "strategyCandidate": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-candidate.v1.json",
-                "strategyPlan": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/semantic-strategy-plan.v1.json",
-                "artifactManifest": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/artifacts/strategy-artifact-manifest.v1.json",
-                "handoffPacketIndex": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/handoff-packets/handoff-packet.index.v1.json",
-                "materializationReceipt": "conveyor/runs/2026/06/24/visual-proof-materializer-strategy/receipts/materialization.receipt.v1.json",
-                "report": "conveyor/runs/2026/06/24/reports/slice-056-semantic-strategy-plan-authorizes-visual-proof-materializer.latest.md"
-              }
+              "$graph": "runManifest.commandResultArtifacts"
             },
-            "completionPosture": {
-              "literal": "Semantic strategy authority is promoted and bounded; durable product truth remains outside this lane."
-            }
+            "completionPosture": "Semantic strategy authority is promoted and bounded from a run manifest; durable product truth remains outside this lane."
           }
         },
         "output": {
@@ -1551,20 +1182,23 @@
     }
   },
   "evidenceObligations": [
+    "run_manifest_loaded",
     "provider_evidence_verified",
     "strategy_candidate_captured",
     "strategy_hardening_receipt_emitted",
     "semantic_strategy_plan_materialized",
     "strategy_artifact_manifest_materialized",
     "handoff_packets_materialized",
-    "strategy_authority_does_not_claim_product_truth"
+    "receipts_record_concrete_run_paths_and_hashes",
+    "durable_sog_uses_manifest_supplied_run_values"
   ],
   "forbiddenClaims": [
     "strategy plan is durable product truth",
     "provider candidate grants authority without hardening",
     "unlisted JSON artifacts are authorized",
     "host-language behavior body owns materialization",
-    "SOG promotion is optional for behavior truth"
+    "SOG promotion is optional for behavior truth",
+    "durable contract authority contains run-bound paths"
   ],
-  "completionPosture": "The semantic strategy compile graph materializes a promoted strategy plan and bounded artifact manifest for the visual proof materializer without collapsing strategy authority into product truth."
+  "completionPosture": "The semantic strategy compile graph is reusable authority: concrete run values come from the run manifest and receipts record the concrete evidence."
 }

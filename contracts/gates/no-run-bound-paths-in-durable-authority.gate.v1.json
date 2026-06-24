@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.no_run_bound_paths_in_durable_authority.v1",
+  "gateTitle": "No Run-Bound Paths In Durable Authority",
+  "gateStatus": "accepted",
+  "purpose": "Block durable contract authority when concrete run-envelope paths leak into reusable contract, SOG, schema, gate, policy, or projection surfaces.",
+  "appliesToRoots": [
+    "contracts/"
+  ],
+  "allowedConcreteEvidenceRoot": "conveyor/runs/",
+  "passConditions": [
+    "contract authority under contracts/ is reusable and parameterized",
+    "run-specific values are supplied by context, invocation input, or run manifest",
+    "receipts under conveyor/runs/ record concrete paths and hashes",
+    "durable SOGs contain no hardcoded dated run-envelope paths",
+    "proof-only or migration exceptions are explicitly classified and blocked from durable product authority"
+  ],
+  "blockConditions": [
+    "hardcoded dated conveyor run path in contracts",
+    "hardcoded slice run key in reusable SOG authority",
+    "hardcoded evidence receipt path where manifest/context input is required",
+    "contract artifact claims reusable authority while embedding concrete run instance values",
+    "concrete evidence leaks into durable authority"
+  ],
+  "blockerCodes": [
+    "run_bound_path_in_durable_authority",
+    "hardcoded_run_date_in_contract",
+    "hardcoded_slice_key_in_reusable_sog",
+    "evidence_path_not_manifest_bound",
+    "proof_only_artifact_misclassified_as_durable"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "If it lives under contracts/, it must be reusable authority. If concrete evidence leaks into contracts/, the conveyor blocks."
+}

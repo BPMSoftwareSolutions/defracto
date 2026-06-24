@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "defracto.policy.v1",
+  "policyKey": "defracto.policies.contracts_are_reusable_runs_are_evidence.v1",
+  "policyTitle": "Contracts Are Reusable, Runs Are Evidence",
+  "policyStatus": "accepted",
+  "purpose": "Separate durable reusable authority from concrete run evidence so semantic operation graphs do not become one-off slice envelopes.",
+  "law": "If it lives under contracts/, it must be reusable authority. If it lives under conveyor/runs/, it may be concrete evidence. If concrete evidence leaks into contracts/, the conveyor blocks.",
+  "requires": [
+    "durable contract artifacts are parameterized by context, invocation input, or manifest",
+    "run manifests supply concrete run keys, target paths, receipt paths, prior evidence references, and report paths",
+    "receipts record concrete run paths and hashes after execution",
+    "SOGs under contracts/ avoid dated conveyor run paths and run-envelope constants",
+    "proof-only or migration artifacts are explicitly classified before they can remain under contracts/"
+  ],
+  "forbids": [
+    "hardcoded dated conveyor/runs paths inside durable contract authority",
+    "hardcoded run-envelope names inside reusable SOG execution bodies",
+    "treating run evidence paths as canonical reusable authority",
+    "copying concrete receipt paths into contract surfaces when manifest binding is available",
+    "promoting proof-only run graphs as durable product authority"
+  ],
+  "allowedConcreteEvidenceRoots": [
+    "conveyor/runs/",
+    "evidence/"
+  ],
+  "durableAuthorityRoots": [
+    "contracts/"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Contracts describe reusable authority; run manifests and receipts describe concrete evidence."
+}
