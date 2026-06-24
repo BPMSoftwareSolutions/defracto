@@ -1,0 +1,65 @@
+﻿{
+    "criteria":  [
+                     {
+                         "criteriaKey":  "slug-lowercase-ascii",
+                         "statement":  "The generated slug key should only contain lowercase ASCII letters and hyphens.",
+                         "observableBehavior":  "The output string consists exclusively of lowercase ASCII letters (a-z) and hyphens (-).",
+                         "inputs":  {
+                                        "title":  "My Story Title"
+                                    },
+                         "expectedResult":  "my-story-title",
+                         "sourceTrace":  "Acceptance expectations: - Lowercase ASCII letters.",
+                         "canonicalPathCandidate":  "defracto.slug.criteria.lowercase-ascii.v1",
+                         "candidateOnly":  true
+                     },
+                     {
+                         "criteriaKey":  "slug-whitespace-to-hyphens",
+                         "statement":  "Whitespace characters in the title should be replaced with single hyphens.",
+                         "observableBehavior":  "All sequences of one or more whitespace characters (e.g., spaces, tabs) are replaced by a single hyphen.",
+                         "inputs":  {
+                                        "title":  "My Story\tTitle"
+                                    },
+                         "expectedResult":  "my-story-title",
+                         "sourceTrace":  "Acceptance expectations: - Replace whitespace with hyphens.",
+                         "canonicalPathCandidate":  "defracto.slug.criteria.whitespace-to-hyphens.v1",
+                         "candidateOnly":  true
+                     },
+                     {
+                         "criteriaKey":  "slug-remove-unsupported-punctuation",
+                         "statement":  "Unsupported punctuation and non-alphanumeric characters should be removed.",
+                         "observableBehavior":  "Characters that are not lowercase ASCII letters or hyphens (after whitespace conversion) are removed from the string.",
+                         "inputs":  {
+                                        "title":  "My Story Title!?"
+                                    },
+                         "expectedResult":  "my-story-title",
+                         "sourceTrace":  "Acceptance expectations: - Remove unsupported punctuation.",
+                         "canonicalPathCandidate":  "defracto.slug.criteria.remove-unsupported-punctuation.v1",
+                         "candidateOnly":  true
+                     },
+                     {
+                         "criteriaKey":  "slug-collapse-repeated-hyphens",
+                         "statement":  "Repeated hyphens should be collapsed into a single hyphen.",
+                         "observableBehavior":  "Any sequence of two or more consecutive hyphens is replaced by a single hyphen.",
+                         "inputs":  {
+                                        "title":  "My---Story--Title"
+                                    },
+                         "expectedResult":  "my-story-title",
+                         "sourceTrace":  "Acceptance expectations: - Collapse repeated hyphens.",
+                         "canonicalPathCandidate":  "defracto.slug.criteria.collapse-repeated-hyphens.v1",
+                         "candidateOnly":  true
+                     },
+                     {
+                         "criteriaKey":  "slug-empty-input-blocked",
+                         "statement":  "An empty or effectively empty input title should result in a \u0027blocked\u0027 status.",
+                         "observableBehavior":  "If the input title is empty, or becomes empty after all processing steps, the system returns the string \u0027blocked\u0027.",
+                         "inputs":  {
+                                        "title":  ""
+                                    },
+                         "expectedResult":  "blocked",
+                         "sourceTrace":  "Acceptance expectations: - Return blocked for empty input.",
+                         "canonicalPathCandidate":  "defracto.slug.criteria.empty-input-blocked.v1",
+                         "candidateOnly":  true
+                     }
+                 ],
+    "candidateOnly":  true
+}

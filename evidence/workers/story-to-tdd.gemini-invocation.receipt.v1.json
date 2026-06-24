@@ -1,33 +1,41 @@
-{
-  "schemaVersion": "defracto.gemini-invocation-receipt.v1",
-  "receiptKey": "defracto.receipt.story-to-tdd.gemini-invocation.slice-034.v1",
-  "status": "blocked",
-  "worker": "defracto.workers.gemini_flash.v1",
-  "invocationCapability": "worker.gemini_flash.invoke.v1",
-  "laneMode": "cognitive_compile",
-  "commandKey": "defracto.workers.gemini_flash.story_to_tdd.invoke.v1",
-  "sourceHash": "pending-live-cognitive-manifest",
-  "sliceKey": "slice-034-story-to-tdd-gemini-worker-dispatch-contract",
-  "dispatchPacket": {
-    "status": "declared-not-executed",
-    "expectedPath": "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json"
-  },
-  "responsePacket": {
-    "status": "missing-until-live-provider-execution",
-    "expectedPath": "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json"
-  },
-  "freshness": {
-    "status": "not-evaluated",
-    "reason": "live provider response has not been executed in Slice 034"
-  },
-  "gateResults": {
-    "geminiInvocationRequiredForCognitiveStoryLane": "declared",
-    "liveProviderExecuted": false,
-    "candidateOutputAccepted": false
-  },
-  "blockedReasons": [
-    "gemini_response_missing",
-    "gemini_invocation_receipt_missing"
-  ],
-  "completionPosture": "Slice 034 declares the invocation lane and expected receipt shape; later cognitive manifests must replace this blocked declaration with live Gemini invocation evidence."
+﻿{
+    "schemaVersion":  "defracto.gemini-invocation-receipt.v1",
+    "receiptKey":  "defracto.receipt.story-to-tdd.gemini-invocation.slice-036.v1",
+    "status":  "passed",
+    "worker":  "defracto.workers.gemini_flash.v1",
+    "invocationCapability":  "worker.gemini_flash.invoke.v1",
+    "laneMode":  "cognitive_compile",
+    "commandKey":  "defracto.ndd.story.plan.v1",
+    "sourceHash":  "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+    "sliceKey":  "slice-036-ndd-story-plan-live-gemini-proof",
+    "dispatchPacket":  {
+                           "path":  "conveyor\\runs\\2026\\06\\24\\slice-036-ndd-story-plan-live-gemini-proof\\artifacts\\story-to-tdd.gemini-dispatch.v1.json",
+                           "status":  "passed",
+                           "hash":  "sha256:adcb232b849762f7f14e48f460f12d7d3295dc3bb40526227409bd470a8969fe"
+                       },
+    "responsePacket":  {
+                           "path":  "conveyor\\runs\\2026\\06\\24\\slice-036-ndd-story-plan-live-gemini-proof\\artifacts\\story-to-tdd.gemini-response.v1.json",
+                           "missingFields":  [
+
+                                             ],
+                           "status":  "passed",
+                           "hash":  "sha256:2642f2fbed46fc737545c2e4388f7981960935e77831f8445f44af5e8fb7f01d"
+                       },
+    "freshness":  {
+                      "status":  "passed",
+                      "sourceHashMatches":  true,
+                      "sliceKeyMatches":  true
+                  },
+    "gateResults":  {
+                        "liveProviderExecuted":  true,
+                        "responseShapeAccepted":  true,
+                        "candidateOnlyUntilAccepted":  true,
+                        "staleResponseAllowed":  false,
+                        "mockResponseUsed":  false,
+                        "freshnessAccepted":  true,
+                        "deterministicFallbackAttempted":  false
+                    },
+    "blockedReasons":  [
+
+                       ]
 }

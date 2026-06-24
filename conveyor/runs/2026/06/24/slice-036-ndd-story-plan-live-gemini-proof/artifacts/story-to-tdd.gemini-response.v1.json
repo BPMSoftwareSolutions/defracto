@@ -1,0 +1,171 @@
+﻿{
+    "schemaVersion":  "defracto.gemini-story-to-tdd-response.v1",
+    "responseKey":  "defracto.response.story-to-tdd.gemini.story-plan.slice-036.v1",
+    "status":  "candidate",
+    "workerKey":  "defracto.workers.gemini_flash.story_to_tdd.v1",
+    "dispatchKey":  "defracto.dispatch.story-to-tdd.gemini.story-plan.slice-036.v1",
+    "sourceHash":  "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+    "sliceKey":  "slice-036-ndd-story-plan-live-gemini-proof",
+    "candidateStoryPacket":  {
+                                 "actor":  "Defracto operator",
+                                 "iWant":  "a slug key generated from a short story title",
+                                 "soThat":  "run artifact paths stay predictable",
+                                 "sourceTrace":  "Source story: # Story Slug Key",
+                                 "candidateOnly":  true
+                             },
+    "candidateAcceptanceCriteria":  {
+                                        "criteria":  [
+                                                         {
+                                                             "criteriaKey":  "slug-lowercase-ascii",
+                                                             "statement":  "The generated slug key should only contain lowercase ASCII letters and hyphens.",
+                                                             "observableBehavior":  "The output string consists exclusively of lowercase ASCII letters (a-z) and hyphens (-).",
+                                                             "inputs":  {
+                                                                            "title":  "My Story Title"
+                                                                        },
+                                                             "expectedResult":  "my-story-title",
+                                                             "sourceTrace":  "Acceptance expectations: - Lowercase ASCII letters.",
+                                                             "canonicalPathCandidate":  "defracto.slug.criteria.lowercase-ascii.v1",
+                                                             "candidateOnly":  true
+                                                         },
+                                                         {
+                                                             "criteriaKey":  "slug-whitespace-to-hyphens",
+                                                             "statement":  "Whitespace characters in the title should be replaced with single hyphens.",
+                                                             "observableBehavior":  "All sequences of one or more whitespace characters (e.g., spaces, tabs) are replaced by a single hyphen.",
+                                                             "inputs":  {
+                                                                            "title":  "My Story\tTitle"
+                                                                        },
+                                                             "expectedResult":  "my-story-title",
+                                                             "sourceTrace":  "Acceptance expectations: - Replace whitespace with hyphens.",
+                                                             "canonicalPathCandidate":  "defracto.slug.criteria.whitespace-to-hyphens.v1",
+                                                             "candidateOnly":  true
+                                                         },
+                                                         {
+                                                             "criteriaKey":  "slug-remove-unsupported-punctuation",
+                                                             "statement":  "Unsupported punctuation and non-alphanumeric characters should be removed.",
+                                                             "observableBehavior":  "Characters that are not lowercase ASCII letters or hyphens (after whitespace conversion) are removed from the string.",
+                                                             "inputs":  {
+                                                                            "title":  "My Story Title!?"
+                                                                        },
+                                                             "expectedResult":  "my-story-title",
+                                                             "sourceTrace":  "Acceptance expectations: - Remove unsupported punctuation.",
+                                                             "canonicalPathCandidate":  "defracto.slug.criteria.remove-unsupported-punctuation.v1",
+                                                             "candidateOnly":  true
+                                                         },
+                                                         {
+                                                             "criteriaKey":  "slug-collapse-repeated-hyphens",
+                                                             "statement":  "Repeated hyphens should be collapsed into a single hyphen.",
+                                                             "observableBehavior":  "Any sequence of two or more consecutive hyphens is replaced by a single hyphen.",
+                                                             "inputs":  {
+                                                                            "title":  "My---Story--Title"
+                                                                        },
+                                                             "expectedResult":  "my-story-title",
+                                                             "sourceTrace":  "Acceptance expectations: - Collapse repeated hyphens.",
+                                                             "canonicalPathCandidate":  "defracto.slug.criteria.collapse-repeated-hyphens.v1",
+                                                             "candidateOnly":  true
+                                                         },
+                                                         {
+                                                             "criteriaKey":  "slug-empty-input-blocked",
+                                                             "statement":  "An empty or effectively empty input title should result in a \u0027blocked\u0027 status.",
+                                                             "observableBehavior":  "If the input title is empty, or becomes empty after all processing steps, the system returns the string \u0027blocked\u0027.",
+                                                             "inputs":  {
+                                                                            "title":  ""
+                                                                        },
+                                                             "expectedResult":  "blocked",
+                                                             "sourceTrace":  "Acceptance expectations: - Return blocked for empty input.",
+                                                             "canonicalPathCandidate":  "defracto.slug.criteria.empty-input-blocked.v1",
+                                                             "candidateOnly":  true
+                                                         }
+                                                     ],
+                                        "candidateOnly":  true
+                                    },
+    "candidateTestIntent":  {
+                                "testCases":  [
+                                                  {
+                                                      "input":  "Hello World",
+                                                      "expected":  "hello-world"
+                                                  },
+                                                  {
+                                                      "input":  "My Story Title!?",
+                                                      "expected":  "my-story-title"
+                                                  },
+                                                  {
+                                                      "input":  "A Story with --- Many -- Hyphens",
+                                                      "expected":  "a-story-with-many-hyphens"
+                                                  },
+                                                  {
+                                                      "input":  "",
+                                                      "expected":  "blocked"
+                                                  },
+                                                  {
+                                                      "input":  "   ",
+                                                      "expected":  "blocked"
+                                                  },
+                                                  {
+                                                      "input":  "UPPERCASE TITLE",
+                                                      "expected":  "uppercase-title"
+                                                  },
+                                                  {
+                                                      "input":  "Title with Numb3rs and $ymbols",
+                                                      "expected":  "title-with-numbers-and-symbols"
+                                                  },
+                                                  {
+                                                      "input":  "123 Test 456",
+                                                      "expected":  "test"
+                                                  },
+                                                  {
+                                                      "input":  "Special Chars: éàü",
+                                                      "expected":  "special-chars"
+                                                  },
+                                                  {
+                                                      "input":  "  Leading and Trailing Spaces  ",
+                                                      "expected":  "leading-and-trailing-spaces"
+                                                  },
+                                                  {
+                                                      "input":  "Mixed Case And Punctuation!@#$%",
+                                                      "expected":  "mixed-case-and-punctuation"
+                                                  }
+                                              ],
+                                "candidateOnly":  true
+                            },
+    "candidateImplementationProposal":  {
+                                            "description":  "The slug generation process should follow these semantic steps:\n1.  Trim any leading or trailing whitespace from the input title.\n2.  Convert the entire title string to lowercase.\n3.  Replace any sequence of one or more whitespace characters (e.g., spaces, tabs) with a single hyphen.\n4.  Remove any characters that are not lowercase ASCII letters (a-z) or hyphens (-).\n5.  Replace any sequence of two or more consecutive hyphens with a single hyphen.\n6.  If the resulting string is empty after all transformations, return the string \u0027blocked\u0027. Otherwise, return the processed string.",
+                                            "candidateOnly":  true
+                                        },
+    "ambiguities":  [
+                        {
+                            "key":  "unsupported-punctuation-definition",
+                            "statement":  "The exact set of \u0027unsupported punctuation\u0027 is not explicitly defined. It is assumed to include all characters that are not lowercase ASCII letters or hyphens, including numbers and non-ASCII letters, after initial whitespace processing.",
+                            "resolutionStrategy":  "Assume a strict interpretation where only lowercase ASCII letters and hyphens are permitted in the final slug."
+                        },
+                        {
+                            "key":  "blocked-return-type",
+                            "statement":  "The exact return value/type for \u0027blocked\u0027 is not specified. It could be a specific error object, a boolean, or a string literal.",
+                            "resolutionStrategy":  "Assume the \u0027blocked\u0027 state is represented by the string literal \u0027blocked\u0027."
+                        }
+                    ],
+    "assumptions":  [
+                        {
+                            "key":  "character-set-for-slug",
+                            "statement":  "The final slug should strictly contain only lowercase ASCII letters (a-z) and hyphens (-). Any other characters, including numbers and non-ASCII letters, are considered \u0027unsupported\u0027 and should be removed during processing.",
+                            "source":  "Interpretation of \u0027Lowercase ASCII letters\u0027 and \u0027Remove unsupported punctuation\u0027."
+                        },
+                        {
+                            "key":  "order-of-operations",
+                            "statement":  "The order of transformations (trim, lowercase, whitespace to hyphen, remove unsupported, collapse hyphens, check for empty) is crucial and will be applied sequentially as described in the implementation proposal.",
+                            "source":  "Standard slug generation practices and logical flow for achieving the desired output."
+                        },
+                        {
+                            "key":  "blocked-string-literal",
+                            "statement":  "The \u0027blocked\u0027 state is returned as the string literal \u0027blocked\u0027.",
+                            "source":  "Resolution of \u0027blocked-return-type\u0027 ambiguity."
+                        }
+                    ],
+    "forbiddenClaims":  [
+                            "canonical truth before gates",
+                            "durable product truth",
+                            "hand-authored code",
+                            "deterministic fallback success",
+                            "mock response success"
+                        ],
+    "acceptanceRequired":  true
+}

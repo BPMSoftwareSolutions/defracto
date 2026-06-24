@@ -1,21 +1,16 @@
-{
-  "schemaVersion": "defracto.gemini-response-receipt.v1",
-  "receiptKey": "defracto.receipt.story-to-tdd.gemini-response.slice-034.v1",
-  "status": "declared",
-  "workerKey": "defracto.workers.gemini_flash.story_to_tdd.v1",
-  "baseWorkerKey": "defracto.workers.gemini_flash.v1",
-  "laneMode": "cognitive_compile",
-  "responseContract": "conveyor/workers/gemini-flash.story-to-tdd.response-contract.v1.json",
-  "candidateOnlyUntilAccepted": true,
-  "mustMatchDispatchSourceHash": true,
-  "mustMatchDispatchSliceKey": true,
-  "staleResponseAllowed": false,
-  "mockAllowed": false,
-  "expectedBlockers": [
-    "gemini_response_missing",
-    "gemini_response_stale",
-    "gemini_response_unaccepted",
-    "mock_ai_response_forbidden"
-  ],
-  "completionPosture": "Response receipt shape is declared for later live cognitive manifests; Gemini output remains candidate-only until accepted by gates."
+﻿{
+    "schemaVersion":  "defracto.gemini-response-receipt.v1",
+    "receiptKey":  "defracto.receipt.story-to-tdd.gemini-response.slice-036.v1",
+    "status":  "passed",
+    "workerKey":  "defracto.workers.gemini_flash.story_to_tdd.v1",
+    "baseWorkerKey":  "defracto.workers.gemini_flash.v1",
+    "laneMode":  "cognitive_compile",
+    "responseArtifact":  "conveyor\\runs\\2026\\06\\24\\slice-036-ndd-story-plan-live-gemini-proof\\artifacts\\story-to-tdd.gemini-response.v1.json",
+    "responseHash":  "sha256:2642f2fbed46fc737545c2e4388f7981960935e77831f8445f44af5e8fb7f01d",
+    "sourceHash":  "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+    "sliceKey":  "slice-036-ndd-story-plan-live-gemini-proof",
+    "candidateOnlyUntilAccepted":  true,
+    "staleResponseAllowed":  false,
+    "mockAllowed":  false,
+    "completedAt":  "2026-06-24T11:41:50.1244496Z"
 }

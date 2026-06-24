@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "defracto.gemini-candidate-acceptance-receipt.v1",
+  "receiptKey": "defracto.receipt.story-to-tdd.gemini-candidate-acceptance.slice-036.v1",
+  "status": "blocked",
+  "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+  "sliceKey": "slice-036-ndd-story-plan-live-gemini-proof",
+  "responseArtifact": "conveyor/runs/2026/06/24/slice-036-ndd-story-plan-live-gemini-proof/artifacts/story-to-tdd.gemini-response.v1.json",
+  "responseHash": "sha256:2642f2fbed46fc737545c2e4388f7981960935e77831f8445f44af5e8fb7f01d",
+  "candidateOnlyUntilAccepted": true,
+  "candidateAuthorityPromoted": false,
+  "acceptanceGateStatus": {
+    "geminiInvocation": "passed",
+    "responseShape": "passed",
+    "freshness": "passed",
+    "acceptanceCriteriaHardening": "blocked",
+    "canonicalSpecPromotion": "blocked",
+    "testIntentPromotion": "blocked",
+    "implementationProposalPromotion": "blocked"
+  },
+  "blockedReasons": [
+    "candidate_requires_acceptance_criteria_hardening",
+    "candidate_requires_trace_gate_review"
+  ],
+  "completionPosture": "The live Gemini response is captured as candidate evidence only; no story, criteria, test, or implementation authority is promoted by this receipt."
+}

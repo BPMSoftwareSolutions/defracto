@@ -1,0 +1,49 @@
+﻿{
+    "testCases":  [
+                      {
+                          "input":  "Hello World",
+                          "expected":  "hello-world"
+                      },
+                      {
+                          "input":  "My Story Title!?",
+                          "expected":  "my-story-title"
+                      },
+                      {
+                          "input":  "A Story with --- Many -- Hyphens",
+                          "expected":  "a-story-with-many-hyphens"
+                      },
+                      {
+                          "input":  "",
+                          "expected":  "blocked"
+                      },
+                      {
+                          "input":  "   ",
+                          "expected":  "blocked"
+                      },
+                      {
+                          "input":  "UPPERCASE TITLE",
+                          "expected":  "uppercase-title"
+                      },
+                      {
+                          "input":  "Title with Numb3rs and $ymbols",
+                          "expected":  "title-with-numbers-and-symbols"
+                      },
+                      {
+                          "input":  "123 Test 456",
+                          "expected":  "test"
+                      },
+                      {
+                          "input":  "Special Chars: éàü",
+                          "expected":  "special-chars"
+                      },
+                      {
+                          "input":  "  Leading and Trailing Spaces  ",
+                          "expected":  "leading-and-trailing-spaces"
+                      },
+                      {
+                          "input":  "Mixed Case And Punctuation!@#$%",
+                          "expected":  "mixed-case-and-punctuation"
+                      }
+                  ],
+    "candidateOnly":  true
+}

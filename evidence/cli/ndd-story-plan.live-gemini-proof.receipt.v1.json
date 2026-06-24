@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "defracto.ndd-story-plan.live-gemini-proof-receipt.v1",
+  "receiptKey": "defracto.receipt.ndd-story-plan.live-gemini-proof.slice-036.v1",
+  "status": "passed",
+  "commandKey": "defracto.ndd.story.plan.v1",
+  "laneMode": "cognitive_compile",
+  "sourceArtifact": "source/user-stories/story-slug.source.v1.md",
+  "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+  "sliceKey": "slice-036-ndd-story-plan-live-gemini-proof",
+  "geminiEvidence": {
+    "dispatchReceipt": "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
+    "dispatchArtifact": "conveyor/runs/2026/06/24/slice-036-ndd-story-plan-live-gemini-proof/artifacts/story-to-tdd.gemini-dispatch.v1.json",
+    "dispatchHash": "sha256:adcb232b849762f7f14e48f460f12d7d3295dc3bb40526227409bd470a8969fe",
+    "responseReceipt": "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
+    "responseArtifact": "conveyor/runs/2026/06/24/slice-036-ndd-story-plan-live-gemini-proof/artifacts/story-to-tdd.gemini-response.v1.json",
+    "responseHash": "sha256:2642f2fbed46fc737545c2e4388f7981960935e77831f8445f44af5e8fb7f01d",
+    "invocationReceipt": "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json",
+    "invocationStatus": "passed",
+    "liveProviderExecuted": true,
+    "secretMaterialRecorded": false
+  },
+  "candidateArtifacts": {
+    "candidateStoryPacket": {
+      "path": "conveyor/runs/2026/06/24/slice-036-ndd-story-plan-live-gemini-proof/candidates/story-slug.candidate-story-packet.v1.json",
+      "hash": "sha256:0dfb952aee4ef8810a9f19c0a7d469795ea695134db528abc035e9ec0edcc650"
+    },
+    "candidateAcceptanceCriteria": {
+      "path": "conveyor/runs/2026/06/24/slice-036-ndd-story-plan-live-gemini-proof/candidates/story-slug.candidate-acceptance-criteria.v1.json",
+      "hash": "sha256:c3ab27ed53f8d3d15b4b811b477109c8215113e5e8fb40c1497fbe34c184b72d"
+    },
+    "candidateTestIntent": {
+      "path": "conveyor/runs/2026/06/24/slice-036-ndd-story-plan-live-gemini-proof/candidates/story-slug.candidate-test-intent.v1.json",
+      "hash": "sha256:b0a395f4c8eaa01ec8a515bfccb4ac5f23211d4e67058fb269e5dbef207e5e7e"
+    },
+    "candidateImplementationProposal": {
+      "path": "conveyor/runs/2026/06/24/slice-036-ndd-story-plan-live-gemini-proof/candidates/story-slug.candidate-implementation-proposal.v1.json",
+      "hash": "sha256:496522de3cf611df02d25bd5b3d38355fada3ca883d0a8d203b550037fd45bcc"
+    }
+  },
+  "gateResults": {
+    "geminiInvocationRequiredForCognitiveStoryLane": "passed",
+    "storyPlanGeminiReceiptRequired": "passed",
+    "responseShapeAccepted": true,
+    "responseFreshnessAccepted": true,
+    "candidateOnlyUntilAccepted": true,
+    "candidateAuthorityPromoted": false,
+    "deterministicFallbackAttempted": false,
+    "mockResponseUsed": false,
+    "staleResponseAllowed": false
+  },
+  "candidateAuthorityPosture": {
+    "status": "blocked_pending_acceptance_hardening",
+    "candidateStoryAuthorityCreated": false,
+    "candidateArtifactsCaptured": true,
+    "reason": "Gemini response is live and valid, but candidate outputs require acceptance criteria hardening and trace gates before authority promotion."
+  },
+  "observedCandidateHardeningNotes": [
+    "Candidate response explicitly records ambiguity for unsupported punctuation definition.",
+    "Candidate response explicitly records ambiguity for blocked return type.",
+    "Candidate output is not promoted to canonical story, criteria, test intent, or implementation authority in this slice."
+  ],
+  "blockedReasons": [],
+  "completionPosture": "Live Gemini cognition was proven and candidate artifacts were captured; authority remains blocked until governed hardening gates accept the candidates."
+}

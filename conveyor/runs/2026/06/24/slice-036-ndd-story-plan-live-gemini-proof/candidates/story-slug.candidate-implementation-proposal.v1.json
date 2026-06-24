@@ -1,0 +1,4 @@
+﻿{
+    "description":  "The slug generation process should follow these semantic steps:\n1.  Trim any leading or trailing whitespace from the input title.\n2.  Convert the entire title string to lowercase.\n3.  Replace any sequence of one or more whitespace characters (e.g., spaces, tabs) with a single hyphen.\n4.  Remove any characters that are not lowercase ASCII letters (a-z) or hyphens (-).\n5.  Replace any sequence of two or more consecutive hyphens with a single hyphen.\n6.  If the resulting string is empty after all transformations, return the string \u0027blocked\u0027. Otherwise, return the processed string.",
+    "candidateOnly":  true
+}

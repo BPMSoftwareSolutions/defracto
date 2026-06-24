@@ -1,0 +1,56 @@
+﻿{
+    "schemaVersion":  "defracto.gemini-story-to-tdd-dispatch.v1",
+    "dispatchKey":  "defracto.dispatch.story-to-tdd.gemini.story-plan.slice-036.v1",
+    "runKey":  "defracto.run.slice-036-ndd-story-plan-live-gemini-proof.v1",
+    "sliceKey":  "slice-036-ndd-story-plan-live-gemini-proof",
+    "laneKey":  "story-to-tdd.gemini.story-plan",
+    "laneMode":  "cognitive_compile",
+    "commandKey":  "defracto.ndd.story.plan.v1",
+    "workerKey":  "defracto.workers.gemini_flash.story_to_tdd.v1",
+    "workerProfilePath":  "conveyor/workers/gemini-flash.story-to-tdd.worker-profile.v1.json",
+    "dispatchContractPath":  "conveyor/workers/gemini-flash.story-to-tdd.dispatch-contract.v1.json",
+    "responseContractPath":  "conveyor/workers/gemini-flash.story-to-tdd.response-contract.v1.json",
+    "sourceArtifact":  "source/user-stories/story-slug.source.v1.md",
+    "sourceHash":  "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+    "requestedCognitiveTasks":  [
+                                    "story interpretation",
+                                    "ambiguity analysis",
+                                    "candidate story packet creation",
+                                    "acceptance criteria extraction",
+                                    "test intent proposal",
+                                    "implementation proposal"
+                                ],
+    "candidateOutputTargets":  [
+                                   "conveyor\\runs\\2026\\06\\24\\slice-036-ndd-story-plan-live-gemini-proof\\candidates/story-slug.candidate-story-packet.v1.json",
+                                   "conveyor\\runs\\2026\\06\\24\\slice-036-ndd-story-plan-live-gemini-proof\\candidates/story-slug.candidate-acceptance-criteria.v1.json",
+                                   "conveyor\\runs\\2026\\06\\24\\slice-036-ndd-story-plan-live-gemini-proof\\candidates/story-slug.candidate-test-intent.v1.json",
+                                   "conveyor\\runs\\2026\\06\\24\\slice-036-ndd-story-plan-live-gemini-proof\\candidates/story-slug.candidate-implementation-proposal.v1.json"
+                               ],
+    "allowedMutation":  [
+                            "write candidate artifacts under slice 036 run folder",
+                            "write Gemini worker receipts under evidence/workers"
+                        ],
+    "forbiddenMutation":  [
+                              "product source mutation",
+                              "durable product truth promotion",
+                              "hand-authored code",
+                              "generated implementation materialization"
+                          ],
+    "acceptanceGates":  [
+                            "contracts/gates/gemini-invocation-required-for-cognitive-story-lane.gate.v1.json",
+                            "contracts/gates/story-plan-gemini-receipt-required.gate.v1.json",
+                            "contracts/gates/acceptance-criteria-trace-required.gate.v1.json",
+                            "contracts/gates/no-hand-authored-code.gate.v1.json"
+                        ],
+    "credentialPolicy":  {
+                             "secretMaterialAllowedInDispatch":  false,
+                             "requiredEnvVar":  "LOC_GEMINI_API_KEY",
+                             "secretMaterialAllowedInEvidence":  false
+                         },
+    "freshnessPolicy":  {
+                            "mustBindToSliceKey":  true,
+                            "staleResponseAllowed":  false,
+                            "mustBindToSourceHash":  true
+                        },
+    "receiptPath":  "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json"
+}
