@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "defracto.resolver-evolution-request.v1",
+  "requestKey": "defracto.resolver-evolution.run-envelope-path-projection.v1",
+  "status": "requested",
+  "requestedOperation": "run.envelope.paths.project.v1",
+  "operationLayer": "sej_language_conveyor_infrastructure",
+  "sourceCapability": "contracts/capabilities/run.envelope.paths.project.v1.json",
+  "operationRequirements": "contracts/operations/run-envelope-path-projection.operation-requirements.v1.json",
+  "inputSchema": "contracts/schemas/run-envelope-path-projection-input.schema.v1.json",
+  "resultSchema": "contracts/schemas/run-envelope-path-projection-result.schema.v1.json",
+  "probeSej": "contracts/sej/run-envelope-path-projection.probe.sej.v1.json",
+  "runtimeBoundary": {
+    "allowed": [
+      "validate sliceKey",
+      "validate runDate or dated runRoot",
+      "validate runRoot and allowedRoot",
+      "project deterministic relative run-envelope paths",
+      "fail closed on invalid or escaping paths",
+      "return JSON only"
+    ],
+    "forbidden": [
+      "create files",
+      "create directories",
+      "materialize manifests",
+      "emit receipts",
+      "interpret story meaning",
+      "create product behavior",
+      "hardcode slice keys",
+      "hardcode dates",
+      "create durable authority"
+    ]
+  },
+  "expectedPassedProbe": {
+    "inputShape": {
+      "sliceKey": "<slice-key>",
+      "runDate": "<yyyy/mm/dd>",
+      "runRoot": "<relative-run-root>",
+      "allowedRoot": "<relative-allowed-root>"
+    },
+    "outputShape": {
+      "status": "passed",
+      "createsFiles": false,
+      "paths": {
+        "runEnvelopeRoot": "<runRoot>/<runDate>/<sliceKey>",
+        "runManifestPath": "<runRoot>/<runDate>/<sliceKey>/run.manifest.v1.json",
+        "sourceStoryPath": "<runRoot>/<runDate>/<sliceKey>/source/story.source.v1.md",
+        "handoffPacketPath": "<runRoot>/<runDate>/<sliceKey>/handoff-packets/01-story-intake.packet.v1.json",
+        "bootstrapReceiptPath": "<runRoot>/<runDate>/<sliceKey>/receipts/story-run-bootstrap.receipt.v1.json"
+      }
+    }
+  },
+  "blockedProbeObserved": {
+    "status": "blocked",
+    "blocker": "missing_sej_language_operation",
+    "error": "Unsupported primitive operation: run.envelope.paths.project.v1"
+  },
+  "completionPosture": "058b completes only when the approved resolver package exposes this generic operation. This repository must not satisfy 058b through an ignored node_modules patch."
+}

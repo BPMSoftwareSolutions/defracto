@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.verify-run-envelope-path-projection-language-support.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.conveyor.language-support-verification",
+  "sourceLineage": {
+    "resolverEvolutionRequest": "contracts/resolver-authority/run-envelope-path-projection.resolver-evolution-request.v1.json",
+    "capability": "contracts/capabilities/run.envelope.paths.project.v1.json",
+    "probe": "contracts/sej/run-envelope-path-projection.probe.sej.v1.json"
+  },
+  "requiredOperations": [
+    {
+      "operationKey": "project.value.v1",
+      "purpose": "Project blocked language-support receipt.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "Emit language-support receipt.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "steps": [
+    {
+      "id": "projectLanguageSupportReceipt",
+      "type": "resolver",
+      "operation": "project.value.v1",
+      "payload": {
+        "fields": {
+          "receiptContent": {
+            "schemaVersion": "defracto.sej-language-operation-support.receipt.v1",
+            "receiptKey": "defracto.receipt.run-envelope-path-projection.language-support.slice-058b.v1",
+            "status": "blocked",
+            "blocker": "resolver_package_support_missing",
+            "requiredOperation": "run.envelope.paths.project.v1",
+            "approvedResolverPackage": "@bpmsoftwaresolutions/sej-resolver-node",
+            "observedInstalledVersion": "0.1.8",
+            "observedLatestPublishedVersion": "0.1.8",
+            "nodeModulesPatchAllowed": false,
+            "nodeModulesPatchApplied": false,
+            "resolverEvolutionRequest": "contracts/resolver-authority/run-envelope-path-projection.resolver-evolution-request.v1.json",
+            "nextBlockedSlice": "slice-058c-conveyor-owned-story-run-bootstrap",
+            "completionPosture": "058b remains blocked until the approved resolver package exposes the tiny generic run envelope path projection operation."
+          }
+        }
+      }
+    },
+    {
+      "id": "emitLanguageSupportReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "evidence_write_only"
+        },
+        "receipt": {
+          "path": "evidence/conveyor/run-envelope-path-projection.language-support.receipt.v1.json",
+          "content": {
+            "$ref": "$steps.projectLanguageSupportReceipt.receiptContent"
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitLanguageSupportReceipt"
+  }
+}
