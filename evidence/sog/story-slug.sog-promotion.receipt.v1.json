@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "defracto.sog-promotion.receipt.v1",
+  "receiptKey": "defracto.receipt.story-slug.sog-promotion.slice-052.v1",
+  "status": "passed",
+  "sliceKey": "slice-049-052-story-slug-sog-promotion-run",
+  "truthOwner": "semantic_operation_graph",
+  "durableProductTruthAccepted": true,
+  "semanticOperationGraph": {
+    "path": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+    "hash": "sha256:70f369227c427823050e4a0f6ac0da92a8c124f621fced7db5c9f7a605b14b12",
+    "hostLanguageBodyAllowed": false,
+    "bodyKind": "semantic_operation_graph"
+  },
+  "capabilityCoverageReceipt": {
+    "path": "evidence/sog/story-slug.capability-coverage.receipt.v1.json",
+    "hash": "sha256:78ec07d16615c2b5eec75ba17a23e986c8008554366fabafb533048ea5a59b9e",
+    "status": "passed"
+  },
+  "sogExecutionReceipt": {
+    "path": "evidence/sog/story-slug.sog-execution.receipt.v1.json",
+    "hash": "sha256:6d50b3d75eb0564116ea74bc9b8310d64660ba2d0d6e164358ee935902bafcbc",
+    "status": "passed"
+  },
+  "parityReceipt": {
+    "path": "evidence/sog/story-slug.sog-to-cognitive-proof-parity.receipt.v1.json",
+    "hash": "sha256:12567883de8060f15b7a98c2af81ac3cc3a57edc1597eeb4ace4425727a4f4a1",
+    "status": "passed"
+  },
+  "cognitiveProofSurface": {
+    "path": "generated/implementations/user-stories/story-slug.cognitive.cjs",
+    "hash": "sha256:d81f3758b7ea16b7522c9a64efcd31eb766ca525966c5e25db534417d6a7e416",
+    "promotionStatus": "superseded_proof_surface",
+    "roleAfterPromotion": "evidence_only_not_execution_truth"
+  },
+  "promotionGates": {
+    "capabilityCoverage": "passed",
+    "sogExecution": "passed",
+    "parity": "passed",
+    "promotion": "passed",
+    "supersession": "passed"
+  },
+  "guardrails": {
+    "hostLanguageBodyAllowed": false,
+    "forbiddenHostFallback": true,
+    "generatedCjsIsExecutionTruth": false,
+    "generatedCjsIsEvidenceOnly": true,
+    "resolverRepoChanged": false
+  },
+  "blockedReasons": [],
+  "completionPosture": "Durable product truth is accepted for the semantic operation graph only; cognitive generated implementation is superseded as proof surface evidence."
+}

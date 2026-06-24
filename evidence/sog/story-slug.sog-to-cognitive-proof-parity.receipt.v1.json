@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "defracto.sog-to-cognitive-proof-parity.receipt.v1",
+  "receiptKey": "defracto.receipt.story-slug.sog-to-cognitive-proof-parity.slice-051.v1",
+  "status": "passed",
+  "sliceKey": "slice-049-052-story-slug-sog-promotion-run",
+  "semanticOperationGraph": {
+    "path": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+    "hash": "sha256:70f369227c427823050e4a0f6ac0da92a8c124f621fced7db5c9f7a605b14b12"
+  },
+  "sogExecutionReceipt": {
+    "path": "evidence/sog/story-slug.sog-execution.receipt.v1.json",
+    "hash": "sha256:6d50b3d75eb0564116ea74bc9b8310d64660ba2d0d6e164358ee935902bafcbc"
+  },
+  "cognitiveProof": {
+    "testIntent": {
+      "path": "contracts/test-intents/story-slug.cognitive-test-intent.v1.json",
+      "hash": "sha256:eb5cc763f7282ec5735f9f3c54c080c6a1929c1d2350face4ffecbfa9ab463ee"
+    },
+    "redGreenCycleReceipt": {
+      "path": "evidence/tdd/story-slug.cognitive-red-green-cycle.receipt.v1.json",
+      "hash": "sha256:61c0db3afdacddabcd7bb14d24349d67a5135a855a0c2c5532afaf6adc23393d",
+      "testArtifactHash": "sha256:cc56c2aea3d030818fc64509e21624e21506f29b0da1a21c62307c7ca932a5c8",
+      "implementationArtifactHash": "sha256:d81f3758b7ea16b7522c9a64efcd31eb766ca525966c5e25db534417d6a7e416"
+    },
+    "greenReceipt": {
+      "path": "evidence/tdd/story-slug.cognitive-green-test.receipt.v1.json",
+      "hash": "sha256:71b7abadc56047346beb73c47e1e74f27c54d5db292e2fc9935423f37c3daf4f",
+      "targetArtifactHash": "sha256:cc56c2aea3d030818fc64509e21624e21506f29b0da1a21c62307c7ca932a5c8",
+      "implementationArtifactHash": "sha256:d81f3758b7ea16b7522c9a64efcd31eb766ca525966c5e25db534417d6a7e416"
+    },
+    "proofSurfaceReceipt": {
+      "path": "evidence/tdd/story-slug.cognitive-proof-surface-not-product-truth.receipt.v1.json",
+      "hash": "sha256:a7fae0d0c78f33416e358f964c9d71474f6e7b2ebe3e566c99286df9408d29d0"
+    }
+  },
+  "parityRows": [
+    {
+      "caseKey": "story-slug.cognitive.test.lowercase-and-whitespace",
+      "input": {
+        "title": "Story Title"
+      },
+      "sogActual": {
+        "slugKey": "story-title",
+        "status": "passed"
+      },
+      "cognitiveExpected": {
+        "status": "passed",
+        "slugKey": "story-title"
+      },
+      "matchesCognitiveExpected": true,
+      "matchesExecutionExpected": true
+    },
+    {
+      "caseKey": "story-slug.cognitive.test.remove-punctuation",
+      "input": {
+        "title": "Story: Title!"
+      },
+      "sogActual": {
+        "slugKey": "story-title",
+        "status": "passed"
+      },
+      "cognitiveExpected": {
+        "status": "passed",
+        "slugKey": "story-title"
+      },
+      "matchesCognitiveExpected": true,
+      "matchesExecutionExpected": true
+    },
+    {
+      "caseKey": "story-slug.cognitive.test.collapse-hyphens",
+      "input": {
+        "title": "Story -- Title"
+      },
+      "sogActual": {
+        "slugKey": "story-title",
+        "status": "passed"
+      },
+      "cognitiveExpected": {
+        "status": "passed",
+        "slugKey": "story-title"
+      },
+      "matchesCognitiveExpected": true,
+      "matchesExecutionExpected": true
+    },
+    {
+      "caseKey": "story-slug.cognitive.test.empty-input-blocked",
+      "input": {
+        "title": "   "
+      },
+      "sogActual": {
+        "blocker": "empty_slug_input",
+        "status": "blocked"
+      },
+      "cognitiveExpected": {
+        "status": "blocked",
+        "blocker": "empty_slug_input"
+      },
+      "matchesCognitiveExpected": true,
+      "matchesExecutionExpected": true
+    }
+  ],
+  "paritySummary": {
+    "casesCompared": 4,
+    "casesPassed": 4,
+    "casesFailed": 0,
+    "sogOutputMatchesCognitiveTestAuthority": true,
+    "sameCognitiveTestHashReferenced": true,
+    "generatedImplementationUsedAsExecutionTruth": false
+  },
+  "blockedReasons": []
+}

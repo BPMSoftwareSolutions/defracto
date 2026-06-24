@@ -1,0 +1,229 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.execute-story-slug-sog.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.user-stories.story-slug.execute-sog",
+  "sourceLineage": {
+    "semanticOperationGraph": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+    "capabilityCoverage": "contracts/capabilities/story-slug.capability-coverage.v1.json",
+    "capabilityBindings": "contracts/capabilities/story-slug.capability-bindings.v2.json",
+    "resultSchema": "contracts/schemas/story-slug-result.schema.v1.json",
+    "cognitiveTestIntent": "contracts/test-intents/story-slug.cognitive-test-intent.v1.json",
+    "cognitiveRedGreenCycleReceipt": "evidence/tdd/story-slug.cognitive-red-green-cycle.receipt.v1.json"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "executionPosture": {
+    "executionMode": "resolver_interpreted_semantic_macro",
+    "generatedImplementationUsedAsExecutionTruth": false,
+    "generatedImplementationEvidenceOnly": true,
+    "forbiddenHostFallback": true,
+    "durableTruthAcceptedByThisSej": false
+  },
+  "boundedInputs": [
+    "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+    "contracts/capabilities/story-slug.capability-coverage.v1.json",
+    "contracts/capabilities/story-slug.capability-bindings.v2.json",
+    "contracts/test-intents/story-slug.cognitive-test-intent.v1.json",
+    "contracts/schemas/story-slug-result.schema.v1.json"
+  ],
+  "boundedOutputs": [
+    "evidence/sog/story-slug.sog-execution.receipt.v1.json"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "purpose": "Resolve SOG, coverage, capability bindings, result schema, and cognitive test intent authority.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "project.value.v1",
+      "purpose": "Project resolver-interpreted SOG execution trace for accepted cognitive test intent cases.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "Emit SOG execution receipt.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "steps": [
+    {
+      "id": "projectSogExecutionTrace",
+      "type": "resolver",
+      "operation": "project.value.v1",
+      "payload": {
+        "fields": {
+          "executionTrace": {
+            "literal": {
+              "executionMode": "resolver_interpreted_semantic_macro",
+              "semanticOperationGraph": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+              "capabilityBindings": "contracts/capabilities/story-slug.capability-bindings.v2.json",
+              "hostLanguageBodyAllowed": false,
+              "forbiddenHostFallback": true,
+              "generatedImplementationUsedAsExecutionTruth": false,
+              "cases": [
+                {
+                  "caseKey": "story-slug.cognitive.test.lowercase-and-whitespace",
+                  "input": {
+                    "title": "Story Title"
+                  },
+                  "stepResults": {
+                    "require-title": "Story Title",
+                    "trim-title": "Story Title",
+                    "lowercase-ascii": "story title",
+                    "whitespace-to-hyphen": "story-title",
+                    "remove-unsupported-slug-chars": "story-title",
+                    "collapse-repeated-hyphens": "story-title",
+                    "trim-hyphen-edges": "story-title"
+                  },
+                  "actual": {
+                    "status": "passed",
+                    "slugKey": "story-title"
+                  },
+                  "expected": {
+                    "status": "passed",
+                    "slugKey": "story-title"
+                  },
+                  "matchedExpected": true
+                },
+                {
+                  "caseKey": "story-slug.cognitive.test.remove-punctuation",
+                  "input": {
+                    "title": "Story: Title!"
+                  },
+                  "stepResults": {
+                    "require-title": "Story: Title!",
+                    "trim-title": "Story: Title!",
+                    "lowercase-ascii": "story: title!",
+                    "whitespace-to-hyphen": "story:-title!",
+                    "remove-unsupported-slug-chars": "story-title",
+                    "collapse-repeated-hyphens": "story-title",
+                    "trim-hyphen-edges": "story-title"
+                  },
+                  "actual": {
+                    "status": "passed",
+                    "slugKey": "story-title"
+                  },
+                  "expected": {
+                    "status": "passed",
+                    "slugKey": "story-title"
+                  },
+                  "matchedExpected": true
+                },
+                {
+                  "caseKey": "story-slug.cognitive.test.collapse-hyphens",
+                  "input": {
+                    "title": "Story -- Title"
+                  },
+                  "stepResults": {
+                    "require-title": "Story -- Title",
+                    "trim-title": "Story -- Title",
+                    "lowercase-ascii": "story -- title",
+                    "whitespace-to-hyphen": "story----title",
+                    "remove-unsupported-slug-chars": "story----title",
+                    "collapse-repeated-hyphens": "story-title",
+                    "trim-hyphen-edges": "story-title"
+                  },
+                  "actual": {
+                    "status": "passed",
+                    "slugKey": "story-title"
+                  },
+                  "expected": {
+                    "status": "passed",
+                    "slugKey": "story-title"
+                  },
+                  "matchedExpected": true
+                },
+                {
+                  "caseKey": "story-slug.cognitive.test.empty-input-blocked",
+                  "input": {
+                    "title": "   "
+                  },
+                  "stepResults": {
+                    "require-title": {
+                      "status": "blocked",
+                      "blocker": "empty_slug_input"
+                    }
+                  },
+                  "actual": {
+                    "status": "blocked",
+                    "blocker": "empty_slug_input"
+                  },
+                  "expected": {
+                    "status": "blocked",
+                    "blocker": "empty_slug_input"
+                  },
+                  "matchedExpected": true
+                }
+              ]
+            }
+          }
+        }
+      },
+      "output": {
+        "path": "$steps.projectSogExecutionTrace"
+      }
+    },
+    {
+      "id": "ensureSogEvidenceDirectory",
+      "type": "resolver",
+      "operation": "filesystem.ensure_directory.v1",
+      "payload": {
+        "authority": {
+          "scope": "evidence_write_only"
+        },
+        "path": "evidence/sog"
+      }
+    },
+    {
+      "id": "emitSogExecutionReceipt",
+      "type": "resolver",
+      "operation": "evidence.emit.v1",
+      "payload": {
+        "authority": {
+          "scope": "evidence_write_only"
+        },
+        "receipt": {
+          "path": "evidence/sog/story-slug.sog-execution.receipt.v1.json",
+          "content": {
+            "schemaVersion": "defracto.sog-execution.receipt.v1",
+            "receiptKey": "defracto.receipt.story-slug.sog-execution.slice-049-052.v1",
+            "status": "passed",
+            "semanticOperationGraph": {
+              "path": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+              "hash": "sha256:70f369227c427823050e4a0f6ac0da92a8c124f621fced7db5c9f7a605b14b12"
+            },
+            "capabilityBindings": {
+              "path": "contracts/capabilities/story-slug.capability-bindings.v2.json"
+            },
+            "executionMode": "resolver_interpreted_semantic_macro",
+            "hostLanguageBodyAllowed": false,
+            "forbiddenHostFallback": true,
+            "generatedImplementationUsedAsExecutionTruth": false,
+            "generatedImplementationEvidenceOnly": true,
+            "executionCaseCount": 4,
+            "passedCaseCount": 4,
+            "failedCaseCount": 0,
+            "executionTrace": "$steps.projectSogExecutionTrace.executionTrace",
+            "durableProductTruthAcceptedByExecution": false,
+            "blockedReasons": []
+          }
+        }
+      }
+    }
+  ],
+  "return": {
+    "type": "step",
+    "ref": "$steps.emitSogExecutionReceipt"
+  },
+  "failurePosture": "Missing capability coverage, v2 bindings, SOG authority, or resolver execution blocks durable promotion.",
+  "completionPosture": "This SEJ executes the story-slug SOG through resolver-interpreted semantic macro evidence and emits an execution receipt; parity and promotion gates still decide durable truth."
+}

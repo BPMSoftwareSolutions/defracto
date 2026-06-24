@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "loc.capability-binding.v2",
+  "bindingKey": "defracto.user-stories.story-slug.capability-bindings.v2",
+  "bindingStatus": "accepted-for-sog-execution",
+  "semanticOperationGraphRef": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+  "supersedes": "contracts/capabilities/story-slug.capability-bindings.v1.json",
+  "bindingMode": "resolver_interpreted_semantic_macro",
+  "macroAuthority": {
+    "macroKey": "defracto.macros.story-slug.generate.semantic-normalization.v1",
+    "macroStatus": "accepted-for-story-slug-sog-promotion-run",
+    "hostLanguageBodyAllowed": false,
+    "forbiddenHostFallback": true,
+    "primitiveSequence": [
+      "project.value.v1",
+      "json.schema.validate.v1",
+      "evidence.emit.v1"
+    ],
+    "sourceTruth": [
+      "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+      "contracts/schemas/story-slug-result.schema.v1.json",
+      "contracts/test-intents/story-slug.cognitive-test-intent.v1.json"
+    ]
+  },
+  "bindings": [
+    {
+      "capabilityKey": "story-slug.generate.v1",
+      "primitiveKey": "defracto.macros.story-slug.generate.semantic-normalization.v1",
+      "status": "supported_by_semantic_macro",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "input.require_non_empty_string.v1",
+      "primitiveKey": "defracto.macros.story-slug.generate.semantic-normalization.v1#require-title",
+      "status": "supported_by_semantic_macro",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "string.trim.v1",
+      "primitiveKey": "defracto.macros.story-slug.generate.semantic-normalization.v1#trim-title",
+      "status": "supported_by_semantic_macro",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "string.lowercase_ascii.v1",
+      "primitiveKey": "defracto.macros.story-slug.generate.semantic-normalization.v1#lowercase-ascii",
+      "status": "supported_by_semantic_macro",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "string.replace_whitespace_with_hyphen.v1",
+      "primitiveKey": "defracto.macros.story-slug.generate.semantic-normalization.v1#whitespace-to-hyphen",
+      "status": "supported_by_semantic_macro",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "string.remove_unsupported_slug_chars.v1",
+      "primitiveKey": "defracto.macros.story-slug.generate.semantic-normalization.v1#remove-unsupported-slug-chars",
+      "status": "supported_by_semantic_macro",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "string.collapse_repeated_hyphens.v1",
+      "primitiveKey": "defracto.macros.story-slug.generate.semantic-normalization.v1#collapse-repeated-hyphens",
+      "status": "supported_by_semantic_macro",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "string.trim_hyphen_edges.v1",
+      "primitiveKey": "defracto.macros.story-slug.generate.semantic-normalization.v1#trim-hyphen-edges",
+      "status": "supported_by_semantic_macro",
+      "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "result.project.v1",
+      "primitiveKey": "defracto.macros.story-slug.generate.semantic-normalization.v1#project-result",
+      "status": "supported_by_semantic_macro",
+      "ifMissing": "blocked"
+    }
+  ],
+  "executionCases": [
+    {
+      "caseKey": "story-slug.cognitive.test.lowercase-and-whitespace",
+      "input": {
+        "title": "Story Title"
+      },
+      "expected": {
+        "status": "passed",
+        "slugKey": "story-title"
+      }
+    },
+    {
+      "caseKey": "story-slug.cognitive.test.remove-punctuation",
+      "input": {
+        "title": "Story: Title!"
+      },
+      "expected": {
+        "status": "passed",
+        "slugKey": "story-title"
+      }
+    },
+    {
+      "caseKey": "story-slug.cognitive.test.collapse-hyphens",
+      "input": {
+        "title": "Story -- Title"
+      },
+      "expected": {
+        "status": "passed",
+        "slugKey": "story-title"
+      }
+    },
+    {
+      "caseKey": "story-slug.cognitive.test.empty-input-blocked",
+      "input": {
+        "title": "   "
+      },
+      "expected": {
+        "status": "blocked",
+        "blocker": "empty_slug_input"
+      }
+    }
+  ],
+  "forbiddenHostFallback": true,
+  "generatedImplementationFallbackAllowed": false,
+  "completionPosture": "Story-slug SOG capabilities are bound to a resolver-interpreted semantic macro path for this promotion run; generated CJS remains evidence only."
+}

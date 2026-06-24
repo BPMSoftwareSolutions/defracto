@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "defracto.cognitive-proof-surface-superseded.receipt.v1",
+  "receiptKey": "defracto.receipt.story-slug.cognitive-proof-surface-superseded.slice-052.v1",
+  "status": "passed",
+  "sliceKey": "slice-049-052-story-slug-sog-promotion-run",
+  "generatedImplementation": {
+    "path": "generated/implementations/user-stories/story-slug.cognitive.cjs",
+    "hash": "sha256:d81f3758b7ea16b7522c9a64efcd31eb766ca525966c5e25db534417d6a7e416",
+    "previousPromotionStatus": "proof_surface_only",
+    "newPromotionStatus": "superseded_proof_surface"
+  },
+  "supersededBy": {
+    "truthOwner": "semantic_operation_graph",
+    "path": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+    "hash": "sha256:70f369227c427823050e4a0f6ac0da92a8c124f621fced7db5c9f7a605b14b12",
+    "promotionReceipt": "evidence/sog/story-slug.sog-promotion.receipt.v1.json",
+    "promotionReceiptHash": "sha256:ae979d9e82a72c3348485cad2cd9f71c6abf428858425be3da53bbed1cde1850"
+  },
+  "priorProofSurfaceReceipt": {
+    "path": "evidence/tdd/story-slug.cognitive-proof-surface-not-product-truth.receipt.v1.json",
+    "hash": "sha256:a7fae0d0c78f33416e358f964c9d71474f6e7b2ebe3e566c99286df9408d29d0"
+  },
+  "redGreenCycleReceipt": {
+    "path": "evidence/tdd/story-slug.cognitive-red-green-cycle.receipt.v1.json",
+    "hash": "sha256:61c0db3afdacddabcd7bb14d24349d67a5135a855a0c2c5532afaf6adc23393d"
+  },
+  "executionTruthAfterPromotion": "semantic_operation_graph",
+  "generatedImplementationUsedAsExecutionTruth": false,
+  "sourceFileMutatedForSupersession": false,
+  "supersessionMechanism": "governed_receipt_marks_generated_artifact_as_superseded_without_hand-editing_generated_code",
+  "durableProductTruthAcceptedForGeneratedImplementation": false,
+  "blockedReasons": []
+}

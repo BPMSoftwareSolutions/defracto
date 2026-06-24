@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "loc.capability-coverage.v1",
+  "coverageKey": "defracto.user-stories.story-slug.capability-coverage.v1",
+  "coverageStatus": "accepted-for-sog-execution",
+  "semanticOperationGraphRef": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+  "semanticOperationGraphHash": "sha256:70f369227c427823050e4a0f6ac0da92a8c124f621fced7db5c9f7a605b14b12",
+  "capabilityBindingsRef": "contracts/capabilities/story-slug.capability-bindings.v2.json",
+  "sourceLineage": {
+    "sogSeedReceipt": "evidence/sog/story-slug.sog-seed.receipt.v1.json",
+    "cognitiveRedGreenCycleReceipt": "evidence/tdd/story-slug.cognitive-red-green-cycle.receipt.v1.json",
+    "proofSurfaceReceipt": "evidence/tdd/story-slug.cognitive-proof-surface-not-product-truth.receipt.v1.json",
+    "resultSchema": "contracts/schemas/story-slug-result.schema.v1.json"
+  },
+  "coverageSummary": {
+    "totalSogCapabilities": 9,
+    "supportedCapabilities": 9,
+    "unsupportedCapabilities": 0,
+    "coverageGateStatus": "passed",
+    "macroBindingRequired": true,
+    "hostLanguageFallbackAllowed": false,
+    "forbiddenHostFallback": true
+  },
+  "coveredCapabilities": [
+    {
+      "capabilityKey": "story-slug.generate.v1",
+      "coverageStatus": "supported_by_semantic_macro",
+      "bindingRef": "defracto.user-stories.story-slug.capability-bindings.v2#story-slug.generate.v1"
+    },
+    {
+      "capabilityKey": "input.require_non_empty_string.v1",
+      "coverageStatus": "supported_by_semantic_macro",
+      "bindingRef": "defracto.user-stories.story-slug.capability-bindings.v2#input.require_non_empty_string.v1"
+    },
+    {
+      "capabilityKey": "string.trim.v1",
+      "coverageStatus": "supported_by_semantic_macro",
+      "bindingRef": "defracto.user-stories.story-slug.capability-bindings.v2#string.trim.v1"
+    },
+    {
+      "capabilityKey": "string.lowercase_ascii.v1",
+      "coverageStatus": "supported_by_semantic_macro",
+      "bindingRef": "defracto.user-stories.story-slug.capability-bindings.v2#string.lowercase_ascii.v1"
+    },
+    {
+      "capabilityKey": "string.replace_whitespace_with_hyphen.v1",
+      "coverageStatus": "supported_by_semantic_macro",
+      "bindingRef": "defracto.user-stories.story-slug.capability-bindings.v2#string.replace_whitespace_with_hyphen.v1"
+    },
+    {
+      "capabilityKey": "string.remove_unsupported_slug_chars.v1",
+      "coverageStatus": "supported_by_semantic_macro",
+      "bindingRef": "defracto.user-stories.story-slug.capability-bindings.v2#string.remove_unsupported_slug_chars.v1"
+    },
+    {
+      "capabilityKey": "string.collapse_repeated_hyphens.v1",
+      "coverageStatus": "supported_by_semantic_macro",
+      "bindingRef": "defracto.user-stories.story-slug.capability-bindings.v2#string.collapse_repeated_hyphens.v1"
+    },
+    {
+      "capabilityKey": "string.trim_hyphen_edges.v1",
+      "coverageStatus": "supported_by_semantic_macro",
+      "bindingRef": "defracto.user-stories.story-slug.capability-bindings.v2#string.trim_hyphen_edges.v1"
+    },
+    {
+      "capabilityKey": "result.project.v1",
+      "coverageStatus": "supported_by_semantic_macro",
+      "bindingRef": "defracto.user-stories.story-slug.capability-bindings.v2#result.project.v1"
+    }
+  ],
+  "forbiddenClaims": [
+    "generated CJS is execution truth",
+    "host-language fallback completed SOG coverage",
+    "durable product truth before SOG execution",
+    "capability gaps ignored"
+  ],
+  "completionPosture": "All story-slug SOG capabilities are classified as covered through declared resolver-interpreted semantic macro bindings; execution and parity receipts are still required before durable promotion."
+}
