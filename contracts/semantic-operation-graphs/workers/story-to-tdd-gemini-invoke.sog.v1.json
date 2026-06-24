@@ -1,0 +1,247 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.workers.story-to-tdd-gemini-invoke.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "declared-blocked-until-live-worker-manifest",
+  "commandKey": "defracto.workers.gemini_flash.story_to_tdd.invoke.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.story-to-tdd-gemini.require-api-key.semantic-action.v1",
+      "capabilityKey": "environment.require_secret.v1",
+      "intent": "Require LOC_GEMINI_API_KEY without exposing secret material."
+    },
+    {
+      "actionKey": "defracto.story-to-tdd-gemini.validate-dispatch.semantic-action.v1",
+      "capabilityKey": "object.require_fields.v1",
+      "intent": "Validate Story-to-TDD Gemini dispatch fields."
+    },
+    {
+      "actionKey": "defracto.story-to-tdd-gemini.materialize-dispatch-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit dispatch receipt."
+    },
+    {
+      "actionKey": "defracto.story-to-tdd-gemini.invoke-provider.semantic-action.v1",
+      "capabilityKey": "worker.gemini_flash.invoke.v1",
+      "intent": "Invoke live Gemini Flash provider for cognitive Story-to-TDD compilation."
+    },
+    {
+      "actionKey": "defracto.story-to-tdd-gemini.validate-response.semantic-action.v1",
+      "capabilityKey": "json.schema.validate.v1",
+      "intent": "Validate Gemini response contract."
+    },
+    {
+      "actionKey": "defracto.story-to-tdd-gemini.verify-freshness.semantic-action.v1",
+      "capabilityKey": "evidence.freshness.verify.v1",
+      "intent": "Verify response source hash and slice key match dispatch."
+    },
+    {
+      "actionKey": "defracto.story-to-tdd-gemini.materialize-response-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit response receipt."
+    },
+    {
+      "actionKey": "defracto.story-to-tdd-gemini.emit-invocation-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit Gemini invocation receipt."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "require-api-key",
+        "capabilityKey": "environment.require_secret.v1",
+        "intent": "Require LOC_GEMINI_API_KEY without exposing secret material.",
+        "input": {
+          "envVar": "LOC_GEMINI_API_KEY",
+          "secretMaterialAllowedInEvidence": false
+        },
+        "output": {
+          "path": "$graph.require_api_key"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "gemini_api_key_missing"
+        }
+      },
+      {
+        "id": "validate-dispatch",
+        "capabilityKey": "object.require_fields.v1",
+        "intent": "Validate Story-to-TDD Gemini dispatch fields.",
+        "input": {
+          "object": {
+            "$context": "dispatch"
+          },
+          "fields": [
+            "schemaVersion",
+            "dispatchKey",
+            "runKey",
+            "sliceKey",
+            "laneMode",
+            "commandKey",
+            "workerKey",
+            "sourceHash",
+            "requestedCognitiveTasks"
+          ]
+        },
+        "output": {
+          "path": "$graph.validate_dispatch"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "gemini_dispatch_missing"
+        }
+      },
+      {
+        "id": "emit-dispatch-receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit dispatch receipt.",
+        "input": {
+          "path": "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
+          "receipt": {
+            "schemaVersion": "defracto.gemini-dispatch-receipt.v1",
+            "status": "declared",
+            "workerKey": "defracto.workers.gemini_flash.story_to_tdd.v1",
+            "laneMode": "cognitive_compile"
+          }
+        },
+        "output": {
+          "path": "$graph.emit_dispatch_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "gemini_dispatch_missing"
+        }
+      },
+      {
+        "id": "invoke-provider",
+        "capabilityKey": "worker.gemini_flash.invoke.v1",
+        "intent": "Invoke live Gemini Flash provider for cognitive Story-to-TDD compilation.",
+        "input": {
+          "dispatch": {
+            "$context": "dispatch"
+          },
+          "workerProfile": "conveyor/workers/gemini-flash.story-to-tdd.worker-profile.v1.json",
+          "responseContract": "conveyor/workers/gemini-flash.story-to-tdd.response-contract.v1.json"
+        },
+        "output": {
+          "path": "$graph.invoke_provider"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "gemini_response_missing"
+        }
+      },
+      {
+        "id": "validate-response",
+        "capabilityKey": "json.schema.validate.v1",
+        "intent": "Validate Gemini response contract.",
+        "input": {
+          "schema": "conveyor/workers/gemini-flash.story-to-tdd.response-contract.v1.json",
+          "response": {
+            "$graph": "invoke_provider.response"
+          }
+        },
+        "output": {
+          "path": "$graph.validate_response"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "gemini_response_unaccepted"
+        }
+      },
+      {
+        "id": "verify-freshness",
+        "capabilityKey": "evidence.freshness.verify.v1",
+        "intent": "Verify response source hash and slice key match dispatch.",
+        "input": {
+          "dispatchSourceHash": {
+            "$context": "dispatch.sourceHash"
+          },
+          "responseSourceHash": {
+            "$graph": "invoke_provider.response.sourceHash"
+          },
+          "dispatchSliceKey": {
+            "$context": "dispatch.sliceKey"
+          },
+          "responseSliceKey": {
+            "$graph": "invoke_provider.response.sliceKey"
+          }
+        },
+        "output": {
+          "path": "$graph.verify_freshness"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "gemini_response_stale"
+        }
+      },
+      {
+        "id": "emit-response-receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit response receipt.",
+        "input": {
+          "path": "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
+          "receipt": {
+            "schemaVersion": "defracto.gemini-response-receipt.v1",
+            "status": "received",
+            "workerKey": "defracto.workers.gemini_flash.story_to_tdd.v1",
+            "candidateOnlyUntilAccepted": true
+          }
+        },
+        "output": {
+          "path": "$graph.emit_response_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "gemini_response_missing"
+        }
+      },
+      {
+        "id": "emit-invocation-receipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit Gemini invocation receipt.",
+        "input": {
+          "path": "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json",
+          "receipt": {
+            "schemaVersion": "defracto.gemini-invocation-receipt.v1",
+            "status": "passed",
+            "worker": "defracto.workers.gemini_flash.v1",
+            "invocationCapability": "worker.gemini_flash.invoke.v1",
+            "laneMode": "cognitive_compile"
+          }
+        },
+        "output": {
+          "path": "$graph.emit_invocation_receipt"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "gemini_invocation_receipt_missing"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "emit_invocation_receipt"
+    }
+  },
+  "evidenceObligations": [
+    "api_key_available_without_secret_leak",
+    "dispatch_packet_valid",
+    "live_provider_invoked",
+    "response_contract_valid",
+    "response_fresh_for_source_hash_and_slice_key",
+    "dispatch_receipt_emitted",
+    "response_receipt_emitted",
+    "invocation_receipt_emitted"
+  ],
+  "forbiddenClaims": [
+    "deterministic fallback can satisfy cognitive compile",
+    "mock response can satisfy cognitive compile",
+    "stale response can satisfy cognitive compile",
+    "Gemini output is accepted authority before gates",
+    "worker output is durable product truth"
+  ]
+}

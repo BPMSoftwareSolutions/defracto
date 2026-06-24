@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "defracto.worker-profile.v1",
+  "workerKey": "defracto.workers.gemini_flash.story_to_tdd.v1",
+  "baseWorkerKey": "defracto.workers.gemini_flash.v1",
+  "workerKind": "gemini-flash-story-to-tdd-cognitive-compiler",
+  "sourceTruth": "declared_json_contract",
+  "status": "declared-ready-for-cognitive-lane-manifest",
+  "purpose": "Specialize the Gemini Flash worker lane for cognitive Story-to-TDD compilation while keeping all output candidate-only until governed gates accept it.",
+  "model": {
+    "provider": "google_gemini_rest",
+    "defaultModel": "gemini-2.5-flash",
+    "responseMimeType": "application/json",
+    "temperature": 0.2,
+    "maxOutputTokens": 8192
+  },
+  "credentialPolicy": {
+    "canonicalEnvVarName": "LOC_GEMINI_API_KEY",
+    "acceptedEnvVarNames": [
+      "LOC_GEMINI_API_KEY"
+    ],
+    "secretMaterialAllowedInContracts": false,
+    "secretMaterialAllowedInEvidence": false,
+    "missingCredentialBlocker": "gemini_api_key_missing"
+  },
+  "laneClassification": {
+    "laneMode": "cognitive_compile",
+    "aiWorkerRequired": true,
+    "requiredWorker": "defracto.workers.gemini_flash.v1",
+    "requiredInvocationCapability": "worker.gemini_flash.invoke.v1",
+    "fallbackAllowed": false,
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false
+  },
+  "authorityPosture": {
+    "mayMutateProductSource": false,
+    "mayDecideMaturity": false,
+    "mayPromote": false,
+    "mayEmitCandidateArtifacts": true,
+    "mayEmitEvidence": true,
+    "candidateOutputRequiresAcceptanceGates": true
+  },
+  "cognitiveTasks": [
+    "story interpretation",
+    "ambiguity analysis",
+    "candidate story packet creation",
+    "acceptance criteria extraction",
+    "test intent proposal",
+    "implementation proposal"
+  ],
+  "outputPolicy": {
+    "requiredResponseShape": "conveyor/workers/gemini-flash.story-to-tdd.response-contract.v1.json",
+    "receiptShape": "defracto.gemini-invocation-receipt.v1",
+    "mustReturnJson": true,
+    "candidateOnlyUntilAccepted": true
+  },
+  "forbiddenExecutionModes": [
+    "deterministic_fallback",
+    "mock_response",
+    "stale_response_reuse",
+    "unreceipted_provider_output"
+  ],
+  "completionPosture": "This worker profile declares the live Gemini Flash cognitive compiler lane for Story-to-TDD; later manifests must execute it and emit invocation receipts."
+}

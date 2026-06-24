@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "defracto.gemini-dispatch-receipt.v1",
+  "receiptKey": "defracto.receipt.story-to-tdd.gemini-dispatch.slice-034.v1",
+  "status": "declared",
+  "workerKey": "defracto.workers.gemini_flash.story_to_tdd.v1",
+  "baseWorkerKey": "defracto.workers.gemini_flash.v1",
+  "laneMode": "cognitive_compile",
+  "dispatchContract": "conveyor/workers/gemini-flash.story-to-tdd.dispatch-contract.v1.json",
+  "expectedDispatchRoute": "worker.gemini_flash.invoke.v1",
+  "requiredCredential": "LOC_GEMINI_API_KEY",
+  "secretMaterialRecorded": false,
+  "expectedBlockers": [
+    "gemini_api_key_missing",
+    "gemini_dispatch_missing",
+    "deterministic_fallback_attempted",
+    "mock_ai_response_forbidden"
+  ],
+  "completionPosture": "Dispatch receipt shape is declared for later live cognitive manifests; this is not a live Gemini invocation receipt."
+}

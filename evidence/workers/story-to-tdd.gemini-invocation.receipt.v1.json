@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "defracto.gemini-invocation-receipt.v1",
+  "receiptKey": "defracto.receipt.story-to-tdd.gemini-invocation.slice-034.v1",
+  "status": "blocked",
+  "worker": "defracto.workers.gemini_flash.v1",
+  "invocationCapability": "worker.gemini_flash.invoke.v1",
+  "laneMode": "cognitive_compile",
+  "commandKey": "defracto.workers.gemini_flash.story_to_tdd.invoke.v1",
+  "sourceHash": "pending-live-cognitive-manifest",
+  "sliceKey": "slice-034-story-to-tdd-gemini-worker-dispatch-contract",
+  "dispatchPacket": {
+    "status": "declared-not-executed",
+    "expectedPath": "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json"
+  },
+  "responsePacket": {
+    "status": "missing-until-live-provider-execution",
+    "expectedPath": "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json"
+  },
+  "freshness": {
+    "status": "not-evaluated",
+    "reason": "live provider response has not been executed in Slice 034"
+  },
+  "gateResults": {
+    "geminiInvocationRequiredForCognitiveStoryLane": "declared",
+    "liveProviderExecuted": false,
+    "candidateOutputAccepted": false
+  },
+  "blockedReasons": [
+    "gemini_response_missing",
+    "gemini_invocation_receipt_missing"
+  ],
+  "completionPosture": "Slice 034 declares the invocation lane and expected receipt shape; later cognitive manifests must replace this blocked declaration with live Gemini invocation evidence."
+}

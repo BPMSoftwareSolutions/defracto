@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "defracto.worker-response-contract.v1",
+  "responseContractKey": "defracto.workers.gemini_flash.story_to_tdd.response.v1",
+  "workerKey": "defracto.workers.gemini_flash.story_to_tdd.v1",
+  "baseWorkerKey": "defracto.workers.gemini_flash.v1",
+  "sourceTruth": "declared_json_contract",
+  "status": "declared-ready-for-cognitive-lane-manifest",
+  "purpose": "Declare candidate-only Gemini Flash output for cognitive Story-to-TDD compilation before governed acceptance gates.",
+  "requiredResponseFields": [
+    "schemaVersion",
+    "responseKey",
+    "status",
+    "workerKey",
+    "dispatchKey",
+    "sourceHash",
+    "sliceKey",
+    "candidateStoryPacket",
+    "candidateAcceptanceCriteria",
+    "candidateTestIntent",
+    "candidateImplementationProposal",
+    "ambiguities",
+    "assumptions",
+    "forbiddenClaims",
+    "acceptanceRequired"
+  ],
+  "candidateOutputPolicy": {
+    "candidateOnlyUntilAccepted": true,
+    "mayBecomeAuthorityWithoutGates": false,
+    "requiredAcceptanceGates": [
+      "acceptance-criteria-trace-required",
+      "no-hand-authored-code",
+      "gemini-invocation-required-for-cognitive-story-lane"
+    ]
+  },
+  "freshnessPolicy": {
+    "mustMatchDispatchSourceHash": true,
+    "mustMatchDispatchSliceKey": true,
+    "staleResponseAllowed": false
+  },
+  "targetInvocationReceiptShape": "contracts/schemas/gemini-invocation-receipt.schema.v1.json",
+  "forbiddenClaims": [
+    "canonical truth before gates",
+    "test intent authority before gates",
+    "implementation authority before gates",
+    "durable product truth",
+    "deterministic fallback success",
+    "mock response success"
+  ],
+  "blockerCodes": [
+    "gemini_response_missing",
+    "gemini_response_stale",
+    "gemini_response_unaccepted",
+    "mock_ai_response_forbidden"
+  ]
+}

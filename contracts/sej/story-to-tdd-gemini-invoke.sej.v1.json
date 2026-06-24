@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.story-to-tdd-gemini-invoke.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "declared-blocked-until-live-worker-manifest",
+  "toolKey": "defracto.workers.gemini_flash.story_to_tdd",
+  "commandKey": "defracto.workers.gemini_flash.story_to_tdd.invoke.v1",
+  "sourceLineage": {
+    "workerProfile": "conveyor/workers/gemini-flash.story-to-tdd.worker-profile.v1.json",
+    "dispatchContract": "conveyor/workers/gemini-flash.story-to-tdd.dispatch-contract.v1.json",
+    "responseContract": "conveyor/workers/gemini-flash.story-to-tdd.response-contract.v1.json",
+    "semanticOperationGraphKey": "contracts/semantic-operation-graphs/workers/story-to-tdd-gemini-invoke.sog.v1.json",
+    "cognitivePolicy": "contracts/policies/cognitive-compile-requires-ai-worker.policy.v1.json"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/workers/story-to-tdd-gemini-invoke.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "laneClassification": {
+    "laneMode": "cognitive_compile",
+    "aiWorkerRequired": true,
+    "requiredWorker": "defracto.workers.gemini_flash.v1",
+    "requiredInvocationCapability": "worker.gemini_flash.invoke.v1",
+    "fallbackAllowed": false,
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false
+  },
+  "boundedInputs": [
+    "operator story source artifact",
+    "source hash",
+    "slice key",
+    "cognitive task request",
+    "Gemini dispatch packet"
+  ],
+  "boundedOutputs": [
+    "Gemini response packet",
+    "Gemini dispatch receipt",
+    "Gemini response receipt",
+    "Gemini invocation receipt"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "environment.require_secret.v1",
+      "purpose": "Require LOC_GEMINI_API_KEY without writing secret material to evidence.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "worker.gemini_flash.invoke.v1",
+      "purpose": "Invoke the live Gemini Flash worker for cognitive Story-to-TDD compilation.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "json.schema.validate.v1",
+      "purpose": "Validate Gemini response shape before downstream acceptance gates.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "Emit dispatch, response, and invocation receipts.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "blockerCodes": [
+    "gemini_api_key_missing",
+    "gemini_dispatch_missing",
+    "gemini_response_missing",
+    "gemini_invocation_receipt_missing",
+    "gemini_response_stale",
+    "gemini_response_unaccepted",
+    "deterministic_fallback_attempted",
+    "mock_ai_response_forbidden"
+  ],
+  "forbiddenBodyForms": [
+    "mock_ai_response",
+    "deterministic_fallback",
+    "stale_response_reuse",
+    "unreceipted_provider_output",
+    "host_language_worker_body",
+    "product_source_mutation"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "This SEJ declares the mandatory Gemini Flash invocation lane for cognitive Story-to-TDD work; it may not be satisfied by deterministic replay."
+}

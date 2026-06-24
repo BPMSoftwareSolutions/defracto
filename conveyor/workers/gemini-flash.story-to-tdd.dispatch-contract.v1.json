@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "defracto.worker-dispatch-contract.v1",
+  "dispatchContractKey": "defracto.workers.gemini_flash.story_to_tdd.dispatch.v1",
+  "workerKey": "defracto.workers.gemini_flash.story_to_tdd.v1",
+  "baseWorkerKey": "defracto.workers.gemini_flash.v1",
+  "sourceTruth": "declared_json_contract",
+  "status": "declared-ready-for-cognitive-lane-manifest",
+  "purpose": "Declare the dispatch packet shape for live Gemini Flash cognitive Story-to-TDD compilation.",
+  "dispatchRoute": "worker.gemini_flash.invoke.v1",
+  "requiredPacketFields": [
+    "schemaVersion",
+    "dispatchKey",
+    "runKey",
+    "sliceKey",
+    "laneKey",
+    "laneMode",
+    "commandKey",
+    "workerKey",
+    "workerProfilePath",
+    "dispatchContractPath",
+    "responseContractPath",
+    "sourceArtifact",
+    "sourceHash",
+    "requestedCognitiveTasks",
+    "candidateOutputTargets",
+    "allowedMutation",
+    "forbiddenMutation",
+    "acceptanceGates",
+    "credentialPolicy",
+    "freshnessPolicy",
+    "receiptPath"
+  ],
+  "requiredLaneValues": {
+    "laneMode": "cognitive_compile",
+    "workerKey": "defracto.workers.gemini_flash.story_to_tdd.v1"
+  },
+  "credentialPolicy": {
+    "requiredEnvVar": "LOC_GEMINI_API_KEY",
+    "missingCredentialBlocker": "gemini_api_key_missing",
+    "secretMaterialAllowedInDispatch": false
+  },
+  "freshnessPolicy": {
+    "mustBindToSourceHash": true,
+    "mustBindToSliceKey": true,
+    "staleResponseAllowed": false,
+    "staleResponseBlocker": "gemini_response_stale"
+  },
+  "dispatchGuardrails": [
+    "contracts/gates/gemini-invocation-required-for-cognitive-story-lane.gate.v1.json",
+    "contracts/policies/cognitive-compile-requires-ai-worker.policy.v1.json",
+    "contracts/policies/deterministic-replay-is-not-cognitive-compile.policy.v1.json"
+  ],
+  "forbiddenDispatchForms": [
+    "mock_ai_response",
+    "deterministic_fallback",
+    "stale_response_reuse",
+    "unreceipted_output",
+    "product_source_mutation"
+  ]
+}
