@@ -7,6 +7,35 @@
   "status": "draft-ready-for-slice-a-review",
   "sourceTruth": "declared_json_contract",
   "purpose": "Declare the story-driven TDD command surface for governed user-story intake, test projection, red evidence, generated implementation projection, green evidence, and conformance.",
+  "laneClassification": {
+    "schemaVersion": "defracto.cognitive-lane-classification.v1",
+    "laneMode": "cognitive_compile",
+    "aiWorkerRequired": true,
+    "requiredWorker": "defracto.workers.gemini_flash.v1",
+    "requiredInvocationCapability": "worker.gemini_flash.invoke.v1",
+    "fallbackAllowed": false,
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false,
+    "requiredEvidence": [
+      "Gemini dispatch packet",
+      "Gemini response packet",
+      "Gemini invocation receipt",
+      "governed candidate acceptance receipt",
+      "generated projection receipt",
+      "test execution receipt"
+    ],
+    "blockerCodes": [
+      "gemini_api_key_missing",
+      "gemini_dispatch_missing",
+      "gemini_response_missing",
+      "gemini_invocation_receipt_missing",
+      "gemini_response_stale",
+      "gemini_response_unaccepted",
+      "deterministic_fallback_attempted",
+      "mock_ai_response_forbidden"
+    ]
+  },
   "argvPatterns": [
     "ndd story plan --text <operatorText> --slice <sliceKey>",
     "ndd story plan --source <sourcePath> --slice <sliceKey>",
@@ -20,8 +49,19 @@
   "modeBoundaries": [
     {
       "modeKey": "story.plan",
+      "laneMode": "cognitive_compile",
+      "aiWorkerRequired": true,
+      "requiredWorker": "defracto.workers.gemini_flash.v1",
+      "requiredInvocationCapability": "worker.gemini_flash.invoke.v1",
+      "fallbackAllowed": false,
+      "mockAllowed": false,
+      "staleResponseAllowed": false,
+      "deterministicReplayAllowedForCreation": false,
       "stopAfter": [
         "source narrative capture",
+        "Gemini Flash dispatch",
+        "Gemini Flash response",
+        "Gemini invocation receipt",
         "story packet candidate",
         "acceptance criteria hardening",
         "canonical spec",
@@ -35,7 +75,18 @@
     },
     {
       "modeKey": "story.test",
+      "laneMode": "cognitive_compile",
+      "aiWorkerRequired": true,
+      "requiredWorker": "defracto.workers.gemini_flash.v1",
+      "requiredInvocationCapability": "worker.gemini_flash.invoke.v1",
+      "fallbackAllowed": false,
+      "mockAllowed": false,
+      "staleResponseAllowed": false,
+      "deterministicReplayAllowedForCreation": false,
       "stopAfter": [
+        "Gemini Flash dispatch",
+        "Gemini Flash response",
+        "Gemini invocation receipt",
         "test intent",
         "generated test projection",
         "generated test receipt",
@@ -49,7 +100,18 @@
     },
     {
       "modeKey": "story.implement",
+      "laneMode": "cognitive_compile",
+      "aiWorkerRequired": true,
+      "requiredWorker": "defracto.workers.gemini_flash.v1",
+      "requiredInvocationCapability": "worker.gemini_flash.invoke.v1",
+      "fallbackAllowed": false,
+      "mockAllowed": false,
+      "staleResponseAllowed": false,
+      "deterministicReplayAllowedForCreation": false,
       "stopAfter": [
+        "Gemini Flash dispatch",
+        "Gemini Flash response",
+        "Gemini invocation receipt",
         "generated test projection",
         "red-test execution evidence",
         "generated implementation projection",
@@ -105,11 +167,17 @@
     "story source path",
     "acceptance criteria trace",
     "canonical node trace",
+    "Gemini Flash dispatch packet for cognitive compile modes",
+    "Gemini Flash response packet for cognitive compile modes",
+    "Gemini invocation receipt for cognitive compile modes",
     "generated projection receipts",
     "red-test receipt for story test and story implement",
     "green-test receipt for story implement",
     "no-hand-authored-code gate result"
   ],
   "failurePosture": "fail-closed",
-  "completionPosture": "The story command surface is authoritative only when every produced artifact is traceable to declared semantic authority and no hand-authored code is introduced."
+  "requiredEnvironment": [
+    "LOC_GEMINI_API_KEY"
+  ],
+  "completionPosture": "The story command surface is authoritative only when Gemini Flash executed for cognitive compile modes, every produced artifact is traceable to declared semantic authority, and no hand-authored code is introduced."
 }

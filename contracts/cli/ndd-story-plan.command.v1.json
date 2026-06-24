@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "defracto.cli-command-contract.v1",
+  "cliKey": "defracto.cli.ndd-story-plan.v1",
+  "commandKey": "defracto.ndd.story.plan.v1",
+  "entrypoint": "ndd",
+  "commandName": "ndd story plan",
+  "status": "draft-ready-for-slice-033-review",
+  "sourceTruth": "declared_json_contract",
+  "purpose": "Declare the cognitive planning command for operator story intake, Gemini Flash interpretation, candidate story packet, acceptance criteria candidate, canonical spec candidate, governed acceptance, and receipts.",
+  "argvPatterns": [
+    "ndd story plan --text <operatorText> --slice <sliceKey>",
+    "ndd story plan --source <sourcePath> --slice <sliceKey>"
+  ],
+  "laneClassification": {
+    "schemaVersion": "defracto.cognitive-lane-classification.v1",
+    "laneMode": "cognitive_compile",
+    "aiWorkerRequired": true,
+    "requiredWorker": "defracto.workers.gemini_flash.v1",
+    "requiredInvocationCapability": "worker.gemini_flash.invoke.v1",
+    "fallbackAllowed": false,
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false,
+    "requiredEvidence": [
+      "Gemini dispatch packet",
+      "Gemini response packet",
+      "Gemini invocation receipt",
+      "candidate story packet acceptance gate",
+      "acceptance criteria hardening receipt",
+      "canonical spec receipt"
+    ],
+    "blockerCodes": [
+      "gemini_api_key_missing",
+      "gemini_dispatch_missing",
+      "gemini_response_missing",
+      "gemini_invocation_receipt_missing",
+      "gemini_response_stale",
+      "gemini_response_unaccepted",
+      "deterministic_fallback_attempted",
+      "mock_ai_response_forbidden"
+    ]
+  },
+  "stopAfter": [
+    "source narrative capture",
+    "Gemini Flash dispatch",
+    "Gemini Flash response",
+    "Gemini invocation receipt",
+    "story packet candidate",
+    "acceptance criteria candidate",
+    "acceptance criteria hardening",
+    "canonical spec",
+    "run plan artifacts"
+  ],
+  "forbiddenOutputs": [
+    "generated tests",
+    "implementation projection",
+    "release packet",
+    "deterministic-only story authority",
+    "unreceipted AI output"
+  ],
+  "requiredEnvironment": [
+    "LOC_GEMINI_API_KEY"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Story planning is cognitive compile authority only when Gemini Flash executed live and the response was accepted through gates."
+}

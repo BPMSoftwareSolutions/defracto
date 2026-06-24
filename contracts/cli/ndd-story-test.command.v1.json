@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "defracto.cli-command-contract.v1",
+  "cliKey": "defracto.cli.ndd-story-test.v1",
+  "commandKey": "defracto.ndd.story.test.v1",
+  "entrypoint": "ndd",
+  "commandName": "ndd story test",
+  "status": "draft-ready-for-slice-033-review",
+  "sourceTruth": "declared_json_contract",
+  "purpose": "Declare the cognitive test command for Gemini Flash-assisted test intent generation, generated test projection, red execution evidence, and receipts.",
+  "argvPatterns": [
+    "ndd story test --text <operatorText> --slice <sliceKey>",
+    "ndd story test --source <sourcePath> --slice <sliceKey>",
+    "ndd story test --slice <sliceKey>"
+  ],
+  "laneClassification": {
+    "schemaVersion": "defracto.cognitive-lane-classification.v1",
+    "laneMode": "cognitive_compile",
+    "aiWorkerRequired": true,
+    "requiredWorker": "defracto.workers.gemini_flash.v1",
+    "requiredInvocationCapability": "worker.gemini_flash.invoke.v1",
+    "fallbackAllowed": false,
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false,
+    "requiredEvidence": [
+      "Gemini dispatch packet",
+      "Gemini response packet",
+      "Gemini invocation receipt",
+      "test intent acceptance gate",
+      "generated test materialization receipt",
+      "red-test receipt"
+    ],
+    "blockerCodes": [
+      "gemini_api_key_missing",
+      "gemini_dispatch_missing",
+      "gemini_response_missing",
+      "gemini_invocation_receipt_missing",
+      "gemini_response_stale",
+      "gemini_response_unaccepted",
+      "deterministic_fallback_attempted",
+      "mock_ai_response_forbidden"
+    ]
+  },
+  "stopAfter": [
+    "Gemini Flash dispatch",
+    "Gemini Flash response",
+    "Gemini invocation receipt",
+    "test intent candidate",
+    "test intent acceptance",
+    "generated test projection",
+    "generated test receipt",
+    "red-test execution evidence"
+  ],
+  "forbiddenOutputs": [
+    "implementation projection",
+    "green-test receipt",
+    "release packet",
+    "deterministic-only test intent authority",
+    "unreceipted AI output"
+  ],
+  "requiredEnvironment": [
+    "LOC_GEMINI_API_KEY"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Story test is cognitive compile authority only when Gemini Flash generated or refined test intent and left invocation evidence."
+}

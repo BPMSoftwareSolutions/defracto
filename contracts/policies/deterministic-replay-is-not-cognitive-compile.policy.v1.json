@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "defracto.policy.v1",
+  "policyKey": "defracto.policies.deterministic_replay_is_not_cognitive_compile.v1",
+  "policyTitle": "Deterministic Replay Is Not Cognitive Compile",
+  "policyStatus": "accepted",
+  "purpose": "Separate deterministic verification of existing artifacts from AI-assisted creation of new Story-to-TDD authority.",
+  "replayMay": [
+    "verify hashes",
+    "validate schemas",
+    "run existing tests",
+    "check receipts",
+    "replay a known fixture",
+    "inspect prior proof-surface evidence"
+  ],
+  "replayMayNot": [
+    "create new story authority",
+    "create new acceptance criteria authority",
+    "create new test intent authority",
+    "create new ambiguity analysis authority",
+    "create new implementation proposal authority",
+    "claim cognitive compile authority"
+  ],
+  "cognitiveCompileRequires": [
+    "Gemini Flash dispatch",
+    "Gemini Flash response",
+    "Gemini Flash invocation receipt",
+    "fresh response bound to source hash and slice key",
+    "acceptance through declared gates"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Replay can be deterministic; compilation must be cognitive."
+}

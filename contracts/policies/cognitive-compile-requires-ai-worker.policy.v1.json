@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "defracto.policy.v1",
+  "policyKey": "defracto.policies.cognitive_compile_requires_ai_worker.v1",
+  "policyTitle": "Cognitive Compile Requires AI Worker",
+  "policyStatus": "accepted",
+  "purpose": "Define cognitive Story-to-TDD compilation as a Gemini Flash worker-mediated lane, not a deterministic artifact projection.",
+  "law": "Deterministic replay can verify previously declared artifacts. Cognitive compile must invoke Gemini Flash.",
+  "appliesToCommands": [
+    "defracto.ndd.story.plan.v1",
+    "defracto.ndd.story.test.v1",
+    "defracto.ndd.story.implement.v1"
+  ],
+  "requires": [
+    "laneMode cognitive_compile",
+    "aiWorkerRequired true",
+    "requiredWorker defracto.workers.gemini_flash.v1",
+    "required invocation capability worker.gemini_flash.invoke.v1",
+    "Gemini dispatch packet",
+    "Gemini response packet",
+    "Gemini invocation receipt",
+    "governed acceptance gates before authority promotion"
+  ],
+  "forbids": [
+    "deterministic-only story authority creation",
+    "criteria extraction without Gemini invocation receipt",
+    "test intent generation without Gemini invocation receipt",
+    "implementation proposal without Gemini invocation receipt",
+    "mock AI responses in cognitive compile",
+    "stale Gemini response reuse",
+    "silent fallback to deterministic mode"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "A lane may not create new story, criteria, test intent, ambiguity analysis, or implementation proposal authority unless Gemini Flash ran and left dispatch, response, and invocation receipt evidence."
+}

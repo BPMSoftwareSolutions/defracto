@@ -65,12 +65,41 @@ Do not make Gemini Flash, the generated CLI, or generated code own product truth
 
 Gemini may propose candidate artifacts. The resolver and conveyor gates decide whether those artifacts can become accepted source, story, canonical spec, test projection, implementation projection, or evidence.
 
+Correction from Slice 033: Gemini Flash is mandatory for cognitive Story-to-TDD compile lanes. It is not an optional enhancement when a command claims AI-assisted story interpretation, criteria extraction, ambiguity analysis, test intent generation, implementation proposal, or reasoning-based refinement.
+
+```text
+Deterministic replay can verify previously declared artifacts.
+Cognitive compile must invoke Gemini Flash.
+
+A lane may not create new story, criteria, test intent, ambiguity analysis,
+or implementation proposal authority unless the Gemini Flash worker ran and
+left dispatch, response, and invocation receipt evidence.
+
+Any deterministic-only path that claims cognitive compile authority is a
+failure mode and must block closed.
+```
+
+The slug chain from Slices 027-032 remains valuable, but it is now classified as a governed fixture/replay/proof-surface conveyor seed. It proves the conveyor body, not the full arbitrary-story cognitive product path.
+
 No runtime code, test code, adapter code, CLI code, or implementation code should be hand-authored in this repo. Code enters the repo only as a generated projection from declared semantic authority, with source lineage, projection manifests, hashes, receipts, and conformance evidence.
 
 The new story-to-TDD conveyor should be a governed compiler front end:
 
 ```text
-LLM-assisted authoring
+operator story
+-> Gemini Flash cognitive interpretation
+-> candidate authority
+-> governed gates
+-> receipts
+-> projection
+-> red/green
+-> SOG promotion
+```
+
+The fixture/replay seed path remains deterministic only for verifying already-created artifacts:
+
+```text
+known fixture or prior artifact
 -> JSON authority
 -> resolver-executed semantic graph
 -> generated disposable surfaces
@@ -97,6 +126,21 @@ ndd story status --slice <sliceKey>
 `story test` should stop after test intent, generated test projection, generated test receipt, and red-test execution evidence. It must not materialize implementation artifacts.
 
 `story implement` should continue into generated tests, red test execution, implementation materialization, green test execution, conformance, and evidence review.
+
+For `story plan`, `story test`, and `story implement`, the lane classification is:
+
+```text
+laneMode: cognitive_compile
+aiWorkerRequired: true
+requiredWorker: defracto.workers.gemini_flash.v1
+requiredInvocationCapability: worker.gemini_flash.invoke.v1
+fallbackAllowed: false
+mockAllowed: false
+staleResponseAllowed: false
+deterministicReplayAllowedForCreation: false
+```
+
+Missing `LOC_GEMINI_API_KEY`, missing dispatch, missing response, missing invocation receipt, stale response reuse, unaccepted response, deterministic fallback, or mock AI output must block closed.
 
 ## Required New Artifact Families
 
@@ -231,6 +275,35 @@ Bootstrap recommendation: add these as repo-local semantic authority first. Do n
 - Clear receipts proving the Gemini Flash worker was invoked, what it received, what it returned, and whether the response was accepted, blocked, or only captured as candidate evidence.
 
 ## Implementation Slices
+
+### Corrected Phase Map After Slice 032
+
+```text
+PHASE 1 - Governed fixture/replay seed
+  027 story authority fixture
+  028 test intent fixture
+  029 generated test + red receipt
+  030 generated implementation + green receipt
+  031 proof posture lock
+  032 SOG seed, blocked pending capability coverage
+
+PHASE 2 - Cognitive compiler boundary
+  033 Gemini required for cognitive story lanes
+  034 replay mode vs cognitive compile mode separation
+  035 ndd story plan cognitive manifest
+  036 Gemini dispatch/response/receipt worker lane
+  037 ndd story test cognitive manifest
+  038 ndd story implement cognitive manifest
+
+PHASE 3 - Semantic promotion
+  039 SOG capability coverage classification
+  040 capability binding/macro authority
+  041 SOG execution attempt
+  042 SOG parity/conformance
+  043 SOG durable promotion
+```
+
+The previous capability coverage work remains important, but it comes after the cognitive compiler boundary is protected.
 
 ### Slice A: Command Authority Reconciliation
 

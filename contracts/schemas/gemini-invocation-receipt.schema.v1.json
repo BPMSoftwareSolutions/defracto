@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.gemini-invocation-receipt.v1",
+  "title": "Gemini Invocation Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptKey",
+    "status",
+    "worker",
+    "invocationCapability",
+    "laneMode",
+    "commandKey",
+    "sourceHash",
+    "sliceKey",
+    "dispatchPacket",
+    "responsePacket",
+    "freshness",
+    "gateResults",
+    "blockedReasons"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.gemini-invocation-receipt.v1"
+    },
+    "receiptKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "failed",
+        "blocked"
+      ]
+    },
+    "worker": {
+      "type": "string",
+      "const": "defracto.workers.gemini_flash.v1"
+    },
+    "invocationCapability": {
+      "type": "string",
+      "const": "worker.gemini_flash.invoke.v1"
+    },
+    "laneMode": {
+      "type": "string",
+      "const": "cognitive_compile"
+    },
+    "commandKey": {
+      "type": "string"
+    },
+    "sourceHash": {
+      "type": "string"
+    },
+    "sliceKey": {
+      "type": "string"
+    },
+    "dispatchPacket": {
+      "type": "object"
+    },
+    "responsePacket": {
+      "type": "object"
+    },
+    "freshness": {
+      "type": "object"
+    },
+    "gateResults": {
+      "type": "object"
+    },
+    "blockedReasons": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "gemini_api_key_missing",
+          "gemini_dispatch_missing",
+          "gemini_response_missing",
+          "gemini_invocation_receipt_missing",
+          "gemini_response_stale",
+          "gemini_response_unaccepted",
+          "deterministic_fallback_attempted",
+          "mock_ai_response_forbidden"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

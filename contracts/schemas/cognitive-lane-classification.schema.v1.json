@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.cognitive-lane-classification.v1",
+  "title": "Cognitive Lane Classification",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "laneMode",
+    "aiWorkerRequired",
+    "requiredWorker",
+    "requiredInvocationCapability",
+    "fallbackAllowed",
+    "mockAllowed",
+    "staleResponseAllowed",
+    "deterministicReplayAllowedForCreation",
+    "requiredEvidence",
+    "blockerCodes"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.cognitive-lane-classification.v1"
+    },
+    "laneMode": {
+      "type": "string",
+      "const": "cognitive_compile"
+    },
+    "aiWorkerRequired": {
+      "type": "boolean",
+      "const": true
+    },
+    "requiredWorker": {
+      "type": "string",
+      "const": "defracto.workers.gemini_flash.v1"
+    },
+    "requiredInvocationCapability": {
+      "type": "string",
+      "const": "worker.gemini_flash.invoke.v1"
+    },
+    "fallbackAllowed": {
+      "type": "boolean",
+      "const": false
+    },
+    "mockAllowed": {
+      "type": "boolean",
+      "const": false
+    },
+    "staleResponseAllowed": {
+      "type": "boolean",
+      "const": false
+    },
+    "deterministicReplayAllowedForCreation": {
+      "type": "boolean",
+      "const": false
+    },
+    "requiredEvidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockerCodes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
