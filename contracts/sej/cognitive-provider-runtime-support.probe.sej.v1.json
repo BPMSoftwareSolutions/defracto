@@ -2,7 +2,9 @@
   "schemaVersion": "defracto.sej-contract.v1",
   "contractKey": "defracto.sej.cognitive-provider-runtime-support.probe.v1",
   "contractKind": "semantic-executable-json",
-  "contractStatus": "blocked-pending-resolver-language-support",
+  "contractStatus": "superseded-boundary-misclassified",
+  "supersededBy": "conveyor/workers/cognitive-provider-lane-execution.handoff.v1.json",
+  "supersededByReceipt": "evidence/cli/cognitive-provider-runtime-boundary-correction.receipt.v1.json",
   "toolKey": "defracto.conveyor.cognitive-provider-runtime-support.probe",
   "sourceLineage": {
     "platformAgentRunManifest": "conveyor/runs/2026/06/24/platform-agent-authority-routing/run.manifest.v1.json",
@@ -20,49 +22,49 @@
     {
       "operationKey": "environment.require_secret.v1",
       "purpose": "Verify provider credentials exist without exposing secret material.",
-      "requirementState": "missing",
+      "requirementState": "misclassified_as_resolver_requirement",
       "missingCapabilityBehavior": "blocked"
     },
     {
       "operationKey": "worker.gemini_flash.invoke.v1",
       "purpose": "Invoke the declared Gemini Flash cognitive worker.",
-      "requirementState": "missing",
+      "requirementState": "misclassified_as_resolver_requirement",
       "missingCapabilityBehavior": "blocked"
     },
     {
       "operationKey": "worker.openai.responses.invoke.v1",
       "purpose": "Invoke OpenAI only as a governed fallback cognitive worker.",
-      "requirementState": "missing",
+      "requirementState": "misclassified_as_resolver_requirement",
       "missingCapabilityBehavior": "blocked"
     },
     {
       "operationKey": "object.require_fields.v1",
       "purpose": "Validate provider dispatch packet shape.",
-      "requirementState": "missing",
+      "requirementState": "generic_validation_not_automatic_resolver_change",
       "missingCapabilityBehavior": "blocked"
     },
     {
       "operationKey": "json.schema.validate.v1",
       "purpose": "Validate provider response contract shape.",
-      "requirementState": "missing",
+      "requirementState": "generic_validation_not_automatic_resolver_change",
       "missingCapabilityBehavior": "blocked"
     },
     {
       "operationKey": "evidence.freshness.verify.v1",
       "purpose": "Block stale provider responses from satisfying cognitive lanes.",
-      "requirementState": "missing",
+      "requirementState": "sej_governance_contract_concern",
       "missingCapabilityBehavior": "blocked"
     },
     {
       "operationKey": "gate.evaluate.v1",
       "purpose": "Evaluate governed fallback and candidate hardening gates.",
-      "requirementState": "missing",
+      "requirementState": "sej_governance_contract_concern",
       "missingCapabilityBehavior": "blocked"
     },
     {
       "operationKey": "policy.evaluate.v1",
       "purpose": "Evaluate provider fallback policy before OpenAI fallback.",
-      "requirementState": "missing",
+      "requirementState": "sej_governance_contract_concern",
       "missingCapabilityBehavior": "blocked"
     }
   ],
@@ -91,6 +93,6 @@
     "type": "step",
     "ref": "$steps.verifyCognitiveProviderRuntimeSupport"
   },
-  "failurePosture": "Missing cognitive provider runtime operations block platform-agent authority routing before provider output or strategy authority can be created.",
-  "completionPosture": "This probe passes only when the approved resolver package exposes the generic secret, validation, provider invocation, freshness, gate, and policy operations required by cognitive strategy compile."
+  "failurePosture": "This probe is superseded because it classified conveyor worker and governance concerns as resolver package capabilities.",
+  "completionPosture": "Do not use this probe to request resolver evolution for Gemini, OpenAI, gate, policy, freshness, or platform-authority behavior. The corrected blocker is cognitive_worker_lane_not_executable."
 }

@@ -2,10 +2,12 @@
   "schemaVersion": "defracto.conveyor-unblock-loop.receipt.v1",
   "receiptKey": "defracto.receipt.platform-agent-authority-routing.loop.slice-062.v1",
   "sliceKey": "slice-062-platform-agent-authority-routing-loop-provider-runtime-boundary",
-  "status": "blocked",
-  "loopStatus": "stopped-at-runtime-language-boundary",
+  "status": "superseded",
+  "loopStatus": "superseded-boundary-misclassified",
+  "supersededBy": "evidence/cli/cognitive-provider-runtime-boundary-correction.receipt.v1.json",
   "initialCommand": "node generated/cli/node/ndd.cjs story implement --slice platform-agent-authority-routing",
   "initialBlocker": "platform_agent_authority_routing_strategy_not_promoted",
+  "correctedBlocker": "cognitive_worker_lane_not_executable",
   "explicitStrategyCommand": "node generated/cli/node/ndd.cjs story implement --slice platform-agent-authority-routing --target-kind semantic-strategy",
   "explicitStrategyObservedBlocker": "graph_step_failed",
   "resolverCapabilityProbe": {
@@ -29,8 +31,9 @@
     "openaiApiKeyPresent": true,
     "secretMaterialRecorded": false
   },
-  "evolutionRequest": "contracts/resolver-authority/cognitive-provider-runtime-support.resolver-evolution-request.v1.json",
-  "resolverHandoffPackage": "C:/source/repos/bpm/internal/sej-runtime-resolver/SEJ-RUNTIME-RESOLVER-COGNITIVE-PROVIDER-PRIMITIVES-HANDOFF-PACKET.json",
+  "supersededEvolutionRequest": "contracts/resolver-authority/cognitive-provider-runtime-support.resolver-evolution-request.v1.json",
+  "supersededResolverHandoffPackage": "C:/source/repos/bpm/internal/sej-runtime-resolver/SEJ-RUNTIME-RESOLVER-COGNITIVE-PROVIDER-PRIMITIVES-HANDOFF-PACKET.json",
+  "correctedHandoffPackage": "conveyor/workers/cognitive-provider-lane-execution.handoff.v1.json",
   "guardrails": {
     "providerInvokedOutsideSej": false,
     "mockProviderResponseCreated": false,
@@ -39,5 +42,5 @@
     "generatedCliHostPatched": false,
     "resolverNodeModulesPatched": false
   },
-  "completionPosture": "The unblock loop advanced from manifest lane declaration to the exact missing runtime-language support for cognitive provider execution. The conveyor did not call providers outside SEJ or create strategy authority without provider receipts."
+  "completionPosture": "This receipt is superseded because it misclassified cognitive provider execution as resolver runtime-language support. The corrected blocker is cognitive_worker_lane_not_executable, owned by the conveyor worker runtime."
 }

@@ -1,54 +1,37 @@
 {
   "schemaVersion": "defracto.resolver-evolution-request.v1",
   "requestKey": "defracto.resolver-evolution.cognitive-provider-runtime-support.v1",
-  "status": "requested",
-  "operationLayer": "sej_language_and_host_power",
-  "sourceProbe": "contracts/sej/cognitive-provider-runtime-support.probe.sej.v1.json",
-  "consumerBlocker": "platform_agent_authority_routing_strategy_not_promoted",
-  "resolvedBlocker": "cognitive_provider_runtime_support_missing",
-  "requiredOperations": [
-    "environment.require_secret.v1",
-    "object.require_fields.v1",
-    "json.schema.validate.v1",
-    "evidence.freshness.verify.v1",
-    "policy.evaluate.v1",
-    "gate.evaluate.v1",
-    "worker.gemini_flash.invoke.v1",
-    "worker.openai.responses.invoke.v1"
+  "status": "superseded-boundary-misclassified",
+  "supersededBy": "conveyor/workers/cognitive-provider-lane-execution.handoff.v1.json",
+  "supersededByReceipt": "evidence/cli/cognitive-provider-runtime-boundary-correction.receipt.v1.json",
+  "originalMisclassification": {
+    "incorrectBlocker": "resolver_authority_missing_or_invalid",
+    "incorrectLayer": "resolver_runtime_provider_ownership",
+    "incorrectAssumption": "Gemini, OpenAI, gates, policies, and worker execution should become resolver primitives."
+  },
+  "correctedClassification": {
+    "blocker": "cognitive_worker_lane_not_executable",
+    "owningLayer": "conveyor_worker_runtime",
+    "resolverPackageChangeRequired": false,
+    "providerInvocationBelongsTo": "conveyor worker adapters",
+    "policyAndGateMeaningBelongsTo": "contracts and conveyor gates",
+    "resolverRole": "resolve SEJ language consistently across supported runtimes"
+  },
+  "resolverEvolutionAllowedOnlyFor": [
+    "support another runtime language",
+    "fix SEJ language interpretation parity",
+    "support a tiny universal SEJ language mechanic",
+    "correct resolver conformance behavior"
   ],
-  "runtimeBoundary": {
-    "allowed": [
-      "verify required environment secret presence without exposing values",
-      "validate declared dispatch object fields",
-      "validate response JSON against declared contracts",
-      "verify response freshness against dispatch source and slice facts",
-      "evaluate declared policies and gates without product-specific branching",
-      "invoke declared provider workers through bounded dispatch contracts",
-      "return provider-attributed candidate output and metadata"
-    ],
-    "forbidden": [
-      "grant candidate authority",
-      "promote strategy, test, implementation, or product truth",
-      "silently substitute providers",
-      "use stale or mock provider responses as cognitive evidence",
-      "emit durable policy, gate, SEJ, SOG, schema, or SDK authority",
-      "write run artifacts from provider primitives unless declared by a separate materialization operation",
-      "leak secret material into evidence"
-    ]
-  },
-  "expectedFailClosedBehavior": {
-    "missingSecret": "openai_api_key_missing or gemini_api_key_missing",
-    "missingProviderSupport": "unsupported_primitive_operation",
-    "providerFailure": "primary_provider_503 or provider_response_missing",
-    "staleResponse": "provider_response_stale",
-    "mockAttempt": "mock_ai_response_forbidden",
-    "unreceiptedOutput": "provider_invocation_receipt_missing"
-  },
-  "consumerNextStepAfterPublish": {
-    "updatePackage": "@bpmsoftwaresolutions/sej-resolver-node",
-    "rerunProbe": "contracts/sej/cognitive-provider-runtime-support.probe.sej.v1.json",
-    "rerunCommand": "node generated/cli/node/ndd.cjs story implement --slice platform-agent-authority-routing",
-    "expectedMovement": "from cognitive_provider_runtime_support_missing to live provider invocation or candidate hardening"
-  },
-  "completionPosture": "The resolver may add only generic language/host-power operations needed to execute declared cognitive provider lanes. It must not implement platform-agent policy, strategy promotion, or product behavior."
+  "resolverEvolutionForbiddenFor": [
+    "Gemini invocation",
+    "OpenAI fallback",
+    "platform-agent governance",
+    "policy meaning",
+    "gate meaning",
+    "SDK-specific behavior",
+    "story interpretation",
+    "product workflow behavior"
+  ],
+  "completionPosture": "This request is intentionally superseded. The resolver should not be changed for cognitive provider invocation unless a later, separately proven tiny universal SEJ language mechanic is missing."
 }

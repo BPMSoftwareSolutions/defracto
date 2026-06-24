@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "defracto.boundary-correction.receipt.v1",
+  "receiptKey": "defracto.receipt.cognitive-provider-runtime-boundary-correction.slice-063.v1",
+  "sliceKey": "slice-063-cognitive-provider-runtime-boundary-correction",
+  "status": "passed",
+  "correctedBlocker": "cognitive_worker_lane_not_executable",
+  "priorIncorrectBlockers": [
+    "resolver_authority_missing_or_invalid",
+    "cognitive_provider_runtime_support_missing",
+    "platform_agent_authority_routing_strategy_not_promoted"
+  ],
+  "correctedDoctrine": {
+    "resolver": "resolves SEJ language consistently across supported runtimes",
+    "sej": "expresses behavior",
+    "conveyor": "moves packets and orchestrates lanes",
+    "workers": "touch external systems",
+    "gates": "decide authority",
+    "receipts": "prove every handoff"
+  },
+  "classification": {
+    "worker.gemini_flash.invoke.v1": "conveyor_worker_lane_concern",
+    "worker.openai.responses.invoke.v1": "conveyor_worker_lane_concern",
+    "environment.require_secret.v1": "conveyor_worker_lane_concern",
+    "gate.evaluate.v1": "sej_governance_contract_concern",
+    "policy.evaluate.v1": "sej_governance_contract_concern",
+    "evidence.freshness.verify.v1": "sej_governance_contract_concern",
+    "object.require_fields.v1": "generic_validation_utility_not_automatic_resolver_change",
+    "json.schema.validate.v1": "generic_validation_utility_not_automatic_resolver_change"
+  },
+  "supersededArtifacts": [
+    "contracts/sej/cognitive-provider-runtime-support.probe.sej.v1.json",
+    "contracts/resolver-authority/cognitive-provider-runtime-support.resolver-evolution-request.v1.json",
+    "evidence/cli/platform-agent-authority-routing-loop.receipt.v1.json",
+    "C:/source/repos/bpm/internal/sej-runtime-resolver/SEJ-RUNTIME-RESOLVER-COGNITIVE-PROVIDER-PRIMITIVES-HANDOFF-PACKET.json"
+  ],
+  "correctedHandoff": "conveyor/workers/cognitive-provider-lane-execution.handoff.v1.json",
+  "cliProbe": {
+    "command": "node generated/cli/node/ndd.cjs story implement --slice platform-agent-authority-routing",
+    "status": "blocked",
+    "blocker": "cognitive_worker_lane_not_executable"
+  },
+  "resolverPackageChangeRequired": false,
+  "resolverEvolutionAllowedOnlyFor": [
+    "support another runtime language",
+    "fix SEJ language interpretation parity",
+    "support a tiny universal SEJ language mechanic",
+    "correct resolver conformance behavior"
+  ],
+  "guardrails": {
+    "providerInvokedOutsideConveyor": false,
+    "resolverProductBehaviorRequested": false,
+    "durableAuthorityCreated": false,
+    "generatedCliHostPatched": false,
+    "nodeModulesPatched": false
+  },
+  "completionPosture": "The provider runtime gap is reclassified as conveyor worker lane execution. The resolver handoff is superseded and no resolver package change is required for Gemini/OpenAI product flow."
+}

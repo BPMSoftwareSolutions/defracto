@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "defracto.conveyor-worker-runtime-handoff.v1",
+  "handoffKey": "defracto.handoff.cognitive-provider-lane-execution.v1",
+  "status": "handoff_ready",
+  "owningLayer": "conveyor_worker_runtime",
+  "sourceCorrectionReceipt": "evidence/cli/cognitive-provider-runtime-boundary-correction.receipt.v1.json",
+  "supersedes": [
+    "contracts/resolver-authority/cognitive-provider-runtime-support.resolver-evolution-request.v1.json",
+    "C:/source/repos/bpm/internal/sej-runtime-resolver/SEJ-RUNTIME-RESOLVER-COGNITIVE-PROVIDER-PRIMITIVES-HANDOFF-PACKET.json"
+  ],
+  "currentBlocker": "cognitive_worker_lane_not_executable",
+  "goal": "Make declared cognitive provider lanes executable by the conveyor worker runtime while keeping provider output candidate-only until governed gates accept it.",
+  "boundary": {
+    "resolver": [
+      "resolve SEJ language",
+      "preserve cross-runtime interpretation parity",
+      "support tiny universal language mechanics only when proven missing"
+    ],
+    "conveyor": [
+      "orchestrate lanes",
+      "load run manifests",
+      "dispatch workers",
+      "materialize dispatch/response artifacts",
+      "emit receipts",
+      "run gates and policy checks as declared conveyor authority"
+    ],
+    "workers": [
+      "touch external provider systems",
+      "call Gemini Flash",
+      "call OpenAI as governed fallback",
+      "return provider-attributed candidate output",
+      "never grant authority"
+    ],
+    "gates": [
+      "decide whether candidates become authority"
+    ],
+    "receipts": [
+      "prove every handoff and provider participation"
+    ]
+  },
+  "requiredLaneWork": [
+    {
+      "workKey": "cognitive-worker-dispatch-runtime",
+      "description": "Bind declared dispatch contracts to worker adapters without changing resolver package ownership."
+    },
+    {
+      "workKey": "gemini-flash-worker-adapter",
+      "description": "Invoke Gemini Flash from the conveyor worker lane and emit dispatch, response, and invocation receipts."
+    },
+    {
+      "workKey": "openai-fallback-worker-adapter",
+      "description": "Invoke OpenAI only as a governed fallback and emit provider-attributed candidate receipts."
+    },
+    {
+      "workKey": "candidate-hardening-lane",
+      "description": "Route provider candidate output through declared gates before strategy authority is promoted."
+    }
+  ],
+  "forbiddenWork": [
+    "patch resolver package for Gemini or OpenAI product flow",
+    "encode platform-agent governance inside resolver",
+    "let worker output grant authority",
+    "accept mock or stale provider output as cognitive evidence",
+    "create durable policy/gate/SOG authority by platform-agent hand-authoring"
+  ],
+  "resumeCommand": "node generated/cli/node/ndd.cjs story implement --slice platform-agent-authority-routing",
+  "completionPosture": "This handoff corrects the ownership boundary: provider execution is a conveyor worker lane responsibility, not resolver evolution."
+}

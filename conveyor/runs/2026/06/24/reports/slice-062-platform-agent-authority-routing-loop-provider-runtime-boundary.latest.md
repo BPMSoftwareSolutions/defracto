@@ -1,6 +1,20 @@
 # Slice 062 - platform-agent authority-routing loop provider runtime boundary
 
-Status: blocked at runtime-language boundary
+Status: superseded by Slice 063
+
+This report is retained as evidence of the loop, but its boundary classification was wrong. Provider invocation, OpenAI fallback, gate meaning, policy meaning, and worker execution are conveyor worker/runtime concerns, not resolver package evolution.
+
+Corrected blocker:
+
+```text
+cognitive_worker_lane_not_executable
+```
+
+Corrective report:
+
+```text
+conveyor/runs/2026/06/24/reports/slice-063-cognitive-provider-runtime-boundary-correction.latest.md
+```
 
 ## Loop
 
@@ -10,10 +24,10 @@ The unblock loop started with:
 node generated/cli/node/ndd.cjs story implement --slice platform-agent-authority-routing
 ```
 
-Observed blocker:
+Superseded observation:
 
 ```text
-platform_agent_authority_routing_strategy_not_promoted
+the lane was incorrectly framed as a strategy-promotion blocker
 ```
 
 The loop then probed the explicit semantic-strategy path:
@@ -24,7 +38,7 @@ node generated/cli/node/ndd.cjs story implement --slice platform-agent-authority
 
 That route reached the reusable strategy materializer, but the run manifest is still missing the provider-backed strategy materialization values. The next question was whether live provider execution is available through the approved resolver package.
 
-## Runtime Probe
+## Superseded Runtime Probe
 
 Probe:
 
@@ -32,7 +46,7 @@ Probe:
 contracts/sej/cognitive-provider-runtime-support.probe.sej.v1.json
 ```
 
-Missing resolver capabilities:
+This probe incorrectly treated conveyor worker capabilities as resolver capabilities:
 
 ```text
 environment.require_secret.v1
@@ -47,15 +61,15 @@ policy.evaluate.v1
 
 Credentials are present in the environment, but secret material was not recorded.
 
-## Handoff
+## Superseded Handoff
 
-Resolver evolution request:
+The resolver evolution request is superseded:
 
 ```text
 contracts/resolver-authority/cognitive-provider-runtime-support.resolver-evolution-request.v1.json
 ```
 
-Resolver repo handoff package:
+The resolver repo handoff package is superseded:
 
 ```text
 C:/source/repos/bpm/internal/sej-runtime-resolver/SEJ-RUNTIME-RESOLVER-COGNITIVE-PROVIDER-PRIMITIVES-HANDOFF-PACKET.json
@@ -74,9 +88,9 @@ patch node_modules
 create durable platform-agent policy/gate/SOG authority by hand
 ```
 
-## Next Move
+## Corrected Next Move
 
-Publish an approved resolver package exposing the cognitive provider runtime primitive set, then rerun:
+Build the conveyor worker lane execution path and rerun:
 
 ```text
 node generated/cli/node/ndd.cjs story implement --slice platform-agent-authority-routing
