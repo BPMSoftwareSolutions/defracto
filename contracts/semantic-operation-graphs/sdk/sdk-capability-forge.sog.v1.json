@@ -1,0 +1,536 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.sdk-capability-forge.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-capability-gap-proof",
+  "commandKey": "defracto.ndd.story.implement.sdk-capability.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.sdk-capability-forge.load-run-manifest.semantic-action.v1",
+      "capabilityKey": "conveyor.run_manifest.load.v1",
+      "intent": "Load concrete SDK capability run values from a run manifest."
+    },
+    {
+      "actionKey": "defracto.sdk-capability-forge.verify-cognitive-trace.semantic-action.v1",
+      "capabilityKey": "evidence.receipt.verify.v1",
+      "intent": "Verify existing cognitive/provider trace evidence before projecting SDK authority."
+    },
+    {
+      "actionKey": "defracto.sdk-capability-forge.materialize-gap-artifacts.semantic-action.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize capability-gap proof artifacts from manifest authority."
+    },
+    {
+      "actionKey": "defracto.sdk-capability-forge.hash-gap-artifacts.semantic-action.v1",
+      "capabilityKey": "hash.compute.v1",
+      "intent": "Hash capability-gap artifacts and next conveyor story."
+    },
+    {
+      "actionKey": "defracto.sdk-capability-forge.emit-gap-receipt.semantic-action.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit fail-closed SDK capability-gap receipt."
+    },
+    {
+      "actionKey": "defracto.sdk-capability-forge.project-blocked-result.semantic-action.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Return blocked command result without claiming durable product truth."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "loadSdkCapabilityRunManifest",
+        "capabilityKey": "conveyor.run_manifest.load.v1",
+        "intent": "Load the SDK capability run manifest by CLI slice key.",
+        "input": {
+          "sliceKey": {
+            "$context": "command.options.slice"
+          },
+          "defaultSearchRoot": "conveyor/runs"
+        },
+        "output": {
+          "path": "$graph.runManifest"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "sdk_capability_run_manifest_missing"
+        }
+      },
+      {
+        "id": "verifyCognitiveTrace",
+        "capabilityKey": "evidence.receipt.verify.v1",
+        "intent": "Verify cognitive/provider participation receipts referenced by the run manifest.",
+        "input": {
+          "receipts": {
+            "$graph": "runManifest.providerReceiptRefs"
+          },
+          "hashes": []
+        },
+        "output": {
+          "path": "$graph.cognitiveTrace"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "sdk_capability_cognitive_trace_missing"
+        }
+      },
+      {
+        "id": "materializeSdkStrategy",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize the SDK capability strategy.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "runManifest.paths.sdkStrategy"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "runManifest.artifacts.sdkStrategy"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.sdkStrategyArtifact"
+        }
+      },
+      {
+        "id": "materializeSemanticAction",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize hash shape semantic action authority.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "runManifest.paths.semanticAction"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "runManifest.artifacts.semanticAction"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.semanticActionArtifact"
+        }
+      },
+      {
+        "id": "materializeHashCapability",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize hash shape capability contract.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "runManifest.paths.hashCapability"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "runManifest.artifacts.hashCapability"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.hashCapabilityArtifact"
+        }
+      },
+      {
+        "id": "materializeCapabilityGap",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize explicit capability-gap classification.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "runManifest.paths.capabilityGap"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "runManifest.artifacts.capabilityGap"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.capabilityGapArtifact"
+        }
+      },
+      {
+        "id": "materializeInputSchema",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize receipt hash input schema.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "runManifest.paths.inputSchema"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "runManifest.artifacts.inputSchema"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.inputSchemaArtifact"
+        }
+      },
+      {
+        "id": "materializeResultSchema",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize receipt hash result schema.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "runManifest.paths.resultSchema"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "runManifest.artifacts.resultSchema"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.resultSchemaArtifact"
+        }
+      },
+      {
+        "id": "materializeReceiptHashSog",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize receipt hash validator SOG seed that depends on the exact missing capability.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "runManifest.paths.receiptHashSog"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "runManifest.artifacts.receiptHashSog"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.receiptHashSogArtifact"
+        }
+      },
+      {
+        "id": "materializeReceiptHashSej",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize receipt hash validator SEJ shell with blocked execution posture.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "runManifest.paths.receiptHashSej"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "runManifest.artifacts.receiptHashSej"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.receiptHashSejArtifact"
+        }
+      },
+      {
+        "id": "materializeNextCapabilityStory",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Emit the next conveyor story for filling the exact semantic capability gap.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "runManifest.paths.nextCapabilityStory"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": {
+              "$graph": "runManifest.nextCapabilityStoryLines"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.nextCapabilityStoryArtifact"
+        }
+      },
+      {
+        "id": "hashSdkStrategy",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runManifest.paths.sdkStrategy"
+          }
+        },
+        "output": {
+          "path": "$graph.sdkStrategyHash"
+        }
+      },
+      {
+        "id": "hashCapabilityGap",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runManifest.paths.capabilityGap"
+          }
+        },
+        "output": {
+          "path": "$graph.capabilityGapHash"
+        }
+      },
+      {
+        "id": "hashReceiptHashSog",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runManifest.paths.receiptHashSog"
+          }
+        },
+        "output": {
+          "path": "$graph.receiptHashSogHash"
+        }
+      },
+      {
+        "id": "hashNextCapabilityStory",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runManifest.paths.nextCapabilityStory"
+          }
+        },
+        "output": {
+          "path": "$graph.nextCapabilityStoryHash"
+        }
+      },
+      {
+        "id": "emitCapabilityGapReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit the fail-closed capability-gap receipt.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "runManifest.paths.capabilityGapReceipt"
+            },
+            "content": {
+              "schemaVersion": "defracto.sdk-capability-gap.receipt.v1",
+              "receiptKey": {
+                "$graph": "runManifest.receiptKeys.capabilityGap"
+              },
+              "status": "blocked",
+              "blocker": "missing_semantic_capability",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "productNeed": {
+                "$graph": "runManifest.productNeed"
+              },
+              "requiredCapability": {
+                "$graph": "runManifest.requiredCapability"
+              },
+              "nearbyCapabilityRejected": {
+                "$graph": "runManifest.nearbyCapabilityRejected"
+              },
+              "nearbyCapabilityRejectionReason": {
+                "$graph": "runManifest.nearbyCapabilityRejectionReason"
+              },
+              "durableProductTruthAccepted": false,
+              "sdkPromotionStatus": "blocked",
+              "hostLanguageProductBodyCreated": false,
+              "tempBuilderUsed": false,
+              "resolverOrNodeModulesPatched": false,
+              "nextConveyorStory": {
+                "path": {
+                  "$graph": "runManifest.paths.nextCapabilityStory"
+                },
+                "hash": {
+                  "$graph": "nextCapabilityStoryHash.hash"
+                },
+                "intent": {
+                  "$graph": "runManifest.nextConveyorStoryIntent"
+                }
+              },
+              "artifacts": {
+                "sdkStrategy": {
+                  "path": {
+                    "$graph": "runManifest.paths.sdkStrategy"
+                  },
+                  "hash": {
+                    "$graph": "sdkStrategyHash.hash"
+                  }
+                },
+                "capabilityGap": {
+                  "path": {
+                    "$graph": "runManifest.paths.capabilityGap"
+                  },
+                  "hash": {
+                    "$graph": "capabilityGapHash.hash"
+                  }
+                },
+                "receiptHashSog": {
+                  "path": {
+                    "$graph": "runManifest.paths.receiptHashSog"
+                  },
+                  "hash": {
+                    "$graph": "receiptHashSogHash.hash"
+                  }
+                }
+              },
+              "completionPosture": {
+                "$graph": "runManifest.completionPosture"
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.capabilityGapReceipt"
+        }
+      },
+      {
+        "id": "materializeSliceReport",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize the Slice 057 capability-gap report.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "runManifest.paths.report"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": {
+              "$graph": "runManifest.reportLines"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.sliceReport"
+        }
+      },
+      {
+        "id": "hashSliceReport",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runManifest.paths.report"
+          }
+        },
+        "output": {
+          "path": "$graph.sliceReportHash"
+        }
+      },
+      {
+        "id": "projectBlockedCommandResult",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project the blocked SDK capability result.",
+        "input": {
+          "fields": {
+            "status": "blocked",
+            "result": null,
+            "evidence": {
+              "failClosed": true,
+              "code": "missing_semantic_capability",
+              "details": {
+                "requiredCapability": {
+                  "$graph": "runManifest.requiredCapability"
+                },
+                "nearbyCapabilityRejected": {
+                  "$graph": "runManifest.nearbyCapabilityRejected"
+                },
+                "durableProductTruthAccepted": false,
+                "capabilityGapReceipt": {
+                  "$graph": "runManifest.paths.capabilityGapReceipt"
+                },
+                "nextConveyorStory": {
+                  "$graph": "runManifest.paths.nextCapabilityStory"
+                },
+                "report": {
+                  "$graph": "runManifest.paths.report"
+                }
+              }
+            },
+            "findings": [
+              {
+                "severity": "blocker",
+                "code": "missing_semantic_capability",
+                "message": {
+                  "$graph": "runManifest.blockedFindingMessage"
+                },
+                "details": {
+                  "requiredCapability": {
+                    "$graph": "runManifest.requiredCapability"
+                  },
+                  "nearbyCapabilityRejected": {
+                    "$graph": "runManifest.nearbyCapabilityRejected"
+                  }
+                }
+              }
+            ],
+            "blocker": "missing_semantic_capability",
+            "error": {
+              "$graph": "runManifest.blockedError"
+            }
+          }
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "evidenceObligations": [
+    "cognitive_trace_receipts_verified",
+    "sdk_strategy_materialized",
+    "nearby_capability_rejected",
+    "required_semantic_capability_declared",
+    "capability_gap_receipt_emitted",
+    "next_conveyor_story_emitted",
+    "durable_product_truth_not_accepted"
+  ],
+  "forbiddenClaims": [
+    "nearby capability is equivalent to required capability without proof",
+    "SDK capability promoted without exact semantic capability",
+    "host-language product body created",
+    "temp builder used",
+    "resolver or node_modules patched",
+    "durable product truth accepted"
+  ],
+  "completionPosture": "The SDK capability forge can fail closed on exact semantic capability gaps and emit the next governed conveyor story."
+}

@@ -55,6 +55,10 @@
                   "required": false
                 },
                 {
+                  "name": "target-sdk",
+                  "required": false
+                },
+                {
                   "name": "slice",
                   "required": true
                 }
@@ -73,7 +77,7 @@
       {
         "id": "selectStoryImplementTargetGraph",
         "capabilityKey": "project.value.v1",
-        "intent": "Select semantic strategy graph when --target-kind semantic-strategy is present; otherwise keep the live visual proof materialization path.",
+        "intent": "Select semantic strategy, SDK capability forge, or visual proof materialization graph from target-kind.",
         "input": {
           "fields": {
             "routeKey": {
@@ -83,7 +87,10 @@
                     "allOf": [
                       {
                         "equals": [
-                          "$context.argv.2",
+                          {
+                            "$from": "argv.2",
+                            "default": ""
+                          },
                           {
                             "literal": "--target-kind"
                           }
@@ -91,7 +98,10 @@
                       },
                       {
                         "equals": [
-                          "$context.argv.3",
+                          {
+                            "$from": "argv.3",
+                            "default": ""
+                          },
                           {
                             "literal": "semantic-strategy"
                           }
@@ -103,7 +113,10 @@
                     "allOf": [
                       {
                         "equals": [
-                          "$context.argv.4",
+                          {
+                            "$from": "argv.4",
+                            "default": ""
+                          },
                           {
                             "literal": "--target-kind"
                           }
@@ -111,7 +124,62 @@
                       },
                       {
                         "equals": [
-                          "$context.argv.5",
+                          {
+                            "$from": "argv.5",
+                            "default": ""
+                          },
+                          {
+                            "literal": "semantic-strategy"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "equals": [
+                          {
+                            "$from": "argv.6",
+                            "default": ""
+                          },
+                          {
+                            "literal": "--target-kind"
+                          }
+                        ]
+                      },
+                      {
+                        "equals": [
+                          {
+                            "$from": "argv.7",
+                            "default": ""
+                          },
+                          {
+                            "literal": "semantic-strategy"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "equals": [
+                          {
+                            "$from": "argv.8",
+                            "default": ""
+                          },
+                          {
+                            "literal": "--target-kind"
+                          }
+                        ]
+                      },
+                      {
+                        "equals": [
+                          {
+                            "$from": "argv.9",
+                            "default": ""
+                          },
                           {
                             "literal": "semantic-strategy"
                           }
@@ -125,7 +193,120 @@
                 "literal": "semantic_strategy_compile"
               },
               "else": {
-                "literal": "visual_proof_materialization"
+                "when": {
+                  "anyOf": [
+                    {
+                      "allOf": [
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.2",
+                              "default": ""
+                            },
+                            {
+                              "literal": "--target-kind"
+                            }
+                          ]
+                        },
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.3",
+                              "default": ""
+                            },
+                            {
+                              "literal": "sdk-capability"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.4",
+                              "default": ""
+                            },
+                            {
+                              "literal": "--target-kind"
+                            }
+                          ]
+                        },
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.5",
+                              "default": ""
+                            },
+                            {
+                              "literal": "sdk-capability"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.6",
+                              "default": ""
+                            },
+                            {
+                              "literal": "--target-kind"
+                            }
+                          ]
+                        },
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.7",
+                              "default": ""
+                            },
+                            {
+                              "literal": "sdk-capability"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.8",
+                              "default": ""
+                            },
+                            {
+                              "literal": "--target-kind"
+                            }
+                          ]
+                        },
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.9",
+                              "default": ""
+                            },
+                            {
+                              "literal": "sdk-capability"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "then": {
+                  "literal": "sdk_capability_forge"
+                },
+                "else": {
+                  "literal": "visual_proof_materialization"
+                }
               }
             },
             "graphRef": {
@@ -135,7 +316,10 @@
                     "allOf": [
                       {
                         "equals": [
-                          "$context.argv.2",
+                          {
+                            "$from": "argv.2",
+                            "default": ""
+                          },
                           {
                             "literal": "--target-kind"
                           }
@@ -143,7 +327,10 @@
                       },
                       {
                         "equals": [
-                          "$context.argv.3",
+                          {
+                            "$from": "argv.3",
+                            "default": ""
+                          },
                           {
                             "literal": "semantic-strategy"
                           }
@@ -155,7 +342,10 @@
                     "allOf": [
                       {
                         "equals": [
-                          "$context.argv.4",
+                          {
+                            "$from": "argv.4",
+                            "default": ""
+                          },
                           {
                             "literal": "--target-kind"
                           }
@@ -163,7 +353,62 @@
                       },
                       {
                         "equals": [
-                          "$context.argv.5",
+                          {
+                            "$from": "argv.5",
+                            "default": ""
+                          },
+                          {
+                            "literal": "semantic-strategy"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "equals": [
+                          {
+                            "$from": "argv.6",
+                            "default": ""
+                          },
+                          {
+                            "literal": "--target-kind"
+                          }
+                        ]
+                      },
+                      {
+                        "equals": [
+                          {
+                            "$from": "argv.7",
+                            "default": ""
+                          },
+                          {
+                            "literal": "semantic-strategy"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "equals": [
+                          {
+                            "$from": "argv.8",
+                            "default": ""
+                          },
+                          {
+                            "literal": "--target-kind"
+                          }
+                        ]
+                      },
+                      {
+                        "equals": [
+                          {
+                            "$from": "argv.9",
+                            "default": ""
+                          },
                           {
                             "literal": "semantic-strategy"
                           }
@@ -179,8 +424,123 @@
                 }
               },
               "else": {
-                "literal": {
-                  "$inline": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+                "when": {
+                  "anyOf": [
+                    {
+                      "allOf": [
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.2",
+                              "default": ""
+                            },
+                            {
+                              "literal": "--target-kind"
+                            }
+                          ]
+                        },
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.3",
+                              "default": ""
+                            },
+                            {
+                              "literal": "sdk-capability"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.4",
+                              "default": ""
+                            },
+                            {
+                              "literal": "--target-kind"
+                            }
+                          ]
+                        },
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.5",
+                              "default": ""
+                            },
+                            {
+                              "literal": "sdk-capability"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.6",
+                              "default": ""
+                            },
+                            {
+                              "literal": "--target-kind"
+                            }
+                          ]
+                        },
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.7",
+                              "default": ""
+                            },
+                            {
+                              "literal": "sdk-capability"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.8",
+                              "default": ""
+                            },
+                            {
+                              "literal": "--target-kind"
+                            }
+                          ]
+                        },
+                        {
+                          "equals": [
+                            {
+                              "$from": "argv.9",
+                              "default": ""
+                            },
+                            {
+                              "literal": "sdk-capability"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "then": {
+                  "literal": {
+                    "$inline": "contracts/semantic-operation-graphs/sdk/sdk-capability-forge.sog.v1.json"
+                  }
+                },
+                "else": {
+                  "literal": {
+                    "$inline": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+                  }
                 }
               }
             }
@@ -225,14 +585,15 @@
     "story_implement_target_graph_selected",
     "selected_story_implement_graph_executed",
     "stage_handoff_packets_materialized",
-    "ascii_and_html_surfaces_materialized_from_same_model_or_semantic_strategy_plan_materialized"
+    "ascii_and_html_surfaces_materialized_from_same_model_or_semantic_strategy_plan_or_sdk_capability_materialized"
   ],
   "forbiddenClaims": [
     "generated CLI facade owns story implement behavior",
     "story implement command bypasses semantic operation graph",
     "semantic strategy compile creates durable product truth",
+    "sdk capability forge creates host-language product body",
     "ASCII and HTML materialized from different visual models",
     "provider candidate grants authority without hardening"
   ],
-  "completionPosture": "ndd story implement delegates to the selected semantic graph and returns either visual proof materialization or semantic strategy compile result."
+  "completionPosture": "ndd story implement delegates to the selected semantic graph and returns visual proof materialization, semantic strategy compile, or SDK capability forge result."
 }

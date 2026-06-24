@@ -1,0 +1,316 @@
+{
+  "schemaVersion": "defracto.sdk-capability-gap-run-manifest.v1",
+  "runKey": "sdk-receipt-hash-validator",
+  "sliceKey": "sdk-receipt-hash-validator",
+  "runRoot": "conveyor/runs/2026/06/24/sdk-receipt-hash-validator",
+  "laneMode": "sdk_capability_compile",
+  "targetKind": "sdk-capability",
+  "storyText": "As a Defracto operator, I want a receipt hash validator SDK capability, so that malformed evidence hashes cannot enter a release packet.",
+  "productNeed": "receipt-hash SDK capability",
+  "requiredCapability": "hash.shape.validate.v1",
+  "nearbyCapabilityRejected": "evidence.receipt.verify.v1",
+  "nearbyCapabilityRejectionReason": "evidence.receipt.verify.v1 verifies declared receipt/artifact hash equality; it does not validate sha256:<64 lowercase hex> string shape.",
+  "blockedFindingMessage": "receipt-hash SDK capability requires hash.shape.validate.v1; nearby receipt verification capability is not equivalent.",
+  "blockedError": "SDK capability promotion blocked: missing semantic capability hash.shape.validate.v1.",
+  "completionPosture": "The SDK capability is blocked because exact hash-shape validation is missing as semantic capability authority; no nearby primitive substitution or host-language workaround was accepted.",
+  "nextConveyorStoryIntent": "create hash.shape.validate.v1",
+  "providerReceiptRefs": [
+    "evidence/workers/story-to-tdd.provider-fallback.receipt.v1.json",
+    "evidence/workers/story-to-tdd.openai-dispatch.receipt.v1.json",
+    "evidence/workers/story-to-tdd.openai-response.receipt.v1.json",
+    "evidence/workers/story-to-tdd.openai-invocation.receipt.v1.json"
+  ],
+  "receiptKeys": {
+    "capabilityGap": "defracto.receipt.sdk-receipt-hash-validator.capability-gap.slice-057.v1"
+  },
+  "paths": {
+    "runManifest": "conveyor/runs/2026/06/24/sdk-receipt-hash-validator/run.manifest.v1.json",
+    "sdkStrategy": "contracts/sdk/receipt-hash-validator.strategy.v1.json",
+    "semanticAction": "contracts/semantic-actions/hash.shape.validate.v1.json",
+    "hashCapability": "contracts/capabilities/hash.shape.validate.capability.v1.json",
+    "capabilityGap": "contracts/capabilities/hash.shape.validate.capability-gap.v1.json",
+    "inputSchema": "contracts/schemas/receipt-hash-input.schema.v1.json",
+    "resultSchema": "contracts/schemas/receipt-hash-result.schema.v1.json",
+    "receiptHashSog": "contracts/semantic-operation-graphs/evidence/receipt-hash.validate.sog.v1.json",
+    "receiptHashSej": "contracts/sej/receipt-hash.validate.execute.sej.v1.json",
+    "capabilityGapReceipt": "evidence/sdk/receipt-hash-validator.capability-gap.receipt.v1.json",
+    "nextCapabilityStory": "stories/generated/capability-gaps/hash.shape.validate.story.md",
+    "report": "conveyor/runs/2026/06/24/reports/slice-057-sdk-receipt-hash-validator-capability-gap-proof.latest.md"
+  },
+  "artifacts": {
+    "sdkStrategy": {
+      "schemaVersion": "defracto.sdk-capability-strategy.v1",
+      "strategyKey": "defracto.sdk.receipt-hash-validator.strategy.slice-057.v1",
+      "status": "blocked-pending-semantic-capability",
+      "laneMode": "sdk_capability_compile",
+      "storyText": "As a Defracto operator, I want a receipt hash validator SDK capability, so that malformed evidence hashes cannot enter a release packet.",
+      "productNeed": "receipt-hash SDK capability",
+      "requiredSemanticCapability": "hash.shape.validate.v1",
+      "nearbyCapabilityRejected": "evidence.receipt.verify.v1",
+      "nearbyCapabilityRejectionReason": "evidence.receipt.verify.v1 verifies declared receipt/artifact hash equality; it does not validate sha256:<64 lowercase hex> string shape.",
+      "promotionStatus": "blocked",
+      "durableProductTruthAccepted": false,
+      "nextConveyorStory": "stories/generated/capability-gaps/hash.shape.validate.story.md",
+      "completionPosture": "The SDK strategy identifies the exact semantic capability gap and blocks promotion instead of substituting a nearby primitive."
+    },
+    "semanticAction": {
+      "schemaVersion": "loc.semantic-action.v1",
+      "objectKind": "semantic_action",
+      "actionKey": "defracto.hash.shape.validate.semantic-action.v1",
+      "capabilityKey": "hash.shape.validate.v1",
+      "intent": "Validate that an evidence hash string has the exact sha256:<64 lowercase hex> shape.",
+      "stableSignature": {
+        "algorithm": "sha256",
+        "fields": [
+          "actionKey",
+          "capabilityKey",
+          "input",
+          "output",
+          "failure"
+        ],
+        "value": "computed-by-resolver-or-registry"
+      },
+      "input": {
+        "hashValue": "receipt hash string",
+        "requiredShape": "sha256:<64 lowercase hex>"
+      },
+      "output": {
+        "schema": "contracts/schemas/receipt-hash-result.schema.v1.json"
+      },
+      "failure": {
+        "onMalformedHash": "blocked",
+        "blocker": "malformed_receipt_hash"
+      }
+    },
+    "hashCapability": {
+      "schemaVersion": "loc.semantic-capability.v1",
+      "capabilityKey": "hash.shape.validate.v1",
+      "capabilityStatus": "missing-executable-semantic-composition",
+      "category": "semantic.language.hash-shape-validation",
+      "purpose": "Validate sha256:<64 lowercase hex> strings without embedding receipt product logic in the resolver.",
+      "semanticDefinition": {
+        "requiredShape": "sha256:<64 lowercase hex>",
+        "expectedPassedResult": {
+          "status": "passed"
+        },
+        "expectedBlockedResult": {
+          "status": "blocked",
+          "blocker": "malformed_receipt_hash"
+        }
+      },
+      "requiredGenericLanguageOperations": [
+        "string.starts_with.v1",
+        "string.length.v1",
+        "string.strip_prefix.v1",
+        "string.every_char_in_set.v1",
+        "predicate.all_of.v1"
+      ],
+      "resolverProductPrimitiveRequested": false,
+      "durableProductTruthAccepted": false,
+      "completionPosture": "This capability is declared as semantic authority intent, but executable promotion is blocked until generic SEJ language operations or an equivalent semantic composition exist."
+    },
+    "capabilityGap": {
+      "schemaVersion": "defracto.semantic-capability-gap.v1",
+      "gapKey": "defracto.capability-gap.hash.shape.validate.slice-057.v1",
+      "status": "blocked",
+      "blocker": "missing_semantic_capability",
+      "requiredCapability": "hash.shape.validate.v1",
+      "nearbyCapabilityRejected": "evidence.receipt.verify.v1",
+      "nearbyCapabilityRejectionReason": "evidence.receipt.verify.v1 verifies declared receipt/artifact hash equality; it does not validate sha256:<64 lowercase hex> string shape.",
+      "semanticFirstOrder": [
+        "find existing semantic definitions",
+        "compose from existing SEJ language operations",
+        "define missing generic SEJ language operations",
+        "request resolver evolution only for tiny universal language mechanics"
+      ],
+      "forbiddenWorkarounds": [
+        "nearby primitive substitution",
+        "host-language product body",
+        "node_modules patch",
+        "temp builder",
+        "durable product truth without SOG execution"
+      ],
+      "nextConveyorStory": "stories/generated/capability-gaps/hash.shape.validate.story.md",
+      "durableProductTruthAccepted": false
+    },
+    "inputSchema": {
+      "schemaVersion": "http://json-schema.org/draft-07/schema#",
+      "title": "Receipt Hash Input",
+      "type": "object",
+      "required": [
+        "hash"
+      ],
+      "properties": {
+        "hash": {
+          "type": "string",
+          "description": "Candidate evidence hash string expected to match sha256:<64 lowercase hex>."
+        }
+      },
+      "additionalProperties": false
+    },
+    "resultSchema": {
+      "schemaVersion": "http://json-schema.org/draft-07/schema#",
+      "title": "Receipt Hash Result",
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "passed",
+            "blocked"
+          ]
+        },
+        "blocker": {
+          "enum": [
+            "malformed_receipt_hash",
+            "missing_semantic_capability"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "receiptHashSog": {
+      "schemaVersion": "loc.semantic-operation-graph.v1",
+      "objectKind": "sej_code_body",
+      "objectKey": "defracto.evidence.receipt-hash.validate.sog.v1",
+      "sourceTruth": "sej_semantic_body",
+      "status": "blocked-pending-required-semantic-capability",
+      "commandKey": "defracto.evidence.receipt_hash.validate.v1",
+      "bodyKind": "semantic_operation_graph",
+      "hostLanguageBodyAllowed": false,
+      "semanticActions": [
+        {
+          "actionKey": "defracto.hash.shape.validate.semantic-action.v1",
+          "capabilityKey": "hash.shape.validate.v1",
+          "intent": "Validate receipt hash string shape exactly."
+        }
+      ],
+      "graph": {
+        "steps": [
+          {
+            "id": "validateHashShape",
+            "capabilityKey": "hash.shape.validate.v1",
+            "intent": "Validate sha256:<64 lowercase hex> string shape.",
+            "input": {
+              "hashValueSource": "context.hash",
+              "requiredShape": "sha256:<64 lowercase hex>"
+            },
+            "output": {
+              "schema": "contracts/schemas/receipt-hash-result.schema.v1.json"
+            },
+            "failure": {
+              "status": "blocked",
+              "blocker": "malformed_receipt_hash"
+            }
+          }
+        ],
+        "return": {
+          "step": "validateHashShape"
+        }
+      },
+      "promotionStatus": "blocked",
+      "blockedReason": "missing_semantic_capability",
+      "requiredCapability": "hash.shape.validate.v1",
+      "nearbyCapabilityRejected": "evidence.receipt.verify.v1",
+      "durableProductTruthAccepted": false,
+      "completionPosture": "Receipt hash validator SOG is declared but not promoted because exact hash shape validation is missing as executable semantic capability."
+    },
+    "receiptHashSej": {
+      "schemaVersion": "defracto.sej-contract.v1",
+      "contractKey": "defracto.sej.receipt-hash.validate.execute.v1",
+      "contractKind": "semantic-executable-json",
+      "contractStatus": "blocked-pending-required-semantic-capability",
+      "toolKey": "defracto.evidence.receipt-hash.validate",
+      "sourceLineage": {
+        "semanticOperationGraph": "contracts/semantic-operation-graphs/evidence/receipt-hash.validate.sog.v1.json",
+        "inputSchema": "contracts/schemas/receipt-hash-input.schema.v1.json",
+        "resultSchema": "contracts/schemas/receipt-hash-result.schema.v1.json",
+        "requiredCapability": "contracts/capabilities/hash.shape.validate.capability.v1.json",
+        "capabilityGap": "contracts/capabilities/hash.shape.validate.capability-gap.v1.json"
+      },
+      "semanticBody": {
+        "bodyKind": "semantic_operation_graph",
+        "bodyRef": "contracts/semantic-operation-graphs/evidence/receipt-hash.validate.sog.v1.json",
+        "hostLanguageBodyAllowed": false
+      },
+      "executionPosture": {
+        "executionMode": "blocked_pending_semantic_capability",
+        "generatedImplementationUsedAsExecutionTruth": false,
+        "forbiddenHostFallback": true,
+        "durableTruthAcceptedByThisSej": false
+      },
+      "requiredOperations": [
+        {
+          "operationKey": "hash.shape.validate.v1",
+          "purpose": "Validate sha256:<64 lowercase hex> string shape.",
+          "requirementState": "missing",
+          "missingCapabilityBehavior": "blocked"
+        }
+      ],
+      "failurePosture": "Missing hash.shape.validate.v1 blocks receipt-hash SDK promotion.",
+      "completionPosture": "This SEJ shell preserves the semantic execution boundary and blocks until exact hash-shape validation can execute semantically."
+    }
+  },
+  "nextCapabilityStoryLines": [
+    "# hash.shape.validate.v1 semantic capability story",
+    "",
+    "As a Defracto semantic runtime designer,",
+    "I want hash.shape.validate.v1 to validate sha256:<64 lowercase hex> strings,",
+    "so that evidence SDK capabilities can validate hash fields without host-language product logic.",
+    "",
+    "## Conveyor Order",
+    "",
+    "1. Compose hash.shape.validate.v1 from existing SEJ language operations.",
+    "2. If missing generic language operations are found, emit a language capability gap.",
+    "3. If resolver evolution is required, request only tiny universal operations.",
+    "4. Never add hash product logic to the resolver.",
+    ""
+  ],
+  "reportLines": [
+    "# slice-057-sdk-receipt-hash-validator-capability-gap-proof",
+    "",
+    "Status: blocked",
+    "Blocker: missing_semantic_capability",
+    "Required capability: hash.shape.validate.v1",
+    "Nearby capability rejected: evidence.receipt.verify.v1",
+    "",
+    "## Proof",
+    "",
+    "The receipt-hash SDK capability requires exact sha256:<64 lowercase hex> string-shape validation. evidence.receipt.verify.v1 was rejected because it verifies declared receipt/artifact hash equality, not hash string shape.",
+    "",
+    "SDK strategy:",
+    "contracts/sdk/receipt-hash-validator.strategy.v1.json",
+    "Capability gap:",
+    "contracts/capabilities/hash.shape.validate.capability-gap.v1.json",
+    "Capability-gap receipt:",
+    "evidence/sdk/receipt-hash-validator.capability-gap.receipt.v1.json",
+    "Next conveyor story:",
+    "stories/generated/capability-gaps/hash.shape.validate.story.md",
+    "",
+    "Durable product truth accepted: false",
+    "Host-language product body created: false",
+    "Temp builder used: false",
+    "Resolver/node_modules patched: false"
+  ],
+  "stages": {
+    "sdkCapabilityGapProof": {
+      "stageKind": "sdk_capability_gap_proof",
+      "sog": "contracts/semantic-operation-graphs/sdk/sdk-capability-forge.sog.v1.json",
+      "expectedOutputs": [
+        "contracts/sdk/receipt-hash-validator.strategy.v1.json",
+        "contracts/semantic-actions/hash.shape.validate.v1.json",
+        "contracts/capabilities/hash.shape.validate.capability.v1.json",
+        "contracts/capabilities/hash.shape.validate.capability-gap.v1.json",
+        "contracts/schemas/receipt-hash-input.schema.v1.json",
+        "contracts/schemas/receipt-hash-result.schema.v1.json",
+        "contracts/semantic-operation-graphs/evidence/receipt-hash.validate.sog.v1.json",
+        "contracts/sej/receipt-hash.validate.execute.sej.v1.json",
+        "evidence/sdk/receipt-hash-validator.capability-gap.receipt.v1.json",
+        "stories/generated/capability-gaps/hash.shape.validate.story.md",
+        "conveyor/runs/2026/06/24/reports/slice-057-sdk-receipt-hash-validator-capability-gap-proof.latest.md"
+      ]
+    }
+  }
+}

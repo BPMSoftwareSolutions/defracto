@@ -1,0 +1,1 @@
+{"additionalProperties":false,"properties":{"hash":{"description":"Candidate evidence hash string expected to match sha256:<64 lowercase hex>.","type":"string"}},"required":["hash"],"schemaVersion":"http://json-schema.org/draft-07/schema#","title":"Receipt Hash Input","type":"object"}
