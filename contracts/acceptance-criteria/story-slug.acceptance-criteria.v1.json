@@ -1,0 +1,242 @@
+{
+  "schemaVersion": "defracto.acceptance-criteria.v1",
+  "criteriaSetKey": "defracto.user-stories.story-slug.acceptance-criteria.v1",
+  "derivedFromStory": "defracto.user-stories.story-slug.story.v1",
+  "criteria": [
+    {
+      "criteriaKey": "story-slug.lowercase-ascii",
+      "statement": "The slug generator lowercases ASCII letters.",
+      "observableBehavior": "Input `Story Title` produces lowercase letters in the slug key.",
+      "preconditions": [
+        "title input is non-empty"
+      ],
+      "inputs": [
+        "Story Title"
+      ],
+      "expectedOutputs": [
+        "story-title"
+      ],
+      "expectedResult": {
+        "status": "passed",
+        "slugKey": "story-title"
+      },
+      "negativeCases": [],
+      "sourceTrace": {
+        "sourcePath": "source/user-stories/story-slug.source.v1.md",
+        "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+        "storyPath": "$.acceptanceCriteria[0]"
+      },
+      "canonicalTrace": {
+        "canonicalSpecKey": "defracto.user-stories.story-slug.canonical-spec.v1",
+        "canonicalPath": "$.storySlug.rules.lowercaseAscii"
+      },
+      "testIntentKeys": [
+        "story-slug.test.lowercase-and-whitespace"
+      ],
+      "testability": {
+        "status": "testable",
+        "reason": "The lowercase transformation has deterministic input and output."
+      }
+    },
+    {
+      "criteriaKey": "story-slug.whitespace-to-hyphen",
+      "statement": "The slug generator replaces whitespace with hyphens.",
+      "observableBehavior": "Input with spaces produces hyphen-separated segments.",
+      "preconditions": [
+        "title input is non-empty"
+      ],
+      "inputs": [
+        "Story Title"
+      ],
+      "expectedOutputs": [
+        "story-title"
+      ],
+      "expectedResult": {
+        "status": "passed",
+        "slugKey": "story-title"
+      },
+      "negativeCases": [],
+      "sourceTrace": {
+        "sourcePath": "source/user-stories/story-slug.source.v1.md",
+        "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+        "storyPath": "$.acceptanceCriteria[1]"
+      },
+      "canonicalTrace": {
+        "canonicalSpecKey": "defracto.user-stories.story-slug.canonical-spec.v1",
+        "canonicalPath": "$.storySlug.rules.whitespaceToHyphen"
+      },
+      "testIntentKeys": [
+        "story-slug.test.lowercase-and-whitespace"
+      ],
+      "testability": {
+        "status": "testable",
+        "reason": "Whitespace replacement has deterministic input and output."
+      }
+    },
+    {
+      "criteriaKey": "story-slug.remove-punctuation",
+      "statement": "The slug generator removes unsupported punctuation.",
+      "observableBehavior": "Unsupported punctuation does not appear in the slug key.",
+      "preconditions": [
+        "title input is non-empty"
+      ],
+      "inputs": [
+        "Story: Title!"
+      ],
+      "expectedOutputs": [
+        "story-title"
+      ],
+      "expectedResult": {
+        "status": "passed",
+        "slugKey": "story-title"
+      },
+      "negativeCases": [
+        "story:-title!"
+      ],
+      "sourceTrace": {
+        "sourcePath": "source/user-stories/story-slug.source.v1.md",
+        "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+        "storyPath": "$.acceptanceCriteria[2]"
+      },
+      "canonicalTrace": {
+        "canonicalSpecKey": "defracto.user-stories.story-slug.canonical-spec.v1",
+        "canonicalPath": "$.storySlug.rules.removeUnsupportedPunctuation"
+      },
+      "testIntentKeys": [
+        "story-slug.test.remove-punctuation"
+      ],
+      "testability": {
+        "status": "testable",
+        "reason": "Unsupported punctuation removal has deterministic input and output."
+      }
+    },
+    {
+      "criteriaKey": "story-slug.collapse-hyphens",
+      "statement": "The slug generator collapses repeated hyphens.",
+      "observableBehavior": "Multiple separators collapse into one hyphen.",
+      "preconditions": [
+        "title input is non-empty"
+      ],
+      "inputs": [
+        "Story -- Title"
+      ],
+      "expectedOutputs": [
+        "story-title"
+      ],
+      "expectedResult": {
+        "status": "passed",
+        "slugKey": "story-title"
+      },
+      "negativeCases": [
+        "story--title"
+      ],
+      "sourceTrace": {
+        "sourcePath": "source/user-stories/story-slug.source.v1.md",
+        "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+        "storyPath": "$.acceptanceCriteria[3]"
+      },
+      "canonicalTrace": {
+        "canonicalSpecKey": "defracto.user-stories.story-slug.canonical-spec.v1",
+        "canonicalPath": "$.storySlug.rules.collapseRepeatedHyphens"
+      },
+      "testIntentKeys": [
+        "story-slug.test.collapse-hyphens"
+      ],
+      "testability": {
+        "status": "testable",
+        "reason": "Repeated hyphen collapse has deterministic input and output."
+      }
+    },
+    {
+      "criteriaKey": "story-slug.empty-input-blocked",
+      "statement": "The slug generator returns blocked for empty input.",
+      "observableBehavior": "Blank input returns blocked status instead of a slug key.",
+      "preconditions": [
+        "title input is blank or whitespace only"
+      ],
+      "inputs": [
+        ""
+      ],
+      "expectedOutputs": [
+        "status blocked",
+        "blocker empty_slug_input"
+      ],
+      "expectedResult": {
+        "status": "blocked",
+        "blocker": "empty_slug_input"
+      },
+      "negativeCases": [
+        "empty slug",
+        "passed status"
+      ],
+      "sourceTrace": {
+        "sourcePath": "source/user-stories/story-slug.source.v1.md",
+        "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+        "storyPath": "$.acceptanceCriteria[4]"
+      },
+      "canonicalTrace": {
+        "canonicalSpecKey": "defracto.user-stories.story-slug.canonical-spec.v1",
+        "canonicalPath": "$.storySlug.failures.emptyInput"
+      },
+      "testIntentKeys": [
+        "story-slug.test.empty-input-blocked"
+      ],
+      "testability": {
+        "status": "testable",
+        "reason": "Empty input failure behavior has deterministic status and blocker output."
+      }
+    },
+    {
+      "criteriaKey": "story-slug.no-hand-authored-code",
+      "statement": "The story-to-TDD conveyor must not introduce hand-authored runtime code, tests, or implementation files.",
+      "observableBehavior": "Accepted code artifacts have projection manifests, materialization receipts, and conformance evidence.",
+      "preconditions": [
+        "generated test or generated implementation artifact is produced"
+      ],
+      "inputs": [
+        "artifact path"
+      ],
+      "expectedOutputs": [
+        "projection manifest exists",
+        "materialization receipt exists",
+        "artifact hash recorded"
+      ],
+      "expectedResult": {
+        "requiredEvidence": [
+          "projection manifest",
+          "materialization receipt",
+          "artifact hash"
+        ]
+      },
+      "negativeCases": [
+        "code artifact without receipt",
+        "code artifact without projection manifest"
+      ],
+      "sourceTrace": {
+        "sourcePath": "source/user-stories/story-slug.source.v1.md",
+        "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+        "storyPath": "$.acceptanceCriteria[5]"
+      },
+      "canonicalTrace": {
+        "canonicalSpecKey": "defracto.user-stories.story-slug.canonical-spec.v1",
+        "canonicalPath": "$.storySlug.boundary.noHandAuthoredCode"
+      },
+      "testIntentKeys": [
+        "story-slug.test.generated-provenance-required"
+      ],
+      "testability": {
+        "status": "testable",
+        "reason": "Generated artifact provenance can be checked by declared gates and receipts."
+      }
+    }
+  ],
+  "traceability": {
+    "allCriteriaHaveSourceTrace": true,
+    "allCriteriaHaveStoryTrace": true,
+    "allCriteriaHaveCanonicalTrace": true,
+    "allCriteriaHaveTestIntentTrace": true,
+    "allCriteriaHaveExpectedResult": true,
+    "allCriteriaAreTestable": true
+  },
+  "status": "accepted-for-test-intent"
+}

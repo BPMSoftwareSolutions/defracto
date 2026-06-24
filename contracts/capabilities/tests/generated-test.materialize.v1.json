@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "generated.test.materialize.v1",
+  "capabilityStatus": "repo-local-semantic-authority",
+  "category": "tdd.generated-test.projection",
+  "purpose": "Declare the semantic boundary for materializing generated test artifacts from accepted test intent and projection manifests.",
+  "portableAcross": [
+    "node"
+  ],
+  "mustDo": [
+    "load accepted test intent",
+    "load accepted test projection manifest",
+    "verify criteria coverage before materialization",
+    "materialize only the declared test target path",
+    "emit generated test materialization receipt",
+    "record generated artifact hash",
+    "fail closed when source authority or receipt authority is missing"
+  ],
+  "mustNotDo": [
+    "hand-author test code",
+    "invent criteria",
+    "invent canonical behavior",
+    "materialize implementation code",
+    "write outside declared target path",
+    "require changes to the resolver repository"
+  ],
+  "failureCodes": [
+    "generated_test_materialize_v1_test_intent_missing",
+    "generated_test_materialize_v1_projection_manifest_missing",
+    "generated_test_materialize_v1_coverage_missing",
+    "generated_test_materialize_v1_receipt_missing"
+  ],
+  "completionPosture": "Generated tests are acceptable only when projected from test intent and receipted as generated artifacts."
+}

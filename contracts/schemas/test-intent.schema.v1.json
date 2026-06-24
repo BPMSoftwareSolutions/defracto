@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.test-intent.v1",
+  "title": "Test Intent",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "testIntentKey",
+    "derivedFromCanonicalSpec",
+    "derivedFromAcceptanceCriteria",
+    "targetRunner",
+    "targetArtifactPath",
+    "testCases",
+    "coverage",
+    "status"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.test-intent.v1"
+    },
+    "testIntentKey": {
+      "type": "string"
+    },
+    "derivedFromCanonicalSpec": {
+      "type": "string"
+    },
+    "derivedFromAcceptanceCriteria": {
+      "type": "string"
+    },
+    "targetRunner": {
+      "type": "string"
+    },
+    "targetArtifactPath": {
+      "type": "string"
+    },
+    "testCases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "testCaseKey",
+          "criteriaKeys",
+          "canonicalPaths",
+          "scenario",
+          "input",
+          "expected",
+          "redExpectation",
+          "status"
+        ],
+        "properties": {
+          "testCaseKey": {
+            "type": "string"
+          },
+          "criteriaKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "canonicalPaths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "scenario": {
+            "type": "string"
+          },
+          "input": {
+            "type": "object"
+          },
+          "expected": {
+            "type": "object"
+          },
+          "redExpectation": {
+            "type": "object",
+            "required": [
+              "expectedStatus",
+              "expectedReason"
+            ],
+            "properties": {
+              "expectedStatus": {
+                "type": "string"
+              },
+              "expectedReason": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ready-for-projection",
+              "blocked",
+              "deferred"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "required": [
+        "criteriaKeysCovered",
+        "canonicalPathsCovered",
+        "allCriteriaCovered",
+        "allCanonicalPathsCovered"
+      ],
+      "properties": {
+        "criteriaKeysCovered": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "canonicalPathsCovered": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allCriteriaCovered": {
+          "type": "boolean"
+        },
+        "allCanonicalPathsCovered": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "forbiddenClaims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "accepted-for-test-projection",
+        "blocked"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

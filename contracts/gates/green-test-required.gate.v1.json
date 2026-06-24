@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.green_test_required.v1",
+  "gateTitle": "Green Test Required",
+  "gateStatus": "draft-ready-for-slice-a-review",
+  "purpose": "Block story implement completion unless generated tests pass after generated implementation materialization.",
+  "passConditions": [
+    "green test execution receipt exists",
+    "green test receipt references the same generated test artifact hash as red test receipt",
+    "green test status is passed",
+    "generated implementation receipt exists",
+    "green test occurred after implementation materialization",
+    "criteria-to-test trace remains valid"
+  ],
+  "blockConditions": [
+    "green test receipt missing",
+    "green test failed",
+    "green test used a different generated test artifact without supersession evidence",
+    "implementation receipt missing",
+    "green test occurred before implementation materialization"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Story implement may not complete until green evidence proves the generated implementation satisfies the generated tests."
+}

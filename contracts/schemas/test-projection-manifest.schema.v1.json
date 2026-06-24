@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.test-projection-manifest.v1",
+  "title": "Test Projection Manifest",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "manifestKey",
+    "manifestKind",
+    "manifestStatus",
+    "testIntentKey",
+    "targetRunner",
+    "projectedPath",
+    "sourceLineage",
+    "generatedTest",
+    "allowedResponsibilities",
+    "forbiddenResponsibilities",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.test-projection-manifest.v1"
+    },
+    "manifestKey": {
+      "type": "string"
+    },
+    "manifestKind": {
+      "type": "string"
+    },
+    "manifestStatus": {
+      "type": "string"
+    },
+    "testIntentKey": {
+      "type": "string"
+    },
+    "targetRunner": {
+      "type": "string"
+    },
+    "projectedPath": {
+      "type": "string"
+    },
+    "sourceLineage": {
+      "type": "object"
+    },
+    "generatedTest": {
+      "type": "object"
+    },
+    "allowedResponsibilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenResponsibilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completionPosture": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

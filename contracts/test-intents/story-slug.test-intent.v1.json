@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "defracto.test-intent.v1",
+  "testIntentKey": "defracto.user-stories.story-slug.test-intent.v1",
+  "derivedFromCanonicalSpec": "defracto.user-stories.story-slug.canonical-spec.v1",
+  "derivedFromAcceptanceCriteria": "defracto.user-stories.story-slug.acceptance-criteria.v1",
+  "targetRunner": "node:test",
+  "targetArtifactPath": "tests/generated/user-stories/story-slug.generated.test.js",
+  "testCases": [
+    {
+      "testCaseKey": "story-slug.test.lowercase-and-whitespace",
+      "criteriaKeys": [
+        "story-slug.lowercase-ascii",
+        "story-slug.whitespace-to-hyphen"
+      ],
+      "canonicalPaths": [
+        "$.storySlug.rules.lowercaseAscii",
+        "$.storySlug.rules.whitespaceToHyphen"
+      ],
+      "scenario": "A mixed-case title with spaces becomes a lowercase hyphenated slug.",
+      "input": {
+        "title": "Story Title"
+      },
+      "expected": {
+        "status": "passed",
+        "slugKey": "story-title"
+      },
+      "redExpectation": {
+        "expectedStatus": "failed",
+        "expectedReason": "Generated implementation artifact is missing before implementation materialization."
+      },
+      "status": "ready-for-projection"
+    },
+    {
+      "testCaseKey": "story-slug.test.remove-punctuation",
+      "criteriaKeys": [
+        "story-slug.remove-punctuation"
+      ],
+      "canonicalPaths": [
+        "$.storySlug.rules.removeUnsupportedPunctuation"
+      ],
+      "scenario": "Unsupported punctuation is removed from the slug key.",
+      "input": {
+        "title": "Story: Title!"
+      },
+      "expected": {
+        "status": "passed",
+        "slugKey": "story-title"
+      },
+      "redExpectation": {
+        "expectedStatus": "failed",
+        "expectedReason": "Generated implementation artifact is missing before implementation materialization."
+      },
+      "status": "ready-for-projection"
+    },
+    {
+      "testCaseKey": "story-slug.test.collapse-hyphens",
+      "criteriaKeys": [
+        "story-slug.collapse-hyphens"
+      ],
+      "canonicalPaths": [
+        "$.storySlug.rules.collapseRepeatedHyphens"
+      ],
+      "scenario": "Multiple separators collapse into a single hyphen.",
+      "input": {
+        "title": "Story -- Title"
+      },
+      "expected": {
+        "status": "passed",
+        "slugKey": "story-title"
+      },
+      "redExpectation": {
+        "expectedStatus": "failed",
+        "expectedReason": "Generated implementation artifact is missing before implementation materialization."
+      },
+      "status": "ready-for-projection"
+    },
+    {
+      "testCaseKey": "story-slug.test.empty-input-blocked",
+      "criteriaKeys": [
+        "story-slug.empty-input-blocked"
+      ],
+      "canonicalPaths": [
+        "$.storySlug.failures.emptyInput"
+      ],
+      "scenario": "Blank input returns blocked instead of an empty slug.",
+      "input": {
+        "title": "   "
+      },
+      "expected": {
+        "status": "blocked",
+        "blocker": "empty_slug_input"
+      },
+      "redExpectation": {
+        "expectedStatus": "failed",
+        "expectedReason": "Generated implementation artifact is missing before implementation materialization."
+      },
+      "status": "ready-for-projection"
+    },
+    {
+      "testCaseKey": "story-slug.test.generated-provenance-required",
+      "criteriaKeys": [
+        "story-slug.no-hand-authored-code"
+      ],
+      "canonicalPaths": [
+        "$.storySlug.boundary.noHandAuthoredCode"
+      ],
+      "scenario": "Generated test and implementation artifacts require projection receipts before acceptance.",
+      "input": {
+        "testArtifactPath": "tests/generated/user-stories/story-slug.generated.test.js",
+        "implementationArtifactPath": "generated/implementations/user-stories/story-slug.cjs"
+      },
+      "expected": {
+        "requiredEvidence": [
+          "test projection manifest",
+          "test materialization receipt",
+          "implementation projection manifest",
+          "implementation materialization receipt"
+        ]
+      },
+      "redExpectation": {
+        "expectedStatus": "blocked",
+        "expectedReason": "Generated projection receipts do not exist before materialization."
+      },
+      "status": "ready-for-projection"
+    }
+  ],
+  "coverage": {
+    "criteriaKeysCovered": [
+      "story-slug.lowercase-ascii",
+      "story-slug.whitespace-to-hyphen",
+      "story-slug.remove-punctuation",
+      "story-slug.collapse-hyphens",
+      "story-slug.empty-input-blocked",
+      "story-slug.no-hand-authored-code"
+    ],
+    "canonicalPathsCovered": [
+      "$.storySlug.rules.lowercaseAscii",
+      "$.storySlug.rules.whitespaceToHyphen",
+      "$.storySlug.rules.removeUnsupportedPunctuation",
+      "$.storySlug.rules.collapseRepeatedHyphens",
+      "$.storySlug.failures.emptyInput",
+      "$.storySlug.boundary.noHandAuthoredCode"
+    ],
+    "allCriteriaCovered": true,
+    "allCanonicalPathsCovered": true
+  },
+  "forbiddenClaims": [
+    "test source is hand-authored",
+    "test projection has been materialized",
+    "red test has executed",
+    "implementation is authorized before red evidence"
+  ],
+  "status": "accepted-for-test-projection"
+}

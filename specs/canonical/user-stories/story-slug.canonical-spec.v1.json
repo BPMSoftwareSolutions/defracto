@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "defracto.canonical-spec.v1",
+  "canonicalSpecKey": "defracto.user-stories.story-slug.canonical-spec.v1",
+  "derivedFromStory": "defracto.user-stories.story-slug.story.v1",
+  "purpose": "Authorize the story slug key behavior as a small story-to-TDD proving target before generated tests or generated implementation exist.",
+  "canonicalNodes": [
+    {
+      "canonicalPath": "$.storySlug.input.title",
+      "storyPath": "$.story.iWant",
+      "statement": "The target accepts a short story title as input.",
+      "nodeType": "input"
+    },
+    {
+      "canonicalPath": "$.storySlug.output.slugKey",
+      "storyPath": "$.story.soThat",
+      "statement": "The target emits a predictable slug key for run artifact paths.",
+      "nodeType": "output"
+    },
+    {
+      "canonicalPath": "$.storySlug.rules.lowercaseAscii",
+      "storyPath": "$.acceptanceCriteria[0]",
+      "statement": "ASCII letters are lowercased.",
+      "nodeType": "rule"
+    },
+    {
+      "canonicalPath": "$.storySlug.rules.whitespaceToHyphen",
+      "storyPath": "$.acceptanceCriteria[1]",
+      "statement": "Whitespace is replaced with hyphens.",
+      "nodeType": "rule"
+    },
+    {
+      "canonicalPath": "$.storySlug.rules.removeUnsupportedPunctuation",
+      "storyPath": "$.acceptanceCriteria[2]",
+      "statement": "Unsupported punctuation is removed.",
+      "nodeType": "rule"
+    },
+    {
+      "canonicalPath": "$.storySlug.rules.collapseRepeatedHyphens",
+      "storyPath": "$.acceptanceCriteria[3]",
+      "statement": "Repeated hyphens are collapsed.",
+      "nodeType": "rule"
+    },
+    {
+      "canonicalPath": "$.storySlug.failures.emptyInput",
+      "storyPath": "$.acceptanceCriteria[4]",
+      "statement": "Empty input returns blocked rather than a slug key.",
+      "nodeType": "failure-rule"
+    },
+    {
+      "canonicalPath": "$.storySlug.boundary.noHandAuthoredCode",
+      "storyPath": "$.acceptanceCriteria[5]",
+      "statement": "Runtime code, test code, and implementation files must be generated projections with receipts, not hand-authored files.",
+      "nodeType": "boundary"
+    }
+  ],
+  "rules": [
+    {
+      "ruleKey": "rule.story-slug.criteria-trace-required",
+      "statement": "Every generated test intent must trace to a story-slug acceptance criterion."
+    },
+    {
+      "ruleKey": "rule.story-slug.red-before-green",
+      "statement": "Generated implementation may not be accepted without prior red-test evidence for the same generated test artifact."
+    },
+    {
+      "ruleKey": "rule.story-slug.no-hand-authored-code",
+      "statement": "No hand-authored code may satisfy this story."
+    }
+  ],
+  "status": "draft-ready-for-test-intent"
+}

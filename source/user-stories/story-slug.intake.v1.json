@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "defracto.user-story-intake.v1",
+  "intakeKey": "defracto.user-story-intake.story-slug.v1",
+  "sliceKey": "slice-027-story-to-tdd-command-authority",
+  "inputKind": "source_file",
+  "sourcePath": "source/user-stories/story-slug.source.v1.md",
+  "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9",
+  "capturedBy": "codex-planning-slice",
+  "capturedAt": "2026-06-24T00:00:00-04:00",
+  "storyText": "As a Defracto operator, I want a slug key generated from a short story title, so that run artifact paths stay predictable.",
+  "assumptions": [
+    "The first vertical slice should be deterministic and isolated from product runtime surfaces.",
+    "Generated tests and generated implementation artifacts remain deferred until test intent and projection authority exist."
+  ],
+  "ambiguities": [],
+  "status": "promoted-to-story-candidate"
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "defracto.test-projection-manifest.v1",
+  "manifestKey": "defracto.user-stories.story-slug.node-test-projection-manifest.v1",
+  "manifestKind": "projected-node-test",
+  "manifestStatus": "draft-ready-for-slice-028-review",
+  "testIntentKey": "defracto.user-stories.story-slug.test-intent.v1",
+  "targetRunner": "node:test",
+  "projectedPath": "tests/generated/user-stories/story-slug.generated.test.js",
+  "sourceLineage": {
+    "sourcePath": "source/user-stories/story-slug.source.v1.md",
+    "storyKey": "stories/user-stories/story-slug.story.v1.json",
+    "acceptanceCriteriaKey": "contracts/acceptance-criteria/story-slug.acceptance-criteria.v1.json",
+    "canonicalSpecKey": "specs/canonical/user-stories/story-slug.canonical-spec.v1.json",
+    "testIntentKey": "contracts/test-intents/story-slug.test-intent.v1.json"
+  },
+  "generatedTest": {
+    "status": "future",
+    "generationMode": "resolver-materialization",
+    "generationAuthority": "test-intent-and-projection-manifest-only",
+    "materializationSej": "contracts/sej/materialize-story-slug-generated-test.sej.v1.json",
+    "receiptPath": "evidence/tdd/story-slug.generated-test.materialization.receipt.v1.json"
+  },
+  "allowedResponsibilities": [
+    "project accepted test intent into a generated node:test artifact",
+    "assert slug behavior named by acceptance criteria",
+    "fail before generated implementation exists",
+    "remain subordinate to story, criteria, canonical spec, and test intent"
+  ],
+  "forbiddenResponsibilities": [
+    "hand-authored test code",
+    "implementation behavior",
+    "manual fixture invention",
+    "criteria invention",
+    "canonical rule invention",
+    "green status claim",
+    "resolver repository change"
+  ],
+  "completionPosture": "This manifest authorizes a future generated test projection only; it does not create or hand-author the test artifact."
+}

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "defracto.story-packet.v1",
+  "storyKey": "defracto.user-stories.story-slug.story.v1",
+  "storyTitle": "Story Slug Key",
+  "derivedFrom": {
+    "sourceKey": "defracto.source.user-stories.story-slug.v1",
+    "sourcePath": "source/user-stories/story-slug.source.v1.md",
+    "sourceHash": "sha256:785f1215944f2b5754aa32ef78308051b74e9291e9332a5d785172cc988917d9"
+  },
+  "actor": {
+    "role": "Defracto operator",
+    "goal": "generate a slug key from a short story title"
+  },
+  "story": {
+    "asA": "Defracto operator",
+    "iWant": "a slug key generated from a short story title",
+    "soThat": "run artifact paths stay predictable"
+  },
+  "acceptanceCriteria": [
+    {
+      "criteriaKey": "story-slug.lowercase-ascii",
+      "statement": "The slug generator lowercases ASCII letters.",
+      "sourcePath": "source/user-stories/story-slug.source.v1.md"
+    },
+    {
+      "criteriaKey": "story-slug.whitespace-to-hyphen",
+      "statement": "The slug generator replaces whitespace with hyphens.",
+      "sourcePath": "source/user-stories/story-slug.source.v1.md"
+    },
+    {
+      "criteriaKey": "story-slug.remove-punctuation",
+      "statement": "The slug generator removes unsupported punctuation.",
+      "sourcePath": "source/user-stories/story-slug.source.v1.md"
+    },
+    {
+      "criteriaKey": "story-slug.collapse-hyphens",
+      "statement": "The slug generator collapses repeated hyphens.",
+      "sourcePath": "source/user-stories/story-slug.source.v1.md"
+    },
+    {
+      "criteriaKey": "story-slug.empty-input-blocked",
+      "statement": "The slug generator returns blocked for empty input.",
+      "sourcePath": "source/user-stories/story-slug.source.v1.md"
+    },
+    {
+      "criteriaKey": "story-slug.no-hand-authored-code",
+      "statement": "The story-to-TDD conveyor must not introduce hand-authored runtime code, tests, or implementation files.",
+      "sourcePath": "source/user-stories/story-slug.source.v1.md"
+    }
+  ],
+  "forbiddenClaims": [
+    "manual implementation is authorized",
+    "manual test authoring is authorized",
+    "Gemini Flash output is canonical without receipts",
+    "green status is valid without red evidence"
+  ],
+  "status": "draft-ready-for-slice-a-review"
+}

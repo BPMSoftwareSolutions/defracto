@@ -23,6 +23,16 @@
         "ndd handoff status",
         "ndd handoff continue",
         "ndd handoff review",
+        "ndd story plan",
+        "ndd story plan --text",
+        "ndd story plan --source",
+        "ndd story test",
+        "ndd story test --text",
+        "ndd story test --source",
+        "ndd story implement",
+        "ndd story implement --text",
+        "ndd story implement --source",
+        "ndd story status",
         "ndd self sketch",
         "ndd self explain"
       ]

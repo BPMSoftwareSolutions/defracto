@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.test-execution-receipt.v1",
+  "title": "Test Execution Receipt",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receiptKey",
+    "status",
+    "testPhase",
+    "command",
+    "targetArtifactPath",
+    "targetArtifactHash",
+    "criteriaKeys",
+    "startedAt",
+    "completedAt",
+    "exitCode",
+    "result",
+    "blockedReasons"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.test-execution-receipt.v1"
+    },
+    "receiptKey": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "failed",
+        "blocked"
+      ]
+    },
+    "testPhase": {
+      "type": "string",
+      "enum": [
+        "red",
+        "green",
+        "conformance"
+      ]
+    },
+    "command": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "targetArtifactPath": {
+      "type": "string"
+    },
+    "targetArtifactHash": {
+      "type": "string"
+    },
+    "implementationArtifactPath": {
+      "type": "string"
+    },
+    "implementationArtifactHash": {
+      "type": "string"
+    },
+    "criteriaKeys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "startedAt": {
+      "type": "string"
+    },
+    "completedAt": {
+      "type": "string"
+    },
+    "exitCode": {
+      "type": "integer"
+    },
+    "result": {
+      "type": "object"
+    },
+    "stdoutHash": {
+      "type": "string"
+    },
+    "stderrHash": {
+      "type": "string"
+    },
+    "blockedReasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

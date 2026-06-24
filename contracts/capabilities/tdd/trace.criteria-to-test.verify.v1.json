@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "trace.criteria_to_test.verify.v1",
+  "capabilityStatus": "repo-local-semantic-authority",
+  "category": "tdd.traceability",
+  "purpose": "Declare the semantic boundary for verifying acceptance criteria coverage by generated test intent.",
+  "portableAcross": [
+    "node"
+  ],
+  "mustDo": [
+    "load acceptance criteria artifact",
+    "load test intent artifact",
+    "verify every accepted criterion is covered by at least one test case",
+    "verify every test case references accepted criteria",
+    "verify test intent canonical paths are declared in canonical spec",
+    "emit or support criteria-to-test trace evidence"
+  ],
+  "mustNotDo": [
+    "invent acceptance criteria",
+    "invent test cases",
+    "ignore blocked or ambiguous criteria",
+    "claim coverage without trace",
+    "require changes to the resolver repository"
+  ],
+  "failureCodes": [
+    "trace_criteria_to_test_verify_v1_criteria_missing",
+    "trace_criteria_to_test_verify_v1_test_intent_missing",
+    "trace_criteria_to_test_verify_v1_uncovered_criteria",
+    "trace_criteria_to_test_verify_v1_unknown_criteria",
+    "trace_criteria_to_test_verify_v1_unknown_canonical_path"
+  ],
+  "completionPosture": "Generated test projection may proceed only when accepted criteria are covered by test intent."
+}

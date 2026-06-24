@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.no_hand_authored_code.v1",
+  "gateTitle": "No Hand-Authored Code",
+  "gateStatus": "draft-ready-for-slice-a-review",
+  "purpose": "Block story-to-TDD runs when runtime, test, adapter, CLI, or implementation code appears without generated projection authority and receipts.",
+  "passConditions": [
+    "target code artifact path is declared",
+    "projection manifest exists",
+    "source semantic authority exists",
+    "materialization receipt exists",
+    "artifact hash is recorded",
+    "conformance evidence exists before release claims"
+  ],
+  "blockConditions": [
+    "runtime code added without projection manifest",
+    "test code added without generated test receipt",
+    "implementation code added by manual edit",
+    "adapter code added without semantic authority",
+    "CLI code added outside generated doorway materialization",
+    "artifact hash missing",
+    "receipt missing"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Code is acceptable only as a generated projection from declared semantic authority."
+}

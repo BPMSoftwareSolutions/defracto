@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.acceptance_criteria_trace_required.v1",
+  "gateTitle": "Acceptance Criteria Trace Required",
+  "gateStatus": "draft-ready-for-slice-a-review",
+  "purpose": "Block story-to-TDD runs when acceptance criteria cannot be traced to source narrative and story packet paths.",
+  "passConditions": [
+    "acceptance criteria artifact exists",
+    "every criterion has criteriaKey",
+    "every criterion has sourceTrace.sourcePath",
+    "every criterion has sourceTrace.sourceHash",
+    "every criterion has sourceTrace.storyPath",
+    "every criterion has canonicalTrace.canonicalSpecKey",
+    "every criterion has canonicalTrace.canonicalPath",
+    "every criterion has one or more testIntentKeys",
+    "every criterion has expectedResult",
+    "every criterion has testability.status set to testable",
+    "traceability.allCriteriaHaveSourceTrace is true",
+    "traceability.allCriteriaHaveStoryTrace is true",
+    "traceability.allCriteriaHaveCanonicalTrace is true",
+    "traceability.allCriteriaHaveTestIntentTrace is true",
+    "traceability.allCriteriaHaveExpectedResult is true",
+    "traceability.allCriteriaAreTestable is true"
+  ],
+  "blockConditions": [
+    "acceptance criteria missing",
+    "criterion missing source trace",
+    "criterion missing story trace",
+    "criterion missing canonical trace",
+    "criterion missing test intent trace",
+    "criterion missing exact expected result",
+    "criterion marked ambiguous",
+    "criterion marked blocked",
+    "criterion cannot be turned into test intent"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Story test and story implement may not proceed to generated test projection until criteria traceability passes."
+}

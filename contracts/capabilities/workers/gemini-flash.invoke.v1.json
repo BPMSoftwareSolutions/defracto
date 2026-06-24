@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "worker.gemini_flash.invoke.v1",
+  "capabilityStatus": "repo-local-semantic-authority",
+  "category": "conveyor.worker.dispatch",
+  "purpose": "Declare the semantic boundary for invoking the Gemini Flash worker through Defracto dispatch, response, and evidence contracts.",
+  "portableAcross": [
+    "node"
+  ],
+  "mustDo": [
+    "load declared Gemini Flash worker profile",
+    "load declared dispatch contract",
+    "load declared response contract",
+    "use declared dispatch packet",
+    "capture provider response as worker response evidence",
+    "validate response shape before downstream promotion",
+    "emit response receipt without secret material",
+    "fail closed when credentials, dispatch, response shape, or receipt evidence are missing"
+  ],
+  "mustNotDo": [
+    "mutate product source directly",
+    "promote worker output to canonical truth without receipts",
+    "hide provider invocation",
+    "invent dispatch fields",
+    "invent response fields",
+    "write hand-authored runtime code",
+    "leak API keys into artifacts or evidence",
+    "require changes to the resolver repository"
+  ],
+  "declaredContracts": {
+    "workerProfilePath": "conveyor/workers/gemini-flash.worker-profile.v1.json",
+    "dispatchContractPath": "conveyor/workers/gemini-flash.dispatch-contract.v1.json",
+    "responseContractPath": "conveyor/workers/gemini-flash.response-contract.v1.json",
+    "dispatchSchemaPath": "conveyor/handoff/handoff-dispatch.schema.v1.json",
+    "responseSchemaPath": "conveyor/handoff/handoff-response.schema.v1.json"
+  },
+  "failureCodes": [
+    "worker_gemini_flash_invoke_v1_credentials_missing",
+    "worker_gemini_flash_invoke_v1_dispatch_invalid",
+    "worker_gemini_flash_invoke_v1_provider_failed",
+    "worker_gemini_flash_invoke_v1_response_invalid",
+    "worker_gemini_flash_invoke_v1_receipt_missing"
+  ],
+  "completionPosture": "Gemini Flash worker invocation is acceptable only as loud, declared, receipted semantic lane work in this repo."
+}

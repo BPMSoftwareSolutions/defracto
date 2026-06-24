@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "defracto.cli-command-map.v1",
+  "cliKey": "defracto.cli.ndd-story.v1",
+  "purpose": "Map supported story-to-TDD CLI commands to governed story conveyor entrypoints.",
+  "commands": [
+    {
+      "command": "ndd story plan --text <operatorText> --slice <sliceKey>",
+      "contractPath": "contracts/cli/ndd-story-implement.command.v1.json",
+      "inputSchemaPath": "contracts/schemas/user-story-intake.schema.v1.json",
+      "requiredGatePaths": [
+        "contracts/gates/conveyor-entrypoint-required.gate.v1.json",
+        "contracts/gates/acceptance-criteria-trace-required.gate.v1.json"
+      ]
+    },
+    {
+      "command": "ndd story plan --source <sourcePath> --slice <sliceKey>",
+      "contractPath": "contracts/cli/ndd-story-implement.command.v1.json",
+      "inputSchemaPath": "contracts/schemas/user-story-intake.schema.v1.json",
+      "requiredGatePaths": [
+        "contracts/gates/conveyor-entrypoint-required.gate.v1.json",
+        "contracts/gates/acceptance-criteria-trace-required.gate.v1.json"
+      ]
+    },
+    {
+      "command": "ndd story test --source <sourcePath> --slice <sliceKey>",
+      "contractPath": "contracts/cli/ndd-story-implement.command.v1.json",
+      "inputSchemaPath": "contracts/schemas/user-story-intake.schema.v1.json",
+      "requiredGatePaths": [
+        "contracts/gates/acceptance-criteria-trace-required.gate.v1.json",
+        "contracts/gates/no-hand-authored-code.gate.v1.json",
+        "contracts/gates/red-test-required.gate.v1.json"
+      ]
+    },
+    {
+      "command": "ndd story implement --source <sourcePath> --slice <sliceKey>",
+      "contractPath": "contracts/cli/ndd-story-implement.command.v1.json",
+      "inputSchemaPath": "contracts/schemas/user-story-intake.schema.v1.json",
+      "requiredGatePaths": [
+        "contracts/gates/acceptance-criteria-trace-required.gate.v1.json",
+        "contracts/gates/no-hand-authored-code.gate.v1.json",
+        "contracts/gates/red-test-required.gate.v1.json",
+        "contracts/gates/green-test-required.gate.v1.json"
+      ]
+    }
+  ],
+  "requiredSemanticCapabilities": [
+    "worker.gemini_flash.invoke.v1",
+    "generated.implementation.materialize.v1",
+    "test.node.run.v1",
+    "test.red_green.evaluate.v1",
+    "trace.criteria_to_test.verify.v1",
+    "trace.criteria_to_implementation.verify.v1"
+  ],
+  "forbiddenCommands": [
+    "ndd story implement without red-test receipt",
+    "ndd story test that materializes implementation artifacts",
+    "ndd story plan that materializes generated tests",
+    "manual story-to-code bypass",
+    "hand-authored runtime code"
+  ]
+}

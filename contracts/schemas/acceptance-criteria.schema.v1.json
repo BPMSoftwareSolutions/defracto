@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.acceptance-criteria.v1",
+  "title": "Acceptance Criteria",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "criteriaSetKey",
+    "derivedFromStory",
+    "criteria",
+    "traceability",
+    "status"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.acceptance-criteria.v1"
+    },
+    "criteriaSetKey": {
+      "type": "string"
+    },
+    "derivedFromStory": {
+      "type": "string"
+    },
+    "criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "criteriaKey",
+          "statement",
+          "observableBehavior",
+          "preconditions",
+          "inputs",
+          "expectedOutputs",
+          "expectedResult",
+          "negativeCases",
+          "sourceTrace",
+          "canonicalTrace",
+          "testIntentKeys",
+          "testability"
+        ],
+        "properties": {
+          "criteriaKey": {
+            "type": "string"
+          },
+          "statement": {
+            "type": "string"
+          },
+          "observableBehavior": {
+            "type": "string"
+          },
+          "preconditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "expectedOutputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "expectedResult": {
+            "type": "object"
+          },
+          "negativeCases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sourceTrace": {
+            "type": "object",
+            "required": [
+              "sourcePath",
+              "sourceHash",
+              "storyPath"
+            ],
+            "properties": {
+              "sourcePath": {
+                "type": "string"
+              },
+              "sourceHash": {
+                "type": "string"
+              },
+              "storyPath": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "canonicalTrace": {
+            "type": "object",
+            "required": [
+              "canonicalSpecKey",
+              "canonicalPath"
+            ],
+            "properties": {
+              "canonicalSpecKey": {
+                "type": "string"
+              },
+              "canonicalPath": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "testIntentKeys": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "testability": {
+            "type": "object",
+            "required": [
+              "status",
+              "reason"
+            ],
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "testable",
+                  "blocked",
+                  "ambiguous"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "traceability": {
+      "type": "object",
+      "required": [
+        "allCriteriaHaveSourceTrace",
+        "allCriteriaHaveStoryTrace",
+        "allCriteriaHaveCanonicalTrace",
+        "allCriteriaHaveTestIntentTrace",
+        "allCriteriaHaveExpectedResult",
+        "allCriteriaAreTestable"
+      ],
+      "properties": {
+        "allCriteriaHaveSourceTrace": {
+          "type": "boolean"
+        },
+        "allCriteriaHaveStoryTrace": {
+          "type": "boolean"
+        },
+        "allCriteriaHaveCanonicalTrace": {
+          "type": "boolean"
+        },
+        "allCriteriaHaveTestIntentTrace": {
+          "type": "boolean"
+        },
+        "allCriteriaHaveExpectedResult": {
+          "type": "boolean"
+        },
+        "allCriteriaAreTestable": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "accepted-for-test-intent",
+        "blocked"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

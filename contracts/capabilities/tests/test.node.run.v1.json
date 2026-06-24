@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "test.node.run.v1",
+  "capabilityStatus": "repo-local-semantic-authority",
+  "category": "tdd.test-execution",
+  "purpose": "Declare the semantic boundary for executing generated Node test artifacts and capturing test execution receipts.",
+  "portableAcross": [
+    "node"
+  ],
+  "mustDo": [
+    "run only declared generated test artifact paths",
+    "record exact command",
+    "record exit code",
+    "hash stdout and stderr",
+    "emit test execution receipt",
+    "fail closed when test artifact hash is missing or stale"
+  ],
+  "mustNotDo": [
+    "run undeclared test files",
+    "hand-author tests",
+    "modify implementation files",
+    "rewrite test output",
+    "claim green without red evidence",
+    "require changes to the resolver repository"
+  ],
+  "failureCodes": [
+    "test_node_run_v1_artifact_missing",
+    "test_node_run_v1_hash_missing",
+    "test_node_run_v1_execution_failed",
+    "test_node_run_v1_receipt_missing"
+  ],
+  "completionPosture": "Node test execution is accepted only as receipted execution of declared generated test artifacts."
+}

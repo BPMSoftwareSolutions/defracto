@@ -1,0 +1,115 @@
+{
+  "schemaVersion": "defracto.cli-command-contract.v1",
+  "cliKey": "defracto.cli.ndd-story.v1",
+  "commandKey": "defracto.ndd.story.implement.v1",
+  "entrypoint": "ndd",
+  "commandName": "ndd story",
+  "status": "draft-ready-for-slice-a-review",
+  "sourceTruth": "declared_json_contract",
+  "purpose": "Declare the story-driven TDD command surface for governed user-story intake, test projection, red evidence, generated implementation projection, green evidence, and conformance.",
+  "argvPatterns": [
+    "ndd story plan --text <operatorText> --slice <sliceKey>",
+    "ndd story plan --source <sourcePath> --slice <sliceKey>",
+    "ndd story test --text <operatorText> --slice <sliceKey>",
+    "ndd story test --source <sourcePath> --slice <sliceKey>",
+    "ndd story test --slice <sliceKey>",
+    "ndd story implement --text <operatorText> --slice <sliceKey>",
+    "ndd story implement --source <sourcePath> --slice <sliceKey>",
+    "ndd story status --slice <sliceKey>"
+  ],
+  "modeBoundaries": [
+    {
+      "modeKey": "story.plan",
+      "stopAfter": [
+        "source narrative capture",
+        "story packet candidate",
+        "acceptance criteria hardening",
+        "canonical spec",
+        "run plan artifacts"
+      ],
+      "forbiddenOutputs": [
+        "generated tests",
+        "implementation projection",
+        "release packet"
+      ]
+    },
+    {
+      "modeKey": "story.test",
+      "stopAfter": [
+        "test intent",
+        "generated test projection",
+        "generated test receipt",
+        "red-test execution evidence"
+      ],
+      "forbiddenOutputs": [
+        "implementation projection",
+        "green-test receipt",
+        "release packet"
+      ]
+    },
+    {
+      "modeKey": "story.implement",
+      "stopAfter": [
+        "generated test projection",
+        "red-test execution evidence",
+        "generated implementation projection",
+        "green-test execution evidence",
+        "conformance receipt",
+        "evidence review"
+      ],
+      "forbiddenOutputs": [
+        "hand-authored runtime code",
+        "unreceipted implementation files",
+        "release without green evidence"
+      ]
+    }
+  ],
+  "ownedResponsibilities": [
+    "capture operator story input",
+    "hash input",
+    "create story run envelope",
+    "dispatch bounded story-to-TDD lanes",
+    "materialize declared generated projections only",
+    "emit receipts",
+    "fail closed when required authority or evidence is missing"
+  ],
+  "forbiddenResponsibilities": [
+    "hand-authored code",
+    "manual test authoring",
+    "manual implementation authoring",
+    "DTO shaping in CLI",
+    "Gemini Flash output promotion without receipts",
+    "green claim without matching red evidence",
+    "implementation outside declared target paths"
+  ],
+  "inputKinds": [
+    "operatorText",
+    "sourcePath",
+    "sliceKey"
+  ],
+  "requiredArtifacts": [
+    "user story intake artifact",
+    "command invocation receipt",
+    "story packet",
+    "acceptance criteria artifact",
+    "canonical spec",
+    "test intent",
+    "test projection manifest",
+    "test execution receipt",
+    "run ledger"
+  ],
+  "requiredEvidence": [
+    "exact argv",
+    "input hash",
+    "slice key",
+    "story source path",
+    "acceptance criteria trace",
+    "canonical node trace",
+    "generated projection receipts",
+    "red-test receipt for story test and story implement",
+    "green-test receipt for story implement",
+    "no-hand-authored-code gate result"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "The story command surface is authoritative only when every produced artifact is traceable to declared semantic authority and no hand-authored code is introduced."
+}

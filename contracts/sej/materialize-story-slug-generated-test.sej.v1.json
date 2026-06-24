@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.materialize-story-slug-generated-test.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "draft",
+  "toolKey": "defracto.user-stories.story-slug.materialize-generated-test",
+  "sourceLineage": {
+    "storyKey": "stories/user-stories/story-slug.story.v1.json",
+    "canonicalSpecKey": "specs/canonical/user-stories/story-slug.canonical-spec.v1.json",
+    "acceptanceCriteriaKey": "contracts/acceptance-criteria/story-slug.acceptance-criteria.v1.json",
+    "testIntentKey": "contracts/test-intents/story-slug.test-intent.v1.json",
+    "projectionManifestKey": "contracts/projections/story-slug.node-test-projection-manifest.v1.json"
+  },
+  "targetArtifact": {
+    "artifactKey": "defracto.user-stories.story-slug.generated-node-test.v1",
+    "artifactPath": "tests/generated/user-stories/story-slug.generated.test.js",
+    "artifactKind": "generated_node_test",
+    "artifactStatus": "future"
+  },
+  "boundedInputs": [
+    "contracts/test-intents/story-slug.test-intent.v1.json",
+    "contracts/projections/story-slug.node-test-projection-manifest.v1.json"
+  ],
+  "boundedOutputs": [
+    "tests/generated/user-stories/story-slug.generated.test.js",
+    "evidence/tdd/story-slug.generated-test.materialization.receipt.v1.json"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "resolve.contract.v1",
+      "purpose": "Resolve story, criteria, canonical spec, test intent, and projection manifest authority.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "generated.test.materialize.v1",
+      "purpose": "Materialize generated test artifact from accepted test intent and projection manifest without hand-authored test source.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "purpose": "Compute generated test artifact hash.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "Emit generated test materialization receipt.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "forbiddenBodyForms": [
+    "inline_js_blob",
+    "hand_authored_test_code",
+    "manual_test_fixture",
+    "implementation_code",
+    "resolver_repo_change"
+  ],
+  "failurePosture": "Missing test projection capability or missing authority blocks materialization.",
+  "completionPosture": "This SEJ declares future generated test materialization only. It intentionally contains no JavaScript test body."
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.user-story-intake.v1",
+  "title": "User Story Intake",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "intakeKey",
+    "sliceKey",
+    "inputKind",
+    "sourcePath",
+    "sourceHash",
+    "capturedBy",
+    "capturedAt",
+    "storyText",
+    "status"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.user-story-intake.v1"
+    },
+    "intakeKey": {
+      "type": "string"
+    },
+    "sliceKey": {
+      "type": "string"
+    },
+    "inputKind": {
+      "type": "string",
+      "enum": [
+        "operator_text",
+        "source_file"
+      ]
+    },
+    "sourcePath": {
+      "type": "string"
+    },
+    "sourceHash": {
+      "type": "string"
+    },
+    "capturedBy": {
+      "type": "string"
+    },
+    "capturedAt": {
+      "type": "string"
+    },
+    "storyText": {
+      "type": "string"
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ambiguities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "captured",
+        "blocked",
+        "promoted-to-story-candidate"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

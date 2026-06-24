@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.red_test_required.v1",
+  "gateTitle": "Red Test Required",
+  "gateStatus": "draft-ready-for-slice-a-review",
+  "purpose": "Block story implement runs unless the generated tests have failed before generated implementation materialization for the expected reason.",
+  "passConditions": [
+    "generated test artifact exists",
+    "generated test receipt exists",
+    "red test execution receipt exists",
+    "red test receipt references the generated test artifact hash",
+    "red test status is failed or blocked for expected missing implementation behavior",
+    "red test occurred before implementation materialization"
+  ],
+  "blockConditions": [
+    "generated test missing",
+    "generated test receipt missing",
+    "red test receipt missing",
+    "test passed before implementation materialization",
+    "red test failure reason is unrelated to accepted criteria",
+    "red test artifact hash does not match generated test receipt"
+  ],
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "Story implement may not materialize implementation projection until red evidence exists for the same generated test artifact."
+}

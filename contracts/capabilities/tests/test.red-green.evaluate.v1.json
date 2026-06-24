@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "loc.resolver-capability.v1",
+  "capabilityKey": "test.red_green.evaluate.v1",
+  "capabilityStatus": "repo-local-semantic-authority",
+  "category": "tdd.red-green-evidence",
+  "purpose": "Declare the semantic boundary for evaluating red-before-green evidence for generated tests and generated implementation projections.",
+  "portableAcross": [
+    "node"
+  ],
+  "mustDo": [
+    "verify red test receipt exists",
+    "verify green test receipt exists for implementation completion",
+    "verify red and green receipts reference the same generated test artifact hash or declared supersession",
+    "verify red execution occurred before implementation materialization",
+    "verify green execution occurred after implementation materialization",
+    "fail closed when evidence order or hashes do not match"
+  ],
+  "mustNotDo": [
+    "invent red evidence",
+    "invent green evidence",
+    "accept pre-existing pass as red",
+    "ignore stale generated test hashes",
+    "require changes to the resolver repository"
+  ],
+  "failureCodes": [
+    "test_red_green_evaluate_v1_red_missing",
+    "test_red_green_evaluate_v1_green_missing",
+    "test_red_green_evaluate_v1_hash_mismatch",
+    "test_red_green_evaluate_v1_order_invalid"
+  ],
+  "completionPosture": "Green completion is valid only when red-before-green evidence is ordered, hash-bound, and receipted."
+}
