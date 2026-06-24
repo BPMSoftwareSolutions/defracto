@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "defracto.conveyor-stage-handoff-packet-index.v1",
+  "indexKey": "defracto.handoff-index.story-slug.cognitive-to-sog-promotion.v1",
+  "runKey": "story-slug-cognitive-to-sog-promotion",
+  "packetSchema": "contracts/schemas/conveyor-stage-handoff-packet.schema.v1.json",
+  "policyRef": "contracts/policies/conveyor-stage-handoff-packet-required.policy.v1.json",
+  "gateRef": "contracts/gates/conveyor-stage-handoff-packet-required.gate.v1.json",
+  "status": "passed",
+  "packetCount": 8,
+  "packets": [
+    {
+      "stageSequenceIndex": 1,
+      "path": "conveyor/handoff-packets/story-slug/01-story-plan-candidate.packet.v1.json",
+      "hash": "sha256:7a4afba1dbc2b73240809a572cb038d4067c7abae5f300847c2a835e06cf6aeb",
+      "packetKey": "defracto.handoff.story-slug.01-story-plan-candidate.v1",
+      "packetKind": "cognitive_candidate",
+      "authorityStatus": "candidate_only"
+    },
+    {
+      "stageSequenceIndex": 2,
+      "path": "conveyor/handoff-packets/story-slug/02-story-authority.packet.v1.json",
+      "hash": "sha256:4d1efbebda116307819795178c68d287b8bb34d6a755cd9e312ae27299160512",
+      "packetKey": "defracto.handoff.story-slug.02-story-authority.v1",
+      "packetKind": "promoted_authority",
+      "authorityStatus": "promoted_authority"
+    },
+    {
+      "stageSequenceIndex": 3,
+      "path": "conveyor/handoff-packets/story-slug/03-test-intent-authority.packet.v1.json",
+      "hash": "sha256:bff2a77f3168e6506f421df7793d08219f353b2ca5467d74f48948847038f08e",
+      "packetKey": "defracto.handoff.story-slug.03-test-intent-authority.v1",
+      "packetKind": "test_intent",
+      "authorityStatus": "promoted_authority"
+    },
+    {
+      "stageSequenceIndex": 4,
+      "path": "conveyor/handoff-packets/story-slug/04-generated-test-red.packet.v1.json",
+      "hash": "sha256:149755c882d800af9957713d364068a66dcdf52cc8d908c48cdcc21b31ca1ce9",
+      "packetKey": "defracto.handoff.story-slug.04-generated-test-red.v1",
+      "packetKind": "red_test",
+      "authorityStatus": "red_receipted"
+    },
+    {
+      "stageSequenceIndex": 5,
+      "path": "conveyor/handoff-packets/story-slug/05-implementation-candidate.packet.v1.json",
+      "hash": "sha256:458f1c408f3fb93d4ea5a836abd2ad61bd70204f02b2b5799e4d603f191ea296",
+      "packetKey": "defracto.handoff.story-slug.05-implementation-candidate.v1",
+      "packetKind": "implementation_candidate",
+      "authorityStatus": "candidate_only"
+    },
+    {
+      "stageSequenceIndex": 6,
+      "path": "conveyor/handoff-packets/story-slug/06-implementation-proof-surface.packet.v1.json",
+      "hash": "sha256:14ce37b5d4ad261fd301ecf3d49baa484b2e7e622fcb0ce2e54a78e7868ee236",
+      "packetKey": "defracto.handoff.story-slug.06-implementation-proof-surface.v1",
+      "packetKind": "implementation_projection",
+      "authorityStatus": "proof_surface_only"
+    },
+    {
+      "stageSequenceIndex": 7,
+      "path": "conveyor/handoff-packets/story-slug/07-green-proof.packet.v1.json",
+      "hash": "sha256:f1aaa44e24257dd19bba145566d03de36c80963cde96e81960f7c6d75a3147fd",
+      "packetKey": "defracto.handoff.story-slug.07-green-proof.v1",
+      "packetKind": "green_test",
+      "authorityStatus": "green_receipted"
+    },
+    {
+      "stageSequenceIndex": 8,
+      "path": "conveyor/handoff-packets/story-slug/08-sog-promotion.packet.v1.json",
+      "hash": "sha256:d1b62b1ad18431d4e7b2e1a70ab7d244857a757d4438f60850fdb4424263d895",
+      "packetKey": "defracto.handoff.story-slug.08-sog-promotion.v1",
+      "packetKind": "sog_promotion",
+      "authorityStatus": "durable_truth"
+    }
+  ],
+  "authorityLadder": [
+    "candidate_only",
+    "promoted_authority",
+    "red_receipted",
+    "candidate_only",
+    "proof_surface_only",
+    "green_receipted",
+    "durable_truth"
+  ],
+  "guardrails": {
+    "providerCandidatesDoNotGrantAuthority": true,
+    "gatesGrantAuthorityPromotion": true,
+    "greenIsEvidenceNotAuthority": true,
+    "sogOwnsDurableProductTruth": true,
+    "generatedImplementationSuperseded": true
+  },
+  "createdAt": "2026-06-24T00:00:00-04:00",
+  "completionPosture": "The slug conveyor now has canonical stage handoff packets from live cognitive candidate through SOG promotion."
+}

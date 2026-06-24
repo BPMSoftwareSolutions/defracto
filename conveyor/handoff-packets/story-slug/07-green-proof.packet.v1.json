@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
+  "packetKey": "defracto.handoff.story-slug.07-green-proof.v1",
+  "packetKind": "green_test",
+  "runKey": "story-slug-cognitive-to-sog-promotion",
+  "stageKey": "story.implement.generated-green-proof",
+  "stageSequenceIndex": 7,
+  "producedBy": {
+    "actorKind": "test_runner",
+    "actorKey": "node --test tests/generated/user-stories/story-slug.cognitive.generated.test.js"
+  },
+  "consumedBy": {
+    "actorKind": "semantic_operation_graph",
+    "actorKey": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json"
+  },
+  "authorityStatus": "green_receipted",
+  "artifactRefs": [
+    {
+      "role": "generated_test_artifact",
+      "path": "tests/generated/user-stories/story-slug.cognitive.generated.test.js",
+      "hash": "sha256:cc56c2aea3d030818fc64509e21624e21506f29b0da1a21c62307c7ca932a5c8",
+      "status": "same-as-red"
+    },
+    {
+      "role": "generated_implementation_proof_surface",
+      "path": "generated/implementations/user-stories/story-slug.cognitive.cjs",
+      "hash": "sha256:d81f3758b7ea16b7522c9a64efcd31eb766ca525966c5e25db534417d6a7e416",
+      "status": "proof-surface-only"
+    }
+  ],
+  "requiredReceipts": [
+    {
+      "receiptKind": "red_test_execution",
+      "path": "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json",
+      "hash": "sha256:fa72a7e84307c5198b7c2bdeb307b4470c8a3e9466ce4604002432ea42973a80",
+      "requiredStatus": "failed"
+    },
+    {
+      "receiptKind": "green_test_execution",
+      "path": "evidence/tdd/story-slug.cognitive-green-test.receipt.v1.json",
+      "hash": "sha256:71b7abadc56047346beb73c47e1e74f27c54d5db292e2fc9935423f37c3daf4f",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "red_green_cycle",
+      "path": "evidence/tdd/story-slug.cognitive-red-green-cycle.receipt.v1.json",
+      "hash": "sha256:61c0db3afdacddabcd7bb14d24349d67a5135a855a0c2c5532afaf6adc23393d",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "proof_surface_not_product_truth",
+      "path": "evidence/tdd/story-slug.cognitive-proof-surface-not-product-truth.receipt.v1.json",
+      "hash": "sha256:a7fae0d0c78f33416e358f964c9d71474f6e7b2ebe3e566c99286df9408d29d0",
+      "requiredStatus": "passed"
+    }
+  ],
+  "providerParticipationRequired": false,
+  "deterministicVerificationRequired": true,
+  "blockedIfMissing": [
+    "red_receipt_missing",
+    "green_receipt_missing",
+    "red_green_cycle_receipt_missing",
+    "proof_surface_posture_receipt_missing"
+  ],
+  "lineage": {
+    "previousPacketRefs": [
+      "conveyor/handoff-packets/story-slug/06-implementation-proof-surface.packet.v1.json"
+    ],
+    "sourceRefs": [
+      {
+        "role": "red_green_cycle_receipt",
+        "path": "evidence/tdd/story-slug.cognitive-red-green-cycle.receipt.v1.json",
+        "hash": "sha256:61c0db3afdacddabcd7bb14d24349d67a5135a855a0c2c5532afaf6adc23393d",
+        "status": "passed"
+      }
+    ],
+    "claimRefs": [
+      "The same generated test hash failed red and passed green after implementation materialization."
+    ]
+  },
+  "claims": [
+    "The same generated test artifact passed after generated implementation proof surface materialization.",
+    "Green is evidence, not durable authority."
+  ],
+  "guardrails": {
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false,
+    "generatedCodeMayBeDurableTruth": false,
+    "sogPromotionRequired": true,
+    "hostLanguageBodyAllowed": false,
+    "forbiddenHostFallback": true
+  },
+  "createdAt": "2026-06-24T00:00:00-04:00",
+  "completionPosture": "The green packet proves red/green completion while preserving generated implementation as proof surface only."
+}

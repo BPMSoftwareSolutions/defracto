@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.conveyor-stage-handoff-packet.schema.v1",
+  "title": "Conveyor Stage Handoff Packet",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "packetKey",
+    "packetKind",
+    "runKey",
+    "stageKey",
+    "stageSequenceIndex",
+    "producedBy",
+    "consumedBy",
+    "authorityStatus",
+    "artifactRefs",
+    "requiredReceipts",
+    "providerParticipationRequired",
+    "deterministicVerificationRequired",
+    "blockedIfMissing",
+    "lineage",
+    "claims",
+    "guardrails",
+    "createdAt",
+    "completionPosture"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.conveyor-stage-handoff-packet.v1"
+    },
+    "packetKey": {
+      "type": "string",
+      "minLength": 1
+    },
+    "packetKind": {
+      "type": "string",
+      "enum": [
+        "story_intake",
+        "cognitive_candidate",
+        "promoted_authority",
+        "test_intent",
+        "test_projection",
+        "red_test",
+        "implementation_candidate",
+        "implementation_projection",
+        "green_test",
+        "sog_promotion",
+        "release_posture",
+        "stress_case_result"
+      ]
+    },
+    "runKey": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stageKey": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stageSequenceIndex": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "producedBy": {
+      "$ref": "#/$defs/actor"
+    },
+    "consumedBy": {
+      "$ref": "#/$defs/actor"
+    },
+    "authorityStatus": {
+      "type": "string",
+      "enum": [
+        "source_captured",
+        "candidate_only",
+        "promoted_authority",
+        "generated_projection",
+        "red_receipted",
+        "green_receipted",
+        "proof_surface_only",
+        "durable_truth",
+        "superseded_proof_surface",
+        "blocked"
+      ]
+    },
+    "artifactRefs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/artifactRef"
+      }
+    },
+    "requiredReceipts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/receiptRef"
+      }
+    },
+    "providerParticipationRequired": {
+      "type": "boolean"
+    },
+    "deterministicVerificationRequired": {
+      "type": "boolean"
+    },
+    "blockedIfMissing": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "required": [
+        "previousPacketRefs",
+        "sourceRefs",
+        "claimRefs"
+      ],
+      "properties": {
+        "previousPacketRefs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "sourceRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifactRef"
+          }
+        },
+        "claimRefs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "guardrails": {
+      "type": "object",
+      "required": [
+        "mockAllowed",
+        "staleResponseAllowed",
+        "deterministicReplayAllowedForCreation",
+        "generatedCodeMayBeDurableTruth",
+        "sogPromotionRequired",
+        "hostLanguageBodyAllowed",
+        "forbiddenHostFallback"
+      ],
+      "properties": {
+        "mockAllowed": {
+          "type": "boolean"
+        },
+        "staleResponseAllowed": {
+          "type": "boolean"
+        },
+        "deterministicReplayAllowedForCreation": {
+          "type": "boolean"
+        },
+        "generatedCodeMayBeDurableTruth": {
+          "type": "boolean"
+        },
+        "sogPromotionRequired": {
+          "type": "boolean"
+        },
+        "hostLanguageBodyAllowed": {
+          "type": "boolean"
+        },
+        "forbiddenHostFallback": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completionPosture": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "actor": {
+      "type": "object",
+      "required": [
+        "actorKind",
+        "actorKey"
+      ],
+      "properties": {
+        "actorKind": {
+          "type": "string",
+          "enum": [
+            "operator",
+            "ai_provider",
+            "provider_fallback",
+            "acceptance_gate",
+            "resolver_materializer",
+            "test_runner",
+            "semantic_operation_graph",
+            "stress_runner",
+            "release_gate"
+          ]
+        },
+        "actorKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "providerKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "artifactRef": {
+      "type": "object",
+      "required": [
+        "role",
+        "path"
+      ],
+      "properties": {
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "receiptRef": {
+      "type": "object",
+      "required": [
+        "receiptKind",
+        "path",
+        "requiredStatus"
+      ],
+      "properties": {
+        "receiptKind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "requiredStatus": {
+          "type": "string",
+          "enum": [
+            "passed",
+            "blocked",
+            "failed",
+            "present"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

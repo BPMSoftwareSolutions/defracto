@@ -1,0 +1,115 @@
+{
+  "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
+  "packetKey": "defracto.handoff.story-slug.08-sog-promotion.v1",
+  "packetKind": "sog_promotion",
+  "runKey": "story-slug-cognitive-to-sog-promotion",
+  "stageKey": "story.slug.sog-promotion",
+  "stageSequenceIndex": 8,
+  "producedBy": {
+    "actorKind": "semantic_operation_graph",
+    "actorKey": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json"
+  },
+  "consumedBy": {
+    "actorKind": "release_gate",
+    "actorKey": "defracto.gates.release_posture.v1"
+  },
+  "authorityStatus": "durable_truth",
+  "artifactRefs": [
+    {
+      "role": "semantic_operation_graph",
+      "path": "contracts/semantic-operation-graphs/user-stories/story-slug.generate.sog.v1.json",
+      "hash": "sha256:70f369227c427823050e4a0f6ac0da92a8c124f621fced7db5c9f7a605b14b12",
+      "status": "durable-truth-owner"
+    },
+    {
+      "role": "capability_bindings",
+      "path": "contracts/capabilities/story-slug.capability-bindings.v2.json",
+      "hash": "sha256:7339c7378b2da034978c4eea6d9c5190ef91a69f8d30cf5af3190fcfb93c0f2c",
+      "status": "covered"
+    },
+    {
+      "role": "generated_implementation_superseded",
+      "path": "generated/implementations/user-stories/story-slug.cognitive.cjs",
+      "hash": "sha256:d81f3758b7ea16b7522c9a64efcd31eb766ca525966c5e25db534417d6a7e416",
+      "status": "superseded-proof-surface"
+    }
+  ],
+  "requiredReceipts": [
+    {
+      "receiptKind": "capability_coverage",
+      "path": "evidence/sog/story-slug.capability-coverage.receipt.v1.json",
+      "hash": "sha256:78ec07d16615c2b5eec75ba17a23e986c8008554366fabafb533048ea5a59b9e",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "sog_execution",
+      "path": "evidence/sog/story-slug.sog-execution.receipt.v1.json",
+      "hash": "sha256:6d50b3d75eb0564116ea74bc9b8310d64660ba2d0d6e164358ee935902bafcbc",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "sog_parity",
+      "path": "evidence/sog/story-slug.sog-to-cognitive-proof-parity.receipt.v1.json",
+      "hash": "sha256:12567883de8060f15b7a98c2af81ac3cc3a57edc1597eeb4ace4425727a4f4a1",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "sog_promotion",
+      "path": "evidence/sog/story-slug.sog-promotion.receipt.v1.json",
+      "hash": "sha256:ae979d9e82a72c3348485cad2cd9f71c6abf428858425be3da53bbed1cde1850",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "proof_surface_superseded",
+      "path": "evidence/tdd/story-slug.cognitive-proof-surface-superseded.receipt.v1.json",
+      "hash": "sha256:72dbc7c5aefd8a9584aa4d295b108b4b12e51d20719e080945984c843a945937",
+      "requiredStatus": "passed"
+    }
+  ],
+  "providerParticipationRequired": false,
+  "deterministicVerificationRequired": true,
+  "blockedIfMissing": [
+    "capability_coverage_receipt_missing",
+    "sog_execution_receipt_missing",
+    "sog_parity_receipt_missing",
+    "sog_promotion_receipt_missing",
+    "proof_surface_supersession_receipt_missing"
+  ],
+  "lineage": {
+    "previousPacketRefs": [
+      "conveyor/handoff-packets/story-slug/07-green-proof.packet.v1.json"
+    ],
+    "sourceRefs": [
+      {
+        "role": "green_test_receipt",
+        "path": "evidence/tdd/story-slug.cognitive-green-test.receipt.v1.json",
+        "hash": "sha256:71b7abadc56047346beb73c47e1e74f27c54d5db292e2fc9935423f37c3daf4f",
+        "status": "passed"
+      },
+      {
+        "role": "red_green_cycle_receipt",
+        "path": "evidence/tdd/story-slug.cognitive-red-green-cycle.receipt.v1.json",
+        "hash": "sha256:61c0db3afdacddabcd7bb14d24349d67a5135a855a0c2c5532afaf6adc23393d",
+        "status": "passed"
+      }
+    ],
+    "claimRefs": [
+      "Durable product truth is accepted for SOG only; generated CJS is superseded evidence."
+    ]
+  },
+  "claims": [
+    "Capability coverage, SOG execution, parity, promotion, and supersession all passed.",
+    "Truth owner is semantic_operation_graph."
+  ],
+  "guardrails": {
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false,
+    "generatedCodeMayBeDurableTruth": false,
+    "sogPromotionRequired": true,
+    "hostLanguageBodyAllowed": false,
+    "forbiddenHostFallback": true
+  },
+  "createdAt": "2026-06-24T00:00:00-04:00",
+  "completionPosture": "Durable product truth is owned by the SOG; the generated implementation is superseded as proof-surface evidence."
+}

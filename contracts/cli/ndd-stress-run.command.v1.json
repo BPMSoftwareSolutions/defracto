@@ -18,7 +18,22 @@
     "aiWorkerRequired": true,
     "requiredWorker": "defracto.workers.gemini_flash.v1",
     "requiredInvocationCapability": "worker.gemini_flash.invoke.v1",
-    "fallbackAllowed": false,
+    "fallbackAllowed": true,
+    "fallbackPolicy": "contracts/policies/cognitive-worker-provider-fallback.policy.v1.json",
+    "providerOrder": [
+      {
+        "providerKey": "gemini_flash",
+        "workerKey": "defracto.workers.gemini_flash.story_to_tdd.v1",
+        "invocationCapability": "worker.gemini_flash.invoke.v1",
+        "role": "primary"
+      },
+      {
+        "providerKey": "openai",
+        "workerKey": "defracto.workers.openai.story_to_tdd.v1",
+        "invocationCapability": "worker.openai.responses.invoke.v1",
+        "role": "fallback"
+      }
+    ],
     "mockAllowed": false,
     "staleResponseAllowed": false,
     "deterministicReplayAllowedForCreation": false,
@@ -27,6 +42,8 @@
       "stress case manifests",
       "live cognitive provider invocation receipt",
       "fresh provider response receipt",
+      "provider fallback authorization receipt when primary provider fails",
+      "stage handoff packet index",
       "scenario result receipts",
       "suite run receipt",
       "dashboard projection"
@@ -40,19 +57,28 @@
       "scenario_source_story_missing",
       "scenario_fixture_missing",
       "dashboard_projection_failed",
+      "fallback_provider_not_configured",
+      "fallback_provider_invocation_receipt_missing",
+      "fallback_not_authorized",
+      "handoff_packet_missing",
+      "handoff_packet_schema_invalid",
+      "handoff_packet_required_receipt_missing",
       "live_cognitive_provider_capability_missing",
       "live_cognitive_provider_invocation_missing"
     ]
   },
   "boundedOutputs": [
     "stress-lab run summary JSON only after live cognitive invocation succeeds",
+    "stage handoff packet index and packetization receipt",
     "per-scenario result receipts",
     "Markdown dashboard projected from summary JSON",
     "suite-level run receipt"
   ],
   "forbiddenOutputs": [
     "cognitive compile truth without live provider receipt",
+    "stage movement without accepted handoff packet",
     "silent provider substitution",
+    "fallback candidate promoted without acceptance gates",
     "generated code promoted as durable truth",
     "SOG promotion without declared parity posture"
   ],

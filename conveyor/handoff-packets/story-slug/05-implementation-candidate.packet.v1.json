@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
+  "packetKey": "defracto.handoff.story-slug.05-implementation-candidate.v1",
+  "packetKind": "implementation_candidate",
+  "runKey": "story-slug-cognitive-to-sog-promotion",
+  "stageKey": "story.implement.provider-fallback-candidate",
+  "stageSequenceIndex": 5,
+  "producedBy": {
+    "actorKind": "provider_fallback",
+    "actorKey": "defracto.workers.openai.story_to_tdd.v1",
+    "providerKey": "openai",
+    "model": "gpt-4.1-mini"
+  },
+  "consumedBy": {
+    "actorKind": "acceptance_gate",
+    "actorKey": "defracto.gates.cognitive_worker_fallback_authorized.v1"
+  },
+  "authorityStatus": "candidate_only",
+  "artifactRefs": [
+    {
+      "role": "implementation_candidate",
+      "path": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/candidates/story-slug.cognitive-implementation.openai-candidate.v1.json",
+      "hash": "sha256:b687a1cd90d6e193779ecc5cc2899075d048e6d5d6aa4db393cdcb11e59c59e9",
+      "status": "candidate"
+    },
+    {
+      "role": "openai_response",
+      "path": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/artifacts/story-to-tdd.openai-response.v1.json",
+      "hash": "sha256:b687a1cd90d6e193779ecc5cc2899075d048e6d5d6aa4db393cdcb11e59c59e9",
+      "status": "candidate-evidence"
+    }
+  ],
+  "requiredReceipts": [
+    {
+      "receiptKind": "primary_gemini_failure",
+      "path": "evidence/workers/story-to-tdd.implementation.gemini-invocation.receipt.v1.json",
+      "hash": "sha256:5e10936f2127ecc8d509291400b9766a01a030f1f89d078141d62ed462dccd4a",
+      "requiredStatus": "blocked"
+    },
+    {
+      "receiptKind": "provider_fallback_authorization",
+      "path": "evidence/workers/story-to-tdd.provider-fallback.receipt.v1.json",
+      "hash": "sha256:50a3a8810ebbb45e0d54d72a46de74de6077fa1334ad0cef9a7a876974204723",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "openai_dispatch",
+      "path": "evidence/workers/story-to-tdd.openai-dispatch.receipt.v1.json",
+      "hash": "sha256:3b83020bd67f636330e93d40ac70b1ddc696fee911d9c17a0ba59cde5e4d87fd",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "openai_response",
+      "path": "evidence/workers/story-to-tdd.openai-response.receipt.v1.json",
+      "hash": "sha256:a260ea7e8509a04a2756c81dd6789b5499858d69a0f650ec3a2e91020777b45d",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "openai_invocation",
+      "path": "evidence/workers/story-to-tdd.openai-invocation.receipt.v1.json",
+      "hash": "sha256:7ad8ecd5545e94ca2b3f2fb9aec2d3dcce38e0275cf21958ba94c623d8ec11e7",
+      "requiredStatus": "passed"
+    }
+  ],
+  "providerParticipationRequired": true,
+  "deterministicVerificationRequired": true,
+  "blockedIfMissing": [
+    "primary_provider_failure_receipt_missing",
+    "fallback_authorization_receipt_missing",
+    "openai_invocation_receipt_missing",
+    "red_receipt_missing_before_implementation"
+  ],
+  "lineage": {
+    "previousPacketRefs": [
+      "conveyor/handoff-packets/story-slug/04-generated-test-red.packet.v1.json"
+    ],
+    "sourceRefs": [
+      {
+        "role": "red_test_receipt",
+        "path": "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json",
+        "hash": "sha256:fa72a7e84307c5198b7c2bdeb307b4470c8a3e9466ce4604002432ea42973a80",
+        "status": "failed-as-expected"
+      }
+    ],
+    "claimRefs": [
+      "Gemini failure triggered governed OpenAI fallback; OpenAI supplied a candidate, not authority."
+    ]
+  },
+  "claims": [
+    "OpenAI fallback produced a receipted implementation candidate after red.",
+    "Provider fallback does not grant durable truth."
+  ],
+  "guardrails": {
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false,
+    "generatedCodeMayBeDurableTruth": false,
+    "sogPromotionRequired": true,
+    "hostLanguageBodyAllowed": false,
+    "forbiddenHostFallback": true
+  },
+  "createdAt": "2026-06-24T00:00:00-04:00",
+  "completionPosture": "The implementation candidate is provider-attributed fallback evidence and remains candidate-only until hardening accepts a bounded projection."
+}

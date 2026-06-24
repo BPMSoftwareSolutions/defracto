@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
+  "packetKey": "defracto.handoff.story-slug.03-test-intent-authority.v1",
+  "packetKind": "test_intent",
+  "runKey": "story-slug-cognitive-to-sog-promotion",
+  "stageKey": "story.test.cognitive-test-intent-promotion",
+  "stageSequenceIndex": 3,
+  "producedBy": {
+    "actorKind": "acceptance_gate",
+    "actorKey": "defracto.gates.test_intent_hardening.v1"
+  },
+  "consumedBy": {
+    "actorKind": "resolver_materializer",
+    "actorKey": "contracts/sej/materialize-story-slug-cognitive-generated-test.sej.v1.json"
+  },
+  "authorityStatus": "promoted_authority",
+  "artifactRefs": [
+    {
+      "role": "test_intent_candidate",
+      "path": "conveyor/runs/2026/06/24/slice-041-044-cognitive-story-test-and-implement-red-green/candidates/story-slug.cognitive-test-intent.candidate.v1.json",
+      "hash": "sha256:a3d6083ac0b5d50a983c32edef740d9a4d23d66fc6828afb8bddc62bfd83fbab",
+      "status": "candidate"
+    },
+    {
+      "role": "test_intent_authority",
+      "path": "contracts/test-intents/story-slug.cognitive-test-intent.v1.json",
+      "hash": "sha256:eb5cc763f7282ec5735f9f3c54c080c6a1929c1d2350face4ffecbfa9ab463ee",
+      "status": "promoted"
+    }
+  ],
+  "requiredReceipts": [
+    {
+      "receiptKind": "test_intent_gemini_dispatch",
+      "path": "evidence/workers/story-to-tdd.test-intent.gemini-dispatch.receipt.v1.json",
+      "hash": "sha256:fd564d4efdf4668acb8e707e37d969bb0899a256c972d97e1842592d44e2ad18",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "test_intent_gemini_response",
+      "path": "evidence/workers/story-to-tdd.test-intent.gemini-response.receipt.v1.json",
+      "hash": "sha256:b069782688cb702e5187107754090cbe473dca858c8daa75d00aa66731d39e5e",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "test_intent_gemini_invocation",
+      "path": "evidence/workers/story-to-tdd.test-intent.gemini-invocation.receipt.v1.json",
+      "hash": "sha256:6490494f0fab88bbdce555d955165678765036b300b28aed5e83c5a286f335fa",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "test_intent_hardening",
+      "path": "evidence/workers/story-to-tdd.test-intent-hardening.receipt.v1.json",
+      "hash": "sha256:1e562c4b5f45be3f178c377c022a9e59351367278b7bdaacf96375572f288364",
+      "requiredStatus": "passed"
+    }
+  ],
+  "providerParticipationRequired": true,
+  "deterministicVerificationRequired": true,
+  "blockedIfMissing": [
+    "test_intent_gemini_invocation_missing",
+    "test_intent_hardening_receipt_missing",
+    "promoted_test_intent_missing"
+  ],
+  "lineage": {
+    "previousPacketRefs": [
+      "conveyor/handoff-packets/story-slug/02-story-authority.packet.v1.json"
+    ],
+    "sourceRefs": [
+      {
+        "role": "story_authority",
+        "path": "stories/user-stories/story-slug.story.v1.json",
+        "hash": "sha256:fb25c1391cd2837e786e63db06e7297bf2aaebc57d835b43a63d87aa716bda39",
+        "status": "promoted"
+      },
+      {
+        "role": "acceptance_criteria_authority",
+        "path": "contracts/acceptance-criteria/story-slug.acceptance-criteria.v1.json",
+        "hash": "sha256:0590cbe3c9b93ded770b98f3de16fbfd791e8b42497087f63caeb4923c9af496",
+        "status": "promoted"
+      },
+      {
+        "role": "canonical_spec_authority",
+        "path": "specs/canonical/user-stories/story-slug.canonical-spec.v1.json",
+        "hash": "sha256:0c90c3a9617c0a0c0dda2cc809d31f7281b6a86b0251b282ff9d806d92189758",
+        "status": "promoted"
+      }
+    ],
+    "claimRefs": [
+      "Every promoted test maps to accepted criteria; extra Gemini tests are not promoted."
+    ]
+  },
+  "claims": [
+    "Live Gemini test intent was hardened into promoted test intent authority.",
+    "No deterministic replay created test intent authority."
+  ],
+  "guardrails": {
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false,
+    "generatedCodeMayBeDurableTruth": false,
+    "sogPromotionRequired": true,
+    "hostLanguageBodyAllowed": false,
+    "forbiddenHostFallback": true
+  },
+  "createdAt": "2026-06-24T00:00:00-04:00",
+  "completionPosture": "Test intent authority is available for generated test projection only after live provider receipt and criteria-coverage hardening."
+}

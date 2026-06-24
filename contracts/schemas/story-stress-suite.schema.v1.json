@@ -71,6 +71,48 @@
       },
       "additionalProperties": false
     },
+    "handoffPacketRequirements": {
+      "type": "object",
+      "required": [
+        "packetSchema",
+        "gate",
+        "requiredPacketKinds",
+        "suiteRunMustEmitPacketIndex"
+      ],
+      "properties": {
+        "packetSchema": {
+          "type": "string",
+          "minLength": 1
+        },
+        "policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requiredPacketKinds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "suiteRunMustEmitPacketIndex": {
+          "type": "boolean"
+        },
+        "blockerCodes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "completionCriteria": {
       "type": "array",
       "items": {

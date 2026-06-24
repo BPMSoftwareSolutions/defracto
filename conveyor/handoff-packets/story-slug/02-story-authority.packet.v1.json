@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
+  "packetKey": "defracto.handoff.story-slug.02-story-authority.v1",
+  "packetKind": "promoted_authority",
+  "runKey": "story-slug-cognitive-to-sog-promotion",
+  "stageKey": "story.plan.authority-promotion",
+  "stageSequenceIndex": 2,
+  "producedBy": {
+    "actorKind": "acceptance_gate",
+    "actorKey": "defracto.gates.story_plan_authority_promotion.v1"
+  },
+  "consumedBy": {
+    "actorKind": "ai_provider",
+    "actorKey": "defracto.workers.gemini_flash.story_to_tdd.test_intent.v1",
+    "providerKey": "gemini_flash",
+    "model": "gemini-2.5-flash"
+  },
+  "authorityStatus": "promoted_authority",
+  "artifactRefs": [
+    {
+      "role": "story_authority",
+      "path": "stories/user-stories/story-slug.story.v1.json",
+      "hash": "sha256:fb25c1391cd2837e786e63db06e7297bf2aaebc57d835b43a63d87aa716bda39",
+      "status": "promoted"
+    },
+    {
+      "role": "acceptance_criteria_authority",
+      "path": "contracts/acceptance-criteria/story-slug.acceptance-criteria.v1.json",
+      "hash": "sha256:0590cbe3c9b93ded770b98f3de16fbfd791e8b42497087f63caeb4923c9af496",
+      "status": "promoted"
+    },
+    {
+      "role": "canonical_spec_authority",
+      "path": "specs/canonical/user-stories/story-slug.canonical-spec.v1.json",
+      "hash": "sha256:0c90c3a9617c0a0c0dda2cc809d31f7281b6a86b0251b282ff9d806d92189758",
+      "status": "promoted"
+    }
+  ],
+  "requiredReceipts": [
+    {
+      "receiptKind": "candidate_hardening",
+      "path": "evidence/workers/story-to-tdd.gemini-candidate-hardening.receipt.v1.json",
+      "hash": "sha256:7383a3506222afb3c19fc4336982df43285986d2387bba12bdcdb3bf75b71ed9",
+      "requiredStatus": "blocked"
+    },
+    {
+      "receiptKind": "gemini_invocation",
+      "path": "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json",
+      "hash": "sha256:0a33aa0734f67c77c530be6bf9629b31b9fe0f618c3ddeaaceb9f2ffe1834378",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "ambiguity_resolution",
+      "path": "evidence/workers/story-to-tdd.gemini-candidate-ambiguity-resolution.receipt.v1.json",
+      "hash": "sha256:c347b3d3c4fd5f9e9d67f6e5a79c8e51cedbb88b76b709e77fffb5e2f2bba393",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "authority_promotion",
+      "path": "evidence/cli/ndd-story-plan.authority-promotion.receipt.v2.json",
+      "hash": "sha256:aec2fa30e4de48843884509678d9b05dd826108ee0eed7c85b907143cf97635a",
+      "requiredStatus": "passed"
+    }
+  ],
+  "providerParticipationRequired": true,
+  "deterministicVerificationRequired": true,
+  "blockedIfMissing": [
+    "ambiguity_resolution_receipt_missing",
+    "authority_promotion_receipt_missing",
+    "story_authority_missing",
+    "criteria_authority_missing",
+    "canonical_spec_missing",
+    "gemini_invocation_receipt_missing"
+  ],
+  "lineage": {
+    "previousPacketRefs": [
+      "conveyor/handoff-packets/story-slug/01-story-plan-candidate.packet.v1.json"
+    ],
+    "sourceRefs": [
+      {
+        "role": "gemini_candidate_response",
+        "path": "conveyor/runs/2026/06/24/slice-036-ndd-story-plan-live-gemini-proof/artifacts/story-to-tdd.gemini-response.v1.json",
+        "hash": "sha256:2642f2fbed46fc737545c2e4388f7981960935e77831f8445f44af5e8fb7f01d",
+        "status": "candidate-evidence"
+      }
+    ],
+    "claimRefs": [
+      "Candidate ambiguity was resolved before story, criteria, and canonical spec authority were promoted."
+    ]
+  },
+  "claims": [
+    "Story, acceptance criteria, and canonical spec authority are promoted.",
+    "Test intent and implementation remain unpromoted at this stage."
+  ],
+  "guardrails": {
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false,
+    "generatedCodeMayBeDurableTruth": false,
+    "sogPromotionRequired": true,
+    "hostLanguageBodyAllowed": false,
+    "forbiddenHostFallback": true
+  },
+  "createdAt": "2026-06-24T00:00:00-04:00",
+  "completionPosture": "Story authority is promoted by explicit hardening and ambiguity-resolution receipts; provider output alone did not grant authority."
+}

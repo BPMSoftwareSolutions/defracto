@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "defracto.policy.v1",
+  "policyKey": "defracto.policies.conveyor_stage_handoff_packet_required.v1",
+  "policyTitle": "Conveyor Stage Handoff Packet Required",
+  "policyStatus": "accepted",
+  "purpose": "Require every Story-to-TDD conveyor stage to emit a canonical handoff packet before the next stage may consume its output.",
+  "law": "Every conveyor stage hands off an artifact, an authority status, actor attribution, hashes, blocker posture, claims, and receipts. Cognitive stages must prove provider participation. Deterministic stages must prove resolver, test, or gate execution.",
+  "appliesToCommands": [
+    "defracto.ndd.story.plan.v1",
+    "defracto.ndd.story.test.v1",
+    "defracto.ndd.story.implement.v1",
+    "defracto.ndd.stress.run.v1"
+  ],
+  "requires": [
+    "stage output has a conveyor-stage-handoff-packet.v1 object",
+    "packet declares producedBy and consumedBy actors",
+    "packet declares authorityStatus before downstream consumption",
+    "packet references every artifact being handed off",
+    "packet references required receipts and expected receipt statuses",
+    "packet declares providerParticipationRequired for cognitive stages",
+    "packet declares deterministicVerificationRequired for deterministic stages",
+    "packet declares blockedIfMissing codes for absent obligations",
+    "packet guardrails preserve mock, stale response, deterministic replay, generated code, SOG, host-language, and host fallback posture",
+    "downstream stages consume only packets whose required receipts are present with accepted statuses"
+  ],
+  "forbids": [
+    "unpacketed stage output entering the next stage",
+    "candidate-only output consumed as authority",
+    "cognitive output without provider dispatch, response, and invocation receipts",
+    "deterministic verification output without resolver, gate, or test receipt",
+    "green proof without prior red packet",
+    "durable product truth without SOG promotion packet",
+    "generated code becoming product truth through a packet",
+    "silent fallback to stale, mock, or deterministic creation"
+  ],
+  "blockerCodes": [
+    "handoff_packet_missing",
+    "handoff_packet_schema_invalid",
+    "handoff_packet_producer_missing",
+    "handoff_packet_consumer_missing",
+    "handoff_packet_authority_status_missing",
+    "handoff_packet_artifact_hash_missing",
+    "handoff_packet_required_receipt_missing",
+    "handoff_packet_cognitive_provider_receipt_missing",
+    "handoff_packet_deterministic_receipt_missing",
+    "handoff_packet_unaccepted_candidate_consumed",
+    "handoff_packet_green_without_red",
+    "handoff_packet_durable_truth_without_sog",
+    "handoff_packet_stale_or_mock_response_forbidden"
+  ],
+  "failurePosture": "fail-closed",
+  "completionPosture": "Stage movement is authoritative only when the packet and its required receipts prove what was produced, who produced it, what may consume it, and why the authority status is valid."
+}

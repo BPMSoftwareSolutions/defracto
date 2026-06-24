@@ -29,6 +29,11 @@
       "intent": "Verify declared suite and case manifests exist by hashing them through the resolver after live cognitive capabilities are available."
     },
     {
+      "actionKey": "defracto.ndd-stress-run.verify-stage-handoff-packets.semantic-action.v1",
+      "capabilityKey": "resolver.authority.verify.v1",
+      "intent": "Verify the stage handoff packet index and packetization receipt before stress run summary projection."
+    },
+    {
       "actionKey": "defracto.ndd-stress-run.project-suite-summary.semantic-action.v1",
       "capabilityKey": "project.value.v1",
       "intent": "Project the demo suite summary, scenario results, dashboard lines, and receipts from declared JSON authority."
@@ -91,7 +96,8 @@
             "worker.gemini_flash.invoke.v1",
             "worker.openai.responses.invoke.v1",
             "json.schema.validate.v1",
-            "evidence.freshness.verify.v1"
+            "evidence.freshness.verify.v1",
+            "evidence.receipt.verify.v1"
           ]
         },
         "output": {
@@ -209,6 +215,78 @@
         },
         "output": {
           "path": "$graph.case005Hash"
+        }
+      },
+      {
+        "id": "hashSlugHandoffPacketIndex",
+        "capabilityKey": "hash.compute.v1",
+        "intent": "Hash the slug stage handoff packet index.",
+        "input": {
+          "algorithm": "sha256",
+          "path": "conveyor/handoff-packets/story-slug/handoff-packet.index.v1.json"
+        },
+        "output": {
+          "path": "$graph.slugHandoffPacketIndexHash"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "handoff_packet_missing"
+        }
+      },
+      {
+        "id": "hashSlugHandoffPacketizationReceipt",
+        "capabilityKey": "hash.compute.v1",
+        "intent": "Hash the slug handoff packetization receipt.",
+        "input": {
+          "algorithm": "sha256",
+          "path": "evidence/conveyor/story-slug.handoff-packetization.receipt.v1.json"
+        },
+        "output": {
+          "path": "$graph.slugHandoffPacketizationReceiptHash"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "handoff_packet_required_receipt_missing"
+        }
+      },
+      {
+        "id": "verifyStageHandoffPackets",
+        "capabilityKey": "resolver.authority.verify.v1",
+        "intent": "Require the canonical handoff packet schema, gate, packet index, and packetization receipt before dashboard projection.",
+        "input": {
+          "schemaPath": "contracts/schemas/conveyor-stage-handoff-packet.schema.v1.json",
+          "policyPath": "contracts/policies/conveyor-stage-handoff-packet-required.policy.v1.json",
+          "gatePath": "contracts/gates/conveyor-stage-handoff-packet-required.gate.v1.json",
+          "packetIndexPath": "conveyor/handoff-packets/story-slug/handoff-packet.index.v1.json",
+          "packetIndexHash": {
+            "$graph": "slugHandoffPacketIndexHash.hash"
+          },
+          "packetizationReceiptPath": "evidence/conveyor/story-slug.handoff-packetization.receipt.v1.json",
+          "packetizationReceiptHash": {
+            "$graph": "slugHandoffPacketizationReceiptHash.hash"
+          },
+          "requiredPacketKinds": [
+            "cognitive_candidate",
+            "promoted_authority",
+            "test_intent",
+            "red_test",
+            "implementation_candidate",
+            "implementation_projection",
+            "green_test",
+            "sog_promotion"
+          ],
+          "requiredPosture": {
+            "candidatePacketsRemainCandidateOnly": true,
+            "greenPacketReferencesPriorRed": true,
+            "durableTruthOwnedBySogOnly": true
+          }
+        },
+        "output": {
+          "path": "$graph.stageHandoffPacketVerification"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "handoff_packet_schema_invalid"
         }
       },
       {
@@ -409,6 +487,8 @@
                 "summary": "stress-lab/runs/2026-06-24/demo-suite/summary.json",
                 "dashboard": "stress-lab/runs/2026-06-24/demo-suite/dashboard.md",
                 "suiteReceipt": "stress-lab/runs/2026-06-24/demo-suite/suite.receipt.v1.json",
+                "handoffPacketIndex": "conveyor/handoff-packets/story-slug/handoff-packet.index.v1.json",
+                "handoffPacketizationReceipt": "evidence/conveyor/story-slug.handoff-packetization.receipt.v1.json",
                 "scenarioResultsDir": "stress-lab/runs/2026-06-24/demo-suite/scenario-results"
               }
             },
@@ -446,11 +526,14 @@
               "- Expected live-provider requirements remain declared in the scenario manifests.",
               "- Blocked scenarios count as passing lab assertions only when the expected outcome is honest_blocked.",
               "- Generated proof surfaces are not durable truth unless SOG promotion posture is declared and later receipted by the conveyor.",
+              "- Stage handoff packet indexes must validate before a stress run may claim conveyor continuity.",
               "",
               "## Artifacts",
               "",
               "- Summary: stress-lab/runs/2026-06-24/demo-suite/summary.json",
               "- Suite receipt: stress-lab/runs/2026-06-24/demo-suite/suite.receipt.v1.json",
+              "- Handoff packet index: conveyor/handoff-packets/story-slug/handoff-packet.index.v1.json",
+              "- Handoff packetization receipt: evidence/conveyor/story-slug.handoff-packetization.receipt.v1.json",
               "- Scenario results: stress-lab/runs/2026-06-24/demo-suite/scenario-results",
               "- Dashboard: stress-lab/runs/2026-06-24/demo-suite/dashboard.md"
             ],
@@ -473,6 +556,16 @@
                 "catalogProjectionOnly": true,
                 "liveCognitiveProviderInvokedByRunner": false,
                 "deterministicReplayPretendsCognitiveCompile": false
+              },
+              "handoffPacketization": {
+                "packetIndex": "conveyor/handoff-packets/story-slug/handoff-packet.index.v1.json",
+                "packetIndexHash": {
+                  "$graph": "slugHandoffPacketIndexHash.hash"
+                },
+                "packetizationReceipt": "evidence/conveyor/story-slug.handoff-packetization.receipt.v1.json",
+                "packetizationReceiptHash": {
+                  "$graph": "slugHandoffPacketizationReceiptHash.hash"
+                }
               },
               "completionPosture": "Suite receipt binds the resolver-materialized catalog projection run, scenario results, summary JSON, and dashboard projection."
             },
@@ -878,6 +971,7 @@
               "summary": "stress-lab/runs/2026-06-24/demo-suite/summary.json",
               "dashboard": "stress-lab/runs/2026-06-24/demo-suite/dashboard.md",
               "suiteReceipt": "stress-lab/runs/2026-06-24/demo-suite/suite.receipt.v1.json",
+              "handoffPacketIndex": "conveyor/handoff-packets/story-slug/handoff-packet.index.v1.json",
               "scenarioResultsDir": "stress-lab/runs/2026-06-24/demo-suite/scenario-results"
             },
             "blockers": []
@@ -897,6 +991,9 @@
     "live_cognitive_provider_capabilities_verified",
     "suite_manifest_hashed",
     "case_manifests_hashed",
+    "stage_handoff_packet_index_hashed",
+    "stage_handoff_packetization_receipt_hashed",
+    "stage_handoff_packets_verified",
     "summary_materialized",
     "scenario_results_materialized",
     "scenario_receipts_emitted",

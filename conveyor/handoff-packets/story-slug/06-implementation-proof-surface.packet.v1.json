@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
+  "packetKey": "defracto.handoff.story-slug.06-implementation-proof-surface.v1",
+  "packetKind": "implementation_projection",
+  "runKey": "story-slug-cognitive-to-sog-promotion",
+  "stageKey": "story.implement.generated-proof-surface",
+  "stageSequenceIndex": 6,
+  "producedBy": {
+    "actorKind": "resolver_materializer",
+    "actorKey": "contracts/sej/materialize-story-slug-cognitive-generated-implementation.sej.v1.json"
+  },
+  "consumedBy": {
+    "actorKind": "test_runner",
+    "actorKey": "node --test tests/generated/user-stories/story-slug.cognitive.generated.test.js"
+  },
+  "authorityStatus": "proof_surface_only",
+  "artifactRefs": [
+    {
+      "role": "implementation_projection_manifest",
+      "path": "contracts/projections/story-slug.cognitive-implementation-projection-manifest.v1.json",
+      "hash": "sha256:5511c54beb34cf4a2dd02fa32c6697b6b6e29efa105ef605f311724b2c3c4a0b",
+      "status": "accepted-projection"
+    },
+    {
+      "role": "generated_implementation_proof_surface",
+      "path": "generated/implementations/user-stories/story-slug.cognitive.cjs",
+      "hash": "sha256:d81f3758b7ea16b7522c9a64efcd31eb766ca525966c5e25db534417d6a7e416",
+      "status": "proof-surface-only"
+    }
+  ],
+  "requiredReceipts": [
+    {
+      "receiptKind": "openai_implementation_hardening",
+      "path": "evidence/workers/story-to-tdd.openai-implementation-hardening.receipt.v1.json",
+      "hash": "sha256:9620d390c35275c76c7641fa2f3ed8f8b7351f8c7fee1908f21f35627162d8c4",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "implementation_materialization",
+      "path": "evidence/tdd/story-slug.cognitive-generated-implementation.materialization.receipt.v1.json",
+      "hash": "sha256:dc379e5de38ae6b3ceaba5ba0f38dd47274dc416ec6ad8878b5bc301ff5181ee",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "red_test_execution",
+      "path": "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json",
+      "hash": "sha256:fa72a7e84307c5198b7c2bdeb307b4470c8a3e9466ce4604002432ea42973a80",
+      "requiredStatus": "failed"
+    }
+  ],
+  "providerParticipationRequired": true,
+  "deterministicVerificationRequired": true,
+  "blockedIfMissing": [
+    "openai_hardening_receipt_missing",
+    "implementation_materialization_receipt_missing",
+    "red_receipt_missing_before_materialization"
+  ],
+  "lineage": {
+    "previousPacketRefs": [
+      "conveyor/handoff-packets/story-slug/05-implementation-candidate.packet.v1.json"
+    ],
+    "sourceRefs": [
+      {
+        "role": "implementation_candidate",
+        "path": "conveyor/runs/2026/06/24/slice-045-048-multi-provider-cognitive-implementation-green-and-sog-posture/candidates/story-slug.cognitive-implementation.openai-candidate.v1.json",
+        "hash": "sha256:b687a1cd90d6e193779ecc5cc2899075d048e6d5d6aa4db393cdcb11e59c59e9",
+        "status": "candidate"
+      },
+      {
+        "role": "test_intent_authority",
+        "path": "contracts/test-intents/story-slug.cognitive-test-intent.v1.json",
+        "hash": "sha256:eb5cc763f7282ec5735f9f3c54c080c6a1929c1d2350face4ffecbfa9ab463ee",
+        "status": "promoted"
+      }
+    ],
+    "claimRefs": [
+      "Generated implementation is a TDD proof surface only and cannot become durable product truth."
+    ]
+  },
+  "claims": [
+    "Generated implementation materialized after red from accepted projection authority.",
+    "The proof surface is bounded to the declared target path."
+  ],
+  "guardrails": {
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false,
+    "generatedCodeMayBeDurableTruth": false,
+    "sogPromotionRequired": true,
+    "hostLanguageBodyAllowed": false,
+    "forbiddenHostFallback": true
+  },
+  "createdAt": "2026-06-24T00:00:00-04:00",
+  "completionPosture": "The generated implementation may be used to prove green, but it remains proof-surface-only until SOG promotion."
+}

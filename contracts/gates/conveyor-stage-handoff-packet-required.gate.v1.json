@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.gates.conveyor_stage_handoff_packet_required.v1",
+  "gateTitle": "Conveyor Stage Handoff Packet Required",
+  "gateStatus": "accepted",
+  "purpose": "Block stage-to-stage movement unless the emitted handoff packet is valid, receipt-backed, and honest about authority.",
+  "appliesToCommands": [
+    "defracto.ndd.story.plan.v1",
+    "defracto.ndd.story.test.v1",
+    "defracto.ndd.story.implement.v1",
+    "defracto.ndd.stress.run.v1"
+  ],
+  "schemaRef": "contracts/schemas/conveyor-stage-handoff-packet.schema.v1.json",
+  "passConditions": [
+    "handoff packet exists",
+    "handoff packet validates against defracto.conveyor-stage-handoff-packet.v1",
+    "packet declares producedBy and consumedBy",
+    "packet authorityStatus matches the stage output posture",
+    "all required receipts are present with required status",
+    "cognitive packets include provider dispatch, response, and invocation receipts",
+    "deterministic packets include resolver, gate, test, materialization, or parity receipts",
+    "candidate-only packets are not consumed as promoted authority",
+    "green packets reference an earlier red packet",
+    "durable truth packets are produced only by SOG promotion"
+  ],
+  "blockConditions": [
+    "handoff_packet_missing",
+    "handoff_packet_schema_invalid",
+    "handoff_packet_producer_missing",
+    "handoff_packet_consumer_missing",
+    "handoff_packet_authority_status_missing",
+    "handoff_packet_artifact_hash_missing",
+    "handoff_packet_required_receipt_missing",
+    "handoff_packet_cognitive_provider_receipt_missing",
+    "handoff_packet_deterministic_receipt_missing",
+    "handoff_packet_unaccepted_candidate_consumed",
+    "handoff_packet_green_without_red",
+    "handoff_packet_durable_truth_without_sog",
+    "handoff_packet_stale_or_mock_response_forbidden"
+  ],
+  "authorityPosture": {
+    "packetGrantsAuthorityByItself": false,
+    "packetCarriesAuthorityStatus": true,
+    "gatesGrantPromotion": true,
+    "sogRequiredForDurableTruth": true
+  },
+  "failurePosture": "fail-closed",
+  "evidenceRequired": true,
+  "completionPosture": "A handoff packet is a receipt-backed stage contract. It carries authority posture, but gates and SOG promotion still decide authority."
+}

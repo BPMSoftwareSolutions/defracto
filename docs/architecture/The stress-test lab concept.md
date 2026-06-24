@@ -59,6 +59,7 @@ Did red happen before green?
 Did SOG promotion happen when required?
 Did unsupported or ambiguous stories block honestly?
 Did the output match the expected target outcome?
+Did every stage emit a valid handoff packet with artifacts, hashes, claims, blockers, and receipts?
 ```
 
 ## Proposed Folder Shape
@@ -512,6 +513,7 @@ The lab must not allow:
 
 ```text
 deterministic replay pretending to be cognitive compile
+stage movement without a canonical handoff packet
 silent provider substitution
 green without prior red
 generated code becoming durable truth
@@ -552,6 +554,8 @@ Add:
 contracts/sej/ndd-stress-run.execute.sej.v1.json
 contracts/semantic-operation-graphs/cli/ndd-stress-run.execute.sog.v1.json
 contracts/cli/ndd-stress-run.command.v1.json
+contracts/schemas/conveyor-stage-handoff-packet.schema.v1.json
+contracts/gates/conveyor-stage-handoff-packet-required.gate.v1.json
 ```
 
 Completion:
@@ -559,6 +563,7 @@ Completion:
 ```text
 ndd stress run resolves a declared suite
 runner emits a suite-level receipt
+runner verifies the stage handoff packet index
 unsupported scenario mode blocks
 ```
 

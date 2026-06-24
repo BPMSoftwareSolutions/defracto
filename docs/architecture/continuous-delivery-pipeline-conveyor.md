@@ -1,395 +1,209 @@
-Yes — and your concern is valid. **The model has to be crystal clear here, or the whole thing turns into sophisticated deterministic automation with AI branding.**
+# Continuous Delivery Pipeline Conveyor
 
-What you are describing is not merely TDD. It is closer to a **cognitive continuous delivery conveyor**:
+## What We Built
 
-```text
-User Story
-→ Exploration / Cognition
-→ Behavior + Acceptance Criteria
-→ Test Intent / Acceptance Test
-→ Implementation Candidate
-→ Red / Green Proof
-→ Integration / Conformance
-→ SOG Promotion
-→ Release / Deployment Posture
-```
+Yes. The completed slug arc is a continuous delivery conveyor for narrative execution.
 
-And yes, each stage should hand off a **packet** to the next stage, like a real conveyor.
+It is not a traditional CI/CD pipeline that starts from hand-authored code. It starts from operator story intent, routes cognitive work through receipted AI providers, promotes authority only through gates, proves red/green, and accepts durable product truth only after Semantic Operation Graph (SOG) promotion.
 
-# The correct mental model
-
-The pipeline should work like this:
+The current vertical slice proves this path:
 
 ```text
-Stage N receives packet
-Stage N performs declared work
-Stage N emits output packet
-Stage N emits receipt
-Stage N signs/attributes who or what did the work
-Stage N blocks if evidence is missing
-Stage N+1 consumes only accepted packet + receipt
+operator story
+-> live cognitive candidate
+-> governed story/criteria/canonical authority
+-> live cognitive test intent
+-> generated test projection
+-> red receipt
+-> governed provider fallback implementation candidate
+-> generated implementation proof surface
+-> green receipt
+-> SOG capability coverage
+-> SOG execution
+-> SOG parity
+-> durable SOG promotion
 ```
 
-So the baton is not just a file. The baton is:
+## Conveyor Law
+
+Each stage must hand off a packet to the next stage.
 
 ```text
-artifact
-+ authority status
-+ provider/agent attribution
-+ hashes
-+ blocker posture
-+ accepted/rejected claims
-+ receipt
+Stage N consumes an accepted packet and receipt set.
+Stage N performs one bounded transformation.
+Stage N emits a new packet with artifacts, hashes, authority status, claims, blockers, and receipts.
+Stage N+1 may consume only that accepted packet and its required receipts.
 ```
 
-That is the actual conveyor.
-
-# The key distinction
-
-You said it perfectly:
-
-> The AI is using deterministic processes in order to reduce the required inference and reasoning needed, but we still want cognition.
-
-Exactly.
-
-The deterministic parts should do things like:
+The packet is now first-class repo authority:
 
 ```text
-validate schemas
-check hashes
-run tests
-compare receipts
-materialize declared artifacts
-verify red-before-green
-verify SOG parity
-detect missing fields
-block stale responses
+contracts/schemas/conveyor-stage-handoff-packet.schema.v1.json
+contracts/policies/conveyor-stage-handoff-packet-required.policy.v1.json
+contracts/gates/conveyor-stage-handoff-packet-required.gate.v1.json
 ```
 
-The cognitive parts should do things like:
+The slug conveyor is packetized here:
 
 ```text
-interpret the user story
-extract behavior
-identify ambiguities
-propose acceptance criteria
-propose test intent
-propose implementation strategy
-surface missing authority
-suggest canonical decisions
+conveyor/handoff-packets/story-slug/handoff-packet.index.v1.json
+evidence/conveyor/story-slug.handoff-packetization.receipt.v1.json
 ```
 
-The deterministic layer **guards cognition**. It does not replace cognition.
+## Stage Model
 
-# What each stage should prove
+```mermaid
+flowchart TD
+    A["User Story"] --> B["Cognitive Candidate"]
+    B --> C["Story Authority Gate"]
+    C --> D["Cognitive Test Intent"]
+    D --> E["Generated Test Projection"]
+    E --> F["Red Receipt"]
+    F --> G["Cognitive Implementation Candidate"]
+    G --> H["Generated Proof Surface"]
+    H --> I["Green Receipt"]
+    I --> J["SOG Promotion"]
+    J --> K["Release Posture"]
+```
 
-## 1. Exploration / Cognitive interpretation
+## Cognitive Stages
 
-This stage must prove:
+Cognitive stages create or refine meaning. They require live provider participation and receipts.
+
+Examples:
 
 ```text
-AI provider invoked: yes
-provider: Gemini / OpenAI
-dispatch receipt: present
-response receipt: present
-freshness: accepted
-secret leaks: 0
-candidate output only: true
+story.plan.live-gemini-candidate
+story.test.cognitive-test-intent-promotion
+story.implement.provider-fallback-candidate
 ```
 
-It should not create authority directly.
-
-Correct posture:
+Required evidence includes:
 
 ```text
-AI proposed candidate story/criteria.
-Gates have not promoted it yet.
+provider dispatch
+provider response
+provider invocation receipt
+provider identity
+model identity
+candidate artifact hash
+freshness posture
+mock/stale/fallback posture
 ```
 
-## 2. Authority hardening
+Gemini remains the primary cognitive compiler path. Governed OpenAI fallback is allowed only when the primary provider failure is receipted and policy-authorized. Fallback supplies a candidate only; gates still decide.
 
-This stage must prove:
+## Deterministic Stages
+
+Deterministic stages verify, materialize, execute, compare, or promote existing authority. They may not create new cognitive authority.
+
+Examples:
 
 ```text
-candidate claims reviewed
-unsupported claims blocked
-ambiguities preserved or resolved
-accepted claims promoted
-rejected claims recorded
-source trace retained
+generated test materialization
+red execution
+generated implementation materialization
+green execution
+SOG capability coverage
+SOG execution
+SOG parity
+SOG promotion
 ```
 
-Correct posture:
+Required evidence includes:
 
 ```text
-Only hardened claims become story/criteria authority.
+materialization receipt
+test execution receipt
+exit code
+stdout/stderr hash
+artifact hash
+parity receipt
+promotion receipt
+blocker posture
 ```
 
-## 3. Test intent / acceptance test
+## Authority Ladder
 
-This stage must prove:
+The slug packet index records this authority progression:
 
 ```text
-AI provider invoked if new test intent is being created
-test intent maps to accepted criteria
-test cases do not expand authority
-negative cases are explicitly authorized
-test projection is generated from intent
+candidate_only
+-> promoted_authority
+-> red_receipted
+-> candidate_only
+-> proof_surface_only
+-> green_receipted
+-> durable_truth
 ```
 
-Correct posture:
+The important maturity line is:
 
 ```text
-Generated tests are projections of accepted test intent.
+green is evidence
+generated implementation is proof surface
+SOG is durable product truth
 ```
 
-## 4. Implementation
-
-This stage must prove:
+## Current Packet Chain
 
 ```text
-AI provider invoked for implementation proposal
-implementation candidate is not authority
-hardening accepts or blocks candidate
-implementation is materialized only after acceptance
-implementation remains proof surface
+01-story-plan-candidate.packet.v1.json
+02-story-authority.packet.v1.json
+03-test-intent-authority.packet.v1.json
+04-generated-test-red.packet.v1.json
+05-implementation-candidate.packet.v1.json
+06-implementation-proof-surface.packet.v1.json
+07-green-proof.packet.v1.json
+08-sog-promotion.packet.v1.json
 ```
 
-Correct posture:
-
-```text
-Generated implementation can satisfy tests, but it is not durable product truth.
-```
-
-## 5. Integration / Green
-
-This stage must prove:
-
-```text
-same generated test hash used from red
-green happens after implementation
-green receipt references red receipt
-no green without red
-```
-
-Correct posture:
-
-```text
-Green proves the proof surface, not durable truth.
-```
-
-## 6. SOG promotion
-
-This stage must prove:
-
-```text
-capability coverage passed
-SOG executes
-SOG output matches cognitive proof behavior
-generated implementation is superseded
-truthOwner = semantic_operation_graph
-```
-
-Correct posture:
-
-```text
-Only SOG becomes durable product behavior.
-```
-
-# The receipt signature problem
-
-You are asking the right hard question:
-
-> Have we been proving receipts from each part of the conveyor that AI actually signed/participated?
-
-The answer should be:
-
-```text
-For cognitive stages, every receipt must prove provider participation.
-For deterministic verification stages, every receipt must prove resolver/gate execution.
-```
-
-So every cognitive receipt should include something like:
-
-```json
-{
-  "stageKey": "story.plan.cognitive_interpretation",
-  "agentKind": "ai_provider",
-  "providerKey": "gemini_flash",
-  "model": "gemini-2.5-flash",
-  "dispatchArtifactHash": "sha256:...",
-  "responseArtifactHash": "sha256:...",
-  "liveProviderExecuted": true,
-  "candidateHash": "sha256:...",
-  "candidateAuthorityPromoted": false,
-  "mockAllowed": false,
-  "fallbackAllowed": "declared_only",
-  "deterministicReplayAllowedForCreation": false
-}
-```
-
-And every deterministic receipt should say:
-
-```json
-{
-  "stageKey": "criteria.trace.verify",
-  "agentKind": "resolver_gate",
-  "providerKey": null,
-  "operation": "trace.criteria_to_test.verify.v1",
-  "status": "passed",
-  "inputHash": "sha256:...",
-  "outputHash": "sha256:..."
-}
-```
-
-That way nobody confuses deterministic verification with AI cognition.
-
-# What is fuzzy right now?
-
-The part that still needs sharpening is probably the **handoff packet model**.
-
-You need a canonical object for each stage handoff:
-
-```text
-story-plan packet
-criteria-hardening packet
-test-intent packet
-test-projection packet
-red-test packet
-implementation-candidate packet
-green-test packet
-sog-promotion packet
-release packet
-```
-
-Each packet should declare:
+Each packet declares:
 
 ```text
 producedBy
 consumedBy
 authorityStatus
-requiredReceipts
+artifactRefs with hashes
+requiredReceipts with hashes and expected statuses
 providerParticipationRequired
 deterministicVerificationRequired
 blockedIfMissing
+lineage
+claims
+guardrails
+completionPosture
 ```
 
-That would remove the fuzziness.
+## Stress Lab Integration
 
-# The conveyor should look like this
+The stress lab now treats the handoff packet index as required evidence for conveyor continuity.
 
 ```text
-┌─────────────────────────────┐
-│ User Story Intake           │
-│ input: story text/source     │
-│ output: story intake packet  │
-└──────────────┬──────────────┘
-               v
-┌─────────────────────────────┐
-│ Cognitive Exploration        │
-│ AI required                  │
-│ output: candidate packet     │
-│ receipt: provider signed     │
-└──────────────┬──────────────┘
-               v
-┌─────────────────────────────┐
-│ Authority Hardening          │
-│ gates required               │
-│ output: promoted authority   │
-│ receipt: accepted/blocked    │
-└──────────────┬──────────────┘
-               v
-┌─────────────────────────────┐
-│ Test Intent Generation       │
-│ AI required for new intent   │
-│ output: test intent packet   │
-│ receipt: provider + gate     │
-└──────────────┬──────────────┘
-               v
-┌─────────────────────────────┐
-│ Test Projection + Red        │
-│ deterministic                │
-│ output: red receipt          │
-└──────────────┬──────────────┘
-               v
-┌─────────────────────────────┐
-│ Implementation Proposal      │
-│ AI required                  │
-│ output: implementation cand. │
-│ receipt: provider signed     │
-└──────────────┬──────────────┘
-               v
-┌─────────────────────────────┐
-│ Implementation Projection    │
-│ deterministic materialize    │
-│ output: proof surface        │
-└──────────────┬──────────────┘
-               v
-┌─────────────────────────────┐
-│ Green + Integration          │
-│ deterministic test proof     │
-│ output: green/cycle receipt  │
-└──────────────┬──────────────┘
-               v
-┌─────────────────────────────┐
-│ SOG Promotion                │
-│ semantic truth promotion     │
-│ output: durable product truth│
-└─────────────────────────────┘
+stress-lab/demo-suite.v1.json
+contracts/schemas/story-stress-suite.schema.v1.json
+contracts/cli/ndd-stress-run.command.v1.json
+contracts/semantic-operation-graphs/cli/ndd-stress-run.execute.sog.v1.json
 ```
 
-# The standard should be
+The stress run must block if packets are missing, invalid, missing required receipts, or claiming durable truth without SOG.
 
-For every stage, ask:
+## Release Meaning
+
+This conveyor can support continuous delivery because each stage emits a release-grade proof surface:
 
 ```text
-Who acted?
-AI provider, resolver, gate, test runner, or materializer?
-
-What packet was consumed?
-What packet was produced?
-
-Was the output candidate, promoted authority, proof surface, or durable truth?
-
-What receipt proves it?
-
-If cognition was required, where is the provider dispatch/response/invocation receipt?
+what was consumed
+what was produced
+who or what produced it
+whether cognition occurred
+which provider participated
+which receipts prove it
+which artifacts were hashed
+which authority status was granted
+which claims are allowed
+which blockers remain
+who may consume the packet next
 ```
 
-If any stage cannot answer those questions, it is fuzzy.
-
-# My honest read
-
-You are not fuzzy on the vision. The vision is clear.
-
-The risk is that agents keep optimizing for “make the command pass” and accidentally skip the cognitive baton. That is why your doctrine needs to be ruthless:
-
-```text
-If a stage creates new meaning, cognition must be receipted.
-
-If a stage verifies existing meaning, deterministic execution is allowed.
-
-If a stage promotes authority, gates must receipt the decision.
-
-If a stage claims durable product truth, SOG must own it.
-```
-
-That is the continuous delivery conveyor you are describing.
-
-# Bottom line
-
-Yes, this should be a real conveyor with handoff packets and receipts at every stage.
-
-And yes, AI participation should be explicitly proven whenever the stage is cognitive.
-
-The clearest formulation is:
-
-```text
-Cognition creates candidates.
-Gates promote authority.
-Determinism verifies authority.
-SOG owns durable truth.
-Receipts prove every handoff.
-```
-
-That is the thing you’ve been building.
+That is the continuous delivery shape we have built: not code-first automation, but semantic conveyor delivery with cognitive receipts, gates, red/green proof, SOG promotion, and handoff packets at every boundary.

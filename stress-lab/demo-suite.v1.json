@@ -19,11 +19,34 @@
     "outputRoot": "stress-lab/runs",
     "dashboardProjection": "contracts/projections/stress-lab-dashboard.markdown-projection.v1.json"
   },
+  "handoffPacketRequirements": {
+    "packetSchema": "contracts/schemas/conveyor-stage-handoff-packet.schema.v1.json",
+    "policy": "contracts/policies/conveyor-stage-handoff-packet-required.policy.v1.json",
+    "gate": "contracts/gates/conveyor-stage-handoff-packet-required.gate.v1.json",
+    "requiredPacketKinds": [
+      "cognitive_candidate",
+      "promoted_authority",
+      "test_intent",
+      "red_test",
+      "implementation_candidate",
+      "implementation_projection",
+      "green_test",
+      "sog_promotion"
+    ],
+    "suiteRunMustEmitPacketIndex": true,
+    "blockerCodes": [
+      "handoff_packet_missing",
+      "handoff_packet_schema_invalid",
+      "handoff_packet_required_receipt_missing",
+      "handoff_packet_durable_truth_without_sog"
+    ]
+  },
   "completionCriteria": [
     "stress case manifests validate",
     "demo suite references valid cases",
     "expected outcomes include pass, honest block, fallback, and parity posture",
     "dashboard summarizes scenario status, fidelity, truth owner, blockers, and receipts",
-    "catalog projection does not pretend to be live cognitive compile"
+    "catalog projection does not pretend to be live cognitive compile",
+    "stage handoff packet index validates every conveyor stage boundary before release posture"
   ]
 }

@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
+  "packetKey": "defracto.handoff.story-slug.04-generated-test-red.v1",
+  "packetKind": "red_test",
+  "runKey": "story-slug-cognitive-to-sog-promotion",
+  "stageKey": "story.test.generated-test-red",
+  "stageSequenceIndex": 4,
+  "producedBy": {
+    "actorKind": "test_runner",
+    "actorKey": "node --test tests/generated/user-stories/story-slug.cognitive.generated.test.js"
+  },
+  "consumedBy": {
+    "actorKind": "ai_provider",
+    "actorKey": "defracto.workers.openai.story_to_tdd.v1",
+    "providerKey": "openai",
+    "model": "gpt-4.1-mini"
+  },
+  "authorityStatus": "red_receipted",
+  "artifactRefs": [
+    {
+      "role": "generated_test_artifact",
+      "path": "tests/generated/user-stories/story-slug.cognitive.generated.test.js",
+      "hash": "sha256:cc56c2aea3d030818fc64509e21624e21506f29b0da1a21c62307c7ca932a5c8",
+      "status": "generated"
+    },
+    {
+      "role": "test_projection_manifest",
+      "path": "contracts/projections/story-slug.cognitive-node-test-projection-manifest.v1.json",
+      "hash": "sha256:5e79337c1373aa3f973d47524694120bf9b97fe4b72a63d1540cf877d2e1ab44",
+      "status": "projection-authority"
+    }
+  ],
+  "requiredReceipts": [
+    {
+      "receiptKind": "generated_test_materialization",
+      "path": "evidence/tdd/story-slug.cognitive-generated-test.materialization.receipt.v1.json",
+      "hash": "sha256:db922fcf39c0c48f9d9f8d529f794ae9ce521c0fc4880e8a62b4eb7184a02f9d",
+      "requiredStatus": "passed"
+    },
+    {
+      "receiptKind": "red_test_execution",
+      "path": "evidence/tdd/story-slug.cognitive-red-test.receipt.v1.json",
+      "hash": "sha256:fa72a7e84307c5198b7c2bdeb307b4470c8a3e9466ce4604002432ea42973a80",
+      "requiredStatus": "failed"
+    }
+  ],
+  "providerParticipationRequired": false,
+  "deterministicVerificationRequired": true,
+  "blockedIfMissing": [
+    "generated_test_materialization_receipt_missing",
+    "red_test_receipt_missing",
+    "implementation_present_before_red_forbidden"
+  ],
+  "lineage": {
+    "previousPacketRefs": [
+      "conveyor/handoff-packets/story-slug/03-test-intent-authority.packet.v1.json"
+    ],
+    "sourceRefs": [
+      {
+        "role": "test_intent_authority",
+        "path": "contracts/test-intents/story-slug.cognitive-test-intent.v1.json",
+        "hash": "sha256:eb5cc763f7282ec5735f9f3c54c080c6a1929c1d2350face4ffecbfa9ab463ee",
+        "status": "promoted"
+      }
+    ],
+    "claimRefs": [
+      "Red failed because implementation was absent, which proves test-first ordering."
+    ]
+  },
+  "claims": [
+    "Generated test artifact exists before implementation.",
+    "Red receipt captures the expected missing implementation failure."
+  ],
+  "guardrails": {
+    "mockAllowed": false,
+    "staleResponseAllowed": false,
+    "deterministicReplayAllowedForCreation": false,
+    "generatedCodeMayBeDurableTruth": false,
+    "sogPromotionRequired": true,
+    "hostLanguageBodyAllowed": false,
+    "forbiddenHostFallback": true
+  },
+  "createdAt": "2026-06-24T00:00:00-04:00",
+  "completionPosture": "The red handoff proves the test projection exists, the implementation target was absent, and green cannot be accepted before implementation projection."
+}
