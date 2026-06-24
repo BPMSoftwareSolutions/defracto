@@ -1,0 +1,1363 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.visual-proof-materialize.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-resolver",
+  "commandKey": "defracto.ndd.story.implement.visual-proof.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.visual-proof.verify-cognitive-evidence.v1",
+      "capabilityKey": "evidence.receipt.verify.v1",
+      "intent": "Verify live cognitive provider evidence before promoting the visual proof model."
+    },
+    {
+      "actionKey": "defracto.visual-proof.project-model.v1",
+      "capabilityKey": "project.value.v1",
+      "intent": "Project the shared visual proof model."
+    },
+    {
+      "actionKey": "defracto.visual-proof.materialize-surfaces.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize ASCII and HTML surfaces from the same visual model."
+    },
+    {
+      "actionKey": "defracto.visual-proof.hash-surfaces.v1",
+      "capabilityKey": "hash.compute.v1",
+      "intent": "Hash the model and projection surfaces."
+    },
+    {
+      "actionKey": "defracto.visual-proof.emit-receipts.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit receipts for hardening, projection, and materialization."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "verifyCognitiveEvidence",
+        "capabilityKey": "evidence.receipt.verify.v1",
+        "intent": "Verify the existing live Gemini cognitive evidence required by the story conveyor.",
+        "input": {
+          "receipts": [
+            "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
+            "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
+            "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json"
+          ],
+          "hashes": []
+        },
+        "output": {
+          "path": "$graph.cognitiveEvidence"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "gemini_invocation_receipt_missing"
+        }
+      },
+      {
+        "id": "projectVisualProofModels",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project candidate and promoted visual proof models from the operator story.",
+        "input": {
+          "fields": {
+            "candidateModel": {
+              "schemaVersion": {
+                "literal": "defracto.visual-proof-model.v1"
+              },
+              "modelKey": {
+                "literal": "live-visual-proof-packet.candidate.v1"
+              },
+              "title": {
+                "literal": "Story-to-TDD Conveyor Proof"
+              },
+              "sourceStory": {
+                "$context": "command.options.text"
+              },
+              "authorityStatus": {
+                "literal": "candidate_only"
+              },
+              "providerEvidence": {
+                "literal": {
+                  "dispatchReceipt": "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
+                  "responseReceipt": "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
+                  "invocationReceipt": "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json",
+                  "candidateOnlyUntilHardened": true
+                }
+              },
+              "nodes": {
+                "literal": [
+                  {
+                    "key": "story",
+                    "label": "User Story"
+                  },
+                  {
+                    "key": "cognition",
+                    "label": "Live AI Cognition"
+                  },
+                  {
+                    "key": "hardening",
+                    "label": "Authority Hardening"
+                  },
+                  {
+                    "key": "ascii",
+                    "label": "ASCII Projection"
+                  },
+                  {
+                    "key": "html",
+                    "label": "HTML Projection"
+                  },
+                  {
+                    "key": "materialization",
+                    "label": "Resolver Materialization"
+                  }
+                ]
+              },
+              "edges": {
+                "literal": [
+                  [
+                    "story",
+                    "cognition"
+                  ],
+                  [
+                    "cognition",
+                    "hardening"
+                  ],
+                  [
+                    "hardening",
+                    "ascii"
+                  ],
+                  [
+                    "hardening",
+                    "html"
+                  ],
+                  [
+                    "ascii",
+                    "materialization"
+                  ],
+                  [
+                    "html",
+                    "materialization"
+                  ]
+                ]
+              },
+              "projectionTargets": {
+                "literal": [
+                  "ascii",
+                  "html"
+                ]
+              },
+              "guardrails": {
+                "literal": {
+                  "sameModelRequiredForAllSurfaces": true,
+                  "handAuthoredProjectionForbidden": true,
+                  "providerCandidateDoesNotGrantAuthority": true
+                }
+              }
+            },
+            "promotedModel": {
+              "schemaVersion": {
+                "literal": "defracto.visual-proof-model.v1"
+              },
+              "modelKey": {
+                "literal": "live-visual-proof-packet.promoted.v1"
+              },
+              "title": {
+                "literal": "Story-to-TDD Conveyor Proof"
+              },
+              "sourceStory": {
+                "$context": "command.options.text"
+              },
+              "authorityStatus": {
+                "literal": "promoted_authority"
+              },
+              "nodes": {
+                "literal": [
+                  {
+                    "key": "story",
+                    "label": "User Story"
+                  },
+                  {
+                    "key": "cognition",
+                    "label": "Live AI Cognition"
+                  },
+                  {
+                    "key": "hardening",
+                    "label": "Authority Hardening"
+                  },
+                  {
+                    "key": "ascii",
+                    "label": "ASCII Projection"
+                  },
+                  {
+                    "key": "html",
+                    "label": "HTML Projection"
+                  },
+                  {
+                    "key": "materialization",
+                    "label": "Resolver Materialization"
+                  }
+                ]
+              },
+              "edges": {
+                "literal": [
+                  [
+                    "story",
+                    "cognition"
+                  ],
+                  [
+                    "cognition",
+                    "hardening"
+                  ],
+                  [
+                    "hardening",
+                    "ascii"
+                  ],
+                  [
+                    "hardening",
+                    "html"
+                  ],
+                  [
+                    "ascii",
+                    "materialization"
+                  ],
+                  [
+                    "html",
+                    "materialization"
+                  ]
+                ]
+              },
+              "projectionTargets": {
+                "literal": [
+                  "ascii",
+                  "html"
+                ]
+              },
+              "guardrails": {
+                "literal": {
+                  "sameModelRequiredForAllSurfaces": true,
+                  "handAuthoredProjectionForbidden": true,
+                  "providerCandidateDoesNotGrantAuthority": true
+                }
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.models"
+        }
+      },
+      {
+        "id": "materializeCandidateModel",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize the candidate visual model.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/candidate-visual-proof-model.v1.json",
+            "format": "json",
+            "content": {
+              "$graph": "models.candidateModel"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.candidateModelArtifact"
+        }
+      },
+      {
+        "id": "materializePromotedModel",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize the promoted visual model.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
+            "format": "json",
+            "content": {
+              "$graph": "models.promotedModel"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.promotedModelArtifact"
+        }
+      },
+      {
+        "id": "hashCandidateModel",
+        "capabilityKey": "hash.compute.v1",
+        "intent": "Hash the candidate visual model.",
+        "input": {
+          "algorithm": "sha256",
+          "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/candidate-visual-proof-model.v1.json"
+        },
+        "output": {
+          "path": "$graph.candidateModelHash"
+        }
+      },
+      {
+        "id": "hashPromotedModel",
+        "capabilityKey": "hash.compute.v1",
+        "intent": "Hash the promoted visual model.",
+        "input": {
+          "algorithm": "sha256",
+          "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json"
+        },
+        "output": {
+          "path": "$graph.promotedModelHash"
+        }
+      },
+      {
+        "id": "emitCandidateHardeningReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit visual model hardening receipt.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/candidate-hardening.receipt.v1.json",
+            "content": {
+              "schemaVersion": "defracto.visual-proof-candidate-hardening.receipt.v1",
+              "receiptKey": "defracto.receipt.live-visual-proof-packet.candidate-hardening.v1",
+              "status": "passed",
+              "candidateModel": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/candidate-visual-proof-model.v1.json",
+              "candidateModelHash": {
+                "$graph": "candidateModelHash.hash"
+              },
+              "promotedModel": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
+              "promotedModelHash": {
+                "$graph": "promotedModelHash.hash"
+              },
+              "providerEvidence": [
+                "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
+                "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
+                "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json"
+              ],
+              "authorityStatus": "promoted_authority",
+              "completionPosture": "Provider candidate evidence was hardened into one promoted visual proof model. Provider output alone did not grant authority."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.candidateHardeningReceipt"
+        }
+      },
+      {
+        "id": "materializeAsciiProof",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize ASCII projection from the promoted model.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.ascii",
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "Story-to-TDD Conveyor Proof",
+              "Source model: conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
+              "",
+              "+-------------+",
+              "| User Story  |",
+              "+------+------+",
+              "       |",
+              "       v",
+              "+-------------------+",
+              "| Live AI Cognition |",
+              "+---------+---------+",
+              "          |",
+              "          v",
+              "+---------------------+",
+              "| Authority Hardening |",
+              "+----+------------+---+",
+              "     |            |",
+              "     v            v",
+              "+-----------+  +-----------+",
+              "| ASCII     |  | HTML      |",
+              "| Projection|  | Projection|",
+              "+-----+-----+  +-----+-----+",
+              "      |              |",
+              "      +------+-------+",
+              "             |",
+              "             v",
+              "+--------------------------+",
+              "| Resolver Materialization |",
+              "+--------------------------+"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.asciiArtifact"
+        }
+      },
+      {
+        "id": "hashAsciiProof",
+        "capabilityKey": "hash.compute.v1",
+        "intent": "Hash the ASCII proof surface.",
+        "input": {
+          "algorithm": "sha256",
+          "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.ascii"
+        },
+        "output": {
+          "path": "$graph.asciiHash"
+        }
+      },
+      {
+        "id": "emitAsciiProjectionReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit ASCII projection receipt.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/ascii-projection.receipt.v1.json",
+            "content": {
+              "schemaVersion": "defracto.visual-proof-ascii-projection.receipt.v1",
+              "receiptKey": "defracto.receipt.live-visual-proof-packet.ascii-projection.v1",
+              "status": "passed",
+              "projectionManifest": "contracts/projections/visual-proof.ascii-projection.v1.json",
+              "sourceModel": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
+              "sourceModelHash": {
+                "$graph": "promotedModelHash.hash"
+              },
+              "targetPath": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.ascii",
+              "artifactHash": {
+                "$graph": "asciiHash.hash"
+              },
+              "sameSourceModelAsHtmlRequired": true,
+              "completionPosture": "ASCII projection was materialized from the promoted visual proof model."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.asciiProjectionReceipt"
+        }
+      },
+      {
+        "id": "materializeHtmlProof",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize HTML projection from the promoted model.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.html",
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "<!doctype html>",
+              "<html lang=\"en\">",
+              "<head>",
+              "  <meta charset=\"utf-8\">",
+              "  <title>Story-to-TDD Conveyor Proof</title>",
+              "  <style>body{font-family:Arial,sans-serif;line-height:1.45;margin:32px;color:#17202a;background:#f7f8fb}main{max-width:960px;margin:auto;background:white;border:1px solid #d9dee7;padding:24px}code,pre{background:#f2f4f8}pre{padding:16px;overflow:auto}.status{font-weight:700;color:#166534}table{border-collapse:collapse;width:100%;margin-top:12px}th,td{border:1px solid #d9dee7;padding:8px;text-align:left}th{background:#eef2f7}</style>",
+              "</head>",
+              "<body>",
+              "<main>",
+              "  <h1>Story-to-TDD Conveyor Proof</h1>",
+              "  <p><strong>Authority posture:</strong> <span class=\"status\">promoted visual model, generated projection surfaces, resolver materialization receipts</span></p>",
+              "  <h2>Source Story</h2>",
+              "  <p>",
+              {
+                "$context": "command.options.text"
+              },
+              "  </p>",
+              "  <h2>Shared Model</h2>",
+              "  <p><code>conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json</code></p>",
+              "  <h2>Stage Handoff Packets</h2>",
+              "  <table><thead><tr><th>Stage</th><th>Packet</th><th>Authority</th></tr></thead><tbody>",
+              "    <tr><td>Cognitive candidate</td><td>01-cognitive-candidate.packet.v1.json</td><td>candidate_only</td></tr>",
+              "    <tr><td>Authority hardening</td><td>02-authority-hardening.packet.v1.json</td><td>promoted_authority</td></tr>",
+              "    <tr><td>ASCII projection</td><td>03-ascii-projection.packet.v1.json</td><td>generated projection</td></tr>",
+              "    <tr><td>HTML projection</td><td>04-html-projection.packet.v1.json</td><td>generated projection</td></tr>",
+              "    <tr><td>Materialization</td><td>05-materialization.packet.v1.json</td><td>receipted materialization</td></tr>",
+              "  </tbody></table>",
+              "  <h2>ASCII Sketch</h2>",
+              "  <pre>+-------------+&#10;| User Story  |&#10;+------+------+&#10;       |&#10;       v&#10;+-------------------+&#10;| Live AI Cognition |&#10;+---------+---------+&#10;          |&#10;          v&#10;+---------------------+&#10;| Authority Hardening |&#10;+----+------------+---+&#10;     |            |&#10;     v            v&#10;+-----------+  +-----------+&#10;| ASCII     |  | HTML      |&#10;| Projection|  | Projection|&#10;+-----+-----+  +-----+-----+&#10;      |              |&#10;      +------+-------+&#10;             |&#10;             v&#10;+--------------------------+&#10;| Resolver Materialization |&#10;+--------------------------+</pre>",
+              "  <h2>Receipts</h2>",
+              "  <ul>",
+              "    <li>receipts/candidate-hardening.receipt.v1.json</li>",
+              "    <li>receipts/ascii-projection.receipt.v1.json</li>",
+              "    <li>receipts/html-projection.receipt.v1.json</li>",
+              "    <li>receipts/materialization.receipt.v1.json</li>",
+              "  </ul>",
+              "</main>",
+              "</body>",
+              "</html>"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.htmlArtifact"
+        }
+      },
+      {
+        "id": "hashHtmlProof",
+        "capabilityKey": "hash.compute.v1",
+        "intent": "Hash the HTML proof document.",
+        "input": {
+          "algorithm": "sha256",
+          "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.html"
+        },
+        "output": {
+          "path": "$graph.htmlHash"
+        }
+      },
+      {
+        "id": "emitHtmlProjectionReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit HTML projection receipt.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/html-projection.receipt.v1.json",
+            "content": {
+              "schemaVersion": "defracto.visual-proof-html-projection.receipt.v1",
+              "receiptKey": "defracto.receipt.live-visual-proof-packet.html-projection.v1",
+              "status": "passed",
+              "projectionManifest": "contracts/projections/visual-proof.html-projection.v1.json",
+              "sourceModel": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
+              "sourceModelHash": {
+                "$graph": "promotedModelHash.hash"
+              },
+              "targetPath": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.html",
+              "artifactHash": {
+                "$graph": "htmlHash.hash"
+              },
+              "sameSourceModelAsAscii": true,
+              "completionPosture": "HTML projection was materialized from the same promoted visual proof model as the ASCII projection."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.htmlProjectionReceipt"
+        }
+      },
+      {
+        "id": "materializeHandoffPacket01",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize cognitive candidate handoff packet.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/01-cognitive-candidate.packet.v1.json",
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
+              "packetKey": "defracto.handoff.live-visual-proof-packet.01-cognitive-candidate.v1",
+              "packetKind": "cognitive_candidate",
+              "runKey": "live-visual-proof-packet",
+              "stageKey": "visual-proof.cognitive-candidate",
+              "stageSequenceIndex": 1,
+              "producedBy": {
+                "actorKind": "ai_provider",
+                "actorKey": "defracto.workers.gemini_flash.story_to_tdd.v1",
+                "providerKey": "gemini_flash",
+                "model": "gemini_flash"
+              },
+              "consumedBy": {
+                "actorKind": "acceptance_gate",
+                "actorKey": "defracto.gates.visual_proof_candidate_hardening.v1"
+              },
+              "authorityStatus": "candidate_only",
+              "artifactRefs": [
+                {
+                  "role": "candidate_visual_model",
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/candidate-visual-proof-model.v1.json",
+                  "hash": {
+                    "$graph": "candidateModelHash.hash"
+                  },
+                  "status": "candidate"
+                }
+              ],
+              "requiredReceipts": [
+                {
+                  "receiptKind": "gemini_dispatch",
+                  "path": "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
+                  "requiredStatus": "passed"
+                },
+                {
+                  "receiptKind": "gemini_response",
+                  "path": "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
+                  "requiredStatus": "passed"
+                },
+                {
+                  "receiptKind": "gemini_invocation",
+                  "path": "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json",
+                  "requiredStatus": "passed"
+                }
+              ],
+              "providerParticipationRequired": true,
+              "deterministicVerificationRequired": true,
+              "blockedIfMissing": [
+                "gemini_invocation_receipt_missing",
+                "candidate_visual_model_missing"
+              ],
+              "lineage": {
+                "previousPacketRefs": [],
+                "sourceRefs": [
+                  {
+                    "role": "operator_story",
+                    "path": "cli:ndd story implement --text",
+                    "status": "captured"
+                  }
+                ],
+                "claimRefs": [
+                  "Provider candidate does not grant authority."
+                ]
+              },
+              "claims": [
+                "Cognitive evidence exists before visual model hardening.",
+                "Candidate model remains candidate-only."
+              ],
+              "guardrails": {
+                "mockAllowed": false,
+                "staleResponseAllowed": false,
+                "deterministicReplayAllowedForCreation": false,
+                "generatedCodeMayBeDurableTruth": false,
+                "sogPromotionRequired": true,
+                "hostLanguageBodyAllowed": false,
+                "forbiddenHostFallback": true
+              },
+              "createdAt": "2026-06-24T00:00:00-04:00",
+              "completionPosture": "Cognitive candidate is preserved as evidence and requires hardening before projection."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.packet01"
+        }
+      },
+      {
+        "id": "materializeHandoffPacket02",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize authority hardening handoff packet.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/02-authority-hardening.packet.v1.json",
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
+              "packetKey": "defracto.handoff.live-visual-proof-packet.02-authority-hardening.v1",
+              "packetKind": "promoted_authority",
+              "runKey": "live-visual-proof-packet",
+              "stageKey": "visual-proof.authority-hardening",
+              "stageSequenceIndex": 2,
+              "producedBy": {
+                "actorKind": "acceptance_gate",
+                "actorKey": "defracto.gates.visual_proof_candidate_hardening.v1"
+              },
+              "consumedBy": {
+                "actorKind": "resolver_materializer",
+                "actorKey": "contracts/projections/visual-proof.ascii-projection.v1.json"
+              },
+              "authorityStatus": "promoted_authority",
+              "artifactRefs": [
+                {
+                  "role": "promoted_visual_model",
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
+                  "hash": {
+                    "$graph": "promotedModelHash.hash"
+                  },
+                  "status": "promoted"
+                }
+              ],
+              "requiredReceipts": [
+                {
+                  "receiptKind": "candidate_hardening",
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/candidate-hardening.receipt.v1.json",
+                  "requiredStatus": "passed"
+                }
+              ],
+              "providerParticipationRequired": true,
+              "deterministicVerificationRequired": true,
+              "blockedIfMissing": [
+                "candidate_hardening_receipt_missing",
+                "promoted_visual_model_missing"
+              ],
+              "lineage": {
+                "previousPacketRefs": [
+                  "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/01-cognitive-candidate.packet.v1.json"
+                ],
+                "sourceRefs": [
+                  {
+                    "role": "candidate_visual_model",
+                    "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/candidate-visual-proof-model.v1.json",
+                    "hash": {
+                      "$graph": "candidateModelHash.hash"
+                    },
+                    "status": "candidate"
+                  }
+                ],
+                "claimRefs": [
+                  "Hardening promotes one shared visual proof model."
+                ]
+              },
+              "claims": [
+                "Promoted visual model is the source truth for ASCII and HTML."
+              ],
+              "guardrails": {
+                "mockAllowed": false,
+                "staleResponseAllowed": false,
+                "deterministicReplayAllowedForCreation": false,
+                "generatedCodeMayBeDurableTruth": false,
+                "sogPromotionRequired": true,
+                "hostLanguageBodyAllowed": false,
+                "forbiddenHostFallback": true
+              },
+              "createdAt": "2026-06-24T00:00:00-04:00",
+              "completionPosture": "The promoted visual proof model is ready for projection."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.packet02"
+        }
+      },
+      {
+        "id": "materializeHandoffPacket03",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize ASCII projection handoff packet.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/03-ascii-projection.packet.v1.json",
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
+              "packetKey": "defracto.handoff.live-visual-proof-packet.03-ascii-projection.v1",
+              "packetKind": "ascii_projection",
+              "runKey": "live-visual-proof-packet",
+              "stageKey": "visual-proof.ascii-projection",
+              "stageSequenceIndex": 3,
+              "producedBy": {
+                "actorKind": "resolver_materializer",
+                "actorKey": "contracts/projections/visual-proof.ascii-projection.v1.json"
+              },
+              "consumedBy": {
+                "actorKind": "resolver_materializer",
+                "actorKey": "visual-proof.materialization"
+              },
+              "authorityStatus": "generated_projection",
+              "artifactRefs": [
+                {
+                  "role": "ascii_projection",
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.ascii",
+                  "hash": {
+                    "$graph": "asciiHash.hash"
+                  },
+                  "status": "generated"
+                },
+                {
+                  "role": "source_model",
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
+                  "hash": {
+                    "$graph": "promotedModelHash.hash"
+                  },
+                  "status": "promoted"
+                }
+              ],
+              "requiredReceipts": [
+                {
+                  "receiptKind": "ascii_projection",
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/ascii-projection.receipt.v1.json",
+                  "requiredStatus": "passed"
+                }
+              ],
+              "providerParticipationRequired": false,
+              "deterministicVerificationRequired": true,
+              "blockedIfMissing": [
+                "ascii_projection_receipt_missing",
+                "source_model_hash_mismatch"
+              ],
+              "lineage": {
+                "previousPacketRefs": [
+                  "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/02-authority-hardening.packet.v1.json"
+                ],
+                "sourceRefs": [
+                  {
+                    "role": "promoted_visual_model",
+                    "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
+                    "hash": {
+                      "$graph": "promotedModelHash.hash"
+                    },
+                    "status": "promoted"
+                  }
+                ],
+                "claimRefs": [
+                  "ASCII projection uses the promoted visual model hash."
+                ]
+              },
+              "claims": [
+                "ASCII projection is generated from the promoted model."
+              ],
+              "guardrails": {
+                "mockAllowed": false,
+                "staleResponseAllowed": false,
+                "deterministicReplayAllowedForCreation": false,
+                "generatedCodeMayBeDurableTruth": false,
+                "sogPromotionRequired": true,
+                "hostLanguageBodyAllowed": false,
+                "forbiddenHostFallback": true
+              },
+              "createdAt": "2026-06-24T00:00:00-04:00",
+              "completionPosture": "ASCII projection is ready for materialization proof."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.packet03"
+        }
+      },
+      {
+        "id": "materializeHandoffPacket04",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize HTML projection handoff packet.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/04-html-projection.packet.v1.json",
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
+              "packetKey": "defracto.handoff.live-visual-proof-packet.04-html-projection.v1",
+              "packetKind": "html_projection",
+              "runKey": "live-visual-proof-packet",
+              "stageKey": "visual-proof.html-projection",
+              "stageSequenceIndex": 4,
+              "producedBy": {
+                "actorKind": "resolver_materializer",
+                "actorKey": "contracts/projections/visual-proof.html-projection.v1.json"
+              },
+              "consumedBy": {
+                "actorKind": "resolver_materializer",
+                "actorKey": "visual-proof.materialization"
+              },
+              "authorityStatus": "generated_projection",
+              "artifactRefs": [
+                {
+                  "role": "html_projection",
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.html",
+                  "hash": {
+                    "$graph": "htmlHash.hash"
+                  },
+                  "status": "generated"
+                },
+                {
+                  "role": "source_model",
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
+                  "hash": {
+                    "$graph": "promotedModelHash.hash"
+                  },
+                  "status": "promoted"
+                }
+              ],
+              "requiredReceipts": [
+                {
+                  "receiptKind": "html_projection",
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/html-projection.receipt.v1.json",
+                  "requiredStatus": "passed"
+                }
+              ],
+              "providerParticipationRequired": false,
+              "deterministicVerificationRequired": true,
+              "blockedIfMissing": [
+                "html_projection_receipt_missing",
+                "source_model_hash_mismatch"
+              ],
+              "lineage": {
+                "previousPacketRefs": [
+                  "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/02-authority-hardening.packet.v1.json"
+                ],
+                "sourceRefs": [
+                  {
+                    "role": "promoted_visual_model",
+                    "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
+                    "hash": {
+                      "$graph": "promotedModelHash.hash"
+                    },
+                    "status": "promoted"
+                  }
+                ],
+                "claimRefs": [
+                  "HTML projection uses the same promoted visual model hash as ASCII."
+                ]
+              },
+              "claims": [
+                "HTML projection is generated from the promoted model."
+              ],
+              "guardrails": {
+                "mockAllowed": false,
+                "staleResponseAllowed": false,
+                "deterministicReplayAllowedForCreation": false,
+                "generatedCodeMayBeDurableTruth": false,
+                "sogPromotionRequired": true,
+                "hostLanguageBodyAllowed": false,
+                "forbiddenHostFallback": true
+              },
+              "createdAt": "2026-06-24T00:00:00-04:00",
+              "completionPosture": "HTML projection is ready for materialization proof."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.packet04"
+        }
+      },
+      {
+        "id": "materializeHandoffPacket05",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize final materialization handoff packet.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/05-materialization.packet.v1.json",
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.conveyor-stage-handoff-packet.v1",
+              "packetKey": "defracto.handoff.live-visual-proof-packet.05-materialization.v1",
+              "packetKind": "materialization",
+              "runKey": "live-visual-proof-packet",
+              "stageKey": "visual-proof.materialization",
+              "stageSequenceIndex": 5,
+              "producedBy": {
+                "actorKind": "resolver_materializer",
+                "actorKey": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+              },
+              "consumedBy": {
+                "actorKind": "release_gate",
+                "actorKey": "visual-proof.review"
+              },
+              "authorityStatus": "green_receipted",
+              "artifactRefs": [
+                {
+                  "role": "ascii_projection",
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.ascii",
+                  "hash": {
+                    "$graph": "asciiHash.hash"
+                  },
+                  "status": "materialized"
+                },
+                {
+                  "role": "html_projection",
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.html",
+                  "hash": {
+                    "$graph": "htmlHash.hash"
+                  },
+                  "status": "materialized"
+                }
+              ],
+              "requiredReceipts": [
+                {
+                  "receiptKind": "ascii_projection",
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/ascii-projection.receipt.v1.json",
+                  "requiredStatus": "passed"
+                },
+                {
+                  "receiptKind": "html_projection",
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/html-projection.receipt.v1.json",
+                  "requiredStatus": "passed"
+                }
+              ],
+              "providerParticipationRequired": false,
+              "deterministicVerificationRequired": true,
+              "blockedIfMissing": [
+                "ascii_projection_missing",
+                "html_projection_missing",
+                "materialization_receipt_missing"
+              ],
+              "lineage": {
+                "previousPacketRefs": [
+                  "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/03-ascii-projection.packet.v1.json",
+                  "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/04-html-projection.packet.v1.json"
+                ],
+                "sourceRefs": [
+                  {
+                    "role": "promoted_visual_model",
+                    "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
+                    "hash": {
+                      "$graph": "promotedModelHash.hash"
+                    },
+                    "status": "promoted"
+                  }
+                ],
+                "claimRefs": [
+                  "Both surfaces materialized from the same promoted visual model."
+                ]
+              },
+              "claims": [
+                "ASCII and HTML proof surfaces were materialized from one promoted model."
+              ],
+              "guardrails": {
+                "mockAllowed": false,
+                "staleResponseAllowed": false,
+                "deterministicReplayAllowedForCreation": false,
+                "generatedCodeMayBeDurableTruth": false,
+                "sogPromotionRequired": true,
+                "hostLanguageBodyAllowed": false,
+                "forbiddenHostFallback": true
+              },
+              "createdAt": "2026-06-24T00:00:00-04:00",
+              "completionPosture": "Visual proof surfaces are materialized and ready for reviewer inspection."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.packet05"
+        }
+      },
+      {
+        "id": "hashPacket01",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/01-cognitive-candidate.packet.v1.json"
+        },
+        "output": {
+          "path": "$graph.packet01Hash"
+        }
+      },
+      {
+        "id": "hashPacket02",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/02-authority-hardening.packet.v1.json"
+        },
+        "output": {
+          "path": "$graph.packet02Hash"
+        }
+      },
+      {
+        "id": "hashPacket03",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/03-ascii-projection.packet.v1.json"
+        },
+        "output": {
+          "path": "$graph.packet03Hash"
+        }
+      },
+      {
+        "id": "hashPacket04",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/04-html-projection.packet.v1.json"
+        },
+        "output": {
+          "path": "$graph.packet04Hash"
+        }
+      },
+      {
+        "id": "hashPacket05",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/05-materialization.packet.v1.json"
+        },
+        "output": {
+          "path": "$graph.packet05Hash"
+        }
+      },
+      {
+        "id": "materializeHandoffPacketIndex",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize handoff packet index.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/handoff-packet.index.v1.json",
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.conveyor-stage-handoff-packet-index.v1",
+              "indexKey": "defracto.handoff-index.live-visual-proof-packet.v1",
+              "runKey": "live-visual-proof-packet",
+              "packetSchema": "contracts/schemas/conveyor-stage-handoff-packet.schema.v1.json",
+              "status": "passed",
+              "packetCount": 5,
+              "packets": [
+                {
+                  "stageSequenceIndex": 1,
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/01-cognitive-candidate.packet.v1.json",
+                  "hash": {
+                    "$graph": "packet01Hash.hash"
+                  },
+                  "packetKind": "cognitive_candidate",
+                  "authorityStatus": "candidate_only"
+                },
+                {
+                  "stageSequenceIndex": 2,
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/02-authority-hardening.packet.v1.json",
+                  "hash": {
+                    "$graph": "packet02Hash.hash"
+                  },
+                  "packetKind": "promoted_authority",
+                  "authorityStatus": "promoted_authority"
+                },
+                {
+                  "stageSequenceIndex": 3,
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/03-ascii-projection.packet.v1.json",
+                  "hash": {
+                    "$graph": "packet03Hash.hash"
+                  },
+                  "packetKind": "ascii_projection",
+                  "authorityStatus": "generated_projection"
+                },
+                {
+                  "stageSequenceIndex": 4,
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/04-html-projection.packet.v1.json",
+                  "hash": {
+                    "$graph": "packet04Hash.hash"
+                  },
+                  "packetKind": "html_projection",
+                  "authorityStatus": "generated_projection"
+                },
+                {
+                  "stageSequenceIndex": 5,
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/05-materialization.packet.v1.json",
+                  "hash": {
+                    "$graph": "packet05Hash.hash"
+                  },
+                  "packetKind": "materialization",
+                  "authorityStatus": "green_receipted"
+                }
+              ],
+              "completionPosture": "The live visual proof packet records cognitive, hardening, projection, and materialization handoffs."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.packetIndex"
+        }
+      },
+      {
+        "id": "hashPacketIndex",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/handoff-packet.index.v1.json"
+        },
+        "output": {
+          "path": "$graph.packetIndexHash"
+        }
+      },
+      {
+        "id": "materializeSummary",
+        "capabilityKey": "artifact.materialize.v1",
+        "intent": "Materialize visual proof summary.",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.summary.json",
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.visual-proof-summary.v1",
+              "status": "passed",
+              "runKey": "live-visual-proof-packet",
+              "sourceStory": {
+                "$context": "command.options.text"
+              },
+              "model": {
+                "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
+                "hash": {
+                  "$graph": "promotedModelHash.hash"
+                }
+              },
+              "artifacts": {
+                "ascii": {
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.ascii",
+                  "hash": {
+                    "$graph": "asciiHash.hash"
+                  }
+                },
+                "html": {
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.html",
+                  "hash": {
+                    "$graph": "htmlHash.hash"
+                  }
+                }
+              },
+              "handoffPacketIndex": {
+                "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/handoff-packet.index.v1.json",
+                "hash": {
+                  "$graph": "packetIndexHash.hash"
+                }
+              },
+              "guardrails": {
+                "sameModelForAsciiAndHtml": true,
+                "providerCandidateDoesNotGrantAuthority": true,
+                "materializedByResolverGraph": true
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.summaryArtifact"
+        }
+      },
+      {
+        "id": "hashSummary",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.summary.json"
+        },
+        "output": {
+          "path": "$graph.summaryHash"
+        }
+      },
+      {
+        "id": "emitMaterializationReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit visual proof materialization receipt.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/materialization.receipt.v1.json",
+            "content": {
+              "schemaVersion": "defracto.visual-proof-materialization.receipt.v1",
+              "receiptKey": "defracto.receipt.live-visual-proof-packet.materialization.v1",
+              "status": "passed",
+              "sourceSej": "contracts/sej/materialize-visual-proof-surfaces.sej.v1.json",
+              "semanticOperationGraph": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json",
+              "sourceModel": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
+              "sourceModelHash": {
+                "$graph": "promotedModelHash.hash"
+              },
+              "asciiProjection": {
+                "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.ascii",
+                "hash": {
+                  "$graph": "asciiHash.hash"
+                }
+              },
+              "htmlProjection": {
+                "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.html",
+                "hash": {
+                  "$graph": "htmlHash.hash"
+                }
+              },
+              "summary": {
+                "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.summary.json",
+                "hash": {
+                  "$graph": "summaryHash.hash"
+                }
+              },
+              "handoffPacketIndex": {
+                "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/handoff-packet.index.v1.json",
+                "hash": {
+                  "$graph": "packetIndexHash.hash"
+                }
+              },
+              "completionPosture": "ASCII and HTML proof surfaces were materialized from the same promoted visual proof model through resolver-mediated SEJ/SOG stages."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.materializationReceipt"
+        }
+      },
+      {
+        "id": "projectCommandResult",
+        "capabilityKey": "project.value.v1",
+        "intent": "Project command result for the CLI.",
+        "input": {
+          "fields": {
+            "schemaVersion": {
+              "literal": "defracto.ndd-story-implement.visual-proof-result.v1"
+            },
+            "status": {
+              "literal": "passed"
+            },
+            "runKey": {
+              "literal": "live-visual-proof-packet"
+            },
+            "runPath": {
+              "literal": "conveyor/runs/2026/06/24/live-visual-proof-packet"
+            },
+            "sourceModelHash": {
+              "$graph": "promotedModelHash.hash"
+            },
+            "asciiHash": {
+              "$graph": "asciiHash.hash"
+            },
+            "htmlHash": {
+              "$graph": "htmlHash.hash"
+            },
+            "samePromotedModelForAsciiAndHtml": {
+              "literal": true
+            },
+            "artifacts": {
+              "literal": {
+                "model": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
+                "ascii": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.ascii",
+                "html": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.html",
+                "summary": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof.summary.json",
+                "handoffPacketIndex": "conveyor/runs/2026/06/24/live-visual-proof-packet/handoff-packets/handoff-packet.index.v1.json",
+                "materializationReceipt": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/materialization.receipt.v1.json"
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.commandResult"
+        }
+      }
+    ],
+    "return": {
+      "$graph": "commandResult"
+    }
+  },
+  "evidenceObligations": [
+    "cognitive_provider_evidence_verified",
+    "candidate_visual_model_materialized",
+    "visual_model_hardened_and_promoted",
+    "ascii_projection_materialized",
+    "html_projection_materialized",
+    "same_model_hash_used_for_ascii_and_html",
+    "handoff_packets_materialized",
+    "materialization_receipt_emitted"
+  ],
+  "forbiddenClaims": [
+    "ASCII and HTML came from separate models",
+    "provider candidate granted authority without hardening",
+    "hand-authored projection surface",
+    "resolver repo changed"
+  ],
+  "completionPosture": "The visual proof materialization graph produces reviewable ASCII and HTML surfaces from one promoted model and leaves packet/receipt evidence for every stage."
+}

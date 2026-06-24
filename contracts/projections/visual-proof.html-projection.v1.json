@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "defracto.projection-manifest.v1",
+  "projectionKey": "defracto.projections.visual-proof.html.v1",
+  "projectionKind": "html_visual_proof_document",
+  "sourceModelSchema": "contracts/schemas/visual-proof-model.schema.v1.json",
+  "sourceTruth": "promoted_visual_proof_model",
+  "targetPathTemplate": "conveyor/runs/2026/06/24/{sliceKey}/artifacts/visual-proof.html",
+  "requiredSourceHash": "visual-proof-model.v1.json hash",
+  "projectionRules": [
+    "Render the promoted visual proof model as a reviewable HTML proof document.",
+    "Include story text, authority posture, stage handoff packet table, artifact hashes, and receipt paths.",
+    "Do not invent nodes or edges outside the promoted visual model.",
+    "Embed the same source model hash used by the ASCII projection receipt."
+  ],
+  "completionPosture": "The HTML proof document is valid only when projected from the same promoted visual model as the ASCII proof surface."
+}

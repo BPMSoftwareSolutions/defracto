@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defracto.visual-proof-model.schema.v1",
+  "title": "Visual Proof Model",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "modelKey",
+    "title",
+    "sourceStory",
+    "authorityStatus",
+    "nodes",
+    "edges",
+    "projectionTargets",
+    "guardrails"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "defracto.visual-proof-model.v1"
+    },
+    "modelKey": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceStory": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authorityStatus": {
+      "type": "string",
+      "enum": [
+        "candidate_only",
+        "promoted_authority",
+        "blocked"
+      ]
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "label"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "projectionTargets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ascii",
+          "html"
+        ]
+      }
+    },
+    "guardrails": {
+      "type": "object",
+      "required": [
+        "sameModelRequiredForAllSurfaces",
+        "handAuthoredProjectionForbidden",
+        "providerCandidateDoesNotGrantAuthority"
+      ],
+      "properties": {
+        "sameModelRequiredForAllSurfaces": {
+          "type": "boolean"
+        },
+        "handAuthoredProjectionForbidden": {
+          "type": "boolean"
+        },
+        "providerCandidateDoesNotGrantAuthority": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

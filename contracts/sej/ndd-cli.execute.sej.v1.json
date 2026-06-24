@@ -8,6 +8,7 @@
     "semanticOperationGraph": "contracts/semantic-operation-graphs/cli/ndd-cli.route-dispatch.execute.sog.v1.json",
     "routeTargets": [
       "contracts/semantic-operation-graphs/cli/ndd-stress-run.execute.sog.v1.json",
+      "contracts/semantic-operation-graphs/cli/ndd-story-implement.execute.sog.v1.json",
       "contracts/semantic-operation-graphs/cli/ndd-cli.conveyor-run.execute.sog.v1.json"
     ]
   },

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "defracto.projection-manifest.v1",
+  "projectionKey": "defracto.projections.visual-proof.ascii.v1",
+  "projectionKind": "ascii_visual_proof",
+  "sourceModelSchema": "contracts/schemas/visual-proof-model.schema.v1.json",
+  "sourceTruth": "promoted_visual_proof_model",
+  "targetPathTemplate": "conveyor/runs/2026/06/24/{sliceKey}/artifacts/visual-proof.ascii",
+  "requiredSourceHash": "visual-proof-model.v1.json hash",
+  "projectionRules": [
+    "Render the promoted visual proof model as a readable ASCII stage chain.",
+    "Do not invent nodes or edges outside the promoted visual model.",
+    "Embed the source model hash in the projection receipt."
+  ],
+  "completionPosture": "The ASCII proof surface is valid only when projected from the same promoted visual model as the HTML proof surface."
+}

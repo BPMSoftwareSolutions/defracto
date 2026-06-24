@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "defracto.sej-contract.v1",
+  "contractKey": "defracto.sej.materialize-visual-proof-surfaces.v1",
+  "contractKind": "semantic-executable-json",
+  "contractStatus": "ready-for-resolver",
+  "toolKey": "defracto.visual-proof.materialize-surfaces",
+  "sourceLineage": {
+    "visualProofModelSchema": "contracts/schemas/visual-proof-model.schema.v1.json",
+    "asciiProjectionManifest": "contracts/projections/visual-proof.ascii-projection.v1.json",
+    "htmlProjectionManifest": "contracts/projections/visual-proof.html-projection.v1.json",
+    "semanticOperationGraph": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json",
+    "handoffPacketSchema": "contracts/schemas/conveyor-stage-handoff-packet.schema.v1.json"
+  },
+  "semanticBody": {
+    "bodyKind": "semantic_operation_graph",
+    "bodyRef": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json",
+    "hostLanguageBodyAllowed": false
+  },
+  "boundedInputs": [
+    "operator story text",
+    "slice key",
+    "existing live cognitive provider receipts"
+  ],
+  "boundedOutputs": [
+    "visual-proof-model.v1.json",
+    "visual-proof.ascii",
+    "visual-proof.html",
+    "visual-proof.summary.json",
+    "stage handoff packets",
+    "projection and materialization receipts"
+  ],
+  "requiredOperations": [
+    {
+      "operationKey": "cli.argv.match.v1",
+      "purpose": "Match ndd story implement --text ... --slice live-visual-proof-packet.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.receipt.verify.v1",
+      "purpose": "Verify provider participation evidence before visual model promotion.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "artifact.materialize.v1",
+      "purpose": "Materialize promoted model, ASCII, HTML, summary, and packet artifacts.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "hash.compute.v1",
+      "purpose": "Hash the model and both projection surfaces.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    },
+    {
+      "operationKey": "evidence.emit.v1",
+      "purpose": "Emit projection and materialization receipts.",
+      "requirementState": "required",
+      "missingCapabilityBehavior": "blocked"
+    }
+  ],
+  "failurePosture": "Missing command text, slice key, provider evidence, projection authority, or materialization receipt blocks the visual proof packet.",
+  "completionPosture": "This SEJ materializes ASCII and HTML proof surfaces from one promoted visual proof model through resolver-mediated JSON only."
+}

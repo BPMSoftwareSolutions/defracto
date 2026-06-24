@@ -1,0 +1,29 @@
+Story-to-TDD Conveyor Proof
+Source model: conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json
+
++-------------+
+| User Story  |
++------+------+
+       |
+       v
++-------------------+
+| Live AI Cognition |
++---------+---------+
+          |
+          v
++---------------------+
+| Authority Hardening |
++----+------------+---+
+     |            |
+     v            v
++-----------+  +-----------+
+| ASCII     |  | HTML      |
+| Projection|  | Projection|
++-----+-----+  +-----+-----+
+      |              |
+      +------+-------+
+             |
+             v
++--------------------------+
+| Resolver Materialization |
++--------------------------+
