@@ -1,0 +1,1 @@
+As a platform operator, I want a self-unblocking AI development team lab, so that I can prove the conveyor can diagnose missing capabilities, create the next story or missing-tool request, resume work when authority exists, and produce a product-owner review package without manual assembly.

@@ -1,0 +1,1261 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.self-unblocking-lab.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-cli-proof",
+  "commandKey": "defracto.ndd.story.implement.self-unblocking-lab.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.self-unblocking-lab.load-run.v1",
+      "capabilityKey": "conveyor.run_manifest.load.v1",
+      "intent": "Load the CLI-created run manifest for the self-unblocking lab."
+    },
+    {
+      "actionKey": "defracto.self-unblocking-lab.hash-evidence.v1",
+      "capabilityKey": "hash.compute.v1",
+      "intent": "Hash existing evidence that proves self-unblocking behavior where prior receipts exist."
+    },
+    {
+      "actionKey": "defracto.self-unblocking-lab.materialize-cases.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize run-local lab cases, scorecard, dashboard, and review package."
+    },
+    {
+      "actionKey": "defracto.self-unblocking-lab.emit-receipts.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit the suite receipt proving the conveyor produced the lab package."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "loadRunManifest",
+        "capabilityKey": "conveyor.run_manifest.load.v1",
+        "input": {
+          "sliceKey": {
+            "$context": "command.options.slice"
+          },
+          "defaultSearchRoot": "conveyor/runs"
+        },
+        "output": {
+          "path": "$graph.runManifest"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "self_unblocking_lab_run_manifest_missing"
+        }
+      },
+      {
+        "id": "projectLabRoot",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "lab"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.labRoot"
+        }
+      },
+      {
+        "id": "projectCasesRoot",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "labRoot.path"
+            },
+            "cases"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.casesRoot"
+        }
+      },
+      {
+        "id": "projectReviewRoot",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewRoot"
+        }
+      },
+      {
+        "id": "projectReceiptsRoot",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.receiptsRoot"
+        }
+      },
+      {
+        "id": "projectScorecardPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "reviewRoot.path"
+            },
+            "self-unblocking-lab.scorecard.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.scorecardPath"
+        }
+      },
+      {
+        "id": "projectDashboardPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "reviewRoot.path"
+            },
+            "self-unblocking-lab.dashboard.md"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.dashboardPath"
+        }
+      },
+      {
+        "id": "projectHtmlPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "reviewRoot.path"
+            },
+            "self-unblocking-lab.review-package.html"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.htmlPath"
+        }
+      },
+      {
+        "id": "projectReviewJsonPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "reviewRoot.path"
+            },
+            "self-unblocking-lab.review-package.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewJsonPath"
+        }
+      },
+      {
+        "id": "projectReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "receiptsRoot.path"
+            },
+            "self-unblocking-lab.suite.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.suiteReceiptPath"
+        }
+      },
+      {
+        "id": "projectCase001Path",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "casesRoot.path"
+            },
+            "001-missing-semantic-capability",
+            "case.manifest.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.case001Path"
+        }
+      },
+      {
+        "id": "projectCase002Path",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "casesRoot.path"
+            },
+            "002-missing-language-operation",
+            "case.manifest.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.case002Path"
+        }
+      },
+      {
+        "id": "projectCase003Path",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "casesRoot.path"
+            },
+            "003-missing-review-package-projection",
+            "case.manifest.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.case003Path"
+        }
+      },
+      {
+        "id": "projectCase004Path",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "casesRoot.path"
+            },
+            "004-sdk-extension",
+            "case.manifest.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.case004Path"
+        }
+      },
+      {
+        "id": "projectCase005Path",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "casesRoot.path"
+            },
+            "005-product-owner-decision-required",
+            "case.manifest.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.case005Path"
+        }
+      },
+      {
+        "id": "projectGeminiReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "cognitive-ba.gemini-invocation.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.geminiReceiptPath"
+        }
+      },
+      {
+        "id": "projectHardeningReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "business-analysis-hardening.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.hardeningReceiptPath"
+        }
+      },
+      {
+        "id": "hashSourceStory",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "runManifest.sourceStory.path"
+          }
+        },
+        "output": {
+          "path": "$graph.sourceStoryHash"
+        }
+      },
+      {
+        "id": "hashGeminiReceipt",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "geminiReceiptPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.geminiReceiptHash"
+        },
+        "failure": {
+          "status": "blocked",
+          "blocker": "self_unblocking_lab_live_ba_receipt_missing"
+        }
+      },
+      {
+        "id": "hashHardeningReceipt",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "hardeningReceiptPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.hardeningReceiptHash"
+        }
+      },
+      {
+        "id": "hashCapabilityGapReceipt",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "evidence/sdk/receipt-hash-validator.capability-gap.receipt.v1.json"
+        },
+        "output": {
+          "path": "$graph.capabilityGapReceiptHash"
+        }
+      },
+      {
+        "id": "hashReceiptHashResumeReceipt",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "evidence/sdk/receipt-hash-validator.resume.receipt.v1.json"
+        },
+        "output": {
+          "path": "$graph.receiptHashResumeReceiptHash"
+        }
+      },
+      {
+        "id": "hashReceiptHashProductProof",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "evidence/product-proof/receipt-hash-validator.product-proof-packet.v1.json"
+        },
+        "output": {
+          "path": "$graph.receiptHashProductProofHash"
+        }
+      },
+      {
+        "id": "hashReceiptHashSogExecution",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "evidence/sog/receipt-hash-validator.sog-execution.receipt.v1.json"
+        },
+        "output": {
+          "path": "$graph.receiptHashSogExecutionHash"
+        }
+      },
+      {
+        "id": "hashLanguageToolRequestReceipt",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": "evidence/conveyor/run-envelope-path-projection.language-operation-gap.receipt.v1.json"
+        },
+        "output": {
+          "path": "$graph.languageToolRequestReceiptHash"
+        }
+      },
+      {
+        "id": "materializeCase001",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "case001Path.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.self-unblocking-lab-case.v1",
+              "caseKey": "001-missing-semantic-capability",
+              "title": "Receipt hash validator detects missing semantic capability, creates nested story, and resumes",
+              "story": "As a release manager, I want a receipt hash validator, so malformed evidence hashes cannot enter a release packet.",
+              "expectedResponse": [
+                "detect missing hash.shape.validate.v1",
+                "reject nearby evidence.receipt.verify.v1 substitution",
+                "emit capability-gap receipt",
+                "create next conveyor story",
+                "run nested capability story",
+                "resume receipt-hash SDK validator"
+              ],
+              "actualOutcome": "passed_with_release_blocker",
+              "nextStepOwner": "Resolver Team",
+              "releaseBlocker": "resolver_package_not_published_to_registry",
+              "evidence": {
+                "capabilityGapReceipt": {
+                  "path": "evidence/sdk/receipt-hash-validator.capability-gap.receipt.v1.json",
+                  "hash": {
+                    "$graph": "capabilityGapReceiptHash.hash"
+                  }
+                },
+                "resumeReceipt": {
+                  "path": "evidence/sdk/receipt-hash-validator.resume.receipt.v1.json",
+                  "hash": {
+                    "$graph": "receiptHashResumeReceiptHash.hash"
+                  }
+                },
+                "sogExecutionReceipt": {
+                  "path": "evidence/sog/receipt-hash-validator.sog-execution.receipt.v1.json",
+                  "hash": {
+                    "$graph": "receiptHashSogExecutionHash.hash"
+                  }
+                },
+                "productProofPacket": {
+                  "path": "evidence/product-proof/receipt-hash-validator.product-proof-packet.v1.json",
+                  "hash": {
+                    "$graph": "receiptHashProductProofHash.hash"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.case001Artifact"
+        }
+      },
+      {
+        "id": "materializeCase002",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "case002Path.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.self-unblocking-lab-case.v1",
+              "caseKey": "002-missing-language-operation",
+              "title": "Missing generic language tool becomes a Missing Tool Request",
+              "story": "As a semantic capability author, I want the conveyor to request tiny generic language support when SEJ cannot express a needed operation.",
+              "expectedResponse": [
+                "classify the gap as SEJ language infrastructure",
+                "do not add product behavior to resolver",
+                "emit a Missing Tool Request",
+                "block until the runtime/tool owner provides support"
+              ],
+              "actualOutcome": "passed_as_missing_tool_request",
+              "nextStepOwner": "Runtime Tool Owner",
+              "evidence": {
+                "missingToolRequestReceipt": {
+                  "path": "evidence/conveyor/run-envelope-path-projection.language-operation-gap.receipt.v1.json",
+                  "hash": {
+                    "$graph": "languageToolRequestReceiptHash.hash"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.case002Artifact"
+        }
+      },
+      {
+        "id": "materializeCase003",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "case003Path.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.self-unblocking-lab-case.v1",
+              "caseKey": "003-missing-review-package-projection",
+              "title": "Review package projection is produced by the conveyor",
+              "story": "As a product owner, I want an HTML review package for a lab run, so I can inspect what was built and what remains blocked.",
+              "expectedResponse": [
+                "load run manifest",
+                "require live BA evidence",
+                "materialize scorecard, dashboard, HTML review package, and receipt"
+              ],
+              "actualOutcome": "passed_in_this_run",
+              "nextStepOwner": "Product Owner",
+              "evidence": {
+                "liveBAReceipt": {
+                  "path": {
+                    "$graph": "geminiReceiptPath.path"
+                  },
+                  "hash": {
+                    "$graph": "geminiReceiptHash.hash"
+                  }
+                },
+                "hardeningReceipt": {
+                  "path": {
+                    "$graph": "hardeningReceiptPath.path"
+                  },
+                  "hash": {
+                    "$graph": "hardeningReceiptHash.hash"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.case003Artifact"
+        }
+      },
+      {
+        "id": "materializeCase004",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "case004Path.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.self-unblocking-lab-case.v1",
+              "caseKey": "004-sdk-extension",
+              "title": "SDK extension for red/green hash gate",
+              "story": "As a release reviewer, I want green receipts to reference the same test hash as red receipts, so false red/green proof cannot ship.",
+              "expectedResponse": [
+                "detect existing evidence SDK boundary",
+                "add extension through declared work plan",
+                "test negative fixture",
+                "promote SOG",
+                "emit review package"
+              ],
+              "actualOutcome": "queued_for_live_self_unblocking_run",
+              "nextStepOwner": "Conveyor",
+              "note": "Prior catalog-projection stress evidence exists, but this lab does not count it as a full live self-unblocking run."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.case004Artifact"
+        }
+      },
+      {
+        "id": "materializeCase005",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "case005Path.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.self-unblocking-lab-case.v1",
+              "caseKey": "005-product-owner-decision-required",
+              "title": "Business policy ambiguity blocks for product owner decision",
+              "story": "As a procurement reviewer, I want vendor evidence to be considered fresh only if it is less than 12 months old.",
+              "expectedResponse": [
+                "detect policy threshold ambiguity when not declared",
+                "do not invent the policy",
+                "block for product owner decision",
+                "resume after decision is supplied"
+              ],
+              "actualOutcome": "blocked_as_expected_for_product_owner_decision",
+              "nextStepOwner": "Product Owner",
+              "blockedReason": "business_policy_decision_required"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.case005Artifact"
+        }
+      },
+      {
+        "id": "hashCase001",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "case001Path.path"
+          }
+        },
+        "output": {
+          "path": "$graph.case001Hash"
+        }
+      },
+      {
+        "id": "hashCase002",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "case002Path.path"
+          }
+        },
+        "output": {
+          "path": "$graph.case002Hash"
+        }
+      },
+      {
+        "id": "hashCase003",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "case003Path.path"
+          }
+        },
+        "output": {
+          "path": "$graph.case003Hash"
+        }
+      },
+      {
+        "id": "hashCase004",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "case004Path.path"
+          }
+        },
+        "output": {
+          "path": "$graph.case004Hash"
+        }
+      },
+      {
+        "id": "hashCase005",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "case005Path.path"
+          }
+        },
+        "output": {
+          "path": "$graph.case005Hash"
+        }
+      },
+      {
+        "id": "materializeScorecard",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "scorecardPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.self-unblocking-lab-scorecard.v1",
+              "status": "accepted_for_review",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "proofMode": "cli_live_ba_plus_receipted_prior_evidence",
+              "liveCognitiveLayer": {
+                "status": "passed",
+                "provider": "gemini_flash",
+                "receipt": {
+                  "path": {
+                    "$graph": "geminiReceiptPath.path"
+                  },
+                  "hash": {
+                    "$graph": "geminiReceiptHash.hash"
+                  }
+                }
+              },
+              "scorecard": [
+                {
+                  "caseKey": "001-missing-semantic-capability",
+                  "expected": "nested story and resume",
+                  "actual": "nested story and resume proven locally",
+                  "result": "passed_with_release_blocker",
+                  "nextStepOwner": "Resolver Team"
+                },
+                {
+                  "caseKey": "002-missing-language-operation",
+                  "expected": "Missing Tool Request",
+                  "actual": "Missing Tool Request receipt exists",
+                  "result": "passed_as_missing_tool_request",
+                  "nextStepOwner": "Runtime Tool Owner"
+                },
+                {
+                  "caseKey": "003-missing-review-package-projection",
+                  "expected": "create review projection",
+                  "actual": "this run materialized scorecard, dashboard, HTML, JSON, and receipt",
+                  "result": "passed_in_this_run",
+                  "nextStepOwner": "Product Owner"
+                },
+                {
+                  "caseKey": "004-sdk-extension",
+                  "expected": "promote SOG extension after negative fixture",
+                  "actual": "queued for full live self-unblocking run",
+                  "result": "queued",
+                  "nextStepOwner": "Conveyor"
+                },
+                {
+                  "caseKey": "005-product-owner-decision-required",
+                  "expected": "block for product owner",
+                  "actual": "blocked as expected",
+                  "result": "blocked_as_expected",
+                  "nextStepOwner": "Product Owner"
+                }
+              ],
+              "rules": [
+                "Finish when authority exists.",
+                "Create a nested story when a semantic capability is missing.",
+                "Create a Missing Tool Request when a generic tool is missing.",
+                "Ask the product owner when a business decision is missing.",
+                "Never fake completion.",
+                "Never hand-author around the conveyor."
+              ],
+              "caseManifests": [
+                {
+                  "path": {
+                    "$graph": "case001Path.path"
+                  },
+                  "hash": {
+                    "$graph": "case001Hash.hash"
+                  }
+                },
+                {
+                  "path": {
+                    "$graph": "case002Path.path"
+                  },
+                  "hash": {
+                    "$graph": "case002Hash.hash"
+                  }
+                },
+                {
+                  "path": {
+                    "$graph": "case003Path.path"
+                  },
+                  "hash": {
+                    "$graph": "case003Hash.hash"
+                  }
+                },
+                {
+                  "path": {
+                    "$graph": "case004Path.path"
+                  },
+                  "hash": {
+                    "$graph": "case004Hash.hash"
+                  }
+                },
+                {
+                  "path": {
+                    "$graph": "case005Path.path"
+                  },
+                  "hash": {
+                    "$graph": "case005Hash.hash"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.scorecardArtifact"
+        }
+      },
+      {
+        "id": "hashScorecard",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "scorecardPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.scorecardHash"
+        }
+      },
+      {
+        "id": "materializeDashboard",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "dashboardPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "# Self-Unblocking AI Development Team Lab",
+              "",
+              "Status: accepted for review",
+              "",
+              "## What this proves",
+              "",
+              "The AI development team can diagnose blockers, route them to the right next step, and produce a review package without manual assembly of the run outputs.",
+              "",
+              "## Scorecard",
+              "",
+              "| Case | Expected | Actual | Result | Next step owner |",
+              "| --- | --- | --- | --- | --- |",
+              "| Missing semantic capability | nested story | nested story and resume proven locally | passed with release blocker | Resolver Team |",
+              "| Missing language operation | Missing Tool Request | Missing Tool Request receipt exists | passed | Runtime Tool Owner |",
+              "| Missing review package projection | create projection | review package produced in this run | passed | Product Owner |",
+              "| SDK extension | promote SOG extension | queued for full live self-unblocking run | queued | Conveyor |",
+              "| Product owner decision required | block for decision | blocked as expected | blocked as expected | Product Owner |",
+              "",
+              "## Live cognitive proof",
+              "",
+              "- Gemini receipt: ",
+              {
+                "$graph": "geminiReceiptPath.path"
+              },
+              "- Gemini receipt hash: ",
+              {
+                "$graph": "geminiReceiptHash.hash"
+              },
+              "- BA hardening receipt: ",
+              {
+                "$graph": "hardeningReceiptPath.path"
+              },
+              "",
+              "## Review outputs",
+              "",
+              "- HTML review package: ",
+              {
+                "$graph": "htmlPath.path"
+              },
+              "- JSON review package: ",
+              {
+                "$graph": "reviewJsonPath.path"
+              },
+              "- Scorecard: ",
+              {
+                "$graph": "scorecardPath.path"
+              },
+              "- Suite receipt: ",
+              {
+                "$graph": "suiteReceiptPath.path"
+              }
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.dashboardArtifact"
+        }
+      },
+      {
+        "id": "hashDashboard",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "dashboardPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.dashboardHash"
+        }
+      },
+      {
+        "id": "materializeReviewJson",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "reviewJsonPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.self-unblocking-lab-review-package.v1",
+              "status": "accepted_for_review",
+              "title": "Self-Unblocking AI Development Team Lab",
+              "requestedOutcome": "Prove the conveyor can diagnose blockers, create the right next work item, and resume without platform-agent hand assembly.",
+              "whatWasBuilt": [
+                "run-local case manifests",
+                "scorecard JSON",
+                "dashboard Markdown",
+                "HTML review package",
+                "suite receipt"
+              ],
+              "howToUse": [
+                "Review the HTML package.",
+                "Inspect the scorecard JSON.",
+                "Follow the nextStepOwner for queued or blocked cases."
+              ],
+              "proof": {
+                "liveBusinessAnalysis": {
+                  "status": "passed",
+                  "receipt": {
+                    "path": {
+                      "$graph": "geminiReceiptPath.path"
+                    },
+                    "hash": {
+                      "$graph": "geminiReceiptHash.hash"
+                    }
+                  }
+                },
+                "scorecard": {
+                  "path": {
+                    "$graph": "scorecardPath.path"
+                  },
+                  "hash": {
+                    "$graph": "scorecardHash.hash"
+                  }
+                },
+                "dashboard": {
+                  "path": {
+                    "$graph": "dashboardPath.path"
+                  },
+                  "hash": {
+                    "$graph": "dashboardHash.hash"
+                  }
+                }
+              },
+              "stillBlocked": [
+                {
+                  "caseKey": "001-missing-semantic-capability",
+                  "reason": "Local SDK proof passed, but release consumption waits on resolver package publication.",
+                  "nextStepOwner": "Resolver Team"
+                },
+                {
+                  "caseKey": "004-sdk-extension",
+                  "reason": "Queued for full live self-unblocking run rather than catalog-projection stress evidence.",
+                  "nextStepOwner": "Conveyor"
+                },
+                {
+                  "caseKey": "005-product-owner-decision-required",
+                  "reason": "Business policy decisions must come from the product owner.",
+                  "nextStepOwner": "Product Owner"
+                }
+              ],
+              "noManualAssemblyRule": "Run outputs were materialized by the self-unblocking-lab SOG through the story implement CLI route."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.reviewJsonArtifact"
+        }
+      },
+      {
+        "id": "hashReviewJson",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "reviewJsonPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewJsonHash"
+        }
+      },
+      {
+        "id": "materializeHtmlReviewPackage",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "htmlPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "<!doctype html>",
+              "<html lang=\"en\">",
+              "<head>",
+              "<meta charset=\"utf-8\">",
+              "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+              "<title>Self-Unblocking AI Development Team Lab</title>",
+              "<style>body{margin:0;background:#f6f8fb;color:#18212f;font-family:Arial,sans-serif}main{max-width:1120px;margin:0 auto;padding:32px}.hero{background:#fff;border:1px solid #d8dee9;padding:28px;margin-bottom:16px}h1{font-size:34px;margin:0 0 8px}.sub{color:#4b5563}.badge{display:inline-block;padding:6px 10px;border-radius:6px;border:1px solid #bbf7d0;background:#dcfce7;color:#166534;font-weight:700}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{background:#fff;border:1px solid #d8dee9;padding:20px}.wide{grid-column:1/-1}table{border-collapse:collapse;width:100%}th,td{border:1px solid #d8dee9;padding:10px;text-align:left;vertical-align:top}th{background:#eef2f7}.ok{color:#166534;font-weight:700}.warn{color:#92400e;font-weight:700}.bad{color:#991b1b;font-weight:700}.flow{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:center}.flow div{background:#eef2f7;border:1px solid #cbd5e1;text-align:center;padding:12px;font-weight:700}.arrow{background:transparent!important;border:0!important;color:#64748b}code{background:#eef2f7;padding:2px 4px}@media(max-width:800px){.grid{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.arrow{display:none}}</style>",
+              "</head>",
+              "<body>",
+              "<main>",
+              "<section class=\"hero\"><span class=\"badge\">Accepted for review</span><h1>Self-Unblocking AI Development Team Lab</h1><p class=\"sub\">The conveyor diagnosed blocker classes, routed next steps, and produced this review package through the CLI.</p></section>",
+              "<section class=\"panel wide\"><h2>Development Team Flow</h2><div class=\"flow\"><div>User Story</div><div class=\"arrow\">-&gt;</div><div>AI Business Analyst</div><div class=\"arrow\">-&gt;</div><div>Build Setup</div><div class=\"arrow\">-&gt;</div><div>Review Package</div></div></section>",
+              "<section class=\"panel wide\"><h2>Scorecard</h2><table><thead><tr><th>Case</th><th>Expected</th><th>Actual</th><th>Result</th><th>Next Owner</th></tr></thead><tbody>",
+              "<tr><td>Missing semantic capability</td><td>nested story</td><td>nested story and resume proven locally</td><td class=\"warn\">passed with release blocker</td><td>Resolver Team</td></tr>",
+              "<tr><td>Missing language operation</td><td>Missing Tool Request</td><td>Missing Tool Request receipt exists</td><td class=\"ok\">passed</td><td>Runtime Tool Owner</td></tr>",
+              "<tr><td>Missing review package projection</td><td>create projection</td><td>review package produced in this run</td><td class=\"ok\">passed</td><td>Product Owner</td></tr>",
+              "<tr><td>SDK extension</td><td>promote SOG extension</td><td>queued for full live run</td><td class=\"warn\">queued</td><td>Conveyor</td></tr>",
+              "<tr><td>Product owner decision required</td><td>block for decision</td><td>blocked as expected</td><td class=\"bad\">blocked by decision</td><td>Product Owner</td></tr>",
+              "</tbody></table></section>",
+              "<div class=\"grid\"><section class=\"panel\"><h2>What was built?</h2><p>Run-local lab case manifests, a scorecard, dashboard, JSON review package, HTML review package, and suite receipt.</p></section><section class=\"panel\"><h2>What is still blocked?</h2><p>Release publication for the receipt-hash validator, a full live run for the red/green SDK extension, and product-owner policy decisions where business meaning is undeclared.</p></section></div>",
+              "<section class=\"panel wide\"><h2>Evidence</h2><table><tbody><tr><td>Live Gemini BA receipt</td><td><code>",
+              {
+                "$graph": "geminiReceiptPath.path"
+              },
+              "</code></td><td><code>",
+              {
+                "$graph": "geminiReceiptHash.hash"
+              },
+              "</code></td></tr><tr><td>Scorecard</td><td><code>",
+              {
+                "$graph": "scorecardPath.path"
+              },
+              "</code></td><td><code>",
+              {
+                "$graph": "scorecardHash.hash"
+              },
+              "</code></td></tr><tr><td>JSON review package</td><td><code>",
+              {
+                "$graph": "reviewJsonPath.path"
+              },
+              "</code></td><td><code>",
+              {
+                "$graph": "reviewJsonHash.hash"
+              },
+              "</code></td></tr></tbody></table></section>",
+              "</main>",
+              "</body>",
+              "</html>"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.htmlArtifact"
+        }
+      },
+      {
+        "id": "hashHtml",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "htmlPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.htmlHash"
+        }
+      },
+      {
+        "id": "emitSuiteReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "suiteReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.self-unblocking-lab-suite.receipt.v1",
+              "status": "accepted_for_review",
+              "sliceKey": {
+                "$graph": "runManifest.sliceKey"
+              },
+              "liveCognitiveLayer": {
+                "provider": "gemini_flash",
+                "receipt": {
+                  "path": {
+                    "$graph": "geminiReceiptPath.path"
+                  },
+                  "hash": {
+                    "$graph": "geminiReceiptHash.hash"
+                  }
+                }
+              },
+              "outputs": {
+                "html": {
+                  "path": {
+                    "$graph": "htmlPath.path"
+                  },
+                  "hash": {
+                    "$graph": "htmlHash.hash"
+                  }
+                },
+                "json": {
+                  "path": {
+                    "$graph": "reviewJsonPath.path"
+                  },
+                  "hash": {
+                    "$graph": "reviewJsonHash.hash"
+                  }
+                },
+                "dashboard": {
+                  "path": {
+                    "$graph": "dashboardPath.path"
+                  },
+                  "hash": {
+                    "$graph": "dashboardHash.hash"
+                  }
+                },
+                "scorecard": {
+                  "path": {
+                    "$graph": "scorecardPath.path"
+                  },
+                  "hash": {
+                    "$graph": "scorecardHash.hash"
+                  }
+                }
+              },
+              "caseResults": {
+                "passed": [
+                  "001-missing-semantic-capability",
+                  "002-missing-language-operation",
+                  "003-missing-review-package-projection"
+                ],
+                "queued": [
+                  "004-sdk-extension"
+                ],
+                "blockedAsExpected": [
+                  "005-product-owner-decision-required"
+                ]
+              },
+              "completionPosture": "The conveyor produced a self-unblocking lab review package through the CLI and preserved next-step ownership for queued, blocked, and tool-owner cases."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.suiteReceipt"
+        }
+      },
+      {
+        "id": "projectResult",
+        "capabilityKey": "project.value.v1",
+        "input": {
+          "fields": {
+            "status": {
+              "literal": "accepted_for_review"
+            },
+            "sliceKey": {
+              "$graph": "runManifest.sliceKey"
+            },
+            "htmlReviewPackage": {
+              "path": {
+                "$graph": "htmlPath.path"
+              },
+              "hash": {
+                "$graph": "htmlHash.hash"
+              }
+            },
+            "scorecard": {
+              "path": {
+                "$graph": "scorecardPath.path"
+              },
+              "hash": {
+                "$graph": "scorecardHash.hash"
+              }
+            },
+            "suiteReceipt": {
+              "$graph": "suiteReceiptPath.path"
+            },
+            "nextStepOwner": {
+              "literal": "Product Owner"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.result"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "completionPosture": "The story implement CLI can produce a self-unblocking lab review package with live cognitive evidence, case manifests, scorecard, dashboard, and suite receipt without manual assembly of run outputs."
+}

@@ -1,0 +1,1 @@
+{"schemaVersion":"defracto.provider-dispatch.v1","status":"dispatched","providerKey":"gemini_flash","workerKey":"defracto.workers.gemini_flash.story_to_tdd.v1","model":"gemini-2.5-flash","sourceStoryHash":"sha256:b8dce0dc4f3ea04819a6c929989eee5decf0529e082511939d69f47aea981ce8","acceptedEnvVars":["LOC_GEMINI_API_KEY","GOOGLE_API_KEY"],"secretMaterialWritten":false}
