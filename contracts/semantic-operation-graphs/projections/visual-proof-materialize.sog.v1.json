@@ -249,6 +249,34 @@
         }
       },
       {
+        "id": "emitRunGeminiInvocationReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "intent": "Emit a run-local receipt binding this visual proof packet to live Gemini evidence.",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/gemini-invocation.receipt.v1.json",
+            "content": {
+              "schemaVersion": "defracto.visual-proof-gemini-invocation.receipt.v1",
+              "receiptKey": "defracto.receipt.live-visual-proof-packet.gemini-invocation.v1",
+              "status": "passed",
+              "laneMode": "cognitive_compile",
+              "worker": "defracto.workers.gemini_flash.v1",
+              "sourceInvocationReceipt": "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json",
+              "sourceDispatchReceipt": "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
+              "sourceResponseReceipt": "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
+              "secretMaterialAllowedInEvidence": false,
+              "completionPosture": "This run-local receipt binds the visual proof packet to existing live Gemini Story-to-TDD invocation evidence without copying secret material."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.runGeminiInvocationReceipt"
+        }
+      },
+      {
         "id": "materializeCandidateModel",
         "capabilityKey": "artifact.materialize.v1",
         "intent": "Materialize the candidate visual model.",
@@ -335,6 +363,7 @@
                 "$graph": "promotedModelHash.hash"
               },
               "providerEvidence": [
+                "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/gemini-invocation.receipt.v1.json",
                 "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
                 "evidence/workers/story-to-tdd.gemini-response.receipt.v1.json",
                 "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json"
@@ -491,6 +520,7 @@
               "  <pre>+-------------+&#10;| User Story  |&#10;+------+------+&#10;       |&#10;       v&#10;+-------------------+&#10;| Live AI Cognition |&#10;+---------+---------+&#10;          |&#10;          v&#10;+---------------------+&#10;| Authority Hardening |&#10;+----+------------+---+&#10;     |            |&#10;     v            v&#10;+-----------+  +-----------+&#10;| ASCII     |  | HTML      |&#10;| Projection|  | Projection|&#10;+-----+-----+  +-----+-----+&#10;      |              |&#10;      +------+-------+&#10;             |&#10;             v&#10;+--------------------------+&#10;| Resolver Materialization |&#10;+--------------------------+</pre>",
               "  <h2>Receipts</h2>",
               "  <ul>",
+              "    <li>receipts/gemini-invocation.receipt.v1.json</li>",
               "    <li>receipts/candidate-hardening.receipt.v1.json</li>",
               "    <li>receipts/ascii-projection.receipt.v1.json</li>",
               "    <li>receipts/html-projection.receipt.v1.json</li>",
@@ -590,6 +620,11 @@
                 }
               ],
               "requiredReceipts": [
+                {
+                  "receiptKind": "run_gemini_invocation",
+                  "path": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/gemini-invocation.receipt.v1.json",
+                  "requiredStatus": "passed"
+                },
                 {
                   "receiptKind": "gemini_dispatch",
                   "path": "evidence/workers/story-to-tdd.gemini-dispatch.receipt.v1.json",
@@ -1221,6 +1256,10 @@
                 "sameModelForAsciiAndHtml": true,
                 "providerCandidateDoesNotGrantAuthority": true,
                 "materializedByResolverGraph": true
+              },
+              "providerEvidence": {
+                "runGeminiInvocationReceipt": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/gemini-invocation.receipt.v1.json",
+                "sourceGeminiInvocationReceipt": "evidence/workers/story-to-tdd.gemini-invocation.receipt.v1.json"
               }
             }
           }
@@ -1256,6 +1295,7 @@
               "status": "passed",
               "sourceSej": "contracts/sej/materialize-visual-proof-surfaces.sej.v1.json",
               "semanticOperationGraph": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json",
+              "geminiInvocationReceipt": "conveyor/runs/2026/06/24/live-visual-proof-packet/receipts/gemini-invocation.receipt.v1.json",
               "sourceModel": "conveyor/runs/2026/06/24/live-visual-proof-packet/artifacts/visual-proof-model.v1.json",
               "sourceModelHash": {
                 "$graph": "promotedModelHash.hash"
@@ -1340,7 +1380,7 @@
       }
     ],
     "return": {
-      "$graph": "commandResult"
+      "$result": true
     }
   },
   "evidenceObligations": [
