@@ -1,0 +1,645 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.node-script-replacement-apply.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-cli-proof",
+  "commandKey": "defracto.ndd.story.implement.node-script-replacement-apply.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.node-script-replacement-apply.require-acceptance.v1",
+      "capabilityKey": "generated.facade.smoke_execute.v1",
+      "intent": "Fail closed unless the CLI carries an explicit accepted replacement decision."
+    },
+    {
+      "actionKey": "defracto.node-script-replacement-apply.preserve-rollback.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Preserve rollback evidence before replacing the source script."
+    },
+    {
+      "actionKey": "defracto.node-script-replacement-apply.install-facade.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Replace the original script path with a thin facade that delegates to the proven runtime-surface adapter."
+    },
+    {
+      "actionKey": "defracto.node-script-replacement-apply.verify.v1",
+      "capabilityKey": "generated.facade.smoke_execute.v1",
+      "intent": "Smoke-check the replaced script and emit an application receipt."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "loadRunManifest",
+        "capabilityKey": "conveyor.run_manifest.load.v1",
+        "input": {
+          "sliceKey": {
+            "$context": "command.options.slice"
+          },
+          "defaultSearchRoot": "conveyor/runs"
+        },
+        "output": {
+          "path": "$graph.runManifest"
+        }
+      },
+      {
+        "id": "projectAdapterPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "generated",
+            "runtime-surface",
+            "node",
+            "runtime-surface-evaluator.cjs"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.adapterPath"
+        }
+      },
+      {
+        "id": "projectAcceptanceGatePath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "generated",
+            "replacement",
+            "acceptance-gate.cjs"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.acceptanceGatePath"
+        }
+      },
+      {
+        "id": "projectAcceptanceDecisionPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-acceptance-decision.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.acceptanceDecisionPath"
+        }
+      },
+      {
+        "id": "projectRollbackSnapshotPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "rollback",
+            "vendor-evidence-readiness-checker.original.cjs"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.rollbackSnapshotPath"
+        }
+      },
+      {
+        "id": "projectRollbackManifestPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "rollback",
+            "node-script-replacement.rollback-manifest.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.rollbackManifestPath"
+        }
+      },
+      {
+        "id": "projectReadinessReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "node-script-replacement-readiness.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.readinessReceiptPath"
+        }
+      },
+      {
+        "id": "projectApplyReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "node-script-replacement-apply.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.applyReceiptPath"
+        }
+      },
+      {
+        "id": "projectReviewHtmlPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "node-script-to-sej-refactor.review-package.html"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewHtmlPath"
+        }
+      },
+      {
+        "id": "projectSmokeFixturePath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-fixtures",
+            "missing.vendor-packet.fixture.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.smokeFixturePath"
+        }
+      },
+      {
+        "id": "hashSourceBeforeReplacement",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$context": "command.options.source-script"
+          }
+        },
+        "output": {
+          "path": "$graph.sourceBeforeHash"
+        }
+      },
+      {
+        "id": "verifyReadinessReceipt",
+        "capabilityKey": "evidence.receipt.verify.v1",
+        "input": {
+          "receipts": [
+            {
+              "$graph": "readinessReceiptPath.path"
+            }
+          ]
+        },
+        "output": {
+          "path": "$graph.readinessVerification"
+        }
+      },
+      {
+        "id": "materializeAcceptanceDecision",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "acceptanceDecisionPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.node-script-replacement-acceptance-decision.v1",
+              "acceptanceDecision": {
+                "$context": "command.options.acceptance-decision"
+              },
+              "requiredDecision": "accepted",
+              "sourceScript": {
+                "$context": "command.options.source-script"
+              },
+              "readinessReceipt": {
+                "$graph": "readinessReceiptPath.path"
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.acceptanceDecisionArtifact"
+        }
+      },
+      {
+        "id": "materializeAcceptanceGate",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "acceptanceGatePath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "",
+            "contentRef": [
+              "#!/usr/bin/env node\n",
+              "// GENERATED BY DEFRACTO REPLACEMENT ACCEPTANCE GATE. DO NOT EDIT.\n",
+              "'use strict';\n",
+              "const fs = require('node:fs');\n",
+              "const input = JSON.parse(fs.readFileSync(0, 'utf8') || '{}');\n",
+              "if (input.acceptanceDecision !== 'accepted') {\n",
+              "  process.stdout.write(JSON.stringify({ status: 'blocked', blocker: 'replacement_acceptance_decision_missing_or_not_accepted' }));\n",
+              "  process.exitCode = 1;\n",
+              "} else {\n",
+              "  process.stdout.write(JSON.stringify({ status: 'passed', acceptanceDecision: input.acceptanceDecision }));\n",
+              "}\n"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.acceptanceGateArtifact"
+        }
+      },
+      {
+        "id": "executeAcceptanceGate",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "input": {
+          "targetPath": {
+            "$graph": "acceptanceGatePath.path"
+          },
+          "stdinFixture": {
+            "$graph": "acceptanceDecisionPath.path"
+          },
+          "expectedStatus": "passed"
+        },
+        "output": {
+          "path": "$graph.acceptanceGateExecution"
+        }
+      },
+      {
+        "id": "materializeRollbackSnapshot",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "rollbackSnapshotPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "",
+            "contentRef": [
+              "#!/usr/bin/env node\n",
+              "// GENERATED BY DEFRACTO SEJ MATERIALIZATION. DO NOT EDIT.\n",
+              "// proofSurfaceOnly: true\n",
+              "'use strict';\n",
+              "const fs = require('node:fs');\n",
+              "const input = JSON.parse(fs.readFileSync(0, 'utf8') || '{}');\n",
+              "const required = input.requiredDocuments || [];\n",
+              "const documents = input.documents || [];\n",
+              "const claims = input.claims || [];\n",
+              "const missingDocuments = required.filter((name) => !documents.includes(name));\n",
+              "const checklist = required.map((name) => ({ name, present: documents.includes(name) }));\n",
+              "const unsupportedClaims = [];\n",
+              "if (claims.includes('SOC 2 compliant') && !documents.includes('SOC 2 Type II Report')) unsupportedClaims.push({ claim: 'SOC 2 compliant', reason: 'SOC 2 Type II Report missing' });\n",
+              "const blocked = missingDocuments.length > 0 || unsupportedClaims.length > 0;\n",
+              "const result = {\n",
+              "  schemaVersion: 'defracto.vendor-evidence-readiness.result.v1',\n",
+              "  status: blocked ? 'blocked' : 'passed',\n",
+              "  blocker: blocked ? 'missing_required_vendor_evidence' : null,\n",
+              "  vendorName: input.vendorName || 'Unknown Vendor',\n",
+              "  checklist,\n",
+              "  missingDocuments,\n",
+              "  unsupportedClaims,\n",
+              "  nextAction: blocked ? 'Vendor must provide missing required evidence before security review.' : 'Ready for security review.',\n",
+              "  proofSurfaceOnly: true\n",
+              "};\n",
+              "process.stdout.write(JSON.stringify(result));"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.rollbackSnapshotArtifact"
+        }
+      },
+      {
+        "id": "hashRollbackSnapshot",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "rollbackSnapshotPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.rollbackSnapshotHash"
+        }
+      },
+      {
+        "id": "materializeReplacementFacade",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$context": "command.options.source-script"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "",
+            "contentRef": [
+              "#!/usr/bin/env node\n",
+              "// GENERATED BY DEFRACTO NODE-SCRIPT REPLACEMENT APPLY. DO NOT EDIT.\n",
+              "// thinFacadeOnly: delegates to proven runtime-surface adapter\n",
+              "'use strict';\n",
+              "const childProcess = require('node:child_process');\n",
+              "const fs = require('node:fs');\n",
+              "const input = process.stdin.isTTY ? '' : fs.readFileSync(0, 'utf8');\n",
+              "const run = childProcess.spawnSync(process.execPath, ['",
+              {
+                "$graph": "adapterPath.path"
+              },
+              "'], { encoding: 'utf8', input });\n",
+              "if (run.stdout) process.stdout.write(run.stdout);\n",
+              "if (run.stderr) process.stderr.write(run.stderr);\n",
+              "process.exitCode = run.status || 0;\n"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.replacementFacadeArtifact"
+        }
+      },
+      {
+        "id": "hashSourceAfterReplacement",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$context": "command.options.source-script"
+          }
+        },
+        "output": {
+          "path": "$graph.sourceAfterHash"
+        }
+      },
+      {
+        "id": "executeReplacementSmoke",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "input": {
+          "targetPath": {
+            "$context": "command.options.source-script"
+          },
+          "stdinFixture": {
+            "$graph": "smokeFixturePath.path"
+          },
+          "expectedStatus": "blocked"
+        },
+        "output": {
+          "path": "$graph.replacementSmoke"
+        }
+      },
+      {
+        "id": "materializeRollbackManifest",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "rollbackManifestPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.node-script-replacement.rollback-manifest.v1",
+              "status": "ready",
+              "sourceScript": {
+                "$context": "command.options.source-script"
+              },
+              "rollbackSnapshot": {
+                "path": {
+                  "$graph": "rollbackSnapshotPath.path"
+                },
+                "hash": {
+                  "$graph": "rollbackSnapshotHash.hash"
+                }
+              },
+              "sourceBeforeHash": {
+                "$graph": "sourceBeforeHash.hash"
+              },
+              "sourceAfterHash": {
+                "$graph": "sourceAfterHash.hash"
+              },
+              "restoreAction": "Replace sourceScript with rollbackSnapshot content if rollback is approved."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.rollbackManifestArtifact"
+        }
+      },
+      {
+        "id": "emitApplyReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "applyReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.node-script-replacement-apply.receipt.v1",
+              "status": "replacement_applied",
+              "replacementStatus": "accepted_and_applied",
+              "acceptanceDecision": {
+                "$context": "command.options.acceptance-decision"
+              },
+              "readinessReceipt": {
+                "$graph": "readinessReceiptPath.path"
+              },
+              "rollbackManifestCreated": true,
+              "originalSnapshotPreserved": true,
+              "thinFacadeInstalled": true,
+              "sourceScript": {
+                "$context": "command.options.source-script"
+              },
+              "sourceBeforeHash": {
+                "$graph": "sourceBeforeHash.hash"
+              },
+              "sourceAfterHash": {
+                "$graph": "sourceAfterHash.hash"
+              },
+              "smokeStatus": {
+                "$graph": "replacementSmoke.result.status"
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.applyReceipt"
+        }
+      },
+      {
+        "id": "materializeReviewHtml",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "reviewHtmlPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "<!doctype html>",
+              "<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Node Script Replacement Applied</title>",
+              "<style>body{margin:0;background:#f6f8fb;color:#17202a;font-family:Arial,sans-serif}main{max-width:1120px;margin:0 auto;padding:32px}.hero,.panel{background:#fff;border:1px solid #d8dee9;padding:24px;margin:16px 0}.badge{display:inline-block;padding:6px 10px;border-radius:6px;border:1px solid #bbf7d0;background:#dcfce7;color:#166534;font-weight:700}code{background:#eef2f7;padding:2px 4px}</style></head>",
+              "<body><main><section class=\"hero\"><span class=\"badge\">Replacement applied</span><h1>Node Script Replacement Applied</h1><p>The original script path now contains a thin facade that delegates to the proven runtime-surface adapter.</p></section>",
+              "<section class=\"panel\"><h2>Safeguards</h2><p>Rollback manifest created: <code>",
+              {
+                "$graph": "rollbackManifestPath.path"
+              },
+              "</code></p><p>Apply receipt: <code>",
+              {
+                "$graph": "applyReceiptPath.path"
+              },
+              "</code></p></section>",
+              "</main></body></html>"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.reviewHtmlArtifact"
+        }
+      },
+      {
+        "id": "hashReviewHtml",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "reviewHtmlPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewHtmlHash"
+        }
+      },
+      {
+        "id": "projectResult",
+        "capabilityKey": "project.value.v1",
+        "input": {
+          "fields": {
+            "status": {
+              "literal": "replacement_applied"
+            },
+            "replacementStatus": {
+              "literal": "accepted_and_applied"
+            },
+            "rollbackManifestCreated": {
+              "literal": true
+            },
+            "originalSnapshotPreserved": {
+              "literal": true
+            },
+            "thinFacadeInstalled": {
+              "literal": true
+            },
+            "sourceScript": {
+              "$context": "command.options.source-script"
+            },
+            "applyReceipt": {
+              "$graph": "applyReceiptPath.path"
+            },
+            "rollbackManifest": {
+              "$graph": "rollbackManifestPath.path"
+            },
+            "reviewPackage": {
+              "path": {
+                "$graph": "reviewHtmlPath.path"
+              },
+              "hash": {
+                "$graph": "reviewHtmlHash.hash"
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.result"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "completionPosture": "Replacement apply is permitted only after explicit accepted decision, readiness evidence, rollback evidence, installed thin facade, and smoke execution."
+}
