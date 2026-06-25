@@ -61,6 +61,14 @@
                 {
                   "name": "slice",
                   "required": true
+                },
+                {
+                  "name": "source-script",
+                  "required": false
+                },
+                {
+                  "name": "capability",
+                  "required": false
                 }
               ]
             }
@@ -199,10 +207,10 @@
                                           "$graph": "command.options.target-kind"
                                         },
                                         {
-                                          "literal": "invoice-approval-readiness-sdk"
-                                        }
-                                      ]
-                                    },
+                                        "literal": "invoice-approval-readiness-sdk"
+                                      }
+                                    ]
+                                  },
                                     "then": {
                                       "literal": "invoice_approval_readiness_sdk"
                                     },
@@ -213,15 +221,30 @@
                                             "$graph": "command.options.target-kind"
                                           },
                                           {
-                                            "literal": "visual-proof"
+                                            "literal": "node-script-to-sej-refactor"
                                           }
                                         ]
                                       },
                                       "then": {
-                                        "literal": "visual_proof_materialization"
+                                        "literal": "node_script_to_sej_refactor"
                                       },
                                       "else": {
-                                        "literal": "manifest_declared_lane"
+                                        "when": {
+                                          "equals": [
+                                            {
+                                              "$graph": "command.options.target-kind"
+                                            },
+                                            {
+                                              "literal": "visual-proof"
+                                            }
+                                          ]
+                                        },
+                                        "then": {
+                                          "literal": "visual_proof_materialization"
+                                        },
+                                        "else": {
+                                          "literal": "manifest_declared_lane"
+                                        }
                                       }
                                     }
                                   }
@@ -368,10 +391,10 @@
                                           "$graph": "command.options.target-kind"
                                         },
                                         {
-                                          "literal": "invoice-approval-readiness-sdk"
-                                        }
-                                      ]
-                                    },
+                                        "literal": "invoice-approval-readiness-sdk"
+                                      }
+                                    ]
+                                  },
                                     "then": {
                                       "literal": {
                                         "$inline": "contracts/semantic-operation-graphs/sdk/invoice-approval-readiness-release-package.sog.v1.json"
@@ -384,18 +407,35 @@
                                             "$graph": "command.options.target-kind"
                                           },
                                           {
-                                            "literal": "visual-proof"
+                                            "literal": "node-script-to-sej-refactor"
                                           }
                                         ]
                                       },
                                       "then": {
                                         "literal": {
-                                          "$inline": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+                                          "$inline": "contracts/semantic-operation-graphs/lab/node-script-to-sej-refactor.execute.sog.v1.json"
                                         }
                                       },
                                       "else": {
-                                        "literal": {
-                                          "$inline": "contracts/semantic-operation-graphs/cli/ndd-story-implement-manifest-lane.execute.sog.v1.json"
+                                        "when": {
+                                          "equals": [
+                                            {
+                                              "$graph": "command.options.target-kind"
+                                            },
+                                            {
+                                              "literal": "visual-proof"
+                                            }
+                                          ]
+                                        },
+                                        "then": {
+                                          "literal": {
+                                            "$inline": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+                                          }
+                                        },
+                                        "else": {
+                                          "literal": {
+                                            "$inline": "contracts/semantic-operation-graphs/cli/ndd-story-implement-manifest-lane.execute.sog.v1.json"
+                                          }
                                         }
                                       }
                                     }
@@ -455,7 +495,8 @@
     "selected_story_implement_graph_executed_or_blocks_closed",
     "build_setup_route_delegates_to_build_setup_sog",
     "self_unblocking_lab_route_delegates_to_self_unblocking_lab_sog",
-    "invoice_approval_readiness_sdk_route_delegates_to_release_package_sog"
+    "invoice_approval_readiness_sdk_route_delegates_to_release_package_sog",
+    "node_script_to_sej_refactor_route_delegates_to_refactor_sog"
   ],
   "forbiddenClaims": [
     "generated CLI facade owns story implement behavior",
@@ -465,5 +506,5 @@
     "sdk capability forge creates host-language product body",
     "provider candidate grants authority without hardening"
   ],
-  "completionPosture": "ndd story implement delegates to an explicit target-kind graph, including the product-facing Build Setup lane, self-unblocking lab lane, and invoice approval release package lane, or to the manifest-declared lane. Missing or unsupported manifest lanes block closed."
+  "completionPosture": "ndd story implement delegates to an explicit target-kind graph, including the product-facing Build Setup lane, self-unblocking lab lane, invoice approval release package lane, and node-script-to-SEJ refactor lane, or to the manifest-declared lane. Missing or unsupported manifest lanes block closed."
 }

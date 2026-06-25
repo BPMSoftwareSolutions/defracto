@@ -1,0 +1,1 @@
+{"equivalenceRequirement":"after-output must match before-output before facade promotion","expectedOriginalStatus":"blocked","fixture":"conveyor/runs/2026/06/25/node-script-to-sej-refactor-lab/tests/vendor-packet.fixture.v1.json","schemaVersion":"defracto.characterization-test-intent.v1","sourceScript":"generated/workers/node/vendor-evidence-readiness-checker.cjs"}

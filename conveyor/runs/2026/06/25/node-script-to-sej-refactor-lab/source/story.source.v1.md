@@ -1,0 +1,1 @@
+As a platform maintainer, I want the AI development team to refactor an existing Node script into SEJ-owned behavior, so that the script behavior becomes reviewable, reusable, testable, and portable across runtimes.

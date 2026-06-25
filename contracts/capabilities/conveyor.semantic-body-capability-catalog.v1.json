@@ -101,6 +101,51 @@
       "portable": true,
       "status": "macro_candidate",
       "ifMissing": "blocked"
+    },
+    {
+      "capabilityKey": "object.read_field.v1",
+      "primitiveKey": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json",
+      "category": "runtime_surface.object",
+      "effect": "none",
+      "portable": true,
+      "status": "data_contract_declared_pending_runtime_binding",
+      "ifMissing": "emit_runtime_surface_contract"
+    },
+    {
+      "capabilityKey": "array.contains.v1",
+      "primitiveKey": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json",
+      "category": "runtime_surface.array",
+      "effect": "none",
+      "portable": true,
+      "status": "data_contract_declared_pending_runtime_binding",
+      "ifMissing": "emit_runtime_surface_contract"
+    },
+    {
+      "capabilityKey": "array.filter.v1",
+      "primitiveKey": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json",
+      "category": "runtime_surface.array",
+      "effect": "none",
+      "portable": true,
+      "status": "data_contract_declared_pending_runtime_binding",
+      "ifMissing": "emit_runtime_surface_contract"
+    },
+    {
+      "capabilityKey": "predicate.any.v1",
+      "primitiveKey": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json",
+      "category": "runtime_surface.predicate",
+      "effect": "none",
+      "portable": true,
+      "status": "data_contract_declared_pending_runtime_binding",
+      "ifMissing": "emit_runtime_surface_contract"
+    },
+    {
+      "capabilityKey": "result.project.v1",
+      "primitiveKey": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json",
+      "category": "runtime_surface.projection",
+      "effect": "none",
+      "portable": true,
+      "status": "data_contract_declared_pending_runtime_binding",
+      "ifMissing": "emit_runtime_surface_contract"
     }
   ],
   "completionPosture": "Every semantic body step binds to a capabilityKey. Anything unresolved blocks instead of becoming host-language code."

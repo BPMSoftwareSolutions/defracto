@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "defracto.conveyor-runtime-surface.operations.v1",
+  "contractKey": "defracto.conveyor-runtime-surface.operations.node-script-refactor.v1",
+  "status": "runtime_surface_contract_declared",
+  "purpose": "Declare generic data-driven runtime-surface operations required to express extracted Node script behavior without embedding product logic in a Node facade or resolver product primitive.",
+  "operationLayer": "conveyor_runtime_surface",
+  "hostLanguageBodyAllowed": false,
+  "resolverProductPrimitiveRequested": false,
+  "operations": [
+    {
+      "operationKey": "object.read_field.v1",
+      "category": "generic.object",
+      "effect": "none",
+      "portable": true,
+      "input": {
+        "object": "json_object",
+        "field": "string",
+        "defaultValue": "any optional"
+      },
+      "output": {
+        "value": "any"
+      },
+      "blockers": [
+        "object_input_missing",
+        "field_name_missing"
+      ]
+    },
+    {
+      "operationKey": "array.contains.v1",
+      "category": "generic.array",
+      "effect": "none",
+      "portable": true,
+      "input": {
+        "array": "json_array",
+        "value": "any",
+        "comparison": "strict_json_value_equality"
+      },
+      "output": {
+        "contains": "boolean"
+      },
+      "blockers": [
+        "array_input_missing"
+      ]
+    },
+    {
+      "operationKey": "array.filter.v1",
+      "category": "generic.array",
+      "effect": "none",
+      "portable": true,
+      "input": {
+        "array": "json_array",
+        "predicateRef": "declared_predicate"
+      },
+      "output": {
+        "items": "json_array"
+      },
+      "blockers": [
+        "array_input_missing",
+        "predicate_ref_missing",
+        "predicate_not_executable"
+      ]
+    },
+    {
+      "operationKey": "predicate.any.v1",
+      "category": "generic.predicate",
+      "effect": "none",
+      "portable": true,
+      "input": {
+        "predicates": "json_array_of_predicate_results"
+      },
+      "output": {
+        "matched": "boolean"
+      },
+      "blockers": [
+        "predicate_results_missing"
+      ]
+    },
+    {
+      "operationKey": "result.project.v1",
+      "category": "generic.projection",
+      "effect": "none",
+      "portable": true,
+      "input": {
+        "fields": "json_object",
+        "statusRules": "declared_status_projection optional"
+      },
+      "output": {
+        "result": "json_object"
+      },
+      "blockers": [
+        "projection_fields_missing"
+      ]
+    }
+  ],
+  "bindingStatus": "declared_pending_conveyor_runtime_binding",
+  "allowedUse": [
+    "semantic capability composition",
+    "legacy script behavior extraction",
+    "portable SEJ/SOG behavior projection"
+  ],
+  "forbiddenUse": [
+    "product-specific resolver primitive",
+    "host-language product body",
+    "manual facade workaround",
+    "claiming equivalence before before/after execution passes"
+  ],
+  "completionPosture": "The operations are added to the conveyor runtime surface as data contracts. Refactor promotion still requires binding these operations into executable SEJ/SOG evaluation and passing before/after equivalence."
+}
