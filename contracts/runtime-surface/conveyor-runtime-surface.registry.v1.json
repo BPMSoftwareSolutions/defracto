@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "defracto.conveyor-runtime-surface.registry.v1",
+  "registryKey": "defracto.conveyor-runtime-surface.registry.v1",
+  "status": "active",
+  "operationLayer": "conveyor_runtime_surface",
+  "operationContract": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json",
+  "bindingContract": "contracts/runtime-surface/conveyor-runtime-surface.bindings.v1.json",
+  "operationKeys": [
+    "object.read_field.v1",
+    "array.contains.v1",
+    "array.filter.v1",
+    "predicate.any.v1",
+    "result.project.v1"
+  ],
+  "adapterPolicy": {
+    "adapterMayBeGenerated": true,
+    "adapterMustBeGeneric": true,
+    "productRulesMustLiveInData": true,
+    "resolverProductPrimitiveRequested": false
+  },
+  "completionPosture": "The registry identifies runtime-surface operations that the conveyor may bind and verify through generated adapters. Product behavior remains data-driven and receipt-bound."
+}

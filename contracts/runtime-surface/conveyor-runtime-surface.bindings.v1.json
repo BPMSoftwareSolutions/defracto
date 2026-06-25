@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "defracto.conveyor-runtime-surface.bindings.v1",
+  "bindingKey": "defracto.conveyor-runtime-surface.bindings.v1",
+  "status": "active",
+  "operationLayer": "conveyor_runtime_surface",
+  "sourceContract": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json",
+  "bindingMode": "data_driven_runtime_adapter",
+  "resolverProductPrimitiveRequested": false,
+  "hostLanguageProductBodyAllowed": false,
+  "bindings": [
+    {
+      "operationKey": "object.read_field.v1",
+      "bindingStatus": "bound_by_runtime_surface_adapter",
+      "implementedBy": {
+        "type": "generic_runtime_surface_operation",
+        "contractPath": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json"
+      }
+    },
+    {
+      "operationKey": "array.contains.v1",
+      "bindingStatus": "bound_by_runtime_surface_adapter",
+      "implementedBy": {
+        "type": "generic_runtime_surface_operation",
+        "contractPath": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json"
+      }
+    },
+    {
+      "operationKey": "array.filter.v1",
+      "bindingStatus": "bound_by_runtime_surface_adapter",
+      "implementedBy": {
+        "type": "generic_runtime_surface_operation",
+        "contractPath": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json"
+      }
+    },
+    {
+      "operationKey": "predicate.any.v1",
+      "bindingStatus": "bound_by_runtime_surface_adapter",
+      "implementedBy": {
+        "type": "generic_runtime_surface_operation",
+        "contractPath": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json"
+      }
+    },
+    {
+      "operationKey": "result.project.v1",
+      "bindingStatus": "bound_by_runtime_surface_adapter",
+      "implementedBy": {
+        "type": "generic_runtime_surface_operation",
+        "contractPath": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json"
+      }
+    }
+  ],
+  "requiredGate": "contracts/gates/runtime-surface-operation-bound.gate.v1.json",
+  "completionPosture": "These generic runtime-surface operations may be bound by generated conveyor runtime adapters and verified by receipts without adding product behavior to the resolver."
+}

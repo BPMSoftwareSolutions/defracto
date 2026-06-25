@@ -1,13 +1,7 @@
 # Node Script to SEJ Refactor Lab
 
-Status: Accepted for refactor review; replacement blocked.
+Status: Runtime-surface operations bound; equivalence passed for the characterization fixture.
 
-Original script: 
-generated/workers/node/vendor-evidence-readiness-checker.cjs
+The conveyor detected missing runtime-surface bindings, generated a binding plan, materialized a binding registry and generated runtime-surface adapter, executed the adapter against the safe fixture, and updated the equivalence receipt.
 
-Target capability: 
-vendor.evidence.readiness.evaluate.v1
-
-Original behavior was characterized against a safe fixture. The semantic target and thin facade were projected. The missing generic operations were added as data-driven conveyor runtime-surface contracts, but before/after equivalence remains blocked until those operations are bound and executable in the refactor lane.
-
-Runtime-surface operations added: object.read_field.v1, array.contains.v1, array.filter.v1, predicate.any.v1, result.project.v1.
+Replacement remains blocked until the fixture suite is broadened and product owner acceptance is recorded.

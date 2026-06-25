@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "defracto.gate.v1",
+  "gateKey": "defracto.runtime-surface-operation-bound.gate.v1",
+  "status": "active",
+  "purpose": "Prevent a declared runtime-surface operation from being treated as executable until it has a binding plan, registry entry, verification fixture, and binding verification receipt.",
+  "requiredEvidence": [
+    "runtime-surface binding plan",
+    "runtime-surface binding registry",
+    "operation verification fixtures",
+    "binding materialization receipt",
+    "binding verification receipt"
+  ],
+  "blockerCodes": [
+    "runtime_surface_binding_plan_missing",
+    "runtime_surface_registry_missing",
+    "runtime_surface_operation_unbound",
+    "runtime_surface_verification_missing",
+    "runtime_surface_verification_failed",
+    "runtime_surface_binding_requires_unsafe_host_logic"
+  ],
+  "forbiddenClaims": [
+    "declared operation is executable without binding evidence",
+    "runtime-surface binding grants product truth without equivalence",
+    "product-specific resolver primitive required",
+    "manual assembly satisfies binding"
+  ],
+  "completionPosture": "Declared runtime-surface operations become executable only through governed binding evidence. Missing binding is a conveyor work item, not a terminal blocker."
+}

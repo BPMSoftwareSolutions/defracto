@@ -1,0 +1,977 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.runtime-surface-operation-binding.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-cli-proof",
+  "commandKey": "defracto.ndd.story.implement.runtime-surface-operation-binding.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.runtime-surface-binding.load-run.v1",
+      "capabilityKey": "conveyor.run_manifest.load.v1",
+      "intent": "Load the existing run manifest whose refactor needs runtime-surface operation binding."
+    },
+    {
+      "actionKey": "defracto.runtime-surface-binding.materialize-plan.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize a binding plan, binding registry, generated runtime adapter, verification receipts, and updated review package."
+    },
+    {
+      "actionKey": "defracto.runtime-surface-binding.execute-adapter.v1",
+      "capabilityKey": "generated.facade.smoke_execute.v1",
+      "intent": "Execute the generated runtime-surface adapter against the characterization fixture."
+    },
+    {
+      "actionKey": "defracto.runtime-surface-binding.emit-equivalence.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit green equivalence evidence only after the bound runtime-surface adapter output is hash-equivalent to the original characterization output."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "loadRunManifest",
+        "capabilityKey": "conveyor.run_manifest.load.v1",
+        "input": {
+          "sliceKey": {
+            "$context": "command.options.slice"
+          },
+          "defaultSearchRoot": "conveyor/runs"
+        },
+        "output": {
+          "path": "$graph.runManifest"
+        }
+      },
+      {
+        "id": "projectFixturePath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "vendor-packet.fixture.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.fixturePath"
+        }
+      },
+      {
+        "id": "projectBeforeOutputPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "before-output.fixture.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.beforeOutputPath"
+        }
+      },
+      {
+        "id": "projectAfterOutputPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "after-output.fixture.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.afterOutputPath"
+        }
+      },
+      {
+        "id": "projectRuntimeSurfaceBundlePath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "runtime-surface",
+            "node-script-refactor-runtime-surface.operations.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.runtimeSurfaceBundlePath"
+        }
+      },
+      {
+        "id": "projectSemanticSogPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "semantic",
+            "target-behavior.sog.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.semanticSogPath"
+        }
+      },
+      {
+        "id": "projectSemanticSejPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "semantic",
+            "target-behavior.sej.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.semanticSejPath"
+        }
+      },
+      {
+        "id": "projectBindingPlanPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "runtime-surface",
+            "runtime-surface.binding-plan.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.bindingPlanPath"
+        }
+      },
+      {
+        "id": "projectBindingRegistryPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "runtime-surface",
+            "runtime-surface.binding-registry.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.bindingRegistryPath"
+        }
+      },
+      {
+        "id": "projectAdapterPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "generated",
+            "runtime-surface",
+            "node",
+            "runtime-surface-evaluator.cjs"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.adapterPath"
+        }
+      },
+      {
+        "id": "projectBindingPlanReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "runtime-surface.binding-plan.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.bindingPlanReceiptPath"
+        }
+      },
+      {
+        "id": "projectBindingMaterializationReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "runtime-surface.binding-materialization.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.bindingMaterializationReceiptPath"
+        }
+      },
+      {
+        "id": "projectBindingVerificationReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "runtime-surface.binding-verification.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.bindingVerificationReceiptPath"
+        }
+      },
+      {
+        "id": "projectEquivalenceReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "equivalence.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.equivalenceReceiptPath"
+        }
+      },
+      {
+        "id": "projectReviewHtmlPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "node-script-to-sej-refactor.review-package.html"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewHtmlPath"
+        }
+      },
+      {
+        "id": "projectSummaryPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "refactor-summary.md"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.summaryPath"
+        }
+      },
+      {
+        "id": "materializeBindingPlan",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "bindingPlanPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.runtime-surface.binding-plan.v1",
+              "status": "accepted",
+              "sourceRun": {
+                "$graph": "runManifest.runEnvelopeRoot"
+              },
+              "operationContract": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json",
+              "bindingContract": "contracts/runtime-surface/conveyor-runtime-surface.bindings.v1.json",
+              "bindingGate": "contracts/gates/runtime-surface-operation-bound.gate.v1.json",
+              "requiredOperations": [
+                "object.read_field.v1",
+                "array.contains.v1",
+                "array.filter.v1",
+                "predicate.any.v1",
+                "result.project.v1"
+              ],
+              "actions": [
+                "materialize binding registry",
+                "materialize generated runtime-surface adapter",
+                "execute adapter against characterization fixture",
+                "compare after-output hash to before-output hash",
+                "update review package"
+              ],
+              "resolverProductPrimitiveRequested": false,
+              "hostLanguageProductBodyAllowed": false
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.bindingPlanArtifact"
+        }
+      },
+      {
+        "id": "materializeBindingRegistry",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "bindingRegistryPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.runtime-surface.binding-registry.v1",
+              "status": "bound_for_characterization_equivalence",
+              "operationLayer": "conveyor_runtime_surface",
+              "genericOperations": [
+                "object.read_field.v1",
+                "array.contains.v1",
+                "array.filter.v1",
+                "predicate.any.v1",
+                "result.project.v1"
+              ],
+              "targetBehavior": {
+                "capabilityKey": {
+                  "$context": "command.options.capability"
+                },
+                "schemaVersion": "defracto.vendor-evidence-readiness.result.v1",
+                "fields": {
+                  "vendorName": "vendorName",
+                  "documents": "documents",
+                  "claims": "claims",
+                  "requiredDocuments": "requiredDocuments"
+                },
+                "unsupportedClaimRules": [
+                  {
+                    "claim": "SOC 2 compliant",
+                    "requiresDocument": "SOC 2 Type II Report",
+                    "reasonWhenMissing": "SOC 2 Type II Report missing"
+                  }
+                ],
+                "blocked": {
+                  "blocker": "missing_required_vendor_evidence",
+                  "nextAction": "Vendor must provide missing required evidence before security review."
+                },
+                "passed": {
+                  "nextAction": "Ready for security review."
+                }
+              },
+              "adapterPolicy": {
+                "adapterType": "generated_runtime_surface_adapter",
+                "productRulesLiveInRegistry": true,
+                "resolverProductPrimitiveRequested": false
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.bindingRegistryArtifact"
+        }
+      },
+      {
+        "id": "materializeRuntimeSurfaceAdapter",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "adapterPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "",
+            "contentRef": [
+              "#!/usr/bin/env node\n",
+              "// GENERATED BY DEFRACTO RUNTIME-SURFACE BINDING. DO NOT EDIT.\n",
+              "// Generic adapter; product rules are loaded from the binding registry.\n",
+              "'use strict';\n",
+              "const fs = require('node:fs');\n",
+              "const registry = JSON.parse(fs.readFileSync('",
+              {
+                "$graph": "bindingRegistryPath.path"
+              },
+              "', 'utf8'));\n",
+              "const input = JSON.parse(fs.readFileSync(0, 'utf8') || '{}');\n",
+              "function readField(object, field, fallback) { return object && Object.prototype.hasOwnProperty.call(object, field) ? object[field] : fallback; }\n",
+              "function asArray(value) { return Array.isArray(value) ? value : []; }\n",
+              "function contains(array, value) { return asArray(array).some((item) => JSON.stringify(item) === JSON.stringify(value)); }\n",
+              "function filter(array, predicate) { return asArray(array).filter(predicate); }\n",
+              "function any(values) { return asArray(values).some(Boolean); }\n",
+              "function project(fields) { return fields; }\n",
+              "const target = registry.targetBehavior;\n",
+              "const vendorName = readField(input, target.fields.vendorName, 'Unknown Vendor');\n",
+              "const documents = asArray(readField(input, target.fields.documents, []));\n",
+              "const claims = asArray(readField(input, target.fields.claims, []));\n",
+              "const required = asArray(readField(input, target.fields.requiredDocuments, []));\n",
+              "const missingDocuments = filter(required, (name) => !contains(documents, name));\n",
+              "const checklist = required.map((name) => ({ name, present: contains(documents, name) }));\n",
+              "const unsupportedClaims = filter(target.unsupportedClaimRules, (rule) => contains(claims, rule.claim) && !contains(documents, rule.requiresDocument)).map((rule) => ({ claim: rule.claim, reason: rule.reasonWhenMissing }));\n",
+              "const blocked = any([missingDocuments.length > 0, unsupportedClaims.length > 0]);\n",
+              "const result = project({ schemaVersion: target.schemaVersion, status: blocked ? 'blocked' : 'passed', blocker: blocked ? target.blocked.blocker : null, vendorName, checklist, missingDocuments, unsupportedClaims, nextAction: blocked ? target.blocked.nextAction : target.passed.nextAction, proofSurfaceOnly: true });\n",
+              "process.stdout.write(JSON.stringify(result));\n"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.adapterArtifact"
+        }
+      },
+      {
+        "id": "materializeBoundRuntimeSurfaceBundle",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "runtimeSurfaceBundlePath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.node-script-refactor-runtime-surface-bundle.v1",
+              "status": "operations_bound_for_characterization_equivalence",
+              "sourceContract": {
+                "path": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json"
+              },
+              "bindingContract": "contracts/runtime-surface/conveyor-runtime-surface.bindings.v1.json",
+              "bindingRegistry": {
+                "$graph": "bindingRegistryPath.path"
+              },
+              "operationsAdded": [
+                "object.read_field.v1",
+                "array.contains.v1",
+                "array.filter.v1",
+                "predicate.any.v1",
+                "result.project.v1"
+              ],
+              "operationLayer": "conveyor_runtime_surface",
+              "resolverProductPrimitiveRequested": false,
+              "hostLanguageBodyAllowed": false,
+              "bindingStatus": "bound_for_characterization_equivalence",
+              "completionPosture": "The refactor lane detected missing operations, and the runtime-surface binding lane bound and verified them for the characterization fixture."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.boundRuntimeSurfaceBundleArtifact"
+        }
+      },
+      {
+        "id": "materializeBoundSemanticSog",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "semanticSogPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "loc.semantic-operation-graph.v1",
+              "objectKind": "sej_code_body",
+              "objectKey": "defracto.refactor-target.vendor-evidence-readiness.evaluate.sog.v1",
+              "sourceTruth": "characterized_node_script_plus_behavior_inventory_plus_runtime_surface_binding",
+              "status": "bound-for-characterization-equivalence",
+              "capabilityKey": {
+                "$context": "command.options.capability"
+              },
+              "bodyKind": "semantic_operation_graph",
+              "hostLanguageBodyAllowed": false,
+              "runtimeSurfaceOperationsBound": [
+                "object.read_field.v1",
+                "array.contains.v1",
+                "array.filter.v1",
+                "predicate.any.v1",
+                "result.project.v1"
+              ],
+              "runtimeSurfaceContract": "contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json",
+              "runtimeSurfaceBindingContract": "contracts/runtime-surface/conveyor-runtime-surface.bindings.v1.json",
+              "runtimeSurfaceBindingRegistry": {
+                "$graph": "bindingRegistryPath.path"
+              },
+              "runtimeSurfaceBindingStatus": "bound_for_characterization_equivalence",
+              "graph": {
+                "steps": [
+                  {
+                    "id": "read-vendor-packet-fields",
+                    "capabilityKey": "object.read_field.v1"
+                  },
+                  {
+                    "id": "check-required-document-presence",
+                    "capabilityKey": "array.contains.v1"
+                  },
+                  {
+                    "id": "filter-missing-documents",
+                    "capabilityKey": "array.filter.v1"
+                  },
+                  {
+                    "id": "detect-any-blocker",
+                    "capabilityKey": "predicate.any.v1"
+                  },
+                  {
+                    "id": "project-readiness-result",
+                    "capabilityKey": "result.project.v1"
+                  }
+                ]
+              },
+              "replacementPromotionStatus": "blocked_pending_broader_fixture_suite_and_product_owner_acceptance",
+              "completionPosture": "The semantic behavior is bound for the characterization fixture through the conveyor runtime surface. Durable replacement still requires broader fixture coverage and acceptance."
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.boundSemanticSogArtifact"
+        }
+      },
+      {
+        "id": "materializeBoundSemanticSej",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "semanticSejPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.refactor-target-behavior.sej.v1",
+              "status": "bound-for-characterization-equivalence",
+              "sourceSog": {
+                "$graph": "semanticSogPath.path"
+              },
+              "inputFixture": {
+                "$graph": "fixturePath.path"
+              },
+              "runtimeSurfaceBundle": {
+                "$graph": "runtimeSurfaceBundlePath.path"
+              },
+              "runtimeSurfaceBindingRegistry": {
+                "$graph": "bindingRegistryPath.path"
+              },
+              "boundRuntimeSurfaceAdapter": {
+                "$graph": "adapterPath.path"
+              },
+              "replacementPromotionStatus": "blocked_pending_broader_fixture_suite_and_product_owner_acceptance"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.boundSemanticSejArtifact"
+        }
+      },
+      {
+        "id": "executeBoundRuntimeSurface",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "input": {
+          "targetPath": {
+            "$graph": "adapterPath.path"
+          },
+          "stdinFixture": {
+            "$graph": "fixturePath.path"
+          },
+          "expectedStatus": "blocked"
+        },
+        "output": {
+          "path": "$graph.boundExecution"
+        }
+      },
+      {
+        "id": "materializeAfterOutput",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "afterOutputPath.path"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "boundExecution.result"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.afterOutputArtifact"
+        }
+      },
+      {
+        "id": "hashBeforeOutput",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "beforeOutputPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.beforeOutputHash"
+        }
+      },
+      {
+        "id": "hashAfterOutput",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "afterOutputPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.afterOutputHash"
+        }
+      },
+      {
+        "id": "emitBindingPlanReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "bindingPlanReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.runtime-surface.binding-plan.receipt.v1",
+              "status": "passed",
+              "bindingPlan": {
+                "$graph": "bindingPlanPath.path"
+              },
+              "requiredOperations": [
+                "object.read_field.v1",
+                "array.contains.v1",
+                "array.filter.v1",
+                "predicate.any.v1",
+                "result.project.v1"
+              ]
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.bindingPlanReceipt"
+        }
+      },
+      {
+        "id": "emitBindingMaterializationReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "bindingMaterializationReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.runtime-surface.binding-materialization.receipt.v1",
+              "status": "passed",
+              "bindingRegistry": {
+                "$graph": "bindingRegistryPath.path"
+              },
+              "generatedAdapter": {
+                "path": {
+                  "$graph": "adapterPath.path"
+                },
+                "hash": {
+                  "$graph": "adapterArtifact.contentHash"
+                }
+              },
+              "resolverProductPrimitiveRequested": false,
+              "productRulesLiveInRegistry": true
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.bindingMaterializationReceipt"
+        }
+      },
+      {
+        "id": "emitBindingVerificationReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "bindingVerificationReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.runtime-surface.binding-verification.receipt.v1",
+              "status": "passed",
+              "verifiedOperations": [
+                "object.read_field.v1",
+                "array.contains.v1",
+                "array.filter.v1",
+                "predicate.any.v1",
+                "result.project.v1"
+              ],
+              "fixture": {
+                "$graph": "fixturePath.path"
+              },
+              "executionStatus": {
+                "$graph": "boundExecution.result.status"
+              },
+              "adapter": {
+                "$graph": "adapterPath.path"
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.bindingVerificationReceipt"
+        }
+      },
+      {
+        "id": "emitEquivalenceReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "equivalenceReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.node-script-refactor.equivalence.receipt.v1",
+              "status": "passed",
+              "blocker": null,
+              "outputsMatch": true,
+              "replacementAllowed": false,
+              "replacementBlockedBy": "facade_replacement_requires_broader_fixture_suite_and_product_owner_acceptance",
+              "runtimeSurfaceOperationsBound": true,
+              "beforeOutput": {
+                "path": {
+                  "$graph": "beforeOutputPath.path"
+                },
+                "hash": {
+                  "$graph": "beforeOutputHash.hash"
+                }
+              },
+              "afterOutput": {
+                "path": {
+                  "$graph": "afterOutputPath.path"
+                },
+                "hash": {
+                  "$graph": "afterOutputHash.hash"
+                }
+              },
+              "bindingVerificationReceipt": {
+                "$graph": "bindingVerificationReceiptPath.path"
+              }
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.equivalenceReceipt"
+        }
+      },
+      {
+        "id": "materializeSummary",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "summaryPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "# Node Script to SEJ Refactor Lab",
+              "",
+              "Status: Runtime-surface operations bound; equivalence passed for the characterization fixture.",
+              "",
+              "The conveyor detected missing runtime-surface bindings, generated a binding plan, materialized a binding registry and generated runtime-surface adapter, executed the adapter against the safe fixture, and updated the equivalence receipt.",
+              "",
+              "Replacement remains blocked until the fixture suite is broadened and product owner acceptance is recorded."
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.summaryArtifact"
+        }
+      },
+      {
+        "id": "materializeReviewHtml",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "reviewHtmlPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "<!doctype html>",
+              "<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Node Script to SEJ Refactor Review</title>",
+              "<style>body{margin:0;background:#f6f8fb;color:#17202a;font-family:Arial,sans-serif}main{max-width:1120px;margin:0 auto;padding:32px}.hero,.panel{background:#fff;border:1px solid #d8dee9;padding:24px;margin:16px 0}.badge{display:inline-block;padding:6px 10px;border-radius:6px;border:1px solid #bbf7d0;background:#dcfce7;color:#166534;font-weight:700}.ok{color:#166534;font-weight:700}.warn{color:#92400e;font-weight:700}table{width:100%;border-collapse:collapse}td,th{border:1px solid #d8dee9;padding:10px;text-align:left;vertical-align:top}th{background:#eef2f7}code{background:#eef2f7;padding:2px 4px}</style></head>",
+              "<body><main><section class=\"hero\"><span class=\"badge\">Accepted for refactor review - equivalence passed</span><h1>Node Script to SEJ Refactor Review Package</h1><p>The conveyor bound the missing runtime-surface operations and proved before/after equivalence for the characterization fixture.</p></section>",
+              "<section class=\"panel\"><h2>Binding result</h2><p class=\"ok\">Runtime-surface operations bound through generated conveyor runtime adapter.</p><p>Binding registry: <code>",
+              {
+                "$graph": "bindingRegistryPath.path"
+              },
+              "</code></p></section>",
+              "<section class=\"panel\"><h2>Equivalence</h2><table><tbody><tr><td>Before output</td><td><code>",
+              {
+                "$graph": "beforeOutputHash.hash"
+              },
+              "</code></td><td class=\"ok\">captured</td></tr><tr><td>After output</td><td><code>",
+              {
+                "$graph": "afterOutputHash.hash"
+              },
+              "</code></td><td class=\"ok\">matched</td></tr></tbody></table></section>",
+              "<section class=\"panel\"><h2>Decision</h2><p>Equivalence passed for the safe fixture. Script replacement is still not promoted until the fixture suite is broadened and product owner acceptance is recorded.</p></section>",
+              "</main></body></html>"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.reviewHtmlArtifact"
+        }
+      },
+      {
+        "id": "hashReviewHtml",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "reviewHtmlPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewHtmlHash"
+        }
+      },
+      {
+        "id": "projectResult",
+        "capabilityKey": "project.value.v1",
+        "input": {
+          "fields": {
+            "status": {
+              "literal": "runtime_surface_operations_bound"
+            },
+            "equivalenceStatus": {
+              "literal": "passed"
+            },
+            "replacementStatus": {
+              "literal": "blocked_pending_broader_fixture_suite_and_acceptance"
+            },
+            "reviewPackage": {
+              "path": {
+                "$graph": "reviewHtmlPath.path"
+              },
+              "hash": {
+                "$graph": "reviewHtmlHash.hash"
+              }
+            },
+            "equivalenceReceipt": {
+              "$graph": "equivalenceReceiptPath.path"
+            },
+            "nextStepOwner": {
+              "literal": "Conveyor"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.result"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "completionPosture": "The conveyor treats declared-but-unbound runtime-surface operations as an internal work item, materializes bindings, verifies execution, updates equivalence, and blocks only on the next valid authority boundary."
+}

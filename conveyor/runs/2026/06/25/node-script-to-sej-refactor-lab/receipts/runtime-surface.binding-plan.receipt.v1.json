@@ -1,0 +1,1 @@
+{"bindingPlan":"conveyor/runs/2026/06/25/node-script-to-sej-refactor-lab/runtime-surface/runtime-surface.binding-plan.v1.json","requiredOperations":["object.read_field.v1","array.contains.v1","array.filter.v1","predicate.any.v1","result.project.v1"],"schemaVersion":"defracto.runtime-surface.binding-plan.receipt.v1","status":"passed"}

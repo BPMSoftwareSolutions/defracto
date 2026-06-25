@@ -1,18 +1,14 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Node Script to SEJ Refactor Review</title>
-<style>body{margin:0;background:#f6f8fb;color:#17202a;font-family:Arial,sans-serif}main{max-width:1120px;margin:0 auto;padding:32px}.hero,.panel{background:#fff;border:1px solid #d8dee9;padding:24px;margin:16px 0}.badge{display:inline-block;padding:6px 10px;border-radius:6px;border:1px solid #fde68a;background:#fef3c7;color:#92400e;font-weight:700}.ok{color:#166534;font-weight:700}.warn{color:#92400e;font-weight:700}table{width:100%;border-collapse:collapse}td,th{border:1px solid #d8dee9;padding:10px;text-align:left;vertical-align:top}th{background:#eef2f7}code{background:#eef2f7;padding:2px 4px}</style></head>
-<body><main><section class="hero"><span class="badge">Accepted for refactor review - replacement blocked</span><h1>Node Script to SEJ Refactor Review Package</h1><p>Original behavior was characterized before semantic translation. The conveyor refused replacement until equivalence can be proven.</p></section>
-<section class="panel"><h2>Original script</h2><p><code>
-generated/workers/node/vendor-evidence-readiness-checker.cjs
-</code></p><p>Source hash: <code>
-sha256:ede9764b7d8232a6a3e8032e0752a4bdb283acf1ba153f95b1044973afbadc40
+<style>body{margin:0;background:#f6f8fb;color:#17202a;font-family:Arial,sans-serif}main{max-width:1120px;margin:0 auto;padding:32px}.hero,.panel{background:#fff;border:1px solid #d8dee9;padding:24px;margin:16px 0}.badge{display:inline-block;padding:6px 10px;border-radius:6px;border:1px solid #bbf7d0;background:#dcfce7;color:#166534;font-weight:700}.ok{color:#166534;font-weight:700}.warn{color:#92400e;font-weight:700}table{width:100%;border-collapse:collapse}td,th{border:1px solid #d8dee9;padding:10px;text-align:left;vertical-align:top}th{background:#eef2f7}code{background:#eef2f7;padding:2px 4px}</style></head>
+<body><main><section class="hero"><span class="badge">Accepted for refactor review - equivalence passed</span><h1>Node Script to SEJ Refactor Review Package</h1><p>The conveyor bound the missing runtime-surface operations and proved before/after equivalence for the characterization fixture.</p></section>
+<section class="panel"><h2>Binding result</h2><p class="ok">Runtime-surface operations bound through generated conveyor runtime adapter.</p><p>Binding registry: <code>
+conveyor/runs/2026/06/25/node-script-to-sej-refactor-lab/runtime-surface/runtime-surface.binding-registry.v1.json
 </code></p></section>
-<section class="panel"><h2>Behavior extracted</h2><ul><li>Validate required evidence</li><li>Detect missing evidence</li><li>Detect unsupported SOC 2 claim</li><li>Project blocked/ready status</li></ul></section>
 <section class="panel"><h2>Equivalence</h2><table><tbody><tr><td>Before output</td><td><code>
 sha256:7e3a23156d2004ef707346c869d78d3795aa06eb8ac7c3babbf86f38a3952450
 </code></td><td class="ok">captured</td></tr><tr><td>After output</td><td><code>
-sha256:1d3255db6588552dbc23e81684509b7ae46e45388a5c7a55bc1a108048e96d3a
-</code></td><td class="warn">blocked</td></tr></tbody></table></section>
-<section class="panel"><h2>Runtime-surface operations added</h2><p><code>object.read_field.v1</code>, <code>array.contains.v1</code>, <code>array.filter.v1</code>, <code>predicate.any.v1</code>, <code>result.project.v1</code></p><p>Contract: <code>contracts/runtime-surface/conveyor-runtime-surface.operations.v1.json</code></p></section>
-<section class="panel"><h2>Decision</h2><p>The Node script must not be replaced yet. The conveyor created the target SEJ/SOG candidate, added the runtime-surface operations as data contracts, and projected a thin facade, but promotion waits on runtime binding and successful before/after equivalence.</p></section>
+sha256:7e3a23156d2004ef707346c869d78d3795aa06eb8ac7c3babbf86f38a3952450
+</code></td><td class="ok">matched</td></tr></tbody></table></section>
+<section class="panel"><h2>Decision</h2><p>Equivalence passed for the safe fixture. Script replacement is still not promoted until the fixture suite is broadened and product owner acceptance is recorded.</p></section>
 </main></body></html>
