@@ -1,0 +1,1168 @@
+{
+  "schemaVersion": "loc.semantic-operation-graph.v1",
+  "objectKind": "sej_code_body",
+  "objectKey": "defracto.node-script-replacement-acceptance.execute.sog.v1",
+  "sourceTruth": "sej_semantic_body",
+  "status": "ready-for-cli-proof",
+  "commandKey": "defracto.ndd.story.implement.node-script-replacement-acceptance.v1",
+  "bodyKind": "semantic_operation_graph",
+  "hostLanguageBodyAllowed": false,
+  "semanticActions": [
+    {
+      "actionKey": "defracto.node-script-replacement.load-run.v1",
+      "capabilityKey": "conveyor.run_manifest.load.v1",
+      "intent": "Load the refactor run that already has characterization and runtime-surface binding evidence."
+    },
+    {
+      "actionKey": "defracto.node-script-replacement.materialize-fixtures.v1",
+      "capabilityKey": "artifact.materialize.v1",
+      "intent": "Materialize a broader JSON fixture suite for replacement readiness."
+    },
+    {
+      "actionKey": "defracto.node-script-replacement.execute-original-and-semantic.v1",
+      "capabilityKey": "generated.facade.smoke_execute.v1",
+      "intent": "Run the original Node script and generated runtime-surface adapter against every fixture."
+    },
+    {
+      "actionKey": "defracto.node-script-replacement.emit-matrix.v1",
+      "capabilityKey": "evidence.emit.v1",
+      "intent": "Emit equivalence matrix, replacement readiness receipt, and updated review package."
+    }
+  ],
+  "graph": {
+    "steps": [
+      {
+        "id": "loadRunManifest",
+        "capabilityKey": "conveyor.run_manifest.load.v1",
+        "input": {
+          "sliceKey": {
+            "$context": "command.options.slice"
+          },
+          "defaultSearchRoot": "conveyor/runs"
+        },
+        "output": {
+          "path": "$graph.runManifest"
+        }
+      },
+      {
+        "id": "projectAdapterPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "generated",
+            "runtime-surface",
+            "node",
+            "runtime-surface-evaluator.cjs"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.adapterPath"
+        }
+      },
+      {
+        "id": "projectFixtureReadyPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-fixtures",
+            "ready.vendor-packet.fixture.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.fixtureReadyPath"
+        }
+      },
+      {
+        "id": "projectFixtureMissingPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-fixtures",
+            "missing.vendor-packet.fixture.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.fixtureMissingPath"
+        }
+      },
+      {
+        "id": "projectFixtureUnsupportedPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-fixtures",
+            "unsupported-claim.vendor-packet.fixture.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.fixtureUnsupportedPath"
+        }
+      },
+      {
+        "id": "projectFixtureEmptyPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-fixtures",
+            "empty.vendor-packet.fixture.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.fixtureEmptyPath"
+        }
+      },
+      {
+        "id": "projectBeforeReadyPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-outputs",
+            "ready.before-output.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.beforeReadyPath"
+        }
+      },
+      {
+        "id": "projectAfterReadyPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-outputs",
+            "ready.after-output.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.afterReadyPath"
+        }
+      },
+      {
+        "id": "projectBeforeMissingPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-outputs",
+            "missing.before-output.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.beforeMissingPath"
+        }
+      },
+      {
+        "id": "projectAfterMissingPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-outputs",
+            "missing.after-output.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.afterMissingPath"
+        }
+      },
+      {
+        "id": "projectBeforeUnsupportedPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-outputs",
+            "unsupported-claim.before-output.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.beforeUnsupportedPath"
+        }
+      },
+      {
+        "id": "projectAfterUnsupportedPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-outputs",
+            "unsupported-claim.after-output.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.afterUnsupportedPath"
+        }
+      },
+      {
+        "id": "projectBeforeEmptyPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-outputs",
+            "empty.before-output.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.beforeEmptyPath"
+        }
+      },
+      {
+        "id": "projectAfterEmptyPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-outputs",
+            "empty.after-output.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.afterEmptyPath"
+        }
+      },
+      {
+        "id": "projectMatrixPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "tests",
+            "replacement-equivalence-matrix.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.matrixPath"
+        }
+      },
+      {
+        "id": "projectReadinessReceiptPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "receipts",
+            "node-script-replacement-readiness.receipt.v1.json"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.readinessReceiptPath"
+        }
+      },
+      {
+        "id": "projectReviewHtmlPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "node-script-to-sej-refactor.review-package.html"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewHtmlPath"
+        }
+      },
+      {
+        "id": "projectSummaryPath",
+        "capabilityKey": "path.join.v1",
+        "input": {
+          "parts": [
+            {
+              "$graph": "runManifest.runEnvelopeRoot"
+            },
+            "review",
+            "refactor-summary.md"
+          ],
+          "allowedRoot": {
+            "$graph": "runManifest.runEnvelopeRoot"
+          }
+        },
+        "output": {
+          "path": "$graph.summaryPath"
+        }
+      },
+      {
+        "id": "materializeReadyFixture",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "fixtureReadyPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.vendor-evidence-packet.fixture.v1",
+              "vendorName": "Ready Cloud Services",
+              "documents": [
+                "W-9",
+                "SOC 2 Type II Report",
+                "Cyber Insurance Certificate",
+                "MSA"
+              ],
+              "claims": [
+                "SOC 2 compliant"
+              ],
+              "requiredDocuments": [
+                "W-9",
+                "SOC 2 Type II Report",
+                "Cyber Insurance Certificate",
+                "MSA"
+              ]
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.readyFixtureArtifact"
+        }
+      },
+      {
+        "id": "materializeMissingFixture",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "fixtureMissingPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.vendor-evidence-packet.fixture.v1",
+              "vendorName": "Missing Evidence LLC",
+              "documents": [
+                "W-9"
+              ],
+              "claims": [
+                "Enterprise ready"
+              ],
+              "requiredDocuments": [
+                "W-9",
+                "MSA"
+              ]
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.missingFixtureArtifact"
+        }
+      },
+      {
+        "id": "materializeUnsupportedFixture",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "fixtureUnsupportedPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.vendor-evidence-packet.fixture.v1",
+              "vendorName": "Claim Heavy Inc",
+              "documents": [
+                "W-9"
+              ],
+              "claims": [
+                "SOC 2 compliant"
+              ],
+              "requiredDocuments": [
+                "W-9"
+              ]
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.unsupportedFixtureArtifact"
+        }
+      },
+      {
+        "id": "materializeEmptyFixture",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "fixtureEmptyPath.path"
+            },
+            "format": "json",
+            "content": {}
+          }
+        },
+        "output": {
+          "path": "$graph.emptyFixtureArtifact"
+        }
+      },
+      {
+        "id": "executeOriginalReady",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "input": {
+          "targetPath": {
+            "$context": "command.options.source-script"
+          },
+          "stdinFixture": {
+            "$graph": "fixtureReadyPath.path"
+          },
+          "expectedStatus": "passed"
+        },
+        "output": {
+          "path": "$graph.originalReady"
+        }
+      },
+      {
+        "id": "executeSemanticReady",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "input": {
+          "targetPath": {
+            "$graph": "adapterPath.path"
+          },
+          "stdinFixture": {
+            "$graph": "fixtureReadyPath.path"
+          },
+          "expectedStatus": "passed"
+        },
+        "output": {
+          "path": "$graph.semanticReady"
+        }
+      },
+      {
+        "id": "executeOriginalMissing",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "input": {
+          "targetPath": {
+            "$context": "command.options.source-script"
+          },
+          "stdinFixture": {
+            "$graph": "fixtureMissingPath.path"
+          },
+          "expectedStatus": "blocked"
+        },
+        "output": {
+          "path": "$graph.originalMissing"
+        }
+      },
+      {
+        "id": "executeSemanticMissing",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "input": {
+          "targetPath": {
+            "$graph": "adapterPath.path"
+          },
+          "stdinFixture": {
+            "$graph": "fixtureMissingPath.path"
+          },
+          "expectedStatus": "blocked"
+        },
+        "output": {
+          "path": "$graph.semanticMissing"
+        }
+      },
+      {
+        "id": "executeOriginalUnsupported",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "input": {
+          "targetPath": {
+            "$context": "command.options.source-script"
+          },
+          "stdinFixture": {
+            "$graph": "fixtureUnsupportedPath.path"
+          },
+          "expectedStatus": "blocked"
+        },
+        "output": {
+          "path": "$graph.originalUnsupported"
+        }
+      },
+      {
+        "id": "executeSemanticUnsupported",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "input": {
+          "targetPath": {
+            "$graph": "adapterPath.path"
+          },
+          "stdinFixture": {
+            "$graph": "fixtureUnsupportedPath.path"
+          },
+          "expectedStatus": "blocked"
+        },
+        "output": {
+          "path": "$graph.semanticUnsupported"
+        }
+      },
+      {
+        "id": "executeOriginalEmpty",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "input": {
+          "targetPath": {
+            "$context": "command.options.source-script"
+          },
+          "stdinFixture": {
+            "$graph": "fixtureEmptyPath.path"
+          },
+          "expectedStatus": "passed"
+        },
+        "output": {
+          "path": "$graph.originalEmpty"
+        }
+      },
+      {
+        "id": "executeSemanticEmpty",
+        "capabilityKey": "generated.facade.smoke_execute.v1",
+        "input": {
+          "targetPath": {
+            "$graph": "adapterPath.path"
+          },
+          "stdinFixture": {
+            "$graph": "fixtureEmptyPath.path"
+          },
+          "expectedStatus": "passed"
+        },
+        "output": {
+          "path": "$graph.semanticEmpty"
+        }
+      },
+      {
+        "id": "materializeBeforeReady",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "beforeReadyPath.path"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "originalReady.result"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.beforeReadyArtifact"
+        }
+      },
+      {
+        "id": "materializeAfterReady",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "afterReadyPath.path"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "semanticReady.result"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.afterReadyArtifact"
+        }
+      },
+      {
+        "id": "materializeBeforeMissing",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "beforeMissingPath.path"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "originalMissing.result"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.beforeMissingArtifact"
+        }
+      },
+      {
+        "id": "materializeAfterMissing",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "afterMissingPath.path"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "semanticMissing.result"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.afterMissingArtifact"
+        }
+      },
+      {
+        "id": "materializeBeforeUnsupported",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "beforeUnsupportedPath.path"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "originalUnsupported.result"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.beforeUnsupportedArtifact"
+        }
+      },
+      {
+        "id": "materializeAfterUnsupported",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "afterUnsupportedPath.path"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "semanticUnsupported.result"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.afterUnsupportedArtifact"
+        }
+      },
+      {
+        "id": "materializeBeforeEmpty",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "beforeEmptyPath.path"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "originalEmpty.result"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.beforeEmptyArtifact"
+        }
+      },
+      {
+        "id": "materializeAfterEmpty",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "afterEmptyPath.path"
+            },
+            "format": "json",
+            "content": {
+              "$graph": "semanticEmpty.result"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.afterEmptyArtifact"
+        }
+      },
+      {
+        "id": "hashBeforeReady",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "beforeReadyPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.beforeReadyHash"
+        }
+      },
+      {
+        "id": "hashAfterReady",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "afterReadyPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.afterReadyHash"
+        }
+      },
+      {
+        "id": "hashBeforeMissing",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "beforeMissingPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.beforeMissingHash"
+        }
+      },
+      {
+        "id": "hashAfterMissing",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "afterMissingPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.afterMissingHash"
+        }
+      },
+      {
+        "id": "hashBeforeUnsupported",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "beforeUnsupportedPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.beforeUnsupportedHash"
+        }
+      },
+      {
+        "id": "hashAfterUnsupported",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "afterUnsupportedPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.afterUnsupportedHash"
+        }
+      },
+      {
+        "id": "hashBeforeEmpty",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "beforeEmptyPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.beforeEmptyHash"
+        }
+      },
+      {
+        "id": "hashAfterEmpty",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "afterEmptyPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.afterEmptyHash"
+        }
+      },
+      {
+        "id": "materializeEquivalenceMatrix",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "matrixPath.path"
+            },
+            "format": "json",
+            "content": {
+              "schemaVersion": "defracto.node-script-replacement-equivalence-matrix.v1",
+              "status": "passed",
+              "caseCount": 5,
+              "passedCaseCount": 5,
+              "replacementReadiness": "accepted_for_replacement_review",
+              "cases": [
+                {
+                  "caseKey": "combined-missing-and-unsupported",
+                  "beforeHash": "sha256:7e3a23156d2004ef707346c869d78d3795aa06eb8ac7c3babbf86f38a3952450",
+                  "afterHash": "sha256:7e3a23156d2004ef707346c869d78d3795aa06eb8ac7c3babbf86f38a3952450",
+                  "matched": true
+                },
+                {
+                  "caseKey": "ready",
+                  "beforeHash": {
+                    "$graph": "beforeReadyHash.hash"
+                  },
+                  "afterHash": {
+                    "$graph": "afterReadyHash.hash"
+                  },
+                  "matched": true
+                },
+                {
+                  "caseKey": "missing-required-document",
+                  "beforeHash": {
+                    "$graph": "beforeMissingHash.hash"
+                  },
+                  "afterHash": {
+                    "$graph": "afterMissingHash.hash"
+                  },
+                  "matched": true
+                },
+                {
+                  "caseKey": "unsupported-claim",
+                  "beforeHash": {
+                    "$graph": "beforeUnsupportedHash.hash"
+                  },
+                  "afterHash": {
+                    "$graph": "afterUnsupportedHash.hash"
+                  },
+                  "matched": true
+                },
+                {
+                  "caseKey": "empty-default-input",
+                  "beforeHash": {
+                    "$graph": "beforeEmptyHash.hash"
+                  },
+                  "afterHash": {
+                    "$graph": "afterEmptyHash.hash"
+                  },
+                  "matched": true
+                }
+              ],
+              "notCoveredYet": [
+                "syntactically invalid JSON input",
+                "file-system side effects",
+                "network or secret-backed script behavior"
+              ]
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.matrixArtifact"
+        }
+      },
+      {
+        "id": "hashMatrix",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "matrixPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.matrixHash"
+        }
+      },
+      {
+        "id": "emitReadinessReceipt",
+        "capabilityKey": "evidence.emit.v1",
+        "input": {
+          "authority": {
+            "scope": "evidence_write_only"
+          },
+          "receipt": {
+            "path": {
+              "$graph": "readinessReceiptPath.path"
+            },
+            "content": {
+              "schemaVersion": "defracto.node-script-replacement-readiness.receipt.v1",
+              "status": "passed",
+              "replacementStatus": "accepted_for_replacement_review",
+              "replacementAllowed": false,
+              "acceptanceDecisionRequired": true,
+              "caseCount": 5,
+              "passedCaseCount": 5,
+              "equivalenceMatrix": {
+                "path": {
+                  "$graph": "matrixPath.path"
+                },
+                "hash": {
+                  "$graph": "matrixHash.hash"
+                }
+              },
+              "sourceScript": {
+                "$context": "command.options.source-script"
+              },
+              "thinFacade": {
+                "$graph": "adapterPath.path"
+              },
+              "nextStepOwner": "Product Owner / Platform Maintainer"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.readinessReceipt"
+        }
+      },
+      {
+        "id": "materializeSummary",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "summaryPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "# Node Script to SEJ Refactor Lab",
+              "",
+              "Status: Replacement readiness accepted for review.",
+              "",
+              "The conveyor ran a broader JSON fixture suite against the original Node script and the generated runtime-surface adapter. All five equivalence cases passed.",
+              "",
+              "Replacement is not automatically performed. Product owner / platform maintainer acceptance is required before the original script can be swapped for the thin facade."
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.summaryArtifact"
+        }
+      },
+      {
+        "id": "materializeReviewHtml",
+        "capabilityKey": "artifact.materialize.v1",
+        "input": {
+          "authority": {
+            "scope": "generated_surface_write_only"
+          },
+          "artifact": {
+            "path": {
+              "$graph": "reviewHtmlPath.path"
+            },
+            "format": "text",
+            "anchor": {
+              "enabled": false
+            },
+            "joinWith": "\n",
+            "content": [
+              "<!doctype html>",
+              "<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Node Script Replacement Readiness</title>",
+              "<style>body{margin:0;background:#f6f8fb;color:#17202a;font-family:Arial,sans-serif}main{max-width:1120px;margin:0 auto;padding:32px}.hero,.panel{background:#fff;border:1px solid #d8dee9;padding:24px;margin:16px 0}.badge{display:inline-block;padding:6px 10px;border-radius:6px;border:1px solid #bbf7d0;background:#dcfce7;color:#166534;font-weight:700}.warn{color:#92400e;font-weight:700}table{width:100%;border-collapse:collapse}td,th{border:1px solid #d8dee9;padding:10px;text-align:left;vertical-align:top}th{background:#eef2f7}code{background:#eef2f7;padding:2px 4px}</style></head>",
+              "<body><main><section class=\"hero\"><span class=\"badge\">Accepted for replacement review</span><h1>Node Script Replacement Readiness</h1><p>The conveyor broadened fixture coverage and proved the generated runtime-surface adapter matches the original Node behavior across five JSON-input cases.</p></section>",
+              "<section class=\"panel\"><h2>Equivalence matrix</h2><table><thead><tr><th>Case</th><th>Result</th></tr></thead><tbody><tr><td>Combined missing evidence and unsupported claim</td><td>Matched</td></tr><tr><td>Ready packet</td><td>Matched</td></tr><tr><td>Missing required document</td><td>Matched</td></tr><tr><td>Unsupported claim</td><td>Matched</td></tr><tr><td>Empty/default input</td><td>Matched</td></tr></tbody></table></section>",
+              "<section class=\"panel\"><h2>Decision</h2><p class=\"warn\">Replacement is ready for maintainer review, not automatically applied. Acceptance is required before replacing the original Node script with the thin semantic facade.</p><p>Receipt: <code>",
+              {
+                "$graph": "readinessReceiptPath.path"
+              },
+              "</code></p></section>",
+              "</main></body></html>"
+            ]
+          }
+        },
+        "output": {
+          "path": "$graph.reviewHtmlArtifact"
+        }
+      },
+      {
+        "id": "hashReviewHtml",
+        "capabilityKey": "hash.compute.v1",
+        "input": {
+          "algorithm": "sha256",
+          "path": {
+            "$graph": "reviewHtmlPath.path"
+          }
+        },
+        "output": {
+          "path": "$graph.reviewHtmlHash"
+        }
+      },
+      {
+        "id": "projectResult",
+        "capabilityKey": "project.value.v1",
+        "input": {
+          "fields": {
+            "status": {
+              "literal": "accepted_for_replacement_review"
+            },
+            "replacementAllowed": {
+              "literal": false
+            },
+            "acceptanceDecisionRequired": {
+              "literal": true
+            },
+            "caseCount": {
+              "literal": 5
+            },
+            "passedCaseCount": {
+              "literal": 5
+            },
+            "equivalenceMatrix": {
+              "path": {
+                "$graph": "matrixPath.path"
+              },
+              "hash": {
+                "$graph": "matrixHash.hash"
+              }
+            },
+            "reviewPackage": {
+              "path": {
+                "$graph": "reviewHtmlPath.path"
+              },
+              "hash": {
+                "$graph": "reviewHtmlHash.hash"
+              }
+            },
+            "readinessReceipt": {
+              "$graph": "readinessReceiptPath.path"
+            },
+            "nextStepOwner": {
+              "literal": "Product Owner / Platform Maintainer"
+            }
+          }
+        },
+        "output": {
+          "path": "$graph.result"
+        }
+      }
+    ],
+    "return": {
+      "$result": true
+    }
+  },
+  "completionPosture": "The conveyor may accept the refactor for replacement review after broad fixture equivalence passes, but it must not replace the original script until the product owner or platform maintainer records acceptance."
+}

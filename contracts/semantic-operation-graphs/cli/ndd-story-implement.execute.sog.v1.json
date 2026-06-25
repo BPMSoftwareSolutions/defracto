@@ -221,12 +221,12 @@
                                             "$graph": "command.options.target-kind"
                                           },
                                           {
-                                            "literal": "runtime-surface-operation-binding"
+                                            "literal": "node-script-replacement-acceptance"
                                           }
                                         ]
                                       },
                                       "then": {
-                                        "literal": "runtime_surface_operation_binding"
+                                        "literal": "node_script_replacement_acceptance"
                                       },
                                       "else": {
                                         "when": {
@@ -235,12 +235,12 @@
                                               "$graph": "command.options.target-kind"
                                             },
                                             {
-                                              "literal": "node-script-to-sej-refactor"
+                                              "literal": "runtime-surface-operation-binding"
                                             }
                                           ]
                                         },
                                         "then": {
-                                          "literal": "node_script_to_sej_refactor"
+                                          "literal": "runtime_surface_operation_binding"
                                         },
                                         "else": {
                                           "when": {
@@ -249,15 +249,30 @@
                                                 "$graph": "command.options.target-kind"
                                               },
                                               {
-                                                "literal": "visual-proof"
+                                                "literal": "node-script-to-sej-refactor"
                                               }
                                             ]
                                           },
                                           "then": {
-                                            "literal": "visual_proof_materialization"
+                                            "literal": "node_script_to_sej_refactor"
                                           },
                                           "else": {
-                                            "literal": "manifest_declared_lane"
+                                            "when": {
+                                              "equals": [
+                                                {
+                                                  "$graph": "command.options.target-kind"
+                                                },
+                                                {
+                                                  "literal": "visual-proof"
+                                                }
+                                              ]
+                                            },
+                                            "then": {
+                                              "literal": "visual_proof_materialization"
+                                            },
+                                            "else": {
+                                              "literal": "manifest_declared_lane"
+                                            }
                                           }
                                         }
                                       }
@@ -422,13 +437,13 @@
                                             "$graph": "command.options.target-kind"
                                           },
                                           {
-                                            "literal": "runtime-surface-operation-binding"
+                                            "literal": "node-script-replacement-acceptance"
                                           }
                                         ]
                                       },
                                       "then": {
                                         "literal": {
-                                          "$inline": "contracts/semantic-operation-graphs/runtime-surface/runtime-surface-operation-binding.execute.sog.v1.json"
+                                          "$inline": "contracts/semantic-operation-graphs/lab/node-script-replacement-acceptance.execute.sog.v1.json"
                                         }
                                       },
                                       "else": {
@@ -438,13 +453,13 @@
                                               "$graph": "command.options.target-kind"
                                             },
                                             {
-                                              "literal": "node-script-to-sej-refactor"
+                                              "literal": "runtime-surface-operation-binding"
                                             }
                                           ]
                                         },
                                         "then": {
                                           "literal": {
-                                            "$inline": "contracts/semantic-operation-graphs/lab/node-script-to-sej-refactor.execute.sog.v1.json"
+                                            "$inline": "contracts/semantic-operation-graphs/runtime-surface/runtime-surface-operation-binding.execute.sog.v1.json"
                                           }
                                         },
                                         "else": {
@@ -454,18 +469,35 @@
                                                 "$graph": "command.options.target-kind"
                                               },
                                               {
-                                                "literal": "visual-proof"
+                                                "literal": "node-script-to-sej-refactor"
                                               }
                                             ]
                                           },
                                           "then": {
                                             "literal": {
-                                              "$inline": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+                                              "$inline": "contracts/semantic-operation-graphs/lab/node-script-to-sej-refactor.execute.sog.v1.json"
                                             }
                                           },
                                           "else": {
-                                            "literal": {
-                                              "$inline": "contracts/semantic-operation-graphs/cli/ndd-story-implement-manifest-lane.execute.sog.v1.json"
+                                            "when": {
+                                              "equals": [
+                                                {
+                                                  "$graph": "command.options.target-kind"
+                                                },
+                                                {
+                                                  "literal": "visual-proof"
+                                                }
+                                              ]
+                                            },
+                                            "then": {
+                                              "literal": {
+                                                "$inline": "contracts/semantic-operation-graphs/projections/visual-proof-materialize.sog.v1.json"
+                                              }
+                                            },
+                                            "else": {
+                                              "literal": {
+                                                "$inline": "contracts/semantic-operation-graphs/cli/ndd-story-implement-manifest-lane.execute.sog.v1.json"
+                                              }
                                             }
                                           }
                                         }

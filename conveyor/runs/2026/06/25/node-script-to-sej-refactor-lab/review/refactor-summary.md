@@ -1,7 +1,7 @@
 # Node Script to SEJ Refactor Lab
 
-Status: Runtime-surface operations bound; equivalence passed for the characterization fixture.
+Status: Replacement readiness accepted for review.
 
-The conveyor detected missing runtime-surface bindings, generated a binding plan, materialized a binding registry and generated runtime-surface adapter, executed the adapter against the safe fixture, and updated the equivalence receipt.
+The conveyor ran a broader JSON fixture suite against the original Node script and the generated runtime-surface adapter. All five equivalence cases passed.
 
-Replacement remains blocked until the fixture suite is broadened and product owner acceptance is recorded.
+Replacement is not automatically performed. Product owner / platform maintainer acceptance is required before the original script can be swapped for the thin facade.
